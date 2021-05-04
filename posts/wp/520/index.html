@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>【Laravel】migrateで『Class &#39;CreateFoooTable&#39; not found』が発生する &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">【Laravel】migrateで『Class &#39;CreateFoooTable&#39; not found』が発生する</h1>
+		<div class="post-info">
+				<time datetime="2017-04-11 16:25:41 &#43;0000 UTC">April 11, 2017</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/php/">PHP</a></div> <div class="tags_item"><a href="/tags/laravel/">Laravel</a></div>
+				</div>
+			
+		</div>
+		<h2 id="環境">■環境</h2>
+<p>Laravel 5.1</p>
+<hr>
+<p>Laravelの「migrate:rollback」や「migrate:refresh」をしようとして<br>
+『Class &lsquo;CreateFoooTable&rsquo; not found』というエラーが発生した際の解決方法です。</p>
+<p>この事象はmigrateで利用する「/database/migrations」ディレクトリに配置されているファイルが<br>
+autoloadされていない事が原因のようです。</p>
+<p>解決するにはプロジェクトのrootディレクトリにて以下コマンドを実行し、autoloadを再編成します。</p>
+<pre><code>composer dump-autoload  
+</code></pre><p>※composerインストールについては<!-- raw HTML omitted -->コチラ<!-- raw HTML omitted --></p>
+<p>もしサーバにcomposerを入れられない場合は作業PCにて上記コマンドを実行すると<br>
+「/vendor」ディレクトリ配下が更新されるのでサーバにアップロードしてください。</p>
+<p>以上。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/515/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/569/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2840356 &#43;0900 JST m=&#43;0.103630001">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

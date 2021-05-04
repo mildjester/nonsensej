@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GoogleService on Nonsense J</title>
+    <link>/tags/googleservice/</link>
+    <description>Recent content in GoogleService on Nonsense J</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Mon, 25 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/googleservice/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Googleフォームを使って迷子札を作る</title>
+      <link>/posts/2021/01/25/lost-tag-qr/</link>
+      <pubDate>Mon, 25 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2021/01/25/lost-tag-qr/</guid>
+      <description>子供たちが自由に走り回れるようになり、ショッピングセンターやアミューズメント施設で迷子になるリスクが高くなったので迷子札の作成を検討しました。
+迷子札の条件は以下のように設けました。
+ 子供の持ち物等に付けておく 子供を見つけてくれた人が親に連絡できるようにする 自分の連絡先を札に直接書くのは嫌 連絡先が悪意ある人に漏れた時にすぐに変更できるようにしたい 捨てメアドを作るのは管理など面倒なので嫌  そこで、Googleフォームです。
+以下の流れで迷子札を作ってみます。
+① Googleフォームで問い合わせフォームを作る。
+② 作成したGoogleフォームのURLをQRコード化する。
+③ QRコードが入ったアクセサリ等を作成する。
+今回は迷子札想定で作成していますが、QRコードをシールにしてスマホや旅行バッグ等に貼っておけば、
+紛失したとしても善良な人が拾ってくれたら連絡が来るかもしれません。
+前提条件 既にGoogleアカウント(Gmail)を持っていること。
+手順詳細 Googleフォーム作成 まず、Googleフォームで問い合わせフォームを作ります。
+https://www.google.com/intl/ja_jp/forms/about/
+フォームの内容は連絡者と連絡が取れる程度で良いと思います。
+フォームの設定を変えます。
+右上の歯車アイコンをクリックして、設定ポップアップを開きます。
+まず全般タブでは基本的に全てのチェックを外しておきます。
+プレゼンテーションタブの「確認メッセージ」で連絡をしてくれた人に表示するメッセージを変更できます。
+テストフォームでは無いので、テストタブは何もしません。
+次に連絡してもらった時の受け取り方を設定します。
+回答タブを選択して『…』が縦に並んでいるアイコンをクリックします。
+そこで『新しい回答についてのメール通知を受け取る』にチェックを入れます。
+これで誰かがGoogleフォームを送信してくれたら自分宛にメールが届きます。
+連絡を受けた履歴をスプレッドシートに残しておきたいなら『回答先を選択』で選択しておきます。
+これでフォームは完成です。
+右上の『送信』よりフォームのURLを取得します。
+QRコード作成 QRコード生成サービスを使ってGoogleフォームのURLをQRコード化します。
+無料で使えるところだと以下のようなサービスがあります。
+https://qr.quel.jp/
+アクセサリー作成 生成したQRコードは色んな使い方ができます。
+シールにしてもいいし、アクセサリーにしてもいいと思います。
+今回はアクセサリーを作ってみました。
+利用したのは以下のサービスです。
+https://originalprint.jp/
+アクセサリーのデザインは自分で決められます。
+こんな感じで作れます。
+実際にスマホでQRコードを読み込んでGoogleフォームを開き、連絡先等を送信してみます。
+自分のGmail宛にGoogleフォームが送信された旨のメールが届けば成功です。
+（フォーム送信からメール着まで、だいたい1分弱のタイムラグがあります）
+これを子供のカバンに付けておきます。
+GoogleフォームのURLが悪意ある人に漏れた場合はGoogleフォームを作り変えればOKです。</description>
+    </item>
+    
+    <item>
+      <title>GASでGmailをSlackに転送する</title>
+      <link>/posts/2020/03/10/gas-gmail-slack/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2020/03/10/gas-gmail-slack/</guid>
+      <description>参考  Class GmailApp(公式ドキュメント) 【GAS】Gmailを定期的に確認し新規メールをSlackに通知する 【Google Apps Script】Gmailの新着(未読)メールを取得する【コピペでOK】   元々IFTTTやZepierを使ってGmailをSlackと連携させていたのですが、
+最近Gmail側のセキュリティ変更でうまく連携できなくなってきたので
+Google Apps Script(GAS)を使って連携させることにしました。
+GASでやることは
+『5分周期でメールをチェックし、未読メールがあればSlackに転送して既読にする』
+です。
+SlackのWebHooks URLの取得 GASに限らず、API経由でSlackに通知を出したい時に使うURLを取得します。
+これを取得しておけば自作botを作ったりできます。
+こちらのページから自分のSlackチームにWebHooksを追加できます。
+（要Slackログイン）
+https://slack.com/apps/A0F7XDUAZ-incoming-webhooks
+https://hooks.slack.com/services/AAAAAAA/BBBBBBB/CCCCCCCという形式のURLが取得できれば完了です。
+ちなみに、今回のGASの話とは関係ないですけど
+PHPからWebHooksを使ってメッセージ送信するライブラリを作っています。
+全然誰にも使われてないですけど、参考までに載せておきます。
+https://github.com/mildjester/slackwebhock
+Google Apps Scriptの作成 まず、自分のGASのページを開きます。
+https://script.google.com/u/0/home?hl=ja
+そこで「新しいプロジェクト」をクリックしてください。
+コード編集画面が開くので、「コード.gs」内を以下のように記載します。
+最初の「初期設定」の部分は自分の環境に合わせて修正してください。
+// 初期設定 const HOOK_URL = &#39;https://hooks.slack.com/services/AAAAAAA/BBBBBBB/CCCCCCC&#39;; // 取得したWebHooks URL const SEND_CHANNEL = &#39;general&#39;; // Gmailの内容を送信したいSlackチャンネル function main() { // 検索条件：受信トレイにある未読メールで１０分以内に受信したもの var after = parseInt(((new Date()).getTime() - 10 * 60 * 1000) / 1000); //10分前の時刻をUNIX時間で取得 var searchTarget = &#39;in:inbox is:unread after:&#39; + after; GmailApp .</description>
+    </item>
+    
+    <item>
+      <title>Google Analyticsから直近のページ閲覧数を取得する</title>
+      <link>/posts/2020/03/05/get-google-analytics-report/</link>
+      <pubDate>Thu, 05 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2020/03/05/get-google-analytics-report/</guid>
+      <description>環境  PHP 7.3 google/apiclient 2.4  参考 https://developers.google.com/analytics/devguides/reporting/core/v3/quickstart/service-php?hl=ja
+ 商品ページにて「24時間以内に○○人が見ています」という販促メッセージを出す時に、乱数を使っているサービスもあるようですが、 それはさすがに嫌なのでGoogle Analyticsから閲覧実績を取得して表示してみます。
+なお、Google Analyticsからは「昨日から今日まで」のように日付指定しかできないので、「10分以内に」のように厳密な時間を指定して閲覧者数を表示することはできません。
+GCPのサービスアカウント作成 まず、以下ページにてサービスアカウントを作成します。
+※もしGoogle CloudPlatform(GCP)のプロジェクトを作成していない場合は「プロジェクトを作成」をクリックしてGCPプロジェクトを作成してから実行します。
+https://console.developers.google.com/iam-admin/serviceaccounts?hl=ja
+「プロジェクトの選択」よりサービスアカウントを作成するプロジェクトを選択し、
+「＋サービスアカウントを作成」をクリックします。
+サービスアカウントの作成画面が開くので以下の通り入力して「作成」をクリックしてください。
+   項目 入力内容     サービスアカウント名 独自の自分で判断できる名前   サービスアカウントID 独自のID(サービスアカウント名を入力したら勝手に入ります)   サービスアカウントの説明 自分が分かる説明    次にサービスアカウントの権限設定画面が開きますが、そのまま「続行」をクリックします。
+その次の画面で「ユーザーにこのサービス アカウントへのアクセス権を付与」は特に何もしません。
+「キーの作成」の中の「キーを作成」をクリックし、キーのタイプはJSONを選択して「作成」をクリックします。
+JSONファイルがダウンロードされますので取っておいてください。
+サービスアカウントの作成画面はそのまま「完了」をクリックして終わります。
+サービスアカウント一覧に戻り、作成したサービスアカウントのメールアドレスが表示されるので記録しておきます。
+Google Analytics APIの有効化 以下ページにアクセスし、Google Analytics APIを有効化してください。
+https://console.developers.google.com/apis/api/analytics.googleapis.com/overview
+Google Analyticsの設定 さきほど作成したサービスアカウントをGoogle Analyticsに追加します。
+アカウントユーザーまたはプロパティユーザーにサービスアカウントのメールアドレスを追加します。
+権限は「表示と分析」のみ(デフォルト)で大丈夫です。
+スクリプトの作成 PHPとcomposerの環境は構築済みの前提とします。
+まず、Google Analytics APIのパッケージを取得します。</description>
+    </item>
+    
+    <item>
+      <title>Google Optimizeでセッション情報が必要なページを触る</title>
+      <link>/posts/2019/03/07/google-optimize-interactive/</link>
+      <pubDate>Thu, 07 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2019/03/07/google-optimize-interactive/</guid>
+      <description>Google Optimizeは無料でABテストなどが行なえるツールです。
+ログイン後のページなど、セッション情報が必要なページをGoogle Optimizeのエディタページに指定すると、
+セッション情報がないのでエラーページや404ページが表示されてしまいます。
+そんな時、エディタページの『インタラクティブモード』を使うと解決します。
+手順 Google Optimizeの普通の使い方はできる前提とします。
+手順①：エディタページの設定 まず、エディタページはOptimizeで触りたいページに至る前のセッション情報無しで開けるページを指定しておきます。
+Optimizeで触りたいページそのものを指定しても良いですが、エディタを開いた時にまずエラーページになるので非効率だと思います。
+手順②：Optimize対象のページへの移動 パターンを通常通り作成し、エディタの右上にある四角にカーソルがついているアイコンをクリックします。 するとインタラクティブモードになりサイトの操作ができるようになるので、Optimizeで開きたいページまで移動します。
+該当ページを開いたらインタラクティブモードの『終了』をクリックします。
+※画面遷移時に勝手にインタラクティブモードが終了している場合もあります 手順③：エディットする セッション情報が不要なページと同様にページの編集をします。
+この手順は特別な事はありません。
+これでOptimizeの設定は完了です。
+プレビュー時はエディタページに指定したURLからスタートするので、Optimizeで編集したページまで移動する必要があります。</description>
+    </item>
+    
+    <item>
+      <title>Google Tag Managerで発火しない時</title>
+      <link>/posts/wp/1755/</link>
+      <pubDate>Mon, 26 Nov 2018 23:38:42 +0000</pubDate>
+      
+      <guid>/posts/wp/1755/</guid>
+      <description>Google Tag　Managerを使ってトリガーを設定したはずが
+思い通りにGoogle Analytics上で集計できない時の調査方法です。
+まず、Google Tag Managerの管理画面にて「プレビューモード」にします。
+公開ボタンの横にある『プレビュー』をクリックするだけです。
+プレビューモードになったら、同じブラウザでテストしたいページを開きます。
+すると、Google Tag Managerのコンソールが表示されます。
+画面上クリックをするとクリックイベントが発生するのが分かります。
+ここでコンソール内の『Variables』または『Data Layer』のを開くと
+どのようなトリガーが発火したのかが分かります。
+これで確認したクリック時に発火したトリガー（IDやClass）が
+Google Tag Managerで設定したトリガーと一致しているか確認します。
+ありそうな間違い Google Tag Managerのイベントは一番内側の要素がトリガーになります。
+javascriptのonClickとは違うので注意が必要です。
+例えば以下のソースコードの場合、sample.pngをクリックした時に
+id=&amp;ldquo;fooo&amp;rdquo;のクリックイベントは発火しません。
+&amp;lt;div id=&amp;quot;wrapper&amp;quot;&amp;gt; &amp;lt;div id=&amp;quot;fooo&amp;quot;&amp;gt; &amp;lt;img src=&amp;quot;./sample.png&amp;quot; /&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; </description>
+    </item>
+    
+    <item>
+      <title>Google Tag Managerの基本設定</title>
+      <link>/posts/wp/1741/</link>
+      <pubDate>Mon, 26 Nov 2018 22:32:40 +0000</pubDate>
+      
+      <guid>/posts/wp/1741/</guid>
+      <description>Google AnalyticsをGoogle Tag Managerに切り替えた際のメモです。
+前提条件としてGoogle Analyticsのアカウントはあることとします。
+アカウント作成 まずGoogle Tag Managerのページにてアカウントを作成します
+https://tagmanager.google.comアカウント名は任意の物を入力し、国は日本を選択して『続行』をクリックします。
+するとコンテナの作成になるので
+任意のコンテナ名と利用場所（WEBページかスマホアプリかなど）を選択します。
+今回はWEBを選択したとします。
+規約に同意するとHTMLに埋め込むタグが表示されます。
+&amp;lt;head&amp;gt;内に埋めるタグと&amp;lt;body&amp;gt;に埋めるタグが生成されるので
+それぞれ対応する場所に埋め込みます。
+これでGoogle Tag Managerを使う準備ができました。
+イベントトラッキングの設定 クリックをトラッキングする設定をしてみます。
+Google Tag Managerの管理画面を開くと「新しいタグ」のリンクがあるのでクリックします。
+タグとは検知する項目みたいなものです。
+タグの設定画面が開くので、タグの名前や種類を指定します。
+とりあえず、簡単に下図のような設定をします。
+「Google アナリティクス設定」という項目があるので、「新しい変数」を選択します。
+するとトラッキングIDを入力する欄が出てくるので、Google AnalyticsのトラッキングIDを入力してください。
+すべて入力したら「保存」をクリックして閉じます。
+次に下の方にスクロールするとトリガーの設定ができます
+トリガーとは、イベントを検知する条件です。
+プラスマークをクリックすると新規トリガーを作成できます。
+トリガーの名前や内容を設定します。
+基本的には下図のような設定でよいです。
+クリック対象の要素にIDが付いている場合は「Click ID」で良いですが
+もしIDを指定していなくてClassなどしか設定されていない場合は
+「Click　Classes」を選択してください。
+全て完了したら『保存』をクリックしてトリガー設定画面を閉じ、
+タグ設定画面でも『保存』をクリックして閉じます。
+最後にGoogle Tag ManagerのTOP画面にて「公開」をクリックすれば完了です。</description>
+    </item>
+    
+    <item>
+      <title>Google Cloud Platformにインスタンス作成</title>
+      <link>/posts/wp/721/</link>
+      <pubDate>Sun, 08 Oct 2017 00:10:11 +0000</pubDate>
+      
+      <guid>/posts/wp/721/</guid>
+      <description>参考 https://www.topgate.co.jp/category/gcp インスタンス立ち上げ ① 左メニューの「Compute Engine」をクリックする。
+②1分ほど読みこみ待ちになる。
+読み込み完了後、VMインスタンスの「作成」ボタンをクリックする。
+③また、少々待ちが発生する。
+インスタンスの作成画面が表示されたら、名前に任意の名称、ゾーンは「asia-northeast1-a」を選択する。(東京リージョンらしい)
+   項目 設定値     名前 任意の名称をつける。   ゾーン 「asia-northeast1-a」を選択する。(東京リージョンらしい)   マシンタイプ 必要なスペックに合わせて選択する。安さ重視ならmicro。   ブートディスク 入れたいOSを選択する。   IDとAPIへのアクセス このインスタンスへ付与する権限のよう。とりあえずデフォルトのままにする。   ファイアウォール HTTPやHTTPSを使うならチェック   管理 とりあえずデフォルトのまま   ディスク とりあえずデフォルトのまま   ネットワーキング とりあえずデフォルトのまま   SSH認証鍵 自分のローカルPCの認証鍵を登録しておく    ④ここまでできたら、一番下の「作成」ボタンをクリックする。
+しばらく処理待ちとなるが、処理が完了するとインスタンス生成され、グローバルIPも振られる
+これでインスタンスの立ち上げは完了です。
+SSH鍵登録をしたローカル環境からグローバルIPを指定してSSH接続できるようになっています。
+ssh 999.999.999.999 ※グローバルIPアドレスはインスタンス一覧画面で確認可能</description>
+    </item>
+    
+  </channel>
+</rss>

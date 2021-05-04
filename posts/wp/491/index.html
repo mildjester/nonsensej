@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>【golang】mapの要素順は変動する &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">【golang】mapの要素順は変動する</h1>
+		<div class="post-info">
+				<time datetime="2017-04-08 12:22:59 &#43;0000 UTC">April 8, 2017</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/golang/">golang</a></div>
+				</div>
+			
+		</div>
+		<p>■環境<br>
+OS X El Capitan 10.11.6<br>
+go 1.8 darwin/amd64</p>
+<p>タイトルの件、ちょっと引っかかったのでメモです。</p>
+<p>golangで変数にmapを格納する場合、その要素の順番は<br>
+呼び出すたびに変わります。</p>
+<p>以下サンプルコードです。<br>
+mapをrangeで取り出しながらforで回し、標準出力する<br>
+という処理を3回繰り返します。</p>
+<pre><code>package main  
+  
+import (  
+	&quot;fmt&quot;  
+)  
+  
+func main() {  
+	// create new map  
+	fruitColor := make(map[string]string)  
+	fruitColor[&quot;pineapple&quot;] = &quot;yellow&quot;  
+	fruitColor[&quot;apple&quot;] = &quot;red&quot;  
+	fruitColor[&quot;grape&quot;] = &quot;purple&quot;  
+	fruitColor[&quot;melon&quot;] = &quot;green&quot;  
+  
+	// printout 3 times  
+	for i := 1; i &lt;= 3; i++ {  
+		fmt.Println(fmt.Sprintf(&quot;===== %d times =====&quot;, i))  
+		for name, color := range fruitColor {  
+			fmt.Println(fmt.Sprintf(&quot;%s is %s&quot;, name, color))  
+		}  
+	}  
+}  
+</code></pre><p>これを実行すると、このように出力されます。<br>
+要素順は変動するので、実行する度に変わると思います。</p>
+<pre><code>===== 1 times =====  
+apple is red  
+grape is purple  
+melon is green  
+pineapple is yellow  
+===== 2 times =====  
+grape is purple  
+melon is green  
+pineapple is yellow  
+apple is red  
+===== 3 times =====  
+melon is green  
+pineapple is yellow  
+apple is red  
+grape is purple
+</code></pre><p>上記のような順不同なアプリケーションだとしても、<br>
+ユーザが画面を表示する度に順番が変わるのは気持ち悪いので<br>
+sliceを使って表示順を保持しておいた方が良いです。</p>
+<p>sliceを使う例は以下の通りです。</p>
+<pre><code>package main  
+  
+import (  
+	&quot;fmt&quot;  
+)  
+  
+func main() {  
+	// create new map  
+	fruitColor := make(map[string]string)  
+	fruitColor[&quot;pineapple&quot;] = &quot;yellow&quot;  
+	fruitColor[&quot;apple&quot;] = &quot;red&quot;  
+	fruitColor[&quot;grape&quot;] = &quot;purple&quot;  
+	fruitColor[&quot;melon&quot;] = &quot;green&quot;  
+	// set display order  
+	fruitList := []string{&quot;pineapple&quot;,&quot;apple&quot;,&quot;grape&quot;,&quot;melon&quot;}  
+  
+	// printout 3 times  
+	for i := 1; i &lt;= 3; i++ {  
+		fmt.Println(fmt.Sprintf(&quot;===== %d times =====&quot;, i))  
+		for _, name := range fruitList {  
+			fmt.Println(fmt.Sprintf(&quot;%s is %s&quot;, name, fruitColor[name]))  
+		}  
+	}  
+}  
+</code></pre><p>これを実行すると以下のようになります。</p>
+<pre><code>===== 1 times =====  
+pineapple is yellow  
+apple is red  
+grape is purple  
+melon is green  
+===== 2 times =====  
+pineapple is yellow  
+apple is red  
+grape is purple  
+melon is green  
+===== 3 times =====  
+pineapple is yellow  
+apple is red  
+grape is purple  
+melon is green
+</code></pre>
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/467/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/501/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2834489 &#43;0900 JST m=&#43;0.103043401">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

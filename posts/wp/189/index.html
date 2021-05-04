@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>MySQLの文字コードを設定する &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">MySQLの文字コードを設定する</h1>
+		<div class="post-info">
+				<time datetime="2016-01-20 22:36:39 &#43;0000 UTC">January 20, 2016</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/mysql/">MySQL</a></div>
+				</div>
+			
+		</div>
+		<p>MySQLで文字コードを設定する方法です。<br>
+■環境<br>
+MySQL 5.6.26</p>
+<p>これからDBの作成をする場合は、設定ファイル「/etc/my.cnf」に追記することで<br>
+作成するDBの文字コードを設定できます。</p>
+<pre><code>[mysqld]  
+character-set-server=utf8  
+[client]  
+default-character-set=utf8
+</code></pre><p>作成済みDBの文字コードを設定する場合は以下のコマンドを実行してください。</p>
+<pre><code># mysql  
+mysql&gt; ALTER DATABASE sample_db CHARACTER SET utf8;  
+mysql&gt; SHOW CREATE DATABASE sample_db;
+</code></pre><p>作成済みテーブルの文字コードを設定する場合は以下のコマンドを実行してください。</p>
+<pre><code># mysql  
+【テーブルとカラム両方に設定する場合】mysql&gt; ALTER TABLE sample_table CONVERT TO CHARACTER SET utf8;  
+【テーブルのみ設定する場合】mysql&gt; ALTER TABLE sample_table charset=utf8;  
+mysql&gt; SHOW CREATE TABLE sample_table;
+</code></pre>
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/173/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/196/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2807193 &#43;0900 JST m=&#43;0.100313801">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

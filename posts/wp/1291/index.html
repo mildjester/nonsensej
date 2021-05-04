@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Wordpressを多言語対応させる &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Wordpressを多言語対応させる</h1>
+		<div class="post-info">
+				<time datetime="2018-04-24 00:56:56 &#43;0000 UTC">April 24, 2018</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/wordpress/">Wordpress</a></div>
+				</div>
+			
+		</div>
+		<h2 id="環境">■環境</h2>
+<p>Wordpress 4.9.5<br>
+MultilingualPress 2.11.1</p>
+<hr>
+<h2 id="手順">■手順</h2>
+<p>まず<!-- raw HTML omitted -->MultilingualPress<!-- raw HTML omitted -->というプラグインをインストールします。<br>
+<!-- raw HTML omitted --></p>
+<p>インストール後、プラグインを有効化しようとするとマルチサイトを有効にしないといけない旨のメッセージが表示されます。<br>
+<!-- raw HTML omitted --></p>
+<p>上記のリンク先にマルチサイト化をするための手順が記載されています。<br>
+<!-- raw HTML omitted --><a href="https://multilingualpress.org/docs/install-wordpress-multisite/">https://multilingualpress.org/docs/install-wordpress-multisite/</a><!-- raw HTML omitted --></p>
+<p>まず、Wordpressがインストールされているディレクトリにある<!-- raw HTML omitted -->wp-config.php<!-- raw HTML omitted -->を編集し、マルチサイトを有効化します。</p>
+<pre><code>define('WP_DEBUG', false);  
+  
+define('WP_ALLOW_MULTISITE', TRUE);  &lt;=これを追記  
+  
+/* 編集が必要なのはここまでです ! WordPress でブログをお楽しみください。 */  
+  
+/** Absolute path to the WordPress directory. */  
+if ( !defined('ABSPATH') )  
+    define('ABSPATH', dirname(__FILE__) . '/');  
+</code></pre><p>次にプラグインを全て停止させ、管理画面より「ツール ＞ サイトネットワークの設置」を開き、『インストール』をクリックします。<br>
+<!-- raw HTML omitted --></p>
+<p>すると、再度<!-- raw HTML omitted -->wp-config.php<!-- raw HTML omitted -->を修正するよう案内が表示されるので、案内通りに修正します。</p>
+<pre><code>define('WP_DEBUG', false);  
+  
+define('WP_ALLOW_MULTISITE', TRUE);  
+  
+define('MULTISITE', true);                          &lt;=これを追記  
+define('SUBDOMAIN_INSTALL', true);                  &lt;=これを追記  
+define('DOMAIN_CURRENT_SITE', 'your-domain.com');   &lt;=これを追記  
+define('PATH_CURRENT_SITE', '/');                   &lt;=これを追記  
+define('SITE_ID_CURRENT_SITE', 1);                  &lt;=これを追記  
+define('BLOG_ID_CURRENT_SITE', 1);                  &lt;=これを追記  
+  
+/* 編集が必要なのはここまでです ! WordPress でブログをお楽しみください。 */  
+  
+/** Absolute path to the WordPress directory. */  
+if ( !defined('ABSPATH') )  
+    define('ABSPATH', dirname(__FILE__) . '/');  
+</code></pre><p>また、<!-- raw HTML omitted -->.htaccess<!-- raw HTML omitted -->に次の記載をするよう指示がありますので、それも従います。</p>
+<pre><code>RewriteEngine On  
+RewriteBase /  
+RewriteRule ^index\.php$ - [L]  
+  
+# add a trailing slash to /wp-admin  
+RewriteRule ^wp-admin$ wp-admin/ [R=301,L]  
+  
+RewriteCond %{REQUEST_FILENAME} -f [OR]  
+RewriteCond %{REQUEST_FILENAME} -d  
+RewriteRule ^ - [L]  
+RewriteRule ^(wp-(content|admin|includes).*) $1 [L]  
+RewriteRule ^(.*\.php)$ $1 [L]  
+RewriteRule . index.php [L]  
+</code></pre><p>nginxを使っている場合は<!-- raw HTML omitted -->.htaccess<!-- raw HTML omitted -->が効かないので、nginx.confに以下の記載を追加します。</p>
+<pre><code>rewrite ^/wp-admin$ /wp-admin/ redirect;  
+if (!-e $request_filename){  
+    rewrite ^/(wp-(content|admin|includes).*) /$1 break;  
+    rewrite ^/(.*\.php)$ /$1 break;  
+    rewrite ^(.*)$ /index.php break;  
+}  
+</code></pre><p>nginxの設定ファイルを記載する際、こちらのコンバーターの出力結果を参考にしました。<br>
+<!-- raw HTML omitted --><a href="https://winginx.com/ja/htaccess">https://winginx.com/ja/htaccess</a><!-- raw HTML omitted --></p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/1245/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/1352/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2756155 &#43;0900 JST m=&#43;0.095210001">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

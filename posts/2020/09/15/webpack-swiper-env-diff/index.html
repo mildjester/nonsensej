@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>swiper.scssがwebpackで取り込まれない &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">swiper.scssがwebpackで取り込まれない</h1>
+		<div class="post-info">
+				<time datetime="2020-09-15 00:00:00 &#43;0000 UTC">September 15, 2020</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/node/">node</a></div>
+				</div>
+			
+		</div>
+		<h2 id="環境">環境</h2>
+<ul>
+<li>webpack 4.44.1</li>
+<li>swiper 6.0.0</li>
+</ul>
+<hr>
+<h2 id="事象">事象</h2>
+<p>webpackでswiperを取り込んでビルドしようとした時の話。<br>
+swiper.scssがなぜか開発環境では取り込めてて、本番環境では取り込めてないという事象が起きました。</p>
+<p>つまり、↓だとswiper.scssが取り込まれたCSSが出力されるんですが</p>
+<pre><code>node node_modules/webpack/bin/webpack.js --mode development
+</code></pre><p>↓だとswiper.scssが取り込まれていないCSSが出力されます。</p>
+<pre><code>node node_modules/webpack/bin/webpack.js --mode production
+</code></pre><h2 id="対応">対応</h2>
+<p>原因は結局不明だったのですが<br>
+swiperのバージョンを6.0.0から6.2.0に変更したら治りました。</p>
+<h3 id="事象が起きているときの状態">事象が起きているときの状態</h3>
+<p>npmインストールしていたパッケージ</p>
+<pre><code>&quot;devDependencies&quot;: {
+  &quot;css-loader&quot;: &quot;^4.3.0&quot;,
+  &quot;mini-css-extract-plugin&quot;: &quot;^0.11.2&quot;,
+  &quot;sass&quot;: &quot;^1.26.10&quot;,
+  &quot;sass-loader&quot;: &quot;^10.0.2&quot;,
+  &quot;style-loader&quot;: &quot;^1.2.1&quot;,
+  &quot;swiper&quot;: &quot;^6.0.0&quot;,
+  &quot;webpack&quot;: &quot;^4.44.1&quot;,
+  &quot;webpack-cli&quot;: &quot;^3.3.12&quot;
+}
+</code></pre><p>webpack.config.js</p>
+<pre><code>const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+module.exports = {
+  entry: path.resolve(__dirname, 'src/js/index.js'),
+  output: {
+    path: path.resolve(__dirname, &quot;dist&quot;),
+    filename: 'main.js',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        include: [path.resolve(__dirname, 'src/js')]
+      },
+      {
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader'
+        ]
+      }
+    ]
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'style.css',
+    })
+  ]
+}
+</code></pre><p>/src/js/index.js</p>
+<pre><code>import &quot;swiper/swiper.scss&quot;;
+
+～以下Javascriptの処理～
+
+</code></pre>
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2020/09/04/windows-terminal-install/" class="left arrow">&#8592;</a>
+		<a href="/posts/2020/10/25/javascript-autocomplete/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2679529 &#43;0900 JST m=&#43;0.087547301">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>EC2とECSのレコードを全てCSVに出力する &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">EC2とECSのレコードを全てCSVに出力する</h1>
+		<div class="post-info">
+				<time datetime="2020-08-26 00:00:00 &#43;0000 UTC">August 26, 2020</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/aws/">AWS</a></div>
+				</div>
+			
+		</div>
+		<h2 id="環境">環境</h2>
+<ul>
+<li>Linux Mint 20 Ulyana</li>
+<li>aws-cli/2.0.41</li>
+<li>jq 1.6</li>
+</ul>
+<hr>
+<p><a href="/articles/2020/08/21/route53-to-csv">前回</a>の続きです。</p>
+<p>前回AWS Route53のレコードをCSVに出力するシェルスクリプトを作ったので、同様にEC2・ECSの情報を出力するシェルスクリプトを作ってみます。</p>
+<h2 id="ec2">EC2</h2>
+<p>以下のようなシェルです。<br>
+region一覧は固定で持っているので、今後増減があった場合は手動で修正が必要です。</p>
+<pre><code>#!/bin/bash
+
+#region一覧
+regionList=(
+us-east-2
+us-east-1
+us-west-1
+us-west-2
+af-south-1
+ap-east-1
+ap-south-1
+ap-northeast-3
+ap-northeast-2
+ap-southeast-1
+ap-southeast-2
+ap-northeast-1
+ca-central-1
+cn-north-1
+cn-northwest-1
+eu-central-1
+eu-west-1
+eu-west-2
+eu-south-1
+eu-west-3
+eu-north-1
+me-south-1
+sa-east-1
+)
+
+echo '&quot;AvailabilityZone&quot;, &quot;Name&quot;, &quot;PublicDnsName&quot;,&quot;PublicIpAddress&quot;,&quot;PrivateDnsName&quot;,&quot;PrivateIpAddress&quot;'
+
+for region in ${regionList[@]}; do
+    EC2List=`aws ec2 describe-instances --region ${region} --output json --query 'Reservations[].Instances[]'`
+    EC2ListLen=`echo $EC2List | jq length`
+
+    for i in $( seq 0 $(($EC2ListLen - 1)) ); do
+        EC2=`echo $EC2List | jq .[$i]`
+        avZone=`echo $EC2 | jq -c -r '.Placement.AvailabilityZone // &quot;&quot;'`
+        priDns=`echo $EC2 | jq -c -r '.PrivateDnsName // &quot;&quot;'`
+        priIp=`echo $EC2 | jq -c -r '.PrivateIpAddress // &quot;&quot;'`
+        pubDns=`echo $EC2 | jq -c -r '.PublicDnsName // &quot;&quot;'`
+        pubIp=`echo $EC2 | jq -c -r '.PublicIpAddress // &quot;&quot;'`
+        
+        Tags=`echo $EC2 | jq -c -r '.Tags'`
+        TagsLen=`echo $Tags | jq length`
+
+        name='None'
+        for j in $( seq 0 $(($TagsLen - 1)) ); do
+            tag=`echo $Tags | jq .[$j]`
+            key=`echo $tag | jq -c -r '.Key'`
+
+            if [ &quot;$key&quot; = &quot;Name&quot; ]; then
+                name=`echo $tag | jq -c -r '.Value // &quot;&quot;'`
+                break
+            fi
+        done
+
+        echo &quot;\&quot;${avZone}\&quot;,\&quot;${name}\&quot;,\&quot;${pubDns}\&quot;,\&quot;${pubIp}\&quot;,\&quot;${priDns}\&quot;,\&quot;${priIp}\&quot;&quot;
+    done
+done
+</code></pre><p>このシェルではEC2のドメインやIPアドレスを取得していますが、そこは必要に情報に置き換えても良いです。</p>
+<h2 id="ecs">ECS</h2>
+<p>以下のようなシェルです。</p>
+<pre><code>#!/bin/bash
+echo '&quot;ClusterArns&quot;, &quot;IPAddress&quot;'
+
+ClusterArnsList=`aws ecs list-clusters --output json --query 'clusterArns'`
+ClusterArnsListLen=`echo $ClusterArnsList | jq length`
+for i in $( seq 0 $(($ClusterArnsListLen - 1)) ); do
+    clusterArns=`echo $ClusterArnsList | jq .[$i]`
+    clusterArns=${clusterArns//\&quot;/}
+    TaskArnsList=`aws ecs list-tasks --cluster $clusterArns --output json --query 'taskArns'`
+    TaskArnsListLen=`echo $TaskArnsList | jq length`
+
+    for j in $( seq 0 $(($TaskArnsListLen - 1)) ); do
+        taskArns=`echo $TaskArnsList | jq .[$j]`
+        taskArns=${taskArns//\&quot;/}
+
+        Tasks=`aws ecs describe-tasks --cluster ${clusterArns} --tasks ${taskArns} --output json --query 'tasks'`
+        TasksLen=`echo $Tasks | jq length`
+
+        for k in $( seq 0 $(($TasksLen - 1)) ); do
+            task=`echo $Tasks | jq .[$k]`
+
+            TaskDetails=`echo $task | jq -c -r '.attachments[].details'`
+            TaskDetailsLen=`echo $TaskDetails | jq length`
+
+            for l in $( seq 0 $(($TaskDetailsLen - 1)) ); do
+                taskDetail=`echo $TaskDetails | jq .[$l]`
+                name=`echo $taskDetail | jq -c -r '.name'`
+
+                if [ &quot;$name&quot; = &quot;privateIPv4Address&quot; ]; then
+                    ipaddress=`echo $taskDetail | jq -c -r '.value'`
+                    break;
+                fi
+            done
+            echo &quot;\&quot;${clusterArns}\&quot;,\&quot;${ipaddress}\&quot;&quot;
+        done
+    done
+done
+</code></pre><p>こちらもECSのIPアドレスを出力しています。必要な情報に差し替えてください。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2020/08/21/route53-to-csv/" class="left arrow">&#8592;</a>
+		<a href="/posts/2020/09/04/win10-wsl2-ubuntu/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2670638 &#43;0900 JST m=&#43;0.086658301">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

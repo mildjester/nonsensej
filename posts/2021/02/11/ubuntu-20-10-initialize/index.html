@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>ubuntu 20.10の初期設定 &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">ubuntu 20.10の初期設定</h1>
+		<div class="post-info">
+				<time datetime="2021-02-11 00:00:00 &#43;0000 UTC">February 11, 2021</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/ubuntu/">ubuntu</a></div>
+				</div>
+			
+		</div>
+		<h2 id="環境">環境</h2>
+<ul>
+<li>Ubuntu 20.10</li>
+<li>ThinkPad T480</li>
+</ul>
+<hr>
+<p>Thinkpad T480にubuntu20.10をインストールした際のメモです。</p>
+<h2 id="日本語入力設定">日本語入力設定</h2>
+<p>そのままでも日本語入力はできますが、入力ソースをMozcに切り替えたりしないといけないので
+入力ソースのMozcの優先度を高くします。</p>
+<p>アプリランチャーより『設定』を開き、『地域と言語』を開きます。
+そこの入力ソースに「日本語」と「日本語(Mozc)」が並んでいるので
+「日本語(Mozc)」が上にくるように並べ替えます。</p>
+<p>各入力ソースの左端の6丸をドラッグすれば順番を入れ替えられます。</p>
+<h2 id="imeのonoffをmac風にする">IMEのON/OFFをMac風にする</h2>
+<p>アプリランチャーより『Mozcの設定』を開き、『一般』タグを開きます。
+「キー設定の選択」の横にある「編集」ボタンをクリックするとキー設定を変更できます。</p>
+<p>そこでHenkan/Hiragana/Katakanaあたりに『IME有効』を割り当て、
+Muhenkanに『IME無効』を割り当てます。</p>
+<p>これでMacのようにIMEのON/OFFを切り替えられるようになりました。</p>
+<h2 id="capslockをctrlに半角全角をescにする">CapsLockをCtrlに、半角/全角をEscにする</h2>
+<p>こちらもMac風になる設定です。
+以下のコマンドを実行するとCapsLockがCtrlになり、半角/全角キーがEsc扱いになります。</p>
+<pre><code>setxkbmap -option ctrl:nocaps,japan:hztg_escape
+</code></pre><p>しかし、これだけだと再起動後に戻ってしまうので
+キーボードの設定ファイルにも設定を記載しておきます。</p>
+<pre><code>sudo vim /etc/default/keyboard
+</code></pre><p>以下の設定を追記します。</p>
+<pre><code>XKBOPTIONS=[&quot;ctrl:nocaps&quot;,&quot;japan:hztg_escape&quot;]
+</code></pre><h2 id="tiling機能をoffにする">tiling機能をOFFにする</h2>
+<p>デフォルトだとウィンドウを画面端にドラッグすると勝手に最大化します。
+無くてもいい機能なので以下コマンドで無効化します。</p>
+<pre><code>gsettings set org.gnome.mutter edge-tiling false
+</code></pre><h2 id="諸々インストール">諸々インストール</h2>
+<h3 id="基本セット">基本セット</h3>
+<pre><code>sudo apt install vim curl npm
+</code></pre><h3 id="php">PHP</h3>
+<pre><code>sudo apt install php7.4 composer php7.4-bcmath php7.4-common php7.4-gd php7.4-json php7.4-mbstring php7.4-mysql php7.4-xml php7.4-xmlrpc
+</code></pre><h3 id="mysql-workbench">MySQL Workbench</h3>
+<p>公式ページからdebをダウンロードしてインストールしました。
+<a href="https://dev.mysql.com/downloads/workbench/">https://dev.mysql.com/downloads/workbench/</a></p>
+<h3 id="shutterスクショツール">Shutter(スクショツール)</h3>
+<p>既存画像に文字や矢印を書き込む事もできるので便利です。</p>
+<pre><code>sudo add-apt-repository ppa:linuxuprising/shutter
+sudo apt update
+sudo apt install shutter
+</code></pre><h2 id="apacheを起動しないようにする">apacheを起動しないようにする</h2>
+<p>検証環境としてDocker等を利用するならローカルでApacheが動いていても邪魔なので止めます。</p>
+<pre><code>systemctl stop apache2
+systemctl disable apache2
+</code></pre><h2 id="その他参考ページ">その他参考ページ</h2>
+<ul>
+<li><a href="/articles/wp/48">ホームディレクトリの英語化</a></li>
+<li><a href="/articles/2019/11/08/ubuntu-tilix">Tilixの導入</a></li>
+<li><a href="/articles/2019/03/10/linux-mint-terminator-fish">Terminator+fish環境構築</a></li>
+<li><a href="/articles/2019/01/25/linux-mint-docker">Docker環境構築</a></li>
+<li><a href="/articles/2019/03/13/linux-mint-l2tp">L2TPクライアント設定</a></li>
+<li><a href="/articles/wp/239">デュアルブート環境で時計が狂うのを防ぐ</a></li>
+<li><a href="/articles/2021/02/14/ubuntu-mouse-keymap">ubuntuで多機能マウスを設定する</a></li>
+<li><a href="/articles/2021/02/17/ubuntu-howdy">Howdyを使ってubuntuで顔認証する</a></li>
+</ul>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2021/02/06/phpcs-git-diff/" class="left arrow">&#8592;</a>
+		<a href="/posts/2021/02/14/ubuntu-mouse-keymap/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2708064 &#43;0900 JST m=&#43;0.090400901">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

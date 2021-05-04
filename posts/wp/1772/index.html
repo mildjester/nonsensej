@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Wordpressの画像をS3&#43;CloudFrontで配信する &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Wordpressの画像をS3&#43;CloudFrontで配信する</h1>
+		<div class="post-info">
+				<time datetime="2018-12-11 19:30:54 &#43;0000 UTC">December 11, 2018</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/wordpress/">Wordpress</a></div> <div class="tags_item"><a href="/tags/aws/">AWS</a></div>
+				</div>
+			
+		</div>
+		<h2 id="環境">環境</h2>
+<p>WordPress 4.8.3</p>
+<hr>
+<h2 id="aws設定手順">AWS設定手順</h2>
+<h3 id="iam設定">IAM設定</h3>
+<p>まず、WordpressとAWSの連携に使うIAMユーザーを準備します<br>
+今回の手順ではバケット側のポリシーで権限付与するので<br>
+IAM側の権限設定は適当で良いです</p>
+<p>準備したIAMユーザーの以下を控えておいてください<br>
+・ARN<br>
+・アクセスキーID<br>
+・シークレットアクセスキー</p>
+<h3 id="s3設定">S3設定</h3>
+<p>次にS3にてWordpress用のバケットを用意し<br>
+バケットポリシーに以下を設定します</p>
+<pre><code>{  
+    &quot;Version&quot;: &quot;2012-10-17&quot;,  
+    &quot;Statement&quot;: [  
+        {  
+            &quot;Sid&quot;: &quot;AllowBucketAccess&quot;,  
+            &quot;Effect&quot;: &quot;Allow&quot;,  
+            &quot;Principal&quot;: {  
+                &quot;AWS&quot;: &quot;arn:aws:iam::準備したIAMのARN&quot;  
+            },  
+            &quot;Action&quot;: [  
+                &quot;s3:GetBucketLocation&quot;,  
+                &quot;s3:ListBucket&quot;,  
+                &quot;s3:PutObject&quot;,  
+                &quot;s3:PutObjectAcl&quot;,  
+                &quot;s3:GetObject&quot;,  
+                &quot;s3:DeleteObject&quot;  
+            ],  
+            &quot;Resource&quot;: [  
+                &quot;arn:aws:s3:::対象のバケット/*&quot;,  
+                &quot;arn:aws:s3:::対象のバケット&quot;  
+            ]  
+        }  
+    ]  
+}  
+</code></pre><h3 id="cloudfront設定">CloudFront設定</h3>
+<p>ユーザーにS3へ直接画像を取りに来させる事も可能なのですが<br>
+転送料金が結構高くなるのでCloudFront経由でS3に繋がせるようにします</p>
+<p>まずloudFrontの設定画面にて「Create Distribution」をクリックします</p>
+<h2 id="a-hrefimages201812cloudfront001pngimg-classalignnone-wp-image-1808-size-large-srcimages201812cloudfront001png-alt-width648-height97a"><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></h2>
+<p>次にWebの「Get Started」をクリックします。</p>
+<h2 id="a-hrefimages201812cloudfront002pngimg-classalignnone-wp-image-1809-size-large-srcimages201812cloudfront002png-alt-width648-height184a"><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></h2>
+<p>「Origin Domain Name」にCloud Front経由にしたいS3バケットを指定します<br>
+テキストボックスに見えますが、クリックすると選択肢が表示されます<br>
+「Origin Domain Name」を選択すると、「Origin ID」にも勝手に値が入ります</p>
+<h2 id="a-hrefimages201812cloudfront003pngimg-classalignnone-wp-image-1810-size-large-srcimages201812cloudfront003png-alt-width648-height220a"><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></h2>
+<p>上記入力したら下までスクロールして「Create Distribution」をクリックします</p>
+<p>CloudFrontの一覧に戻りますので<br>
+先ほど作成したDistributionのStatusが『Deployed』になるのを待ちます</p>
+<h2 id="a-hrefimages201812cloudfront004pngimg-classalignnone-size-large-wp-image-1811-srcimages201812cloudfront004png-alt-width648-height205a"><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></h2>
+<p>これでCloudFront経由でS3へアクセスできるようになりました<br>
+アクセスできるドメインは上図の「Domain Name」を参照してください</p>
+<p>独自ドメインでアクセスしたい場合は上部メニューの<br>
+「Distribution Settings」より編集画面を開き<br>
+以下のように設定してください</p>
+<h2 id="a-hrefimages201812cloudfront005pngimg-classalignnone-size-large-wp-image-1812-srcimages201812cloudfront005png-alt-width648-height318a"><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></h2>
+<h3 id="route-53設定">Route 53設定</h3>
+<p>CloudFrontを独自ドメインで使う場合はDNS設定もしておきます</p>
+<h2 id="a-hrefimages201812route53-001pngimg-classalignnone-size-full-wp-image-1813-srcimages201812route53-001png-alt-width412-height435a"><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></h2>
+<h2 id="wordpress設定">Wordpress設定</h2>
+<p>まずは普通にWordpressを構築します<br>
+（ここは手順割愛）</p>
+<h3 id="プラグインamazon-web-services">プラグイン：Amazon Web Services</h3>
+<p>プラグインの新規追加で『Amazon Web Services』を入れます<br>
+<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>次にwp-config.phpにIAMのアクセスキーを設定します<br>
+（下記「AAA…」と「BBB…」は該当のものに書き換えてください）</p>
+<pre><code>define( 'DBI_AWS_ACCESS_KEY_ID', 'AAAAAAAAAAAAAAAAA' );  
+define( 'DBI_AWS_SECRET_ACCESS_KEY', 'BBBBBBBBBBBBBBB' );  
+</code></pre><p>これでWordpressとAWSの連携ができるようになります</p>
+<h3 id="プラグインwp-offload-media-lite">プラグイン：WP Offload Media Lite</h3>
+<p>次にプラグインの新規追加で『WP Offload Media Lite』を入れます<br>
+<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>インストール＆有効化後、設定メニューに「Offload Media」が追加されるので<br>
+利用するバケットを指定します<br>
+左下の『Browse existing buckets』から選択するのが楽だと思います<br>
+<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>バケット選択後、いくつか設定項目が出てきます<br>
+まず、デフォルトでは画像URLがS3直アクセスになってしまうので<br>
+「Custom Domain」をCloudFront経由のURLに変更します<br>
+（xxxxx.cloudfront.net または 指定した独自ドメイン）</p>
+<h2 id="a-hrefimages201812wordpress-s3-005pngimg-classalignnone-size-full-wp-image-1818-srcimages201812wordpress-s3-005png-alt-width659-height155a"><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></h2>
+<p>サーバー側に画像ファイルを残したくない場合は<br>
+『Remove Files From Server』をONにしておきます。<br>
+<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>※注意<br>
+上図Warningにも出てますが、もしかしたらプラグインによってはサーバー内に<br>
+画像ファイルを残しておかないと正常に動かないものもあるかもしれません<br>
+その場合はOFFにするかプラグイン側をどうにかするかしてください</p>
+<h2 id="既存の画像ファイルをs3に移行したい場合">既存の画像ファイルをS3に移行したい場合</h2>
+<p>こちらを参考にしました<br>
+<!-- raw HTML omitted --><a href="https://php-java.com/archives/2228">https://php-java.com/archives/2228</a><!-- raw HTML omitted --></p>
+<p>まず既存画像ファイルをS3にアップロードします<br>
+階層は「wp-content/uploads/2018/・・・」のようにします</p>
+<p>次にSQLでDBを更新します<br>
+SQL内の以下部分は各環境に合わせて書き替えてください<br>
+<!-- raw HTML omitted -->webserver_hostname<!-- raw HTML omitted -->：WEBサーバーのホスト名<br>
+<!-- raw HTML omitted -->cloudfront_hostname<!-- raw HTML omitted -->：CloudFrontのホスト名</p>
+<p>以下、S3のリージョンは東京である前提にしています<br>
+東京でない場合はS3のホスト名も該当のものに書き換えてください</p>
+<p>まず記事内の画像URL差し替え</p>
+<pre><code>UPDATE wp_posts  
+SET post_content = REPLACE(post_content, &quot;https://webserver_hostname/wp-content/uploads/&quot;, &quot;https://cloudfront_hostname/wp-content/uploads/&quot;);  
+</code></pre><p>次にアイキャッチの画像URL差し替え</p>
+<pre><code>UPDATE wp_posts  
+SET guid = REPLACE(guid, &quot;https://webserver_hostname/wp-content/uploads/&quot;, &quot;https://cloudfront_hostname/wp-content/uploads/&quot;);  
+</code></pre><p>次にmeta情報に各画像ファイルのS3の情報を追加します<br>
+（UPDATEではなくINSERT）</p>
+<p>以下のSELECT文にてINSERT文を生成できるので<br>
+生成したINSERT文を実行すれば完了です<br>
+SQL内の <!-- raw HTML omitted -->s3_bucket_name<!-- raw HTML omitted --> の部分は対象バケット名に書き換えてください<br>
+また、S3バケットが東京リージョンでない場合は<!-- raw HTML omitted -->ap-northeast-1<!-- raw HTML omitted -->の部分も書き換えてください</p>
+<pre><code>SELECT  CONCAT('insert into wp_postmeta(post_id, meta_key, meta_value) values('  
+, post_id, ', \'amazonS3_info\', \'a:4:{s:8:\&quot;provider\&quot;;s:3:\&quot;aws\&quot;;s:6:\&quot;region\&quot;;s:14:\&quot;ap-northeast-1\&quot;;s:6:\&quot;bucket\&quot;;s:14:\&quot;s3_bucket_name\&quot;;s:3:\&quot;key\&quot;;s:',length(meta_value) + 19,':\&quot;wp-content/uploads/', meta_value, '\&quot;;}\');'  
+) AS record from wp_postmeta where meta_key = '_wp_attached_file';  
+</code></pre><p>Wordpressのバージョン等によってはINSERT文を少し変えないといけないかもしれません<br>
+INSERTすべき文を正確に知るためには一度Wordpress上で新規画像を登録して<br>
+wp_postmetaテーブルに追加されたレコードを確認するのが一番だと思います</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/1755/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/1829/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2805749 &#43;0900 JST m=&#43;0.100169401">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

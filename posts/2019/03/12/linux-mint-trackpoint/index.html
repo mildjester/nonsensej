@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Linux MintでThinkPadのトラックポイントを調整する &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Linux MintでThinkPadのトラックポイントを調整する</h1>
+		<div class="post-info">
+				<time datetime="2020-07-06 00:00:00 &#43;0000 UTC">July 6, 2020</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/linuxmint/">LinuxMint</a></div>
+				</div>
+			
+		</div>
+		<h2 id="環境">環境</h2>
+<ul>
+<li>Linux Mint 19.1 &ldquo;Tessa&rdquo; - MATE (64-bit)</li>
+<li>ThinkPad T480</li>
+</ul>
+<hr>
+<h3 id="参考">■参考</h3>
+<p><a href="https://qiita.com/takyam/items/c5184a14d8ca9553be1b">Ubuntu17.10でtrackpointの速度を調整する</a></p>
+<hr>
+<p>トラックポイントの速度調整は『コントロールセンター＞マウスの設定』からもできるのですが、<br>
+設定できる幅に限界があり、もう少し感度を上げたかったので他の方法で調整します。</p>
+<h3 id="最適な値の探し出し">■最適な値の探し出し</h3>
+<p>『感度』と『速度』をいじりながら最適な数値を探します。<br>
+私の場合はsensitivityは180、speedは60にすると丁度良かったです。</p>
+<pre><code>$ sudo -i
+# cd /sys/devices/platform/i8042/serio1/serio2
+# vim sensitivity   // 感度
+# vim speed         // 速さ
+</code></pre><h3 id="設定値の永続化">■設定値の永続化</h3>
+<p>さきほど修正していたファイルは再起動時に戻ってしまうので、<br>
+別ファイルにルールを記載しておきます。</p>
+<pre><code># vim /etc/udev/rules.d/10-trackpoint.rules
+</code></pre><p>記載内容は以下の通りです。<br>
+speedとsensitivityは最適な値を入れてください。</p>
+<pre><code>KERNEL==&quot;serio2&quot;,
+SUBSYSTEM==&quot;serio&quot;,
+DRIVERS==&quot;psmouse&quot;,
+ATTR{sensitivity}:=&quot;180&quot;,
+ATTR{speed}:=&quot;60&quot;
+</code></pre><p>これで設定完了です。</p>
+<h3 id="おまけ中央クリックの貼り付けを無効化する">(おまけ)中央クリックの貼り付けを無効化する</h3>
+<p>デフォルトだとThinkPadの中央クリック(マウスでいうホイールクリック)で貼り付けがされますが、
+スクロール中にいきなり貼り付けが実行されたりして不便なので無効化します。</p>
+<blockquote>
+<p>※2020年7月追記<br>
+中央クリックでの貼付けを防ぐだけであれば設定から変更できました。<br>
+コントロールセンター &gt; マウス &gt; Enable middlemouse paste</p>
+</blockquote>
+<p>まずデバイス名を取得します。<br>
+以下コマンドを実行すると「TPPS/2 IBM TrackPoint」であることが分かります。</p>
+<pre><code>$ xinput --list | grep TrackPoint
+⎜   ↳ TPPS/2 IBM TrackPoint                   	id=14	[slave  pointer  (2)]
+</code></pre><p>デバイスのマッピングを調べます。<br>
+以下コマンドを実行すると中央クリックはボタンマッピングの「2」であることが分かります。</p>
+<pre><code>$ xinput get-button-map &quot;TPPS/2 IBM TrackPoint&quot;
+1 2 3 4 5 6 7 
+$ xinput --list &quot;TPPS/2 IBM TrackPoint&quot; | grep &quot;Button labels&quot;
+Button labels: &quot;Button Left&quot; &quot;Button Middle&quot; &quot;Button Right&quot; &quot;Button Wheel Up&quot; &quot;Button Wheel Down&quot; &quot;Button Horiz Wheel Left&quot; &quot;Button Horiz Wheel Right&quot;
+</code></pre><p>中央クリックを無効化します。<br>
+ボタンマッピングにて無効化にしたいボタンの数字を「0」に置き換えます。</p>
+<pre><code>xinput set-button-map &quot;TPPS/2 IBM TrackPoint&quot; 1 0 3 4 5 6 7
+</code></pre><p>永続化するには上記コマンドを<code>~/.profile</code>に追記するだけです。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2019/03/10/linux-mint-initialize/" class="left arrow">&#8592;</a>
+		<a href="/posts/2020/07/12/vpc-lambda/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2606412 &#43;0900 JST m=&#43;0.080235801">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

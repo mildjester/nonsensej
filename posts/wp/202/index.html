@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>【CentOS】cronが動かない場合のチェック &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">【CentOS】cronが動かない場合のチェック</h1>
+		<div class="post-info">
+				<time datetime="2016-03-08 05:23:15 &#43;0000 UTC">March 8, 2016</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/centos/">CentOS</a></div>
+				</div>
+			
+		</div>
+		<h4 id="cronが動かない時のチェック項目">cronが動かない時のチェック項目</h4>
+<p> </p>
+<p>①cronのプロセス（crond）は起動しているか<br>
+↓起動している<br>
+②crontabの記載は正しいか<br>
+↓正しい<br>
+③cronでスクリプトを叩く場合、スクリプトの実行権限は適切か<br>
+↓適切<br>
+④/var/log/cronに何かヒントが出力されているか<br>
+↓むしろ何も出力されていない<br>
+⑤rsyslogプロセスは起動しているか</p>
+<p> </p>
+<p>docker環境でcronが動かない時に、この⑤でハマりました。<br>
+rsyslogが起動していないとログを吐かないだけでなく、cronの実行自体されないようです。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/196/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/206/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2796957 &#43;0900 JST m=&#43;0.099290201">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

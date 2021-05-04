@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Posts &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="catalogue">
+		
+			<a href="/posts/2019/03/07/google-optimize-interactive/" class="catalogue-item">
+    <div>
+        <time datetime="2019-03-07 00:00:00 &#43;0000 UTC" class="catalogue-time">March 7, 2019</time>
+        <h1 class="catalogue-title">Google Optimizeでセッション情報が必要なページを触る</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            Google Optimizeは無料でABテストなどが行なえるツールです。
+ログイン後のページなど、セッション情報が必要なページをGoogle Optimizeのエディタページに指定すると、
+セッション情報がないのでエラーページや404ページが表示されてしまいます。
+そんな時、エディタページの『インタラクティブモード』を使うと解決します。
+手順 Google Optimizeの普通の使い方はできる前提とします。
+手順①：エディタページの設定 まず、エディタページはOptimizeで触りたいページに至る前のセッション情報無しで開けるページを指定しておきます。
+Optimizeで触りたいページそのものを指定しても良いですが、エディタを開いた時にまずエラーページになるので非効率だと思います。
+手順②：Optimize対象のページへの移動 パターンを通常通り作成し、エディタの右上にある四角にカーソルがついているアイコンをクリックします。 するとインタラクティブモードになりサイトの操作ができるようになるので、Optimizeで開きたいページまで移動します。
+該当ページを開いたらインタラクティブモードの『終了』をクリックします。
+※画面遷移時に勝手にインタラクティブモードが終了している場合もあります 手順③：エディットする セッション情報が不要なページと同様にページの編集をします。
+この手順は特別な事はありません。
+これでOptimizeの設定は完了です。
+プレビュー時はエディタページに指定したURLからスタートするので、Optimizeで編集したページまで移動する必要があります。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2019/03/04/aws-code-deploy-circleci/" class="catalogue-item">
+    <div>
+        <time datetime="2019-03-04 00:00:00 &#43;0000 UTC" class="catalogue-time">March 4, 2019</time>
+        <h1 class="catalogue-title">CircleCIからAWS Code Deployを実行する</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            前記事にてCodeDeployの設定は完了したので、それをCircleCIから実行します。
+公式の手順ではS3に一度ソースコードを置いてからEC2に展開しているのですが、
+できればS3は使いたくなかったのでこちらの記事を参考にしました。
+CircleCI+AWS-CodedeployでStaging環境などに自動デプロイさせる
+IAM準備 CircleCI用のIAMユーザーを作成します。
+まず適当なユーザー名をつけ、アクセスの種類は『プログラムによるアクセス』にチェックをつけ次のステップへ進みます。
+既存ポリシーの『AWSCodeDeployFullAccess』を付与して次のステップへ進みます。
+タグは不要なので、そのまま次のステップに進んで大丈夫です。
+ユーザーの作成をします。
+作成したユーザーの「アクセスキーID」と「シークレットアクセスキー」をメモして終了です。
+※シークレットアクセスキーはこのタイミングでしか確認できないので忘れないよう注意
+CircleCIの設定ファイル作成 リポジトリ内に.circleci/config.ymlを作成し、以下のように記載します。
+version: 2 jobs: deploy: docker: - image: cdssnc/aws-cli steps: - run: name: &quot;Set AWS region&quot; command: aws configure set region ap-northeast-1 - run: name: &quot;Run AWS CodeDeploy&quot; command: aws deploy create-deployment --application-name ${DEPLOY_APPLICATION} --deployment-group-name ${DEPLOY_GROUP} --github-location repository=&quot;${DEPLOY_REPOSITORY}&quot;,commitId=&quot;${CIRCLE_SHA1}&quot; workflows: version: 2 build_deploy: jobs: - deploy: filters: branches: only: master AWS CodeDeployをキックすることしか記載していないので、他にも処理が必要な場合は追記してください。
+なお、以下の値は後ほどCircleCIの環境変数にて設定するので変数にしています。
+変数にせずに直接config.ymlに書き込んでも良いです。
+   変数名 内容     DEPLOY_APPLICATION 前記事にて設定したCodeDeployのアプリケーション名   DEPLOY_GROUP 前記事にて設定したCodeDeployのデプロイグループ   DEPLOY_REPOSITORY デプロイ対象のGitHubリポジトリ(「ユーザー名/リポジトリ名」形式)    作成できたらGitHubのmasterブランチにプッシュしておきます。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2019/02/28/aws-code-deploy/" class="catalogue-item">
+    <div>
+        <time datetime="2019-02-28 00:00:00 &#43;0000 UTC" class="catalogue-time">February 28, 2019</time>
+        <h1 class="catalogue-title">AWS Code DeployでEC2にデプロイする</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            運用していたEC2へのソースコードを反映するのにCodeDeployを導入してみたので、その作業メモです。
+とてもシンプルな状態で試したので、環境は以下の通りです。
+ EC2インスタンスは１台のみ ELBの利用なし ソースコードはGitHubより取得する デプロイはソースコードをサーバー上に置くのみ デプロイの実行はAWSのコンソールから手動で実行する。  ※CircleCI連携についてはコチラ
+IAM準備 EC2用とCodeDeploy用のロールを準備します。
+まずEC2用のロールを作成します。
+IAMロール作成画面にてAWSサービス ＞ EC2を選び、次のステップへ進みます。
+ポリシーはAmazonEC2RoleforAWSCodeDeployを指定して、次のステップへ進みます。
+タグは未指定でも良いので、必要なければ次のステップに進みます。
+適当なロール名を決めて設定し、『ロールの作成』をクリックします。
+次にCodeDeploy用のロールを作成します。
+IAMロール作成画面にてAWSサービス ＞ CodeDeployを選びます。
+画面が下へスクロールしてユースケースの選択が表示されます。
+今回は純粋なEC2上のボリュームにデプロイするだけなので、CodeDeployを指定して次のステップへ進みます。
+ポリシーはAWSCodeDeployRoleが表示されるので、そのまま次のステップへ進みます。
+適当なロール名を決めて設定し、『ロールの作成』をクリックします。
+EC2準備 まず、EC2インスタンスに管理コンソールからロール付与します。
+管理コンソールにて対象インスタンスを開いて以下をクリックします。
+アクション ＞ インスタンスの設定 ＞ IAMロールの割り当て/置換
+そこで先ほど作成したEC2用のロールを設定します。
+次にコンソールにて対象インスタンスにログインし、CodeDeployのエージェントをインストールします。
+ダウンロードするインストーラーはrubyが無いと動かないので、インストールされていない場合はインストールしておきます。
+$ sudo yum install ruby # rubyがインストールされてない場合 $ sudo yum install aws-cli # aws-cliがインストールされていない場合 $ aws s3 cp s3://aws-codedeploy-ap-northeast-1/latest/install . --region ap-northeast-1 $ chmod +x ./install $ sudo ./install auto インストールが完了したら念の為動作している事を確認する。
+$ sudo service codedeploy-agent status The AWS CodeDeploy agent is running as PID 12345 もし上記のロール割り当てより先にCodeDeployエージェントを起動してしまった場合は、
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2019/02/15/apache-tuning/" class="catalogue-item">
+    <div>
+        <time datetime="2019-02-15 00:00:00 &#43;0000 UTC" class="catalogue-time">February 15, 2019</time>
+        <h1 class="catalogue-title">Apacheにサーバーのメモリを食い尽くさせない</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            環境  Amazon Linux AMI 2018.03 Apache/2.4.34 (Amazon)   Apache(prefork)がサーバーのメモリを食い尽くしていたのでチューニングしました。
+その際に行なった調査や計算をメモとして残します。
+なお、preforkからeventに変更できる場合や、nginxに移行できるのであれば
+そちらの方がいいかもしれません。
+今回はあくまでpreforkをチューニングする前提での手順です。
+サーバー物理メモリ確認 まず、サーバーの物理メモリを調べます
+# cat /proc/meminfo | head -n 1 MemTotal: 2004484 kB このサーバーの搭載メモリは2GBのようです。
+現在のメモリ使用状況確認 まずサーバー全体の使用メモリを確認します。
+以下のワンライナーで出します。(単位はMB)
+# ps aux | awk '{print $6}' | awk '{sum=sum+($1/1024);cnt++;} END{print &quot;sum=&quot;sum}' sum=919.656 次にhttpdの子プロセスの使用メモリを確認します。
+以下のワンライナーで出します。(単位はMB)
+# ps aux | grep httpd | grep apache | awk '{print $6}' | awk '{sum=sum+($1/1024);cnt++;} END{print &quot;sum=&quot;sum &quot; cnt=&quot;cnt &quot; ave=&quot;sum/cnt;}' sum=804.273 cnt=20 ave=40.
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2019/02/14/mac-php-72/" class="catalogue-item">
+    <div>
+        <time datetime="2019-02-14 00:00:00 &#43;0000 UTC" class="catalogue-time">February 14, 2019</time>
+        <h1 class="catalogue-title">MacにPHP7.2をインストールする</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            環境  macOS Mojave 10.14.2 fish 2.7.1 Homebrew 2.0.1 PHP 7.2.15   Homebrewを使ってMacにPHP7.2をインストールします。
+Homebrewがインストールされていない場合は以下を参照してください。
+【Mac】Homebrewインストール
+まず、Homebrew上でPHP7.2を探します。
+$brew search php72 ==&gt; Formulae php@7.2 パッケージが分かったのでインストールします。
+$ brew install php@7.2 〜たくさん省略〜 If you need to have php@7.2 first in your PATH run: echo 'set -g fish_user_paths &quot;/usr/local/opt/php@7.2/bin&quot; $fish_user_paths' &gt;&gt; ~/.config/fish/config.fish echo 'set -g fish_user_paths &quot;/usr/local/opt/php@7.2/sbin&quot; $fish_user_paths' &gt;&gt; ~/.config/fish/config.fish 〜少し省略〜 インストール完了の直前くらいに上記のような設定追加をするような指示が出力されます。
+私はシェルにfishを使っているので上記のようなコマンドでしたが、bashやzshを使っている場合は違うコマンドになると思います。
+指示通りに設定をします。
+$ echo 'set -g fish_user_paths &quot;/usr/local/opt/php@7.2/bin&quot; $fish_user_paths' &gt;&gt; ~/.config/fish/config.fish $ echo 'set -g fish_user_paths &quot;/usr/local/opt/php@7.
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2019/02/13/wp-tinymcetemplate-s3/" class="catalogue-item">
+    <div>
+        <time datetime="2019-02-13 00:00:00 &#43;0000 UTC" class="catalogue-time">February 13, 2019</time>
+        <h1 class="catalogue-title">【Wordpress】TinyMCEテンプレートでS3の画像を使う</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            環境  Wordpress 4.8.3 TinyMCEテンプレート 4.8.1 WP Offload Media Lite 2.0   事象 WP Offload Media Liteを使ってWordpressの画像を全てS3にて管理している場合、 TinyMCE テンプレートにて作成したテンプレート内に画像をアップして登録しても 記事編集にてテンプレートを呼び出すと画像が見れなくなってしまいます。
+※WEBサーバー上の画像は削除する設定とします
+原因 WP Offload Media Liteでは画像ファイル全てについて『S3上のパス』と『ローカルにあった場合のパス』の両方を紐づけて持っています。
+そして、WP Offload Media Liteは以下のようにデータ内画像パスを置換します。
+データ登録時 POSTデータ内の画像パスに『S3上のパス』が存在していた場合は『ローカルにあった場合のパス』に置換してDBに登録する。
+(S3→ローカル置換)
+データ呼出時 DBから呼出したデータ内の画像パスに『ローカルにあった場合のパス』が存在していた場合は『S3上のパス』に置換して画面に表示する。
+(ローカル→S3置換)
+しかし、TinyMCE テンプレートに関してはテンプレート登録時の「S3→ローカル置換」は走るのですが、 テンプレート呼出し時の「ローカル→S3置換」は走りません。
+よってテンプレート呼出し時は画像パスが『ローカルにあった場合のパス』のままとなり、 ローカルにそんな画像はないので画像が表示されません。
+対応 function.phpにデータ登録時のフィルターを追加し、 TinyMCE テンプレートの登録時に「ローカル→S3置換」も走るようにします。
+つまり、少々無駄ですがTinyMCE テンプレートの登録時は「S3→ローカル→S3置換」が走るようになります。
+function replace_s3_image_on_tinymcetemplates($content){ if ($content['post_type'] !== 'tinymcetemplates' || !class_exists('Amazon_S3_And_CloudFront') || !class_exists('AS3CF_Local_To_S3')) { return $content; } $s3PluginPath = str_replace('themes/'.get_template(), 'plugins/amazon-s3-and-cloudfront/wordpress-s3.php', __DIR__); $as3cf = new Amazon_S3_And_CloudFront($s3PluginPath); $localToS3 = new AS3CF_Local_To_S3($as3cf); $content['post_content'] = $localToS3-&gt;filter_post($content['post_content']); return $content; } add_filter('wp_insert_post_data','replace_s3_image_on_tinymcetemplates'); 結構力づくなので、もっと良い方法があれば誰か教えてください。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2019/02/01/git-cmd-cheatsheet/" class="catalogue-item">
+    <div>
+        <time datetime="2019-02-01 00:00:00 &#43;0000 UTC" class="catalogue-time">February 1, 2019</time>
+        <h1 class="catalogue-title">gitコマンドチートシート(応用編)</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            gitコマンドの応用的な使い方です。
+これができればgit中級者になれるかもしれません。
+削除されたリモートブランチの情報を削除する gitはプルをする度にリモートに存在するブランチの情報を取得します。
+（git branch -aで見れるremote/xxxxxがそれです)
+普通にgit pullを実行するとリモートブランチの取得はしますが
+リモートで削除されたブランチについては何もしてくれないので
+ローカルにリモート情報として残り続けてしまいます。
+リモートで削除されたブランチ情報をローカルから削除したい場合は
+プル実行時に以下のオプションを付与します。
+git pull --prune 強制プル(force pull) ブランチの状態を強制的にリモートの状態に合わせます。
+ローカルのブランチがよく分からない状態になって捨てたい時や
+誰かがリモートにforce pushした物を取り込む時に使えます。
+(複数人が見てるブランチでforce pushするのは外道ですが…)
+git fetch git reset --hard origin/{ブランチ名} ※リモートはoriginの前提
+直前のコミットに追加修正する ちょっと修正が漏れていた時などに直前のコミットに追加修正を混ぜ込む方法です。
+これを使うとコミット履歴を増やさずに済みます。
+git add . git commit --fixup=HEAD git rebase -i --autosquash HEAD~2 (このあとのrebase画面はそのまま保存して閉じる) ★注意★ 直前のコミットがプッシュ済みであった場合
+上記コマンド後にforce pushが必要になります。
+他の人と共有しているブランチにてforce pushをすると
+他の人がpullできなくなる恐れがあります。
+自分だけが触っているブランチで行いましょう。
+マージ時にコミットログを1つにまとめる 細かくコミットをしながら作業を進めたい時などに
+作業ブランチを作り、そこで遠慮なくコミットを沢山し、
+その作業ブランチを元ブランチに戻す時にコミットログを1つに集約できます。
+git merge --squash {マージ対象ブランチ} git commit Commitコメントに元々のCommitログがデフォルトで記載されていますが
+そこは削除してしまっても構いません。
+(残しておいても良いです)
+現在のブランチとmasterブランチの差分を確認する githubでプルリク送る時に見れるアレですね。
+コマンドからも確認することができます。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2019/01/31/php-strtotime-trap/" class="catalogue-item">
+    <div>
+        <time datetime="2019-01-31 00:00:00 &#43;0000 UTC" class="catalogue-time">January 31, 2019</time>
+        <h1 class="catalogue-title">【PHP】strtotimeの罠</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            今日相談を受けた事象が面白かったので記事にします。
+事象 既存のPHPで来月の年月を取得する処理があり
+リリース時は正常に動いていたのに、今日(1/31)見たら年月がズレていたようです。
+ソースコードを見せて貰ったら以下のようになっていました。
+echo date('Ym', strtotime(date('Ym-1') . ' + 1 month')); 原因 まず、date('Ym-1') がおかしいですね。
+date('Ym01')とかdate('Y-m-01')とかにするべきですね。
+では、なぜリリース時に正常に動いていたのか。
+ここでやっとタイトルの「strtotimeの罠」が関わってきます。
+strtotime(date('Ym-1') . ' + 1 month') これは、2019/1/31であれば
+strtotime('201901-1 + 1 month') と、なります。
+ここでstrtotime様はこう考えます。
+ 201901-1？なんやそれ、知らんわ
+とりあえず今日の日付から+1monthしとこ
+今日は1/31だから1ヶ月後は2/31・・・ってそんな日無いわ！
+よっしゃ！繰り上げで3/3にしとこ！
+ エラーになどしません。
+PHPらしいですね。
+これにより、1/31に実行すると3月を返してしまい、1ヶ月ズレてしまいます。
+もしリリース日やテスト日が月の上旬〜中旬であれば
+strtotime様の月繰り上げが発生しないので
+出力が年月だけだと不具合に気づきません。
+この不具合はテストやってもなかなか出てこないと思うので
+実装段階で気を付けないといけないですね。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2019/01/26/javascript-window-load/" class="catalogue-item">
+    <div>
+        <time datetime="2019-01-26 00:00:00 &#43;0000 UTC" class="catalogue-time">January 26, 2019</time>
+        <h1 class="catalogue-title">window.onloadが動かない</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            事象 javascriptのwindow.onloadを利用して処理を書いても
+動作しない時がある。
+原因 window.onloadはページを1回表示する際に1度しか実行されない。
+もし複数箇所にてwindow.onloadを記載していた場合は
+そのうちの1つしか実行されない。
+jsファイルを複数に分けていても同様なので
+意識してないところでwindow.onloadが使われていて陥る可能性が高い。
+解決方法 別の記載に変更する
+// 別の記載例 window.addEventListener('load', function(){ console.log('これとか') }) // jQueryが使えるなら $(window).on('load', function(){ console.log('これとか') }) 
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2019/01/25/linux-mint-docker/" class="catalogue-item">
+    <div>
+        <time datetime="2019-01-25 00:00:00 &#43;0000 UTC" class="catalogue-time">January 25, 2019</time>
+        <h1 class="catalogue-title">Docker環境の構築手順</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境 Linux Mint 19.1
+ubuntu 19.10
+ Linux Mint 18.3についてはコチラにて記載していましたが 19.1ではaptにて簡単にインストールできるようになっていたので再記載します。
+インストール手順 以下のコマンドを実行します。
+(ubuntuの場合はaptの前にsudoを付けてください)
+apt install docker.io docker-compose sudo gpasswd -a $USER docker service docker restart これで再起動すればdocker, docker-composeコマンドが使えるようになります。
+（ログアウトだけではdockerグループへの参加が上手く反映されないことがある。要再起動）
+        </p>
+    </div>
+</a>
+
+		
+	</div>
+	
+	<div class="pagination">
+		
+			<a href="/posts/page/6/" class="left arrow">&#8592;</a>
+		
+		
+			<a href="/posts/page/8/" class="right arrow">&#8594;</a>
+		
+	
+		<span>7</span>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.3102926 &#43;0900 JST m=&#43;0.129887001">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>zabbix on Nonsense J</title>
+    <link>/tags/zabbix/</link>
+    <description>Recent content in zabbix on Nonsense J</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Tue, 02 May 2017 14:49:34 +0000</lastBuildDate><atom:link href="/tags/zabbix/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MacにZabbixエージェントを入れる</title>
+      <link>/posts/wp/624/</link>
+      <pubDate>Tue, 02 May 2017 14:49:34 +0000</pubDate>
+      
+      <guid>/posts/wp/624/</guid>
+      <description>■環境 Mac OS 10.9.5
+Zabbix 3.2.1
+ Mac OSのサーバにZabbixエージェントを入れた際の手順メモです。
+WEBでzabbixのソースをダウンロードします。
+https://sourceforge.net/projects/zabbix/files/ZABBIX%20Latest%20Stable/3.2.1/Macサーバに送ります。
+$ scp zabbix-3.2.1.tar.gz user@192.168.999.999:~/Downloads/. ※Macサーバ上で直接ダウンロードできるなら、その方が早いです。
+macサーバにて解凍〜インストールを行ないます。
+tar xzf zabbix-3.2.1.tar.gz cd zabbix-3.2.1 ./configure --enable-agent make install sudo cp conf/zabbix_agentd.conf /usr/local/etc/. sudo cp src/zabbix_agent/zabbix_agentd /usr/local/sbin/ Zabbixエージェントの設定を変更します。
+sudo vim /usr/local/etc/zabbix_agentd.conf # 127.0.0.1の部分をZabbixサーバのIPアドレスに変更 # Hostnameはagentサーバのホスト（サーバ側に設定したものと同じ）に変更 Zabbixエージェントを実行します。
+/usr/local/sbin/zabbix_agentd 【補足】 インストール時にzabbixユーザが作成されるはずですが、
+ユーザ作成に失敗している場合は別途ユーザ作成しておかないとエージェントの実行ができません。</description>
+    </item>
+    
+    <item>
+      <title>zabbixでPHPの警告が出る場合の対処</title>
+      <link>/posts/wp/424/</link>
+      <pubDate>Tue, 14 Feb 2017 00:48:55 +0000</pubDate>
+      
+      <guid>/posts/wp/424/</guid>
+      <description>■環境
+zabbix 3.2
+PHP 7.1
+PHP7.1でzabbixを動かすと、以下の警告が出ました。
+A non well formed numeric value encountered [zabbix.php:21 → require_once() → ZBase-&amp;gt;run() → ZBase-&amp;gt;processRequest() → CView-&amp;gt;getOutput() → include() → make_status_of_zbx() → CFrontendSetup-&amp;gt;checkRequirements() → CFrontendSetup-&amp;gt;checkPhpMemoryLimit() → str2mem() in include/func.inc.php:410] A non well formed numeric value encountered [zabbix.php:21 → require_once() → ZBase-&amp;gt;run() → ZBase-&amp;gt;processRequest() → CView-&amp;gt;getOutput() → include() → make_status_of_zbx() → CFrontendSetup-&amp;gt;checkRequirements() → CFrontendSetup-&amp;gt;checkPhpPostMaxSize() → str2mem() in include/func.inc.php:410] A non well formed numeric value encountered [zabbix.php:21 → require_once() → ZBase-&amp;gt;run() → ZBase-&amp;gt;processRequest() → CView-&amp;gt;getOutput() → include() → make_status_of_zbx() → CFrontendSetup-&amp;gt;checkRequirements() → CFrontendSetup-&amp;gt;checkPhpUploadMaxFilesize() → str2mem() in include/func.</description>
+    </item>
+    
+    <item>
+      <title>CentOS 7.3にzabbix 3.2をインストール</title>
+      <link>/posts/wp/349/</link>
+      <pubDate>Tue, 14 Feb 2017 00:20:50 +0000</pubDate>
+      
+      <guid>/posts/wp/349/</guid>
+      <description>■環境 CentOS 7.3
+zabbix 3.2
+PHP 7.1
+MySQL 14.14
+Apache 2.4
+ ①zabbixをyumでインストールするためのリポジトリをインストール
+# yum install http://repo.zabbix.com/zabbix/3.2/rhel/7/x86_64/zabbix-release-3.2-1.el7.noarch.rpm ②zabbixの本体をインストール
+# yum install \ zabbix-server-mysql \ zabbix-web-mysql \ zabbix-web \ zabbix-agent \ zabbix-get \ zabbix-sender \ zabbix-web-japanese ※MySQLではなくPostgreSQLを使う場合は、上記の『mysql』を『pgsql』にするだけです。
+③MySQLの設定
+# mysql mysql&amp;gt; CREATE USER &#39;zabbix&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;zabbixpassword&#39;; mysql&amp;gt; CREATE DATABASE zabbix CHARACTER SET utf8; mysql&amp;gt; GRANT ALL ON zabbix.* to &#39;zabbix&#39;@&#39;localhost&#39;; mysql&amp;gt; quit # zcat /usr/share/doc/zabbix-server-mysql-3.2.1/create.sql.gz | mysql -uroot zabbix パスワードは任意のものを入れてください。</description>
+    </item>
+    
+  </channel>
+</rss>

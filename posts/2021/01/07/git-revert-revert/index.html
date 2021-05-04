@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Typescript &#43; Vue.jsで子コンポーネントのプロパティにアクセスする &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Typescript &#43; Vue.jsで子コンポーネントのプロパティにアクセスする</h1>
+		<div class="post-info">
+				<time datetime="2021-01-07 00:00:00 &#43;0000 UTC">January 7, 2021</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/vue.js/">Vue.js</a></div> <div class="tags_item"><a href="/tags/typescript/">Typescript</a></div>
+				</div>
+			
+		</div>
+		<p>Typescript + Vue.jsの構成で親コンポーネントから子コンポーネントのプロパティにアクセスする場合、<br>
+普通のjavascriptと同じように実装するとエラーとなる場合があります。</p>
+<p>例えば、以下のように記載するとします。</p>
+<pre><code># template
+&lt;HogeChild ref=&quot;hogeChildRef&quot; /&gt;
+
+# script
+import HogeChild from &quot;〜対象ファイルパス〜&quot;;
+
+@Component({
+  components: {
+    HogeChild
+  }
+})
+
+export default class HogeParent extends Vue {
+  changeChildFlg(): void {
+    this.$refs.hogeChildRef.someFlg = true;
+  }
+}
+</code></pre><p>すると以下のエラーが発生することがあります。</p>
+<pre><code>Property 'someFlg' does not exist on type 'Vue | Element | Vue[] | Element[]'.
+  Property 'someFlg' does not exist on type 'Vue'.Vetur(2339)
+</code></pre><p>この場合、Typescriptを使う場合は子コンポーネント呼び出し時にも型を指定してあげる必要があります。<br>
+子コンポーネント呼び出し部分を以下のようにすると動きます。</p>
+<pre><code>  changeChildFlg(): void {
+    const hogeChildRef = &lt;HogeChild&gt;this.$refs.hogeChildRef;
+    hogeChildRef.someFlg = true;
+  }
+</code></pre><p>どういう条件で発生するか、詳細は把握していませんが、<br>
+Typescript内にVue.jsを書くと問題ないけど、Vue.js内にTypescriptを書くとエラーになる気がします。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2020/12/28/git-revert-revert/" class="left arrow">&#8592;</a>
+		<a href="/posts/2021/01/13/laravel-auth-user/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2682477 &#43;0900 JST m=&#43;0.087842201">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>CakePHP2のローカル検証環境構築 &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">CakePHP2のローカル検証環境構築</h1>
+		<div class="post-info">
+				<time datetime="2018-06-10 09:20:20 &#43;0000 UTC">June 10, 2018</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/php/">PHP</a></div> <div class="tags_item"><a href="/tags/cakephp/">CakePHP</a></div>
+				</div>
+			
+		</div>
+		<h2 id="環境">環境</h2>
+<p>CakePHP 2.10.10</p>
+<hr>
+<p>今更ながらCakePHP2を仕事で使う可能性があったので、<br>
+勉強するためローカルに環境構築しました。</p>
+<p>環境構築はDockerを利用しており、以下3つのコンテナを作成しています。</p>
+<ul>
+<li>nginx</li>
+<li>php-fpm</li>
+<li>MySQL</li>
+</ul>
+<p>【参考】出来上がったものはこちら<br>
+<!-- raw HTML omitted --><a href="https://github.com/mildjester/my-training-cakephp">https://github.com/mildjester/my-training-cakephp</a><!-- raw HTML omitted --></p>
+<p>CakePHPのDocument関連は「Book」という名称で公開されていますので<br>
+こちらを参考にして進めていきます。<br>
+（CakePHPは全体的に料理っぽい命名がされているので、レシピ本ってこと？）<br>
+<!-- raw HTML omitted --><a href="https://book.cakephp.org/2.0/ja/index.html">https://book.cakephp.org/2.0/ja/index.html</a><!-- raw HTML omitted --></p>
+<h2 id="cakephpのインストール">CakePHPのインストール</h2>
+<p>BookによるとCakePHP2のダウンロードは公式ページより行なえるそうなのですが、<br>
+現在の公式ページにはダウンロードできそうなリンクはありませんでした。<br>
+なので、GitHubからダウンロードしてきます。<br>
+私が見た時はVersion.2系の最新は「2.10.10」だったので、それの圧縮ファイルダウンロードしました。<br>
+<!-- raw HTML omitted --><a href="https://github.com/cakephp/cakephp/tags">https://github.com/cakephp/cakephp/tags</a><!-- raw HTML omitted --></p>
+<p>ダウンロードしてきた圧縮ファイルを解凍したらCakePHP2の基本構造が出てきます。<br>
+これをDockerで作った環境で動くように突っ込みます。<br>
+Docker環境についてはコチラを参照してください。<br>
+<!-- raw HTML omitted --><a href="https://github.com/mildjester/my-training-cakephp/tree/master/docker">https://github.com/mildjester/my-training-cakephp/tree/master/docker</a><!-- raw HTML omitted --></p>
+<p>この状態でDockerを起動すればCakePHPの初期画面が表示されます。<br>
+<!-- raw HTML omitted --></p>
+<h2 id="初期設定">初期設定</h2>
+<p>上記の初期画面で色々とWarning等が出ているので<br>
+これの対応をしていきます。</p>
+<h3 id="databaseの設定">Databaseの設定</h3>
+<p><!-- raw HTML omitted -->/app/Config/database.php.default<!-- raw HTML omitted --> というファイルがあるので、それを同じディレクトリに<!-- raw HTML omitted -->database.php<!-- raw HTML omitted -->という名前でコピーします。<br>
+コピーしたファイルにデータベースの設定について記載されていますので、構築するDBの情報を記載します。<br>
+また、ここに記載するDB情報に合わせてMySQLにもDBやユーザーを作成しておきます。<br>
+（MySQLの操作については割愛）</p>
+<h3 id="coreの修正">Coreの修正</h3>
+<p><!-- raw HTML omitted -->/app/Config/core.php<!-- raw HTML omitted --> にセキュリティ関連のSaltやCipherSeedが設定されています。<br>
+初期値のままだと宜しくないので修正しておきます。</p>
+<pre><code>Configure::write('Security.salt', 'DYhG93b0qyJfIxfs2guVoUubWwvniR2G0FgaC9mi'); // 任意の半角英数にする  
+Configure::write('Security.cipherSeed', '76859309657453542496749683645'); // 任意の数字にする  
+</code></pre><h3 id="debugkitの設定">DebugKitの設定</h3>
+<p>CakePHP用のDebugKitがあるのでインストールしておきます。<br>
+<!-- raw HTML omitted --><a href="https://github.com/cakephp/debug_kit/tree/2.2">https://github.com/cakephp/debug_kit/tree/2.2</a><!-- raw HTML omitted --></p>
+<p>まず、Composerでインストールし、生成されるPluginを<!-- raw HTML omitted -->/app/Plugin<!-- raw HTML omitted -->配下へ移動させます。</p>
+<pre><code>composer require cakephp/debug_kit &quot;^2.2.0&quot;  
+mv Plugin/DebugKit app/Plugin/.  
+</code></pre><p>もしローカルにComposerが入ってない場合は、php-fpmのDockerコンテナに入って実行しても構いません。<br>
+本例のDocker環境の場合は以下コマンドでコンテナに入れます。</p>
+<pre><code>docker-compose -f cakedock/docker-compose.yml exec --user=www-data workspace sh  
+# または、上記コマンドをMakefile化してあるので、以下コマンドでも入れます  
+make workspace  
+</code></pre><p>次に<!-- raw HTML omitted -->/app/Config/bootstrap.php<!-- raw HTML omitted -->の69行目あたりにプラグイン読み込み設定を記載する箇所があるので<br>
+そこにDebugKitを読み込む設定を追記します。</p>
+<pre><code>CakePlugin::load('DebugKit');  
+</code></pre><p>ここまで対応すれば初期画面の警告はAllGreenになるはずです。<br>
+<!-- raw HTML omitted --></p>
+<p>あとは各々、自分の開発を進めます。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/1363/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/1423/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2757867 &#43;0900 JST m=&#43;0.095381201">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

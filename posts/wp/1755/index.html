@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Google Tag Managerで発火しない時 &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Google Tag Managerで発火しない時</h1>
+		<div class="post-info">
+				<time datetime="2018-11-26 23:38:42 &#43;0000 UTC">November 26, 2018</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/googleservice/">GoogleService</a></div>
+				</div>
+			
+		</div>
+		<p>Google Tag　Managerを使ってトリガーを設定したはずが<br>
+思い通りにGoogle Analytics上で集計できない時の調査方法です。</p>
+<p>まず、Google Tag Managerの管理画面にて「プレビューモード」にします。<br>
+公開ボタンの横にある『プレビュー』をクリックするだけです。<br>
+<!-- raw HTML omitted --></p>
+<p>プレビューモードになったら、同じブラウザでテストしたいページを開きます。<br>
+すると、Google Tag Managerのコンソールが表示されます。<br>
+画面上クリックをするとクリックイベントが発生するのが分かります。<br>
+<!-- raw HTML omitted --></p>
+<p>ここでコンソール内の『Variables』または『Data Layer』のを開くと<br>
+どのようなトリガーが発火したのかが分かります。<br>
+<!-- raw HTML omitted --></p>
+<p>これで確認したクリック時に発火したトリガー（IDやClass）が<br>
+Google Tag Managerで設定したトリガーと一致しているか確認します。</p>
+<h3 id="ありそうな間違い">ありそうな間違い</h3>
+<p>Google Tag Managerのイベントは一番内側の要素がトリガーになります。<br>
+javascriptのonClickとは違うので注意が必要です。</p>
+<p>例えば以下のソースコードの場合、<!-- raw HTML omitted -->sample.png<!-- raw HTML omitted -->をクリックした時に<br>
+<!-- raw HTML omitted -->id=&ldquo;fooo&rdquo;<!-- raw HTML omitted -->のクリックイベントは発火しません。</p>
+<pre><code>&lt;div id=&quot;wrapper&quot;&gt;  
+  &lt;div id=&quot;fooo&quot;&gt;  
+    &lt;img src=&quot;./sample.png&quot; /&gt;  
+  &lt;/div&gt;  
+&lt;/div&gt;  
+</code></pre>
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/1741/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/1772/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2786615 &#43;0900 JST m=&#43;0.098256001">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LinuxMint on Nonsense J</title>
+    <link>/tags/linuxmint/</link>
+    <description>Recent content in LinuxMint on Nonsense J</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Mon, 06 Jul 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/linuxmint/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux MintでThinkPadのトラックポイントを調整する</title>
+      <link>/posts/2019/03/12/linux-mint-trackpoint/</link>
+      <pubDate>Mon, 06 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2019/03/12/linux-mint-trackpoint/</guid>
+      <description>環境  Linux Mint 19.1 &amp;ldquo;Tessa&amp;rdquo; - MATE (64-bit) ThinkPad T480   ■参考 Ubuntu17.10でtrackpointの速度を調整する
+ トラックポイントの速度調整は『コントロールセンター＞マウスの設定』からもできるのですが、
+設定できる幅に限界があり、もう少し感度を上げたかったので他の方法で調整します。
+■最適な値の探し出し 『感度』と『速度』をいじりながら最適な数値を探します。
+私の場合はsensitivityは180、speedは60にすると丁度良かったです。
+$ sudo -i # cd /sys/devices/platform/i8042/serio1/serio2 # vim sensitivity // 感度 # vim speed // 速さ ■設定値の永続化 さきほど修正していたファイルは再起動時に戻ってしまうので、
+別ファイルにルールを記載しておきます。
+# vim /etc/udev/rules.d/10-trackpoint.rules 記載内容は以下の通りです。
+speedとsensitivityは最適な値を入れてください。
+KERNEL==&amp;quot;serio2&amp;quot;, SUBSYSTEM==&amp;quot;serio&amp;quot;, DRIVERS==&amp;quot;psmouse&amp;quot;, ATTR{sensitivity}:=&amp;quot;180&amp;quot;, ATTR{speed}:=&amp;quot;60&amp;quot; これで設定完了です。
+(おまけ)中央クリックの貼り付けを無効化する デフォルトだとThinkPadの中央クリック(マウスでいうホイールクリック)で貼り付けがされますが、 スクロール中にいきなり貼り付けが実行されたりして不便なので無効化します。
+ ※2020年7月追記
+中央クリックでの貼付けを防ぐだけであれば設定から変更できました。
+コントロールセンター &amp;gt; マウス &amp;gt; Enable middlemouse paste
+ まずデバイス名を取得します。
+以下コマンドを実行すると「TPPS/2 IBM TrackPoint」であることが分かります。
+$ xinput --list | grep TrackPoint ⎜ ↳ TPPS/2 IBM TrackPoint id=14	[slave pointer (2)] デバイスのマッピングを調べます。</description>
+    </item>
+    
+    <item>
+      <title>Linux Mintの初期設定</title>
+      <link>/posts/2019/03/10/linux-mint-initialize/</link>
+      <pubDate>Wed, 01 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2019/03/10/linux-mint-initialize/</guid>
+      <description>環境  Linux Mint 19.1 &amp;ldquo;Tessa&amp;rdquo; - MATE (64-bit) ThinkPad T480   ※2020年7月追記
+Linux Mint 20 Ulyanaについても追記しました。
+  日本語入力の設定 『コントロールセンター＞入力方法』を開き、日本語の設定をします。
+基本的に上図の通り書かれている手順を実施します。
+ 言語パッケージをインストールする(ここでinstallボタン押すだけ) ウィンドウ上部のInput MethodをFctixにする 一旦ログアウトする   ※2020年7月追記
+Linux Mint 20では最初からFctixが使えるので、ログアウトは不要です。
+ 『コントロールセンター＞Fctix設定』を開き、入力メソッドをMozcだけにします。
+不要な入力メソッドを「-」ボタンをクリックして消すだけです。
+上図のようになればOKです。
+言語設定  ※2020年7月追記
+Linux Mint 20では不要そうです。
+ 『コントロールセンター＞言語』を開き、日本語の設定をします。
+ 「言語」と「地域」を日本にする。（なっているはず） 「言語サポート」にて日本語をインストールする。 「システムロケール」の『システム全体に適用』を実行する。  Chromeなどをインストールした際に日本語になっていない場合はこの手順を再度実施します。
+入力モード切り替えをMac風にする キーボードの変換キーでIME有効、無変換キーでIME無効にすると便利なので設定します。
+『コントロールセンター＞Mozcの設定』を開き、「キー設定の選択」の編集をクリックします。
+するとキー設定ウィンドウが表示されるので設定します。
+下図ではひらがなカタカナキーもIME有効化に割り当てています。
+キー設定画面の右下の「編集」から設定のインポート/エクスポートもできるので、
+再インストール時用に好みの設定をエクスポートしておくと後々楽です。
+半角/全角キーとCapsLockキーを使いやすくする IMEの有効/無効切り替えを上記の通り設定すると半角/全角キーは不要になるので、Escに割り当ててしまいます。
+また、CapsLockも使わないのでCtrlに割り当ててしまいます。
+『コントロールセンター＞キーボード』を開き、
+レイアウトタブの「キーボードの型式」のオプションを開きます。
+ここで「Caps Lock behavior」は『CapsLock is also a Ctrl』を選択し、</description>
+    </item>
+    
+    <item>
+      <title>Linux Mintにsassをインストールする</title>
+      <link>/posts/2019/09/29/ruby-sass-error/</link>
+      <pubDate>Sun, 29 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2019/09/29/ruby-sass-error/</guid>
+      <description>インストール方法 最終的に行き着いたインストール方法です。
+インストールするだけならこちらを実行してください。
+$ apt install ruby-sass ruby-dev $ sudo gem install listen --version &#39;~&amp;gt; 3.0&#39; 躓いた点 エラーメッセージで検索する人もいると思うので、
+躓いた工程をメモしておきます。
+まず、最初にsassだけインストールしました。
+$ apt install ruby-sass すると、sassコマンドでwatchをする際にエラーが出ました。
+$ sass --watch ./sass:./css --style compact --no-cache &amp;gt;&amp;gt;&amp;gt; Sass is watching for changes. Press Ctrl-C to stop. LoadError: cannot load such file -- listen Run &amp;quot;gem install listen --version &#39;~&amp;gt; 3.0&#39;&amp;quot; to get it. Use --trace for backtrace. watchをするためにはlistenが必要であるようです。
+そこでlistenをインストールしようとしましたが、エラーになりました。
+$ sudo gem install listen --version &#39;~&amp;gt; 3.</description>
+    </item>
+    
+    <item>
+      <title>Linux Mint上でWindows10を動かす</title>
+      <link>/posts/2019/09/28/linux-mint-virtualbox/</link>
+      <pubDate>Sat, 28 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2019/09/28/linux-mint-virtualbox/</guid>
+      <description>フロントエンドを触っているとどうしてもIEでの動作確認が必要になるので
+VirtualBoxを使ってWindows環境を用意します。
+Windowsディスクイメージの取得 Microsoftの公式ページにてWindows 10のディスクイメージ(iso)を取得しておきます。
+https://www.microsoft.com/ja-jp/software-download/windows10ISO
+Virtualboxのインストール 以下のコマンドでインストールします。
+apt install virtualbox virtualbox-qt 上記実行後、一旦ログアウトするとメニューにvirtualboxが追加されます。
+仮想マシンの作成 VirtualBoxを起動し、仮想マシンを新規作成します。
+選択肢はWindows10のものを選んで行きます。
+仮想マシンが作成できたら設定の「ストレージ」を開き、
+空になっている光学ドライブ(CDアイコン)にダウンロードしておいたWin10のディスクイメージを設定して起動します。
+あとは指示に従ってwin10のインストールを進めるだけです。
+インストールが完了したら先程光学ドライブに設定したディスクイメージは除いて構いません。
+その他設定メモ ゲストマシン(仮想マシン)から見るとホストマシンのIPアドレスは「10.0.2.2」になっています。
+なので、ホストマシンにてDockerを動かして置いてゲストマシンでhttp://10.0.2.2にアクセスすれば動作確認ができます。</description>
+    </item>
+    
+    <item>
+      <title>コマンドラインからVPNの接続＆切断をする</title>
+      <link>/posts/2019/07/29/linux-mint-vpn/</link>
+      <pubDate>Mon, 29 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2019/07/29/linux-mint-vpn/</guid>
+      <description>環境  Linux Mint 19.1 &amp;ldquo;Tessa&amp;rdquo; - MATE (64-bit)   Linux MintはGUIにてVPNの設定ができ、VPNの接続＆切断もGUIから行なえます。
+しかし、ターミナル操作中などコマンドからVPNを操作したいときがあるので
+コマンドを調べました。
+VPN名確認 自分でつけた名前なので調べる必要は無いかもしれませんが
+一応以下コマンドで調べられます。
+(以下例だと『SampleVPN』がVPN名)
+$ nmcli connection | grep vpn SampleVPN 123abc12-1a2b-1234-12a1-1234567890ab vpn -- VPN接続 以下コマンドでVPN接続します。
+nmcli con up id {VPN名} # 例： nmcli con up id SampleVPN VPN切断 以下コマンドでVPN切断します。
+nmcli con down id {VPN名} # 例： nmcli con down id SampleVPN 短縮コマンド登録 エイリアスを登録しておくと楽です。
+alias up-vpn=&amp;quot;nmcli con up id SampleVPN&amp;quot; alias down-vpn=&amp;quot;nmcli con down id SampleVPN&amp;quot; </description>
+    </item>
+    
+    <item>
+      <title>コマンドで画像の撮影日等を変更する</title>
+      <link>/posts/2019/07/02/exiftool-modify-alldate/</link>
+      <pubDate>Tue, 02 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2019/07/02/exiftool-modify-alldate/</guid>
+      <description>環境  Linux Mint 19.1 &amp;ldquo;Tessa&amp;rdquo; - MATE (64-bit) exiftool 10.80   写真をスキャナを使って取り込むと画像ファイルに撮影日が反映されないので
+exiftoolというEXIF情報を扱えるツールを使って撮影日を変更します。
+※この手順ではEXIF情報を無理やり書き込んでいるだけなので、
+ファイルフォーマットがEXIF形式(?)に変わるわけではなさそうです。
+まずexiftoolがインストールされていない場合はインストールします。
+apt install exiftool 現状のEXIF情報を参照するには以下のようにコマンドを実行します。
+下記コマンドだとカレントディレクトリにあるpngファイル全てのEXIF情報を参照できます。
+exiftool -s ./*png (./*pngの部分は画像ファイルが置いてあるパスに読み替えてください) 続いて撮影日付等を書き換えます。
+以下のコマンドで撮影日時等を「2019/02/23 00:00:00」に変更しています。
+exiftool -overwrite_original -alldates=&#39;2019:02:23 00:00:00+09:00&#39; ./*png exiftool -overwrite_original -TimeStamp=&#39;2019:02:23 00:00:00+09:00&#39; ./*png ※overwrite_originalを指定する事で上書きするようにしているのですが
+もし書換え前のデータを残したい場合はこのオプションを外してください。
+次にファイルの更新日も修正してしまいます。
+ファイルの更新日はどうでも良い人は飛ばして良いです。
+exiftool -overwrite_original -FileModifyDate=&#39;2019:02:23 00:00:00+09:00&#39; ./*png 再度EXIF情報を確認すると、日付データが更新されている事が分かります。
+exiftool -s ./*png </description>
+    </item>
+    
+    <item>
+      <title>Linux Mintを無線LANのアクセスポイントにする</title>
+      <link>/posts/2019/04/17/linuxmint-access-point/</link>
+      <pubDate>Wed, 17 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2019/04/17/linuxmint-access-point/</guid>
+      <description>環境  Linux Mint 19.1 &amp;ldquo;Tessa&amp;rdquo; - MATE (64-bit)   VPN経由でないと表示できないページをPC, Android, iOSで同時に見たかったのですが
+自分の契約しているVPNが1度に1デバイスしか接続できなかったので
+PC(Linux Mint)でVPN接続し、その接続を無線LANで共有するようにしました。
+Macでいうところの「ネットワークの共有」です。
+参考 Linuxで簡単に無線Lanアクセスポイントを作る
+だいたい参考ページ通りですが、うまく動かない箇所があったので少しだけコマンドを修正しています。
+環境構築 必要なソフトウェアのインストールします。
+apt install util-linux procps hostapd iproute2 iw アクセスポイントを作成するスクリプトの取得します。
+wget https://raw.githubusercontent.com/oblique/create_ap/master/create_ap 実行権限を付与してパスが通っている場所に移動させます。
+sudo chmod +x create_ap sudo mv create_ap /usr/local/bin/. ネットワークの共有 事前にネットワークインターフェース(NIC)を調べます。
+ip a すごいざっくりいうと
+eで始まるNICは有線LANで、wで始まるNICは無線LANです。
+また、VPNの場合はVPNの種類(pppなど)が付いていると思います。
+loやbrで始まるのは内部的に使っているものなので基本的に無視して良いです。
+分からなければ『コントロールセンター＞ネットワーク接続』にて利用したいNICの詳細を開き、
+デバイスの「XX:XX:XX:XX:XX:XX」が一致するNICを選べば良いです。
+このNICの中から『外界⇔PC』通信用のNICと『PC⇔スマホ』通信用のNICを決めます。
+注意点としては上記2つのNICは物理的に別のハードウェアでなければならないという事です。
+例えば、PCに無線LANのNICが1つしか無い場合は『PC⇔スマホ』のNICにそれを使うので、
+『外界⇔PC』のNICは有線LANを使ったりしなければなりません。
+利用するNICが決まったら以下の用にコマンドを打ちます。
+sudo create_ap {スマホとのNIC} {外界とのNIC} {SSID} {SSIDの接続パスワード} たとえば、スマホとのNICが無線LANwlp3s0で、外界とのNICがVPNppp0の場合は以下のコマンドでアクセスポイントを開始できます。
+なお、以下コマンドではSSIDはMyAPでパスワードはMyPasswordとなります。
+sudo create_ap wlp3s0 ppp0 MyAP MyPassword 上記コマンド実行後、ターミナルにはアクセスポイントとしての稼働ログが流れます。</description>
+    </item>
+    
+    <item>
+      <title>VPNクライアント設定(L2TP over IPsec)</title>
+      <link>/posts/2019/03/13/linux-mint-l2tp/</link>
+      <pubDate>Wed, 13 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2019/03/13/linux-mint-l2tp/</guid>
+      <description>環境  Linux Mint 19.1 &amp;ldquo;Tessa&amp;rdquo; - MATE (64-bit) ubuntu 19.10  ■参考 ask ubuntu
+ Linux MintでのVPNクライアント設定に少し苦戦したのでメモです。
+ubuntuでもほぼ同手順で対応可能でした。
+必要なアプリケーションのインストール 以下のコマンドでインストールします。
+(ubuntuの場合はaptの前にsudoを付けてください)
+$ apt update $ apt install network-manager-l2tp-gnome strongswan libstrongswan-extra-plugins libcharon-extra-plugins ネットワーク設定 まず、『コントロールセンター＞ネットワーク接続』を開きます。
+(ubuntuの場合は『設定＞ネットワーク』)
+現在のネットワーク一覧が表示されるので、「＋」マーク(追加ボタン)をクリックします。
+接続の種類を聞かれるのでVPNの中にある『Layer 2 Tunneling Protocol(L2TP)』を選択して『作成』をクリックします。
+L2TPの設定画面が開くので、VPNタブにて以下を設定します。
+   項目 設定値     ゲートウェイ VPNサーバーのIPアドレスorホスト名   ユーザー名 VPN接続する際のユーザー名   パスワード 上記ユーザーのパスワード※   NTドメイン 空欄のまま    ※補足 パスワードは入力欄右端の？アイコンをクリックしてポリシーを選択すれば入力できます。
+パスワードを接続の都度入力する場合はここでは空欄で良いです。</description>
+    </item>
+    
+    <item>
+      <title>terminator &#43; fish &#43; fishermanの導入</title>
+      <link>/posts/2019/03/10/linux-mint-terminator-fish/</link>
+      <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2019/03/10/linux-mint-terminator-fish/</guid>
+      <description>■環境 Linux Mint 19.1 &amp;ldquo;Tessa&amp;rdquo; - MATE (64-bit)
+ubuntu 19.10
+ ※以降のaptコマンドはUbuntuの場合はsudoを付けてください。
+terminatorインストール terminatorをインストールします。
+apt install terminator  (※2019年11月追記)
+Terminatorもいいですが、Tilixというターミナルも良いです。
+詳しくは↓こちら↓
+Linux用ターミナル『Tilix』
+ fishインストール fishをインストールします。
+apt install fish インストール後、反映するため一度ログアウトします。
+なお、Terminatorはデフォルトのウィンドウサイズが微妙なので変更した方が良いです。
+Terminatorのデフォルトサイズを変更する
+fishをデフォルトシェルに設定 $ grep fish /etc/shells /usr/bin/fish ←表示されなかったら`which fish`の結果を/etc/shellsに追記する $ chsh -s /usr/bin/fish fishermanのインストール fishermanというfishのプラグイン管理ツールがあります。
+fishermanのgithubベージにインストールコマンドが載っています。
+https://github.com/fisherman/fisherman
+$ curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish $ fisher -v fisher version 3.1.1 ~/.config/fish/functions/fisher.fish ※fisher -vでバージョンが出ない場合は、一回ターミナルを開き直してください。
+テーマの変更 fishはテーマを変更することで見栄えが変えられます。
+どのようなテーマがあるかは、以下ページが参考になります。
+https://github.com/oh-my-fish/oh-my-fish/blob/master/docs/Themes.md
+私は「bobthefish」というテーマを利用しており、以下手順でインストールしています。
+$ fisher install oh-my-fish/theme-bobthefish # fisherのバージョンによってはfisher installではなくfisher add bobthefishではPowerLineのフォントが必要なので、そちらもインストールします。</description>
+    </item>
+    
+    <item>
+      <title>Terminatorのデフォルトサイズを変更する</title>
+      <link>/posts/2019/03/10/linux-mint-terminator-size/</link>
+      <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2019/03/10/linux-mint-terminator-size/</guid>
+      <description>■環境  Linux Mint 19.1 &amp;ldquo;Tessa&amp;rdquo; - MATE (64-bit) terminator 1.91   Linux環境でよく使われているターミナルソフトの「Terminator」ですが、
+設定から起動時の縦横サイズを指定できなかったので無理やり設定しました。
+設定方法 Terminatorのmanページを見ると以下のオプションがあることが分かります。
+https://linux.die.net/man/1/terminator
+--geometry=GEOMETRY Specifies the preferred size and position of Terminator&#39;s window; see X(7). x(7)のmanページを見るとgeometryの指定方法が記載されています。
+https://linux.die.net/man/7/x
+-geometry WIDTHxHEIGHT+XOFF+YOFF (where WIDTH, HEIGHT, XOFF, and YOFF are numbers) これを利用して、Terminatorを起動するショートカット（ランチャー）にオプションを付与してしまい、
+サイズと位置を指定するようにします。
+設定例 例えばLinux Mintの場合はパネルにTerminatorを追加して右クリックからプロパティを開き、
+コマンドの部分を以下のように変更してしまいます。
+terminator --geometry=1400x800+200+200 </description>
+    </item>
+    
+    <item>
+      <title>Docker環境の構築手順</title>
+      <link>/posts/2019/01/25/linux-mint-docker/</link>
+      <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2019/01/25/linux-mint-docker/</guid>
+      <description>■環境 Linux Mint 19.1
+ubuntu 19.10
+ Linux Mint 18.3についてはコチラにて記載していましたが 19.1ではaptにて簡単にインストールできるようになっていたので再記載します。
+インストール手順 以下のコマンドを実行します。
+(ubuntuの場合はaptの前にsudoを付けてください)
+apt install docker.io docker-compose sudo gpasswd -a $USER docker service docker restart これで再起動すればdocker, docker-composeコマンドが使えるようになります。
+（ログアウトだけではdockerグループへの参加が上手く反映されないことがある。要再起動）</description>
+    </item>
+    
+    <item>
+      <title>Linux Mint 19.1 MATEをUSBメモリからインストール</title>
+      <link>/posts/wp/1829/</link>
+      <pubDate>Thu, 20 Dec 2018 16:25:54 +0000</pubDate>
+      
+      <guid>/posts/wp/1829/</guid>
+      <description>PCを再構築する必要があったので、Linux Mintの最新バージョンを入れて見ました
+インストール準備をした作業環境はMacで、USBメモリにイメージを焼いてインストールしています
+OSイメージのダウンロード 今回選んだのは『Linux Mint 19.1 &amp;ldquo;Tessa&amp;rdquo; - MATE (64-bit)』です
+こちらからダウンロードできます（とりあえず近そうなTaiwanなどからDL）
+https://linuxmint.com/edition.php?id=263インストールメディア(USB)の作成 まずMacにUSBメモリを刺し、ターミナルでdiskutil listを実行します
+これでUSBメモリのdisk番号を調べます（NAMEやSIZEを見る）
+私の場合は /dev/disk2がUSBメモリでした
+$ diskutil list /dev/disk0 (internal): #: TYPE NAME SIZE IDENTIFIER 0: GUID_partition_scheme 121.3 GB disk0 1: EFI EFI 314.6 MB disk0s1 2: Apple_APFS Container disk1 121.0 GB disk0s2 /dev/disk1 (synthesized): #: TYPE NAME SIZE IDENTIFIER 0: APFS Container Scheme - +121.0 GB disk1 Physical Store disk0s2 1: APFS Volume Macintosh HD 70.2 GB disk1s1 2: APFS Volume Preboot 69.</description>
+    </item>
+    
+    <item>
+      <title>【Linux Mint】 Fcitxの変換候補が黒く塗りつぶされる</title>
+      <link>/posts/wp/1470/</link>
+      <pubDate>Mon, 13 Aug 2018 13:01:18 +0000</pubDate>
+      
+      <guid>/posts/wp/1470/</guid>
+      <description>環境 Linux Mint 18.3 cinnamon 64bit
+ 事象 ある日、Fcitxで日本語入力していたら
+変換候補が真っ黒になってしまいました
+Fcitx設定にて外観タブを見てみると、Kimpanelに設定オプションはありませんとのこと。
+解決方法 ちょっと調べてみた感じでは「Kimpanel」ってそもそも要らないようなのでアンインストールしてしまいます。
+sudo apt purge fcitx-module-kimpanel これで一度ログアウトして再度ログインすると、真っ黒状態は治ります。</description>
+    </item>
+    
+    <item>
+      <title>【Linux Mint】gemでcompassをインストールする</title>
+      <link>/posts/wp/1245/</link>
+      <pubDate>Fri, 20 Apr 2018 16:23:01 +0000</pubDate>
+      
+      <guid>/posts/wp/1245/</guid>
+      <description>以下のコマンドでインストールしようとするとエラーが発生しました。
+$ sudo gem install compass Fetching: sassa - 3.4.25.gem (100%) Successfully installed sassa - 3.4.25 Fetching: multi_json - 1.13.1.gem (100%) Successfully installed multi_json - 1.13.1 Fetching: compass-core-1.0.3.gem (100%) Successfully installed compass-core-1.0.3 Fetching: compass-import-once-1.0.5.gem (100%) Successfully installed compass-import-once-1.0.5 Fetching: chunky_png - 1.3.10 gem (100%) Successfully installed chunky_png-1.3.10 Fetching: rb - fsevent - 0.10.3.gem (100%) Successfully installed rb - fsevent - 0.10.3 Fetching: ffi - 1.9.23.gem (100%) Building native extensions. This could take a while .</description>
+    </item>
+    
+    <item>
+      <title>【Linux Mint】cpuminer &#43; wpoolでBitZenyをマイニング</title>
+      <link>/posts/wp/1236/</link>
+      <pubDate>Fri, 20 Apr 2018 10:25:55 +0000</pubDate>
+      
+      <guid>/posts/wp/1236/</guid>
+      <description>■環境 Linux Mint 18.3 cinnamon 64bit
+ cpuminerのインストール 基本的な流れはcpuminerのgithubページに記載されている通りです。
+https://github.com/macchky/cpuminer事前に必要な物をインストールします。
+※libjansson4は公式ページには記載がありませんが、ないとminerd実行時にエラーとなります。
+apt install build-essential libcurl4-openssl-dev libjansson4 cpuminerバイナリをダウンロードして実行ファイルを取り出します。
+wget https://github.com/macchky/cpuminer/releases/download/v2.6.0/ZNYminer260.zip unzip unzip ZNYminer260.zip chmod +x ZNYminer260/linux/minerd sudo mv ZNYminer260/linux/minerd /usr/local/bin/. rm -rf unzip ZNYminer260* BitZeny Walletの登録 BitZenyの受け取り用にWalletを作っておきます。
+以下サイトにてWalletが作成できます。
+https://bitzeny.jpアカウントを作成し、ログイン後の画面でWalletのアドレスが確認できます。
+マイニングの開始 minerdを使ってマイニングを開始します。
+wpoolに記載されている下記コマンドを実行すればマイニングが開始されます。
+マイニング停止はCtrl+Cです。
+https://wpool.work/minerd -a yescrypt -o stratum+tcp://wpool.work:15022 -u {BitZeny Walletで取得したアドレス} マイニング中は以下のように結果が流れていきます。
+「yay!!!」となっているところがマイニング成功です。
+[2018-04-20 15:42:35] Stratum requested work restart [2018-04-20 15:42:35] thread 1: 32638 hashes, 0.76 khash/s [2018-04-20 15:42:35] thread 0: 1957 hashes, 0.</description>
+    </item>
+    
+    <item>
+      <title>【Linux Mint】キーマップを変更する</title>
+      <link>/posts/wp/1226/</link>
+      <pubDate>Fri, 13 Apr 2018 21:33:50 +0000</pubDate>
+      
+      <guid>/posts/wp/1226/</guid>
+      <description>■環境 Linux Mint 18.3 cinnamon 64bit
+ Xmodmap設定 ホームディレクトリ直下に.Xmodmapというファイルを作成し、設定を記載していきます。
+【.Xmodmapへの記載内容】 マウス中央クリック貼り付けを無効化 ThinkPadキーボードだと中央ボタンをクリックしながらポインタを動かす事が多いですが、
+その時にちょいちょいペーストが走って邪魔なので無効化します。
+.Xmodmapに以下を記載します。
+pointer = 1 9 3 4 5 6 7 8 2 10 PageUp &amp;amp; PageDownをShiftにする PageUp &amp;amp; PageDownは使わないし指が当たると画面が動いて邪魔なので
+Shiftに変えてしてしまいます。
+.Xmodmapに以下を記載します。
+keycode 112 = Shift_R keycode 117 = Shift_R add Shift = Shift_R Caps LockをCtrlにする Caps Lockも使わないし指が当たると大文字入力になって邪魔なので
+こちらはCtrlに変えてしてしまいます。
+.Xmodmapに以下を記載します。
+remove Lock = Caps_Lock keysym Caps_Lock = Control_L add Control = Control_L 【.Xmodmapの反映】 .Xmodmap記載後、以下コマンドで適用されます。
+$ xmodmap ~/.Xmodmap ただし、ログインのたびに上記コマンドを打つのは面倒なので</description>
+    </item>
+    
+    <item>
+      <title>【Linux Mint】日本語入力できるようにする</title>
+      <link>/posts/wp/1222/</link>
+      <pubDate>Fri, 13 Apr 2018 21:28:47 +0000</pubDate>
+      
+      <guid>/posts/wp/1222/</guid>
+      <description>■環境 Linux Mint 18.3 cinnamon 64bit
+ Linux MintをEnglishでインストールした際の作業です。
+日本語でインストールしてあれば、初めから日本語入力が可能なはずです。
+設定手順 Fcitx + Mozcで日本語入力できるようにします。
+まず「SystemSettins &amp;gt; Input Method」を開きます。
+『Language support』にJapaneseがあるので、そこのInstallボタンをクリックします。
+インストールが終わると『Input method』にてFcitxを選択できるようになるので選択して、
+一旦マシンを再起動します。
+再起動後、MenuよりFcitx　Configurationを開きます。
+検索バーに『Fc』あたりまで入れると出てきます。
+Input Methodの追加「＋」をクリックします。
+input methodの一覧が出てくるので、Mozcを選択してOKをクリックします。
+Input MethodにMozcが追加されるので、元々あったKeybord - Japaneseは削除(×)ボタンで消してしまいます。
+これで日本語入力できるようになりました。
+半角/全角キーで日本語/英語を入れ替えられます。</description>
+    </item>
+    
+    <item>
+      <title>プログラミング向けフォントのインストール</title>
+      <link>/posts/wp/1218/</link>
+      <pubDate>Fri, 13 Apr 2018 21:21:39 +0000</pubDate>
+      
+      <guid>/posts/wp/1218/</guid>
+      <description>■環境 Linux Mint 18.3 cinnamon 64bit
+ubuntu 19.10
+macOS High Sierra 10.13.1
+(LinuxでもMacでも基本的に同じ操作でいけるはずです)
+ ■フォントのインストール プログラミングに向いていると評判の日本語対応フォント『Ricty Diminished』をインストールします。
+確かに見やすいです。文字幅や文字の見分けやすさ（オーとゼロに違いとか）の点で良いです。
+まずはフォント一式をダウンロードします。
+ダウンロードする圧縮ファイルはこちらのページから確認できます。
+※(2019/11/14追記) URLが変わっていたので修正しました
+http://www.yusa.lab.uec.ac.jp/~yusa/ricty_diminished.html$ wget http://www.yusa.lab.uec.ac.jp/~yusa/ricty_diminished/ricty_diminished-4.1.1.tar.gz $ tar xf ricty_diminished-4.1.1.tar.gz 次にダウンロードしたフォントをフォントディレクトリへ移動します。
+【Macの場合】
+$ mv RictyDiminished*.ttf ~/Library/Fonts/. $ brew install fontconfig 【ubuntu, Linux Mintの場合】
+$ mkdir -p ~/.fonts $ mv RictyDiminished*.ttf ~/.fonts/. 最後にフォントを読み込みます
+$ fc-cache -vf $ rm -f ricty_diminished-4.1.1.tar.gz これでIDEなどでRicty Diminishedを指定すれば反映されます。
+少しオシャレ（？）なRicty Diminished Discordというフォントも指定できるようになりますので、お好みの方を選べば良いと思います。
+■おまけ 『Cica』というフォントも評価が良いので紹介しておきます。
+https://github.com/miiton/CicaRicty同様に文字幅や文字の見分けやすさが良く、Rictyと比べると少し丸みを帯びていて可愛いです。
+以下の手順でインストールできます。
+$ wget https://github.com/miiton/Cica/releases/download/v2.1.0/Cica_v2.1.0.zip $ unzip Cica_v2.</description>
+    </item>
+    
+    <item>
+      <title>【Linux Mint】PHP7.1のインストール</title>
+      <link>/posts/wp/1192/</link>
+      <pubDate>Tue, 10 Apr 2018 09:11:57 +0000</pubDate>
+      
+      <guid>/posts/wp/1192/</guid>
+      <description>$ set -x LC_ALL C.UTF-8 $ sudo add-apt-repository ppa:ondrej/php $ apt update $ apt install php7.1 php7.1-mbstring php7.1-mcrypt php7.1-mysql php7.1-xml php7.1-xmlrpc composer </description>
+    </item>
+    
+    <item>
+      <title>【Linux Mint】Dockerの導入</title>
+      <link>/posts/wp/1162/</link>
+      <pubDate>Mon, 09 Apr 2018 21:06:39 +0000</pubDate>
+      
+      <guid>/posts/wp/1162/</guid>
+      <description>■環境 Linux Mint 18.3 cinnamon 64bit
+ Dockerのインストール dockerのGPGを追加
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - dockerリポジトリ追加
+$ sudo add-apt-repository &amp;quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable&amp;quot; dockerインストール
+$ apt update $ apt install docker-ce docker-composeのインストール $ apt install docker-compose sudo無しでdockerを使えるようにする 現在のユーザーをdockerというグループに所属させれば使えるようになるらしい。
+sudo gpasswd -a $USER docker service docker restart これで、一度ログアウトすればsudo無しでdockerコマンドが使えるようになります。</description>
+    </item>
+    
+    <item>
+      <title>【Linux Mint】OSインストールと設定</title>
+      <link>/posts/wp/1098/</link>
+      <pubDate>Sat, 07 Apr 2018 14:01:56 +0000</pubDate>
+      
+      <guid>/posts/wp/1098/</guid>
+      <description>■環境 Linux Mint 18.3 cinnamon 64bit
+ OS入手 公式ページからISOイメージをダウンロードします。
+https://linuxmint.com/download.phpこだわりが無ければ『Cinnamon 64bit』がオススメらしいので、それにします。
+ダウンロード元に日本が無いので、近そうな台湾にします。
+※韓国はなぜか404になってしまった（2018/03/09現在）
+OSインストール ダウンロードしたISOをDVDなどに焼いて、インストールしたいPCに入れて起動します。
+するとデスクトップが表示されInstallLinuxMintというアイコンがあるのでダブルクリックします。
+後は画面指示に従ってインストールを進めるだけです。
+私は以下のような設定で進めました。（特筆すべき部分のみ）
+ 言語：ここはあえてEnglish※2018/4/18追記 アプリケーションの文字体とかが中華文字みたいになるから日本語にした方が良さそう。 インストール方法：Clean InstallしたかったのでErase disk and install Linux Mint キーボードレイアウト：レノボキーボードはJapanese-JapaneseでOKでした  Windowsとデュアルブートなどにする場合は、事前にWindows側でDiskに空き容量を作っておき
+インストール方法で Linux Mint をWindows Boot Managerとは別にインストールを選択すればよいです。
+インストール後、デュアルブートにならない場合はBIOS設定でセキュアブートをDisableにします。
+Update Managerの設定 右下のタスクバーよりUpdateManagerをクリックします。（盾みたいなアイコン）
+とりあえずLet me review sensitive updatesを選択してOKをクリックします。
+『Do you want to switch to a local mirror?』と聞かれているのでOKをクリックします。
+日本のどれかを選択します。
+Refreshをクリックして最新化して、Install Updatesをクリックする。
+アップデートが完了すると、さらにアップデートできるパッケージが複数表示されるので
+必要に応じてアップデートしておく。
+システムフォントの変更 デフォルトのフォントがあまり良くなかったので変更します。
+※インストール時に言語をEnglishにしてしまった場合のみです。
+最初から日本語でインストールしておけば普通のフォントになりました。
+まず「SystemSettins &amp;gt; Font」を開きます。
+そこのFont Selectionで好きなフォントに変更できます。
+個人的にはTakao Ex Gothic Regularが好きでした。</description>
+    </item>
+    
+  </channel>
+</rss>

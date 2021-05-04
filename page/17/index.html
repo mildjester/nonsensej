@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+	<meta name="generator" content="Hugo 0.82.0" />
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<meta name="description" content="">
+
+		<title>Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="/index.xml" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	
+
+
+	<div class="catalogue">
+		
+			<a href="/posts/wp/225/" class="catalogue-item">
+    <div>
+        <time datetime="2016-05-06 10:29:33 &#43;0000 UTC" class="catalogue-time">May 6, 2016</time>
+        <h1 class="catalogue-title">【Ubuntu】zsh&amp;preztoのインストール</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            Ubuntuのターミナル（端末）でzsh＆preztoを使う設定です。
+Macの場合はこちら■環境
+Ubunt16.04
+①zshとgitをインストールしておきます
+16.04から「apt−get」ではなく「apt」になったようです。
+$ sudo apt install zsh $ sudo apt install git ②preztoを導入します。
+基本的な流れは「https://github.com/sorin-ionescu/prezto」の通りです。
+$ zsh ※設定画面が開いたら「q」を入力して抜ける。
+$ git clone --recursive https://github.com/sorin-ionescu/prezto.git &quot;${ZDOTDIR:-$HOME}/.zprezto&quot; $ chsh -s /usr/bin/zsh 次にpreztoを使うようにzshの設定をします。
+ターミナルに以下を貼り付けて実行します。（スクリプトファイルなどを作成する必要はなく、ターミナル直貼り付けでOK）
+setopt EXTENDED_GLOB for rcfile in &quot;${ZDOTDIR:-$HOME}&quot;/.zprezto/runcoms/^README.md(.N); do ln -s &quot;$rcfile&quot; &quot;${ZDOTDIR:-$HOME}/.${rcfile:t}&quot; done これでターミナルを開き直せばzshになるはずなのですが、なぜか端末を開き直してもzshにならなかったので
+ターミナルのメニューから「編集-&gt;プロファイル編集」を開き、コマンドタブにてカスタムコマンド『zsh』を設定しました。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/216/" class="catalogue-item">
+    <div>
+        <time datetime="2016-05-04 23:54:50 &#43;0000 UTC" class="catalogue-time">May 4, 2016</time>
+        <h1 class="catalogue-title">Ubuntu16.04のインストール後にしたこと</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ubuntuの16.04が出ていたので、インストールしてみました。
+その際に実施した内容です。（随時更新していくと思います）
+ホームディレクトリを日本語から英語に変更する。ターミナル（端末）をbashからzshに変更FlashPlayerインストールデュアルブート時の時刻ずれ対応シャットダウンの高速化■その他ソフトウェアのインストール（UbuntuSoftwareでインストール）
+【WEBブラウザ】
+Chromium
+【PDF編集ソフト】
+Inkscape
+【DVD書き込みソフト】
+K3b
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/206/" class="catalogue-item">
+    <div>
+        <time datetime="2016-03-08 12:17:33 &#43;0000 UTC" class="catalogue-time">March 8, 2016</time>
+        <h1 class="catalogue-title">【PHP】Eclipseでカーソルがある変数のハイライトを変更する</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            たまにカーソルがある変数の色がおかしくなる事があります。
+その際は以下の設定を変更すれば治ります。
+■環境
+Mac (OS X El Capitan 10.11.3)
+Eclipse Luna Service Release 2 (4.4.2)
+【メニューの場所】
+環境設定 → General → Editors → TextEditors → Annotations
+【設定箇所】
+PHP elements ‘ write’ occurences：カーソルがある変数が書き込まれている箇所のハイライト色
+PHP elements ‘ read’ occurences：カーソルがある変数が読まれている箇所のハイライト色
+PHPについて記載しましたが、おそらく他の言語でも大体同じだと思います。
+※上記変更をしても、既に開いているソースコードの色は変わら無いようです。
+変更した色を確認する場合は、設定変更後にソースファイルを開き直してください。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/202/" class="catalogue-item">
+    <div>
+        <time datetime="2016-03-08 05:23:15 &#43;0000 UTC" class="catalogue-time">March 8, 2016</time>
+        <h1 class="catalogue-title">【CentOS】cronが動かない場合のチェック</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            cronが動かない時のチェック項目  ①cronのプロセス（crond）は起動しているか
+↓起動している
+②crontabの記載は正しいか
+↓正しい
+③cronでスクリプトを叩く場合、スクリプトの実行権限は適切か
+↓適切
+④/var/log/cronに何かヒントが出力されているか
+↓むしろ何も出力されていない
+⑤rsyslogプロセスは起動しているか
+ docker環境でcronが動かない時に、この⑤でハマりました。
+rsyslogが起動していないとログを吐かないだけでなく、cronの実行自体されないようです。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/196/" class="catalogue-item">
+    <div>
+        <time datetime="2016-02-04 12:37:03 &#43;0000 UTC" class="catalogue-time">February 4, 2016</time>
+        <h1 class="catalogue-title">【Ubuntu】InkscapeでPDFを開くとズレてしまう場合</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            知っている人にとっては当たり前の話かもしれませんが
+InkscapeでPDFを編集しようと開くと、一部文字がズレてしまう事象に困っていました。
+対応方法はInkscapeで開く際に出てくるポップアップで
+「import via Poppler」にチェックを入れてから「OK」をクリックだけです。
+今まではポップアップは何も触らず「OK」をクリックしてました。
+ちゃんと操作方法は調べなければいけないと思いました。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/189/" class="catalogue-item">
+    <div>
+        <time datetime="2016-01-20 22:36:39 &#43;0000 UTC" class="catalogue-time">January 20, 2016</time>
+        <h1 class="catalogue-title">MySQLの文字コードを設定する</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            MySQLで文字コードを設定する方法です。
+■環境
+MySQL 5.6.26
+これからDBの作成をする場合は、設定ファイル「/etc/my.cnf」に追記することで
+作成するDBの文字コードを設定できます。
+[mysqld] character-set-server=utf8 [client] default-character-set=utf8 作成済みDBの文字コードを設定する場合は以下のコマンドを実行してください。
+# mysql mysql&gt; ALTER DATABASE sample_db CHARACTER SET utf8; mysql&gt; SHOW CREATE DATABASE sample_db; 作成済みテーブルの文字コードを設定する場合は以下のコマンドを実行してください。
+# mysql 【テーブルとカラム両方に設定する場合】mysql&gt; ALTER TABLE sample_table CONVERT TO CHARACTER SET utf8; 【テーブルのみ設定する場合】mysql&gt; ALTER TABLE sample_table charset=utf8; mysql&gt; SHOW CREATE TABLE sample_table; 
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/173/" class="catalogue-item">
+    <div>
+        <time datetime="2016-01-20 21:55:34 &#43;0000 UTC" class="catalogue-time">January 20, 2016</time>
+        <h1 class="catalogue-title">mysql系の関数がPHP7でエラーになる場合の対応</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            PHP5.XからPHP7にアップデートした際にmysql系の関数がエラーになっていたので、
+その際に行なった対応をメモしておきます。
+ 関数名を「mysql_xxxx()」から「mysqli_xxxx()」に変更する。 関数の引数が「第１引数：設定値」「第２引数：mysqlオブジェクト」である場合は
+順番を逆にする。（第１引数がmysqlオブジェクトとなるようにする）
+※ここで言うmysqlオブジェクトとは、「mysqli_connect」の返却値の事です。 mysqli_error()には、引数にmysqlオブジェクトを設定します。
+これ以外にも「mysql_xxxxx()」では引数不要であったものは「mysqli_xxxxx()」では引数に
+mysqlオブジェクトが必要になっているかもしれません。  
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/164/" class="catalogue-item">
+    <div>
+        <time datetime="2016-01-20 21:30:56 &#43;0000 UTC" class="catalogue-time">January 20, 2016</time>
+        <h1 class="catalogue-title">ダイジェスト認証の設定方法</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            Apacheで動いているWEBサーバにて、ダイジェスト認証を入れる方法です。
+■環境
+CentOS Linux release 7.2.1511 (Core)
+Apache/2.4.6
+Apacheがダイジェスト認証に対応しているか確認します。
+以下のコマンドにて結果が出力されれば対応しています。
+# grep digest /etc/httpd/conf.modules.d/ -r conf.modules.d/00-base.conf:LoadModule auth_digest_module modules/mod_auth_digest.so ダイジェスト認証用のIDとパスワードのセットを作成します。
+下記の「Sample Auth」は認証名で「sampleuser」は設定するIDです。適宜書き換えてください。
+また「/etc/httpd/conf/.hpass」が生成されるファイルですが、パスもファイル名も任意です。
+# htdigest -c /etc/httpd/conf/.htpass ’Sample Auth' sampleuser Adding password for sampleuser in realm Logical Dice Auth. New password:　←設定するパスワードを入力する Re-type new password:　←設定するパスワードを再度入力する あとはApacheの設定ファイルにて設定をします。
+以下の例では「/var/www/html/sample」配下のコンテンツにWEBブラウザにてアクセスした際に
+ダイジェスト認証が表示されるようになります。
+下記のAuthUserFileは上記で生成したファイルを指定してください。
+&lt;Location &quot;/sample/&quot;&gt; AuthType Digest AuthName “Sample Auth&quot; AuthUserFile &quot;/etc/httpd/conf/.htpass&quot; Require valid-user &lt;/Location&gt; これでApacheの設定ファイル再読み込み（再起動）をすればダイジェスト認証がかかるようになります。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/161/" class="catalogue-item">
+    <div>
+        <time datetime="2015-12-27 23:50:04 &#43;0000 UTC" class="catalogue-time">December 27, 2015</time>
+        <h1 class="catalogue-title">【FuelPHP】PHP7対応版へのアップデート</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            FuelPHPのdev-1.7がPHP7に対応していなかったので、
+既存プロジェクトをPHP7に対応しているdev-1.8にアップデートします。
+※dev-1.8が正式にmasterとして公開されていない現時点の手順です。
+もし正式にPHP7対応版が出たらこの手順は不要です。
+■環境
+CentOS Linux release 7.2.1511 (Core)
+FuelPHP　dev-1.7/master
+FuelPHPのプロジェクトディレクトリで以下コマンドを実施してcomposer.jsonを書き換えます。
+sed -ie &quot;s/dev-1.7\/master/dev-1.8\/develop/g&quot; composer.json 以下コマンドでFuelPHPのアップデートをします。
+php composer.pher update 以上でPHP7対応版にアップデートされます。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/156/" class="catalogue-item">
+    <div>
+        <time datetime="2015-12-07 23:31:02 &#43;0000 UTC" class="catalogue-time">December 7, 2015</time>
+        <h1 class="catalogue-title">【CentOS】php7をyumインストールする</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            php7がリリースされたので、CentOS7のサーバにyumでインストールした手順です。
+■環境
+CentOS 7.1.1503
+以下コマンドを実行するだけです。
+epel導入済みであれば1行目は不要です。3行目は必要なパッケージで読み替えてください。
+rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm yum install php70w php70w-mbstring php70w-mysql php70w-pdo php70w-xml 
+        </p>
+    </div>
+</a>
+
+		
+	</div>
+
+	<div class="pagination">
+		
+			<a href="/page/16/" class="left arrow">&#8592;</a>
+		
+		
+			<a href="/page/18/" class="right arrow">&#8594;</a>
+		
+
+		<span>17</span>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.3223858 &#43;0900 JST m=&#43;0.141980201">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

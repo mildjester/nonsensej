@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Posts &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="catalogue">
+		
+			<a href="/posts/wp/147/" class="catalogue-item">
+    <div>
+        <time datetime="2015-12-07 23:11:45 &#43;0000 UTC" class="catalogue-time">December 7, 2015</time>
+        <h1 class="catalogue-title">【CentOS】ComposerにGitHubのアクセストークンを設定する</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            今更ながら、ComposerにGitHubのアクセストークンを設定する方法です。
+■環境
+CentOS 7.1.1503
+GitHubのアカウントを持っていない人は作ります。特に解説は不要なはず。
+https://github.com/GitHubにログインし、右上のアイコンから「Settings」＞「Personal access tokens」からアクセストークンを作成します。
+画面を閉じるとトークンを見れなくなるので、閉じる前にメモしてください。
+Composerをインストールしていない人は以下を参照
+Composerのインストール方法以下のコマンドでComposerにGitHubのアクセストークンを設定します。
+composer config --global github-oauth.github.com ｛②で取得したアクセストークン｝ 
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/127/" class="catalogue-item">
+    <div>
+        <time datetime="2015-12-04 12:59:49 &#43;0000 UTC" class="catalogue-time">December 4, 2015</time>
+        <h1 class="catalogue-title">【CentOS】PostgreSQLの導入</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            CentOSにPostgreSQLを導入した際の作業メモです。
+■環境
+CentOS release 6.6
+postgresql 8.4.20
+まずpostgreSQLをインストールし、初期化をします。
+$ su - # yum install postgresql-server # service postgresql initdb 次に外部からアクセスできるように設定をします。
+「192.168.xxx.xxx/32」の部分はDBへアクセスするホストに合わせて修正してください。
+# vi /var/lib/pgsql/data/pg_hba.conf local all all trust host all all 192.168.xxx.xxx/32 trust # vim postgresql.conf listen_addresses = ‘*’ 設定が完了したらpostgreSQLを起動します。
+# service postgresql start 次に利用するユーザとデータベースを作成します。
+# su - postgres $ psql postgres=# CREATE USER sampleUser WITH PASSWORD ’samplePass'; postgres=# CREATE DATABASE sampleDB WITH OWNER=sampleUser ENCODING='UTF8' TEMPLATE template0; postgres=# ¥q これで利用準備は完了です。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/136/" class="catalogue-item">
+    <div>
+        <time datetime="2015-12-02 21:41:14 &#43;0000 UTC" class="catalogue-time">December 2, 2015</time>
+        <h1 class="catalogue-title">【Ubuntu】UXtermの設定</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ubuntuのターミナルは「UXterm」と普通の「端末」がありますが、
+UXtermの方がカスタマイズできたりするので、UXtermを設定して使います。
+■環境
+ubuntu 15.04
+UXterm用の設定ファイル(~/.Xresources)を作成し、以下を貼り付けます。
+これはあくまで私の設定ですので、適当に変更して良いです
+UXTerm*utf8 : 1 UXTerm*locale : true UXTerm*selectToClipboard : true UXTerm*faceName : Dejavu Sans Mono:style=book UXTerm*faceNameDoublesize : Takao Pゴシック,TakaoPGothic:style=Regular UXTerm*faceSize : 11 UXTerm*background : black UXTerm*foreground : white UXTerm*saveLines : 2000 UXTerm*geometry : 100x20+100+100 編集が終ったら、以下コマンドで反映させます。
+xrdb ~/.Xresources
+あとはUXtermを再起動させれば反映されます。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/139/" class="catalogue-item">
+    <div>
+        <time datetime="2015-12-02 21:37:16 &#43;0000 UTC" class="catalogue-time">December 2, 2015</time>
+        <h1 class="catalogue-title">【Ubuntu】atomのインストール</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            Ubuntu環境にテキストエディタのatomをインストールする手順です。
+■環境
+ubuntu 15.04
+以下サイトよりインストーラ（.deb）をダウンロードしてください。
+https://atom.io/ダウンロードしたディレクトリで以下コマンドを実行し、debファイルよりインストールしてください。
+sudo dpkg -i atom-amd64.deb 以上でインストール完了です。
+ランチャーにて「atom」を検索すると表示されます。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/130/" class="catalogue-item">
+    <div>
+        <time datetime="2015-11-15 22:05:23 &#43;0000 UTC" class="catalogue-time">November 15, 2015</time>
+        <h1 class="catalogue-title">【Ubuntu】exfat形式の外部メモリのマウントができない</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境
+ubuntu 15.04
+Ubuntuはデフォルトでは「exfat」のフォーマットに対応していないので、
+外部メモリをマウントしようとすると
+mount: unknown filesystem type 'exfat' というエラーが出ます。
+※上記はコマンドラインでmountコマンドを実施した際に出力されます。
+外部メモリを挿した時にUI上では違う「exsisted」エラーが出てくる可能性があります。
+その場合は、以下のコマンドを実施すると「exfat」フォーマットのメモリも扱えるようになります。
+$ sudo apt-get install exfat-fuse exfat-utils 
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/120/" class="catalogue-item">
+    <div>
+        <time datetime="2015-10-20 20:25:57 &#43;0000 UTC" class="catalogue-time">October 20, 2015</time>
+        <h1 class="catalogue-title">COMODOのSSL証明書をApacheに設定する方法</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            COMODOの証明書を購入した後の設定が複雑だったので、まとめました。
+購入手順についてはSSL購入サイトを見れば分かると思うので割愛します。
+■環境
+CentOS 7.1.1503
+httpd 2.4.6-31.el7.centos.1
+mod_ssl 1:2.4.6-31.el7.centos.1
+openssl 1:1.0.1e-42.el7.9
+■必要なもの
+証明書購入時に作成した秘密鍵（yourdomain_com.keyとする）
+証明書購入後にメールで送られてきた証明書たち
+・yourdomain_com.crt
+・COMODORSADomainValidationSecureServerCA.crt
+・COMODORSAAddTrustCA.crt
+・AddTrustExternalCARoot.crt
+まず、上記必要なもの全てを設定するサーバにアップロードしておきます。
+場所はどこでも良いのですが、本例では「/etc/pki/comodo/」配下に格納したとします。
+そして、メールで送られてきた証明書のうち自分のドメイン名がファイル名に入っていない３つを連結します。
+連結は以下のコマンドで実施できます。連結する順番は以下順を守ってください。
+なお、連結後のファイル名（以下例ではyourdomain_com.ca_bundle）は任意です。
+# cat COMODORSADomainValidationSecureServerCA.crt COMODORSAAddTrustCA.crt AddTrustExternalCARoot.crt &gt; yourdomain_com.ca_bundle ApacheのSSL設定ファイルを編集し、以下の行を修正します。
+(/etc/httpd/conf.d/ssl.conf)
+SSLCertificateFile /etc/pki/comodo/yourdomain_com.crt SSLCertificateKeyFile /etc/pki/comodo/yourdomain_com.key SSLCertificateChainFile /etc/pki/comodo/yourdomain_com.ca_bundle Apacheの設定を再読み込みします。
+# systemctl reload httpd これでSSLの設定が反映されるはずです。
+もし駄目だったら、Apacheの再起動をしてみてください。
+# systemctl restart httpd 
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/106/" class="catalogue-item">
+    <div>
+        <time datetime="2015-10-19 21:52:24 &#43;0000 UTC" class="catalogue-time">October 19, 2015</time>
+        <h1 class="catalogue-title">CentOS7のsshd設定（セキュリティ）</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            サーバへのsshログインについて、以下の設定をします
+・sshポートの変更
+・ルート権限でのログインを無効化
+・ルート権限にsuできるアカウントの制限
+■環境
+CentOS 7.1.1503
+Openssh 6.6.1
+以下の設定でポート番号変更とルート権限ログインの無効化を実施します
+以下の行を修正（なければ追加）してください
+(/etc/ssh/sshd_config)
+Port 1234　※任意の番号 PermitRootLogin no 「wheel」グループのアカウントを作成します
+# useradd testuser　※任意のアカウント（既存のアカウントを使うなら不要） # usermod -g wheel -G wheel testuser 以下の設定でルート権限にsuできるグループを「wheel」に限定します
+以下の行を修正（なければ追加）してください
+(/etc/pam.d/su)
+auth required pam_wheel.so use_uid 以上で設定は完了ですが、設定をしたターミナルを閉じる前に新規ターミナルを立ち上げて
+上記wheelグループに設定したアカウントにてsshログイン＆suが出来ることを確認してください。
+確認前に設定したターミナルを閉じてしまうと、設定に失敗していた場合に最悪だとルート権限になれなくなります。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/83/" class="catalogue-item">
+    <div>
+        <time datetime="2015-10-06 21:38:07 &#43;0000 UTC" class="catalogue-time">October 6, 2015</time>
+        <h1 class="catalogue-title">PHPで文字化けが直らない場合の対処</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境
+CentOS 6.6
+Apache2.2
+日本語が文字化けするのでphpのソースで以下の記載をしていました。
+setlocale(LC_ALL, 'ja_JP.UTF-8'); これでも文字化けが直っていたので良いのですが、
+この対応方法だと同サーバにてアプリケーションを作成する度に記載が必要です。
+なので、デフォルトで「ja_JP.UTF-8」を設定しました。
+①sysconfigで設定する方法
+/etc/sysconfig/httpdで以下の設定をすれば直りました。
+#HTTPD_LANG=C HTTPD_LANG=ja_JP.UTF-8 ②php.iniで設定する方法
+/etc/php.iniで以下の設定をすれば良いという記事を見ました。
+私の環境では以下の設定をしても文字化けは解消しなかったのですが、念のため載せておきます。
+;intl.default_locale = intl.default_locale =ja_JP.UTF-8 
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/69/" class="catalogue-item">
+    <div>
+        <time datetime="2015-09-16 23:18:43 &#43;0000 UTC" class="catalogue-time">September 16, 2015</time>
+        <h1 class="catalogue-title">【Ubuntu】JDKとNetBeans IDEのインストール</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            開発環境としてUbuntuにJDKとNetBeansをインストールします。
+■環境
+Ubuntu 15.04
+openjdk 8
+NetBeans 8.0.2
+JDKがインストールされているか確認し、なければインストールします。
+$ javac -version プログラム 'javac' は以下のパッケージで見つかりました: * default-jdk * ecj * gcj-4.9-jdk * openjdk-7-jdk * gcj-4.8-jdk * openjdk-6-jdk * openjdk-8-jdk 次の操作を試してください: sudo apt-get install &lt;選択したパッケージ&gt; $ sudo apt-get install openjdk-8-jdk $ javac -version Picked up JAVA_TOOL_OPTIONS: -javaagent:/usr/share/java/jayatanaag.jar javac 1.8.0_45-internal https://netbeans.org/downloads/index.htmlよりNetBeansをダウンロードします。
+各開発言語毎に用意されていますが、迷う様なら「すべて」を選択すれば良いと思います。
+私は使用言語が特定の言語に限らなかったので「すべて」を選択しました。
+ダウンロードしたNetBeansのインストールスクリプトを実行します。
+$ cd ~/Downloads $ sh netbeans-8.0.2-linux.sh インストーラが立ち上がるので、必要に応じてインストール場所を変えたりしながら進めていきます。
+インストーラでの処理が終わったら、インストール完了です。
+ランチャーにて「NetBeans」で検索すれば出てくるようになります。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/57/" class="catalogue-item">
+    <div>
+        <time datetime="2015-08-27 21:56:00 &#43;0000 UTC" class="catalogue-time">August 27, 2015</time>
+        <h1 class="catalogue-title">【Ubuntu】FlashPlayerのインストール</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            UbuntuのブラウザでFlashPlayerをインストールする手順です。
+■Firefoxの場合
+AdobeよりFlashPlayerをダウンロードします。
+この記事を書いた時は「install_flash_player_11_linux.x86_64.tar.gz」をダウンロードしました。
+ダウンロードしたファイルを解凍してできたディレクトリに入り、
+必要なファイルをコピーしていきます。
+sudo cp -a libflashplayer.so /usr/lib/chromium-browser/libs/. sudo cp -a usr/* /usr/. ■Cromiumの場合
+以下のコマンドだけでインストールできます。&lt;del datetime=&quot;2016-06-21T14:36:14+00:00&quot;&gt;sudo apt-get install pepperflashplugin-nonfree&lt;/del&gt; &lt;del datetime=&quot;2016-05-04T14:36:14+00:00&quot;&gt;sudo update-pepperflashplugin-nonfree --install&lt;/del&gt; ※（2016/6/21編集）上記コマンドでのインストールでは最新版のFlashプレイヤーが取得できなくなています。
+Adobeの公式サイトでダウンロードできるので、そちらから入手しましょう。
+        </p>
+    </div>
+</a>
+
+		
+	</div>
+	
+	<div class="pagination">
+		
+			<a href="/posts/page/17/" class="left arrow">&#8592;</a>
+		
+		
+			<a href="/posts/page/19/" class="right arrow">&#8594;</a>
+		
+	
+		<span>18</span>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.3227931 &#43;0900 JST m=&#43;0.142387501">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

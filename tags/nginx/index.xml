@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nginx on Nonsense J</title>
+    <link>/tags/nginx/</link>
+    <description>Recent content in Nginx on Nonsense J</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Thu, 05 Jul 2018 15:28:23 +0000</lastBuildDate><atom:link href="/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>grepでアクセスログからTPSを出す</title>
+      <link>/posts/wp/1436/</link>
+      <pubDate>Thu, 05 Jul 2018 15:28:23 +0000</pubDate>
+      
+      <guid>/posts/wp/1436/</guid>
+      <description>■環境 Amazon Linux AMI release 2013.03
+grep 2.6.3
+ WEBサーバーのアクセスログからTPSを出すコマンドです。
+ApacheでもNginxでも対応可能です。
+アクセスログの時間フォーマットが05/Jul/2018:12:34:56のような形である場合
+以下のコマンドでTPSが出ます。
+※出力されている時刻フォーマットに合わせて修正してください。
+grep -o &amp;quot;05/Jul/2018:[0-9]\{2\}:[0-9]\{2\}:[0-9]\{2\}&amp;quot; access_log | sort | uniq -c ただし、これを２４時間分のアクセスログに対して実行すると行数が大変な事になるので
+その場合は時分秒のうち「時」を絞るなどして実行した方が良いです。
+以下は１２時台のログに絞る例です。
+grep -o &amp;quot;05/Jul/2018:12:[0-9]\{2\}:[0-9]\{2\}&amp;quot; access_log | sort | uniq -c また、正規表現部分を変えればTPS(秒間)ではなくTPM（分間）にすることも可能です。
+grep -o &amp;quot;05/Jul/2018:[0-9]\{2\}:[0-9]\{2\}&amp;quot; access_log | sort | uniq -c </description>
+    </item>
+    
+    <item>
+      <title>【Let&#39;sEncrypt】Certbotの使い方(CentOS7 &#43; nginx)</title>
+      <link>/posts/wp/656/</link>
+      <pubDate>Mon, 12 Jun 2017 17:17:21 +0000</pubDate>
+      
+      <guid>/posts/wp/656/</guid>
+      <description>■環境 CentOS 7.3 nginx 1.10.3 certbot 0.14.1
+ ■初回SSL証明書発行 certbotをインストールする。
+yum -y install yum-utils yum install certbot # もしCentOS6系やAWS　EC2にてcertbotをインストールする場合は以下手順となります。 curl https://dl.eff.org/certbot-auto -o /usr/bin/certbot-auto chmod 700 /usr/bin/certbot-auto ln -s /usr/bin/certbot-auto /usr/bin/certbot # certbot-autoのまま使っても良いですが、後述の手順と整合性を合わせるために # シンボリックリンクを作っています。 証明書を発行する
+certbot certonly --webroot -w /usr/share/nginx/html -d your-domain.com ※上記コマンドは環境に合わせて読み替えてください。
+/usr/share/nginx/html
+→設定するドメインのドキュメントルート
+your-domain.com
+→設定するドメイン
+【補足】 2017年11月現在、AWS　EC2では上記コマンドに&amp;ndash;debugオプションが必要でした。 調べてみるとEC2でも「&amp;ndash;debug」は不要になったと書いてあるページがあったりするので 環境による（？）のかもしれません。これで証明書が以下ディレクトリに生成されます。
+ll /etc/letsencrypt/live/your-domain.com/ lrwxrwxrwx 1 root root 40 Jun 12 16:41 cert.pem -&amp;gt; ../../archive/your-domain.com/cert1.pem lrwxrwxrwx 1 root root 41 Jun 12 16:41 chain.</description>
+    </item>
+    
+  </channel>
+</rss>

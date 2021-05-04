@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>【PHP】Laravel5でカスタムバリデーションを追加する &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">【PHP】Laravel5でカスタムバリデーションを追加する</h1>
+		<div class="post-info">
+				<time datetime="2017-04-11 15:11:41 &#43;0000 UTC">April 11, 2017</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/php/">PHP</a></div> <div class="tags_item"><a href="/tags/laravel/">Laravel</a></div>
+				</div>
+			
+		</div>
+		<h3 id="環境">■環境</h3>
+<p>Laravel 5.1</p>
+<hr>
+<p>Laravel5でカスタムバリデーションを追加した際の手順です。</p>
+<p>まず、サービスプロバイダーを作成します。今回は『ValidatorServiceProvider』という名前で作る事にします。<br>
+以下コマンドを実行すると、『/app/providers/ValidatorServiceProvider.php』が生成されます。</p>
+<pre><code>php artisan make:provider ValidatorServiceProvider  
+</code></pre><p>作成したサービスプロバイダーを『/config/app.php』に追記します。</p>
+<pre><code>    &quot;providers&quot; =&gt; [  
+〜〜　省略　〜〜  
+        App\Providers\ValidatorServiceProvider::class,  
+〜〜　省略　〜〜  
+    ],  
+</code></pre><p>作成したサービスプロバーダーにバリデーションルールを記載します。<br>
+例えば以下のルールの社員番号があったとします。<br>
+・頭文字は「A」または「Z」<br>
+・2文字目以降は数字６桁</p>
+<p>このバリデーションルールを『shainbangou』という名前のルールで登録するとこうなります。</p>
+<pre><code>namespace App\Providers;  
+  
+use Illuminate\Support\ServiceProvider;  
+use Validator;  
+  
+class ValidatorServiceProvider extends ServiceProvider  
+{  
+    public function boot()  
+    {  
+        Validator::extend('shainbangou', function($attr, $value, $param) {  
+            return preg_match('/^[A|Z][0-9]{6}$/', $value);  
+        });  
+    }  
+}
+</code></pre><p>次にエラー文言の設定をします。<br>
+viewにて社員番号はempIdという変数名で設定されているとします。<br>
+【/resources/lang/ja/validation.php】</p>
+<pre><code>return [  
+〜〜　省略　〜〜  
+    'custom' =&gt; [  
+        'empId' =&gt; [  
+            'shainbangou' =&gt; '社員番号が間違っています。（A/Z + 数字6桁）.',  
+        ],  
+    ],  
+〜〜　省略　〜〜  
+    'attributes' =&gt; [  
+        'empId' =&gt; '社員番号',  
+    ],  
+];
+</code></pre><p>これで、コントローラなどのバリデーション処理で新ルール「shainbangou」が使えるようになります。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/501/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/515/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2836837 &#43;0900 JST m=&#43;0.103278101">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Chrome on Nonsense J</title>
+    <link>/tags/chrome/</link>
+    <description>Recent content in Chrome on Nonsense J</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Mon, 19 Nov 2018 10:29:41 +0000</lastBuildDate><atom:link href="/tags/chrome/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Chromeの開発者ツールを新タブでも維持する</title>
+      <link>/posts/wp/1735/</link>
+      <pubDate>Mon, 19 Nov 2018 10:29:41 +0000</pubDate>
+      
+      <guid>/posts/wp/1735/</guid>
+      <description>Chromeの開発者ツールはデフォルトでは新タブには反映されないのですが
+スマホモードでページの確認をしている時などは新タブもスマホモードのまま開きたい事が多いです。
+以下の設定をすれば新タブも開発者ツールを維持したまま開く事ができます。
+①開発者ツールのsettingsをクリックする。
+②下の方にスクロールしていき、Auto-open DevTools for popupsにチェックを入れる。
+これだけです。</description>
+    </item>
+    
+    <item>
+      <title>akamaiのレスポンスヘッダーをChromeで確認する</title>
+      <link>/posts/wp/1521/</link>
+      <pubDate>Wed, 26 Sep 2018 12:02:33 +0000</pubDate>
+      
+      <guid>/posts/wp/1521/</guid>
+      <description>背景 今お手伝いをしている会社さんではakamaiを使ってページをキャッシュさせてます
+akamaiについてはコチラ
+https://www.akamai.com/jp/ja/WEBページの開発をしていると、今自分が表示しているページが
+akamaiのキャッシュなのかどうなのか知りたい時があります
+Google Chromeの開発者ツールを使えば一般的なレスポンスヘッダーは見れますが
+akamaiのレスポンスヘッダーは特殊なので見えません
+curlコマンドにオプションをつけて叩く方法もありますが
+ログイン必須の画面をチェックするにはCookieの設定もしたりしなければいけません
+https://qiita.com/rasaka/items/fc96cd3b8f73a02477cb解決策 そんなとき、Chromeの拡張機能『CDN Headers &amp;amp; Cookies』を使えば
+簡単にakamaiのレスポンスヘッダーを見る事ができます
+https://chrome.google.com/webstore/detail/cdn-headers-cookies/obldlamadkihjlkdjblncejeblbogmnb使い方は簡単です。
+①ストアからChromeに追加する ②チェックしたい対象ページを開く ③Chromeツールバーにいる黄色いやつをクリックする ④Response Headersタグを開きステータスを確認する ステータスの意味などはakamaiのコミュニティにて説明してくれていました</description>
+    </item>
+    
+  </channel>
+</rss>

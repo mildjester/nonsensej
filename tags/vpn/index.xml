@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VPN on Nonsense J</title>
+    <link>/tags/vpn/</link>
+    <description>Recent content in VPN on Nonsense J</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Fri, 02 Aug 2019 00:00:00 +0000</lastBuildDate><atom:link href="/tags/vpn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>フリーWi-FiでVPN通信がうまくいかない</title>
+      <link>/posts/2019/08/02/vpn-accident/</link>
+      <pubDate>Fri, 02 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2019/08/02/vpn-accident/</guid>
+      <description>※注意 起こった事象と考察をメモしているだけです。
+本当の原因や最適な解決方法は分かっていません。
+事象 PCを喫茶店や漫画喫茶、建物のフリーラウンジなどで公開されているフリーWi-Fiにつなぎ、
+そこからVPN(L2TP/IPsec)に繋いだところ一部環境に接続できないという状況になりました。
+具体的には以下のような状態でした。
+ [OK] VPN接続は成功している。 [OK] グローバルIPでの接続は問題なさそう。  curl inet-ip.info コマンドでVPN接続後のIPになっていることを確認。 グローバルIPで穴あけしているプライベートサイトも表示できている。   [NG] プライベートIPでの接続ができない。  VPNサーバーからプライベートIPで接続できるサーバーへSSH接続できない。    原因の推察 不特定多数の人が使うWi-Fiの場合セキュリティ的に不安があるので
+Wi-Fi接続者同時が通信の傍受などをしないようにルーター側で
+プライベートネットワークを変更するような処理を入れているのかもしれません。
+対策 対策らしい対策では無いですが、フリーWi-Fiを使うのをやめるしかなさそうです。
+モバイルWi-Fiを契約して持ち歩いたり、スマホのテザリングを使って接続すればVPN接続はうまくいきました。</description>
+    </item>
+    
+    <item>
+      <title>LightsailにOpenVPNサーバーを立てる</title>
+      <link>/posts/2019/07/25/lightsail-vpn/</link>
+      <pubDate>Thu, 25 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2019/07/25/lightsail-vpn/</guid>
+      <description>環境  Amazon Linux AMI release 2018.03 openvpn 2.4.4  参考  LightsailでVPN Serverを構築する|memoTech AmazonLinuxにOpenVPNサーバを構築する|ねこの足跡R   国内のVPNサービスを契約していたのですが
+同時に1デバイスしか接続できないし、回線がめっちゃ遅かったので
+自前でVPNサーバーを立てることにしました。
+AWSのLightsail上にOpenVPNでサーバーを立てて
+Linux Mint, Android, iPhoneで接続できるようにします。
+インスタンス設定 新規インスタンス作成 Lightsailのページにて『インスタンスの作成』をクリックします。
+https://lightsail.aws.amazon.com/ls/webapp/home/instances
+インスタンスイメージとして以下を選択します。
+ Lunux/Unix OSのみ Amazon Linux  インスタンスプランはVPNの利用予定に合わせて選びます。
+個人でちょっと使う程度であれば最安のプランでよいと思います。
+インスタンス名を適当につけて「インスタンスを作成」をクリックします。
+静的IPの設定 インスタンス一覧画面に戻るので
+先程作成したインスタンスの「︙」から『管理』をクリックします。
+ネットワーキングタブを開き、「静的IPの作成」をクリックします。
+静的IPの設定画面になるので、適用するインスタンス（今作ったインスタンス）と
+静的IPの名前を決めて「作成」をクリックします。
+ポート開放 対象インスタンスの『ネットワーキング』タブを開きます。
+ファイアウォールの「＋追加」をクリックし、TCPの1194ポートを開きます。
+Lightsailへの接続 インスタンス一覧にて再度「︙」から『接続』をクリックします。
+別ウィンドウでターミナル調のブラウザが立ち上がるので、以降の作業を実施します。
+手元のターミナルからsshで繋いでも良いです。
+Lightsailの時刻を日本時間に合わせる 念の為タイムゾーンを日本にしておきます。
+sudo cp -p /usr/share/zoneinfo/Japan /etc/localtime sudo service rsyslog restart sudo service crond restart OpenVPN設定 OpenVPNインストール 以下コマンドを実行します。</description>
+    </item>
+    
+  </channel>
+</rss>

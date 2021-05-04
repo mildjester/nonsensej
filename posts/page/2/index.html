@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Posts &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="catalogue">
+		
+			<a href="/posts/2020/10/25/javascript-autocomplete/" class="catalogue-item">
+    <div>
+        <time datetime="2020-10-25 00:00:00 &#43;0000 UTC" class="catalogue-time">October 25, 2020</time>
+        <h1 class="catalogue-title">javascriptでライブラリ無しでオートコンプリート</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            javascriptを使ってイチからオートコンプリートを実装しました。
+オートコンプリートは何もなければライブラリを使って実装するのが早いですが、 イチから自分で実装する機会があったのでメモを残します。
+要件  PC(Chrome, IE, Safari), Android(Chrome), iPhone(safari)に対応する。 入力したキーワードを含む都道府県を選択肢として表示する。 選択肢をクリックしたら選択したこととする。 PCでは選択肢からカーソルキー&amp;エンターキーでも選択できるようにする。  この4つ目が肝です。
+対応方法 こちらに動くものを用意してあります。
+デモ
+HTMLは以下のようになっているとします。
+テキストボックスに文字を入力するとulタグ内に選択肢が表示されるようにします。
+&lt;input type=&quot;text&quot; id=&quot;keyword&quot; placeholder=&quot;都道府県名を入れてください&quot; autocomplete=&quot;off&quot;/&gt; &lt;ul id=&quot;outputBox&quot;&gt;&lt;/ul&gt; javascriptは以下の通りです。
+// 都道府県一覧 const prefectureList = ['北海道','青森県','岩手県','宮城県','秋田県','山形県','福島県', '茨城県','栃木県','群馬県','埼玉県','千葉県','東京都','神奈川県', '新潟県','富山県','石川県','福井県','山梨県','長野県','岐阜県', '静岡県','愛知県','三重県','滋賀県','京都府','大阪府','兵庫県', '奈良県','和歌山県','鳥取県','島根県','岡山県','広島県','山口県', '徳島県','香川県','愛媛県','高知県','福岡県','佐賀県','長崎県', '熊本県','大分県','宮崎県','鹿児島県','沖縄県']; // in/out要素を変数に入れておく const inputElm = document.getElementById('keyword'); const outboxElm = document.getElementById('outputBox'); /** * テキストボックスに文字入力時 */ inputElm.addEventListener('compositionend', function(e) { // タブキーは次の要素に移動させるのでスルー if (e.key == 'Tab') { return; } outboxElm.innerHTML = ''; let _this = this; setTimeout(function(){ // 入力された文字を含む都道府県を抽出する prefectureList.
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2020/09/15/webpack-swiper-env-diff/" class="catalogue-item">
+    <div>
+        <time datetime="2020-09-15 00:00:00 &#43;0000 UTC" class="catalogue-time">September 15, 2020</time>
+        <h1 class="catalogue-title">swiper.scssがwebpackで取り込まれない</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            環境  webpack 4.44.1 swiper 6.0.0   事象 webpackでswiperを取り込んでビルドしようとした時の話。
+swiper.scssがなぜか開発環境では取り込めてて、本番環境では取り込めてないという事象が起きました。
+つまり、↓だとswiper.scssが取り込まれたCSSが出力されるんですが
+node node_modules/webpack/bin/webpack.js --mode development ↓だとswiper.scssが取り込まれていないCSSが出力されます。
+node node_modules/webpack/bin/webpack.js --mode production 対応 原因は結局不明だったのですが
+swiperのバージョンを6.0.0から6.2.0に変更したら治りました。
+事象が起きているときの状態 npmインストールしていたパッケージ
+&quot;devDependencies&quot;: { &quot;css-loader&quot;: &quot;^4.3.0&quot;, &quot;mini-css-extract-plugin&quot;: &quot;^0.11.2&quot;, &quot;sass&quot;: &quot;^1.26.10&quot;, &quot;sass-loader&quot;: &quot;^10.0.2&quot;, &quot;style-loader&quot;: &quot;^1.2.1&quot;, &quot;swiper&quot;: &quot;^6.0.0&quot;, &quot;webpack&quot;: &quot;^4.44.1&quot;, &quot;webpack-cli&quot;: &quot;^3.3.12&quot; } webpack.config.js
+const path = require('path'); const MiniCssExtractPlugin = require('mini-css-extract-plugin'); module.exports = { entry: path.resolve(__dirname, 'src/js/index.js'), output: { path: path.resolve(__dirname, &quot;dist&quot;), filename: 'main.js', }, module: { rules: [ { test: /\.
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2020/09/04/windows-terminal-install/" class="catalogue-item">
+    <div>
+        <time datetime="2020-09-04 00:00:00 &#43;0000 UTC" class="catalogue-time">September 4, 2020</time>
+        <h1 class="catalogue-title">Windows Terminalの導入</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            Windows TerminalでUbuntuを使えるようにします。
+Windows Terminalのインストール Microsoft Storeで「Windows Terminal」を検索してインストールするだけです。
+Windows TerminalのデフォルトをUbuntuにする Windows Terminalを起動して設定を開きます。
+settings.jsonが開くので、「profiles &gt; list」の中からUbuntuのguidを探します。
+{ &quot;guid&quot;: &quot;{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}&quot;, ←これ &quot;hidden&quot;: false, &quot;name&quot;: &quot;Ubuntu-20.04&quot;, &quot;source&quot;: &quot;Windows.Terminal.Wsl&quot; }, 見つけたguidを「defaultProfile」に設定します。
+&quot;defaultProfile&quot;: &quot;{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}&quot;, ←ここに入れる 起動時のディレクトリを指定する Windows Terminalを起動した際に開く場所はWindows側のホームディレクトリになっています。
+Ubuntuを使う際はUbuntu側のホームディレクトリから始まって欲しいので変更します。
+settings.jsonのUbuntuの設定にstartingDirectoryを追加します。
+Ubuntu内の/home/hogeuserからスタートしたい場合は以下のように設定します。
+{ &quot;guid&quot;: &quot;{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}&quot;, &quot;hidden&quot;: false, &quot;name&quot;: &quot;Ubuntu-20.04&quot;, &quot;source&quot;: &quot;Windows.Terminal.Wsl&quot;, &quot;startingDirectory&quot;: &quot;//wsl$/Ubuntu-20.04/home/hogeuser&quot; ←これを追加 }, フォントを指定する Ubuntuのシェルはfishを利用しているのですが、fishのテーマによってはフォントを変更する必要があります。
+fishの導入方法についてはこちら
+settings.jsonのUbuntuの設定にfontFaceを追加します。
+もしフォントサイズを変更したい場合はfontSizeも追加してください。
+フォントを「Cascadia Code PL」に変更し、フォントサイズを11にする場合は以下のようになります。
+{ &quot;guid&quot;: &quot;{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}&quot;, &quot;hidden&quot;: false, &quot;name&quot;: &quot;Ubuntu-20.04&quot;, &quot;source&quot;: &quot;Windows.Terminal.Wsl&quot;, &quot;startingDirectory&quot;: &quot;//wsl$/Ubuntu-20.04/home/hogeuser&quot;, &quot;fontFace&quot;: &quot;Cascadia Code PL&quot;, ←これを追加 &quot;fontSize&quot;: 11 ←これを追加 }, 
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2020/09/04/win10-keymap-change/" class="catalogue-item">
+    <div>
+        <time datetime="2020-09-04 00:00:00 &#43;0000 UTC" class="catalogue-time">September 4, 2020</time>
+        <h1 class="catalogue-title">Windows10でキー配置を変更する</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            参考  Ctrl2Capツールで［Ctrl］と［CapsLock］キーを入れ替える（Windows編）|@IT   Windowsのキー配置を変更してMac風にします。
+CapsLockをCtrlにする CapsLockは使うことがないのでCtrlキーに割り当ててしまいます。
+MacのCtrlキーと同じ位置にCapsLockはあるので、Macを使っていた人にも操作しやすくなると思います。
+変更するには『Ctrl2Cap』を使います。
+https://docs.microsoft.com/ja-jp/sysinternals/downloads/ctrl2cap
+インストール手順は以下の通りです。
+①ctrl2capのZIPファイルをダウンロードして解凍する。
+②PowerShellを管理者権限で起動し、①の解凍したフォルダに移動する。
+③.\ctrl2cap.exe /installを実行する。
+これで『Ctrl2cap successfully installed.』と表示されたらインストール成功です。
+PCを再起動するとCapsLockがCtrlとして使えるようになります。
+変換/無変換キーでIMEをON/OFFする Mac風にスペースバーの左右のキーでIMEをON/OFFできるようにします。
+設定手順は以下の通りです。
+①設定を開く。
+②設定の検索で『日本語IMEの設定』を検索して開く。
+③『キーとタッチのカスタマイズ』を開く
+④『各キーに好みの機能を割り当てる』をオンにする。
+⑤無変換キーを「IME-オフ」に割り当てる。
+⑥変換キーを「IME-オン」に割り当てる。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2020/09/04/win10-initial-setting/" class="catalogue-item">
+    <div>
+        <time datetime="2020-09-04 00:00:00 &#43;0000 UTC" class="catalogue-time">September 4, 2020</time>
+        <h1 class="catalogue-title">Windows10で開発PCをセッティングする。</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            Windows 10のWSL2やWindows Terminalが良い感じだったので
+開発環境を整えてみました。
+大きな作業は以下を参照
+ Windowsのキー配置変更 WSL2でUbuntuを使う Windows Terminalの導入  ウィンドウが勝手に最大化しないようにする Win10はデフォルトだとウィンドウを画面の端に持っていくと勝手に最大化されてしまいます。
+邪魔になることが多い機能なので無効にしてしまいます。
+『設定 &gt; システム &gt; マルチタスク』を開き、「ウィンドウのスナップ」をオフにすれば完了です。
+Dockerのインストール 以下よりDocker Desktop for Windowsをダウンロードします。
+https://hub.docker.com/editions/community/docker-ce-desktop-windows
+ダウンロードしてきたインストーラーを実行してインストールします。
+インストール時に「Enable WSL 2 Windows Features」のチェックボックスがあるので、忘れずにチェックするようにしてください。
+これでUbuntu側でもdockerコマンドが使えるようになっています。
+もしWSL2より先にDockerをインストールしてしまった場合は「Settings &gt; Resources &gt; WSL INTEGRATION」からWLS上のDockerを有効化できます。
+Visual Studio Codeのインストール 以下よりダウンロードしてインストールします。
+https://azure.microsoft.com/ja-jp/products/visual-studio-code/
+Ubuntu側でgitコマンドを使ってソースコードを管理している場合はWindowsからUbuntuに接続する必要があります。
+そのためには『Remote - WSL』という拡張子のインストールをインストールします。
+（おそらくVisual Studio Codeの初回起動時に推奨される）
+MySQL Workbenchのインストール MySQL Workbenchをインストールするには「Visual C++ 2019」が必要です。
+インストールされていない場合は以下よりダウンロードしてインストールしておきます。
+https://support.microsoft.com/ja-jp/help/2977003/the-latest-supported-visual-c-downloads
+以下よりMySQL Workbenchをダウンロードしてインストールします。
+https://dev.mysql.com/downloads/workbench/
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2020/09/04/win10-wsl2-ubuntu/" class="catalogue-item">
+    <div>
+        <time datetime="2020-09-04 00:00:00 &#43;0000 UTC" class="catalogue-time">September 4, 2020</time>
+        <h1 class="catalogue-title">WSL2でUbuntuを使えるようにする</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            参考  Windows 10 用 Windows Subsystem for Linux のインストール ガイド WSL の場所を変更する|パソコン鳥のブログ   Windows 10のWLS2でUbuntu20.04を使えるようにします。
+Windows 10のアップデート WSL2を使うにはWindowsのバージョン 1903以降、ビルド 18362以上である必要があります。
+バージョンを確認するには「Winキー＋Rキー」で『ファイル名を指定して実行』を開き、
+名前にwinverを入力して「OK」をクリックします。
+Windows Updateで最新化できれば良いですが、更新が来ない場合もあるので
+その場合は更新アシスタントを利用します。
+https://www.microsoft.com/ja-jp/software-download/windows10
+WSL2をインストールする 管理者権限でPowerShellを開いて、以下を実行します。
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart ここまで実行したら一度再起動します。
+再起動後、再度PowerShellを管理者権限で開き、以下コマンドを実行します。
+wsl --set-default-version 2 もしカーネルの更新が必要という旨のメッセージが表示された場合は
+以下を参考にカーネルの更新をしてから再実行します。
+https://docs.microsoft.com/ja-jp/windows/wsl/wsl2-kernel
+Ubuntuのインストール Microsoft Storeで「Ubuntu」と検索し、Ubuntu20.04をインストールします。
+その後、Ubuntuを起動すると初期設定が走るので、アカウント設定等をします。
+デフォルトではaptでの取得元が海外になっているので、以下コマンドで日本に変更します。
+sudo sed -i -e 's|archive.ubuntu.com|ftp.riken.go.jp/Linux|g' /etc/apt/sources.list ここまででWSL2 でUbuntuを使えるようになりました。
+ですが、デフォルトではCドライブにUbuntu用の領域をとってしまうので、Dドライブに移したいと思います。
+WSLの場所を移動させるツール『LxRunOffline』を利用します。
+まず、GitHubより圧縮ファイルをダウンロードして解凍しておきます。(LxRunOffline-vX.X.X-mingw.zip)
+https://github.com/DDoSolitary/LxRunOffline/releases
+次にWSLを配置するフォルダを作成しておきます。
+本例ではD:\wslを作ります。
+PowerShellを管理者権限で開き、以下コマンドで先ほど作成したフォルダに権限を付与します。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2020/08/26/ec2-ecs-to-csv/" class="catalogue-item">
+    <div>
+        <time datetime="2020-08-26 00:00:00 &#43;0000 UTC" class="catalogue-time">August 26, 2020</time>
+        <h1 class="catalogue-title">EC2とECSのレコードを全てCSVに出力する</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            環境  Linux Mint 20 Ulyana aws-cli/2.0.41 jq 1.6   前回の続きです。
+前回AWS Route53のレコードをCSVに出力するシェルスクリプトを作ったので、同様にEC2・ECSの情報を出力するシェルスクリプトを作ってみます。
+EC2 以下のようなシェルです。
+region一覧は固定で持っているので、今後増減があった場合は手動で修正が必要です。
+#!/bin/bash #region一覧 regionList=( us-east-2 us-east-1 us-west-1 us-west-2 af-south-1 ap-east-1 ap-south-1 ap-northeast-3 ap-northeast-2 ap-southeast-1 ap-southeast-2 ap-northeast-1 ca-central-1 cn-north-1 cn-northwest-1 eu-central-1 eu-west-1 eu-west-2 eu-south-1 eu-west-3 eu-north-1 me-south-1 sa-east-1 ) echo '&quot;AvailabilityZone&quot;, &quot;Name&quot;, &quot;PublicDnsName&quot;,&quot;PublicIpAddress&quot;,&quot;PrivateDnsName&quot;,&quot;PrivateIpAddress&quot;' for region in ${regionList[@]}; do EC2List=`aws ec2 describe-instances --region ${region} --output json --query 'Reservations[].Instances[]'` EC2ListLen=`echo $EC2List | jq length` for i in $( seq 0 $(($EC2ListLen - 1)) ); do EC2=`echo $EC2List | jq .
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2020/08/21/route53-to-csv/" class="catalogue-item">
+    <div>
+        <time datetime="2020-08-21 00:00:00 &#43;0000 UTC" class="catalogue-time">August 21, 2020</time>
+        <h1 class="catalogue-title">Route53のレコードを全てCSVに出力する</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            環境  Linux Mint 20 Ulyana aws-cli/2.0.41 jq 1.6   Route53に大量のホストゾーンとレコードが登録されているアカウントで、Route53に登録されている内容を一覧化する必要があったので対応しました。
+ワンライナーで実現しようと思ったのですが、希望した形にできなかったのでシェルスクリプトにしました。
+必要なソフトのインストール AWS CLI AWS CLIが無い場合はインストールしておきます。
+https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/install-cliv2.html
+AWS CLIの初期設定はこちら
+https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/cli-configure-quickstart.html
+jq jqはjsonを整形するツールです。
+Linux Mintであれば以下コマンドでインストールできます。
+apt install jq Route53の内容を取得するスクリプト作成 AWS CLIでRoute53の内容をjson形式で取得し、それをjqで整形しながらCSVに出力するシェルスクリプトを作成します。
+スクリプトの内容は以下の通りです。
+#!/bin/bash # CSVのヘッダ出力 echo '&quot;HostedZone&quot;,&quot;DomainName&quot;,&quot;DomainType&quot;,&quot;TTL&quot;,&quot;Value&quot;' # ホストゾーン一覧を取得 HostedZones=`aws route53 list-hosted-zones --output json --query 'HostedZones'` HostedZonesLen=`echo $HostedZones | jq length` for i in $( seq 0 $(($HostedZonesLen - 1)) ); do Zone=`echo $HostedZones | jq .[$i]` ZoneId=`echo $Zone | jq -c -r '.
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2020/08/05/replace-with-find-sed/" class="catalogue-item">
+    <div>
+        <time datetime="2020-08-05 00:00:00 &#43;0000 UTC" class="catalogue-time">August 5, 2020</time>
+        <h1 class="catalogue-title">改行コードを一括で置換する</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            定期的に使うのでメモ。
+Linuxサーバー上で対象ディレクトリ配下のファイルの文字コードを一括で置換するコマンドです。
+以下コマンドで現ディレクトリ配下にあるphpファイルに対してCRLF(\r\n)をLF(\n)に置換します。
+sudo find . -name &quot;*.php&quot; -type f -exec sed -i -e &quot;s/\r//g&quot; {} \; ※sudoは必要に応じて。全対象ファイルの編集権限があるなら不要です。
+一応解説 CRLFはWindows等でよく使われる改行コードで、LFやLinuxやUnix等でよく使われる改行コードです。
+まず、findコマンドの構成は以下の通り。
+find {検索対象ディレクトリ} -name {検索対象の名前} -type {検索対象のタイプ} -exec {検索対象に対して実施するコマンド} -type fでファイルを対象にしています。
+-name &quot;*.php&quot;でphpファイルを指定しているのでタイプは指定する必要が内容に思えますが、
+やろうと思えばhoge.phpというディレクトリも作れない訳ではないので、念の為指定しています。
+そして、-execオプションでsedコマンドを指定しています。
+sedコマンドの構成は以下の通り。
+sed -i -e &quot;s/{置換対象の文字列}/{置換後の文字列}/g&quot; 対象ファイル CRLFをLFに置換すると言いましたが、このコマンドでは正確にはCR(\r)を消しているだけです。
+なので、CRLFはLFになりますし、もしCRがあれば消滅します。
+(古いMacintoshではCRを改行コードとして扱っていたらしい。とりあえず現在では消滅してくれて良い。)
+findの-execで実行する場合、{}に検索結果のファイル名が入ります。
+そして実行したいコマンドの最後は\で閉じます。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2020/07/16/bookmarklet-kimetsu/" class="catalogue-item">
+    <div>
+        <time datetime="2020-07-16 00:00:00 &#43;0000 UTC" class="catalogue-time">July 16, 2020</time>
+        <h1 class="catalogue-title">GitHubの草を炭治郎柄にする</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            私は鬼滅の刃自体は見たことが無いのですが、それでも主人公の炭治郎の着物はよく目にします。
+あの柄を見ると、ちょっとGitHubの草っぽいなと思ってました。
+というわけで、GitHubの草を炭治郎の着物柄にしてみます。
+Bookmarkletの説明や作り方についてはこちらを参照。
+Bookmarklet(ブックマークレット)の作り方
+Bookmarklet作成 まず、GitHubの草部分の色を変えるスクリプトを書いてみます。
+// GitHubの草部分の要素を取得 var kusaElmList = document.getElementsByClassName('day') for (var i=0; i&lt;kusaElmList.length; i++){ var kusa = kusaElmList[i] if (i % 2 == 0){ // 偶数マスは緑 kusa.setAttribute('fill','#2A7') }else{ // 奇数マスは黒 kusa.setAttribute('fill','#000') } } これをBookmarkletにします。
+javascript:for(var t=document.getElementsByClassName(&quot;day&quot;),e=0;e&lt;t.length;e++){var l=t[e];e%2==0?l.setAttribute(&quot;fill&quot;,&quot;#2A7&quot;):l.setAttribute(&quot;fill&quot;,&quot;#000&quot;)} 実行結果はこちら。
+色はそれっぽくなりましたが、まだ隙間が気になります。
+なので、隙間も埋めるよう修正します。
+// GitHubの草部分の要素を取得 var kusaElmList = document.getElementsByClassName('day'); for (var i=0; i&lt;kusaElmList.length; i++){ var kusa = kusaElmList[i]; // 草の大きさと形を整える kusa.setAttribute('width','15'); kusa.setAttribute('height','15'); kusa.style.rx=0; kusa.style.ry=0; if (i % 2 == 0){ // 偶数マスは緑 kusa.
+        </p>
+    </div>
+</a>
+
+		
+	</div>
+	
+	<div class="pagination">
+		
+			<a href="/posts/" class="left arrow">&#8592;</a>
+		
+		
+			<a href="/posts/page/3/" class="right arrow">&#8594;</a>
+		
+	
+		<span>2</span>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.3007142 &#43;0900 JST m=&#43;0.120308701">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

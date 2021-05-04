@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+	<meta name="generator" content="Hugo 0.82.0" />
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<meta name="description" content="">
+
+		<title>Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="/index.xml" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	
+
+
+	<div class="catalogue">
+		
+			<a href="/posts/wp/311/" class="catalogue-item">
+    <div>
+        <time datetime="2016-10-25 11:21:04 &#43;0000 UTC" class="catalogue-time">October 25, 2016</time>
+        <h1 class="catalogue-title">【DNSサーバ】BINDからNSDへの移行</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            社内利用のDNSをBIND作っていたのですが、
+BINDは脆弱性が頻繁に発見されるし、DNSキャッシュ機能は要らなかったので
+NSDに切り替えました。
+■環境
+CentOS 6.5
+NSD 4.1.13
+(参考：切替え前)BIND 9.8.2
+まず、yumにepelリポジトリが設定されていない場合はインストールします。
+# yum install epel-release.noarch NSDをインストールします。
+# yum install nsd --enablerepo=epel NSD設定ファイルの最下行にzoneファイルを設定します。
+# vim /etc/nsd/nsd.conf 〜最下行に以下を追記〜 zone: name: sample.co.jp zonefile: sample.co.jp.zone BINDで利用していたzoneファイルをコピーします
+# cp {BINDのzoneファイル} /etc/nsd/sample.co.jp.zone ※補足
+調べているとNSDはrebuildコマンドにてzoneファイルからdbファイルを
+生成しなければいけないという記事がありましたが、　私の環境では不要でした。
+（むしろ、rebuildコマンドがありませんでした）
+BINDを停止します。
+# service named stop NSDを起動します。
+# service nsd start 
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/302/" class="catalogue-item">
+    <div>
+        <time datetime="2016-10-12 13:40:02 &#43;0000 UTC" class="catalogue-time">October 12, 2016</time>
+        <h1 class="catalogue-title">Apacheのセキュリティ設定</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            Apacheはデフォルト設定のまま利用するとサーバーの情報が諸々見えてしまいます。
+それらを隠すには設定ファイルを編集する必要があります。
+修正ファイル：/etc/httpd/conf/httpd.conf
+①ファイル一覧を表示しないようにする 公開ディレクトリにindex.html等の初期表示ファイルが存在しない場合
+そのディレクトリのURLを指定するとファイル一覧が表示されてしまいます。
+それを防ぐためには以下のIndexesにハイフンを付けます。
+&lt;Directory &quot;/var/www/html&quot;&gt; 〜省略〜 # Options Indexes FollowSymLinks Options -Indexes FollowSymLinks 〜省略〜 &lt;/Directory&gt; ①エラー画面にてバージョン番号だけ隠す場合 ServerTokensを「OS」から「Prod」に変更するだけです
+# ServerTokens OS ServerTokens Prod ②エラー画面にて『Apache』という表示を隠す場合 ServerSignatureを「On」から「Off」に変更するだけです
+# ServerSignature On ServerSignature Off 
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/295/" class="catalogue-item">
+    <div>
+        <time datetime="2016-09-20 00:15:18 &#43;0000 UTC" class="catalogue-time">September 20, 2016</time>
+        <h1 class="catalogue-title">brewインストールでphp-mcryptがインストールできない</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境
+OS X El Capitan(10.11.6)
+Homebrew 0.9.9
+brewインストールでphp-mcryptをインストールした際にエラーが出たので
+エラー内容と、その対応をメモしておきます。
+まず、エラー内容について
+# brew install homebrew/php/php70-mcrypt 〜中略〜 /usr/local/opt/php70/bin/phpize: line 61: /usr/local/Library/Homebrew/shims/super/sed: No such file or directory /usr/local/opt/php70/bin/phpize: line 62: /usr/local/Library/Homebrew/shims/super/sed: No such file or directory /usr/local/opt/php70/bin/phpize: line 63: /usr/local/Library/Homebrew/shims/super/sed: No such file or directory Configuring for: PHP Api Version: Zend Module Api No: Zend Extension Api No: /usr/local/opt/php70/bin/phpize: line 155: /usr/local/Library/Homebrew/shims/super/sed: No such file or directory autoheader: error: AC_CONFIG_HEADERS not found in configure.
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/278/" class="catalogue-item">
+    <div>
+        <time datetime="2016-08-10 12:04:21 &#43;0000 UTC" class="catalogue-time">August 10, 2016</time>
+        <h1 class="catalogue-title">SVNサーバ(svn&#43;ssh)のリポジトリをgitサーバに移行する</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■前提条件
+gitはサーバ＆クライアントのどちらも既に使える環境であること
+①gitサーバで空のリポジトリを作成する。
+作成方法は各Gitサーバでの手法に従えば良いと思います。
+（コマンドだったり、gitlabで作成したり）
+②ローカルにSVNリポジトリを読み込んだgitリポジトリを作成する。
+$ git svn clone --prefix svn/ svn+ssh://svn.sample.com/home/svn/svnhoge githoge 以下、読み替えてください。
+【svn.sample.com】　SVNサーバのホスト名(IPアドレス)
+【/home/svn/svnhoge】　移行対象のリポジトリのパス
+※上記２つはSVNを使っていた頃に指定していたものと同じです
+【githoge】　作成するgitリポジトリのディレクトリ名
+③ローカルにリポジトリができるので、gitサーバと紐付けする
+$ cd githoge $ git remote add origin gituser@git.sample.com:git/githoge.git 以下、読み替えてください。
+【gituser】　gitを利用する際のアカウント
+【git.sample.com】　gitサーバのホスト名(IPアドレス)
+【git/githoge.git】　①で作成したgitリポジトリ
+以上で完了です。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/274/" class="catalogue-item">
+    <div>
+        <time datetime="2016-08-01 00:27:04 &#43;0000 UTC" class="catalogue-time">August 1, 2016</time>
+        <h1 class="catalogue-title">Linuxサーバに秘密鍵方式でsshする</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境 CentOS 7.2
+ ■手順 ①秘密鍵と公開鍵を生成
+ローカルPCにて以下を実施します。
+MacでもLinuxでも同じコマンドで生成できるはずです。
+$ ssh-keygen -t rsa -b 4096 Generating public/private rsa key pair. Enter file in which to save the key (/Users/hoge/.ssh/id_rsa): =&gt;生成するパスとファイル名を指定（空欄のままだと括弧内のファイル名で生成される) Enter passphrase (empty for no passphrase): =&gt;生成する鍵のパスワード。不要なら空欄のままエンター Enter same passphrase again: =&gt;鍵のパスワードの再入力 生成した秘密鍵と同ディレクトリに公開鍵(拡張子pub)も生成されているので、
+catコマンドで中身を見ておく。(後ほど使うのでコピーしておくと良い)
+②公開鍵をサーバに格納
+ログイン先サーバにて以下を実施
+$ mkdir ~/.ssh $ vim ~/.ssh/authorized_keys この「authorized_keys」に①で生成した公開鍵の中身を貼り付ける。
+以上で秘密鍵認証でログインできるようになっている。
+もし接続できなかった場合は以下設定も確認してみる。
+③【繋がらない場合のみ】sshd設定確認
+ログイン先のサーバにて以下を実施
+$ vim /etc/ssh/sshd_config 以下の設定となっているか確認
+RSAAuthentication yes PubkeyAuthentication yes AuthorizedKeysFile .ssh/authorized_keys ※上から２つはコメントアウトされていても良い
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/259/" class="catalogue-item">
+    <div>
+        <time datetime="2016-07-26 00:00:40 &#43;0000 UTC" class="catalogue-time">July 26, 2016</time>
+        <h1 class="catalogue-title">【Mac】ターミナル設定（iTerm2 &#43; zsh &#43; prezto &#43; peco）</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            Ubuntuの場合はこちら①iTerm2を準備する iTerm2についてはこちらの記事で記載していますので
+こちらをご参照ください。
+【Mac】ターミナル設定（iTerm2 ＋ fish ＋ fisherman）②zsh + preztoの導入 preztoのインストールは基本的に公式通りです。
+https://github.com/sorin-ionescu/preztoまずシェルをzshに切り替えます。Macならzshは元々インストールされているはずです。
+zsh 次にgithubからソースをダウンロードします。
+git clone --recursive https://github.com/sorin-ionescu/prezto.git &quot;${ZDOTDIR:-$HOME}/.zprezto&quot; 次にpreztoを使うようにzshの設定をします。
+ターミナルに以下を貼り付けて実行します。（スクリプトファイルなどを作成する必要はなく、ターミナル直貼り付けでOK）
+setopt EXTENDED_GLOB for rcfile in &quot;${ZDOTDIR:-$HOME}&quot;/.zprezto/runcoms/^README.md(.N); do ln -s &quot;$rcfile&quot; &quot;${ZDOTDIR:-$HOME}/.${rcfile:t}&quot; done 最後に、通常使うシェルをzshにします。
+chsh -s /bin/zsh これでターミナルを再起動すれば、zsh + preztoになっています。
+③pecoでコマンド履歴を検索しやすくする まず、pecoをインストールします。
+brew install peco あとは.zshrcに以下を記載するだけです。
+function peco-history-selection() { BUFFER=`history -n 1 | tail -r | awk '!a[$0]++' | peco` CURSOR=$#BUFFER zle reset-prompt } zle -N peco-history-selection bindkey '^R' peco-history-selection ターミナルを再起動するか、以下コマンドでzshrcを再読み込みすれば適用されます。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/249/" class="catalogue-item">
+    <div>
+        <time datetime="2016-05-26 19:56:46 &#43;0000 UTC" class="catalogue-time">May 26, 2016</time>
+        <h1 class="catalogue-title">【Apache】htaccessのRewriteでGETパラメータも残す</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            nginxが台頭してきている今日この頃。Apacheの話です。
+少しハマったのでメモします。
+■環境
+CentOS 6.6
+httpd 2.2.15
+htaccessにてリダイレクト処理を記載する際、
+以下のように書くとGETパラメータがリダイレクト時に落ちてしまいます。
+RewriteEngine on} RewriteBase / RewriteRule ^api.php(.*)$ api2.php$1 例えば、このまま「https://sample.com/api.php?name=tanaka」にアクセスすると
+リダイレクト後は「https://sample.com/api2.php」となってしまいます。
+RewriteでGETパラメータを扱いたい場合は、『RewriteCond』を使って以下のように記載します。
+RewriteEngine on RewriteBase / RewriteCond %{QUERY_STRING} (.*)$ RewriteRule ^api.php$ api2.php?%1 これで「https://sample.com/api.php?name=tanaka」にアクセスすると
+リダイレクト後は「https://sample.com/api2.php?name=tanaka」となります。
+※RewriteRuleの右側「$1」ではなく「%1」です。間違えないように。
+何が起こっているかというと、RewriteCondの『QUERY_STRING』で指定した正規表現に一致する
+GETパラメータが%変数に格納されているようです。
+例えば以下のような記載もできます。
+RewriteEngine on RewriteBase / RewriteCond %{QUERY_STRING} name=(.*)$ RewriteRule ^api.php$ api2.php?onamae=%1 これで「https://sample.com/api.php?name=tanaka」にアクセスすると
+リダイレクト後は「https://sample.com/api2.php?onamae=tanaka」となります。
+正規表現で複数パラメータを取ることも可能なので、
+RewriteCond %{QUERY_STRING} param1=([a-z]+)&amp;amp;param2=([a-z]+)&amp;amp;param3=([a-z]+)$ と記載すれば、param1は「%1」、param2は「%2」、param3は「%3」で取得できます。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/223/" class="catalogue-item">
+    <div>
+        <time datetime="2016-05-25 23:06:28 &#43;0000 UTC" class="catalogue-time">May 25, 2016</time>
+        <h1 class="catalogue-title">【golang】NetBeansでgo言語を使えるようにする</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            元々NetBeansでPHPをやっているので
+同じIDEでgoも使うために設定してみました。
+■環境
+Ubuntu 16.04
+NetBeans 8.1
+①「http://plugins.netbeans.org/plugin/25606/go」からnbmファイルをダウンロードする。
+②NetBeansのメニューより「Tools-&gt;plugin」を選択
+③Downloadedタグにて「Add Plugins」をクリックして、ダウンロードしたnbmファイルを選択する。
+④「Install」ボタンをクリックする。
+⑤Installを進めていき、最後にNetBeansの再起動をして完了。
+以上でgoが使えるようになります。
+新規プロジェクトでHTML5プロジェクトなどを作成し、プロジェクト内でファイルの新規作成を選択すると
+ファイルのカテゴリにGoが追加されています。
+※2017/1/31 追記GOプロジェクトを作成できるようになるプラグインも見つけました
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/242/" class="catalogue-item">
+    <div>
+        <time datetime="2016-05-22 00:35:22 &#43;0000 UTC" class="catalogue-time">May 22, 2016</time>
+        <h1 class="catalogue-title">【Ubuntu】シャットダウンが遅い</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境
+Ubuntu 16.04
+Ubuntuを16.04にしたら、シャットダウンに時間がかかるようになったので対応します。
+参考： http://sicklylife.at-ninja.jp/memo/ubuntu1604/settings.htmlシステム設定ファイルを修正します。
+# vim /etc/systemd/system.conf 〜以下項目のコメントアウトを外して修正〜 DefaultTimeoutStopSec=10s 
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/239/" class="catalogue-item">
+    <div>
+        <time datetime="2016-05-22 00:30:55 &#43;0000 UTC" class="catalogue-time">May 22, 2016</time>
+        <h1 class="catalogue-title">【Ubuntu】デュアルブート環境で時計が狂うのを防ぐ</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境
+Ubuntu 16.04
+Windows10
+Ubuntuを16.04にしたら、デュアルブートのWindowsとUbuntuを切り替えた際に
+時刻がズレるようになったので対応します。
+参考：http://sicklylife.at-ninja.jp/memo/ubuntu1604/settings.html
+ターミナルで以下をコマンドを実行するのみです。
+sudo timedatectl set-local-rtc true
+        </p>
+    </div>
+</a>
+
+		
+	</div>
+
+	<div class="pagination">
+		
+			<a href="/page/15/" class="left arrow">&#8592;</a>
+		
+		
+			<a href="/page/17/" class="right arrow">&#8594;</a>
+		
+
+		<span>16</span>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.3217878 &#43;0900 JST m=&#43;0.141382201">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

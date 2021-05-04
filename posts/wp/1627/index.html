@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>同じForm内に複数のreCAPTCHA認証ボタンを設置する &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">同じForm内に複数のreCAPTCHA認証ボタンを設置する</h1>
+		<div class="post-info">
+				<time datetime="2018-10-26 13:27:25 &#43;0000 UTC">October 26, 2018</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/javascript/">javascript</a></div>
+				</div>
+			
+		</div>
+		<p>WEBページのreCAPTCHA対応しているform内に複数のsubmitボタンを設置する方法です。<br>
+前提としてPOSTデータより <!-- raw HTML omitted -->g-recaptcha-response<!-- raw HTML omitted --> を取り出して認証しているとします。</p>
+<p>単純にsubmitボタンを複数設置した場合、うまく動きません。<br>
+例えば、以下のようなフォームを作った場合</p>
+<pre><code>&lt;script&gt;  
+function mySubmit(){  
+  document.getElementById(&quot;myForm&quot;).submit();  
+}  
+&lt;/script&gt;  
+  
+&lt;form id=&quot;myForm&quot; action=&quot;/hoge&quot;&gt;  
+  &lt;button class=&quot;g-recaptcha&quot; data-sitekey=&quot;各自のサイトキー&quot; data-callback=&quot;mySubmit&quot;&gt;送信1&lt;/button&gt;  
+  〜いろいろ〜  
+  &lt;button class=&quot;g-recaptcha&quot; data-sitekey=&quot;各自のサイトキー&quot; data-callback=&quot;mySubmit&quot;&gt;送信2&lt;/button&gt;  
+&lt;/form&gt;  
+</code></pre><p>送信1ボタンのすぐ上に、このようなreCAPTCHA用の要素が生成されます。</p>
+<pre><code>&lt;div&gt;  
+  &lt;div class=&quot;grecaptcha-badge&quot; 〜略〜 &gt;  
+    &lt;div class=&quot;grecaptcha-logo&quot;&gt;  
+      &lt;iframe src=&quot;https://www.google.com/recaptcha/〜略〜 &gt;&lt;/iframe&gt;  
+    &lt;/div&gt;  
+    &lt;div class=&quot;grecaptcha-error&quot;&gt;&lt;/div&gt;  
+    &lt;textarea id=&quot;g-recaptcha-response&quot; name=&quot;g-recaptcha-response&quot; 〜略〜 &gt;&lt;/textarea&gt;  
+  &lt;/div&gt;  
+&lt;/div&gt;  
+</code></pre><p>そして、送信2ボタンのすぐ上にも同様に要素が生成されます。<br>
+送信1ボタンとの違いはiframe内とtextareaのidです。<br>
+textareaのidはボタンの数が増える毎に連番が付与されるようです。</p>
+<pre><code>&lt;div&gt;  
+    &lt;div class=&quot;grecaptcha-badge&quot; 〜略〜 &gt;  
+        &lt;div class=&quot;grecaptcha-logo&quot;&gt;  
+            &lt;iframe src=&quot;https://www.google.com/recaptcha/〜略〜 &gt;&lt;/iframe&gt;  
+        &lt;/div&gt;  
+        &lt;div class=&quot;grecaptcha-error&quot;&gt;&lt;/div&gt;  
+        &lt;textarea id=&quot;g-recaptcha-response-1&quot; name=&quot;g-recaptcha-response&quot; 〜略〜 &gt;&lt;/textarea&gt;  
+    &lt;/div&gt;  
+&lt;/div&gt;  
+</code></pre><p>このままではPOSTデータに同名のパラメータが存在してしまうので正常に動きません。</p>
+<p>そこで、クリックしなかったボタンに紐づくreCAPTCHA要素は削除してしまいます。<br>
+具体的には以下のようなコードになります。</p>
+<pre><code>&lt;script&gt;  
+function mySubmit(delId){  
+  document.getElementById(delId).parentNode.remove()  
+  document.getElementById(&quot;myForm&quot;).submit();  
+}  
+function mySubmit1() {  
+  mySubmit(&quot;g-recaptcha-response-1&quot;)  
+}  
+function mySubmit2() {  
+  mySubmit(&quot;g-recaptcha-response&quot;)  
+}  
+&lt;/script&gt;  
+  
+&lt;form id=&quot;myForm&quot; action=&quot;/hoge&quot;&gt;  
+  &lt;button class=&quot;g-recaptcha&quot; data-sitekey=&quot;各自のサイトキー&quot; data-callback=&quot;mySubmit1&quot;&gt;送信1&lt;/button&gt;  
+  〜いろいろ〜  
+  &lt;button class=&quot;g-recaptcha&quot; data-sitekey=&quot;各自のサイトキー&quot; data-callback=&quot;mySubmit2&quot;&gt;送信2&lt;/button&gt;  
+&lt;/form&gt;  
+</code></pre><p>これでPOSTデータにreCAPTCHAのパラメータが重複することはなくなるので<br>
+正常に認証することができるようになります。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/1573/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/1715/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2778715 &#43;0900 JST m=&#43;0.097465901">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>WindowsでDocker Toolbox＆docker-composeを動かす &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">WindowsでDocker Toolbox＆docker-composeを動かす</h1>
+		<div class="post-info">
+				<time datetime="2018-09-21 17:55:45 &#43;0000 UTC">September 21, 2018</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/windows/">Windows</a></div> <div class="tags_item"><a href="/tags/docker/">Docker</a></div>
+				</div>
+			
+		</div>
+		<p>仕事でWindows利用者にDocker環境を構築してもらう事があったのですが<br>
+結構苦労したので手順を残します。</p>
+<p>■□ <!-- raw HTML omitted -->注意<!-- raw HTML omitted --> ■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□<br>
+MacやLinuxでdocker-composeを普通に使える前提で手順を書きます。 <br>
+Dockerやdocker-compose自体の説明はあまり書きません <br>
+□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□</p>
+<p>もし、Windows10 64bit(Home以外)を使っている人であればこの記事の作業は不要です。<br>
+Docker ToolboxではなくDocker for Windowsをインストールしてください。<br>
+（たぶん、Docker for Windowsの方が楽に構築できると思われます）</p>
+<h2 id="docker-toolboxのインストール">Docker Toolboxのインストール</h2>
+<p>まずDocker Toolboxをダウンロードします。<br>
+以下のページにてDocker Toolboxをダウンロードしてください。<br>
+<!-- raw HTML omitted --><a href="https://docs.docker.com/toolbox/overview/#ready-to-get-started">https://docs.docker.com/toolbox/overview/#ready-to-get-started</a><!-- raw HTML omitted --><br>
+<!-- raw HTML omitted --></p>
+<p>ダウンロードしてきたEXEファイルを実行するとインストーラーが走りますので、<br>
+そのまま次へ次へと進みます。<br>
+<!-- raw HTML omitted --></p>
+<p>インストールが完了すると『Docker Quickstart Terminal』というショートカットが<br>
+デスクトップに作られるので実行します。<br>
+しばらく待つとDockerが立ち上がります。(クジラのAAが表示されます)</p>
+<h2 id="docker-composeymlの作成">docker-compose.ymlの作成</h2>
+<p>docker-compose.ymlを書きます。<br>
+基本的な書き方はMacやLinuxと同じなので割愛します。</p>
+<p>気をつけなければいけないのはvolumesの書き方です。<br>
+相対パスで記載する場合は以下のように他OS同様の記載ができます。</p>
+<pre><code>volumes:  
+    ./php.ini:/etc/php.ini  
+</code></pre><p>次に絶対パスで記載する場合ですが、「C:¥」の部分は「/c/」と書きます。<br>
+例えば「C:¥develop¥app」にあるディレクトリを共有する場合は以下のような記載になります。</p>
+<pre><code>volumes:  
+    /c/develop/app:/var/www/html  
+</code></pre><p>後に出てくるVirtualboxの共有フォルダ設定次第ではこの通りにしない事も可能かもしれませんが、<br>
+できるだけシンプルに構築するため、このようにします。</p>
+<p>もしMySQLのコンテナを作成する場合は<br>
+データの永続化のためのホスト側ディレクトリを指定することはできません。</p>
+<p>つまり、この書き方だとNGで</p>
+<pre><code>services:  
+  mysql:  
+    〜中略〜  
+    volumes:  
+      - ./mysql/data:/var/lib/mysql  
+</code></pre><p>この書き方ならOKです</p>
+<pre><code>services:  
+  mysql:  
+    〜中略〜  
+    volumes:  
+      - mydb:/var/lib/mysql  
+    〜中略〜  
+  
+volumes:  
+  mydb  
+</code></pre><h2 id="virtualboxの設定">VirtualBoxの設定</h2>
+<p>Docker Toolboxでコンテナを動かす場合に一番引っかかる部分かもしれません。</p>
+<h3 id="ポートフォワーディングの設定">ポートフォワーディングの設定</h3>
+<p>docker-compose.ymlにてポートフォワーディングを<!-- raw HTML omitted -->8080:80<!-- raw HTML omitted -->と設定しただけでは<br>
+ローカルPCにて <!-- raw HTML omitted -->http://localhost:8080<!-- raw HTML omitted -->にアクセスしてもDockerコンテナに<br>
+リクエストは飛びません。</p>
+<p>なぜかというと、WindowsでDocker Toolboxを使ってコンテナを動かした場合は<br>
+<!-- raw HTML omitted -->『Windows上でVirtualBoxにて仮想環境が作られ、その中でDockerコンテナが動く』<!-- raw HTML omitted --><br>
+という仕組みになっているからです。</p>
+<p>つまり、docker-compose.ymlに記載したポートフォワーディングは<br>
+<!-- raw HTML omitted -->VirtualBox =&gt; Dockerコンテナ<!-- raw HTML omitted --> でしかないため<br>
+<!-- raw HTML omitted -->Windows =&gt; VirtualBox<!-- raw HTML omitted -->のポートフォワーディングは別で設定する必要があります。</p>
+<p>まず、VirtualBoxを開き、『設定』をクリックします。<br>
+<!-- raw HTML omitted --></p>
+<p>次に『ネットワーク &gt; 高度 &gt; ポートフォワーディング』と、クリックしていきます。<br>
+<!-- raw HTML omitted --></p>
+<p>ポートフォワーディングルールが表示されるので、追加ボタンをクリックしてルールを追加していきます。<br>
+ここで設定しているのは<!-- raw HTML omitted -->Windows =&gt; VirtualBox<!-- raw HTML omitted -->のポートフォワーディングなので、docker-compose.ymlに記載したポートフォワーディングが<!-- raw HTML omitted -->8080:80<!-- raw HTML omitted -->だとしたら<br>
+ここで設定するのは<!-- raw HTML omitted -->8080:8080<!-- raw HTML omitted -->です。<br>
+全体で見ると『Windows(8080) =&gt; VirtualBox(8080) =&gt; Docker(80)』と<br>
+ポートフォワーディングされていくイメージです。<br>
+<!-- raw HTML omitted --></p>
+<h3 id="共有フォルダの設定">共有フォルダの設定</h3>
+<p>ホストPCのどのフォルダをDockerと共有するかを設定します。<br>
+Docker for Macにある「File Sharing」の設定と同じです。<br>
+VirtualBox設定画面にて「共有フォルダー」を選択し、追加ボタンをクリックすると共有フォルダが追加できます。<br>
+<!-- raw HTML omitted -->C:¥Users<!-- raw HTML omitted --> はデフォルトで共有になっているので、ホームディレクトリ以外にソースコードを置いた場合に設定が必要となります。<br>
+<!-- raw HTML omitted --></p>
+<p>追加画面では以下のように設定します<br>
+■フォルダーのパス<br>
+　共有したいフォルダーのパスです。<br>
+　右側の「∨」マークをクリックすれば選択ウィンドウが開きます。<br>
+■フォルダー名<br>
+　共有フォルダに名称を付けます。<br>
+　基本的にはフォルダーのパスをスラッシュ区切りにしたものにしておけば分かりやすいです。</p>
+<p>例えば、『C:¥develop』を共有したい場合は下図のようになります。<br>
+<!-- raw HTML omitted --></p>
+<p>これでVirtualBoxを再起動し、<!-- raw HTML omitted -->docker-compose up -d<!-- raw HTML omitted --> をすればコンテナが立ち上がりました</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/1477/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/1521/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2767341 &#43;0900 JST m=&#43;0.096328601">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

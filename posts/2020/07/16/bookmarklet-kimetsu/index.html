@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>GitHubの草を炭治郎柄にする &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">GitHubの草を炭治郎柄にする</h1>
+		<div class="post-info">
+				<time datetime="2020-07-16 00:00:00 &#43;0000 UTC">July 16, 2020</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/bookmarklet/">bookmarklet</a></div> <div class="tags_item"><a href="/tags/javascript/">javascript</a></div>
+				</div>
+			
+		</div>
+		<p>私は鬼滅の刃自体は見たことが無いのですが、それでも主人公の炭治郎の着物はよく目にします。<br>
+あの柄を見ると、ちょっとGitHubの草っぽいなと思ってました。</p>
+<p>というわけで、GitHubの草を炭治郎の着物柄にしてみます。</p>
+<p>Bookmarkletの説明や作り方についてはこちらを参照。<br>
+<a href="/articles/2020/07/15/howto-make-bookmarklet">Bookmarklet(ブックマークレット)の作り方</a></p>
+<h2 id="bookmarklet作成">Bookmarklet作成</h2>
+<p>まず、GitHubの草部分の色を変えるスクリプトを書いてみます。</p>
+<pre><code>// GitHubの草部分の要素を取得
+var kusaElmList = document.getElementsByClassName('day')
+
+for (var i=0; i&lt;kusaElmList.length; i++){
+  var kusa = kusaElmList[i]
+
+  if (i % 2 == 0){
+    // 偶数マスは緑
+    kusa.setAttribute('fill','#2A7')
+  }else{
+    // 奇数マスは黒
+    kusa.setAttribute('fill','#000')
+  }
+}
+</code></pre><p>これをBookmarkletにします。</p>
+<pre><code>javascript:for(var t=document.getElementsByClassName(&quot;day&quot;),e=0;e&lt;t.length;e++){var l=t[e];e%2==0?l.setAttribute(&quot;fill&quot;,&quot;#2A7&quot;):l.setAttribute(&quot;fill&quot;,&quot;#000&quot;)}
+</code></pre><p>実行結果はこちら。<br>
+<!-- raw HTML omitted --></p>
+<p>色はそれっぽくなりましたが、まだ隙間が気になります。<br>
+なので、隙間も埋めるよう修正します。</p>
+<pre><code>// GitHubの草部分の要素を取得
+var kusaElmList = document.getElementsByClassName('day');
+
+for (var i=0; i&lt;kusaElmList.length; i++){
+  var kusa = kusaElmList[i];
+
+  // 草の大きさと形を整える
+  kusa.setAttribute('width','15');
+  kusa.setAttribute('height','15');
+  kusa.style.rx=0;
+  kusa.style.ry=0;
+
+  if (i % 2 == 0){
+    // 偶数マスは緑
+    kusa.setAttribute('fill','#2A7')
+  }else{
+    // 奇数マスは黒
+    kusa.setAttribute('fill','#000')
+  }
+}
+</code></pre><p>これをBookmarkletにします。</p>
+<pre><code>javascript:for(var t=document.getElementsByClassName(&quot;day&quot;),e=0;e&lt;t.length;e++){var l=t[e];l.setAttribute(&quot;width&quot;,&quot;15&quot;),l.setAttribute(&quot;height&quot;,&quot;15&quot;),l.style.rx=0,e%2==(l.style.ry=0)?l.setAttribute(&quot;fill&quot;,&quot;#2A7&quot;):l.setAttribute(&quot;fill&quot;,&quot;#000&quot;)}
+</code></pre><p>実行結果はこちら。<br>
+<!-- raw HTML omitted --></p>
+<p>いい感じになりました。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2020/07/15/howto-make-bookmarklet/" class="left arrow">&#8592;</a>
+		<a href="/posts/2020/08/05/replace-with-find-sed/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2661099 &#43;0900 JST m=&#43;0.085704401">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

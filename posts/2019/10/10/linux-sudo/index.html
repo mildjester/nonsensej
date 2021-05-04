@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Linuxで別ユーザとしてコマンドを実行する &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Linuxで別ユーザとしてコマンドを実行する</h1>
+		<div class="post-info">
+				<time datetime="2019-10-10 00:00:00 &#43;0000 UTC">October 10, 2019</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/linux/">Linux</a></div>
+				</div>
+			
+		</div>
+		<h2 id="環境">環境</h2>
+<p>Amazon Linux AMI release 2013.03</p>
+<hr>
+<p>今更ですがsudoコマンドについて整理しておきたかったので書きました。</p>
+<p>まず基本として、rootユーザーとしてコマンドを実行する場合は<code>sudo {コマンド}</code>を打ちます。</p>
+<pre><code>$ sudo id
+uid=0(root) gid=0(root) 所属グループ=0(root)
+</code></pre><p>もしrootユーザー以外になり代わるたい場合は<code>-u</code>オプションで指定します。</p>
+<pre><code>$ sudo -u apache id
+uid=48(apache) gid=48(apache) 所属グループ=48(apache)
+</code></pre><p>もし特定のユーザーに頻繁になり代わる場合は<br>
+<code>.bashrc</code>などにfunction定義しておくと楽です。<br>
+(今回一番書きたかったこと)</p>
+<pre><code># Apacheユーザとしてコマンド実行する
+sudoa () {
+    sudo -u apache $*
+}
+# Apacheユーザとしてgitコマンドを実行する
+agit() {
+    sudo -u apache git $*
+}
+</code></pre><p>こうしておくと<code>agit pull</code>と打てば<br>
+Apacheユーザとして<code>git pull</code>を打つことができます。</p>
+<p>また、以下のような簡単なスクリプトも書けます。</p>
+<pre><code>hoge() {
+    sudo -u yamada sh -c '
+        NAME=`id | grep -o -E &quot;\([^)]+\)&quot; | grep -o -m 1 -E &quot;[^\()]+&quot;`
+        echo &quot;hello ${NAME}!&quot;
+    '
+}
+</code></pre><p>実行結果は以下のようになります。</p>
+<pre><code>$ hoge
+hello yamada!
+</code></pre>
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2019/10/02/bookmarklet-mizuho/" class="left arrow">&#8592;</a>
+		<a href="/posts/2019/10/15/reverseproxy-wordpress/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2613479 &#43;0900 JST m=&#43;0.080942301">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

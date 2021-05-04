@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>【AWS】新規EC2立ち上げ後の作業メモ &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">【AWS】新規EC2立ち上げ後の作業メモ</h1>
+		<div class="post-info">
+				<time datetime="2017-11-12 01:06:50 &#43;0000 UTC">November 12, 2017</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/aws/">AWS</a></div>
+				</div>
+			
+		</div>
+		<h2 id="環境">環境</h2>
+<p>AWS EC2<br>
+Amazon Linux</p>
+<hr>
+<h3 id="セキュリティグループ設定">セキュリティグループ設定</h3>
+<p>SSH接続元やHTTP通信元の設定をする。 <br>
+デフォルトではEC2を立ち上げた際のアクセス元に対してSSH接続が許可されているのみ。</p>
+<h3 id="立ち上げたec2へのssh接続">立ち上げたEC2へのSSH接続</h3>
+<p>以下の通りSSH接続を実施する。 <br>
+<!-- raw HTML omitted --><!-- raw HTML omitted -->ログインアカウント：<!-- raw HTML omitted --><!-- raw HTML omitted --> ec2-user <br>
+<!-- raw HTML omitted --><!-- raw HTML omitted -->秘密鍵：<!-- raw HTML omitted --><!-- raw HTML omitted --> EC2立ち上げ時にダウンロードしたpemファイル <br>
+※pemファイルはDL後権限を400にしておくこと。</p>
+<h3 id="rootになりパスワードを変更する">rootになり、パスワードを変更する。</h3>
+<pre><code>$ sudo su -  
+# passwd   
+</code></pre><h3 id="日本時刻にするrootのまま実施">日本時刻にする。(rootのまま実施)</h3>
+<pre><code># cp -p /usr/share/zoneinfo/Japan /etc/localtime  
+# service rsyslog restart  
+# service crond restart  
+</code></pre><p>※localtime変更後はrsyslogとcrondを再起動しないと、ログ出力時刻やcron実行時刻が日本時刻にならない。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/799/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/842/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2896861 &#43;0900 JST m=&#43;0.109280601">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

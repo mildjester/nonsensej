@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Linux Mintの初期設定 &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Linux Mintの初期設定</h1>
+		<div class="post-info">
+				<time datetime="2020-07-01 00:00:00 &#43;0000 UTC">July 1, 2020</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/linuxmint/">LinuxMint</a></div>
+				</div>
+			
+		</div>
+		<h2 id="環境">環境</h2>
+<ul>
+<li>Linux Mint 19.1 &ldquo;Tessa&rdquo; - MATE (64-bit)</li>
+<li>ThinkPad T480</li>
+</ul>
+<blockquote>
+<p>※2020年7月追記<br>
+Linux Mint 20 Ulyanaについても追記しました。</p>
+</blockquote>
+<hr>
+<h2 id="日本語入力の設定">日本語入力の設定</h2>
+<p>『コントロールセンター＞入力方法』を開き、日本語の設定をします。<br>
+<!-- raw HTML omitted --><br>
+基本的に上図の通り書かれている手順を実施します。</p>
+<ul>
+<li>言語パッケージをインストールする(ここでinstallボタン押すだけ)</li>
+<li>ウィンドウ上部のInput MethodをFctixにする</li>
+<li>一旦ログアウトする</li>
+</ul>
+<blockquote>
+<p>※2020年7月追記<br>
+Linux Mint 20では最初からFctixが使えるので、ログアウトは不要です。</p>
+</blockquote>
+<p>『コントロールセンター＞Fctix設定』を開き、入力メソッドをMozcだけにします。<br>
+不要な入力メソッドを「-」ボタンをクリックして消すだけです。<br>
+<!-- raw HTML omitted --><br>
+上図のようになればOKです。</p>
+<h2 id="言語設定">言語設定</h2>
+<blockquote>
+<p>※2020年7月追記<br>
+Linux Mint 20では不要そうです。</p>
+</blockquote>
+<p>『コントロールセンター＞言語』を開き、日本語の設定をします。</p>
+<ul>
+<li>「言語」と「地域」を日本にする。（なっているはず）</li>
+<li>「言語サポート」にて日本語をインストールする。</li>
+<li>「システムロケール」の『システム全体に適用』を実行する。</li>
+</ul>
+<p>Chromeなどをインストールした際に日本語になっていない場合はこの手順を再度実施します。</p>
+<h2 id="入力モード切り替えをmac風にする">入力モード切り替えをMac風にする</h2>
+<p>キーボードの変換キーでIME有効、無変換キーでIME無効にすると便利なので設定します。<br>
+『コントロールセンター＞Mozcの設定』を開き、「キー設定の選択」の編集をクリックします。</p>
+<p>するとキー設定ウィンドウが表示されるので設定します。<br>
+下図ではひらがなカタカナキーもIME有効化に割り当てています。<br>
+<!-- raw HTML omitted --></p>
+<p>キー設定画面の右下の「編集」から設定のインポート/エクスポートもできるので、<br>
+再インストール時用に好みの設定をエクスポートしておくと後々楽です。</p>
+<h2 id="半角全角キーとcapslockキーを使いやすくする">半角/全角キーとCapsLockキーを使いやすくする</h2>
+<p>IMEの有効/無効切り替えを上記の通り設定すると半角/全角キーは不要になるので、Escに割り当ててしまいます。<br>
+また、CapsLockも使わないのでCtrlに割り当ててしまいます。<br>
+『コントロールセンター＞キーボード』を開き、<br>
+レイアウトタブの「キーボードの型式」のオプションを開きます。</p>
+<p>ここで「Caps Lock behavior」は『CapsLock is also a Ctrl』を選択し、<br>
+「Japanese keyboard options(または、日本語キーボードオプション)」は『Make Zenkaku Hankaku an additional Esc』を選択します。<br>
+<!-- raw HTML omitted --></p>
+<h2 id="ソフトウェアソースを変更する">ソフトウェアソースを変更する</h2>
+<p>ソフトウェアの取得先はデフォルトだとアメリカになっているので変更します。<br>
+『コントロールセンター＞ソフトウェアソース』にてメイン・ベースをクリックすると取得先を選ぶ画面になるのですが、<br>
+そこで各取得先との接続速度が表示されるので、早い所を選べば大丈夫です。</p>
+<p>基本的にはCDNか日本国内になると思います。<br>
+<!-- raw HTML omitted --></p>
+<h2 id="ウィンドウを画面上端にドラッグしても何も起きなくする">ウィンドウを画面上端にドラッグしても何も起きなくする</h2>
+<p>デフォルトだとウィンドウを画面上端へドラッグすると勝手に最大化します。<br>
+これは複数ウィンドウを並べたい時に不便なので無効化します。</p>
+<p>『コントロールセンター＞ウィンドウ』を開き、場所タブにある「Enable window tiling」のチェックを外せば無効化されます。</p>
+<h2 id="aptで色々インストールする">aptで色々インストールする</h2>
+<h3 id="基本セットvim派">基本セット（vim派）</h3>
+<pre><code>apt install vim git npm
+</code></pre><h3 id="セキュリティソフト">セキュリティソフト</h3>
+<pre><code>apt install clamav clamav-daemon
+</code></pre><h3 id="php関係使う人は">PHP関係（使う人は）</h3>
+<pre><code>apt install php7.2 composer php7.2-bcmath php7.2-common php7.2-gd php7.2-json php7.2-mbstring php7.2-mysql php7.2-xml php7.2-xmlrpc
+</code></pre><blockquote>
+<p>※2020年7月追記<br>
+Linux Mint 20ではデフォルトでphp7.4がインストールできます。</p>
+</blockquote>
+<pre><code>apt install php7.4 composer php7.4-bcmath php7.4-common php7.4-gd php7.4-json php7.4-mbstring php7.4-mysql php7.4-xml php7.4-xmlrpc
+</code></pre><p>なお、phpインストール時にapache2も自動でインストールされる場合があり、<br>
+自動起動する設定になっている可能性があります。<br>
+なので、apache2の自動起動はOFFにしておきましょう。</p>
+<pre><code>sudo systemctl disable apache2
+</code></pre><h3 id="shutter使う人は">Shutter（使う人は）</h3>
+<p>Shutterとは画像に簡単に文字・矢印・モザイク・アイコンなどを挿入できるツールです。<br>
+MacのSkitchのようなアプリです。（分かる人には分かる）</p>
+<blockquote>
+<p>※2020/7/1追記<br>
+ppa等が変わっていたようなので修正</p>
+</blockquote>
+<pre><code>sudo add-apt-repository ppa:linuxuprising/ppa
+apt update
+apt install shutter
+</code></pre><h2 id="webからダウンロードする">WEBからダウンロードする</h2>
+<p>WEBからダウンロードしてインストールします。</p>
+<ul>
+<li><a href="https://azure.microsoft.com/ja-jp/products/visual-studio-code/">Visual Studio Code</a></li>
+<li><a href="https://getstation.com/">Station</a></li>
+</ul>
+<h4 id="補足">※補足</h4>
+<p>Visual Studio Codeはソフトウェアマネージャ等でもインストールできますが、<br>
+そちらだとなぜか日本語入力ができないのでWEBから取得します。(2019/3/10時点)</p>
+<p>Stationは<code>AppImage</code>という見慣れない拡張子でダウンロードされます。<br>
+これはターミナルから実行権限を与えて実行することでインストールできます。</p>
+<pre><code>chmod +x browserX-1.39.2-x86_64.AppImage
+./browserX-1.39.2-x86_64.AppImage
+</code></pre><p>(後で見たときに何か分からなくなりそうなら、Station.AppImageなどにファイル名を変更しても良いです)</p>
+<h2 id="その他参考ページ">その他参考ページ</h2>
+<ul>
+<li><a href="/articles/wp/48">ホームディレクトリの英語化</a></li>
+<li><a href="/articles/2019/03/10/linux-mint-terminator-fish">Terminator+fish環境構築</a></li>
+<li><a href="/articles/2019/01/25/linux-mint-docker">Docker環境構築</a></li>
+<li><a href="/articles/2019/03/12/linux-mint-trackpoint">ThinkPadのトラックポイント調整</a></li>
+<li><a href="/articles/2019/03/13/linux-mint-l2tp">L2TPクライアント設定</a></li>
+</ul>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2020/06/14/oreore-certification/" class="left arrow">&#8592;</a>
+		<a href="/posts/2019/03/12/linux-mint-trackpoint/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2593647 &#43;0900 JST m=&#43;0.078959201">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

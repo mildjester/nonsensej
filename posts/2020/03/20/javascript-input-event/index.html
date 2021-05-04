@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>javascriptの入力イベントでIME未確定時は発火させない設定方法 &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">javascriptの入力イベントでIME未確定時は発火させない設定方法</h1>
+		<div class="post-info">
+				<time datetime="2020-03-20 00:00:00 &#43;0000 UTC">March 20, 2020</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/javascript/">javascript</a></div>
+				</div>
+			
+		</div>
+		<p>テキストボックスに入力中の内容をjavascriptでチェックする場合など<br>
+keydownイベントを使うとIME未確定時にも発火してしまい無駄に沢山処理が走ってしまいますし、<br>
+textInputイベントは対応していないブラウザがあるし、<br>
+そんな時の対応方法です。</p>
+<p>javascriptのイベントにはIME入力開始時の「compositionstart」とIME確定時の「compositionend」というものがあります。<br>
+これを使ってIME入力中を判定できるフラグを作ります。</p>
+<p>具体的には以下のようにします。</p>
+<pre><code>&lt;input type=&quot;text&quot; id=&quot;hoge&quot; /&gt;
+
+&lt;script&gt;
+// とりあえずオブジェクト化してますが、ベタ書きでも構いません
+var inputEventHandler = {
+  compFlg : false, // IME入力中フラグ
+
+  initialize : function(){
+    let targetElm = document.getElementById('hoge');
+
+    targetElm.addEventListener('keydown', function() {
+      // ブラウザによりcompositionendイベントとの発火タイミングが前後するのでsetTimeoutで少し遅らせます
+      setTimeout(function(){
+        if (self.compFlg) {
+          return;
+        }
+        console.log('ここで何か処理を実行する');
+      }, 10)
+    });
+
+    targetElm.addEventListener('compositionstart', function() {
+      self.compFlg = true;
+    });
+
+    targetElm.addEventListener('compositionend', function() {
+      self.compFlg = false;
+    });
+  }
+}
+inputEventHandler.initialize();
+&lt;/script&gt;
+</code></pre>
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2020/03/15/github-actions-deploy/" class="left arrow">&#8592;</a>
+		<a href="/posts/2020/04/15/gulp-uglify-keep-name/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2643087 &#43;0900 JST m=&#43;0.083903201">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

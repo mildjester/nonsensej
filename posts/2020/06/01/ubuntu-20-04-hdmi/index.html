@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>ThinkpadにHDMIケーブルを接続したままUbuntu 20.04を起動する &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">ThinkpadにHDMIケーブルを接続したままUbuntu 20.04を起動する</h1>
+		<div class="post-info">
+				<time datetime="2020-06-01 00:00:00 &#43;0000 UTC">June 1, 2020</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/ubuntu/">ubuntu</a></div>
+				</div>
+			
+		</div>
+		<h2 id="環境">環境</h2>
+<p>ubuntu 20.04 LTS</p>
+<hr>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1874194">ubuntu バグフォーラム</a></li>
+<li><a href="https://wiki.ubuntu.com/Kernel/KernelBootParameters">ubuntu wiki</a></li>
+</ul>
+<hr>
+<p><a href="/articles/2020/05/17/update-ubuntu-20-04">前回の記事</a>にてUbuntuを20.04にアップデートしたら
+HDMIケーブルを挿したままPCを起動する事ができなくなった話を書きました。<br>
+Linuxカーネルを書き換えれば動くような話もあったのですが、それはやりたくなかったので放置していました。</p>
+<p>2020/6/1現在、ubuntu公式の対応はまだされていないようなのですが、
+<a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1874194">ubuntuのバグ報告フォーラム</a>にて
+『quiet splashを無効化したらいけた！』という書き込みが5/29にされていました。<br>
+試してみたら確かに動いたので手順を記載します。</p>
+<h2 id="grub設定を変更する">grub設定を変更する</h2>
+<p>以下のコマンドにてgrubの設定をいじります。</p>
+<pre><code>$ sudo gedit /etc/default/grub
+</code></pre><p>設定ファイルがテキストエディタで開くので、<code>quiet splash</code>の行をコメントアウトします。<br>
+コメントアウト後は保存して閉じます。</p>
+<pre><code>〜省略〜
+GRUB_DEFAULT=0
+GRUB_TIMEOUT_STYLE=hidden
+GRUB_TIMEOUT=10
+GRUB_DISTRIBUTOR=`lsb_release -i -s 2&gt; /dev/null || echo Debian`
+#GRUB_CMDLINE_LINUX_DEFAULT=&quot;quiet splash&quot;　　　　←この行を#でコメントアウトする
+GRUB_CMDLINE_LINUX=&quot;&quot;
+〜省略〜
+</code></pre><h2 id="grub設定の反映">grub設定の反映</h2>
+<p>以下のupdate-grubコマンドでgrub設定を反映させます。<br>
+しばらく処理が走るので完了するのを待ちます。</p>
+<pre><code>$ sudo update-grub
+Sourcing file `/etc/default/grub'
+Sourcing file `/etc/default/grub.d/init-select.cfg'
+Generating grub configuration file ...
+Linux イメージを見つけました: /boot/vmlinuz-5.4.0-33-generic
+Found initrd image: /boot/initrd.img-5.4.0-33-generic
+Linux イメージを見つけました: /boot/vmlinuz-5.4.0-31-generic
+Found initrd image: /boot/initrd.img-5.4.0-31-generic
+Found Windows Boot Manager on /dev/nvme0n1p1@/EFI/Microsoft/Boot/bootmgfw.efi
+Adding boot menu entry for UEFI Firmware Settings
+</code></pre><p>これで設定完了です。<br>
+次回起動時からHDMIを挿したまま起動しても問題なくOSが立ち上がります。</p>
+<p>なお、quiet splashを無効にしたのでPC起動／停止時に出ていたLenovoとubuntuの両ロゴが表示されるLoading画面は出なくなります。<br>
+代わりに現在の処理状況がテキストでババーッと流れるので、驚かないでください。<br>
+(昔ながらのLinuxの起動／停止画面と同じ感じになる)</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2020/05/19/serverless-framework-lambda/" class="left arrow">&#8592;</a>
+		<a href="/posts/2020/06/06/python-dict-list/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2647918 &#43;0900 JST m=&#43;0.084386201">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

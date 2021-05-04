@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+	<meta name="generator" content="Hugo 0.82.0" />
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<meta name="description" content="">
+
+		<title>Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="/index.xml" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	
+
+
+	<div class="catalogue">
+		
+			<a href="/posts/wp/842/" class="catalogue-item">
+    <div>
+        <time datetime="2017-11-28 16:22:31 &#43;0000 UTC" class="catalogue-time">November 28, 2017</time>
+        <h1 class="catalogue-title">Dockerチートシート</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            DockerHubにログイン まずこれをしておかないとDockerHubにて公開されているイメージを取ってこれない。 ※要DockerHubアカウント
+docker login Dockerイメージ作成 Dockerfileからイメージを作成する。 Dockerfileの作り方そのものは割愛。
+docker build --no-cache=true -t {好きなイメージ名} {Dockerfileがあるディレクトリパス} 現在ローカルにあるイメージ確認 docker images イメージからコンテナ作成 docker run -itd -h {好きなホスト名} -v {ホストのディレクトリ}:{コンテナのディレクトリ} --name {好きなコンテナ名} -p {ホスト側ポート}:{コンテナ側ポート}　{イメージ名} {実行コマンド} ■補足 【vオプション】 ホストのディレクトリとコンテナのディレクトリを共有するオプション 例えば-v /home:/homeとすると、ホストのhomeディレクトリとコンテナのhomeディレクトリの中身が同期される。
+【pオプション】 ホスト側にどのポートにアクセスがあった場合、コンテナのどのポートに流すかを設定する。 例えば-p 80:80とすればホストの80ポートへのアクセスはコンテナの80ポートへ流れる。　複数ポートを設定したい場合は-p 80:80 -p 443:443のように複数指定する事も可能。
+また、ホスト側が複数IPアドレスを持っている場合などに-p 192.168.1.1:80:80のようにIPアドレスを指定する事も可能。
+【実行コマンド】
+Dockerfileにて実行コマンドを指定していた場合は省略可能。　特定のコマンドを実行したい訳でない場合は/bin/bashを指定しておくと無難。　コンテナ一覧を確認する docker ps -a -aオプションをつけないと停止しているコンテナは表示されない。
+ホストからコンテナに入る docker exec -it {コンテナ名} {実行シェル} ■補足 【実行シェル】
+どのシェルでログインしたいか。 分からなければbashにしておくと無難。
+コンテナを停止する docker stop {コンテナ名} コンテナを起動する docker start {コンテナ名} コンテナを削除する コンテナが停止している状態で以下を実行。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/820/" class="catalogue-item">
+    <div>
+        <time datetime="2017-11-12 01:06:50 &#43;0000 UTC" class="catalogue-time">November 12, 2017</time>
+        <h1 class="catalogue-title">【AWS】新規EC2立ち上げ後の作業メモ</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            環境 AWS EC2
+Amazon Linux
+ セキュリティグループ設定 SSH接続元やHTTP通信元の設定をする。 デフォルトではEC2を立ち上げた際のアクセス元に対してSSH接続が許可されているのみ。
+立ち上げたEC2へのSSH接続 以下の通りSSH接続を実施する。 ログインアカウント：ec2-user 秘密鍵：EC2立ち上げ時にダウンロードしたpemファイル ※pemファイルはDL後権限を400にしておくこと。
+rootになり、パスワードを変更する。 $ sudo su - # passwd 日本時刻にする。(rootのまま実施) # cp -p /usr/share/zoneinfo/Japan /etc/localtime # service rsyslog restart # service crond restart ※localtime変更後はrsyslogとcrondを再起動しないと、ログ出力時刻やcron実行時刻が日本時刻にならない。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/799/" class="catalogue-item">
+    <div>
+        <time datetime="2017-10-13 19:48:22 &#43;0000 UTC" class="catalogue-time">October 13, 2017</time>
+        <h1 class="catalogue-title">【Mac】圧縮解凍ソフトのインストール(Win対応)</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境 macOS Sierra 10.12.6
+ Windowsで圧縮したファイルがMacで正常に開けなかったり
+Macで圧縮したファイルがWindowsで正常に開けなかったり
+そんな時はMac側で以下ソフトを使うと解決します。
+Windows → Macの圧縮ファイル連携 『The Unarchiver』というソフトを使って解凍すると正常に解凍できます。
+OneDriveからダウンロードした圧縮ファイルの解凍が正常にできない場合にも使えます。
+MacのAppStoreで配信されていますので、検索してインストールしてください。
+使い方は、解凍したい圧縮ファイルを『The Unarchiver』で開くだけです。
+Mac → Windowsの圧縮ファイル連携 『WinArchiver Lite』というソフトを使って圧縮すると、Win側で正常に解凍できます。
+こちらもMacのAppStoreで配信されています。
+使い方は、圧縮したいファイル・ディレクトリを『WinArchiver Lite』で開く、
+または『WinArchiver Lite』を起動しておいて、圧縮したいファイル・ディレクトリを『WinArchiver Lite』のウィンドウに
+ドラッグ＆ドロップすると、Win対応の圧縮ファイルが生成できます。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/776/" class="catalogue-item">
+    <div>
+        <time datetime="2017-10-13 11:43:37 &#43;0000 UTC" class="catalogue-time">October 13, 2017</time>
+        <h1 class="catalogue-title">【Mac】ForiClientでVPNを繋ぐ</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境 macOS Sierra 10.12.6
+FortiClient 5.6.0.703
+ ■本体のダウンロード &amp; インストール 公式サイトよりインストーラをダウンロードする。
+http://www.forticlient.com/downloadsダウンロードしてきたdmgファイルをダブルクリックするとインストーラが走るので、
+あとはインストーラに従えばインストール完了
+■VPN設定 FortiClientを起動し、「リモートアクセス ＞ 歯車マーク ＞ 新規接続の追加」をクリックする。
+接続先の設定をして、『追加』ボタンをクリックする。
+その後、パスワードを入力して『接続』ボタンをクリックすれば接続される。
+一度設定しておけば、今後の接続＆切断は右上のタスクバーのFortiClientアイコンから実施できる。
+※FortiClientアイコンは盾マークの中に、VPN接続時は鍵マーク、VPN切断時は四角いマークとなっている。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/737/" class="catalogue-item">
+    <div>
+        <time datetime="2017-10-13 11:05:07 &#43;0000 UTC" class="catalogue-time">October 13, 2017</time>
+        <h1 class="catalogue-title">【Mac】NetBeansのインストール</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境 macOS Sierra 10.12.6
+NetBeans 8.2
+ コードの補完やFTP機能を標準装備していたりと
+無料のIDEの中では個人的には使いやすいと思っています。
+あと、ねこびーんが可愛い。
+■JDK &amp; NetBeans本体のダウンロード &amp; インストール JDKとNetBeansがセットになっているパッケージがあるので、それをダウンロードします。
+http://www.oracle.com/technetwork/java/javase/downloads/jdk-netbeans-jsp-142931.html 【補足】
+既にJDKをインストールしている場合は、以下のサイトからNetBeans本体のみをダウンロードすれば良いです。
+https://netbeans.org/downloads/こちらのサイトからダウンロードする場合は、利用する言語に合わせたパッケージをインストールできます。
+ ダウンロードしてきたdmgファイルをダブルクリックしてマウントし、
+出てきたpkgファイルをダブルクリックすると、インストーラーが走ります。
+そのままインストーラーに従い進めるとインストール完了です。
+LaunchpadにNetBeansが追加されてます。
+■NetBeansの設定 【基本設定】 上部メニューより「NetBeans ＞ Preferences」をクリックすると設定画面が開きます。
+基本的に触るとしたら以下のタブくらいだと思います。
+それ以外のタブをいじる人は、もはや説明も不要なレベルの人だと思うので説明も割愛します。
+一般タブ NetBeansから開くブラウザの指定をしたり、プロキシの設定をしたりできます。
+よく分からなければデフォルトのままでよいです。
+エディタタブ ソースコードのフォーマットを指定したり、NetBeansが表示する警告を設定したりできます。
+インデントをタブにするかスペースにするか。どのくらいインデントを深くすると警告を出すか。など
+個人の好みやチームのコーディング規約に合わせて変更してください。
+分からない項目はデフォルトのままで良いと思います。
+フォントと色タブ タブ名のままですが、NetBeansで使うフォントと色を設定できます。
+見づらい色などがあれば変更すれば良いです。
+キーマップタブ ショートカットキーの設定です。基本的にはデフォルトのままでいいと思います。
+どんなショートカットがあるのかを確認するために、一度眺めてみるのもいいと思います。
+外観タブ IDEの見栄え全般の設定です。
+「ルック・アンド・フィール」でテーマの変更ができるので、好みのテーマがありそうであれば変更してください。
+※ルック・アンド・フィールの反映にはIDEの再起動が必要です。
+【プラグイン導入】 利用したい言語に合わせてプラグインをインストールします。
+NetBeansの上部メニューより「ツール ＞ プラグイン」をクリックし、プラグイン管理画面を開きます。
+「使用可能なプラグイン」というタブより新規プラグインのインストールができます。
+暗いテーマが好きな場合 「Dark Look And Feel Themes」というプラグインがあります。
+これをインストールすれば、基本設定にあった「ルック・アンド・フィール」の選択肢が増えるので、
+設定画面から変更してください。
+個人的には「Dark Nimbus」が好きです。
+PHPを使う場合 PHPの開発をするなら「PHP」というプラグインは必須です。
+あとはフレームワークやテストツールの補助プラグインもあるので、それらを必要に応じてインストールすれば良いです。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/750/" class="catalogue-item">
+    <div>
+        <time datetime="2017-10-12 16:27:26 &#43;0000 UTC" class="catalogue-time">October 12, 2017</time>
+        <h1 class="catalogue-title">【Mac】Homebrewインストール</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境 macOS Sierra(10.12.5)
+ HomebrewはmacOS用のパッケージマネージャーです。
+インストールするためのコマンドは公式ページにて記載されています。
+http://brew.sh/index_ja.html２０１７年１０月現在では以下のコマンドでインストールしました。
+/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; これでbrewコマンドが使えるようになりました。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/734/" class="catalogue-item">
+    <div>
+        <time datetime="2017-10-12 16:23:00 &#43;0000 UTC" class="catalogue-time">October 12, 2017</time>
+        <h1 class="catalogue-title">【Mac】PC購入後・初期化後の設定</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            初期状態のMacBookから行なう設定をまとめました
+■設定一覧  Homebrewインストール ターミナル設定（iTerm2 ＋ fish ＋ fisherman） 秘密鍵＆公開鍵の生成 neovim &amp; dein.vimの設定  ■とりあえず入れておくアプリ  圧縮解凍ソフト(Win対応) Calendar 2 Skitch  
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/741/" class="catalogue-item">
+    <div>
+        <time datetime="2017-10-12 16:01:40 &#43;0000 UTC" class="catalogue-time">October 12, 2017</time>
+        <h1 class="catalogue-title">【Mac】ターミナル設定（iTerm2 ＋ fish ＋ fisherman）</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境 iTerm2 3.2.5
+fish 2.7.1
+fisherman 3.1.1
+■参考サイト fish shell を使いたい人生だった
+ ターミナルのシェルをiTerm2 &amp; fishにする手順です。
+デフォルトである程度便利機能が入っているので、zshでカスタマイズするのが面倒な人におすすめです。
+iTerm2インストール 公式ページよりzipをダウンロードします。
+https://www.iterm2.com/downloads.htmlダウンロードしたzipを解凍すると「iTerm」というファイルが出てくるので、それをアプリケーションにドラッグ＆ドロップします。
+これでLanchPadから起動できるようになりました。
+iTerm2の配色変更 iTerm2のデフォルトのままの色だとディレクトリが見づらかったりするので配色を変えます。
+iTerm2のメニューバーより
+iTerm2 &gt; Preferences &gt; Profiles &gt; Colorsとクリックしていき
+そこの Color Paresetより好きなテーマを選びます。
+配色設定ファイルをダウンロード設定することもできます。
+私の場合は『Japanesque』という配色をよく使っています。
+https://github.com/aereal/dotfiles/tree/master/colors/Japanesqueこの『Japanesque.itermcolors』をiTerm2で開くと、上記の Color Paresetの選択肢に
+Japanesqueが追加されます。
+fish インストール fishをインストールします。
+$ brew install fish fishのパスを確認する。
+$ which fish /usr/local/bin/fish 上記パスをシェル一覧に追記する
+$ sudo vi /etc/shells 〜末尾にwhichコマンドで確認したパスを追記する〜 シェルをfishに変更する
+$ chsh -s /usr/local/bin/fish これで、ターミナルを再起動するとfishが立ち上がります。
+fisherman インストール fishermanというfishのプラグイン管理ツールがあります。
+fishermanのgithubベージにインストールコマンドが載っています。
+https://github.com/fisherman/fisherman$ curl -Lo ~/.
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/721/" class="catalogue-item">
+    <div>
+        <time datetime="2017-10-08 00:10:11 &#43;0000 UTC" class="catalogue-time">October 8, 2017</time>
+        <h1 class="catalogue-title">Google Cloud Platformにインスタンス作成</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            参考 https://www.topgate.co.jp/category/gcp インスタンス立ち上げ ① 左メニューの「Compute Engine」をクリックする。
+②1分ほど読みこみ待ちになる。
+読み込み完了後、VMインスタンスの「作成」ボタンをクリックする。
+③また、少々待ちが発生する。
+インスタンスの作成画面が表示されたら、名前に任意の名称、ゾーンは「asia-northeast1-a」を選択する。(東京リージョンらしい)
+   項目 設定値     名前 任意の名称をつける。   ゾーン 「asia-northeast1-a」を選択する。(東京リージョンらしい)   マシンタイプ 必要なスペックに合わせて選択する。安さ重視ならmicro。   ブートディスク 入れたいOSを選択する。   IDとAPIへのアクセス このインスタンスへ付与する権限のよう。とりあえずデフォルトのままにする。   ファイアウォール HTTPやHTTPSを使うならチェック   管理 とりあえずデフォルトのまま   ディスク とりあえずデフォルトのまま   ネットワーキング とりあえずデフォルトのまま   SSH認証鍵 自分のローカルPCの認証鍵を登録しておく    ④ここまでできたら、一番下の「作成」ボタンをクリックする。
+しばらく処理待ちとなるが、処理が完了するとインスタンス生成され、グローバルIPも振られる
+これでインスタンスの立ち上げは完了です。
+SSH鍵登録をしたローカル環境からグローバルIPを指定してSSH接続できるようになっています。
+ssh 999.999.999.999 ※グローバルIPアドレスはインスタンス一覧画面で確認可能
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/708/" class="catalogue-item">
+    <div>
+        <time datetime="2017-09-29 19:11:15 &#43;0000 UTC" class="catalogue-time">September 29, 2017</time>
+        <h1 class="catalogue-title">Atom IDEの環境構築（PHP、Go）</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境 macOS Sierra 10.12.6
+Atom 1.21.0-beta2
+■参考にしたサイト 公式サイト
+https://ide.atom.io/はくたけ氏のブログ
+http://tech.innovator.jp.net/entry/2017/09/14/165139sayama0402さんのQiita
+https://qiita.com/sayama0402/items/3bd8d905619c514179b7 ナウいエディタ「Atom」は、前から気になっていたのですが、
+ テキストエディタにしては重い IDEにしては機能がすくない  という理由で、少し敬遠していました。
+が、そのAtomからIDEが出たそうなので、試しに使ってみました。
+■手順 ①Atomの入手 以下サイトより、Atom 1.21.0（ベータ版）を入手してインストールする。
+https://atom.io/beta※いくつかの紹介ページを見ましたが、1.21.0が推奨されているようです。 試しに1.20.0(安定板)でも試して見ましたが、確かに動きが怪しかったです。
+②必須パッケージのインストール Atomを起動したら、上部メニュー Packages &gt; Settings View &gt; Install Packages/Themesより、以下を検索してインストールする。
+ atom-ide-ui ide-php ide-go  ③使って見る。 初めてgoのソースコードを開いた際には「ide-go」が依存するパッケージをインストールするか聞かれるので、 インストールします。
+また、「linter」と「atom-ide-diagnostics」が競合している旨のメッセージが出るので、
+そのメッセージの下にある「Disable linter」をクリックして、競合を解決します。
+これで、実際に使い始められそうです。 定義ジャンプや補完機能は十分使えそうなレベルで動いてました。
+また、他の無料IDE（EclipseやNetBeans）に比べると、起動が早かったです。
+その他パッケージのインストール IDEとは関係なく便利なパッケージが沢山あるので入れます。
+以下、実際に入れて見たパッケージです。
+■file-icons各ファイルの拡張子に合わせてアイコンを変えてくれる。
+ちなみに、Atomに新拡張子を紐付けさせるには、上部メニューより「Atom Beta＞Config」をクリックし、 config.csonを編集する必要がある。
+【例：以下の記載で「.inc」という拡張子をPHPファイルとして認識してくれる】
+&quot;*&quot;: core: customFileTypes: &quot;source.php&quot;: [ &quot;inc&quot; ] 『source.php』に該当する部分はPHPファイルを開いた状態で「cmd + opt + P」を押すとポップアップで表示される。 別拡張子のファイルでも同じ操作でできるはず。
+■pigments色コードを記載したら自動で該当の色でハイライトしてくれる。
+■show-ideographic-space全角スペースを見える化
+        </p>
+    </div>
+</a>
+
+		
+	</div>
+
+	<div class="pagination">
+		
+			<a href="/page/11/" class="left arrow">&#8592;</a>
+		
+		
+			<a href="/page/13/" class="right arrow">&#8594;</a>
+		
+
+		<span>12</span>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.3170022 &#43;0900 JST m=&#43;0.136596701">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

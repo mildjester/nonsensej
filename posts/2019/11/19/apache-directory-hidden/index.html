@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>htaccessで本番環境だけ特定のディレクトリを隠す &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">htaccessで本番環境だけ特定のディレクトリを隠す</h1>
+		<div class="post-info">
+				<time datetime="2019-11-19 00:00:00 &#43;0000 UTC">November 19, 2019</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/apache/">apache</a></div>
+				</div>
+			
+		</div>
+		<h2 id="環境">環境</h2>
+<ul>
+<li>httpd 2.2.34</li>
+</ul>
+<hr>
+<h3 id="概要">概要</h3>
+<p>Apache環境で本番環境・検証環境共にソースコードはgitリポジトリを丸ごとcloneしている状態で<br>
+git管理下の特定のディレクトリ内のページは検証環境でのみ表示させるという方法です。<br>
+（テスト用ページ）</p>
+<h3 id="対応方法">対応方法</h3>
+<p>本番環境のドメインが「www.honban.com」で検証環境は別ドメインだとした場合、<br>
+隠したいディレクトリに<code>.htaccess</code>を配置して以下を記載します。</p>
+<pre><code>RewriteEngine On
+RewriteCond %{http_host} ^www.honban.com
+RewriteRule ^(.*) - [R=404,L]
+</code></pre><p>これは『ドメインが本番環境の場合(RewriteCondの部分)は404ページを表示する(RewriteRuleの部分)』という意味になります。<br>
+これで検証環境では該当ディレクトリ内のページは表示でき、本番環境では404ページが表示されるようにできました。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2019/11/08/ubuntu-tilix/" class="left arrow">&#8592;</a>
+		<a href="/posts/2019/12/15/lightsail-wordpress/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2632748 &#43;0900 JST m=&#43;0.082869201">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

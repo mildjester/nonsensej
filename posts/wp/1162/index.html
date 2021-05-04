@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>【Linux Mint】Dockerの導入 &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">【Linux Mint】Dockerの導入</h1>
+		<div class="post-info">
+				<time datetime="2018-04-09 21:06:39 &#43;0000 UTC">April 9, 2018</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/linuxmint/">LinuxMint</a></div> <div class="tags_item"><a href="/tags/docker/">Docker</a></div>
+				</div>
+			
+		</div>
+		<h2 id="環境">■環境</h2>
+<p>Linux Mint 18.3 cinnamon 64bit</p>
+<hr>
+<h2 id="dockerのインストール">Dockerのインストール</h2>
+<p>dockerのGPGを追加</p>
+<pre><code>$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -  
+</code></pre><p>dockerリポジトリ追加</p>
+<pre><code>$ sudo add-apt-repository &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable&quot;  
+</code></pre><p>dockerインストール</p>
+<pre><code>$ apt update  
+$ apt install docker-ce  
+</code></pre><h2 id="docker-composeのインストール">docker-composeのインストール</h2>
+<pre><code>$ apt install docker-compose  
+</code></pre><h2 id="sudo無しでdockerを使えるようにする">sudo無しでdockerを使えるようにする</h2>
+<p>現在のユーザーを<!-- raw HTML omitted -->docker<!-- raw HTML omitted -->というグループに所属させれば使えるようになるらしい。</p>
+<pre><code>sudo gpasswd -a $USER docker  
+service docker restart  
+</code></pre><p>これで、一度ログアウトすればsudo無しでdockerコマンドが使えるようになります。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/1098/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/1192/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.271867 &#43;0900 JST m=&#43;0.091461501">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

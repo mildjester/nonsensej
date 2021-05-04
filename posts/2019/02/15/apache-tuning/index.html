@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Apacheにサーバーのメモリを食い尽くさせない &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Apacheにサーバーのメモリを食い尽くさせない</h1>
+		<div class="post-info">
+				<time datetime="2019-02-15 00:00:00 &#43;0000 UTC">February 15, 2019</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/apache/">Apache</a></div>
+				</div>
+			
+		</div>
+		<h2 id="環境">環境</h2>
+<ul>
+<li>Amazon Linux AMI 2018.03</li>
+<li>Apache/2.4.34 (Amazon)</li>
+</ul>
+<hr>
+<p>Apache(prefork)がサーバーのメモリを食い尽くしていたのでチューニングしました。<br>
+その際に行なった調査や計算をメモとして残します。</p>
+<p>なお、preforkからeventに変更できる場合や、nginxに移行できるのであれば<br>
+そちらの方がいいかもしれません。<br>
+今回はあくまでpreforkをチューニングする前提での手順です。</p>
+<h2 id="サーバー物理メモリ確認">サーバー物理メモリ確認</h2>
+<p>まず、サーバーの物理メモリを調べます</p>
+<pre><code># cat /proc/meminfo | head -n 1
+MemTotal:        2004484 kB
+</code></pre><p>このサーバーの搭載メモリは2GBのようです。</p>
+<h2 id="現在のメモリ使用状況確認">現在のメモリ使用状況確認</h2>
+<p>まずサーバー全体の使用メモリを確認します。<br>
+以下のワンライナーで出します。(単位はMB)</p>
+<pre><code># ps aux | awk '{print $6}' | awk '{sum=sum+($1/1024);cnt++;} END{print &quot;sum=&quot;sum}'
+sum=919.656
+</code></pre><p>次にhttpdの子プロセスの使用メモリを確認します。<br>
+以下のワンライナーで出します。(単位はMB)</p>
+<pre><code># ps aux | grep httpd | grep apache | awk '{print $6}' | awk '{sum=sum+($1/1024);cnt++;} END{print &quot;sum=&quot;sum &quot; cnt=&quot;cnt &quot; ave=&quot;sum/cnt;}'
+sum=804.273 cnt=20 ave=40.2137
+</code></pre><p>出力結果は以下のようにしています。</p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sum</td>
+<td>現時点のhttpd子プロセスが使っている総メモリ</td>
+</tr>
+<tr>
+<td>cnt</td>
+<td>httpd子プロセスの数</td>
+</tr>
+<tr>
+<td>ave</td>
+<td>httpd子プロセス１つが利用している平均メモリ</td>
+</tr>
+</tbody>
+</table>
+<h4 id="補足">※補足</h4>
+<p>サーバー全体のメモリ使用量は前述の/proc/meminfoやfreeコマンドからでも出せるのですが<br>
+それだとpsコマンドの結果と少しずれてしまうのでpsコマンドに統一しています。</p>
+<h2 id="計算">計算</h2>
+<p>ここまでで分かった事を整理します。</p>
+<ul>
+<li>サーバーの搭載メモリ = 約2GB　・・・①</li>
+<li>現時点の総使用メモリ = 約920MB　・・・②
+<ul>
+<li>うち、Apache子プロセスの使用メモリ = 約800MB　・・・③</li>
+<li>Apache子プロセス以外の使用メモリ = 約120MB　・・・④(②−③)</li>
+</ul>
+</li>
+<li>Apache子プロセス１つあたりが使うメモリ = 約40MB　・・・⑤</li>
+</ul>
+<p>ここからざっくり計算していきます。</p>
+<ul>
+<li>Apache子プロセス以外用に残すメモリ = 500MB　・・・⑥(④を元に超ざっくり＆余裕を持って)</li>
+<li>Apache子プロセスで使うメモリ = 1500MB程度　・・・⑦(①−⑥)</li>
+<li>生成できるApacheプロセス数 = 35個程度　・・・⑧(⑦÷⑤)</li>
+</ul>
+<p>Apacheの設定にてこれを設定します。</p>
+<pre><code>&lt;IfModule mpm_prefork_module&gt;
+StartServers               5
+MinSpareServers            5
+MaxSpareServers           10
+ServerLimit               35 #先ほど計算した結果に変更
+MaxClients                35 #先ほど計算した結果に変更
+MaxConnectionsPerChild     0
+&lt;/IfModule&gt;
+</code></pre><p>既存のApacheの設定ファイルに上記が設定されている箇所が存在しない場合は<br>
+httpd.confに追記するか/etc/httpd/conf.d/配下に新設定ファイルを作成して記載するのでも良いです。</p>
+<p>他にも基本的にhttpd子プロセスは常時20個くらい動いていて欲しかったりして、<br>
+最終的に以下の設定にしました。</p>
+<pre><code>&lt;IfModule mpm_prefork_module&gt;
+StartServers              20 #httpd起動時にプロセスを20個動かす
+MinSpareServers            5
+MaxSpareServers           20 #リクエスト待ちプロセスは最大20個とする
+ServerLimit               35
+MaxClients                35
+MaxConnectionsPerChild  5000 #ある程度処理したら子プロセスには産まれ変わってもらう
+&lt;/IfModule&gt;
+</code></pre>
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2019/02/14/mac-php-72/" class="left arrow">&#8592;</a>
+		<a href="/posts/2019/02/28/aws-code-deploy/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2575235 &#43;0900 JST m=&#43;0.077118001">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

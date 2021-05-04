@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>【node】foreverチートシート &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">【node】foreverチートシート</h1>
+		<div class="post-info">
+				<time datetime="2017-07-31 01:44:06 &#43;0000 UTC">July 31, 2017</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/node/">node</a></div>
+				</div>
+			
+		</div>
+		<h3 id="起動">起動</h3>
+<pre><code>forever start {jsファイル}  
+</code></pre><h3 id="起動中一覧表示">起動中一覧表示</h3>
+<pre><code>forever list  
+</code></pre><h3 id="停止">停止</h3>
+<pre><code>forever stop {停止対象の番号}  
+</code></pre><p>※停止対象の番号は上記の一覧表示で確認できる。 <br>
+　0から順に配番されているはず。</p>
+<hr>
+<h3 id="その他">★その他★</h3>
+<p>起動コマンド実行後にログを見ると <br>
+<!-- raw HTML omitted -->Error: spawn ENOMEM<!-- raw HTML omitted --> <br>
+というエラーで落ちていることがある。</p>
+<p>これはメモリ不足が原因らしいので、メモリを確保してから再実行したら直る。 <br>
+自分の環境の場合、空きが「600MB」くらいだとダメでした。 <br>
+色々整理して、空きを「1.5GB」くらいまでにしたら直りました。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/674/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/689/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2856405 &#43;0900 JST m=&#43;0.105235001">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

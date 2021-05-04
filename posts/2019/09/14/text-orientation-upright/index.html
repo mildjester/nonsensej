@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>CSSでtext-orientationは使ってはいけない &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">CSSでtext-orientationは使ってはいけない</h1>
+		<div class="post-info">
+				<time datetime="2019-09-14 00:00:00 &#43;0000 UTC">September 14, 2019</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/css/">CSS</a></div>
+				</div>
+			
+		</div>
+		<p>ちょっと釣りっぽいタイトルですが<br>
+ちょっと困った事があったので書いておきます。</p>
+<h2 id="やった事">やった事</h2>
+<p>縦書きの文書(英数字の向きは縦)を書くことがあったので<br>
+以下のように<code>text-orientation</code>を使って実装しました。</p>
+<p><strong>CSS</strong></p>
+<pre><code>div {
+    width: 30px;
+    height: 290px;
+    margin: 20px auto;
+}
+p {
+    padding: 20px;
+    border: 2px solid #000;
+    -webkit-writing-mode: vertical-rl; /* 縦書きにする */
+    -ms-writing-mode: tb-rl; /* 縦書きにする */
+    writing-mode: vertical-rl; /* 縦書きにする */
+    text-orientation: upright; /* 英数字の向きを縦にする */
+}
+</code></pre><p><strong>HTML</strong></p>
+<pre><code>&lt;div&gt;
+  &lt;p&gt;僕にもし子供が産まれたら&lt;br/&gt;世界で2番目に好きだと話そう&lt;/p&gt;
+&lt;/div&gt;
+</code></pre><p>Chrome等で確認すると想定通りになりました。
+<!-- raw HTML omitted --></p>
+<p>これで満足していたのですが、実は<code>text-orientation</code>はIEでは対応しておらず<br>
+数字が横向きになってしまいました。(2019年9月現在)<br>
+<!-- raw HTML omitted --></p>
+<h2 id="対応方法">対応方法</h2>
+<p><code>text-combine-upright</code>というスタイルがあるので<br>
+これを使って数字部分を縦向きにします。</p>
+<p>変更後のソースは以下のようにします。</p>
+<p><strong>CSS</strong></p>
+<pre><code>div {
+    width: 30px;
+    height: 290px;
+    margin: 20px auto;
+}
+p {
+    padding: 20px;
+    border: 2px solid #000;
+    -webkit-writing-mode: vertical-rl; /* 縦書きにする */
+    -ms-writing-mode: tb-rl; /* 縦書きにする */
+    writing-mode: vertical-rl; /* 縦書きにする */
+}
+span {
+    font-family: &quot;メイリオ&quot;;
+    -webkit-text-combine: horizontal; /* 英数字の向きを縦にする */
+    -ms-text-combine-horizontal: all; /* 英数字の向きを縦にする */
+    text-combine-upright: all; /* 英数字の向きを縦にする */
+}
+</code></pre><p><strong>HTML</strong></p>
+<pre><code>&lt;div&gt;
+  &lt;p&gt;僕にもし子供が産まれたら&lt;br/&gt;世界で&lt;span&gt;2&lt;/span&gt;番目に好きだと話そう&lt;/p&gt;
+&lt;/div&gt;
+</code></pre><p>これでIEでも数字が縦向きになりました。<br>
+<!-- raw HTML omitted --></p>
+<p>気をつけなければならないのは、<code>text-combine-upright</code>で囲った範囲は横に並びます。<br>
+つまり、上記のspanの中を複数文字にしてしまうと以下のようになります。</p>
+<p><strong>HTML</strong></p>
+<pre><code>&lt;div&gt;
+  &lt;p&gt;僕にもし子供が産まれたら&lt;br/&gt;世界で&lt;span&gt;123&lt;/span&gt;番目に好きだと話そう&lt;/p&gt;
+&lt;/div&gt;
+</code></pre><p><strong>結果</strong>
+<!-- raw HTML omitted --></p>
+<p>複数の英数字を縦向きにして縦に並べたい場合は<br>
+1文字ずつ<code>text-combine-upright</code>で囲まないといけないので面倒です。</p>
+<p>早くIEに<code>text-orientation</code>してもらいたいです。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2019/08/26/wp-media-infomation/" class="left arrow">&#8592;</a>
+		<a href="/posts/2019/09/28/linux-mint-virtualbox/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2609513 &#43;0900 JST m=&#43;0.080545801">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

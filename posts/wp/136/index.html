@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>【Ubuntu】UXtermの設定 &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">【Ubuntu】UXtermの設定</h1>
+		<div class="post-info">
+				<time datetime="2015-12-02 21:41:14 &#43;0000 UTC">December 2, 2015</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/ubuntu/">ubuntu</a></div>
+				</div>
+			
+		</div>
+		<p>ubuntuのターミナルは「UXterm」と普通の「端末」がありますが、<br>
+UXtermの方がカスタマイズできたりするので、UXtermを設定して使います。</p>
+<p>■環境<br>
+ubuntu 15.04</p>
+<p>UXterm用の設定ファイル(~/.Xresources)を作成し、以下を貼り付けます。<br>
+これはあくまで私の設定ですので、適当に変更して良いです</p>
+<pre><code>UXTerm*utf8               : 1  
+UXTerm*locale             : true  
+UXTerm*selectToClipboard  : true  
+UXTerm*faceName           : Dejavu Sans Mono:style=book  
+UXTerm*faceNameDoublesize : Takao Pゴシック,TakaoPGothic:style=Regular  
+UXTerm*faceSize           : 11  
+UXTerm*background         : black  
+UXTerm*foreground         : white  
+UXTerm*saveLines          : 2000  
+UXTerm*geometry           : 100x20+100+100
+</code></pre><p>編集が終ったら、以下コマンドで反映させます。<br>
+xrdb ~/.Xresources</p>
+<p>あとはUXtermを再起動させれば反映されます。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/139/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/127/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2751478 &#43;0900 JST m=&#43;0.094742301">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

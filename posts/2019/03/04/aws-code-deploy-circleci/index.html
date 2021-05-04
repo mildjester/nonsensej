@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>CircleCIからAWS Code Deployを実行する &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">CircleCIからAWS Code Deployを実行する</h1>
+		<div class="post-info">
+				<time datetime="2019-03-04 00:00:00 &#43;0000 UTC">March 4, 2019</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/circleci/">CircleCI</a></div> <div class="tags_item"><a href="/tags/aws/">AWS</a></div>
+				</div>
+			
+		</div>
+		<p><a href="/articles/2019/02/28/aws-code-deploy">前記事</a>にてCodeDeployの設定は完了したので、それをCircleCIから実行します。</p>
+<p>公式の手順ではS3に一度ソースコードを置いてからEC2に展開しているのですが、<br>
+できればS3は使いたくなかったのでこちらの記事を参考にしました。<br>
+<a href="https://qiita.com/devalon/items/99373f54998f238ec47a">CircleCI+AWS-CodedeployでStaging環境などに自動デプロイさせる</a></p>
+<h2 id="iam準備">IAM準備</h2>
+<p>CircleCI用のIAMユーザーを作成します。<br>
+まず適当なユーザー名をつけ、アクセスの種類は『プログラムによるアクセス』にチェックをつけ次のステップへ進みます。<br>
+<!-- raw HTML omitted --></p>
+<p>既存ポリシーの『AWSCodeDeployFullAccess』を付与して次のステップへ進みます。<br>
+<!-- raw HTML omitted --></p>
+<p>タグは不要なので、そのまま次のステップに進んで大丈夫です。<br>
+<!-- raw HTML omitted --></p>
+<p>ユーザーの作成をします。<br>
+<!-- raw HTML omitted --></p>
+<p>作成したユーザーの「アクセスキーID」と「シークレットアクセスキー」をメモして終了です。<br>
+※シークレットアクセスキーはこのタイミングでしか確認できないので忘れないよう注意<br>
+<!-- raw HTML omitted --></p>
+<h2 id="circleciの設定ファイル作成">CircleCIの設定ファイル作成</h2>
+<p>リポジトリ内に<code>.circleci/config.yml</code>を作成し、以下のように記載します。</p>
+<pre><code>version: 2
+jobs:
+  deploy:
+    docker:
+      - image: cdssnc/aws-cli
+    steps:
+      - run:
+          name: &quot;Set AWS region&quot;
+          command: aws configure set region ap-northeast-1
+      - run:
+          name: &quot;Run AWS CodeDeploy&quot;
+          command: aws deploy create-deployment --application-name ${DEPLOY_APPLICATION} --deployment-group-name ${DEPLOY_GROUP} --github-location repository=&quot;${DEPLOY_REPOSITORY}&quot;,commitId=&quot;${CIRCLE_SHA1}&quot;
+workflows:
+  version: 2
+  build_deploy:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only: master
+</code></pre><p>AWS CodeDeployをキックすることしか記載していないので、他にも処理が必要な場合は追記してください。</p>
+<p>なお、以下の値は後ほどCircleCIの環境変数にて設定するので変数にしています。<br>
+変数にせずに直接<code>config.yml</code>に書き込んでも良いです。</p>
+<table>
+<thead>
+<tr>
+<th>変数名</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DEPLOY_APPLICATION</td>
+<td>前記事にて設定したCodeDeployのアプリケーション名</td>
+</tr>
+<tr>
+<td>DEPLOY_GROUP</td>
+<td>前記事にて設定したCodeDeployのデプロイグループ</td>
+</tr>
+<tr>
+<td>DEPLOY_REPOSITORY</td>
+<td>デプロイ対象のGitHubリポジトリ(「ユーザー名/リポジトリ名」形式)</td>
+</tr>
+</tbody>
+</table>
+<p>作成できたらGitHubのmasterブランチにプッシュしておきます。</p>
+<h2 id="circleciの設定">CircleCIの設定</h2>
+<p>まずCircleCIにさきほどのconfig.ymlに設定した環境変数を設定します。</p>
+<p>CircleCIの基本的な設定はこちらを参照してください。</p>
+<ul>
+<li><a href="/articles/wp/1477">アカウント作成〜基本設定</a></li>
+<li><a href="/articles/wp/1538">環境変数の設定方法</a></li>
+</ul>
+<p>次に作成したAWSのIAMユーザーのキーを設定します。<br>
+CircleCIのプロジェクトの設定画面を開き（プロジェクト画面で歯車ボタンをクリック）<br>
+『PERMISSIONS &gt; AWS Permissions』を開くと設定できます。<br>
+<!-- raw HTML omitted --></p>
+<p>これで設定は完了です。<br>
+masterブランチにマージorプッシュされるとCircleCIとCodeDeployが走って自動デプロイされます。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2019/02/28/aws-code-deploy/" class="left arrow">&#8592;</a>
+		<a href="/posts/2019/03/07/google-optimize-interactive/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.258822 &#43;0900 JST m=&#43;0.078416501">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

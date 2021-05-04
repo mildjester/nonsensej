@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Apacheのセキュリティ設定 &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Apacheのセキュリティ設定</h1>
+		<div class="post-info">
+				<time datetime="2016-10-12 13:40:02 &#43;0000 UTC">October 12, 2016</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/apache/">Apache</a></div>
+				</div>
+			
+		</div>
+		<p>Apacheはデフォルト設定のまま利用するとサーバーの情報が諸々見えてしまいます。<br>
+それらを隠すには設定ファイルを編集する必要があります。</p>
+<p>修正ファイル：/etc/httpd/conf/httpd.conf</p>
+<h3 id="ファイル一覧を表示しないようにする">①ファイル一覧を表示しないようにする</h3>
+<p>公開ディレクトリにindex.html等の初期表示ファイルが存在しない場合<br>
+そのディレクトリのURLを指定するとファイル一覧が表示されてしまいます。</p>
+<p>それを防ぐためには以下のIndexesにハイフンを付けます。</p>
+<pre><code>&lt;Directory &quot;/var/www/html&quot;&gt;  
+    〜省略〜  
+    # Options Indexes FollowSymLinks  
+    Options -Indexes FollowSymLinks  
+    〜省略〜  
+&lt;/Directory&gt;  
+</code></pre><h3 id="エラー画面にてバージョン番号だけ隠す場合">①エラー画面にてバージョン番号だけ隠す場合</h3>
+<p>ServerTokensを「OS」から「Prod」に変更するだけです</p>
+<pre><code># ServerTokens OS  
+ServerTokens Prod  
+</code></pre><h3 id="エラー画面にてapacheという表示を隠す場合">②エラー画面にて『Apache』という表示を隠す場合</h3>
+<p>ServerSignatureを「On」から「Off」に変更するだけです</p>
+<pre><code># ServerSignature On  
+ServerSignature Off  
+</code></pre>
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/295/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/311/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2822542 &#43;0900 JST m=&#43;0.101848601">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

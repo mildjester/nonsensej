@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>VPNクライアント設定(L2TP over IPsec) &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">VPNクライアント設定(L2TP over IPsec)</h1>
+		<div class="post-info">
+				<time datetime="2019-03-13 00:00:00 &#43;0000 UTC">March 13, 2019</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/linuxmint/">LinuxMint</a></div> <div class="tags_item"><a href="/tags/ubuntu/">ubuntu</a></div>
+				</div>
+			
+		</div>
+		<h2 id="環境">環境</h2>
+<ul>
+<li>Linux Mint 19.1 &ldquo;Tessa&rdquo; - MATE (64-bit)</li>
+<li>ubuntu 19.10</li>
+</ul>
+<h3 id="参考">■参考</h3>
+<p><a href="https://askubuntu.com/questions/981165/l2tp-ipsec-failing-to-connect-kubuntu-17-10">ask ubuntu</a></p>
+<hr>
+<p>Linux MintでのVPNクライアント設定に少し苦戦したのでメモです。<br>
+ubuntuでもほぼ同手順で対応可能でした。</p>
+<h2 id="必要なアプリケーションのインストール">必要なアプリケーションのインストール</h2>
+<p>以下のコマンドでインストールします。<br>
+(ubuntuの場合はaptの前にsudoを付けてください)</p>
+<pre><code>$ apt update
+$ apt install network-manager-l2tp-gnome strongswan libstrongswan-extra-plugins libcharon-extra-plugins
+</code></pre><h2 id="ネットワーク設定">ネットワーク設定</h2>
+<p>まず、『コントロールセンター＞ネットワーク接続』を開きます。<br>
+(ubuntuの場合は『設定＞ネットワーク』)<br>
+現在のネットワーク一覧が表示されるので、「＋」マーク(追加ボタン)をクリックします。</p>
+<p>接続の種類を聞かれるのでVPNの中にある『Layer 2 Tunneling Protocol(L2TP)』を選択して『作成』をクリックします。<br>
+L2TPの設定画面が開くので、VPNタブにて以下を設定します。</p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>設定値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ゲートウェイ</td>
+<td>VPNサーバーのIPアドレスorホスト名</td>
+</tr>
+<tr>
+<td>ユーザー名</td>
+<td>VPN接続する際のユーザー名</td>
+</tr>
+<tr>
+<td>パスワード</td>
+<td>上記ユーザーのパスワード※</td>
+</tr>
+<tr>
+<td>NTドメイン</td>
+<td>空欄のまま</td>
+</tr>
+</tbody>
+</table>
+<h4 id="補足">※補足</h4>
+<p>パスワードは入力欄右端の？アイコンをクリックしてポリシーを選択すれば入力できます。<br>
+パスワードを接続の都度入力する場合はここでは空欄で良いです。</p>
+<p>次に『IPsec Settings』をクリックしてIPsecの設定をします。<br>
+以下を設定して『OK』をクリックします。<br>
+「Phase1 Algorithms」以降は『Advanced』をクリックしたら表示されます。</p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>設定値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enable IPsec tunnel to L2TP host</td>
+<td>チェックする</td>
+</tr>
+<tr>
+<td>Gateway ID</td>
+<td>空欄のまま</td>
+</tr>
+<tr>
+<td>Pre-shared key</td>
+<td>VPNサーバーの共有キーフレーズ</td>
+</tr>
+<tr>
+<td>Phase1 Algorithms</td>
+<td>VPNサーバーの暗号方式※</td>
+</tr>
+<tr>
+<td>Phase2 Algorithms</td>
+<td>VPNサーバーの暗号方式サブ（あれば）※</td>
+</tr>
+<tr>
+<td>Enforce UDP encapsulation</td>
+<td>未チェックのまま</td>
+</tr>
+</tbody>
+</table>
+<h4 id="補足-1">※補足</h4>
+<p>Algorithmsに何を指定するかはVPNサーバー側に確認してください。<br>
+私の場合は以下を設定したら繋がりました。<br>
+Phase1: 3des-sha1-modp1024!<br>
+Phase2: 3des-sha1!</p>
+<p>このAlgorithms設定がうまく行ってなくて繋がらない人が多いようです。<br>
+VPN接続できない場合はこの設定をよく見直しましょう。</p>
+<p>これでネットワーク設定は完了です。<br>
+他の記事を見るとPPPの設定もしている人が多いですが、必須ではなさそうです。</p>
+<h2 id="vpn接続">VPN接続</h2>
+<p>タスクバーのネットワークアイコンをクリックすると「VPN接続」のメニューがあります。<br>
+そこから作成したVPN接続を選択し、VPN接続 or 切断します。<br>
+接続に成功したらネットワークアイコンに鍵マークがつきます。</p>
+<h2 id="トラブルシューティング">トラブルシューティング</h2>
+<p>うまく繋がらない場合は以下のコマンドでログを確認することができます。</p>
+<pre><code>journalctl -f
+</code></pre>
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2019/03/10/linux-mint-terminator-fish/" class="left arrow">&#8592;</a>
+		<a href="/posts/2019/04/10/javascript-event/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2591381 &#43;0900 JST m=&#43;0.078732501">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

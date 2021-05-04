@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>【Wordpress】テーマで指定されたCSSがうまく読み込めない &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">【Wordpress】テーマで指定されたCSSがうまく読み込めない</h1>
+		<div class="post-info">
+				<time datetime="2017-08-21 01:57:10 &#43;0000 UTC">August 21, 2017</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/wordpress/">Wordpress</a></div>
+				</div>
+			
+		</div>
+		<p>Wordpressで他人が作成したテーマを使っているとCSSがうまく読み込めない時があります。<br>
+条件としては以下の両方に当てはまっている場合だと思います。</p>
+<ul>
+<li>Wordpressの管理画面と公開画面でドメインが違う</li>
+<li>テーマ内にstyle.css以外のCSSファイルがあり、それをwp_enqueue_styleを使って読み込んでいる</li>
+</ul>
+<p>このとき、ブラウザの開発ツールでコンソールを表示すると、以下のようなエラーが発生していると思います。</p>
+<pre><code>Access to Font at 'http://yourdomain1.com/wp-content/themes/sparkling/assets/fonts/glyphicons-halflings-regular.woff2' from origin 'http://yourdomain2.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://yourdomain2.com' is therefore not allowed access.  
+</code></pre><p>クロスドメインなどが原因のようなのですが、手早く直したかったので<br>
+以下の修正をして直しました。</p>
+<p>①wp_enqueue_styleをしている箇所をコメントアウトする。(テーマによるが、function.phpなどに記載あり)</p>
+<pre><code>// wp_enqueue_style( 'bs', get_template_directory_uri() . '/assets/css/bootstrap.min.css' );  
+// wp_enqueue_style( 'awe', get_template_directory_uri() . '/assets/css/font-awesome.min.css' );  
+</code></pre><p>②htmlのheadタグ内にてCSS読み込み処理を記載する。(テーマによるが、header.phpなどに記載あり)<br>
+※以下例ではCDNを指定しています。</p>
+<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css&quot;&gt;  
+&lt;link rel=&quot;stylesheet&quot; href=&quot;//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css&quot;&gt;  
+</code></pre><p>これで正常にCSSが読み込まれ、ブラウザのコンソールからもエラーが消えました。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/689/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/703/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.286576 &#43;0900 JST m=&#43;0.106170501">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

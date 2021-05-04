@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>LaravelのQueue内でAuth::user()が取れたり取れなかったりする &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">LaravelのQueue内でAuth::user()が取れたり取れなかったりする</h1>
+		<div class="post-info">
+				<time datetime="2021-01-13 00:00:00 &#43;0000 UTC">January 13, 2021</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/laravel/">Laravel</a></div>
+				</div>
+			
+		</div>
+		<h2 id="環境">環境</h2>
+<ul>
+<li>Laravel 5.8</li>
+</ul>
+<hr>
+<p>Laravelで『データが更新されたらアラートメールで更新者情報を送る』というイベントリスナーを作ったのですが、<br>
+その中で<code>Auth::user()</code>の値が環境により「更新者情報」だったり「null」だったりしました。</p>
+<p>このイベントリスナーで登録した処理はキュー(Queue)に登録されて非同期に処理されるようにしていたので、<br>
+非同期処理では当然ながら<code>Auth::user()</code>でユーザー情報は取れません。<br>
+なので、nullになるのは妥当な動きでした。</p>
+<p>では、なぜ環境によりユーザー情報が取れてしまったのかというと<br>
+それは<code>.env</code>の<code>QUEUE_DRIVER</code>の値が原因でした。</p>
+<p><code>QUEUE_DRIVER=database</code>等にしているとキューの処理は非同期に処理されるのですが、<br>
+<code>QUEUE_DRIVER=sync</code>ではキューの処理も同期的に処理されるようになります。</p>
+<p>キューが同期的に実行されるとユーザーの情報が<code>Auth::user()</code>で取得できる状態でキューの処理が走るので、<br>
+ローカル環境などで<code>QUEUE_DRIVER=sync</code>にしているとキュー内で<code>Auth::user()</code>が動いてしまいます。</p>
+<p>これも、ちゃんと<code>.env</code>が本番相当になっている環境でテストをすれば見つけられるので、<br>
+ローカル検証だけでリリースをするのではなく、ちゃんと本番相当の環境でもテストしましょう。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2021/01/07/git-revert-revert/" class="left arrow">&#8592;</a>
+		<a href="/posts/2021/01/25/lost-tag-qr/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2682079 &#43;0900 JST m=&#43;0.087802301">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

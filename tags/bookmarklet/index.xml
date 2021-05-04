@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>bookmarklet on Nonsense J</title>
+    <link>/tags/bookmarklet/</link>
+    <description>Recent content in bookmarklet on Nonsense J</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Thu, 16 Jul 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/bookmarklet/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GitHubの草を炭治郎柄にする</title>
+      <link>/posts/2020/07/16/bookmarklet-kimetsu/</link>
+      <pubDate>Thu, 16 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2020/07/16/bookmarklet-kimetsu/</guid>
+      <description>私は鬼滅の刃自体は見たことが無いのですが、それでも主人公の炭治郎の着物はよく目にします。
+あの柄を見ると、ちょっとGitHubの草っぽいなと思ってました。
+というわけで、GitHubの草を炭治郎の着物柄にしてみます。
+Bookmarkletの説明や作り方についてはこちらを参照。
+Bookmarklet(ブックマークレット)の作り方
+Bookmarklet作成 まず、GitHubの草部分の色を変えるスクリプトを書いてみます。
+// GitHubの草部分の要素を取得 var kusaElmList = document.getElementsByClassName(&#39;day&#39;) for (var i=0; i&amp;lt;kusaElmList.length; i++){ var kusa = kusaElmList[i] if (i % 2 == 0){ // 偶数マスは緑 kusa.setAttribute(&#39;fill&#39;,&#39;#2A7&#39;) }else{ // 奇数マスは黒 kusa.setAttribute(&#39;fill&#39;,&#39;#000&#39;) } } これをBookmarkletにします。
+javascript:for(var t=document.getElementsByClassName(&amp;quot;day&amp;quot;),e=0;e&amp;lt;t.length;e++){var l=t[e];e%2==0?l.setAttribute(&amp;quot;fill&amp;quot;,&amp;quot;#2A7&amp;quot;):l.setAttribute(&amp;quot;fill&amp;quot;,&amp;quot;#000&amp;quot;)} 実行結果はこちら。
+色はそれっぽくなりましたが、まだ隙間が気になります。
+なので、隙間も埋めるよう修正します。
+// GitHubの草部分の要素を取得 var kusaElmList = document.getElementsByClassName(&#39;day&#39;); for (var i=0; i&amp;lt;kusaElmList.length; i++){ var kusa = kusaElmList[i]; // 草の大きさと形を整える kusa.setAttribute(&#39;width&#39;,&#39;15&#39;); kusa.setAttribute(&#39;height&#39;,&#39;15&#39;); kusa.style.rx=0; kusa.style.ry=0; if (i % 2 == 0){ // 偶数マスは緑 kusa.</description>
+    </item>
+    
+    <item>
+      <title>Bookmarklet(ブックマークレット)の作り方</title>
+      <link>/posts/2020/07/15/howto-make-bookmarklet/</link>
+      <pubDate>Wed, 15 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2020/07/15/howto-make-bookmarklet/</guid>
+      <description>Bookmarklet(ブックマークレット)とは 詳細はこちら
+ウィキペディア
+簡単に言えばブラウザのブックマークにURL代わりにjavascriptを入力して保存しておいて。
+そのjavascriptを実行したい時に該当のブックマークをクリックするというものです。
+たとえばブックマークにjavascript:alert(&#39;hoge&#39;);と登録しておけば、
+そのブックマークをクリックしたら&amp;lt;a href=&amp;quot;javascript:alert(&#39;hoge&#39;);&amp;quot;&amp;gt;hoge&amp;lt;/a&amp;gt;をクリックした時と同じ事が起きます。
+作り方は色々ありますが、uglify-jsを使って作成する方法を紹介します。
+javascriptの作成 まず、適当にjsファイルを作って適当に実行したいjavascriptのコードを書きます。
+今回は例としてページ内のdivタグの数を数えるスクリプトを作ります。
+以下のコードをsample.jsというファイルに記載しておきます。
+var divElms = document.getElementsByTagName(&#39;div&#39;); alert(&#39;divの数は&#39; + divElms.length + &#39;です！&#39;); uglify-jsによるjavascriptの圧縮 uglify-jsを使って作成したsample.jsを圧縮します。
+まず、uglify-jsコマンドを使えるようにインストールします。
+npmをインストールしていない人は先にインストールしておいてください。
+$ npm install -g uglify-js # 環境に応じて必要であればsudoを付けてください 次にjavascriptの圧縮をします。
+以下のコマンドでjavascriptの圧縮ができます。
+※各オプションについては公式ページ参照
+$ uglifyjs -c -m --toplevel -- sample.js 実行結果として以下のように圧縮されたスクリプトが出力されます。
+var e=document.getElementsByTagName(&amp;quot;div&amp;quot;);alert(&amp;quot;divの数は&amp;quot;+e.length+&amp;quot;です！&amp;quot;); この圧縮スクリプトの頭にjavascript:を付けたものがBookmarkletになります。
+ブラウザへのBookmarklet登録 ブラウザのブックマークに新規ページを追加し、URL欄にjavascript:｛生成した圧縮スクリプト｝を登録します。
+Chromeであれば以下のようになります。
+（名前は自分で分かるものであれば何でもいいです）
+これで任意のページを開いている時に、登録したブックマークをクリックすると処理が走ります。
+Googleで実行するとこのようになります。
+これでBookmarkletの作成は完了です。</description>
+    </item>
+    
+    <item>
+      <title>Bookmarkletでパスワードを自動で入力させる</title>
+      <link>/posts/2019/10/02/bookmarklet-mizuho/</link>
+      <pubDate>Wed, 02 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2019/10/02/bookmarklet-mizuho/</guid>
+      <description>みずほダイレクトで振込時の第2暗証番号6桁から数字4桁を抽出するのが面倒だったので、
+Bookmarkletを使って入力すべき数字4桁を表示できるようにしました。
+Bookmarkletの説明や作り方についてはこちらを参照。
+Bookmarklet(ブックマークレット)の作り方
+みずほダイレクトに仕込んでみる みずほダイレクトの振込時に第2暗証番号を入力する画面まで来たら
+以下のjavascriptを実行すると第2暗証番号が表示されます。
+var secondPass = &#39;123456&#39;; // ここに第2暗証番号の6桁を入れてください var orderNum = 0; var pickPw = &#39;入力するパスワード: &#39;; // 聞かれる第2パスワード4桁を順に処理する for (var i = 1; i&amp;lt;=4; i++) { // 第2パスワードの何番目の数字を聞かれているかチェック orderNum = Number(document.getElementById(&#39;txtScndPwdDgt&#39; + i).innerHTML); // 第2パスワードから対象の数字を抜き出してテキストに追加する pickPw += secondPass.substr(orderNum -1, 1) } // 入力すべき4桁の数字を表示する alert(pickPw); これをBookmarklet用に圧縮し、頭にjavascript:を付けます。
+（圧縮方法はコチラを参照）
+javascript:for(var t,e=&amp;quot;入力するパスワード: &amp;quot;,r=1;r&amp;lt;=4;r++)t=Number(document.getElementById(&amp;quot;txtScndPwdDgt&amp;quot;+r).innerHTML),e+=&amp;quot;123456&amp;quot;.substr(t-1,1);alert(e); あとはブラウザのブックマークに新しくページを追加し、URLに上記のjavascriptを入力しておくだけです。
+みずほダイレクト以外のサイトでもブラウザの開発者ツールでHTML要素を調べれば
+似たような処理を作れると思います。</description>
+    </item>
+    
+  </channel>
+</rss>

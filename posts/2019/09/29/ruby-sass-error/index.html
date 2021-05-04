@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Linux Mintにsassをインストールする &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Linux Mintにsassをインストールする</h1>
+		<div class="post-info">
+				<time datetime="2019-09-29 00:00:00 &#43;0000 UTC">September 29, 2019</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/linuxmint/">LinuxMint</a></div>
+				</div>
+			
+		</div>
+		<h2 id="インストール方法">インストール方法</h2>
+<p>最終的に行き着いたインストール方法です。<br>
+インストールするだけならこちらを実行してください。</p>
+<pre><code>$ apt install ruby-sass ruby-dev
+$ sudo gem install listen --version '~&gt; 3.0'
+</code></pre><h2 id="躓いた点">躓いた点</h2>
+<p>エラーメッセージで検索する人もいると思うので、<br>
+躓いた工程をメモしておきます。</p>
+<p>まず、最初にsassだけインストールしました。</p>
+<pre><code>$ apt install ruby-sass
+</code></pre><p>すると、sassコマンドでwatchをする際にエラーが出ました。</p>
+<pre><code>$ sass --watch ./sass:./css --style compact --no-cache
+&gt;&gt;&gt; Sass is watching for changes. Press Ctrl-C to stop.
+LoadError: cannot load such file -- listen
+Run &quot;gem install listen --version '~&gt; 3.0'&quot; to get it.
+  Use --trace for backtrace.
+</code></pre><p>watchをするためにはlistenが必要であるようです。<br>
+そこでlistenをインストールしようとしましたが、エラーになりました。</p>
+<pre><code>$ sudo gem install listen --version '~&gt; 3.0'
+Building native extensions. This could take a while...
+ERROR:  Error installing listen:
+	ERROR: Failed to build gem native extension.
+
+    current directory: /var/lib/gems/2.5.0/gems/ffi-1.11.1/ext/ffi_c
+/usr/bin/ruby2.5 -r ./siteconf20190925-17707-1yh0gf6.rb extconf.rb
+mkmf.rb can't find header files for ruby at /usr/lib/ruby/include/ruby.h
+
+extconf failed, exit code 1
+
+Gem files will remain installed in /var/lib/gems/2.5.0/gems/ffi-1.11.1 for inspection.
+Results logged to /var/lib/gems/2.5.0/extensions/x86_64-linux/2.5.0/ffi-1.11.1/gem_make.out
+</code></pre><p>調べたら、どうやらruby-devが必要らしかったです。<br>
+<a href="https://qiita.com/kyrieleison/items/81c14780ad490049202c">https://qiita.com/kyrieleison/items/81c14780ad490049202c</a></p>
+<p>ruby-devをインストールしてからlistenをインストールしたら成功しました。</p>
+<pre><code>$ apt install ruby-dev
+$ sudo gem install listen --version '~&gt; 3.0'
+</code></pre><p>これでsassコマンドが動くようになりました。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2019/09/28/linux-mint-virtualbox/" class="left arrow">&#8592;</a>
+		<a href="/posts/2019/10/02/bookmarklet-mizuho/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2609472 &#43;0900 JST m=&#43;0.080541701">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

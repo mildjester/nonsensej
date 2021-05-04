@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>SVNサーバ(svn&#43;ssh)のリポジトリをgitサーバに移行する &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">SVNサーバ(svn&#43;ssh)のリポジトリをgitサーバに移行する</h1>
+		<div class="post-info">
+				<time datetime="2016-08-10 12:04:21 &#43;0000 UTC">August 10, 2016</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/git/">git</a></div>
+				</div>
+			
+		</div>
+		<p>■前提条件<br>
+gitはサーバ＆クライアントのどちらも既に使える環境であること</p>
+<p>①gitサーバで空のリポジトリを作成する。<br>
+作成方法は各Gitサーバでの手法に従えば良いと思います。<br>
+（コマンドだったり、gitlabで作成したり）</p>
+<p>②ローカルにSVNリポジトリを読み込んだgitリポジトリを作成する。</p>
+<pre><code>$ git svn clone --prefix svn/ svn+ssh://svn.sample.com/home/svn/svnhoge githoge
+</code></pre><p>以下、読み替えてください。<br>
+【svn.sample.com】　SVNサーバのホスト名(IPアドレス)<br>
+【/home/svn/svnhoge】　移行対象のリポジトリのパス<br>
+　　※上記２つはSVNを使っていた頃に指定していたものと同じです<br>
+【githoge】　作成するgitリポジトリのディレクトリ名</p>
+<p>③ローカルにリポジトリができるので、gitサーバと紐付けする</p>
+<pre><code>$ cd githoge  
+$ git remote add origin gituser@git.sample.com:git/githoge.git
+</code></pre><p>以下、読み替えてください。<br>
+【gituser】　gitを利用する際のアカウント<br>
+【git.sample.com】　gitサーバのホスト名(IPアドレス)<br>
+【git/githoge.git】　①で作成したgitリポジトリ</p>
+<p>以上で完了です。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/274/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/295/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2811916 &#43;0900 JST m=&#43;0.100786001">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

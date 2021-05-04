@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>【Mac】fish &#43; oh-my-fish &#43; pecoの導入方法 &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">【Mac】fish &#43; oh-my-fish &#43; pecoの導入方法</h1>
+		<div class="post-info">
+				<time datetime="2017-04-20 00:31:51 &#43;0000 UTC">April 20, 2017</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/mac/">Mac</a></div>
+				</div>
+			
+		</div>
+		<h2 id="環境">環境</h2>
+<p>OS X ElCapitan 10.11.6</p>
+<hr>
+<h3 id="fishのインストール">fishのインストール</h3>
+<p>brewでfishをインストールする。</p>
+<pre><code>brew install fish  
+</code></pre><p>※brew自体のインストールについては<!-- raw HTML omitted -->こちら<!-- raw HTML omitted -->参照。</p>
+<p>次にシェル一覧にfishを追加する。</p>
+<pre><code>vim /etc/shells  
+# 以下行を追加  
+/usr/local/bin/fish  
+</code></pre><p>次に通常利用するシェルをfishに設定する。</p>
+<pre><code>chsh -s /usr/local/bin/fish  
+</code></pre><h3 id="oh-my-fishのインストール">oh-my-fishのインストール</h3>
+<p>以下コマンドを実行するだけ。</p>
+<pre><code>curl -L http://get.oh-my.fish | fish  
+</code></pre><h3 id="pecoのインストール">pecoのインストール</h3>
+<p>pecoはbrewとomfコマンドでインストールできる。</p>
+<pre><code>brew install peco  
+omf install peco  
+</code></pre><p>インストールできたら、fishの設定ファイルにpecoの設定を追記する。<br>
+fishの設定ファイルが存在しない場合は新規作成する。</p>
+<pre><code>vim ~/.config/fish/config.fish  
+# 以下行を追記する  
+function fish_user_key_bindings  
+    bind \cr peco_select_history  
+end  
+</code></pre><p>以上で設定完了です。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/520/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/592/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2841024 &#43;0900 JST m=&#43;0.103696901">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

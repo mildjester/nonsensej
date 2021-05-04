@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>【Ubuntu】シャットダウンが遅い &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">【Ubuntu】シャットダウンが遅い</h1>
+		<div class="post-info">
+				<time datetime="2016-05-22 00:35:22 &#43;0000 UTC">May 22, 2016</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/ubuntu/">ubuntu</a></div>
+				</div>
+			
+		</div>
+		<p>■環境<br>
+Ubuntu 16.04</p>
+<p>Ubuntuを16.04にしたら、シャットダウンに時間がかかるようになったので対応します。<br>
+参考： <!-- raw HTML omitted --><a href="http://sicklylife.at-ninja.jp/memo/ubuntu1604/settings.html">http://sicklylife.at-ninja.jp/memo/ubuntu1604/settings.html</a><!-- raw HTML omitted --></p>
+<p>システム設定ファイルを修正します。</p>
+<pre><code># vim /etc/systemd/system.conf  
+〜以下項目のコメントアウトを外して修正〜  
+DefaultTimeoutStopSec=10s  
+</code></pre>
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/239/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/223/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2812735 &#43;0900 JST m=&#43;0.100868001">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

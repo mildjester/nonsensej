@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Posts &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="catalogue">
+		
+			<a href="/posts/wp/1375/" class="catalogue-item">
+    <div>
+        <time datetime="2018-06-10 09:20:20 &#43;0000 UTC" class="catalogue-time">June 10, 2018</time>
+        <h1 class="catalogue-title">CakePHP2のローカル検証環境構築</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            環境 CakePHP 2.10.10
+ 今更ながらCakePHP2を仕事で使う可能性があったので、
+勉強するためローカルに環境構築しました。
+環境構築はDockerを利用しており、以下3つのコンテナを作成しています。
+ nginx php-fpm MySQL  【参考】出来上がったものはこちら
+https://github.com/mildjester/my-training-cakephpCakePHPのDocument関連は「Book」という名称で公開されていますので
+こちらを参考にして進めていきます。
+（CakePHPは全体的に料理っぽい命名がされているので、レシピ本ってこと？）
+https://book.cakephp.org/2.0/ja/index.htmlCakePHPのインストール BookによるとCakePHP2のダウンロードは公式ページより行なえるそうなのですが、
+現在の公式ページにはダウンロードできそうなリンクはありませんでした。
+なので、GitHubからダウンロードしてきます。
+私が見た時はVersion.2系の最新は「2.10.10」だったので、それの圧縮ファイルダウンロードしました。
+https://github.com/cakephp/cakephp/tagsダウンロードしてきた圧縮ファイルを解凍したらCakePHP2の基本構造が出てきます。
+これをDockerで作った環境で動くように突っ込みます。
+Docker環境についてはコチラを参照してください。
+https://github.com/mildjester/my-training-cakephp/tree/master/dockerこの状態でDockerを起動すればCakePHPの初期画面が表示されます。
+初期設定 上記の初期画面で色々とWarning等が出ているので
+これの対応をしていきます。
+Databaseの設定 /app/Config/database.php.defaultというファイルがあるので、それを同じディレクトリにdatabase.phpという名前でコピーします。
+コピーしたファイルにデータベースの設定について記載されていますので、構築するDBの情報を記載します。
+また、ここに記載するDB情報に合わせてMySQLにもDBやユーザーを作成しておきます。
+（MySQLの操作については割愛）
+Coreの修正 /app/Config/core.phpにセキュリティ関連のSaltやCipherSeedが設定されています。
+初期値のままだと宜しくないので修正しておきます。
+Configure::write('Security.salt', 'DYhG93b0qyJfIxfs2guVoUubWwvniR2G0FgaC9mi'); // 任意の半角英数にする Configure::write('Security.cipherSeed', '76859309657453542496749683645'); // 任意の数字にする DebugKitの設定 CakePHP用のDebugKitがあるのでインストールしておきます。
+https://github.com/cakephp/debug_kit/tree/2.2まず、Composerでインストールし、生成されるPluginを/app/Plugin配下へ移動させます。
+composer require cakephp/debug_kit &quot;^2.2.0&quot; mv Plugin/DebugKit app/Plugin/. もしローカルにComposerが入ってない場合は、php-fpmのDockerコンテナに入って実行しても構いません。
+本例のDocker環境の場合は以下コマンドでコンテナに入れます。
+docker-compose -f cakedock/docker-compose.yml exec --user=www-data workspace sh # または、上記コマンドをMakefile化してあるので、以下コマンドでも入れます make workspace 次に/app/Config/bootstrap.phpの69行目あたりにプラグイン読み込み設定を記載する箇所があるので
+そこにDebugKitを読み込む設定を追記します。
+CakePlugin::load('DebugKit'); ここまで対応すれば初期画面の警告はAllGreenになるはずです。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/1363/" class="catalogue-item">
+    <div>
+        <time datetime="2018-05-26 11:28:56 &#43;0000 UTC" class="catalogue-time">May 26, 2018</time>
+        <h1 class="catalogue-title">Apacheのevent MPMのチューニング</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            preforkからeventに乗り換えるとチューニングの考え方が少し変わるので簡単にメモ。
+event MPMではまずApacheの子プロセス（以下プロセス）が複数生成され、
+さらに各プロセスの中にWorker Thread（以下スレッド）が複数生成されるイメージ。
+設定値の意味は以下のようになる
+&lt;IfModule mpm_event_module&gt; ServerLimit 8 #プロセス数の最大値 StartServers 3 #プロセス数の初期値 MinSpareThreads 192 #空きスレッド数の最小値(下回ったら増やす) MaxSpareThreads 384 #空きスレッド数の最大値(上回ったら減らす) ThreadsPerChild 64 #プロセスあたりのスレッド数 MaxRequestWorkers 512 #同時に処理できる最大数 MaxConnectionsPerChild 5000 #プロセスが再起動までに処理するリクエスト数 &lt;/IfModule&gt;  MaxRequestWorkersは最大スレッド数(ServerLimit×ThreadsPerChild)以下にしておくこと。
+スレッド数以上のリクエストが来ると困る。 MinSpareThreadsは初期スレッド数(StartServers×ThreadsPerChild)以下にしておくこと。
+初期スレッド数以上の空きスレッドが必要だと、起動直後にスレッド追加しなければならなくて無駄。 MinSpareThreadsとMaxSpareThreadsはThreadsPerChildの倍数になっていた方が良さそう。  
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/1360/" class="catalogue-item">
+    <div>
+        <time datetime="2018-05-22 10:14:55 &#43;0000 UTC" class="catalogue-time">May 22, 2018</time>
+        <h1 class="catalogue-title">Linux環境のタイムゾーンを日本にする</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            このコマンドを実行するだけ
+sudo ln -fs /usr/share/zoneinfo/Asia/Tokyo /etc/localtime 
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/1352/" class="catalogue-item">
+    <div>
+        <time datetime="2018-05-18 21:53:41 &#43;0000 UTC" class="catalogue-time">May 18, 2018</time>
+        <h1 class="catalogue-title">数字入力フォームに文字数制限をつける</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            HTML5で追加された&lt;input type=&quot;number&quot; /&gt;ですが、maxlengthの指定ができません。
+なので、Javascriptで最大桁数の制御を入れてみます。
+HTML 3桁の例 &lt;input type=&quot;number&quot; name=&quot;bangou3keta&quot; oninput=&quot;sliceMaxLength(this, 3)&quot;&gt; 5桁の例 &lt;input type=&quot;number&quot; name=&quot;bangou5keta&quot; oninput=&quot;sliceMaxLength(this, 5)&quot;&gt; Javascript function sliceMaxLength(elem, maxLength) { elem.value = elem.value.slice(0, maxLength); } また、&lt;input type=&quot;number&quot; /&gt;にすると右端に数字を増減するスピンボタンが表示されます。
+電話番号の入力欄などでは不要なので、以下のCSSで非表示にしてしまいます。
+CSS // Chrome、Safari input[type=&quot;number&quot;]::-webkit-outer-spin-button, input[type=&quot;number&quot;]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; } // Firefox、IE input[type=&quot;number&quot;] { -moz-appearance:textfield; } 
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/1291/" class="catalogue-item">
+    <div>
+        <time datetime="2018-04-24 00:56:56 &#43;0000 UTC" class="catalogue-time">April 24, 2018</time>
+        <h1 class="catalogue-title">Wordpressを多言語対応させる</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境 Wordpress 4.9.5
+MultilingualPress 2.11.1
+ ■手順 まずMultilingualPressというプラグインをインストールします。
+インストール後、プラグインを有効化しようとするとマルチサイトを有効にしないといけない旨のメッセージが表示されます。
+上記のリンク先にマルチサイト化をするための手順が記載されています。
+https://multilingualpress.org/docs/install-wordpress-multisite/まず、Wordpressがインストールされているディレクトリにあるwp-config.phpを編集し、マルチサイトを有効化します。
+define('WP_DEBUG', false); define('WP_ALLOW_MULTISITE', TRUE); &lt;=これを追記 /* 編集が必要なのはここまでです ! WordPress でブログをお楽しみください。 */ /** Absolute path to the WordPress directory. */ if ( !defined('ABSPATH') ) define('ABSPATH', dirname(__FILE__) . '/'); 次にプラグインを全て停止させ、管理画面より「ツール ＞ サイトネットワークの設置」を開き、『インストール』をクリックします。
+すると、再度wp-config.phpを修正するよう案内が表示されるので、案内通りに修正します。
+define('WP_DEBUG', false); define('WP_ALLOW_MULTISITE', TRUE); define('MULTISITE', true); &lt;=これを追記 define('SUBDOMAIN_INSTALL', true); &lt;=これを追記 define('DOMAIN_CURRENT_SITE', 'your-domain.com'); &lt;=これを追記 define('PATH_CURRENT_SITE', '/'); &lt;=これを追記 define('SITE_ID_CURRENT_SITE', 1); &lt;=これを追記 define('BLOG_ID_CURRENT_SITE', 1); &lt;=これを追記 /* 編集が必要なのはここまでです ! WordPress でブログをお楽しみください。 */ /** Absolute path to the WordPress directory.
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/1245/" class="catalogue-item">
+    <div>
+        <time datetime="2018-04-20 16:23:01 &#43;0000 UTC" class="catalogue-time">April 20, 2018</time>
+        <h1 class="catalogue-title">【Linux Mint】gemでcompassをインストールする</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            以下のコマンドでインストールしようとするとエラーが発生しました。
+$ sudo gem install compass Fetching: sassa - 3.4.25.gem (100%) Successfully installed sassa - 3.4.25 Fetching: multi_json - 1.13.1.gem (100%) Successfully installed multi_json - 1.13.1 Fetching: compass-core-1.0.3.gem (100%) Successfully installed compass-core-1.0.3 Fetching: compass-import-once-1.0.5.gem (100%) Successfully installed compass-import-once-1.0.5 Fetching: chunky_png - 1.3.10 gem (100%) Successfully installed chunky_png-1.3.10 Fetching: rb - fsevent - 0.10.3.gem (100%) Successfully installed rb - fsevent - 0.10.3 Fetching: ffi - 1.9.23.gem (100%) Building native extensions. This could take a while .
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/1236/" class="catalogue-item">
+    <div>
+        <time datetime="2018-04-20 10:25:55 &#43;0000 UTC" class="catalogue-time">April 20, 2018</time>
+        <h1 class="catalogue-title">【Linux Mint】cpuminer &#43; wpoolでBitZenyをマイニング</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境 Linux Mint 18.3 cinnamon 64bit
+ cpuminerのインストール 基本的な流れはcpuminerのgithubページに記載されている通りです。
+https://github.com/macchky/cpuminer事前に必要な物をインストールします。
+※libjansson4は公式ページには記載がありませんが、ないとminerd実行時にエラーとなります。
+apt install build-essential libcurl4-openssl-dev libjansson4 cpuminerバイナリをダウンロードして実行ファイルを取り出します。
+wget https://github.com/macchky/cpuminer/releases/download/v2.6.0/ZNYminer260.zip unzip unzip ZNYminer260.zip chmod +x ZNYminer260/linux/minerd sudo mv ZNYminer260/linux/minerd /usr/local/bin/. rm -rf unzip ZNYminer260* BitZeny Walletの登録 BitZenyの受け取り用にWalletを作っておきます。
+以下サイトにてWalletが作成できます。
+https://bitzeny.jpアカウントを作成し、ログイン後の画面でWalletのアドレスが確認できます。
+マイニングの開始 minerdを使ってマイニングを開始します。
+wpoolに記載されている下記コマンドを実行すればマイニングが開始されます。
+マイニング停止はCtrl+Cです。
+https://wpool.work/minerd -a yescrypt -o stratum+tcp://wpool.work:15022 -u {BitZeny Walletで取得したアドレス} マイニング中は以下のように結果が流れていきます。
+「yay!!!」となっているところがマイニング成功です。
+[2018-04-20 15:42:35] Stratum requested work restart [2018-04-20 15:42:35] thread 1: 32638 hashes, 0.76 khash/s [2018-04-20 15:42:35] thread 0: 1957 hashes, 0.
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/1226/" class="catalogue-item">
+    <div>
+        <time datetime="2018-04-13 21:33:50 &#43;0000 UTC" class="catalogue-time">April 13, 2018</time>
+        <h1 class="catalogue-title">【Linux Mint】キーマップを変更する</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境 Linux Mint 18.3 cinnamon 64bit
+ Xmodmap設定 ホームディレクトリ直下に.Xmodmapというファイルを作成し、設定を記載していきます。
+【.Xmodmapへの記載内容】 マウス中央クリック貼り付けを無効化 ThinkPadキーボードだと中央ボタンをクリックしながらポインタを動かす事が多いですが、
+その時にちょいちょいペーストが走って邪魔なので無効化します。
+.Xmodmapに以下を記載します。
+pointer = 1 9 3 4 5 6 7 8 2 10 PageUp &amp; PageDownをShiftにする PageUp &amp; PageDownは使わないし指が当たると画面が動いて邪魔なので
+Shiftに変えてしてしまいます。
+.Xmodmapに以下を記載します。
+keycode 112 = Shift_R keycode 117 = Shift_R add Shift = Shift_R Caps LockをCtrlにする Caps Lockも使わないし指が当たると大文字入力になって邪魔なので
+こちらはCtrlに変えてしてしまいます。
+.Xmodmapに以下を記載します。
+remove Lock = Caps_Lock keysym Caps_Lock = Control_L add Control = Control_L 【.Xmodmapの反映】 .Xmodmap記載後、以下コマンドで適用されます。
+$ xmodmap ~/.Xmodmap ただし、ログインのたびに上記コマンドを打つのは面倒なので
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/1222/" class="catalogue-item">
+    <div>
+        <time datetime="2018-04-13 21:28:47 &#43;0000 UTC" class="catalogue-time">April 13, 2018</time>
+        <h1 class="catalogue-title">【Linux Mint】日本語入力できるようにする</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境 Linux Mint 18.3 cinnamon 64bit
+ Linux MintをEnglishでインストールした際の作業です。
+日本語でインストールしてあれば、初めから日本語入力が可能なはずです。
+設定手順 Fcitx + Mozcで日本語入力できるようにします。
+まず「SystemSettins &gt; Input Method」を開きます。
+『Language support』にJapaneseがあるので、そこのInstallボタンをクリックします。
+インストールが終わると『Input method』にてFcitxを選択できるようになるので選択して、
+一旦マシンを再起動します。
+再起動後、MenuよりFcitx　Configurationを開きます。
+検索バーに『Fc』あたりまで入れると出てきます。
+Input Methodの追加「＋」をクリックします。
+input methodの一覧が出てくるので、Mozcを選択してOKをクリックします。
+Input MethodにMozcが追加されるので、元々あったKeybord - Japaneseは削除(×)ボタンで消してしまいます。
+これで日本語入力できるようになりました。
+半角/全角キーで日本語/英語を入れ替えられます。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/1218/" class="catalogue-item">
+    <div>
+        <time datetime="2018-04-13 21:21:39 &#43;0000 UTC" class="catalogue-time">April 13, 2018</time>
+        <h1 class="catalogue-title">プログラミング向けフォントのインストール</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境 Linux Mint 18.3 cinnamon 64bit
+ubuntu 19.10
+macOS High Sierra 10.13.1
+(LinuxでもMacでも基本的に同じ操作でいけるはずです)
+ ■フォントのインストール プログラミングに向いていると評判の日本語対応フォント『Ricty Diminished』をインストールします。
+確かに見やすいです。文字幅や文字の見分けやすさ（オーとゼロに違いとか）の点で良いです。
+まずはフォント一式をダウンロードします。
+ダウンロードする圧縮ファイルはこちらのページから確認できます。
+※(2019/11/14追記) URLが変わっていたので修正しました
+http://www.yusa.lab.uec.ac.jp/~yusa/ricty_diminished.html$ wget http://www.yusa.lab.uec.ac.jp/~yusa/ricty_diminished/ricty_diminished-4.1.1.tar.gz $ tar xf ricty_diminished-4.1.1.tar.gz 次にダウンロードしたフォントをフォントディレクトリへ移動します。
+【Macの場合】
+$ mv RictyDiminished*.ttf ~/Library/Fonts/. $ brew install fontconfig 【ubuntu, Linux Mintの場合】
+$ mkdir -p ~/.fonts $ mv RictyDiminished*.ttf ~/.fonts/. 最後にフォントを読み込みます
+$ fc-cache -vf $ rm -f ricty_diminished-4.1.1.tar.gz これでIDEなどでRicty Diminishedを指定すれば反映されます。
+少しオシャレ（？）なRicty Diminished Discordというフォントも指定できるようになりますので、お好みの方を選べば良いと思います。
+■おまけ 『Cica』というフォントも評価が良いので紹介しておきます。
+https://github.com/miiton/CicaRicty同様に文字幅や文字の見分けやすさが良く、Rictyと比べると少し丸みを帯びていて可愛いです。
+以下の手順でインストールできます。
+$ wget https://github.com/miiton/Cica/releases/download/v2.1.0/Cica_v2.1.0.zip $ unzip Cica_v2.
+        </p>
+    </div>
+</a>
+
+		
+	</div>
+	
+	<div class="pagination">
+		
+			<a href="/posts/page/9/" class="left arrow">&#8592;</a>
+		
+		
+			<a href="/posts/page/11/" class="right arrow">&#8594;</a>
+		
+	
+		<span>10</span>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.3145889 &#43;0900 JST m=&#43;0.134183401">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

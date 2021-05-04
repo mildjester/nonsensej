@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>AWS S3を使ったリダイレクトの方法 &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">AWS S3を使ったリダイレクトの方法</h1>
+		<div class="post-info">
+				<time datetime="2020-06-10 00:00:00 &#43;0000 UTC">June 10, 2020</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/aws/">AWS</a></div>
+				</div>
+			
+		</div>
+		<p>AWS S3上に置いていた静的コンテンツを部分的に別サーバー等に移設した際など<br>
+特定のパスへのアクセスを別サーバー等にリダイレクトする設定です。</p>
+<p>対象のS3の<br>
+「プロパティ」＞「Static website hosting」＞「このバケットを使用してウェブサイトをホストする」<br>
+にリダイレクトルールという欄があるので、以下のように設定します。</p>
+<p>この例では①〜③のリダイレクトルール(RoutingRule)を設定しています。</p>
+<pre><code>&lt;RoutingRules&gt;
+  &lt;RoutingRule&gt;　　　・・・①
+    &lt;Condition&gt;
+      &lt;KeyPrefixEquals&gt;kokojanai_dokoka.html&lt;/KeyPrefixEquals&gt;
+    &lt;/Condition&gt;
+    &lt;Redirect&gt;
+      &lt;Protocol&gt;https&lt;/Protocol&gt;
+      &lt;HostName&gt;new-server.co.jp&lt;/HostName&gt;
+      &lt;ReplaceKeyWith&gt;kokodayo.html&lt;/ReplaceKeyWith&gt;
+    &lt;/Redirect&gt;
+  &lt;/RoutingRule&gt;
+  &lt;RoutingRule&gt;　　　・・・②
+    &lt;Condition&gt;
+      &lt;HttpErrorCodeReturnedEquals&gt;403&lt;/HttpErrorCodeReturnedEquals&gt;
+    &lt;/Condition&gt;
+    &lt;Redirect&gt;
+      &lt;Protocol&gt;https&lt;/Protocol&gt;
+      &lt;HostName&gt;new-server.co.jp&lt;/HostName&gt;
+    &lt;/Redirect&gt;
+  &lt;/RoutingRule&gt;
+  &lt;RoutingRule&gt;　　　・・・③
+    &lt;Condition&gt;
+      &lt;HttpErrorCodeReturnedEquals&gt;404&lt;/HttpErrorCodeReturnedEquals&gt;
+    &lt;/Condition&gt;
+    &lt;Redirect&gt;
+      &lt;Protocol&gt;https&lt;/Protocol&gt;
+      &lt;HostName&gt;new-server.co.jp&lt;/HostName&gt;
+    &lt;/Redirect&gt;
+  &lt;/RoutingRule&gt;
+&lt;/RoutingRules&gt;
+</code></pre><hr>
+<h3 id="特定パスへのアクセス">①特定パスへのアクセス</h3>
+<p>特定のパスへアクセスがあった際にパスを書き換えてリダイレクトします。<br>
+S3から新サーバー等に移設した際にパスが変わった場合などに使えます。</p>
+<p>設定する値は以下の通りです。</p>
+<table>
+<thead>
+<tr>
+<th>設定項目</th>
+<th>設定値</th>
+<th>サンプル値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>KeyPrefixEquals</td>
+<td>このパスにアクセスがあったらリダイレクトします。</td>
+<td>kokojanai_dokoka.html</td>
+</tr>
+<tr>
+<td>Protocol</td>
+<td>リダイレクト先のプロトコルです</td>
+<td>https</td>
+</tr>
+<tr>
+<td>HostName</td>
+<td>リダイレクト先のホスト名です</td>
+<td>new-server.co.jp</td>
+</tr>
+<tr>
+<td>ReplaceKeyWith</td>
+<td>KeyPrefixEqualsの値をこの値で置き換えます。</td>
+<td>kokoday.html</td>
+</tr>
+</tbody>
+</table>
+<p>サンプルではS3にs3-sample.co.jpというDNSを割り振って使っていたとすると<br>
+<code>https://s3-sample.co.jp/kokojanai_dokoka.html</code>へのアクセスは<br>
+<code>https://new-server.co.jp/kokodayo.html</code>へリダイレクトされます。</p>
+<hr>
+<h3 id="-s3上に存在しないパスへのアクセス">②③ S3上に存在しないパスへのアクセス</h3>
+<p>S3上に存在しないパスへアクセスがあった場合に別サーバー等へ同パスのままリダイレクトします。<br>
+S3から新サーバー等に同パスのまま移設した際に使えます。<br>
+②と③は<code>HttpErrorCodeReturnedEquals</code>以外は同じです。</p>
+<table>
+<thead>
+<tr>
+<th>設定項目</th>
+<th>設定値</th>
+<th>サンプル値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HttpErrorCodeReturnedEquals</td>
+<td>S3の応答HTTPコードが何だったらリダイレクトするか</td>
+<td>403 および 404※</td>
+</tr>
+<tr>
+<td>Protocol</td>
+<td>リダイレクト先のプロトコルです</td>
+<td>https</td>
+</tr>
+<tr>
+<td>HostName</td>
+<td>リダイレクト先のホスト名です</td>
+<td>new-server.co.jp</td>
+</tr>
+</tbody>
+</table>
+<p>※S3上に存在しないパスの場合404だけじゃなく403を返すパターンもあるようなので念の為両方書いています。</p>
+<p>サンプルではS3にs3-sample.co.jpというDNSを割り振って使っていたとすると<br>
+<code>https://s3-sample.co.jp/hoge.html</code>へのアクセスは<br>
+<code>https://new-server.co.jp/hoge.html</code>へリダイレクトされます。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2020/06/06/python-dict-list/" class="left arrow">&#8592;</a>
+		<a href="/posts/2020/06/11/elasticsearch-topics/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2652057 &#43;0900 JST m=&#43;0.084800201">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

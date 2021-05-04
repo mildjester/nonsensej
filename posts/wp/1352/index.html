@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>数字入力フォームに文字数制限をつける &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">数字入力フォームに文字数制限をつける</h1>
+		<div class="post-info">
+				<time datetime="2018-05-18 21:53:41 &#43;0000 UTC">May 18, 2018</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/html/">HTML</a></div> <div class="tags_item"><a href="/tags/javascript/">javascript</a></div>
+				</div>
+			
+		</div>
+		<p>HTML5で追加された<code>&lt;input type=&quot;number&quot; /&gt;</code>ですが、maxlengthの指定ができません。<br>
+なので、Javascriptで最大桁数の制御を入れてみます。</p>
+<h4 id="html">HTML</h4>
+<pre><code>3桁の例  
+&lt;input type=&quot;number&quot; name=&quot;bangou3keta&quot; oninput=&quot;sliceMaxLength(this, 3)&quot;&gt;  
+5桁の例  
+&lt;input type=&quot;number&quot; name=&quot;bangou5keta&quot; oninput=&quot;sliceMaxLength(this, 5)&quot;&gt;  
+</code></pre><h4 id="javascript">Javascript</h4>
+<pre><code>function sliceMaxLength(elem, maxLength) {  
+    elem.value = elem.value.slice(0, maxLength);  
+}  
+</code></pre><p>また、<code>&lt;input type=&quot;number&quot; /&gt;</code>にすると右端に数字を増減するスピンボタンが表示されます。<br>
+電話番号の入力欄などでは不要なので、以下のCSSで非表示にしてしまいます。</p>
+<h4 id="css">CSS</h4>
+<pre><code>// Chrome、Safari  
+input[type=&quot;number&quot;]::-webkit-outer-spin-button,  
+input[type=&quot;number&quot;]::-webkit-inner-spin-button {  
+  -webkit-appearance: none;  
+  margin: 0;  
+}  
+  
+// Firefox、IE  
+input[type=&quot;number&quot;] {  
+  -moz-appearance:textfield;  
+}  
+</code></pre>
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/1291/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/1360/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2745136 &#43;0900 JST m=&#43;0.094108101">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

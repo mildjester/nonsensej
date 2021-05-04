@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Linux Mint 19.1 MATEをUSBメモリからインストール &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Linux Mint 19.1 MATEをUSBメモリからインストール</h1>
+		<div class="post-info">
+				<time datetime="2018-12-20 16:25:54 &#43;0000 UTC">December 20, 2018</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/linuxmint/">LinuxMint</a></div>
+				</div>
+			
+		</div>
+		<p>PCを再構築する必要があったので、Linux Mintの最新バージョンを入れて見ました<br>
+インストール準備をした作業環境はMacで、USBメモリにイメージを焼いてインストールしています</p>
+<h2 id="osイメージのダウンロード">OSイメージのダウンロード</h2>
+<p>今回選んだのは『Linux Mint 19.1 &ldquo;Tessa&rdquo; - MATE (64-bit)』です<br>
+こちらからダウンロードできます（とりあえず近そうなTaiwanなどからDL）<br>
+<!-- raw HTML omitted --><a href="https://linuxmint.com/edition.php?id=263">https://linuxmint.com/edition.php?id=263</a><!-- raw HTML omitted --></p>
+<h2 id="インストールメディアusbの作成">インストールメディア(USB)の作成</h2>
+<p>まずMacにUSBメモリを刺し、ターミナルで<!-- raw HTML omitted -->diskutil list<!-- raw HTML omitted -->を実行します<br>
+これでUSBメモリのdisk番号を調べます（NAMEやSIZEを見る）<br>
+私の場合は <!-- raw HTML omitted -->/dev/disk2<!-- raw HTML omitted --> がUSBメモリでした</p>
+<pre><code>$ diskutil list
+/dev/disk0 (internal):  
+   #:                       TYPE NAME                    SIZE       IDENTIFIER  
+   0:      GUID_partition_scheme                         121.3 GB   disk0  
+   1:                        EFI EFI                     314.6 MB   disk0s1  
+   2:                 Apple_APFS Container disk1         121.0 GB   disk0s2  
+  
+/dev/disk1 (synthesized):  
+   #:                       TYPE NAME                    SIZE       IDENTIFIER  
+   0:      APFS Container Scheme -                      +121.0 GB   disk1  
+                                 Physical Store disk0s2  
+   1:                APFS Volume Macintosh HD            70.2 GB    disk1s1  
+   2:                APFS Volume Preboot                 69.6 MB    disk1s2  
+   3:                APFS Volume Recovery                1.6 GB     disk1s3  
+   4:                APFS Volume VM                      1.1 GB     disk1s4  
+  
+/dev/disk2 (external, physical):  
+   #:                       TYPE NAME                    SIZE       IDENTIFIER  
+   0:      GUID_partition_scheme                        *2.0 GB     disk2  
+   1:       Microsoft Basic Data MINT19_1                2.0 GB     disk2s1  
+</code></pre><p>対象ディスクをフォーマットします<br>
+以下の <!-- raw HTML omitted -->HOGEHOGE<!-- raw HTML omitted --> の部分はフォーマット後のUSBメモリの名前ですので<br>
+任意のものを入れてください</p>
+<pre><code>$ diskutil eraseDisk MS-DOS HOGEHOGE /dev/disk2  
+</code></pre><p>フォーマットが終わったらアンマウントし、isoイメージを焼きます<br>
+（ddコマンドで結構待ちます）</p>
+<pre><code>$ diskutil unmountDisk /dev/disk2  
+Unmount of all volumes on disk2 was successful  
+$ cd ~/Downloads   #isoイメージをDLした場所に読み替えてください  
+$ sudo dd if=linuxmint-19.1-mate-64bit.iso of=/dev/rdisk2 bs=32m  
+dd: /dev/rdisk2: short write on character device  
+dd: /dev/rdisk2: Input/output error  
+60+1 records in  
+60+1 records out  
+2029518848 bytes transferred in 907.854818 secs (2235510 bytes/sec)  
+</code></pre><p>※注意<br>
+ofで指定しているdiskを<!-- raw HTML omitted -->disk2<!-- raw HTML omitted -->ではなく<!-- raw HTML omitted -->rdisk2<!-- raw HTML omitted -->にしています（頭にrを付けている）<br>
+こうすると処理が早くなるようです<br>
+また、bs(バッファサイズ)のベストな値は環境により変わります<br>
+よく分からなければ32mで良いと思います</p>
+<p>ddコマンドが完了したらDiskを取り出してインストールメディアの作成完了です</p>
+<h2 id="osインストール">OSインストール</h2>
+<p>Linux MintをインストールするPCにUSBメモリを刺して起動し、BIOS設定を開きます。<br>
+BIOS設定の起動方法はメーカーにより違うと思うので各自確認してください。</p>
+<p>BIOS設定のブート順序設定にて1番目にUSBメモリを指定してBIOS設定を閉じます。<br>
+BIOS設定画面が閉じるとPC再度起動し、Linux Mintを起動することができます。</p>
+<p>ここで起動しているLinux MintはOSイメージの中にある仮の環境なので、<br>
+デスクトップにあるインストーラーを実行してHDDやSSDにOSインストールします。</p>
+<p>これでOSインストールは完了です。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/1772/" class="left arrow">&#8592;</a>
+		<a href="/posts/2019/01/15/pico-introduction/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2809685 &#43;0900 JST m=&#43;0.100563001">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

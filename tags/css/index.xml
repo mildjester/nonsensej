@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CSS on Nonsense J</title>
+    <link>/tags/css/</link>
+    <description>Recent content in CSS on Nonsense J</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Sat, 14 Sep 2019 00:00:00 +0000</lastBuildDate><atom:link href="/tags/css/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CSSでtext-orientationは使ってはいけない</title>
+      <link>/posts/2019/09/14/text-orientation-upright/</link>
+      <pubDate>Sat, 14 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2019/09/14/text-orientation-upright/</guid>
+      <description>ちょっと釣りっぽいタイトルですが
+ちょっと困った事があったので書いておきます。
+やった事 縦書きの文書(英数字の向きは縦)を書くことがあったので
+以下のようにtext-orientationを使って実装しました。
+CSS
+div { width: 30px; height: 290px; margin: 20px auto; } p { padding: 20px; border: 2px solid #000; -webkit-writing-mode: vertical-rl; /* 縦書きにする */ -ms-writing-mode: tb-rl; /* 縦書きにする */ writing-mode: vertical-rl; /* 縦書きにする */ text-orientation: upright; /* 英数字の向きを縦にする */ } HTML
+&amp;lt;div&amp;gt; &amp;lt;p&amp;gt;僕にもし子供が産まれたら&amp;lt;br/&amp;gt;世界で2番目に好きだと話そう&amp;lt;/p&amp;gt; &amp;lt;/div&amp;gt; Chrome等で確認すると想定通りになりました。 これで満足していたのですが、実はtext-orientationはIEでは対応しておらず
+数字が横向きになってしまいました。(2019年9月現在)
+対応方法 text-combine-uprightというスタイルがあるので
+これを使って数字部分を縦向きにします。
+変更後のソースは以下のようにします。
+CSS
+div { width: 30px; height: 290px; margin: 20px auto; } p { padding: 20px; border: 2px solid #000; -webkit-writing-mode: vertical-rl; /* 縦書きにする */ -ms-writing-mode: tb-rl; /* 縦書きにする */ writing-mode: vertical-rl; /* 縦書きにする */ } span { font-family: &amp;quot;メイリオ&amp;quot;; -webkit-text-combine: horizontal; /* 英数字の向きを縦にする */ -ms-text-combine-horizontal: all; /* 英数字の向きを縦にする */ text-combine-upright: all; /* 英数字の向きを縦にする */ } HTML</description>
+    </item>
+    
+  </channel>
+</rss>

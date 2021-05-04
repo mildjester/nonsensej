@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>【Ubuntu】FlashPlayerのインストール &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">【Ubuntu】FlashPlayerのインストール</h1>
+		<div class="post-info">
+				<time datetime="2015-08-27 21:56:00 &#43;0000 UTC">August 27, 2015</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/ubuntu/">ubuntu</a></div>
+				</div>
+			
+		</div>
+		<p>UbuntuのブラウザでFlashPlayerをインストールする手順です。</p>
+<p>■Firefoxの場合<br>
+AdobeよりFlashPlayerをダウンロードします。<br>
+この記事を書いた時は「install_flash_player_11_linux.x86_64.tar.gz」をダウンロードしました。</p>
+<p>ダウンロードしたファイルを解凍してできたディレクトリに入り、<br>
+必要なファイルをコピーしていきます。</p>
+<pre><code>sudo cp -a libflashplayer.so /usr/lib/chromium-browser/libs/.  
+sudo cp -a usr/* /usr/.
+</code></pre><p>■Cromiumの場合<br>
+<!-- raw HTML omitted -->以下のコマンドだけでインストールできます。<!-- raw HTML omitted --></p>
+<pre><code>&lt;del datetime=&quot;2016-06-21T14:36:14+00:00&quot;&gt;sudo apt-get install pepperflashplugin-nonfree&lt;/del&gt;  
+&lt;del datetime=&quot;2016-05-04T14:36:14+00:00&quot;&gt;sudo update-pepperflashplugin-nonfree --install&lt;/del&gt;  
+</code></pre><p>※（2016/6/21編集）上記コマンドでのインストールでは最新版のFlashプレイヤーが取得できなくなています。<br>
+　Adobeの公式サイトでダウンロードできるので、そちらから入手しましょう。<br>
+　<!-- raw HTML omitted --><a href="https://get.adobe.com/jp/flashplayer/?no_redirect">https://get.adobe.com/jp/flashplayer/?no_redirect</a><!-- raw HTML omitted --></p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/48/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/69/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2840977 &#43;0900 JST m=&#43;0.103692101">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

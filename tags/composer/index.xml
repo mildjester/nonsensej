@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Composer on Nonsense J</title>
+    <link>/tags/composer/</link>
+    <description>Recent content in Composer on Nonsense J</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Tue, 11 Apr 2017 16:08:08 +0000</lastBuildDate><atom:link href="/tags/composer/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Composerのインストール方法</title>
+      <link>/posts/wp/515/</link>
+      <pubDate>Tue, 11 Apr 2017 16:08:08 +0000</pubDate>
+      
+      <guid>/posts/wp/515/</guid>
+      <description>■環境 macOS Sierra 10.12.4
+CentOS 6.8
+ 作業用MacとCentOSサーバにComposerをインストールしたので、その際のメモです。
+【Macの場合】 brewでインストールできます。
+brew install homebrew/php/composer ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+2018年12月 追記
+上記コマンドだとエラーが出るようになりました。
+現在は以下のコマンドでインストールできるようです
+brew install composer ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+【CentOSの場合】 CURLでインストーラを取得し、生成された実行ファイルをPATHが通っているディレクトリに移動します。
+curl -sS https://getcomposer.org/installer | php mv composer.phar /usr/bin/composer 以上</description>
+    </item>
+    
+    <item>
+      <title>【CentOS】ComposerにGitHubのアクセストークンを設定する</title>
+      <link>/posts/wp/147/</link>
+      <pubDate>Mon, 07 Dec 2015 23:11:45 +0000</pubDate>
+      
+      <guid>/posts/wp/147/</guid>
+      <description>今更ながら、ComposerにGitHubのアクセストークンを設定する方法です。
+■環境
+CentOS 7.1.1503
+GitHubのアカウントを持っていない人は作ります。特に解説は不要なはず。
+https://github.com/GitHubにログインし、右上のアイコンから「Settings」＞「Personal access tokens」からアクセストークンを作成します。
+画面を閉じるとトークンを見れなくなるので、閉じる前にメモしてください。
+Composerをインストールしていない人は以下を参照
+Composerのインストール方法以下のコマンドでComposerにGitHubのアクセストークンを設定します。
+composer config --global github-oauth.github.com ｛②で取得したアクセストークン｝ </description>
+    </item>
+    
+  </channel>
+</rss>

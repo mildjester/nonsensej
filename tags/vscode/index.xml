@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VSCode on Nonsense J</title>
+    <link>/tags/vscode/</link>
+    <description>Recent content in VSCode on Nonsense J</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Mon, 18 Dec 2017 14:02:41 +0000</lastBuildDate><atom:link href="/tags/vscode/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Visual Studio CodeでPHP開発環境構築</title>
+      <link>/posts/wp/914/</link>
+      <pubDate>Mon, 18 Dec 2017 14:02:41 +0000</pubDate>
+      
+      <guid>/posts/wp/914/</guid>
+      <description>■環境 Visual Studio Code 1.19.0
+Linux Mint 18.3 cinnamon 64bit
+macOS High Sierra 10.13.1
+(LinuxでもMacでも基本的に同じ操作でいけるはずです)
+ ■Visual Studio Codeの取得 Visual Studio Code(以下、VSCode)本体をダウンロードします。 https://code.visualstudio.com/【Macの場合】
+ダウンロードしてきたzipを回答するとアプリケーションファイル(.app)が出てくるので、アプリケーションディレクトリへ移動しておきます。
+【Linux Mintの場合】
+ダウンロードしてきたdebファイルを実行し、画面上の指示に従って進めるだけです。
+■フォント変更 VSCodeで使うフォントをプログラミング向けのフォント『Ricty Diminished』に変更します。
+まずフォントそのものをPCにインストールします。
+手順はコチラを参照してください。
+PCにフォントがインストールできたら、VSCode側の設定をします。
+まず、メニューの「Code　&amp;gt; 基本設定 &amp;gt; 設定」を開きます。
+次に設定ファイルに以下の行を追加します。
+&amp;quot;editor.fontFamily&amp;quot;: &amp;quot;&#39;Ricty Diminished&#39;&amp;quot;, これでフォントがRicty Diminishedになりました。
+■拡張機能インストール VSCodeを起動したら上部メニューより表示 &amp;gt; 拡張機能を選択します。 もしくは左側にあるアイコンの中の一番下にある四角いアイコンを選択します。 検索窓が表示されるので、キーワード検索をしてインストールすることが可能です。 以下、私がインストールしてみたものです。
+Project Manager プロジェクト管理をするための拡張機能です。 現在開いているワークスペースをプロジェクトとして保存しておくことで プロジェクトの切り替えが簡単になります。 NetBeansやEclipseのように複数プロジェクトを同時に開いておくことはできないようです。
+■使い方上部メニューの表示 &amp;gt; コマンドパレットを開き、検索バーにProject Managerと入力するとProject Manager用のコマンドが表示されます。 (コマンドパレットはCommand + Shft+Pでも開けます)
+主に使うコマンドについては以下の通り。
+   コマンド 内容     Save Project 現在のワークスペースをプロジェクトとして保存   Edit Project 保存済みプロジェクトの編集   List Project to Open 保存済みプロジェクト一覧を表示し、選択したプロジェクトを開く    ftp-simple ファイルやディレクトリをサーバへアップロードしたりダウンロードするための拡張機能。 FTPだけでなく、SFTPも使えます。</description>
+    </item>
+    
+  </channel>
+</rss>

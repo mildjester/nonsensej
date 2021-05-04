@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>MacにPHP7.2をインストールする &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">MacにPHP7.2をインストールする</h1>
+		<div class="post-info">
+				<time datetime="2019-02-14 00:00:00 &#43;0000 UTC">February 14, 2019</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/mac/">Mac</a></div> <div class="tags_item"><a href="/tags/php/">PHP</a></div>
+				</div>
+			
+		</div>
+		<h2 id="環境">環境</h2>
+<ul>
+<li>macOS Mojave 10.14.2</li>
+<li>fish 2.7.1</li>
+<li>Homebrew 2.0.1</li>
+<li>PHP 7.2.15</li>
+</ul>
+<hr>
+<p>Homebrewを使ってMacにPHP7.2をインストールします。<br>
+Homebrewがインストールされていない場合は以下を参照してください。<br>
+<a href="/articles/wp/750">【Mac】Homebrewインストール</a></p>
+<p>まず、Homebrew上でPHP7.2を探します。</p>
+<pre><code>$brew search php72
+==&gt; Formulae
+php@7.2
+</code></pre><p>パッケージが分かったのでインストールします。</p>
+<pre><code>$ brew install php@7.2
+〜たくさん省略〜
+If you need to have php@7.2 first in your PATH run:
+  echo 'set -g fish_user_paths &quot;/usr/local/opt/php@7.2/bin&quot; $fish_user_paths' &gt;&gt; ~/.config/fish/config.fish
+  echo 'set -g fish_user_paths &quot;/usr/local/opt/php@7.2/sbin&quot; $fish_user_paths' &gt;&gt; ~/.config/fish/config.fish
+〜少し省略〜
+</code></pre><p>インストール完了の直前くらいに上記のような設定追加をするような指示が出力されます。<br>
+私はシェルにfishを使っているので上記のようなコマンドでしたが、bashやzshを使っている場合は違うコマンドになると思います。</p>
+<p>指示通りに設定をします。</p>
+<pre><code>$ echo 'set -g fish_user_paths &quot;/usr/local/opt/php@7.2/bin&quot; $fish_user_paths' &gt;&gt; ~/.config/fish/config.fish
+$ echo 'set -g fish_user_paths &quot;/usr/local/opt/php@7.2/sbin&quot; $fish_user_paths' &gt;&gt; ~/.config/fish/config.fish
+</code></pre><p>これで端末を再起動するか設定ファイルを再読み込みするとPHPのバージョンが7.2になっています。</p>
+<pre><code>$ php -v
+PHP 7.2.15 (cli) (built: Feb  7 2019 20:10:03) ( NTS )
+Copyright (c) 1997-2018 The PHP Group
+Zend Engine v3.2.0, Copyright (c) 1998-2018 Zend Technologies
+    with Zend OPcache v7.2.15, Copyright (c) 1999-2018, by Zend Technologies
+</code></pre>
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2019/02/13/wp-tinymcetemplate-s3/" class="left arrow">&#8592;</a>
+		<a href="/posts/2019/02/15/apache-tuning/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2558695 &#43;0900 JST m=&#43;0.075464001">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

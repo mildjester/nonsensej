@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>gulp-uglifyで圧縮時に変数／関数名を圧縮させない &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">gulp-uglifyで圧縮時に変数／関数名を圧縮させない</h1>
+		<div class="post-info">
+				<time datetime="2020-04-15 00:00:00 &#43;0000 UTC">April 15, 2020</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/javascript/">javascript</a></div> <div class="tags_item"><a href="/tags/node/">node</a></div>
+				</div>
+			
+		</div>
+		<h2 id="参考">参考</h2>
+<ul>
+<li><a href="https://github.com/mishoo/UglifyJS2#minify-options">github mishoo/UglifyJS2</a></li>
+</ul>
+<hr>
+<p>意外と調べても情報が出てこなかったのでメモです。</p>
+<p>gulp-uglifyを使ってJSファイルを圧縮すると定義している変数名や関数名も圧縮されてアルファベット1文字等になります。<br>
+圧縮したJSファイル内でのみ呼び出される変数・関数であれば良いのですが、外部からも呼び出したいというパターンもあると思います。特に関数。</p>
+<p>変数名や関数名を保持したい場合は、gulp-uglify実行時に以下の用にオプションを指定してあげればOKです。</p>
+<p>(gulpfile.js例)</p>
+<pre><code>var gulp = require('gulp');
+var uglify = require('gulp-uglify');
+
+var uglify_option = {
+    keep_fnames: true,  // function名を圧縮させない場合に指定
+    mangle: false       // 変数名を圧縮させない場合に指定
+}
+gulp.task(&quot;default&quot;, function() {
+    return gulp.src('src/*.js')
+      .pipe(uglify(uglify_option))
+      .pipe(gulp.dest('dest'));
+});
+</code></pre>
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2020/03/20/javascript-input-event/" class="left arrow">&#8592;</a>
+		<a href="/posts/2020/05/17/update-ubuntu-20-04/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2643177 &#43;0900 JST m=&#43;0.083912201">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

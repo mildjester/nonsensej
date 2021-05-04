@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>pico on Nonsense J</title>
+    <link>/tags/pico/</link>
+    <description>Recent content in pico on Nonsense J</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Thu, 17 Jan 2019 00:00:00 +0000</lastBuildDate><atom:link href="/tags/pico/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>WordpressからPicoへデータ移行</title>
+      <link>/posts/2019/01/17/wordpress-to-pico/</link>
+      <pubDate>Thu, 17 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2019/01/17/wordpress-to-pico/</guid>
+      <description>まず、事前にpicoのブログ化が完了しているものとします
+CMSのpicoをブログ化
+かなりの力技です
+綺麗な方法ではないのでご了承ください
+Wordpressからのイメージ取得 まずWordpressから画像ファイル一式をダウンロードしてきます。
+Wordpressの/wp-content/uploads/配下のファイルを
+全てpico内にダウンロードしてきます。
+今回の例ではpico直下にimagesディレクトリを作成し、
+そこにダウンロードするとします。
+階層としてはpico/images/2019/01/hogehoge.pngのようになります。
+Wordpressからの記事取得 WordpressのDBから記事情報を取得します。
+MySQL Workbenchにて以下のSQLを実行し、
+結果をjsonで出力しておきます
+SELECT p.ID, p.post_date, u.user_nicename, p.post_title, p.post_content, t.tags FROM wp_posts p LEFT JOIN wp_users u ON u.ID = p.post_author LEFT JOIN ( SELECT tr.object_id AS post_id, group_concat(t.name) AS tags FROM wp_term_relationships tr LEFT JOIN wp_term_taxonomy tt ON tt.term_taxonomy_id = tr.term_taxonomy_id LEFT JOIN wp_terms t ON t.term_id = tt.term_id WHERE tt.taxonomy = &#39;post_tag&#39; GROUP BY tr.object_id ) t ON t.</description>
+    </item>
+    
+    <item>
+      <title>picoでブログ構築</title>
+      <link>/posts/2019/01/16/pico-blog/</link>
+      <pubDate>Wed, 16 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2019/01/16/pico-blog/</guid>
+      <description>picoの基本的な構築はこちらを参照してください。
+PHP製のCMS「pico」の紹介
+picoを使ってブログを構築する方法です。
+公式ページにpicoをブログ化する手順が書いてあります。
+公式の手順
+公式の方法はWEBページ内にブログ領域を作る方法のようなので
+そもそもメインコンテンツがブログである場合は以下のように修正します。
+なお、できあがったものをテンプレートとして公開しています。
+簡単にブログ解説したいだけの人はこちらをご利用ください。
+mildjester/pico-blog
+ プラグインの追加 プラグインはpico/pluginsの中にダウンロードしておきます。
+ページネーション https://github.com/rewdy/Pico-Pagination/releases
+ダウンロードした圧縮ファイルの中にpagination.phpがあるので
+それを/pico/pluginsの中に配置します。
+そしてconfig.ymlにプラグイン用の設定を追記しておきます。
+## # Plugin: Pico-Pagination # pagination_limit: 10 # 一覧ページにて１ページに表示する記事数 pagination_next_text: 次へ&amp;gt;&amp;gt; # 次へリンクのテキスト pagination_prev_text: &amp;lt;&amp;lt;戻る # 戻るリンクのテキスト タグ https://github.com/PontusHorn/Pico-Tags
+PicoTags.phpを/pico/pluginsの中に配置します。
+サイト内検索 https://github.com/mwgg/Pico-Search
+40-PicoSearch.phpを/pico/pluginsの中に配置します。
+このプラグインではページのタイトルをキーにして検索する事はできるようですが。
+記事本文をキーにして検索することはできないようでした。
+サイトマップ https://github.com/DaveKin/Pico_Sitemap/
+PicoXMLSitemap.phpを/pico/pluginsの中に配置します。
+テーマの編集 /pico/themes配下のテーマを編集します。
+デフォルトの/pico/themes/defaultをそのまま編集しても良いですし
+defaultをコピーして自分用のテーマを作っても良いです。
+別テーマを作成する場合はconfig.ymlのtheme: defaultの部分も作成したテーマのディレクトリ名に変更してください。
+なお、公式ページなどからテーマをダウンロードすることも可能です。 ただしpico 1.x用のテーマだからか、そのままではうまく動かなかったりするので要注意です。
+公式ページのテーマ一覧
+index.twigの分離 デフォルトではindex.twigにHTMLの全てが記載されていますが、
+テンプレートを増やした際にメンテナンス性が悪くなるので
+ヘッダー部分とフッター部分を分離してしまいます。
+まずindex.twigと同じディレクトリに_header.twigを作成し、
+index.twigの１行目から&amp;lt;div id=&amp;quot;main&amp;quot;&amp;gt;の上までをコピーします。
+次に、同様に_footer.twigを作成して&amp;lt;div id=&amp;quot;main&amp;quot;&amp;gt;の閉じタグの下から
+最終行までをコピーします。
+そしてindex.twigのヘッダーとフッターにコピーした部分は削除し、
+代わりに{% include &#39;_header.twig&#39; %} と {% include &#39;_footer.</description>
+    </item>
+    
+    <item>
+      <title>PHP製のCMS「pico」の紹介</title>
+      <link>/posts/2019/01/15/pico-introduction/</link>
+      <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2019/01/15/pico-introduction/</guid>
+      <description>picoとは PHP製のCMSで、DBなど利用せずファイルだけでWEBページが作成できます。
+公式サイト
+ページにはMarkdownを使えるので、Markdownでメモなどを取ることが多い人には
+使いやすいCMSなのではないかと思います。
+Wordpressと比べてどうか ページの書きやすさ Markdownに慣れている人にとっては書きやすいと思いますが
+慣れていないライターさんなどを雇っている場合などは向かないと思います。
+また、表現がMarkdownの域に絞られるので、直接HTMLを書けたWordpressの方が
+描画は自由にできるかもしれません。
+picoでもMarkdown内にHTML書けました
+構築のしやすさ 基礎構築だけならソースコードを持ってきて終わりなので楽です。
+ただし、プラグインを追加するにはテーマファイルに手を入れる必要があったりするので
+単純に「インストール」をクリックするだけのWordpressに比べればそこが手間です。
+あと、日本語の情報が少ないのも構築する上ではネックになるかもしれません。
+管理のしやすさ 『管理画面』が無いので設定は全てソースコード上で行ないます。
+なので、非エンジニアが運用するには難しいかと思います。
+ですが、DBがないのでバックアップ管理などは楽です。
+GitHubのprivateリポジトリが無料で作れるようになったので
+全てそこで管理してしまえば良いと思います。
+また、管理画面が無いのでセキュリティ的にも強いと思います。
+機能面 Wordpressでデフォルトで用意されているタグやカテゴリがpicoには無いので
+若干の不便さはあります。
+一応プラグインで追加はできますが、やや煩雑です。
+また、プラグインやテーマの数でもWordpressの方が勝ります。
+picoの導入 プロジェクト作成 まず、composerでプロジェクトを作成します。
+※composerが分からない人はこちら
+composer create-project picocms/pico-composer pico 生成されたpicoディレクトリをそのままWEBサーバー上に配置すれば
+もう既にデフォルトのページが表示されます
+デフォルトページにはコンテンツの配置方法などが記載されているので
+確認しておくと良いと思います。
+URLリライト設定 picoはURLリライトを利用します。
+(必須ではないが無いとURLの見た目がカッコ悪いし、SEO的にも良くなさそう)
+URLリライトについてはpico内の.htaccessに記載されています。
+.htaccessはApacheでなければ作動しないので、Nginxの場合は別途設定が必要です。
+公式のリライト設定手順
+設定ファイル作成 pico/config/config.yml.templateをコピー or リネームして
+pico/config/config.ymlを作成してください。
+とりあえず初期段階で書き換えるのは以下くらいかと思います。
+   設定項目 設定内容     site_title サイトのタイトルに書き換え   timezone 日本ならAsia/Tokyo     ※注意</description>
+    </item>
+    
+  </channel>
+</rss>

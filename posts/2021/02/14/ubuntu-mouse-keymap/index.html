@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>ubuntuで多機能マウスを設定する &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">ubuntuで多機能マウスを設定する</h1>
+		<div class="post-info">
+				<time datetime="2021-02-14 00:00:00 &#43;0000 UTC">February 14, 2021</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/ubuntu/">ubuntu</a></div>
+				</div>
+			
+		</div>
+		<h2 id="環境">環境</h2>
+<ul>
+<li>Ubuntu 20.10</li>
+<li>Elecom M-DT2DR BK(マウス)</li>
+</ul>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a href="https://help.ubuntu.com/community/MouseCustomizations">https://help.ubuntu.com/community/MouseCustomizations</a></li>
+<li><a href="https://wiki.archlinux.jp/index.php/Xbindkeys">https://wiki.archlinux.jp/index.php/Xbindkeys</a></li>
+</ul>
+<hr>
+<p>Ubuntuにマルチボタンのマウス（Elecom M-DT2DR）を接続すると、何をしなくても通常のマウス操作や「進む」「戻る」ボタンは機能します。<br>
+ですが、機能ボタン（Fn 1〜3）には何もマッピングされていないので、音量操作をマッピングします。</p>
+<h2 id="手順">手順</h2>
+<h3 id="インストール">インストール</h3>
+<p>まず必要なソフトをインストールします。</p>
+<pre><code>sudo apt install xbindkeys
+</code></pre><h3 id="ボタン番号の取得">ボタン番号の取得</h3>
+<p>次にマウスのボタン番号を取得します。<br>
+まず以下コマンドを実行してボタン検知ができる状態にします。</p>
+<pre><code>xev
+</code></pre><p>現れる白い四角が書かれたウィンドウにマウスカーソルを持っていき、その状態でマウスのボタンを押すとコンソールに情報が表示されます。<br>
+例えば私のマウス（M-DT2DR）のFn 1であれば以下のように<code>button 10</code>と表示されます。</p>
+<pre><code>ButtonRelease event, serial 36, synthetic NO, window 0x4000001,
+    root 0x7ed, subw 0x4000002, time 1758091, (31,39), root:(1951,76),
+    state 0x0, button 10, same_screen YES
+</code></pre><p>同様に、Fn 2は<code>button 11</code>でFn 3は<code>button 12</code>でした。</p>
+<h3 id="ボタンのマッピング">ボタンのマッピング</h3>
+<p>ボタンマッピングするための設定ファイルを作成します。<br>
+設定ファイルは空ファイルから始めても良いのですが、一応デフォルト値から生成しておきます。</p>
+<pre><code>xbindkeys --defaults &gt; ~/.xbindkeysrc
+</code></pre><p>作成した設定ファイルに以下を追記します。</p>
+<pre><code># Increase volume
+&quot;pactl set-sink-volume @DEFAULT_SINK@ +1000&quot;
+    b:10
+
+# Decrease volume
+&quot;pactl set-sink-volume @DEFAULT_SINK@ -1000&quot;
+    b:11
+
+# Mute volume
+&quot;pactl set-sink-mute @DEFAULT_SINK@ toggle&quot;
+   b:12
+</code></pre><p>設定ファイルを保存したら、以下コマンドで読み込みます。</p>
+<pre><code>xbindkeys -p
+</code></pre><p>これでマウスのFn 1〜3ボタンに音量操作がマッピングできました。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2021/02/11/ubuntu-20-10-initialize/" class="left arrow">&#8592;</a>
+		<a href="/posts/2021/02/17/ubuntu-howdy/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2694963 &#43;0900 JST m=&#43;0.089090701">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

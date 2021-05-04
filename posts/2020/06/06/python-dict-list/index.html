@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Dictionaly型から特定の値を取り出しlist型に入れる &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Dictionaly型から特定の値を取り出しlist型に入れる</h1>
+		<div class="post-info">
+				<time datetime="2020-06-06 00:00:00 &#43;0000 UTC">June 6, 2020</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/python/">python</a></div>
+				</div>
+			
+		</div>
+		<p>pythonのテクニック(?)的なものを教わったのでメモです。</p>
+<p>Dictionaly型から、あるキーの値を取り出して配列に取り出す方法について<br>
+特になにも考えずにforで回して取り出してました。</p>
+<p>例えば、idとnameからなるDictionalyからnameを取り出して配列にする場合は以下のようにしていました。</p>
+<pre><code># Dictionaly定義
+fruits_list = [ 
+    {'id':1, 'name':'apple'},
+    {'id':2, 'name':'banana'},
+    {'id':3, 'name':'cherry'},
+]
+
+# Dictionalyからlistに取り出し
+name_list = []
+for fruits in fruits_list:
+    name_list.append(fruits.get('name'))
+
+# 出力
+# ['apple', 'banana', 'cherry']
+print(name_list)
+</code></pre><p>しかし、この取り出し処理は1行で書けるようです。<br>
+修正後、以下のようになりました。</p>
+<pre><code># Dictionaly定義
+fruits_list = [ 
+    {'id':1, 'name':'apple'},
+    {'id':2, 'name':'banana'},
+    {'id':3, 'name':'cherry'},
+]
+
+# Dictionalyからlistに取り出し
+name_list = [fruits.get('name') for fruits in fruits_list]
+
+# 出力
+# ['apple', 'banana', 'cherry']
+print(name_list)
+</code></pre><p>スマートですね！</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2020/06/01/ubuntu-20-04-hdmi/" class="left arrow">&#8592;</a>
+		<a href="/posts/2020/06/10/aws-s3-redirect/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2648626 &#43;0900 JST m=&#43;0.084457001">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

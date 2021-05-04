@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>mysql系の関数がPHP7でエラーになる場合の対応 &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">mysql系の関数がPHP7でエラーになる場合の対応</h1>
+		<div class="post-info">
+				<time datetime="2016-01-20 21:55:34 &#43;0000 UTC">January 20, 2016</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/php/">PHP</a></div> <div class="tags_item"><a href="/tags/mysql/">MySQL</a></div>
+				</div>
+			
+		</div>
+		<p>PHP5.XからPHP7にアップデートした際にmysql系の関数がエラーになっていたので、<br>
+その際に行なった対応をメモしておきます。</p>
+<ul>
+<li>関数名を「mysql_xxxx()」から「mysqli_xxxx()」に変更する。</li>
+<li>関数の引数が「第１引数：設定値」「第２引数：mysqlオブジェクト」である場合は<br>
+順番を逆にする。（第１引数がmysqlオブジェクトとなるようにする）<br>
+※ここで言うmysqlオブジェクトとは、「mysqli_connect」の返却値の事です。</li>
+<li>mysqli_error()には、引数にmysqlオブジェクトを設定します。<br>
+これ以外にも「mysql_xxxxx()」では引数不要であったものは「mysqli_xxxxx()」では引数に<br>
+mysqlオブジェクトが必要になっているかもしれません。</li>
+</ul>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/164/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/189/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2786525 &#43;0900 JST m=&#43;0.098247001">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

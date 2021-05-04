@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+	<meta name="generator" content="Hugo 0.82.0" />
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<meta name="description" content="">
+
+		<title>Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="/index.xml" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	
+
+
+	<div class="catalogue">
+		
+			<a href="/posts/wp/1627/" class="catalogue-item">
+    <div>
+        <time datetime="2018-10-26 13:27:25 &#43;0000 UTC" class="catalogue-time">October 26, 2018</time>
+        <h1 class="catalogue-title">同じForm内に複数のreCAPTCHA認証ボタンを設置する</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            WEBページのreCAPTCHA対応しているform内に複数のsubmitボタンを設置する方法です。
+前提としてPOSTデータより g-recaptcha-responseを取り出して認証しているとします。
+単純にsubmitボタンを複数設置した場合、うまく動きません。
+例えば、以下のようなフォームを作った場合
+&lt;script&gt; function mySubmit(){ document.getElementById(&quot;myForm&quot;).submit(); } &lt;/script&gt; &lt;form id=&quot;myForm&quot; action=&quot;/hoge&quot;&gt; &lt;button class=&quot;g-recaptcha&quot; data-sitekey=&quot;各自のサイトキー&quot; data-callback=&quot;mySubmit&quot;&gt;送信1&lt;/button&gt; 〜いろいろ〜 &lt;button class=&quot;g-recaptcha&quot; data-sitekey=&quot;各自のサイトキー&quot; data-callback=&quot;mySubmit&quot;&gt;送信2&lt;/button&gt; &lt;/form&gt; 送信1ボタンのすぐ上に、このようなreCAPTCHA用の要素が生成されます。
+&lt;div&gt; &lt;div class=&quot;grecaptcha-badge&quot; 〜略〜 &gt; &lt;div class=&quot;grecaptcha-logo&quot;&gt; &lt;iframe src=&quot;https://www.google.com/recaptcha/〜略〜 &gt;&lt;/iframe&gt; &lt;/div&gt; &lt;div class=&quot;grecaptcha-error&quot;&gt;&lt;/div&gt; &lt;textarea id=&quot;g-recaptcha-response&quot; name=&quot;g-recaptcha-response&quot; 〜略〜 &gt;&lt;/textarea&gt; &lt;/div&gt; &lt;/div&gt; そして、送信2ボタンのすぐ上にも同様に要素が生成されます。
+送信1ボタンとの違いはiframe内とtextareaのidです。
+textareaのidはボタンの数が増える毎に連番が付与されるようです。
+&lt;div&gt; &lt;div class=&quot;grecaptcha-badge&quot; 〜略〜 &gt; &lt;div class=&quot;grecaptcha-logo&quot;&gt; &lt;iframe src=&quot;https://www.google.com/recaptcha/〜略〜 &gt;&lt;/iframe&gt; &lt;/div&gt; &lt;div class=&quot;grecaptcha-error&quot;&gt;&lt;/div&gt; &lt;textarea id=&quot;g-recaptcha-response-1&quot; name=&quot;g-recaptcha-response&quot; 〜略〜 &gt;&lt;/textarea&gt; &lt;/div&gt; &lt;/div&gt; このままではPOSTデータに同名のパラメータが存在してしまうので正常に動きません。
+そこで、クリックしなかったボタンに紐づくreCAPTCHA要素は削除してしまいます。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/1573/" class="catalogue-item">
+    <div>
+        <time datetime="2018-10-14 22:01:37 &#43;0000 UTC" class="catalogue-time">October 14, 2018</time>
+        <h1 class="catalogue-title">CircleCIの通知をSlackへ飛ばす</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            参考サイト CircleCIの結果をSlackに通知する 以下のCircle CIの基本設定は完了している前提とします。
+Circle CIでプルリク時にUnitテストが走るようにする上記手順を実施しただけではCircle CIの通知はメールで届くので
+それをSlackに届くよう変更します。
+Slackの設定 まず、SlackにCircle CIアプリをInstallします。
+https://my.slack.com/apps/A0F7VRE7N-circleciInstallをクリックすると、通知するチャンネルを選択する画面が表示されます。
+好きなチャンネルを指定してください。
+次の画面でCircle CIの設定画面にて何をすれば良いか説明してくれます。
+Circle CIに設定するWebhookのURL（通知を飛ばすためのURL）が表示されているので確認しておいてください。
+また、その説明の下に通知時の名前やアイコンを変更できる欄があるので、変更したければ変更してください。
+Circle CIの設定 該当プロジェクトの画面にて設定(歯車アイコン)をクリックし、設定画面を開きます。
+左メニューより『NOTIFICATIONS &gt; Chat Notifications』を開き、
+『Webhook URL』へ先ほどSlackの画面にて確認したWebhook URLを入力して『Save』をクリックします。
+ここで『&amp; Test Hook』をクリックすると設定したチャンネルにテスト通知が届きます。
+ちゃんと設定できたか確認するために実行しておくと良いと思います。
+上記のように「Hello from CircleCI」が届けば、設定完了です。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/1538/" class="catalogue-item">
+    <div>
+        <time datetime="2018-10-13 23:20:06 &#43;0000 UTC" class="catalogue-time">October 13, 2018</time>
+        <h1 class="catalogue-title">CircleCIで自動デプロイする</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            参考サイト Circle CIでwebサイトを自動デプロイ GitHubのmasterブランチへマージされたらサーバーにデプロイされるようにする方法です。
+ソースコードはPHPを前提としています。
+こちらのCircleCIを動かす基本設定は完了している前提とします。
+Circle CIでプルリク時にUnitテストが走るようにするCI用ユーザ準備 まず、CircleCIからデプロイするサーバーへSSH接続する為の鍵ペアを作成します。
+既存の鍵ペアを使っても動きますが、念のためCI用は別にしておいた方が良いと思います。
+ssh-keygen -t rsa -b 4096 -C &quot;ci@nonsensej.xyz&quot; -f ~/.ssh/ci-key 上記コマンドを実行するとパスフレーズを２回聞かれますが、どちらも空のままエンターで良いです。
+鍵生成が完了したらホームディレクトリの.ssh配下にci-key(秘密鍵)とci-key.pub(公開鍵)が生成されます。
+ci-key.pubは後工程で使いますので、中身を確認しておいてください。
+※上記コマンドで鍵ファイル名をci-keyと指定していますが、これは任意の名前で良いです。
+次に、デプロイするサーバー上でデプロイする為のユーザーを作成し、
+さきほど作成した鍵ペアでSSH接続できるようにします。
+こちらも既存ユーザーを使っても動きますが、念のためCI用は別にしておいた方が良いと思います。
+adduser -g nginx ciuser su - ciuser mkdir .ssh vim .ssh/authorized_keys // ci-key.pubの内容を貼り付け CircleCI管理画面設定 次にCircleCIのWEBコンソールで設定をします。
+該当プロジェクトの画面にて設定(歯車アイコン)をクリックし、設定画面を開きます。
+SSH Keyの設定 左メニューより『PERMISSIONS &gt; SSH Permissions』を開き、『Add SSH Key』をクリックします。
+ポップアップが開くので、以下を設定します。
+Hostname : デプロイするサーバーのホスト名
+Private Key : 最初に作ったci-keyの中身全て
+完了したら、今登録した鍵情報のFingerprintが表示されるので確認しておきます。
+（後工程のCircleCI設定ファイル編集時に使います）
+環境変数の設定 後工程で編集するCircleCI設定ファイルで環境変数を使うことができるので設定します。
+この作業は別に必須ではないです。
+設定ファイルを使いまわしたい場合は、環境により変動する部分を環境変数にしておいてもいいかもしれません。
+左メニューより『BUILD SETTINGS &gt; Environment Variables』を開き、『Add Variable』をクリックします。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/1521/" class="catalogue-item">
+    <div>
+        <time datetime="2018-09-26 12:02:33 &#43;0000 UTC" class="catalogue-time">September 26, 2018</time>
+        <h1 class="catalogue-title">akamaiのレスポンスヘッダーをChromeで確認する</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            背景 今お手伝いをしている会社さんではakamaiを使ってページをキャッシュさせてます
+akamaiについてはコチラ
+https://www.akamai.com/jp/ja/WEBページの開発をしていると、今自分が表示しているページが
+akamaiのキャッシュなのかどうなのか知りたい時があります
+Google Chromeの開発者ツールを使えば一般的なレスポンスヘッダーは見れますが
+akamaiのレスポンスヘッダーは特殊なので見えません
+curlコマンドにオプションをつけて叩く方法もありますが
+ログイン必須の画面をチェックするにはCookieの設定もしたりしなければいけません
+https://qiita.com/rasaka/items/fc96cd3b8f73a02477cb解決策 そんなとき、Chromeの拡張機能『CDN Headers &amp; Cookies』を使えば
+簡単にakamaiのレスポンスヘッダーを見る事ができます
+https://chrome.google.com/webstore/detail/cdn-headers-cookies/obldlamadkihjlkdjblncejeblbogmnb使い方は簡単です。
+①ストアからChromeに追加する ②チェックしたい対象ページを開く ③Chromeツールバーにいる黄色いやつをクリックする ④Response Headersタグを開きステータスを確認する ステータスの意味などはakamaiのコミュニティにて説明してくれていました
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/1500/" class="catalogue-item">
+    <div>
+        <time datetime="2018-09-21 17:55:45 &#43;0000 UTC" class="catalogue-time">September 21, 2018</time>
+        <h1 class="catalogue-title">WindowsでDocker Toolbox＆docker-composeを動かす</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            仕事でWindows利用者にDocker環境を構築してもらう事があったのですが
+結構苦労したので手順を残します。
+■□ 注意■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□
+MacやLinuxでdocker-composeを普通に使える前提で手順を書きます。 Dockerやdocker-compose自体の説明はあまり書きません □■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□
+もし、Windows10 64bit(Home以外)を使っている人であればこの記事の作業は不要です。
+Docker ToolboxではなくDocker for Windowsをインストールしてください。
+（たぶん、Docker for Windowsの方が楽に構築できると思われます）
+Docker Toolboxのインストール まずDocker Toolboxをダウンロードします。
+以下のページにてDocker Toolboxをダウンロードしてください。
+https://docs.docker.com/toolbox/overview/#ready-to-get-startedダウンロードしてきたEXEファイルを実行するとインストーラーが走りますので、
+そのまま次へ次へと進みます。
+インストールが完了すると『Docker Quickstart Terminal』というショートカットが
+デスクトップに作られるので実行します。
+しばらく待つとDockerが立ち上がります。(クジラのAAが表示されます)
+docker-compose.ymlの作成 docker-compose.ymlを書きます。
+基本的な書き方はMacやLinuxと同じなので割愛します。
+気をつけなければいけないのはvolumesの書き方です。
+相対パスで記載する場合は以下のように他OS同様の記載ができます。
+volumes: ./php.ini:/etc/php.ini 次に絶対パスで記載する場合ですが、「C:¥」の部分は「/c/」と書きます。
+例えば「C:¥develop¥app」にあるディレクトリを共有する場合は以下のような記載になります。
+volumes: /c/develop/app:/var/www/html 後に出てくるVirtualboxの共有フォルダ設定次第ではこの通りにしない事も可能かもしれませんが、
+できるだけシンプルに構築するため、このようにします。
+もしMySQLのコンテナを作成する場合は
+データの永続化のためのホスト側ディレクトリを指定することはできません。
+つまり、この書き方だとNGで
+services: mysql: 〜中略〜 volumes: - ./mysql/data:/var/lib/mysql この書き方ならOKです
+services: mysql: 〜中略〜 volumes: - mydb:/var/lib/mysql 〜中略〜 volumes: mydb VirtualBoxの設定 Docker Toolboxでコンテナを動かす場合に一番引っかかる部分かもしれません。
+ポートフォワーディングの設定 docker-compose.ymlにてポートフォワーディングを8080:80と設定しただけでは
+ローカルPCにて http://localhost:8080にアクセスしてもDockerコンテナに
+リクエストは飛びません。
+なぜかというと、WindowsでDocker Toolboxを使ってコンテナを動かした場合は
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/1477/" class="catalogue-item">
+    <div>
+        <time datetime="2018-08-14 01:30:40 &#43;0000 UTC" class="catalogue-time">August 14, 2018</time>
+        <h1 class="catalogue-title">CircleCIでプルリク時にUnitテストが走るようにする</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            CircleCIを使って、GitHubにてプルリクエストを投げた際に
+Unitテストが走るようにします。
+ソースコードはPHPで、Unitテストにはphpunitを使っている前提とします。
+Circle CIのアカウント登録 Circle CIのホームページにアクセスし、右上のSign Upをクリックします。
+GitHubかBitBucketのアカウントでログインできるようです。
+今回はGitHubのアカウントでログインしました。
+連携を許可するか聞かれるのでAuthorize circleciをクリックします。
+Circle CIにプロジェクト作成 アカウント作成が完了したらプロジェクト作成するためAdd Projectsをクリックします。
+紐付けるリポジトリのSet Up Projectをクリックします。
+対象リポジトリの環境を設定します。
+該当するものをクリックします。
+下にスクロールすると今後の流れが書いてあります。
+まず該当リポジトリに.circleci/config.ymlを作成します。
+config.ymlの内容はとりあえず内容はCopy To Clipboardでコピーしたもの(2018/8/11現在)に
+以下の修正を加えたものにしています。
+①Dockerイメージ変更Dockerイメージを自分のサーバーの環境に近いものに変更します。
+どのようなイメージがあるかは詳細はDockerHubで確認してください。
+https://hub.docker.com/r/circleci/(使いたいDockerイメージが別にであるなら、circleci公式のイメージじゃなくても動くらしい)
+なお、サンプルのconfig.ymlに書いてあったcircleci/php:7.1.5-browsersは存在しません。
+サンプルのまま実行すると以下のエラーが発生します。
+Error response from daemon: manifest for circleci/php:7.1.5-browsers not found ②phpunit実行コマンドを変更composerなどでphpunitを入れている場合はコマンドが違うと思うので変更します。
+出来上がったconfig.ymlが以下です
+# PHP CircleCI 2.0 configuration file # # Check https://circleci.com/docs/2.0/language-php/ for more details # version: 2 jobs: build: docker: # specify the version you desire here #- image: circleci/php:7.
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/1470/" class="catalogue-item">
+    <div>
+        <time datetime="2018-08-13 13:01:18 &#43;0000 UTC" class="catalogue-time">August 13, 2018</time>
+        <h1 class="catalogue-title">【Linux Mint】 Fcitxの変換候補が黒く塗りつぶされる</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            環境 Linux Mint 18.3 cinnamon 64bit
+ 事象 ある日、Fcitxで日本語入力していたら
+変換候補が真っ黒になってしまいました
+Fcitx設定にて外観タブを見てみると、Kimpanelに設定オプションはありませんとのこと。
+解決方法 ちょっと調べてみた感じでは「Kimpanel」ってそもそも要らないようなのでアンインストールしてしまいます。
+sudo apt purge fcitx-module-kimpanel これで一度ログアウトして再度ログインすると、真っ黒状態は治ります。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/1439/" class="catalogue-item">
+    <div>
+        <time datetime="2018-07-20 17:56:57 &#43;0000 UTC" class="catalogue-time">July 20, 2018</time>
+        <h1 class="catalogue-title">AWS ELB配下でWordpressを動かす際のSSL対応</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境 AWS ELB
+AWS EC2
+Apache 2.2.32
+Wordpress 4.1.1
+ EC-CUBEではありませんが、内容的にはほぼ以下の伊賀もの様の記事通りです。
+続カッコの付け方WordpressでもリクエストURLを見ており、httpsでアクセスした場合のみhttpsでCSSを取得するようになっているのですが
+AWS ELBがポートを80に変えてしまうため以下の事象が起こります。
+① ChromeでHTTPSのWordpressページを開く
+② WordpressがCSSなどはHTTPで取得するよう返す
+③ Chrome様が『HTTPSのページのリソースはHTTPSで取得せぇや！』と怒る
+※ELB周りの話はこちらでも書いてます
+AWS ELB配下でApacheのRewriteRuleが上手く動かなかった話対応方法上記記事同様に、Wordpress（Ver4.1.1時点）でも $_SERVER[&lsquo;HTTPS&rsquo;]を見ているので、
+Apacheの設定（.htaccessでも可）で書き換えてしまえば解決です。
+# ELBがhttpsで受けている場合はHTTPSを有効にする SetEnvIf X-Forwarded-Proto ^https$ HTTPS=on # httpアクセスはhttpsにリダイレクトする(設定するかは任意) RewriteEngine on RewriteCond %{HTTP:X-Forwarded-Proto} ^http$ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R,L] 
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/1436/" class="catalogue-item">
+    <div>
+        <time datetime="2018-07-05 15:28:23 &#43;0000 UTC" class="catalogue-time">July 5, 2018</time>
+        <h1 class="catalogue-title">grepでアクセスログからTPSを出す</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境 Amazon Linux AMI release 2013.03
+grep 2.6.3
+ WEBサーバーのアクセスログからTPSを出すコマンドです。
+ApacheでもNginxでも対応可能です。
+アクセスログの時間フォーマットが05/Jul/2018:12:34:56のような形である場合
+以下のコマンドでTPSが出ます。
+※出力されている時刻フォーマットに合わせて修正してください。
+grep -o &quot;05/Jul/2018:[0-9]\{2\}:[0-9]\{2\}:[0-9]\{2\}&quot; access_log | sort | uniq -c ただし、これを２４時間分のアクセスログに対して実行すると行数が大変な事になるので
+その場合は時分秒のうち「時」を絞るなどして実行した方が良いです。
+以下は１２時台のログに絞る例です。
+grep -o &quot;05/Jul/2018:12:[0-9]\{2\}:[0-9]\{2\}&quot; access_log | sort | uniq -c また、正規表現部分を変えればTPS(秒間)ではなくTPM（分間）にすることも可能です。
+grep -o &quot;05/Jul/2018:[0-9]\{2\}:[0-9]\{2\}&quot; access_log | sort | uniq -c 
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/1423/" class="catalogue-item">
+    <div>
+        <time datetime="2018-06-30 22:29:41 &#43;0000 UTC" class="catalogue-time">June 30, 2018</time>
+        <h1 class="catalogue-title">AWS ELB配下でApacheのRewriteRuleが上手く動かなかった話</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境 AWS ELB
+AWS EC2
+Apache 2.2.32
+ AWSのEC2上で動いているApacheサーバーでの話。
+SEO対策で/index.htmlを/にリダイレクトしたかったので
+.htaccessに以下を設定しました。
+RewriteRule ^(.*)index.html$ $1 [R=301,L] 検証インスタンスでは上手く動いたので、本番インスタンスにも反映させたところ
+https://〜/index.html(443ポート) が http://〜/(80ポート)にリダイレクトされるようになってしまいました。
+なんでだろう？と思いながら以下のような分岐を作ってみましたが、結果は変わらずでした。
+# 一旦プロトコルはhttpとしておく RewriteRule .* - [E=X_PRTCL:http] # リクエストプロトコルがhttpsの場合、リダイレクト先もhttpsにする RewriteCond %{HTTPS} on RewriteRule .* - [E=X_PRTCL:https] RewriteRule ^(.*)index.html$ %{ENV:X_PRTCL}://%{HTTP_HOST}/$1 [R=301,L] なぜ443ポート(https)の通信が80ポート(http)扱いになってしまったかというと
+本番環境のEC2はELBを通しているのが原因でした。
+つまり、検証環境では
+PC ↓443ポート EC2 だったのに対して、本番環境では
+PC ↓443ポート ELB ↓80ポート EC2 となっていたのでした。
+ELBを経由した場合、HTTPプロトコルを判定するにはX-Forwarded-Protoというパラメータを見る必要があるようです。
+https://docs.aws.amazon.com/ja_jp/elasticloadbalancing/latest/classic/x-forwarded-headers.html以下のようにhtaccessへ記載すればELB経由でも上手く動きました
+# 一旦プロトコルはhttpとしておく RewriteRule .* - [E=X_PRTCL:http] # リクエストプロトコルがhttpsの場合、リダイレクト先もhttpsにする RewriteCond %{HTTPS} on [OR] # ELBを経由しない時用 RewriteCond %{HTTP:X-Forwarded-Proto} https # ELBを経由する時用 RewriteRule .
+        </p>
+    </div>
+</a>
+
+		
+	</div>
+
+	<div class="pagination">
+		
+			<a href="/page/8/" class="left arrow">&#8592;</a>
+		
+		
+			<a href="/page/10/" class="right arrow">&#8594;</a>
+		
+
+		<span>9</span>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.3128739 &#43;0900 JST m=&#43;0.132468301">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

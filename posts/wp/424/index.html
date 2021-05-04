@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>zabbixでPHPの警告が出る場合の対処 &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">zabbixでPHPの警告が出る場合の対処</h1>
+		<div class="post-info">
+				<time datetime="2017-02-14 00:48:55 &#43;0000 UTC">February 14, 2017</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/php/">PHP</a></div> <div class="tags_item"><a href="/tags/zabbix/">zabbix</a></div>
+				</div>
+			
+		</div>
+		<p>■環境<br>
+zabbix 3.2<br>
+PHP 7.1</p>
+<p>PHP7.1でzabbixを動かすと、以下の警告が出ました。</p>
+<pre><code>A non well formed numeric value encountered [zabbix.php:21 → require_once() → ZBase-&gt;run() → ZBase-&gt;processRequest() → CView-&gt;getOutput() → include() → make_status_of_zbx() → CFrontendSetup-&gt;checkRequirements() → CFrontendSetup-&gt;checkPhpMemoryLimit() → str2mem() in include/func.inc.php:410]  
+A non well formed numeric value encountered [zabbix.php:21 → require_once() → ZBase-&gt;run() → ZBase-&gt;processRequest() → CView-&gt;getOutput() → include() → make_status_of_zbx() → CFrontendSetup-&gt;checkRequirements() → CFrontendSetup-&gt;checkPhpPostMaxSize() → str2mem() in include/func.inc.php:410]  
+A non well formed numeric value encountered [zabbix.php:21 → require_once() → ZBase-&gt;run() → ZBase-&gt;processRequest() → CView-&gt;getOutput() → include() → make_status_of_zbx() → CFrontendSetup-&gt;checkRequirements() → CFrontendSetup-&gt;checkPhpUploadMaxFilesize() → str2mem() in include/func.inc.php:410]
+</code></pre><p>警告が出ている箇所は以下のようになっています。<br>
+[/usr/share/zabbix/include/func.inc.php]</p>
+<pre><code> 394 /**  
+ 395  * Converts strings like 2M or 5k to bytes  
+ 396  *  
+ 397  * @param string $val  
+ 398  *  
+ 399  * @return int  
+ 400  */  
+ 401 function str2mem($val) {  
+ 402         $val = trim($val);  
+ 403         $last = strtolower(substr($val, -1));  
+ 404  
+ 405         switch ($last) {  
+ 406                 case 'g':  
+ 407                         $val *= 1024;  
+ 408                         /* falls through */  
+ 409                 case 'm':  
+ 410                         $val *= 1024;  
+ 411                         /* falls through */  
+ 412                 case 'k':  
+ 413                         $val *= 1024;  
+ 414         }  
+ 415  
+ 416         return $val;  
+ 417 }
+</code></pre><p>この引数の「$val」には『256M』のように単位付きの数字が入ってくるようで、<br>
+それを『$val *= 1024』と数字のように扱っているので警告が出ているようです。<br>
+（警告は出ているが、処理自体は正常に行なわれている）</p>
+<p>解決策は色々あると思いますが、とりあえず以下のように修正したら<br>
+警告は表示されなくなりました。（404行目を追加しています）</p>
+<pre><code> 401 function str2mem($val) {  
+ 402         $val = trim($val);  
+ 403         $last = strtolower(substr($val, -1));  
+ 404         $val = intval($val);  
+ 405         switch ($last) {  
+ 406                 case 'g':  
+ 407                         $val *= 1024;  
+ 408                         /* falls through */  
+ 409                 case 'm':  
+ 410                         $val *= 1024;  
+ 411                         /* falls through */  
+ 412                 case 'k':  
+ 413                         $val *= 1024;  
+ 414         }  
+ 415  
+ 416         return $val;  
+ 417 }
+</code></pre>
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/349/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/440/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2830263 &#43;0900 JST m=&#43;0.102620701">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

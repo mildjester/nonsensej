@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Posts &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="catalogue">
+		
+			<a href="/posts/wp/48/" class="catalogue-item">
+    <div>
+        <time datetime="2015-08-27 21:36:09 &#43;0000 UTC" class="catalogue-time">August 27, 2015</time>
+        <h1 class="catalogue-title">【Ubuntu】ホームディレクトリを日本語から英語にする</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            日本語版Ubuntuをインストールすると、ホームディレクトリ内のディレクトリ名が日本語になっています。 コマンドラインで操作する時に日本語があると不都合があるので、英語表記に変更します。 例）音楽⇛Music
+ターミナルを開いて、以下コマンドを実行します。
+LANG=C xdg-user-dirs-gtk-update 確認ダイアログが表示されるので『Update Names』ボタンを押下します。
+これでディレクトリ名が英語になります。
+PCを再起動後、再度確認ダイアログが表示されるので
+『次回から表示しない』をチェックして『古い名前のままにする』を押下します。
+これで今後は再起動後もディレクトリ名が英語のままとなります。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/40/" class="catalogue-item">
+    <div>
+        <time datetime="2015-08-08 16:52:42 &#43;0000 UTC" class="catalogue-time">August 8, 2015</time>
+        <h1 class="catalogue-title">メールドメインに「localhost」と付いてしまう</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境
+CentOS 7
+postfix 2.10.1
+postfixで構築したメールサーバからメールを送信した場合に
+設定は間違えていないはずなのに、送信メールのドメイン部分（@の後ろ）に「localhost」が付いてしまう時の対処法です。
+例えば、『@sample.com』で送りたいのに『@localhost.sample.com』となってしまう場合です。
+※注意
+「設定は間違えていないはず」と思っているだけで本当は何かが間違っているのだと思います。
+postfixの設定以外にも環境ファイルの設定値が悪い場合などもありますが、その調査をしていられない時の
+暫定対処だと思ってください。
+postfixの設定ファイル(/etc/postfix/main.cf)に以下の行を追加してください。
+masquerade_domains = sample.com これで『sample.com』より前の部分はカットされます。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/18/" class="catalogue-item">
+    <div>
+        <time datetime="2015-08-08 15:35:56 &#43;0000 UTC" class="catalogue-time">August 8, 2015</time>
+        <h1 class="catalogue-title">メールサーバ構築（②dovecot編）</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境
+CentOS 7
+dovecot 2.2.10
+事前に①postfix編が終わっている前提とします。
+必要な物をインストール
+yum -y install dovecot メイン設定ファイルの修正(vi /etc/dovecot/dovecot.conf)
+protocols = imap pop3 listen = * 認証設定ファイルの修正(vi /etc/dovecot/conf.d/10-auth.conf)
+今回はパスワードファイルでの認証方式としてます
+#disable_plaintext_auth = yes auth_mechanisms = plain login digest-md5 cram-md5 #!include auth-system.conf.ext !include auth-passwdfile.conf.ext メール設定ファイルの修正(vi /etc/dovecot/conf.d/10-mail.conf)
+mail_location = maildir:~/Maildir マスター設定ファイルの修正(vi /etc/dovecot/conf.d/10-master.conf)
+unix_listener /var/spool/postfix/private/auth { mode = 0666 user = postfix group = postfix } SSL設定ファイルの修正(vi /etc/dovecot/conf.d/10-ssl.conf)
+ssl_cert = &lt;/etc/pki/sample/sample.crt ssl_key = &lt;/etc/pki/sample/sample.key ssl_ca = &lt;/etc/pki/sample/sampleCA.crt 認証パスワードのCRAM-MD5で暗号化した文字列を生成します。
+doveadm pw -s CRAM-MD5 Enter new password: 設定したいパスワードを入力 Retype new password: 設定したいパスワードを再入力 {CRAM-MD5}256f41a2b646bf66ae494370947623fd7a1f496442c81a0fdd9c2b1d994eb816 対象アカウントの情報を確認します。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/9/" class="catalogue-item">
+    <div>
+        <time datetime="2015-08-06 23:28:32 &#43;0000 UTC" class="catalogue-time">August 6, 2015</time>
+        <h1 class="catalogue-title">メールサーバ構築（①postfix編）</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境
+CentOS 7
+postfix 2.10.1
+メールアカウントはpasswdに登録されているアカウントを利用します。
+メール専用のアカウントは以下コマンドで作成してください。（SSHログイン不可）
+useradd -s /sbin/nologin demouser1 必要な物をインストール
+yum -y install postfix cyrus-sasl cyrus-sasl-plain cyrus-sasl-md5 メイン設定ファイルの修正(vi /etc/postfix/main.cf)
+以下、設定変更部分
+myhostname = mail.sample.com mydomain = sample.com myorigin = $mydomain inet_interfaces = all mynetworks = 192.168.0.0/23, 127.0.0.0/8 relay_domains = $mydestination home_mailbox = Maildir/ smtpd_banner = $myhostname ESMTP unknown 以下、設定追加部分
+※SSL証明書の秘密鍵はパスワード無しとします
+smtpd_sasl_auth_enable = yes smtpd_sasl_security_options = noanonymous smtpd_recipient_restrictions = permit_mynetworks, permit_sasl_authenticated, reject_unauth_destination smtpd_tls_cert_file = /etc/pki/sample/sample.crt smtpd_tls_key_file = /etc/pki/sample/sample.key smtpd_tls_CAfile = /etc/pki/sample/sampleCA.
+        </p>
+    </div>
+</a>
+
+		
+	</div>
+	
+	<div class="pagination">
+		
+			<a href="/posts/page/18/" class="left arrow">&#8592;</a>
+		
+		
+	
+		<span>19</span>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.3233377 &#43;0900 JST m=&#43;0.142932101">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>
