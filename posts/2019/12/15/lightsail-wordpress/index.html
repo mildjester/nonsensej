@@ -9,12 +9,12 @@
 		<title>lightsail上に自前でWordpressを構築する(Amazon Linux編) &middot; Nonsense J</title>
 
 		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
+  		<link rel="stylesheet" href="/nonsensej/css/style.css">
+		<link rel="stylesheet" href="/nonsensej/css/fonts.css">
 		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/nonsensej/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/nonsensej/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/nonsensej/images/apple-touch-icon.png">
 
 		
 		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
@@ -23,8 +23,8 @@
     <body>
         		<nav class="nav">
 			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
+				<a href="/nonsensej/" class="nav-title">
+					Nonsense J
 				</a>
 				<ul>
     
@@ -39,13 +39,14 @@
 	<div class="post">
 		<h1 class="post-title">lightsail上に自前でWordpressを構築する(Amazon Linux編)</h1>
 		<div class="post-info">
-				<time datetime="2019-12-15 00:00:00 &#43;0000 UTC">December 15, 2019</time>
+				<p class="publish-date">投稿日：<time datetime="2019-12-15 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-12-15</time></p>
 			
 				<div class="tags_list">
 					 <div class="tags_item"><a href="/tags/wordpress/">Wordpress</a></div> <div class="tags_item"><a href="/tags/aws/">AWS</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<h2 id="環境">環境</h2>
 <p>Amazon Linux AMI 2018.03 (lightsail)</p>
 <hr>
@@ -53,7 +54,7 @@
 <p>※2020年2月追記<br>
 lightsailのAmazon Linuxでcretbotの挙動があやしくなってきたので<br>
 CentOS版も作りました。<br>
-<a href="/articles/2020/02/18/lightsail-wordpress">記事はこちら</a></p>
+<a href="/posts/2020/02/18/lightsail-wordpress">記事はこちら</a></p>
 </blockquote>
 <p>lightsailではWordpressを載せたインスタンスを生成できますが、<br>
 全部載せbitnami環境があまり好きではなかったので<br>
@@ -161,21 +162,16 @@ cd letsencrypt
 <pre><code>UPDATE mysql.user SET password=password('new-new-password') where user = 'wp-user';
 </code></pre>
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/2019/11/19/apache-directory-hidden/" class="left arrow">&#8592;</a>
-		<a href="/posts/2020/02/13/etax-legal-record/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2634706 &#43;0900 JST m=&#43;0.083065101">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; <time datetime="2021-05-05 07:11:57.3410377 &#43;0900 JST m=&#43;0.099137101">2021</time> . Nonsense J
+				</span>
+			</div>
 		</footer>
 
     </body>

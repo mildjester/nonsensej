@@ -9,12 +9,12 @@
 		<title>Terminatorのデフォルトサイズを変更する &middot; Nonsense J</title>
 
 		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
+  		<link rel="stylesheet" href="/nonsensej/css/style.css">
+		<link rel="stylesheet" href="/nonsensej/css/fonts.css">
 		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/nonsensej/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/nonsensej/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/nonsensej/images/apple-touch-icon.png">
 
 		
 		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
@@ -23,8 +23,8 @@
     <body>
         		<nav class="nav">
 			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
+				<a href="/nonsensej/" class="nav-title">
+					Nonsense J
 				</a>
 				<ul>
     
@@ -39,13 +39,14 @@
 	<div class="post">
 		<h1 class="post-title">Terminatorのデフォルトサイズを変更する</h1>
 		<div class="post-info">
-				<time datetime="2019-03-10 00:00:00 &#43;0000 UTC">March 10, 2019</time>
+				<p class="publish-date">投稿日：<time datetime="2019-03-10 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-03-10</time></p>
 			
 				<div class="tags_list">
 					 <div class="tags_item"><a href="/tags/linuxmint/">LinuxMint</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<h2 id="環境">■環境</h2>
 <ul>
 <li>Linux Mint 19.1 &ldquo;Tessa&rdquo; - MATE (64-bit)</li>
@@ -69,24 +70,22 @@
 <p>例えばLinux Mintの場合はパネルにTerminatorを追加して右クリックからプロパティを開き、<br>
 コマンドの部分を以下のように変更してしまいます。</p>
 <pre><code>terminator --geometry=1400x800+200+200
-</code></pre><!-- raw HTML omitted -->
+</code></pre><img src="/images/2019/03/linux-mint-terminator-size.png">
+これでパネルからTerminatorを起動すると
+「横幅1400、高さ800、位置は上から200、左から200の場所」
+という状態でウィンドウが開きます。
 
-	</div>
-
-	<div class="pagination">
-		<a href="/posts/2019/03/07/google-optimize-interactive/" class="left arrow">&#8592;</a>
-		<a href="/posts/2019/03/10/linux-mint-terminator-fish/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
 	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2589059 &#43;0900 JST m=&#43;0.078500301">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; <time datetime="2021-05-05 07:11:57.3373301 &#43;0900 JST m=&#43;0.095429501">2021</time> . Nonsense J
+				</span>
+			</div>
 		</footer>
 
     </body>

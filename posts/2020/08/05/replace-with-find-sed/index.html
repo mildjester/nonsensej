@@ -9,12 +9,12 @@
 		<title>改行コードを一括で置換する &middot; Nonsense J</title>
 
 		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
+  		<link rel="stylesheet" href="/nonsensej/css/style.css">
+		<link rel="stylesheet" href="/nonsensej/css/fonts.css">
 		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/nonsensej/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/nonsensej/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/nonsensej/images/apple-touch-icon.png">
 
 		
 		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
@@ -23,8 +23,8 @@
     <body>
         		<nav class="nav">
 			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
+				<a href="/nonsensej/" class="nav-title">
+					Nonsense J
 				</a>
 				<ul>
     
@@ -39,13 +39,14 @@
 	<div class="post">
 		<h1 class="post-title">改行コードを一括で置換する</h1>
 		<div class="post-info">
-				<time datetime="2020-08-05 00:00:00 &#43;0000 UTC">August 5, 2020</time>
+				<p class="publish-date">投稿日：<time datetime="2020-08-05 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-08-05</time></p>
 			
 				<div class="tags_list">
 					 <div class="tags_item"><a href="/tags/linux/">Linux</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<p>定期的に使うのでメモ。</p>
 <p>Linuxサーバー上で対象ディレクトリ配下のファイルの文字コードを一括で置換するコマンドです。<br>
 以下コマンドで現ディレクトリ配下にあるphpファイルに対してCRLF(\r\n)をLF(\n)に置換します。</p>
@@ -68,21 +69,16 @@ sedコマンドの構成は以下の通り。</p>
 そして実行したいコマンドの最後は<code>\</code>で閉じます。</p>
 
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/2020/07/16/bookmarklet-kimetsu/" class="left arrow">&#8592;</a>
-		<a href="/posts/2020/08/21/route53-to-csv/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2720347 &#43;0900 JST m=&#43;0.091629101">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; <time datetime="2021-05-05 07:11:57.3512658 &#43;0900 JST m=&#43;0.109365101">2021</time> . Nonsense J
+				</span>
+			</div>
 		</footer>
 
     </body>

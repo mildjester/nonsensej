@@ -9,12 +9,12 @@
 		<title>Apacheのevent MPMのチューニング &middot; Nonsense J</title>
 
 		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
+  		<link rel="stylesheet" href="/nonsensej/css/style.css">
+		<link rel="stylesheet" href="/nonsensej/css/fonts.css">
 		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/nonsensej/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/nonsensej/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/nonsensej/images/apple-touch-icon.png">
 
 		
 		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
@@ -23,8 +23,8 @@
     <body>
         		<nav class="nav">
 			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
+				<a href="/nonsensej/" class="nav-title">
+					Nonsense J
 				</a>
 				<ul>
     
@@ -39,13 +39,14 @@
 	<div class="post">
 		<h1 class="post-title">Apacheのevent MPMのチューニング</h1>
 		<div class="post-info">
-				<time datetime="2018-05-26 11:28:56 &#43;0000 UTC">May 26, 2018</time>
+				<p class="publish-date">投稿日：<time datetime="2018-05-26 11:28:56 &#43;0000 UTC" class="catalogue-time">2018-05-26</time></p>
 			
 				<div class="tags_list">
 					 <div class="tags_item"><a href="/tags/apache/">Apache</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<p>preforkからeventに乗り換えるとチューニングの考え方が少し変わるので簡単にメモ。</p>
 <p>event MPMではまずApacheの子プロセス（以下プロセス）が複数生成され、<br>
 さらに各プロセスの中にWorker Thread（以下スレッド）が複数生成されるイメージ。</p>
@@ -60,29 +61,24 @@
   MaxConnectionsPerChild 5000 #プロセスが再起動までに処理するリクエスト数  
 &lt;/IfModule&gt;  
 </code></pre><ul>
-<li><!-- raw HTML omitted -->MaxRequestWorkers<!-- raw HTML omitted -->は最大スレッド数(ServerLimit×ThreadsPerChild)以下にしておくこと。<br>
+<li><code>MaxRequestWorkers</code>は最大スレッド数(ServerLimit×ThreadsPerChild)以下にしておくこと。<br>
 スレッド数以上のリクエストが来ると困る。</li>
-<li><!-- raw HTML omitted -->MinSpareThreads<!-- raw HTML omitted -->は初期スレッド数(StartServers×ThreadsPerChild)以下にしておくこと。<br>
+<li><code>MinSpareThreads</code>は初期スレッド数(StartServers×ThreadsPerChild)以下にしておくこと。<br>
 初期スレッド数以上の空きスレッドが必要だと、起動直後にスレッド追加しなければならなくて無駄。</li>
-<li><!-- raw HTML omitted -->MinSpareThreads<!-- raw HTML omitted -->と<!-- raw HTML omitted -->MaxSpareThreads<!-- raw HTML omitted -->は<!-- raw HTML omitted -->ThreadsPerChild<!-- raw HTML omitted -->の倍数になっていた方が良さそう。</li>
+<li><code>MinSpareThreads</code>と<code>MaxSpareThreads</code>は<code>ThreadsPerChild</code>の倍数になっていた方が良さそう。</li>
 </ul>
 
-	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/1360/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/1375/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
 	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2751651 &#43;0900 JST m=&#43;0.094759601">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; <time datetime="2021-05-05 07:11:57.3566365 &#43;0900 JST m=&#43;0.114735901">2021</time> . Nonsense J
+				</span>
+			</div>
 		</footer>
 
     </body>

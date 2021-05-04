@@ -9,12 +9,12 @@
 		<title>HP Proliant Microserver Gen 8 にCentOS7を入れる &middot; Nonsense J</title>
 
 		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
+  		<link rel="stylesheet" href="/nonsensej/css/style.css">
+		<link rel="stylesheet" href="/nonsensej/css/fonts.css">
 		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/nonsensej/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/nonsensej/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/nonsensej/images/apple-touch-icon.png">
 
 		
 		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
@@ -23,8 +23,8 @@
     <body>
         		<nav class="nav">
 			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
+				<a href="/nonsensej/" class="nav-title">
+					Nonsense J
 				</a>
 				<ul>
     
@@ -39,13 +39,14 @@
 	<div class="post">
 		<h1 class="post-title">HP Proliant Microserver Gen 8 にCentOS7を入れる</h1>
 		<div class="post-info">
-				<time datetime="2016-12-01 13:29:48 &#43;0000 UTC">December 1, 2016</time>
+				<p class="publish-date">投稿日：<time datetime="2016-12-01 13:29:48 &#43;0000 UTC" class="catalogue-time">2016-12-01</time></p>
 			
 				<div class="tags_list">
 					 <div class="tags_item"><a href="/tags/centos/">CentOS</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<h1 id="作業環境">■作業環境</h1>
 <p>・OS X El Capitan 10.11.6</p>
 <p> </p>
@@ -53,7 +54,7 @@
 <h2 id="centos7の準備">CentOS7の準備</h2>
 <p>まず、CentOSのISOイメージをダウンロードします。<br>
 ここから『Everything ISO』をダウンロードしておきます。<br>
-<!-- raw HTML omitted --><a href="https://www.centos.org/download/">https://www.centos.org/download/</a><!-- raw HTML omitted --></p>
+<a href="https://www.centos.org/download/" target="_blank"><a href="https://www.centos.org/download/">https://www.centos.org/download/</a></a></p>
 <p>ダウンロードしたISOをUSBメモリに起動可能USBとして焼きます。<br>
 1.USBをMacに挿す。<br>
 2.以下コマンドにてUSBメモリのdisk番号を確認する。</p>
@@ -73,7 +74,7 @@ $ sudo dd if=CentOS-7-x86_64-Everything-1511.iso of=/dev/diskX bs=4028
 </code></pre><h2 id="raidコントローラの準備">RAIDコントローラの準備</h2>
 <p>次にGen8用のRAIDコントローラをダウンロードします。<br>
 これがないとHPサーバが備えているのRAID機能が使えない。<br>
-<!-- raw HTML omitted --><a href="http://downloads.linux.hpe.com/SDR/repo/spp/RedHat/7/x86_64/current/">http://downloads.linux.hpe.com/SDR/repo/spp/RedHat/7/x86_64/current/</a><!-- raw HTML omitted --><br>
+<a href="http://downloads.linux.hpe.com/SDR/repo/spp/RedHat/7/x86_64/current/" target="_blank"><a href="http://downloads.linux.hpe.com/SDR/repo/spp/RedHat/7/x86_64/current/">http://downloads.linux.hpe.com/SDR/repo/spp/RedHat/7/x86_64/current/</a></a><br>
 ここから「hpvsa-1.2.14-113.rhel7u2.x86_64.dd.gz」をダウンロードします。<br>
 ※『rhel7u2』の部分はインストールするCentOSに合わせて読み替えてください。</p>
 <p>ダウンロードしたら、CentOSを焼いたUSBメモリとは別のUSBメモリに焼きます。<br>
@@ -103,21 +104,16 @@ $ diskutil eject /dev/diskX
 表示される質問事項を設定していけば完了です。</p>
 
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/311/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/355/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2819716 &#43;0900 JST m=&#43;0.101566101">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; <time datetime="2021-05-05 07:11:57.362333 &#43;0900 JST m=&#43;0.120432401">2021</time> . Nonsense J
+				</span>
+			</div>
 		</footer>
 
     </body>

@@ -9,12 +9,12 @@
 		<title>GitHub ActionsでAWS Code Deployを回す &middot; Nonsense J</title>
 
 		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
+  		<link rel="stylesheet" href="/nonsensej/css/style.css">
+		<link rel="stylesheet" href="/nonsensej/css/fonts.css">
 		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/nonsensej/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/nonsensej/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/nonsensej/images/apple-touch-icon.png">
 
 		
 		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
@@ -23,8 +23,8 @@
     <body>
         		<nav class="nav">
 			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
+				<a href="/nonsensej/" class="nav-title">
+					Nonsense J
 				</a>
 				<ul>
     
@@ -39,26 +39,27 @@
 	<div class="post">
 		<h1 class="post-title">GitHub ActionsでAWS Code Deployを回す</h1>
 		<div class="post-info">
-				<time datetime="2020-03-15 00:00:00 &#43;0000 UTC">March 15, 2020</time>
+				<p class="publish-date">投稿日：<time datetime="2020-03-15 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-03-15</time></p>
 			
 				<div class="tags_list">
 					 <div class="tags_item"><a href="/tags/aws/">AWS</a></div> <div class="tags_item"><a href="/tags/git/">git</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<p>GitHub ActionsからAWSコマンドを簡単に叩けるようだったので試してみました。<br>
 今回CIでやることは『masterにプッシュされたらCodeDeployを走らせる』のみです。</p>
 <h3 id="aws-code-deployの設定">AWS Code Deployの設定</h3>
 <p>こちらの記事で手順を紹介しています。<br>
-<a href="/articles/2019/02/28/aws-code-deploy">AWS Code DeployでEC2にデプロイする</a></p>
+<a href="/posts/2019/02/28/aws-code-deploy">AWS Code DeployでEC2にデプロイする</a></p>
 <h3 id="aws-iamの設定">AWS IAMの設定</h3>
 <p>こちらの記事で手順を紹介しています。<br>
 今回CircleCIは使わないので、「IAM準備」の手順のみ参照してください。<br>
-<a href="/articles/2019/03/04/aws-code-deploy-circleci">CircleCIからAWS Code Deployを実行する</a></p>
+<a href="/posts/2019/03/04/aws-code-deploy-circleci">CircleCIからAWS Code Deployを実行する</a></p>
 <h3 id="github-secretsへのキー登録">GitHub Secretsへのキー登録</h3>
 <p>前手順で取得したIAMユーザーの『アクセスキーID』と『シークレットアクセスキー』をGitHubのSecretsに登録します。</p>
 <p>まず、GitHubの対象リポジトリの『Settings ＞ Secrets』を開き、『Add a new secret』をクリックします。<br>
-<!-- raw HTML omitted --></p>
+<img src="/images/2020/03/github-actions-deploy-001.png" /></p>
 <p>Secretsの設定画面になるので以下2つを設定します。</p>
 <table>
 <thead>
@@ -81,7 +82,7 @@
 <h3 id="github-actionsの設定">GitHub Actionsの設定</h3>
 <p>デプロイしたいリポジトリのGitHubページの『Actions』タブを開き、<br>
 「Set up a workflow yourself」をクリックします。<br>
-<!-- raw HTML omitted --></p>
+<img src="/images/2020/03/github-actions-deploy-002.png" /></p>
 <p><code>.github/workflows/main.yml</code>の編集画面が開くので、以下のように記載します。</p>
 <pre><code>name: AWS Code Deploy
 
@@ -135,28 +136,23 @@ jobs:
 </table>
 <p>記載できたらコミットします。<br>
 コミットしたら、今回のコミットに対してGitHub Actionが動くので正常終了するか確認してください。<br>
-<!-- raw HTML omitted --></p>
+<img src="/images/2020/03/github-actions-deploy-003.png" /></p>
 <p>これで設定は完了です。<br>
 masterブランチが更新される度にAWS Code Deployが走りデプロイされるようになりました。</p>
 <p>今回はデプロイのみのCIだからか、1回1分以内で処理完了していました。<br>
 Actionsはプライベートリポジトリで月間2,000分まで無料(2020年3月現在)なので、2,000回くらいリリースできる想定。</p>
 
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/2020/03/10/gas-gmail-slack/" class="left arrow">&#8592;</a>
-		<a href="/posts/2020/03/20/javascript-input-event/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2651091 &#43;0900 JST m=&#43;0.084703601">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; <time datetime="2021-05-05 07:11:57.3420081 &#43;0900 JST m=&#43;0.100107501">2021</time> . Nonsense J
+				</span>
+			</div>
 		</footer>
 
     </body>

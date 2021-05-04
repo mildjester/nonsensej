@@ -9,12 +9,12 @@
 		<title>AWS lambdaからDBアクセスも外部アクセスもできるようにする。 &middot; Nonsense J</title>
 
 		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
+  		<link rel="stylesheet" href="/nonsensej/css/style.css">
+		<link rel="stylesheet" href="/nonsensej/css/fonts.css">
 		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/nonsensej/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/nonsensej/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/nonsensej/images/apple-touch-icon.png">
 
 		
 		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
@@ -23,8 +23,8 @@
     <body>
         		<nav class="nav">
 			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
+				<a href="/nonsensej/" class="nav-title">
+					Nonsense J
 				</a>
 				<ul>
     
@@ -39,13 +39,14 @@
 	<div class="post">
 		<h1 class="post-title">AWS lambdaからDBアクセスも外部アクセスもできるようにする。</h1>
 		<div class="post-info">
-				<time datetime="2020-07-12 00:00:00 &#43;0000 UTC">July 12, 2020</time>
+				<p class="publish-date">投稿日：<time datetime="2020-07-12 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-07-12</time></p>
 			
 				<div class="tags_list">
 					 <div class="tags_item"><a href="/tags/aws/">AWS</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<p>AWS lambdaからAWS RDSへアクセスさせるためにはRDSへアクセスできるVPCのサブネットにlambdaを追加します。<br>
 しかし、VPC内のlambdaは何もしないと外部アクセスができなくなります。</p>
 <p>lambdaがRDSと同時に外部システムのAPIなどを利用する際に困りますので、<br>
@@ -110,7 +111,7 @@ VPC内のlambdaから外部アクセスができるように設定します。</
 ここで作成したprivate用サブネットの方にlambdaを追加すればRDSと外部の両方にアクセスできるようになります。</p>
 <h2 id="lambda設定serverless-framework">lambda設定(Serverless Framework)</h2>
 <p>今回はServerless Frameworkを使ってlambdaを構築します。<br>
-Serverless Frameworkの基本的な構築については<a href="/articles/2020/05/19/serverless-framework-lambda">前回の記事</a>を参照してください。</p>
+Serverless Frameworkの基本的な構築については<a href="/posts/2020/05/19/serverless-framework-lambda">前回の記事</a>を参照してください。</p>
 <p>前回の記事で作成した<code>serverless.yml</code>のproviderにvpc設定を追加します。</p>
 <pre><code>provider:
   〜省略〜
@@ -128,21 +129,16 @@ Serverless Frameworkの基本的な構築については<a href="/articles/2020/
       - 設定するセキュリティグループID(sg-012345abcde)
 </code></pre>
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/2019/03/12/linux-mint-trackpoint/" class="left arrow">&#8592;</a>
-		<a href="/posts/2020/07/15/howto-make-bookmarklet/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2653631 &#43;0900 JST m=&#43;0.084957601">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; <time datetime="2021-05-05 07:11:57.348881 &#43;0900 JST m=&#43;0.106980401">2021</time> . Nonsense J
+				</span>
+			</div>
 		</footer>
 
     </body>

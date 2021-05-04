@@ -9,12 +9,12 @@
 		<title>【Wordpress】画像ファイルに設定されたタイトルとキャプションを削除する &middot; Nonsense J</title>
 
 		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
+  		<link rel="stylesheet" href="/nonsensej/css/style.css">
+		<link rel="stylesheet" href="/nonsensej/css/fonts.css">
 		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/nonsensej/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/nonsensej/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/nonsensej/images/apple-touch-icon.png">
 
 		
 		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
@@ -23,8 +23,8 @@
     <body>
         		<nav class="nav">
 			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
+				<a href="/nonsensej/" class="nav-title">
+					Nonsense J
 				</a>
 				<ul>
     
@@ -39,13 +39,14 @@
 	<div class="post">
 		<h1 class="post-title">【Wordpress】画像ファイルに設定されたタイトルとキャプションを削除する</h1>
 		<div class="post-info">
-				<time datetime="2019-08-26 00:00:00 &#43;0000 UTC">August 26, 2019</time>
+				<p class="publish-date">投稿日：<time datetime="2019-08-26 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-08-26</time></p>
 			
 				<div class="tags_list">
 					 <div class="tags_item"><a href="/tags/wordpress/">Wordpress</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<h2 id="環境">環境</h2>
 <ul>
 <li>WordPress 4.8.3</li>
@@ -71,21 +72,16 @@ add_filter( 'wp_read_image_metadata', 'delete_media_title_caption' );
 </code></pre><p>これで画像アップ時にファイルに設定されていたタイトルとキャプションは無視されます。</p>
 
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/2019/08/15/ssh-portfowarding/" class="left arrow">&#8592;</a>
-		<a href="/posts/2019/09/14/text-orientation-upright/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2614949 &#43;0900 JST m=&#43;0.081089401">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; <time datetime="2021-05-05 07:11:57.3394429 &#43;0900 JST m=&#43;0.097542201">2021</time> . Nonsense J
+				</span>
+			</div>
 		</footer>
 
     </body>

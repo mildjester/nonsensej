@@ -9,12 +9,12 @@
 		<title>【Linux Mint】gemでcompassをインストールする &middot; Nonsense J</title>
 
 		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
+  		<link rel="stylesheet" href="/nonsensej/css/style.css">
+		<link rel="stylesheet" href="/nonsensej/css/fonts.css">
 		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/nonsensej/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/nonsensej/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/nonsensej/images/apple-touch-icon.png">
 
 		
 		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
@@ -23,8 +23,8 @@
     <body>
         		<nav class="nav">
 			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
+				<a href="/nonsensej/" class="nav-title">
+					Nonsense J
 				</a>
 				<ul>
     
@@ -39,13 +39,14 @@
 	<div class="post">
 		<h1 class="post-title">【Linux Mint】gemでcompassをインストールする</h1>
 		<div class="post-info">
-				<time datetime="2018-04-20 16:23:01 &#43;0000 UTC">April 20, 2018</time>
+				<p class="publish-date">投稿日：<time datetime="2018-04-20 16:23:01 &#43;0000 UTC" class="catalogue-time">2018-04-20</time></p>
 			
 				<div class="tags_list">
 					 <div class="tags_item"><a href="/tags/linuxmint/">LinuxMint</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<p>以下のコマンドでインストールしようとするとエラーが発生しました。</p>
 <pre><code>$ sudo gem install compass  
   
@@ -75,28 +76,23 @@ extconf failed, exit code 1
 Gem files will remain installed in /var/lib/gems/2.3.0/gems/ffi-1.9.23 for inspection.  
 Results logged to /var/lib/gems/2.3.0/extensions/x86_64-linux/2.3.0/ffi-1.9.23/gem_make.out  
 </code></pre><p>調べてみると、どうやらgemのアップデートを先にやらなければならないようでした。<br>
-<!-- raw HTML omitted --><a href="https://ericdouglas.github.io/2016/08/21/Installing-Compass-on-Linux-Mint/">https://ericdouglas.github.io/2016/08/21/Installing-Compass-on-Linux-Mint/</a><!-- raw HTML omitted --></p>
+<a href="https://ericdouglas.github.io/2016/08/21/Installing-Compass-on-Linux-Mint/" target="_blank" rel="noopener"><a href="https://ericdouglas.github.io/2016/08/21/Installing-Compass-on-Linux-Mint/">https://ericdouglas.github.io/2016/08/21/Installing-Compass-on-Linux-Mint/</a></a></p>
 <p>以下のコマンドを実行するとインストールに成功しました。</p>
 <pre><code>$ sudo gem update - system  
 $ apt install ruby-ffi  
 $ sudo gem install compass  
 </code></pre>
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/1236/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/1291/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2736139 &#43;0900 JST m=&#43;0.093208401">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; <time datetime="2021-05-05 07:11:57.3556082 &#43;0900 JST m=&#43;0.113707601">2021</time> . Nonsense J
+				</span>
+			</div>
 		</footer>
 
     </body>

@@ -9,12 +9,12 @@
 		<title>CentOS7のネットワーク周り初期設定 &middot; Nonsense J</title>
 
 		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
+  		<link rel="stylesheet" href="/nonsensej/css/style.css">
+		<link rel="stylesheet" href="/nonsensej/css/fonts.css">
 		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/nonsensej/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/nonsensej/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/nonsensej/images/apple-touch-icon.png">
 
 		
 		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
@@ -23,8 +23,8 @@
     <body>
         		<nav class="nav">
 			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
+				<a href="/nonsensej/" class="nav-title">
+					Nonsense J
 				</a>
 				<ul>
     
@@ -39,18 +39,19 @@
 	<div class="post">
 		<h1 class="post-title">CentOS7のネットワーク周り初期設定</h1>
 		<div class="post-info">
-				<time datetime="2017-05-02 15:01:15 &#43;0000 UTC">May 2, 2017</time>
+				<p class="publish-date">投稿日：<time datetime="2017-05-02 15:01:15 &#43;0000 UTC" class="catalogue-time">2017-05-02</time></p>
 			
 				<div class="tags_list">
 					 <div class="tags_item"><a href="/tags/centos/">CentOS</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<h3 id="環境">■環境</h3>
 <p>CentOS 7.3</p>
 <hr>
 <h3 id="bonding設定">bonding設定</h3>
-<p>参考URL：<!-- raw HTML omitted --><a href="https://bacchi.me/linux/bonding/">https://bacchi.me/linux/bonding/</a><!-- raw HTML omitted --></p>
+<p>参考URL：<a href="https://bacchi.me/linux/bonding/" target="_blank"><a href="https://bacchi.me/linux/bonding/">https://bacchi.me/linux/bonding/</a></a></p>
 <p>現状確認しておきます。</p>
 <pre><code>nmcli c  
 ip a  
@@ -87,21 +88,16 @@ SELINUX=disabled
 systemctl disable firewalld  
 </code></pre>
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/624/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/631/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2847444 &#43;0900 JST m=&#43;0.104338901">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; <time datetime="2021-05-05 07:11:57.3663215 &#43;0900 JST m=&#43;0.124420901">2021</time> . Nonsense J
+				</span>
+			</div>
 		</footer>
 
     </body>

@@ -9,12 +9,12 @@
 		<title>CentOS7にfishを入れる &middot; Nonsense J</title>
 
 		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
+  		<link rel="stylesheet" href="/nonsensej/css/style.css">
+		<link rel="stylesheet" href="/nonsensej/css/fonts.css">
 		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/nonsensej/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/nonsensej/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/nonsensej/images/apple-touch-icon.png">
 
 		
 		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
@@ -23,8 +23,8 @@
     <body>
         		<nav class="nav">
 			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
+				<a href="/nonsensej/" class="nav-title">
+					Nonsense J
 				</a>
 				<ul>
     
@@ -39,13 +39,14 @@
 	<div class="post">
 		<h1 class="post-title">CentOS7にfishを入れる</h1>
 		<div class="post-info">
-				<time datetime="2017-02-17 00:00:18 &#43;0000 UTC">February 17, 2017</time>
+				<p class="publish-date">投稿日：<time datetime="2017-02-17 00:00:18 &#43;0000 UTC" class="catalogue-time">2017-02-17</time></p>
 			
 				<div class="tags_list">
 					 <div class="tags_item"><a href="/tags/centos/">CentOS</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<p>最近人気らしいfishを試しに入れてみました。</p>
 <h3 id="環境">■環境</h3>
 <p>CentOS 7.3<br>
@@ -80,7 +81,7 @@ oh-my-fishのインストールにはgit 1.9.5以上が必要なので<br>
 wget https://www.kernel.org/pub/software/scm/git/git-2.9.3.tar.gz  
 tar xzf git-2.9.3.tar.gz
 </code></pre><p>※最新のソースは以下で確認<br>
-<!-- raw HTML omitted --><a href="https://www.kernel.org/pub/software/scm/git/">https://www.kernel.org/pub/software/scm/git/</a><!-- raw HTML omitted --></p>
+<a href="https://www.kernel.org/pub/software/scm/git/" target="_blank"><a href="https://www.kernel.org/pub/software/scm/git/">https://www.kernel.org/pub/software/scm/git/</a></a></p>
 <p>gitをインストールします。<br>
 configureのオプション「&ndash;with-curl」を付けないと、oh-my-fishインストール時にコケます。</p>
 <pre><code>cd git-2.9.3  
@@ -96,7 +97,7 @@ git version 2.9.3
 </code></pre><p>最後にoh-my-fishをインストールして完了です。</p>
 <pre><code>curl -L https://get.oh-my.fish | fish
 </code></pre><p>oh-my-fishのインストール詳細についてはこちらを参照してください。<br>
-<!-- raw HTML omitted --><a href="https://github.com/oh-my-fish/oh-my-fish">https://github.com/oh-my-fish/oh-my-fish</a><!-- raw HTML omitted --></p>
+<a href="https://github.com/oh-my-fish/oh-my-fish" target="_blank"><a href="https://github.com/oh-my-fish/oh-my-fish">https://github.com/oh-my-fish/oh-my-fish</a></a></p>
 <h3 id="pecoインストール">【pecoインストール】</h3>
 <p>ついでにpecoもインストールしておきます。</p>
 <p>peco本体はgithubからダウンロードし、利用可能な状態にしておきます。</p>
@@ -115,21 +116,16 @@ end
 </code></pre><p>以上で設定は完了です。</p>
 
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/424/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/444/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2833912 &#43;0900 JST m=&#43;0.102985701">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; <time datetime="2021-05-05 07:11:57.3654772 &#43;0900 JST m=&#43;0.123576501">2021</time> . Nonsense J
+				</span>
+			</div>
 		</footer>
 
     </body>

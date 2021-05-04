@@ -9,12 +9,12 @@
 		<title>【CentOS &#43; Apache】Let’s Encryptで無料SSL証明書の取得＆自動更新をする &middot; Nonsense J</title>
 
 		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
+  		<link rel="stylesheet" href="/nonsensej/css/style.css">
+		<link rel="stylesheet" href="/nonsensej/css/fonts.css">
 		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/nonsensej/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/nonsensej/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/nonsensej/images/apple-touch-icon.png">
 
 		
 		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
@@ -23,8 +23,8 @@
     <body>
         		<nav class="nav">
 			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
+				<a href="/nonsensej/" class="nav-title">
+					Nonsense J
 				</a>
 				<ul>
     
@@ -39,13 +39,14 @@
 	<div class="post">
 		<h1 class="post-title">【CentOS &#43; Apache】Let’s Encryptで無料SSL証明書の取得＆自動更新をする</h1>
 		<div class="post-info">
-				<time datetime="2017-01-18 00:51:55 &#43;0000 UTC">January 18, 2017</time>
+				<p class="publish-date">投稿日：<time datetime="2017-01-18 00:51:55 &#43;0000 UTC" class="catalogue-time">2017-01-18</time></p>
 			
 				<div class="tags_list">
 					 <div class="tags_item"><a href="/tags/centos/">CentOS</a></div> <div class="tags_item"><a href="/tags/apache/">Apache</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<h3 id="環境">■環境</h3>
 <p>CentOS 7.3<br>
 Apache 2.4.6</p>
@@ -54,16 +55,16 @@ Apache 2.4.6</p>
 <p>########## 2017/04/05追記 ##########<br>
 Certbotというツールが公開されており、<br>
 本手順を実施するよりも、そちらを利用した方が簡単です。<br>
-<!-- raw HTML omitted --><a href="https://certbot.eff.org">https://certbot.eff.org</a><!-- raw HTML omitted --><br>
+<a href="https://certbot.eff.org" target="_blank"><a href="https://certbot.eff.org">https://certbot.eff.org</a></a><br>
 設定方法はこちら<br>
-<!-- raw HTML omitted -->【Let&rsquo;sEncrypt】Certbotの使い方(CentOS7 + nginx)<!-- raw HTML omitted --><br>
+<a href="/posts/wp/656">【Let&rsquo;sEncrypt】Certbotの使い方(CentOS7 + nginx)</a><br>
 ################################</p>
 <h3 id="前提">■前提</h3>
 <p>対象サーバがインターネット網に公開しているサーバであること。<br>
 →証明書発行時に認証のためLet&rsquo;s Encrypt側からアクセスがあるようです。<br>
 　そのため、ファイアーウォールなどで外部からのアクセスを遮断している環境では証明書発行ができません。<br>
 　2017/1/19現在、アクセス時のIPアドレスも公開しておりません。<br>
-　<!-- raw HTML omitted --><a href="https://letsencrypt.jp/faq/#IP">https://letsencrypt.jp/faq/#IP</a><!-- raw HTML omitted --></p>
+　<a href="https://letsencrypt.jp/faq/#IP"><a href="https://letsencrypt.jp/faq/#IP">https://letsencrypt.jp/faq/#IP</a></a></p>
 <h3 id="設定手順">設定手順</h3>
 <p>※以下手順はroot権限で実施しています。</p>
 <p>まず、サーバー上の任意のディレクトリにLet&rsquo;s Encryptから証明書を取得するツールをダウンロードします。<br>
@@ -126,21 +127,16 @@ fi
 <p>これで設定完了です。</p>
 
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/318/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/372/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2827634 &#43;0900 JST m=&#43;0.102357801">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; <time datetime="2021-05-05 07:11:57.3623223 &#43;0900 JST m=&#43;0.120421701">2021</time> . Nonsense J
+				</span>
+			</div>
 		</footer>
 
     </body>

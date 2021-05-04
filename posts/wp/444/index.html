@@ -9,12 +9,12 @@
 		<title>Redmine2.3.2にグループ管理プラグインを入れる &middot; Nonsense J</title>
 
 		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
+  		<link rel="stylesheet" href="/nonsensej/css/style.css">
+		<link rel="stylesheet" href="/nonsensej/css/fonts.css">
 		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/nonsensej/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/nonsensej/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/nonsensej/images/apple-touch-icon.png">
 
 		
 		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
@@ -23,8 +23,8 @@
     <body>
         		<nav class="nav">
 			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
+				<a href="/nonsensej/" class="nav-title">
+					Nonsense J
 				</a>
 				<ul>
     
@@ -39,13 +39,14 @@
 	<div class="post">
 		<h1 class="post-title">Redmine2.3.2にグループ管理プラグインを入れる</h1>
 		<div class="post-info">
-				<time datetime="2017-02-27 15:16:05 &#43;0000 UTC">February 27, 2017</time>
+				<p class="publish-date">投稿日：<time datetime="2017-02-27 15:16:05 &#43;0000 UTC" class="catalogue-time">2017-02-27</time></p>
 			
 				<div class="tags_list">
 					 <div class="tags_item"><a href="/tags/ruby/">ruby</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<p>redmineにグループ管理のプラグインを入れたが、ちゃんと動かなかったので<br>
 つまづいた所をメモする。<br>
 ※補足<br>
@@ -56,7 +57,7 @@ CentOS 6.5<br>
 Redmine 2.3.2<br>
 ruby 2.0.0<br>
 rails 3.2.13</p>
-<p><!-- raw HTML omitted --><a href="https://github.com/fathomssen/redmine_group_manager">https://github.com/fathomssen/redmine_group_manager</a><!-- raw HTML omitted --><br>
+<p><a href="https://github.com/fathomssen/redmine_group_manager" target="_blank"><a href="https://github.com/fathomssen/redmine_group_manager">https://github.com/fathomssen/redmine_group_manager</a></a><br>
 基本的なインストール方法はREADME.rdoc通り</p>
 <h2 id="order-by句がおかしい">①order by句がおかしい</h2>
 <p>オーダー句がおかしいとエラーになったので、app/models/gmanager.rbの９行目を修正した<br>
@@ -99,24 +100,19 @@ rails 3.2.13</p>
 プラグインを大幅に修正しました。</p>
 <p>プロジェクトに未所属のメンバーもグループに追加できるようにしたプラグインは<br>
 こちらです。<br>
-<!-- raw HTML omitted --><a href="https://github.com/mildjester/redmine_group_manager">https://github.com/mildjester/redmine_group_manager</a><!-- raw HTML omitted --></p>
+<a href="https://github.com/mildjester/redmine_group_manager" target="_blank"><a href="https://github.com/mildjester/redmine_group_manager">https://github.com/mildjester/redmine_group_manager</a></a></p>
 
-	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/440/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/467/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
 	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2834086 &#43;0900 JST m=&#43;0.103003101">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; <time datetime="2021-05-05 07:11:57.3636548 &#43;0900 JST m=&#43;0.121754201">2021</time> . Nonsense J
+				</span>
+			</div>
 		</footer>
 
     </body>

@@ -9,12 +9,12 @@
 		<title>【Linux Mint】cpuminer &#43; wpoolでBitZenyをマイニング &middot; Nonsense J</title>
 
 		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
+  		<link rel="stylesheet" href="/nonsensej/css/style.css">
+		<link rel="stylesheet" href="/nonsensej/css/fonts.css">
 		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/nonsensej/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/nonsensej/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/nonsensej/images/apple-touch-icon.png">
 
 		
 		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
@@ -23,8 +23,8 @@
     <body>
         		<nav class="nav">
 			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
+				<a href="/nonsensej/" class="nav-title">
+					Nonsense J
 				</a>
 				<ul>
     
@@ -39,19 +39,20 @@
 	<div class="post">
 		<h1 class="post-title">【Linux Mint】cpuminer &#43; wpoolでBitZenyをマイニング</h1>
 		<div class="post-info">
-				<time datetime="2018-04-20 10:25:55 &#43;0000 UTC">April 20, 2018</time>
+				<p class="publish-date">投稿日：<time datetime="2018-04-20 10:25:55 &#43;0000 UTC" class="catalogue-time">2018-04-20</time></p>
 			
 				<div class="tags_list">
 					 <div class="tags_item"><a href="/tags/linuxmint/">LinuxMint</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<h2 id="環境">■環境</h2>
 <p>Linux Mint 18.3 cinnamon 64bit</p>
 <hr>
 <h2 id="cpuminerのインストール">cpuminerのインストール</h2>
 <p>基本的な流れはcpuminerのgithubページに記載されている通りです。<br>
-<!-- raw HTML omitted --><a href="https://github.com/macchky/cpuminer">https://github.com/macchky/cpuminer</a><!-- raw HTML omitted --></p>
+<a href="https://github.com/macchky/cpuminer" rel="noopener" target="_blank"><a href="https://github.com/macchky/cpuminer">https://github.com/macchky/cpuminer</a></a></p>
 <p>事前に必要な物をインストールします。<br>
 ※libjansson4は公式ページには記載がありませんが、ないとminerd実行時にエラーとなります。</p>
 <pre><code>apt install build-essential libcurl4-openssl-dev libjansson4  
@@ -64,14 +65,14 @@ rm -rf unzip ZNYminer260*
 </code></pre><h2 id="bitzeny-walletの登録">BitZeny Walletの登録</h2>
 <p>BitZenyの受け取り用にWalletを作っておきます。<br>
 以下サイトにてWalletが作成できます。<br>
-<!-- raw HTML omitted --><a href="https://bitzeny.jp">https://bitzeny.jp</a><!-- raw HTML omitted --></p>
+<a href="https://bitzeny.jp" rel="noopener" target="_blank"><a href="https://bitzeny.jp">https://bitzeny.jp</a></a></p>
 <p>アカウントを作成し、ログイン後の画面でWalletのアドレスが確認できます。<br>
-<!-- raw HTML omitted --></p>
+<img src="/images/2018/04/Screenshot-from-2018-04-20-10-20-38.png" alt="" /></p>
 <h2 id="マイニングの開始">マイニングの開始</h2>
 <p>minerdを使ってマイニングを開始します。<br>
 wpoolに記載されている下記コマンドを実行すればマイニングが開始されます。<br>
 マイニング停止はCtrl+Cです。<br>
-<!-- raw HTML omitted --><a href="https://wpool.work/">https://wpool.work/</a><!-- raw HTML omitted --></p>
+<a href="https://wpool.work/" rel="noopener" target="_blank"><a href="https://wpool.work/">https://wpool.work/</a></a></p>
 <pre><code>minerd -a yescrypt -o stratum+tcp://wpool.work:15022 -u {BitZeny Walletで取得したアドレス}  
 </code></pre><p>マイニング中は以下のように結果が流れていきます。<br>
 「yay!!!」となっているところがマイニング成功です。</p>
@@ -97,21 +98,16 @@ wpoolに記載されている下記コマンドを実行すればマイニング
 [2018-04-20 15:43:33] thread 3: 5300 hashes, 0.77 khash/s  
 </code></pre>
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/1226/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/1245/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2745761 &#43;0900 JST m=&#43;0.094170601">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; <time datetime="2021-05-05 07:11:57.3556576 &#43;0900 JST m=&#43;0.113757001">2021</time> . Nonsense J
+				</span>
+			</div>
 		</footer>
 
     </body>

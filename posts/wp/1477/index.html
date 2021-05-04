@@ -9,12 +9,12 @@
 		<title>CircleCIでプルリク時にUnitテストが走るようにする &middot; Nonsense J</title>
 
 		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
+  		<link rel="stylesheet" href="/nonsensej/css/style.css">
+		<link rel="stylesheet" href="/nonsensej/css/fonts.css">
 		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/nonsensej/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/nonsensej/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/nonsensej/images/apple-touch-icon.png">
 
 		
 		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
@@ -23,8 +23,8 @@
     <body>
         		<nav class="nav">
 			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
+				<a href="/nonsensej/" class="nav-title">
+					Nonsense J
 				</a>
 				<ul>
     
@@ -39,46 +39,47 @@
 	<div class="post">
 		<h1 class="post-title">CircleCIでプルリク時にUnitテストが走るようにする</h1>
 		<div class="post-info">
-				<time datetime="2018-08-14 01:30:40 &#43;0000 UTC">August 14, 2018</time>
+				<p class="publish-date">投稿日：<time datetime="2018-08-14 01:30:40 &#43;0000 UTC" class="catalogue-time">2018-08-14</time></p>
 			
 				<div class="tags_list">
 					 <div class="tags_item"><a href="/tags/circleci/">CircleCI</a></div> <div class="tags_item"><a href="/tags/git/">git</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<p>CircleCIを使って、GitHubにてプルリクエストを投げた際に<br>
 Unitテストが走るようにします。</p>
 <p>ソースコードはPHPで、Unitテストにはphpunitを使っている前提とします。</p>
 <h3 id="circle-ciのアカウント登録">Circle CIのアカウント登録</h3>
-<p>Circle CIのホームページにアクセスし、右上の<!-- raw HTML omitted -->Sign Up<!-- raw HTML omitted -->をクリックします。<br>
-<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Circle CIのホームページにアクセスし、右上の<code>Sign Up</code>をクリックします。<br>
+<a href="/images/2018/08/Screenshot-from-2018-08-11-00-24-01.png"><img class="alignnone size-large wp-image-1478" src="/images/2018/08/Screenshot-from-2018-08-11-00-24-01.png" alt="" /></a></p>
 <p>GitHubかBitBucketのアカウントでログインできるようです。<br>
 今回はGitHubのアカウントでログインしました。<br>
-<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<p>連携を許可するか聞かれるので<!-- raw HTML omitted -->Authorize circleci<!-- raw HTML omitted -->をクリックします。<br>
-<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<a href="/images/2018/08/Screenshot-from-2018-08-11-00-24-25.png"><img class="alignnone size-large wp-image-1479" src="/images/2018/08/Screenshot-from-2018-08-11-00-24-25.png" alt="" /></a></p>
+<p>連携を許可するか聞かれるので<code>Authorize circleci</code>をクリックします。<br>
+<a href="/images/2018/08/Screenshot-from-2018-08-11-00-24-56.png"><img class="alignnone size-full wp-image-1480" src="/images/2018/08/Screenshot-from-2018-08-11-00-24-56.png" alt="" /></a></p>
 <h3 id="circle-ciにプロジェクト作成">Circle CIにプロジェクト作成</h3>
-<p>アカウント作成が完了したらプロジェクト作成するため<!-- raw HTML omitted -->Add Projects<!-- raw HTML omitted -->をクリックします。<br>
-<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<p>紐付けるリポジトリの<!-- raw HTML omitted -->Set Up Project<!-- raw HTML omitted -->をクリックします。<br>
-<!-- raw HTML omitted --></p>
+<p>アカウント作成が完了したらプロジェクト作成するため<code>Add Projects</code>をクリックします。<br>
+<a href="/images/2018/08/Screenshot-from-2018-08-11-00-25-44.png"><img class="alignnone size-full wp-image-1481" src="/images/2018/08/Screenshot-from-2018-08-11-00-25-44.png" alt="" /></a></p>
+<p>紐付けるリポジトリの<code>Set Up Project</code>をクリックします。<br>
+<img src="/images/2018/08/Screenshot-from-2018-08-11-00-26-20.png" alt="" /></p>
 <p>対象リポジトリの環境を設定します。<br>
 該当するものをクリックします。<br>
-<!-- raw HTML omitted --></p>
+<img src="/images/2018/08/Screenshot-from-2018-08-11-00-30-49.png" alt="" /></p>
 <p>下にスクロールすると今後の流れが書いてあります。<br>
-<!-- raw HTML omitted --></p>
-<p>まず該当リポジトリに<!-- raw HTML omitted -->.circleci/config.yml<!-- raw HTML omitted -->を作成します。<br>
+<img src="/images/2018/08/Screenshot-from-2018-08-11-00-31-51.png" alt="" /></p>
+<p>まず該当リポジトリに<code>.circleci/config.yml</code>を作成します。<br>
 config.ymlの内容はとりあえず内容はCopy To Clipboardでコピーしたもの(2018/8/11現在)に<br>
 以下の修正を加えたものにしています。<br>
-<!-- raw HTML omitted -->①Dockerイメージ変更<!-- raw HTML omitted --> <br>
+<b>①Dockerイメージ変更</b> <br>
 Dockerイメージを自分のサーバーの環境に近いものに変更します。<br>
 どのようなイメージがあるかは詳細はDockerHubで確認してください。<br>
-<!-- raw HTML omitted --><a href="https://hub.docker.com/r/circleci/">https://hub.docker.com/r/circleci/</a><!-- raw HTML omitted --><br>
+<a href="https://hub.docker.com/r/circleci/" rel="noopener" target="_blank"><a href="https://hub.docker.com/r/circleci/">https://hub.docker.com/r/circleci/</a></a><br>
 (使いたいDockerイメージが別にであるなら、circleci公式のイメージじゃなくても動くらしい)</p>
-<p>なお、サンプルのconfig.ymlに書いてあった<!-- raw HTML omitted -->circleci/php:7.1.5-browsers<!-- raw HTML omitted -->は存在しません。<br>
+<p>なお、サンプルのconfig.ymlに書いてあった<code>circleci/php:7.1.5-browsers</code>は存在しません。<br>
 サンプルのまま実行すると以下のエラーが発生します。</p>
 <pre><code>Error response from daemon: manifest for circleci/php:7.1.5-browsers not found  
-</code></pre><p><!-- raw HTML omitted -->②phpunit実行コマンドを変更<!-- raw HTML omitted --><br>
+</code></pre><p><b>②phpunit実行コマンドを変更</b><br>
 composerなどでphpunitを入れている場合はコマンドが違うと思うので変更します。</p>
 <p>出来上がったconfig.ymlが以下です</p>
 <pre><code># PHP CircleCI 2.0 configuration file  
@@ -127,21 +128,16 @@ jobs:
 また、CircleCIの実行結果はデフォルトではCircleCIに設定したメールアドレスに届くようになります。</p>
 
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/1470/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/1500/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2765353 &#43;0900 JST m=&#43;0.096129801">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; <time datetime="2021-05-05 07:11:57.3581872 &#43;0900 JST m=&#43;0.116286601">2021</time> . Nonsense J
+				</span>
+			</div>
 		</footer>
 
     </body>

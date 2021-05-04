@@ -9,12 +9,12 @@
 		<title>【CentOS】OpenVPN &amp; LDAPでVPNサーバ構築 &middot; Nonsense J</title>
 
 		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
+  		<link rel="stylesheet" href="/nonsensej/css/style.css">
+		<link rel="stylesheet" href="/nonsensej/css/fonts.css">
 		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/nonsensej/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/nonsensej/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/nonsensej/images/apple-touch-icon.png">
 
 		
 		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
@@ -23,8 +23,8 @@
     <body>
         		<nav class="nav">
 			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
+				<a href="/nonsensej/" class="nav-title">
+					Nonsense J
 				</a>
 				<ul>
     
@@ -39,19 +39,20 @@
 	<div class="post">
 		<h1 class="post-title">【CentOS】OpenVPN &amp; LDAPでVPNサーバ構築</h1>
 		<div class="post-info">
-				<time datetime="2017-12-20 16:12:33 &#43;0000 UTC">December 20, 2017</time>
+				<p class="publish-date">投稿日：<time datetime="2017-12-20 16:12:33 &#43;0000 UTC" class="catalogue-time">2017-12-20</time></p>
 			
 				<div class="tags_list">
 					 <div class="tags_item"><a href="/tags/centos/">CentOS</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<h1 id="環境">環境</h1>
 <p>CentOS 7.4 <br>
 OpenVPN 2.4.4</p>
 <h1 id="参考サイト">参考サイト</h1>
-<p>ServerWorldさん：<!-- raw HTML omitted --><a href="https://www.server-world.info/query?os=CentOS_7&amp;amp;p=openvpn">https://www.server-world.info/query?os=CentOS_7&amp;amp;p=openvpn</a><!-- raw HTML omitted --> <br>
-cloudpackさん：<!-- raw HTML omitted --><a href="https://cloudpack.media/73">https://cloudpack.media/73</a><!-- raw HTML omitted --></p>
+<p>ServerWorldさん：<a href="https://www.server-world.info/query?os=CentOS_7&p=openvpn" rel="noopener" target="_blank"><a href="https://www.server-world.info/query?os=CentOS_7&amp;amp;p=openvpn">https://www.server-world.info/query?os=CentOS_7&amp;amp;p=openvpn</a></a> <br>
+cloudpackさん：<a href="https://cloudpack.media/73" rel="noopener" target="_blank"><a href="https://cloudpack.media/73">https://cloudpack.media/73</a></a></p>
 <h3 id="前提条件">※前提条件</h3>
 <p>LDAPサーバは既に構築済みとします</p>
 <hr>
@@ -186,9 +187,9 @@ sh /etc/openvpn/openvpn-startup
 </code></pre><h1 id="クライアント作業手順">クライアント作業手順</h1>
 <h2 id="tunnelblinkの取得">■Tunnelblinkの取得</h2>
 <p>以下サイトよりダウンロード&amp;インストールします。　　<br>
-<!-- raw HTML omitted --><a href="https://tunnelblick.net/downloads.html">https://tunnelblick.net/downloads.html</a><!-- raw HTML omitted -->　　</p>
+<a href="https://tunnelblick.net/downloads.html" rel="noopener" target="_blank"><a href="https://tunnelblick.net/downloads.html">https://tunnelblick.net/downloads.html</a></a>　　</p>
 <h2 id="vpn設定">■VPN設定</h2>
-<p>サーバ側で生成した<!-- raw HTML omitted -->ca.crt<!-- raw HTML omitted -->をクライアント側にダウンロードし、その同じディレクトリに<!-- raw HTML omitted -->sample.ovpn<!-- raw HTML omitted -->を作成します。 <br>
+<p>サーバ側で生成した<code>ca.crt</code>をクライアント側にダウンロードし、その同じディレクトリに<code>sample.ovpn</code>を作成します。 <br>
 ※上記「sample」部分については任意の名前にしてください。それがTunnelblink上での接続先名になります。</p>
 <p>sample.ovpnの中身は以下のようにしてください。</p>
 <pre><code>client  
@@ -206,21 +207,16 @@ remote xxx.xxx.xxx.xxx 1194 #xxxはクライアントからVPNサーバへアク
 <p>Tunnelblinkを起動し、上部常駐アイコンより「sampleに接続」を選択すると接続できる。</p>
 
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/914/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/979/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2918259 &#43;0900 JST m=&#43;0.111420401">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; <time datetime="2021-05-05 07:11:57.3834047 &#43;0900 JST m=&#43;0.141504101">2021</time> . Nonsense J
+				</span>
+			</div>
 		</footer>
 
     </body>

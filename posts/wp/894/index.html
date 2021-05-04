@@ -9,12 +9,12 @@
 		<title>【git】ローカルとリモートのブランチを削除するスクリプト &middot; Nonsense J</title>
 
 		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
+  		<link rel="stylesheet" href="/nonsensej/css/style.css">
+		<link rel="stylesheet" href="/nonsensej/css/fonts.css">
 		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/nonsensej/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/nonsensej/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/nonsensej/images/apple-touch-icon.png">
 
 		
 		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
@@ -23,8 +23,8 @@
     <body>
         		<nav class="nav">
 			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
+				<a href="/nonsensej/" class="nav-title">
+					Nonsense J
 				</a>
 				<ul>
     
@@ -39,16 +39,17 @@
 	<div class="post">
 		<h1 class="post-title">【git】ローカルとリモートのブランチを削除するスクリプト</h1>
 		<div class="post-info">
-				<time datetime="2017-12-12 12:47:09 &#43;0000 UTC">December 12, 2017</time>
+				<p class="publish-date">投稿日：<time datetime="2017-12-12 12:47:09 &#43;0000 UTC" class="catalogue-time">2017-12-12</time></p>
 			
 				<div class="tags_list">
 					 <div class="tags_item"><a href="/tags/git/">git</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<p>マージ済みのブランチを削除する時に、いつもローカルブランチとリモートブランチの両方を削除するのが面倒だったのでスクリプト化しました。</p>
 <p>リモートはorigin限定です。 <br>
-<!-- raw HTML omitted -->git_del_br.sh<!-- raw HTML omitted -->という名前で作った例です。</p>
+<code>git_del_br.sh</code>という名前で作った例です。</p>
 <pre><code>#!/bin/bash  
 set +eu  
   
@@ -75,21 +76,16 @@ else
 fi  
 </code></pre>
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/853/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/914/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.291333 &#43;0900 JST m=&#43;0.110927401">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; <time datetime="2021-05-05 07:11:57.3722704 &#43;0900 JST m=&#43;0.130369701">2021</time> . Nonsense J
+				</span>
+			</div>
 		</footer>
 
     </body>

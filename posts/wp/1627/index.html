@@ -9,12 +9,12 @@
 		<title>同じForm内に複数のreCAPTCHA認証ボタンを設置する &middot; Nonsense J</title>
 
 		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
+  		<link rel="stylesheet" href="/nonsensej/css/style.css">
+		<link rel="stylesheet" href="/nonsensej/css/fonts.css">
 		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/nonsensej/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/nonsensej/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/nonsensej/images/apple-touch-icon.png">
 
 		
 		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
@@ -23,8 +23,8 @@
     <body>
         		<nav class="nav">
 			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
+				<a href="/nonsensej/" class="nav-title">
+					Nonsense J
 				</a>
 				<ul>
     
@@ -39,15 +39,16 @@
 	<div class="post">
 		<h1 class="post-title">同じForm内に複数のreCAPTCHA認証ボタンを設置する</h1>
 		<div class="post-info">
-				<time datetime="2018-10-26 13:27:25 &#43;0000 UTC">October 26, 2018</time>
+				<p class="publish-date">投稿日：<time datetime="2018-10-26 13:27:25 &#43;0000 UTC" class="catalogue-time">2018-10-26</time></p>
 			
 				<div class="tags_list">
 					 <div class="tags_item"><a href="/tags/javascript/">javascript</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<p>WEBページのreCAPTCHA対応しているform内に複数のsubmitボタンを設置する方法です。<br>
-前提としてPOSTデータより <!-- raw HTML omitted -->g-recaptcha-response<!-- raw HTML omitted --> を取り出して認証しているとします。</p>
+前提としてPOSTデータより <code>g-recaptcha-response</code> を取り出して認証しているとします。</p>
 <p>単純にsubmitボタンを複数設置した場合、うまく動きません。<br>
 例えば、以下のようなフォームを作った場合</p>
 <pre><code>&lt;script&gt;  
@@ -108,21 +109,16 @@ function mySubmit2() {
 正常に認証することができるようになります。</p>
 
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/1573/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/1715/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2778715 &#43;0900 JST m=&#43;0.097465901">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; <time datetime="2021-05-05 07:11:57.3605373 &#43;0900 JST m=&#43;0.118636701">2021</time> . Nonsense J
+				</span>
+			</div>
 		</footer>
 
     </body>

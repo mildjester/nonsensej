@@ -9,12 +9,12 @@
 		<title>Ubuntu 20.04にアップデートした話 &middot; Nonsense J</title>
 
 		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
+  		<link rel="stylesheet" href="/nonsensej/css/style.css">
+		<link rel="stylesheet" href="/nonsensej/css/fonts.css">
 		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/nonsensej/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/nonsensej/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/nonsensej/images/apple-touch-icon.png">
 
 		
 		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
@@ -23,8 +23,8 @@
     <body>
         		<nav class="nav">
 			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
+				<a href="/nonsensej/" class="nav-title">
+					Nonsense J
 				</a>
 				<ul>
     
@@ -39,13 +39,14 @@
 	<div class="post">
 		<h1 class="post-title">Ubuntu 20.04にアップデートした話</h1>
 		<div class="post-info">
-				<time datetime="2020-05-17 00:00:00 &#43;0000 UTC">May 17, 2020</time>
+				<p class="publish-date">投稿日：<time datetime="2020-05-17 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-05-17</time></p>
 			
 				<div class="tags_list">
 					 <div class="tags_item"><a href="/tags/ubuntu/">ubuntu</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<p>待望のUbuntu 20.04 LTSが出たので、19.10からアップデートしてみました。<br>
 アップデートと同時に発生した事象について記載します。</p>
 <h2 id="消えたアプリ">消えたアプリ</h2>
@@ -70,10 +71,11 @@ sudo apt install shutter
 <blockquote>
 <p>※2020/6/1追記<br>
 対処法が分かったのでこちらの記事で記載しています。<br>
-<a href="/articles/2020/06/01/ubuntu-20-04-hdmi">ThinkpadにHDMIケーブルを接続したままUbuntu 20.04を起動する</a></p>
+<a href="/posts/2020/06/01/ubuntu-20-04-hdmi">ThinkpadにHDMIケーブルを接続したままUbuntu 20.04を起動する</a></p>
 </blockquote>
 <p>私の作業PCはThinkpad T480なのですが、HDMIポートにケーブルを挿した状態で起動しようとすると、ロゴ画面で止まってしまう事象が発生しました。</p>
-<!-- raw HTML omitted -->
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">Ubuntn20.04にしてからマルチディスプレイで起動する事が出来なくなった。ずっとこの画面のまま動かない。<br><br>起動後にケーブル繋いだら普通にマルチにできる。 <a href="https://t.co/Ke1ZLBLXv4">pic.twitter.com/Ke1ZLBLXv4</a></p>&mdash; djiroy (@mildjester) <a href="https://twitter.com/mildjester/status/1261556423978135554?ref_src=twsrc%5Etfw">May 16, 2020</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <p>PCのThunderboldポートにもThunderbold→HDMIのケーブルを繋いでいるのですが、そちらは特に挿したまま起動しても問題ありませんでした。<br>
 調べてみると同様の事象を報告している方が複数いたので、おそらくubuntu 20.04の不具合かと思われます。<br>
 <a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1874194">https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1874194</a></p>
@@ -85,21 +87,16 @@ sudo apt install shutter
 ③ログインする。</p>
 
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/2020/04/15/gulp-uglify-keep-name/" class="left arrow">&#8592;</a>
-		<a href="/posts/2020/05/19/serverless-framework-lambda/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2646003 &#43;0900 JST m=&#43;0.084194701">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; <time datetime="2021-05-05 07:11:57.3422332 &#43;0900 JST m=&#43;0.100332601">2021</time> . Nonsense J
+				</span>
+			</div>
 		</footer>
 
     </body>

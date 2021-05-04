@@ -9,12 +9,12 @@
 		<title>【AWS】新規EC2立ち上げ後の作業メモ &middot; Nonsense J</title>
 
 		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
+  		<link rel="stylesheet" href="/nonsensej/css/style.css">
+		<link rel="stylesheet" href="/nonsensej/css/fonts.css">
 		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/nonsensej/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/nonsensej/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/nonsensej/images/apple-touch-icon.png">
 
 		
 		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
@@ -23,8 +23,8 @@
     <body>
         		<nav class="nav">
 			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
+				<a href="/nonsensej/" class="nav-title">
+					Nonsense J
 				</a>
 				<ul>
     
@@ -39,13 +39,14 @@
 	<div class="post">
 		<h1 class="post-title">【AWS】新規EC2立ち上げ後の作業メモ</h1>
 		<div class="post-info">
-				<time datetime="2017-11-12 01:06:50 &#43;0000 UTC">November 12, 2017</time>
+				<p class="publish-date">投稿日：<time datetime="2017-11-12 01:06:50 &#43;0000 UTC" class="catalogue-time">2017-11-12</time></p>
 			
 				<div class="tags_list">
 					 <div class="tags_item"><a href="/tags/aws/">AWS</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<h2 id="環境">環境</h2>
 <p>AWS EC2<br>
 Amazon Linux</p>
@@ -55,8 +56,8 @@ Amazon Linux</p>
 デフォルトではEC2を立ち上げた際のアクセス元に対してSSH接続が許可されているのみ。</p>
 <h3 id="立ち上げたec2へのssh接続">立ち上げたEC2へのSSH接続</h3>
 <p>以下の通りSSH接続を実施する。 <br>
-<!-- raw HTML omitted --><!-- raw HTML omitted -->ログインアカウント：<!-- raw HTML omitted --><!-- raw HTML omitted --> ec2-user <br>
-<!-- raw HTML omitted --><!-- raw HTML omitted -->秘密鍵：<!-- raw HTML omitted --><!-- raw HTML omitted --> EC2立ち上げ時にダウンロードしたpemファイル <br>
+<em><em>ログインアカウント：</em></em> ec2-user <br>
+<em><em>秘密鍵：</em></em> EC2立ち上げ時にダウンロードしたpemファイル <br>
 ※pemファイルはDL後権限を400にしておくこと。</p>
 <h3 id="rootになりパスワードを変更する">rootになり、パスワードを変更する。</h3>
 <pre><code>$ sudo su -  
@@ -68,21 +69,16 @@ Amazon Linux</p>
 </code></pre><p>※localtime変更後はrsyslogとcrondを再起動しないと、ログ出力時刻やcron実行時刻が日本時刻にならない。</p>
 
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/799/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/842/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2896861 &#43;0900 JST m=&#43;0.109280601">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; <time datetime="2021-05-05 07:11:57.3705947 &#43;0900 JST m=&#43;0.128694101">2021</time> . Nonsense J
+				</span>
+			</div>
 		</footer>
 
     </body>

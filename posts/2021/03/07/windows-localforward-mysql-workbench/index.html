@@ -9,12 +9,12 @@
 		<title>WindowsのMySQL Workbenchで2段SSH踏み台で接続する &middot; Nonsense J</title>
 
 		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
+  		<link rel="stylesheet" href="/nonsensej/css/style.css">
+		<link rel="stylesheet" href="/nonsensej/css/fonts.css">
 		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/nonsensej/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/nonsensej/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/nonsensej/images/apple-touch-icon.png">
 
 		
 		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
@@ -23,8 +23,8 @@
     <body>
         		<nav class="nav">
 			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
+				<a href="/nonsensej/" class="nav-title">
+					Nonsense J
 				</a>
 				<ul>
     
@@ -39,13 +39,14 @@
 	<div class="post">
 		<h1 class="post-title">WindowsのMySQL Workbenchで2段SSH踏み台で接続する</h1>
 		<div class="post-info">
-				<time datetime="2021-03-07 00:00:00 &#43;0000 UTC">March 7, 2021</time>
+				<p class="publish-date">投稿日：<time datetime="2021-03-07 00:00:00 &#43;0000 UTC" class="catalogue-time">2021-03-07</time></p>
 			
 				<div class="tags_list">
 					 <div class="tags_item"><a href="/tags/windows/">Windows</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<h2 id="環境">環境</h2>
 <ul>
 <li>Windows 10</li>
@@ -55,7 +56,7 @@
 <hr>
 <h2 id="やりたいこと">やりたいこと</h2>
 <p>作業PCからDBに接続するまでに2段階のSSH接続を挟む環境があるとします。<br>
-<!-- raw HTML omitted --></p>
+<img src="/images/2021/03/windows-localforward-mysql-workbench-001.png"/></p>
 <p>この環境で作業PC(Windows)からMySQL WorkbenchでDBに接続します。</p>
 <p>基本的なSSH操作はWSL上でコマンドを打つ前提とします。<br>
 Windows上でSSH操作をする場合は後述のSSHコンフィグのパスはWindows用に読み替えてください。<br>
@@ -140,20 +141,16 @@ SSHコンフィグファイルを読み込む必要はありません。</p>
 ② MySQL WorkbenchでDBに接続する。</p>
 
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/2021/02/21/larave-observer-stop/" class="left arrow">&#8592;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2712259 &#43;0900 JST m=&#43;0.090820401">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; <time datetime="2021-05-05 07:11:57.3544716 &#43;0900 JST m=&#43;0.112570901">2021</time> . Nonsense J
+				</span>
+			</div>
 		</footer>
 
     </body>
