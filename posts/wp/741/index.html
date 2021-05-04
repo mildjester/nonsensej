@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>【Mac】ターミナル設定（iTerm2 ＋ fish ＋ fisherman） &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">【Mac】ターミナル設定（iTerm2 ＋ fish ＋ fisherman）</h1>
+		<div class="post-info">
+				<time datetime="2017-10-12 16:01:40 &#43;0000 UTC">October 12, 2017</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/mac/">Mac</a></div>
+				</div>
+			
+		</div>
+		<h2 id="環境">■環境</h2>
+<p>iTerm2 3.2.5<br>
+fish 2.7.1<br>
+fisherman 3.1.1</p>
+<h2 id="参考サイト">■参考サイト</h2>
+<p><a href="https://dev.classmethod.jp/etc/fish-shell-life/">fish shell を使いたい人生だった</a></p>
+<hr>
+<p>ターミナルのシェルをiTerm2 &amp; fishにする手順です。<br>
+デフォルトである程度便利機能が入っているので、zshでカスタマイズするのが面倒な人におすすめです。</p>
+<h3 id="iterm2インストール">iTerm2インストール</h3>
+<p>公式ページよりzipをダウンロードします。<br>
+<!-- raw HTML omitted --><a href="https://www.iterm2.com/downloads.html">https://www.iterm2.com/downloads.html</a><!-- raw HTML omitted --></p>
+<p>ダウンロードしたzipを解凍すると「iTerm」というファイルが出てくるので、それをアプリケーションにドラッグ＆ドロップします。<br>
+これでLanchPadから起動できるようになりました。</p>
+<h3 id="iterm2の配色変更">iTerm2の配色変更</h3>
+<p>iTerm2のデフォルトのままの色だとディレクトリが見づらかったりするので配色を変えます。<br>
+iTerm2のメニューバーより<br>
+<!-- raw HTML omitted -->iTerm2 &gt; Preferences &gt; Profiles &gt; Colors<!-- raw HTML omitted --> とクリックしていき<br>
+そこの <!-- raw HTML omitted -->Color Pareset<!-- raw HTML omitted --> より好きなテーマを選びます。</p>
+<p>配色設定ファイルをダウンロード設定することもできます。<br>
+私の場合は『Japanesque』という配色をよく使っています。<br>
+<!-- raw HTML omitted --><a href="https://github.com/aereal/dotfiles/tree/master/colors/Japanesque">https://github.com/aereal/dotfiles/tree/master/colors/Japanesque</a><!-- raw HTML omitted --></p>
+<p>この『Japanesque.itermcolors』をiTerm2で開くと、上記の <!-- raw HTML omitted -->Color Pareset<!-- raw HTML omitted -->の選択肢に<br>
+<!-- raw HTML omitted -->Japanesque<!-- raw HTML omitted --> が追加されます。</p>
+<h3 id="fish-インストール">fish インストール</h3>
+<p>fishをインストールします。</p>
+<pre><code>$ brew install fish  
+</code></pre><p>fishのパスを確認する。</p>
+<pre><code>$ which fish  
+/usr/local/bin/fish  
+</code></pre><p>上記パスをシェル一覧に追記する</p>
+<pre><code>$ sudo vi /etc/shells  
+〜末尾にwhichコマンドで確認したパスを追記する〜  
+</code></pre><p>シェルをfishに変更する</p>
+<pre><code>$ chsh -s /usr/local/bin/fish  
+</code></pre><p>これで、ターミナルを再起動するとfishが立ち上がります。</p>
+<h3 id="fisherman-インストール">fisherman インストール</h3>
+<p>fishermanというfishのプラグイン管理ツールがあります。</p>
+<p>fishermanのgithubベージにインストールコマンドが載っています。<br>
+<!-- raw HTML omitted --><a href="https://github.com/fisherman/fisherman">https://github.com/fisherman/fisherman</a><!-- raw HTML omitted --></p>
+<pre><code>$ curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher  
+</code></pre><p>上記コマンド実行時にバージョン情報が出なかった場合は、一度ターミナルを再起動すると良いです。</p>
+<h3 id="fishのテーマ変更">fishのテーマ変更</h3>
+<p>fishはテーマを変更することで見栄えが変えられます。<br>
+どのようなテーマがあるかは、以下ページが参考になります。<br>
+<!-- raw HTML omitted --><a href="https://github.com/oh-my-fish/oh-my-fish/blob/master/docs/Themes.md">https://github.com/oh-my-fish/oh-my-fish/blob/master/docs/Themes.md</a><!-- raw HTML omitted --></p>
+<p>私は「bobthefish」というテーマを利用しており、以下手順でインストールしています。</p>
+<pre><code>$ fisher add oh-my-fish/theme-bobthefish  
+$ git clone https://github.com/powerline/fonts.git  
+$ fonts/install.sh  
+$ rm -rf fonts  
+</code></pre><p>上記コマンド実施後、iTerm2のプロファイルを設定します。<br>
+プロファイル設定画面にて「Text＞Font＞ChangeFont」をクリックしてください。<br>
+<!-- raw HTML omitted --></p>
+<p>CollectionでAll Fontsを選択し、「○○○ for Powerline」というフォントの中から好きなものを選んでください。<br>
+個人的には「Meslo LG M for Powerline」が好きです。<br>
+フォントサイズも必要に応じて好きなサイズに変更してください。</p>
+<p>これで、テーマの変更は完了です。</p>
+<h3 id="プラグイン追加">プラグイン追加</h3>
+<p>プラグインは色々ありますが<br>
+私が入れているプラグインを紹介しておきます。</p>
+<h4 id="z">z</h4>
+<p>過去の履歴からディレクトリを選択して遷移できるようになります。<br>
+【インストール方法】</p>
+<pre><code>$ fisher add z  
+</code></pre><p>【使い方】<br>
+<!-- raw HTML omitted -->z {文字列}<!-- raw HTML omitted --> まで入力してタブを押下する。<br>
+上記の{文字列}で履歴からディレクトリ検索をして遷移できる。<br>
+{文字列}を空にしておけば直近の履歴が表示される。</p>
+<h4 id="bd">bd</h4>
+<p>親以上のディレクトリ(祖先ディレクトリ？)への遷移が簡単になる。<br>
+【インストール方法】</p>
+<pre><code>$ fisher add 0rax/fish-bd  
+</code></pre><p>【使い方】<br>
+<!-- raw HTML omitted -->$ bd<!-- raw HTML omitted -->と入力してタブを押すと、親ディレクトリの一覧が表示されるので<br>
+選択してエンターを押すだけで移動できる。</p>
+<h4 id="peco">peco</h4>
+<p>コマンド履歴の検索が容易にできるようになる。</p>
+<p>【インストール方法】</p>
+<pre><code>$ brew install peco  
+$ fisher add oh-my-fish/plugin-peco  
+</code></pre><p>上記コマンド後、fishのコンフィグファイルへ以下を記載。</p>
+<pre><code>vim ~/.config/fish/config.fish  
+〜以下を追記(ファイルがなければ新規作成)〜  
+function fish_user_key_bindings  
+  bind \cr 'peco_select_history (commandline -b)'  
+end  
+</code></pre><p>※「function fish_user_key_bindings」の定義が既にされているなら、<br>
+その中に<!-- raw HTML omitted -->bind〜<!-- raw HTML omitted -->の行だけ追記すれば良い。</p>
+<p>上記完了後、ターミナルを再起動してください。</p>
+<p>【使い方】<br>
+「Ctrl + R」でコマンド履歴検索画面になる。<br>
+検索画面では直近のコマンドから選択することもできるし、文字列を入力すれば該当の文字列を含むコマンド履歴に絞ることもできる。</p>
+<h4 id="ghq">ghq</h4>
+<p>gitの管理が容易になるプラグイン</p>
+<p>【インストール方法】</p>
+<pre><code>$ brew install ghq  
+$ fisher add yoshiori/fish-peco_select_ghq_repository  
+</code></pre><p>上記コマンド後、fishのコンフィグファイルへ以下を記載。</p>
+<pre><code>vim ~/.config/fish/config.fish  
+〜以下を追記(ファイルがなければ新規作成)〜  
+function fish_user_key_bindings  
+  bind \c] peco_select_ghq_repository  # 追加  
+end  
+</code></pre><p>※「function fish_user_key_bindings」の定義が既にされているなら、<br>
+　その中に<!-- raw HTML omitted -->bind〜<!-- raw HTML omitted -->の行だけ追記すれば良い。<br>
+　例えば、もし上記のpecoも導入しているのであれば、config.fishの記載は以下のようになる。</p>
+<pre><code>function fish_user_key_bindings  
+  bind \cr 'peco_select_history (commandline -b)'  
+  bind \c] peco_select_ghq_repository  # 追加  
+end  
+</code></pre><p>上記完了後、ターミナルを再起動してください。</p>
+<p>【使い方】<br>
+「Ctrl + ]」でghqで管理しているgitリポジトリの選択ができます。<br>
+gitリポジトリを選択すると、該当リポジトリのディレクトリへ遷移します。</p>
+<p>ghqコマンドの使い方は割愛するので、別途調べてください。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/721/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/734/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2925587 &#43;0900 JST m=&#43;0.112153101">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Posts &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="catalogue">
+		
+			<a href="/posts/wp/624/" class="catalogue-item">
+    <div>
+        <time datetime="2017-05-02 14:49:34 &#43;0000 UTC" class="catalogue-time">May 2, 2017</time>
+        <h1 class="catalogue-title">MacにZabbixエージェントを入れる</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境 Mac OS 10.9.5
+Zabbix 3.2.1
+ Mac OSのサーバにZabbixエージェントを入れた際の手順メモです。
+WEBでzabbixのソースをダウンロードします。
+https://sourceforge.net/projects/zabbix/files/ZABBIX%20Latest%20Stable/3.2.1/Macサーバに送ります。
+$ scp zabbix-3.2.1.tar.gz user@192.168.999.999:~/Downloads/. ※Macサーバ上で直接ダウンロードできるなら、その方が早いです。
+macサーバにて解凍〜インストールを行ないます。
+tar xzf zabbix-3.2.1.tar.gz cd zabbix-3.2.1 ./configure --enable-agent make install sudo cp conf/zabbix_agentd.conf /usr/local/etc/. sudo cp src/zabbix_agent/zabbix_agentd /usr/local/sbin/ Zabbixエージェントの設定を変更します。
+sudo vim /usr/local/etc/zabbix_agentd.conf # 127.0.0.1の部分をZabbixサーバのIPアドレスに変更 # Hostnameはagentサーバのホスト（サーバ側に設定したものと同じ）に変更 Zabbixエージェントを実行します。
+/usr/local/sbin/zabbix_agentd 【補足】 インストール時にzabbixユーザが作成されるはずですが、
+ユーザ作成に失敗している場合は別途ユーザ作成しておかないとエージェントの実行ができません。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/592/" class="catalogue-item">
+    <div>
+        <time datetime="2017-04-28 20:05:40 &#43;0000 UTC" class="catalogue-time">April 28, 2017</time>
+        <h1 class="catalogue-title">MastodonインスタンスをHerokuだけで立てる</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            最近Mastdonが流行っているらしいので
+お金をかけずにMastdonインスタンスをHerokuのみで立ててみます。
+注意  本手順ではS３(ストレージ)を利用しないので、アイコンやヘッダーなどは保存されません。 自分１人用のインスタンスにするつもりで作ってます。 「Herokuのみ」に拘っており、他の無料ツールと組み合わせることもできますが、やってません。  ■参考にしたサイト  結城浩大先生のブログ しょっさんのQiita  ■手順(インスタンス生成編) Herokuのアカウントを持っていなければアカウント作成します。
+アカウント作成はコチラから。
+mastodon公式のHerokuページにて「Deploy to Heroku」ボタンをクリックする。
+Herokuのアプリ新規作成画面が開くので、以下を入力します。
+ AppName: 作成するアプリ名 LOCAL_DOMAIN: {上記のAppName}.herokuapp.com S3_ENABLED: false SINGLE_USER_MODE: true  上記入力が完了したら『Deploy』ボタンをクリックします。
+私の場合はここでクレジットカード情報を入力する画面が出ましたが、既にHerokuを使っていて無料枠を使い切っていたから出たのかもしれません。
+ど新規でHeroku登録していれば、何も出ないかもしれません。
+Deployが完了したら、Heroku管理画面の「Resources」画面にて「worker」をONにします。
+右側のエンピツマークをクリックしたらON/OFFを切り替えできるようになります。
+ここまでで、マストドンのインスタンス生成は完了です。
+■手順（アカウント登録編） 普通ならアカウント登録をし、登録したメールアドレスに届いたメールのリンクをクリックすれば
+アカウント登録は完了なのですが、今回はメールサーバーの設定もしてないので、
+無理やりDBを参照して進めます。
+まず、Heroku管理画面の「Resources」画面にて、『Heroku Postgres :: Database』をクリックします。
+するとPostgreSQLの管理画面へ遷移するので、『View Credentials』をクリックし、
+「Heroku CLI」(heroku pg:psql〜)を確認しておきます。
+※後ほど利用するHeroku CLIのコマンドです。
+ブラウザで『{AppName}.herokuapp.com』へアクセスするとアカウント作成画面が開くので
+普通にアカウント登録します。
+次に、Heroku CLIをインストールします。
+インストール手順はコチラにまとまってます。
+ローカルPCにPostgreSQLが入っていないなら、インストールしておきます。
+Macなら以下コマンドでインストールできます。
+brew install postgresql PostgreSQLが使える状態になったら、HerokuのDBへ接続して
+メールアドレス確認用のtokenを確認します。
+# ローカルPCのターミナルにて、確認した「Heroku CLI」コマンドを実行 heroku pg:psql postgresql-fitted-xxxxxx --app {AppName} # DB操作モードに切り替わるので、DBよりtokenをselectする select email, confirmation_token from users; 上記コマンドでtokenが表示されるので、それを含めた以下のURLへブラウザでアクセスします。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/569/" class="catalogue-item">
+    <div>
+        <time datetime="2017-04-20 00:31:51 &#43;0000 UTC" class="catalogue-time">April 20, 2017</time>
+        <h1 class="catalogue-title">【Mac】fish &#43; oh-my-fish &#43; pecoの導入方法</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            環境 OS X ElCapitan 10.11.6
+ fishのインストール brewでfishをインストールする。
+brew install fish ※brew自体のインストールについてはこちら参照。
+次にシェル一覧にfishを追加する。
+vim /etc/shells # 以下行を追加 /usr/local/bin/fish 次に通常利用するシェルをfishに設定する。
+chsh -s /usr/local/bin/fish oh-my-fishのインストール 以下コマンドを実行するだけ。
+curl -L http://get.oh-my.fish | fish pecoのインストール pecoはbrewとomfコマンドでインストールできる。
+brew install peco omf install peco インストールできたら、fishの設定ファイルにpecoの設定を追記する。
+fishの設定ファイルが存在しない場合は新規作成する。
+vim ~/.config/fish/config.fish # 以下行を追記する function fish_user_key_bindings bind \cr peco_select_history end 以上で設定完了です。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/520/" class="catalogue-item">
+    <div>
+        <time datetime="2017-04-11 16:25:41 &#43;0000 UTC" class="catalogue-time">April 11, 2017</time>
+        <h1 class="catalogue-title">【Laravel】migrateで『Class &#39;CreateFoooTable&#39; not found』が発生する</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境 Laravel 5.1
+ Laravelの「migrate:rollback」や「migrate:refresh」をしようとして
+『Class &lsquo;CreateFoooTable&rsquo; not found』というエラーが発生した際の解決方法です。
+この事象はmigrateで利用する「/database/migrations」ディレクトリに配置されているファイルが
+autoloadされていない事が原因のようです。
+解決するにはプロジェクトのrootディレクトリにて以下コマンドを実行し、autoloadを再編成します。
+composer dump-autoload ※composerインストールについてはコチラもしサーバにcomposerを入れられない場合は作業PCにて上記コマンドを実行すると
+「/vendor」ディレクトリ配下が更新されるのでサーバにアップロードしてください。
+以上。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/515/" class="catalogue-item">
+    <div>
+        <time datetime="2017-04-11 16:08:08 &#43;0000 UTC" class="catalogue-time">April 11, 2017</time>
+        <h1 class="catalogue-title">Composerのインストール方法</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境 macOS Sierra 10.12.4
+CentOS 6.8
+ 作業用MacとCentOSサーバにComposerをインストールしたので、その際のメモです。
+【Macの場合】 brewでインストールできます。
+brew install homebrew/php/composer ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+2018年12月 追記
+上記コマンドだとエラーが出るようになりました。
+現在は以下のコマンドでインストールできるようです
+brew install composer ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+【CentOSの場合】 CURLでインストーラを取得し、生成された実行ファイルをPATHが通っているディレクトリに移動します。
+curl -sS https://getcomposer.org/installer | php mv composer.phar /usr/bin/composer 以上
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/512/" class="catalogue-item">
+    <div>
+        <time datetime="2017-04-11 15:11:41 &#43;0000 UTC" class="catalogue-time">April 11, 2017</time>
+        <h1 class="catalogue-title">【PHP】Laravel5でカスタムバリデーションを追加する</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境 Laravel 5.1
+ Laravel5でカスタムバリデーションを追加した際の手順です。
+まず、サービスプロバイダーを作成します。今回は『ValidatorServiceProvider』という名前で作る事にします。
+以下コマンドを実行すると、『/app/providers/ValidatorServiceProvider.php』が生成されます。
+php artisan make:provider ValidatorServiceProvider 作成したサービスプロバイダーを『/config/app.php』に追記します。
+ &quot;providers&quot; =&gt; [ 〜〜　省略　〜〜 App\Providers\ValidatorServiceProvider::class, 〜〜　省略　〜〜 ], 作成したサービスプロバーダーにバリデーションルールを記載します。
+例えば以下のルールの社員番号があったとします。
+・頭文字は「A」または「Z」
+・2文字目以降は数字６桁
+このバリデーションルールを『shainbangou』という名前のルールで登録するとこうなります。
+namespace App\Providers; use Illuminate\Support\ServiceProvider; use Validator; class ValidatorServiceProvider extends ServiceProvider { public function boot() { Validator::extend('shainbangou', function($attr, $value, $param) { return preg_match('/^[A|Z][0-9]{6}$/', $value); }); } } 次にエラー文言の設定をします。
+viewにて社員番号はempIdという変数名で設定されているとします。
+【/resources/lang/ja/validation.php】
+return [ 〜〜　省略　〜〜 'custom' =&gt; [ 'empId' =&gt; [ 'shainbangou' =&gt; '社員番号が間違っています。（A/Z + 数字6桁）.
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/501/" class="catalogue-item">
+    <div>
+        <time datetime="2017-04-10 19:39:28 &#43;0000 UTC" class="catalogue-time">April 10, 2017</time>
+        <h1 class="catalogue-title">gitの履歴から特定のコミット以降の履歴だけを残してクリアする</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            個人で開発しているアプリケーションのgitリポジトリで履歴がグチャグチャしてしまったので、
+コミット履歴をちょっと弄った時のメモです。
+====================================
+※注意※
+gitの履歴は過去に何があったかを調べる際の手がかりになるので、
+削除する理由がないのであれば残しておきましょう。
+特に、他人と共同で修正しているリポジトリであれば尚更です。 履歴を残し始める直前のバージョンの状態を作る
+# git clone &lt;git URL&gt; tmpRepo1 # cd tmpRepo1 # git checkout {残し始めたいコミットの直前のコミット番号} # rm -rf .git # cd ../ 作業用のリポジトリを作る
+# git clone &lt;git URL&gt; tmpRepo2 # cd tmpRepo2 # git checkout --orphan tmpBr 初期状態をコミットする
+# rm -rf &lt;.git以外の全て&gt; # cp -r ../tmpRepo1/* . # git add . # git commit -m &quot;Initialization&quot; 残したいコミット履歴に対して、次の処理を過去から順に繰り返し実施する
+# git cherry-pick {残したいコミット} なお、残したいコミット履歴がマージ履歴の場合は以下の手順となる
+# git cherry-pick -m 1 {残したいマージコミット} # git commit --allow-empty コメントの編集画面が出るが、そのまま:wqして抜ける
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/491/" class="catalogue-item">
+    <div>
+        <time datetime="2017-04-08 12:22:59 &#43;0000 UTC" class="catalogue-time">April 8, 2017</time>
+        <h1 class="catalogue-title">【golang】mapの要素順は変動する</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境
+OS X El Capitan 10.11.6
+go 1.8 darwin/amd64
+タイトルの件、ちょっと引っかかったのでメモです。
+golangで変数にmapを格納する場合、その要素の順番は
+呼び出すたびに変わります。
+以下サンプルコードです。
+mapをrangeで取り出しながらforで回し、標準出力する
+という処理を3回繰り返します。
+package main import ( &quot;fmt&quot; ) func main() { // create new map fruitColor := make(map[string]string) fruitColor[&quot;pineapple&quot;] = &quot;yellow&quot; fruitColor[&quot;apple&quot;] = &quot;red&quot; fruitColor[&quot;grape&quot;] = &quot;purple&quot; fruitColor[&quot;melon&quot;] = &quot;green&quot; // printout 3 times for i := 1; i &lt;= 3; i++ { fmt.Println(fmt.Sprintf(&quot;===== %d times =====&quot;, i)) for name, color := range fruitColor { fmt.Println(fmt.Sprintf(&quot;%s is %s&quot;, name, color)) } } } これを実行すると、このように出力されます。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/467/" class="catalogue-item">
+    <div>
+        <time datetime="2017-03-10 00:04:51 &#43;0000 UTC" class="catalogue-time">March 10, 2017</time>
+        <h1 class="catalogue-title">【法人】地方税のeLTAXでの申請手順メモ</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            法人（休眠中）の地方税に関する確定申告をeLTAXで行なったので、その手順をメモします。
+休眠中じゃなくても、大体の手順は同じだと思います。
+※e-tax(国税）についてはこちら■必要なもの ・Windows PC
+・ICカードリーダー
+・決算書など、確定申告書に添付する資料のPDF
+■手順 ①eLTAX利用登録 こちらに沿って、eLTAX利用登録をします。
+http://www.eltax.jp/www/contents/1398146092894/index.html電子証明書は法人のものでなくても、代表個人のものでもよいです。
+マイナンバーカードに電子証明書が付いているので、それを使うのが一番早いと思います。
+なお、提出先選択画面にて選択する「地方公共団体」は市区町村ではなく都道府県です。
+②eLTAXソフトのダウンロード 上記①のサイトにてeLTAXソフト『PCdesk』のダウンロードができるので、
+ダウンロード＆インストールしてください。
+③PCdeskへの暗証番号設定 PCdeskを起動したら、まず『1:利用者情報メニュー ＞ 利用者情報』にて
+暗証番号の変更をしてください。
+④PCdeskでの申告書作成 『3:申告データ作成 ＞ 申告データ新規作成』にて申告書の作成を行ないます。
+申告区分は『確定申告』で、作成する書類は『中間・確定申告書』のみとします。
+申告書作成画面下部メニューの『様式/添付一覧』から添付資料は添付できるので、
+e-taxで送付した決算書一式も添付しておく。
+④PCdeskでの申告書送信 『3:申告データ作成メニュー ＞ 申告データ署名』にて署名し、
+『3:申告データ作成メニュー ＞ 申告データ送信』にて送信します。
+以上でeLTAXでの申請は完了。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/444/" class="catalogue-item">
+    <div>
+        <time datetime="2017-02-27 15:16:05 &#43;0000 UTC" class="catalogue-time">February 27, 2017</time>
+        <h1 class="catalogue-title">Redmine2.3.2にグループ管理プラグインを入れる</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            redmineにグループ管理のプラグインを入れたが、ちゃんと動かなかったので
+つまづいた所をメモする。
+※補足
+Ruby on Railsを全然知らないPHPerがちょちょっと修正しているので、
+Railsに詳しい人から見たらおかしいかも。指摘してくれるとありがたいです。
+■環境
+CentOS 6.5
+Redmine 2.3.2
+ruby 2.0.0
+rails 3.2.13
+https://github.com/fathomssen/redmine_group_manager基本的なインストール方法はREADME.rdoc通り
+①order by句がおかしい オーダー句がおかしいとエラーになったので、app/models/gmanager.rbの９行目を修正した
+【修正前】
+mem = Member.where(:project_id =&gt; pid).order(user_id: :asc) 【修正後】
+mem = Member.where(:project_id =&gt; pid).order(&quot;user_id asc&quot;) ②オーナー未指定のグループがあると動かない まあ、インストール直後は全てのグループにオーナーが指定されていないのですが、
+オーナーが未指定の場合はユーザテーブルのID=1のユーザがオーナーになるそうです。
+（app/helpers/gmanagers_helper.rbの２８行目参照）
+私の環境ではID=1のユーザが既に削除されていたので、
+新しくID=１で絶対的管理者的存在のユーザを作成しました。
+別IDで絶対的管理者がいるなら、上記のヘルパーを修正するのでも良いと思います。
+（個人のIDにしてしまうと退職した際などに困るのでオススメしません）
+③グループ編集タグがredmine管理者にしかでない 各プロジェクトページにてグループ編集タブが表示されるはずなのですが、
+プラグインを入れた時点ではredmineの管理者でなければタブが表示されていませんでした。
+プロジェクトの管理者にグループ編集機能を使わせたい場合は、redmine管理者メニューの
+『管理　＞　ロールと権限』からグループ編集権限を予め付与しておかなければなりません。
+説明をよく読めば書いてあるのかもしれませんが、英語辛いので斜め読みしてました。すみません。
+④グループメンバー一覧の項目順がおかしい 各プロジェクトのグループ編集タブよりグループメンバー一覧を表示すると、
+カスタムフィールドの項目名と値の並び順が一致していませんでした。
+なので、一致するようソート処理を入れます。
+app/models/gmanager.rbの34行目と48行目に同じ修正を入れる。
+【修正前】
+keys = CustomField.where(:type =&gt; 'UserCustomField') 【修正後】
+keys = CustomField.where(:type =&gt; 'UserCustomField').order(:id) app/models/gmanager.rbの49行目も修正する。
+【修正前】
+values = User.
+        </p>
+    </div>
+</a>
+
+		
+	</div>
+	
+	<div class="pagination">
+		
+			<a href="/posts/page/13/" class="left arrow">&#8592;</a>
+		
+		
+			<a href="/posts/page/15/" class="right arrow">&#8594;</a>
+		
+	
+		<span>14</span>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.3188688 &#43;0900 JST m=&#43;0.138463201">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

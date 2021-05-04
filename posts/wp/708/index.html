@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Atom IDEの環境構築（PHP、Go） &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Atom IDEの環境構築（PHP、Go）</h1>
+		<div class="post-info">
+				<time datetime="2017-09-29 19:11:15 &#43;0000 UTC">September 29, 2017</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/golang/">golang</a></div> <div class="tags_item"><a href="/tags/atom/">atom</a></div> <div class="tags_item"><a href="/tags/php/">PHP</a></div>
+				</div>
+			
+		</div>
+		<h3 id="環境">■環境</h3>
+<p>macOS Sierra 10.12.6<br>
+Atom 1.21.0-beta2</p>
+<h3 id="参考にしたサイト">■参考にしたサイト</h3>
+<p>公式サイト<br>
+<!-- raw HTML omitted --><a href="https://ide.atom.io/">https://ide.atom.io/</a><!-- raw HTML omitted --> <br>
+はくたけ氏のブログ<br>
+<!-- raw HTML omitted --><a href="http://tech.innovator.jp.net/entry/2017/09/14/165139">http://tech.innovator.jp.net/entry/2017/09/14/165139</a><!-- raw HTML omitted --> <br>
+sayama0402さんのQiita<br>
+<!-- raw HTML omitted --><a href="https://qiita.com/sayama0402/items/3bd8d905619c514179b7">https://qiita.com/sayama0402/items/3bd8d905619c514179b7</a><!-- raw HTML omitted --></p>
+<hr>
+<p>ナウいエディタ「Atom」は、前から気になっていたのですが、</p>
+<ul>
+<li>テキストエディタにしては重い</li>
+<li>IDEにしては機能がすくない</li>
+</ul>
+<p>という理由で、少し敬遠していました。</p>
+<p>が、そのAtomからIDEが出たそうなので、試しに使ってみました。</p>
+<h3 id="手順">■手順</h3>
+<h4 id="atomの入手">①Atomの入手</h4>
+<p>以下サイトより、Atom 1.21.0（ベータ版）を入手してインストールする。<br>
+<!-- raw HTML omitted --><a href="https://atom.io/beta">https://atom.io/beta</a><!-- raw HTML omitted --></p>
+<p>※いくつかの紹介ページを見ましたが、1.21.0が推奨されているようです。 <br>
+　試しに1.20.0(安定板)でも試して見ましたが、確かに動きが怪しかったです。</p>
+<h4 id="必須パッケージのインストール">②必須パッケージのインストール</h4>
+<p>Atomを起動したら、上部メニュー <br>
+<!-- raw HTML omitted -->Packages &gt; Settings View &gt; Install Packages/Themes<!-- raw HTML omitted --> <br>
+より、以下を検索してインストールする。</p>
+<ul>
+<li>atom-ide-ui</li>
+<li>ide-php</li>
+<li>ide-go</li>
+</ul>
+<h4 id="使って見る">③使って見る。</h4>
+<p>初めてgoのソースコードを開いた際には「ide-go」が依存するパッケージをインストールするか聞かれるので、 <br>
+インストールします。<br>
+また、「linter」と「atom-ide-diagnostics」が競合している旨のメッセージが出るので、<br>
+そのメッセージの下にある「Disable linter」をクリックして、競合を解決します。</p>
+<p>これで、実際に使い始められそうです。 <br>
+定義ジャンプや補完機能は十分使えそうなレベルで動いてました。<br>
+また、他の無料IDE（EclipseやNetBeans）に比べると、起動が早かったです。</p>
+<h4 id="その他パッケージのインストール">その他パッケージのインストール</h4>
+<p>IDEとは関係なく便利なパッケージが沢山あるので入れます。<br>
+以下、実際に入れて見たパッケージです。</p>
+<p><!-- raw HTML omitted -->■file-icons<!-- raw HTML omitted --><br>
+各ファイルの拡張子に合わせてアイコンを変えてくれる。<br>
+ちなみに、Atomに新拡張子を紐付けさせるには、上部メニューより「Atom Beta＞Config」をクリックし、 <br>
+config.csonを編集する必要がある。</p>
+<p>【例：以下の記載で「.inc」という拡張子をPHPファイルとして認識してくれる】</p>
+<pre><code>&quot;*&quot;:  
+  core:  
+    customFileTypes:  
+      &quot;source.php&quot;: [  
+        &quot;inc&quot;  
+      ]  
+</code></pre><p>『source.php』に該当する部分はPHPファイルを開いた状態で「cmd + opt + P」を押すとポップアップで表示される。 <br>
+別拡張子のファイルでも同じ操作でできるはず。</p>
+<p><!-- raw HTML omitted -->■pigments<!-- raw HTML omitted --><br>
+色コードを記載したら自動で該当の色でハイライトしてくれる。</p>
+<p><!-- raw HTML omitted -->■show-ideographic-space<!-- raw HTML omitted --><br>
+全角スペースを見える化</p>
+<p><!-- raw HTML omitted -->■git-plus<!-- raw HTML omitted --><br>
+ターミナルなしでgit操作ができる！だそうです。</p>
+<p><!-- raw HTML omitted -->■merge-conflict<!-- raw HTML omitted --><br>
+gitのコンフリクト解消が楽になる。</p>
+<p><!-- raw HTML omitted -->■highlight-selected<!-- raw HTML omitted --> <br>
+選択した単語と同じ単語をソースコード上でハイライトしてくれる。 <br>
+選択=ダブルクリックらしい。同じ変数を探す時などに便利。</p>
+<p><!-- raw HTML omitted -->■linter-php<!-- raw HTML omitted --> <br>
+構文チェックしてくれるパッケージ。 <br>
+括弧の開閉数が不一致の時とか教えてくれる。 <br>
+紐づくパッケージを諸々インストールしてねと出てくるので、それらもインストールする。 <br>
+※AtomIDEにも標準で構文チェックパッケージ(?)が入っているらしく、それと競合すると警告が表示される。 <br>
+　IDE標準のものはエラー検知をしてくれているのかよく分からなかったので、私は無効化してしまいました。 <br>
+　（上記警告にDisableボタンが付いているので、それをクリックするだけ）</p>
+<p><!-- raw HTML omitted -->■project-manager<!-- raw HTML omitted --> <br>
+複数プロジェクトを管理するためのパッケージ。 <br>
+プロジェクト切り替えが容易になる。 <br>
+【管理対象のプロジェクトを増やす方法】<br>
+　対象としたいプロジェクトを開いた状態で上部メニューより「packages &gt; Project Manager &gt; Save Project」を選択<br>
+【管理対象プロジェクトの呼び出し】 <br>
+　「Ctrl + Command + P」で一覧が表示されるので、そこで選択する。 <br>
+　上部メニューより「packages &gt; Project Manager &gt; List Project」を選択しても同じ。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/703/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/721/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2874662 &#43;0900 JST m=&#43;0.107060701">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>CentOS7のsshd設定（セキュリティ） &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">CentOS7のsshd設定（セキュリティ）</h1>
+		<div class="post-info">
+				<time datetime="2015-10-19 21:52:24 &#43;0000 UTC">October 19, 2015</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/centos/">CentOS</a></div>
+				</div>
+			
+		</div>
+		<p>サーバへのsshログインについて、以下の設定をします<br>
+・sshポートの変更<br>
+・ルート権限でのログインを無効化<br>
+・ルート権限にsuできるアカウントの制限</p>
+<p>■環境<br>
+CentOS 7.1.1503<br>
+Openssh 6.6.1</p>
+<p>以下の設定でポート番号変更とルート権限ログインの無効化を実施します<br>
+以下の行を修正（なければ追加）してください</p>
+<p>(/etc/ssh/sshd_config)</p>
+<pre><code>Port 1234　※任意の番号  
+PermitRootLogin no
+</code></pre><p>「wheel」グループのアカウントを作成します</p>
+<pre><code># useradd testuser　※任意のアカウント（既存のアカウントを使うなら不要）  
+# usermod -g wheel -G wheel testuser
+</code></pre><p>以下の設定でルート権限にsuできるグループを「wheel」に限定します<br>
+以下の行を修正（なければ追加）してください</p>
+<p>(/etc/pam.d/su)</p>
+<pre><code>auth            required        pam_wheel.so use_uid
+</code></pre><p>以上で設定は完了ですが、設定をしたターミナルを閉じる前に新規ターミナルを立ち上げて<br>
+上記wheelグループに設定したアカウントにてsshログイン＆suが出来ることを確認してください。<br>
+確認前に設定したターミナルを閉じてしまうと、設定に失敗していた場合に最悪だとルート権限になれなくなります。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/83/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/120/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2708158 &#43;0900 JST m=&#43;0.090410201">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

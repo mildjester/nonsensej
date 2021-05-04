@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>【Wordpress】SyntaxHighlighter Evolvedを高速化する &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">【Wordpress】SyntaxHighlighter Evolvedを高速化する</h1>
+		<div class="post-info">
+				<time datetime="2017-02-10 18:23:37 &#43;0000 UTC">February 10, 2017</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/wordpress/">Wordpress</a></div>
+				</div>
+			
+		</div>
+		<p>Wordperssのプラグイン『SyntaxHighlighter Evolved』を入れていたところ<br>
+画面表示がとても遅くなったので高速化しました。</p>
+<p>〜〜〜2017/2/11 追記〜〜〜<br>
+プラグインを変えた方が早いかもしれないです<br>
+「WP Code Highlight.js」に変えてみたところ、表示は問題なく早いですし<br>
+paddingなどもこちらの方が気に入ってます。<br>
+〜〜〜追記終わり〜〜〜</p>
+<p>■環境<br>
+CentOS 7.3<br>
+Wordpress 4.7.2<br>
+SyntaxHighlighter Evolved 3.2.1<br>
+※前提条件として、Wordpressを置いてあるサーバを操作できる権限があることとします</p>
+<p>『SyntaxHighlighter Evolved』は各種言語に対応しているのですが、<br>
+実際、自分は書かないなーという言語も入っているので、不要なものは<br>
+プラグインで読み込まないようにします。</p>
+<p>具体的には、プラグイン内のPHPファイルを修正し、不要な言語の設定を読み込んでいそうな行を<br>
+コメントアウトします。</p>
+<pre><code># cd /{wordpressが配置されているディレクトリ}/wp-content/plugins/syntaxhighlighter  
+# vim syntaxhighlighter.php
+</code></pre><p>コメントアウト箇所は114行目あたりから始まる以下の部分です。</p>
+<pre><code>wp_register_script( 'syntaxhighlighter-brush-○○○',〜〜〜　$this-&gt;agshver );
+</code></pre><p>上記の「○○○」部分に言語名が入っているので、不要な言語の行はコメントアウトします。</p>
+<p>あと、あまり効果があるか分かりませんが、テーマも使わないものはコメントアウトしてしまいました。<br>
+該当箇所は149行目あたりから始まる以下の部分です。</p>
+<pre><code>wp_register_stype( 'syntaxhighlighter-theme-○○○',〜〜〜　$this-&gt;agshver );
+</code></pre><p>上記の「○○○」部分にテーマ名が入ります。</p>
+<p>上記でコメントアウトした言語、テーマについて<br>
+下の方の行で配列に格納されているので、そこもコメントアウトします。</p>
+<p>言語についての配列は、162行目あたりにあります。</p>
+<pre><code>$this-&gt;brushes = (array) apply_filters( 'syntaxhighlighter_brushes', array(  
+    'as3'           =&gt; 'as3',  
+    'actionscript3' =&gt; 'as3',  
+    'bash'          =&gt; 'bash',  
+    'shell'         =&gt; 'bash',  
+    以下略
+</code></pre><p>テーマについての配列は、243行目あたりにあります。</p>
+<pre><code>$this-&gt;themes = (array) apply_filters( 'syntaxhighlighter_themes', array(  
+    'default'    =&gt; __( 'Default',      'syntaxhighlighter' ),  
+    'django'     =&gt; __( 'Django',       'syntaxhighlighter' ),  
+    'eclipse'    =&gt; __( 'Eclipse',      'syntaxhighlighter' ),  
+    'emacs'      =&gt; __( 'Emacs',        'syntaxhighlighter' ),  
+    'fadetogrey' =&gt; __( 'Fade to Grey', 'syntaxhighlighter' ),  
+    'midnight'   =&gt; __( 'Midnight',     'syntaxhighlighter' ),  
+    'rdark'      =&gt; __( 'RDark',        'syntaxhighlighter' ),  
+    'none'       =&gt; __( '[None]',       'syntaxhighlighter' ),  
+) );
+</code></pre><p>上記箇所を適当にコメントアウトすると、画面表示がいくらか早くなりました。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/384/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/398/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2837604 &#43;0900 JST m=&#43;0.103354901">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

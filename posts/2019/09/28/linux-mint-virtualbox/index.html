@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Linux Mint上でWindows10を動かす &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Linux Mint上でWindows10を動かす</h1>
+		<div class="post-info">
+				<time datetime="2019-09-28 00:00:00 &#43;0000 UTC">September 28, 2019</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/linuxmint/">LinuxMint</a></div>
+				</div>
+			
+		</div>
+		<p>フロントエンドを触っているとどうしてもIEでの動作確認が必要になるので<br>
+VirtualBoxを使ってWindows環境を用意します。</p>
+<h2 id="windowsディスクイメージの取得">Windowsディスクイメージの取得</h2>
+<p>Microsoftの公式ページにてWindows 10のディスクイメージ(iso)を取得しておきます。<br>
+<a href="https://www.microsoft.com/ja-jp/software-download/windows10ISO">https://www.microsoft.com/ja-jp/software-download/windows10ISO</a></p>
+<h2 id="virtualboxのインストール">Virtualboxのインストール</h2>
+<p>以下のコマンドでインストールします。</p>
+<pre><code>apt install virtualbox virtualbox-qt
+</code></pre><p>上記実行後、一旦ログアウトするとメニューにvirtualboxが追加されます。</p>
+<h2 id="仮想マシンの作成">仮想マシンの作成</h2>
+<p>VirtualBoxを起動し、仮想マシンを新規作成します。<br>
+選択肢はWindows10のものを選んで行きます。</p>
+<p>仮想マシンが作成できたら設定の「ストレージ」を開き、<br>
+空になっている光学ドライブ(CDアイコン)にダウンロードしておいたWin10のディスクイメージを設定して起動します。</p>
+<p>あとは指示に従ってwin10のインストールを進めるだけです。<br>
+インストールが完了したら先程光学ドライブに設定したディスクイメージは除いて構いません。</p>
+<h2 id="その他設定メモ">その他設定メモ</h2>
+<p>ゲストマシン(仮想マシン)から見るとホストマシンのIPアドレスは「10.0.2.2」になっています。<br>
+なので、ホストマシンにてDockerを動かして置いてゲストマシンで<code>http://10.0.2.2</code>にアクセスすれば動作確認ができます。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2019/09/14/text-orientation-upright/" class="left arrow">&#8592;</a>
+		<a href="/posts/2019/09/29/ruby-sass-error/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2609387 &#43;0900 JST m=&#43;0.080533201">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

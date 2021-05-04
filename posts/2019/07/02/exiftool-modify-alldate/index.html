@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>コマンドで画像の撮影日等を変更する &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">コマンドで画像の撮影日等を変更する</h1>
+		<div class="post-info">
+				<time datetime="2019-07-02 00:00:00 &#43;0000 UTC">July 2, 2019</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/linuxmint/">LinuxMint</a></div>
+				</div>
+			
+		</div>
+		<h2 id="環境">環境</h2>
+<ul>
+<li>Linux Mint 19.1 &ldquo;Tessa&rdquo; - MATE (64-bit)</li>
+<li>exiftool 10.80</li>
+</ul>
+<hr>
+<p>写真をスキャナを使って取り込むと画像ファイルに撮影日が反映されないので<br>
+exiftoolというEXIF情報を扱えるツールを使って撮影日を変更します。</p>
+<p>※この手順ではEXIF情報を無理やり書き込んでいるだけなので、<br>
+　ファイルフォーマットがEXIF形式(?)に変わるわけではなさそうです。</p>
+<p>まずexiftoolがインストールされていない場合はインストールします。</p>
+<pre><code>apt install exiftool
+</code></pre><p>現状のEXIF情報を参照するには以下のようにコマンドを実行します。<br>
+下記コマンドだとカレントディレクトリにあるpngファイル全てのEXIF情報を参照できます。</p>
+<pre><code>exiftool -s ./*png
+(./*pngの部分は画像ファイルが置いてあるパスに読み替えてください)
+</code></pre><p>続いて撮影日付等を書き換えます。<br>
+以下のコマンドで撮影日時等を「2019/02/23 00:00:00」に変更しています。</p>
+<pre><code>exiftool -overwrite_original -alldates='2019:02:23 00:00:00+09:00' ./*png
+exiftool -overwrite_original -TimeStamp='2019:02:23 00:00:00+09:00' ./*png
+</code></pre><p>※<code>overwrite_original</code>を指定する事で上書きするようにしているのですが<br>
+　もし書換え前のデータを残したい場合はこのオプションを外してください。</p>
+<p>次にファイルの更新日も修正してしまいます。<br>
+ファイルの更新日はどうでも良い人は飛ばして良いです。</p>
+<pre><code>exiftool -overwrite_original -FileModifyDate='2019:02:23 00:00:00+09:00' ./*png
+</code></pre><p>再度EXIF情報を確認すると、日付データが更新されている事が分かります。</p>
+<pre><code>exiftool -s ./*png
+</code></pre>
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2019/04/17/linuxmint-access-point/" class="left arrow">&#8592;</a>
+		<a href="/posts/2019/07/16/withholding-income-tax/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2595956 &#43;0900 JST m=&#43;0.079190001">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

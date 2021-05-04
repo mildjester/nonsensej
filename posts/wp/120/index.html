@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>COMODOのSSL証明書をApacheに設定する方法 &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">COMODOのSSL証明書をApacheに設定する方法</h1>
+		<div class="post-info">
+				<time datetime="2015-10-20 20:25:57 &#43;0000 UTC">October 20, 2015</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/apache/">Apache</a></div>
+				</div>
+			
+		</div>
+		<p>COMODOの証明書を購入した後の設定が複雑だったので、まとめました。<br>
+購入手順についてはSSL購入サイトを見れば分かると思うので割愛します。</p>
+<p>■環境<br>
+CentOS 7.1.1503<br>
+httpd 2.4.6-31.el7.centos.1<br>
+mod_ssl 1:2.4.6-31.el7.centos.1<br>
+openssl 1:1.0.1e-42.el7.9</p>
+<p>■必要なもの<br>
+証明書購入時に作成した秘密鍵（yourdomain_com.keyとする）<br>
+証明書購入後にメールで送られてきた証明書たち<br>
+・yourdomain_com.crt<br>
+・COMODORSADomainValidationSecureServerCA.crt<br>
+・COMODORSAAddTrustCA.crt<br>
+・AddTrustExternalCARoot.crt</p>
+<p>まず、上記必要なもの全てを設定するサーバにアップロードしておきます。<br>
+場所はどこでも良いのですが、本例では「/etc/pki/comodo/」配下に格納したとします。</p>
+<p>そして、メールで送られてきた証明書のうち自分のドメイン名がファイル名に入っていない３つを連結します。<br>
+連結は以下のコマンドで実施できます。連結する順番は以下順を守ってください。<br>
+なお、連結後のファイル名（以下例ではyourdomain_com.ca_bundle）は任意です。</p>
+<pre><code># cat COMODORSADomainValidationSecureServerCA.crt COMODORSAAddTrustCA.crt AddTrustExternalCARoot.crt &gt; yourdomain_com.ca_bundle
+</code></pre><p>ApacheのSSL設定ファイルを編集し、以下の行を修正します。<br>
+(/etc/httpd/conf.d/ssl.conf)</p>
+<pre><code>SSLCertificateFile /etc/pki/comodo/yourdomain_com.crt  
+SSLCertificateKeyFile /etc/pki/comodo/yourdomain_com.key  
+SSLCertificateChainFile /etc/pki/comodo/yourdomain_com.ca_bundle
+</code></pre><p>Apacheの設定を再読み込みします。</p>
+<pre><code># systemctl reload httpd
+</code></pre><p>これでSSLの設定が反映されるはずです。<br>
+もし駄目だったら、Apacheの再起動をしてみてください。</p>
+<pre><code># systemctl restart httpd
+</code></pre>
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/106/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/130/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2724624 &#43;0900 JST m=&#43;0.092056901">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

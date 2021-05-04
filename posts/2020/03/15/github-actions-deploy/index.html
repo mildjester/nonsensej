@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>GitHub ActionsでAWS Code Deployを回す &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">GitHub ActionsでAWS Code Deployを回す</h1>
+		<div class="post-info">
+				<time datetime="2020-03-15 00:00:00 &#43;0000 UTC">March 15, 2020</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/aws/">AWS</a></div> <div class="tags_item"><a href="/tags/git/">git</a></div>
+				</div>
+			
+		</div>
+		<p>GitHub ActionsからAWSコマンドを簡単に叩けるようだったので試してみました。<br>
+今回CIでやることは『masterにプッシュされたらCodeDeployを走らせる』のみです。</p>
+<h3 id="aws-code-deployの設定">AWS Code Deployの設定</h3>
+<p>こちらの記事で手順を紹介しています。<br>
+<a href="/articles/2019/02/28/aws-code-deploy">AWS Code DeployでEC2にデプロイする</a></p>
+<h3 id="aws-iamの設定">AWS IAMの設定</h3>
+<p>こちらの記事で手順を紹介しています。<br>
+今回CircleCIは使わないので、「IAM準備」の手順のみ参照してください。<br>
+<a href="/articles/2019/03/04/aws-code-deploy-circleci">CircleCIからAWS Code Deployを実行する</a></p>
+<h3 id="github-secretsへのキー登録">GitHub Secretsへのキー登録</h3>
+<p>前手順で取得したIAMユーザーの『アクセスキーID』と『シークレットアクセスキー』をGitHubのSecretsに登録します。</p>
+<p>まず、GitHubの対象リポジトリの『Settings ＞ Secrets』を開き、『Add a new secret』をクリックします。<br>
+<!-- raw HTML omitted --></p>
+<p>Secretsの設定画面になるので以下2つを設定します。</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AWS_ACCESS_KEY_ID</td>
+<td>IAMのアクセスキーID</td>
+</tr>
+<tr>
+<td>AWS_SECRET_ACCESS_KEY</td>
+<td>IAMのシークレットアクセスキー</td>
+</tr>
+</tbody>
+</table>
+<h3 id="github-actionsの設定">GitHub Actionsの設定</h3>
+<p>デプロイしたいリポジトリのGitHubページの『Actions』タブを開き、<br>
+「Set up a workflow yourself」をクリックします。<br>
+<!-- raw HTML omitted --></p>
+<p><code>.github/workflows/main.yml</code>の編集画面が開くので、以下のように記載します。</p>
+<pre><code>name: AWS Code Deploy
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Run AWS CodeDeploy
+      with:
+        args: deploy create-deployment --application-name &quot;※APP_NAME※&quot; --deployment-group-name &quot;※GROUP_NAME※&quot; --github-location repository=&quot;※REPO※&quot;,commitId=&quot;${{ github.sha }}&quot;
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: ※REGION※
+</code></pre><blockquote>
+<p>※2020/11/20 修正<br>
+以前は以下を参考にmain.ymlを記載していたが、2020年11月現在使えなくなっていたので上記の通り切り替えた。<br>
+<a href="https://github.com/marketplace/actions/aws-cli-install-action">AWS Cli install action</a></p>
+</blockquote>
+<p>なお、以下の部分は各自の環境に合わせて読み替えてください。</p>
+<table>
+<thead>
+<tr>
+<th>読み替える文字列</th>
+<th>設定する値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>※APP_NAME※</td>
+<td>CodeDeployで設定したアプリケーション名</td>
+</tr>
+<tr>
+<td>※GROUP_NAME※</td>
+<td>CodeDeployで設定したデプロイグループ名</td>
+</tr>
+<tr>
+<td>※REPO※</td>
+<td>デプロイ対象のGitHubリポジトリ(「ユーザー名/リポジトリ名」形式)</td>
+</tr>
+<tr>
+<td>※REGION※</td>
+<td>CodeDeployを走らせるAWSのリージョン(例：ap-northeast-1)</td>
+</tr>
+</tbody>
+</table>
+<p>記載できたらコミットします。<br>
+コミットしたら、今回のコミットに対してGitHub Actionが動くので正常終了するか確認してください。<br>
+<!-- raw HTML omitted --></p>
+<p>これで設定は完了です。<br>
+masterブランチが更新される度にAWS Code Deployが走りデプロイされるようになりました。</p>
+<p>今回はデプロイのみのCIだからか、1回1分以内で処理完了していました。<br>
+Actionsはプライベートリポジトリで月間2,000分まで無料(2020年3月現在)なので、2,000回くらいリリースできる想定。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2020/03/10/gas-gmail-slack/" class="left arrow">&#8592;</a>
+		<a href="/posts/2020/03/20/javascript-input-event/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2651091 &#43;0900 JST m=&#43;0.084703601">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Posts &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="catalogue">
+		
+			<a href="/posts/2019/11/08/ubuntu-tilix/" class="catalogue-item">
+    <div>
+        <time datetime="2019-11-08 00:00:00 &#43;0000 UTC" class="catalogue-time">November 8, 2019</time>
+        <h1 class="catalogue-title">Linux用ターミナル『Tilix』</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            環境  Ubuntu 19.10   今までubuntu等のLinux環境ではターミナルはTerminatorを使っていたのですが、
+Tilixというターミナルも良さそうだったので使ってみました。
+使い勝手はTerminatorよりも良い気がします。
+インストール方法 以下コマンドだけでインストール可能です。
+sudo apt install tilix 設定 ウィンドウ右上の３本線マークをクリックすると「設定」メニューが出てきます。
+そちらからウィンドウの色・サイズやフォントの変更などができます。
+タブ分割方法 ウィンドウ左上にタブ分割するボタンがあるので、そちらをクリックするだけでタブ分割できます。
+ショートカットキーもありますが、デフォルトのショートカットキーはubuntuでは別アクションにマッピングされているので
+使う場合は『設定＞ショートカット』からショートカットキーを変更してください。
+fish + fishermanの導入 基本的にterminatorと導入手順は同じです。
+こちらを参照してください。
+terminator + fish + fishermanの導入
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2019/11/06/ubuntu-initialize/" class="catalogue-item">
+    <div>
+        <time datetime="2019-11-06 00:00:00 &#43;0000 UTC" class="catalogue-time">November 6, 2019</time>
+        <h1 class="catalogue-title">ubuntu 19.10の初期設定</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            環境  Ubuntu 19.10 ThinkPad T480   Thinkpad T480にubuntu 19.10をインストールした際のメモです。
+日本語入力設定 そのままでも日本語入力はできますが、入力ソースをMozcに切り替えたりしないといけないので
+入力ソースのMozcの優先度を高くします。
+アプリランチャーより『設定』を開き、『地域と言語』を開きます。
+そこの入力ソースに「日本語」と「日本語(Mozc)」が並んでいるので
+「日本語(Mozc)」が上にくるように並べ替えます。
+各入力ソースの左端の6丸をドラッグすれば順番を入れ替えられます。
+IMEのON/OFFをMac風にする アプリランチャーより『Mozcの設定』を開き、『一般』タグを開きます。
+「キー設定の選択」の横にある「編集」ボタンをクリックするとキー設定を変更できます。
+そこでHenkan/Hiragana/Katakanaあたりに『IME有効』を割り当て、
+Muhenkanに『IME無効』を割り当てます。
+これでMacのようにIMEのON/OFFを切り替えられるようになりました。
+CapsLockをCtrlに、半角/全角をEscにする こちらもMac風になる設定です。
+以下のコマンドを実行するとCapsLockがCtrlになり、半角/全角キーがEsc扱いになります。
+setxkbmap -option ctrl:nocaps,japan:hztg_escape tiling機能をOFFにする デフォルトだとウィンドウを画面端にドラッグすると勝手に最大化します。
+無くてもいい機能なので以下コマンドで無効化します。
+gsettings set org.gnome.shell.overrides edge-tiling false ※2019/12/2追記 ubuntu 19.10では、上記だけではtilingが無効になっていませんでした。
+以下の実行も必要そうです。(むしろ、こちらだけでよさそう)
+gsettings set org.gnome.mutter edge-tiling false 諸々インストール PHP sudo apt install php7.3 composer php7.3-bcmath php7.3-common php7.3-gd php7.3-json php7.3-mbstring php7.3-mysql php7.3-xml php7.3-xmlrpc MySQL Workbench sudo apt install mysql-workbench mysql-client Shutter(スクショツール) 既存画像に文字や矢印を書き込む事もできるので便利です。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2019/10/15/reverseproxy-wordpress/" class="catalogue-item">
+    <div>
+        <time datetime="2019-10-15 00:00:00 &#43;0000 UTC" class="catalogue-time">October 15, 2019</time>
+        <h1 class="catalogue-title">リバースプロキシ先でWordpressを動かす</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            環境 Apache 2.2.34
+ サーバーA(www.sample.com)でメインサイトが動いていて、サーバーB(sub.sample.com)でWordpressが動いている時に
+Apacheのリバースプロキシを使って以下のようにアクセスできるようにします。
+メインサイト: https://www.sample.com/
+Wordpress: https://www.sample.com/blog
+なお、既に他のリバースプロキシも設定されており、極力そちらへの影響はないように設定します。
+他ページ(サーバーC): https://www.sample.com/media
+■サーバーAの設定 Apache設定 httpd.confなどに以下のようにリバースプロキシ設定をします。
+他リバースプロキシに影響しないようにLocationで括ります。
+&lt;Location &quot;/blog&quot;&gt; ProxyPass http://sub.sample.com/blog ProxyPassReverse http://sub.sample.com/blog ProxyPassReverseCookieDomain sub.sample.com www.sample.com ProxyPassReverseCookiePath / /blog/ &lt;/Location&gt; これで/blog配下へのアクセスはサーバーB(sub.sample.com)に飛ばすようになります。
+■サーバーBの設定 Apache設定 Apacheの設定はsub.sample.comにアクセスがある想定で記載しておけば大丈夫です。
+WordpressソースはDocumentRoot配下にblogディレクトリを作成して格納します。
+SSL通信扱いにする これでWordpressページ自体は表示されますが、必要なJS/CSS/画像などの外部ファイルのURLが非SSLとなってしまい
+Chromeなどだとエラーとなってしまいます。
+なので、.htaccessに以下追記して強制的にSSL通信扱いになるようにします。
+SetEnv HTTPS on ※補足
+非SSLでhttp://sample.com/blogにアクセスした場合はどうするのって話もありますが、
+そもそも非SSLページは推奨されないので、今回は考えてません。
+http://sample.com/blogにアクセスが来たらhttps://sample.com/blogにリダイレクトしましょう。
+どうしても非SSLとSSLの両方で受けたければSSL接続時はリバースプロキシ時に「X-Forwarded-HTTPS: on」を設定するなど対策してください。
+「外部→(HTTPS)→ELB→(HTTP)→サーバーA→(HTTP)→サーバーB」のような構成だと結構面倒です。
+ホスト名を補正する ここまでの対応だと$_SERVER['HTTP_HOST']と$_SERVER['SERVER_NAME']がsub.sample.comのままになってしまいます。
+ページ表示上は問題無さそうですが、管理画面でブラウザのconsoleに警告が出て気持ち悪いので修正しておきます。
+wp-config.phpの先頭に以下の記載を付け加えておきます。
+if (isset($_SERVER['HTTP_X_FORWARDED_HOST']) &amp;&amp; $_SERVER['HTTP_X_FORWARDED_HOST'] === 'www.sample.com') { $_SERVER['HTTP_HOST'] = 'www.sample.com'; $_SERVER['SERVER_NAME'] = 'www.sample.com'; } これでwww.sample.comからリバースプロキシで飛ばされてきたアクセス時はホスト名が書き換わるようになりました。
+（これはもっといい方法があるかもしれませんが、とりあえずこの方法でも対応できています。）
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2019/10/10/linux-sudo/" class="catalogue-item">
+    <div>
+        <time datetime="2019-10-10 00:00:00 &#43;0000 UTC" class="catalogue-time">October 10, 2019</time>
+        <h1 class="catalogue-title">Linuxで別ユーザとしてコマンドを実行する</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            環境 Amazon Linux AMI release 2013.03
+ 今更ですがsudoコマンドについて整理しておきたかったので書きました。
+まず基本として、rootユーザーとしてコマンドを実行する場合はsudo {コマンド}を打ちます。
+$ sudo id uid=0(root) gid=0(root) 所属グループ=0(root) もしrootユーザー以外になり代わるたい場合は-uオプションで指定します。
+$ sudo -u apache id uid=48(apache) gid=48(apache) 所属グループ=48(apache) もし特定のユーザーに頻繁になり代わる場合は
+.bashrcなどにfunction定義しておくと楽です。
+(今回一番書きたかったこと)
+# Apacheユーザとしてコマンド実行する sudoa () { sudo -u apache $* } # Apacheユーザとしてgitコマンドを実行する agit() { sudo -u apache git $* } こうしておくとagit pullと打てば
+Apacheユーザとしてgit pullを打つことができます。
+また、以下のような簡単なスクリプトも書けます。
+hoge() { sudo -u yamada sh -c ' NAME=`id | grep -o -E &quot;\([^)]+\)&quot; | grep -o -m 1 -E &quot;[^\()]+&quot;` echo &quot;hello ${NAME}!
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2019/10/02/bookmarklet-mizuho/" class="catalogue-item">
+    <div>
+        <time datetime="2019-10-02 00:00:00 &#43;0000 UTC" class="catalogue-time">October 2, 2019</time>
+        <h1 class="catalogue-title">Bookmarkletでパスワードを自動で入力させる</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            みずほダイレクトで振込時の第2暗証番号6桁から数字4桁を抽出するのが面倒だったので、
+Bookmarkletを使って入力すべき数字4桁を表示できるようにしました。
+Bookmarkletの説明や作り方についてはこちらを参照。
+Bookmarklet(ブックマークレット)の作り方
+みずほダイレクトに仕込んでみる みずほダイレクトの振込時に第2暗証番号を入力する画面まで来たら
+以下のjavascriptを実行すると第2暗証番号が表示されます。
+var secondPass = '123456'; // ここに第2暗証番号の6桁を入れてください var orderNum = 0; var pickPw = '入力するパスワード: '; // 聞かれる第2パスワード4桁を順に処理する for (var i = 1; i&lt;=4; i++) { // 第2パスワードの何番目の数字を聞かれているかチェック orderNum = Number(document.getElementById('txtScndPwdDgt' + i).innerHTML); // 第2パスワードから対象の数字を抜き出してテキストに追加する pickPw += secondPass.substr(orderNum -1, 1) } // 入力すべき4桁の数字を表示する alert(pickPw); これをBookmarklet用に圧縮し、頭にjavascript:を付けます。
+（圧縮方法はコチラを参照）
+javascript:for(var t,e=&quot;入力するパスワード: &quot;,r=1;r&lt;=4;r++)t=Number(document.getElementById(&quot;txtScndPwdDgt&quot;+r).innerHTML),e+=&quot;123456&quot;.substr(t-1,1);alert(e); あとはブラウザのブックマークに新しくページを追加し、URLに上記のjavascriptを入力しておくだけです。
+みずほダイレクト以外のサイトでもブラウザの開発者ツールでHTML要素を調べれば
+似たような処理を作れると思います。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2019/09/29/ruby-sass-error/" class="catalogue-item">
+    <div>
+        <time datetime="2019-09-29 00:00:00 &#43;0000 UTC" class="catalogue-time">September 29, 2019</time>
+        <h1 class="catalogue-title">Linux Mintにsassをインストールする</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            インストール方法 最終的に行き着いたインストール方法です。
+インストールするだけならこちらを実行してください。
+$ apt install ruby-sass ruby-dev $ sudo gem install listen --version '~&gt; 3.0' 躓いた点 エラーメッセージで検索する人もいると思うので、
+躓いた工程をメモしておきます。
+まず、最初にsassだけインストールしました。
+$ apt install ruby-sass すると、sassコマンドでwatchをする際にエラーが出ました。
+$ sass --watch ./sass:./css --style compact --no-cache &gt;&gt;&gt; Sass is watching for changes. Press Ctrl-C to stop. LoadError: cannot load such file -- listen Run &quot;gem install listen --version '~&gt; 3.0'&quot; to get it. Use --trace for backtrace. watchをするためにはlistenが必要であるようです。
+そこでlistenをインストールしようとしましたが、エラーになりました。
+$ sudo gem install listen --version '~&gt; 3.
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2019/09/28/linux-mint-virtualbox/" class="catalogue-item">
+    <div>
+        <time datetime="2019-09-28 00:00:00 &#43;0000 UTC" class="catalogue-time">September 28, 2019</time>
+        <h1 class="catalogue-title">Linux Mint上でWindows10を動かす</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            フロントエンドを触っているとどうしてもIEでの動作確認が必要になるので
+VirtualBoxを使ってWindows環境を用意します。
+Windowsディスクイメージの取得 Microsoftの公式ページにてWindows 10のディスクイメージ(iso)を取得しておきます。
+https://www.microsoft.com/ja-jp/software-download/windows10ISO
+Virtualboxのインストール 以下のコマンドでインストールします。
+apt install virtualbox virtualbox-qt 上記実行後、一旦ログアウトするとメニューにvirtualboxが追加されます。
+仮想マシンの作成 VirtualBoxを起動し、仮想マシンを新規作成します。
+選択肢はWindows10のものを選んで行きます。
+仮想マシンが作成できたら設定の「ストレージ」を開き、
+空になっている光学ドライブ(CDアイコン)にダウンロードしておいたWin10のディスクイメージを設定して起動します。
+あとは指示に従ってwin10のインストールを進めるだけです。
+インストールが完了したら先程光学ドライブに設定したディスクイメージは除いて構いません。
+その他設定メモ ゲストマシン(仮想マシン)から見るとホストマシンのIPアドレスは「10.0.2.2」になっています。
+なので、ホストマシンにてDockerを動かして置いてゲストマシンでhttp://10.0.2.2にアクセスすれば動作確認ができます。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2019/09/14/text-orientation-upright/" class="catalogue-item">
+    <div>
+        <time datetime="2019-09-14 00:00:00 &#43;0000 UTC" class="catalogue-time">September 14, 2019</time>
+        <h1 class="catalogue-title">CSSでtext-orientationは使ってはいけない</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ちょっと釣りっぽいタイトルですが
+ちょっと困った事があったので書いておきます。
+やった事 縦書きの文書(英数字の向きは縦)を書くことがあったので
+以下のようにtext-orientationを使って実装しました。
+CSS
+div { width: 30px; height: 290px; margin: 20px auto; } p { padding: 20px; border: 2px solid #000; -webkit-writing-mode: vertical-rl; /* 縦書きにする */ -ms-writing-mode: tb-rl; /* 縦書きにする */ writing-mode: vertical-rl; /* 縦書きにする */ text-orientation: upright; /* 英数字の向きを縦にする */ } HTML
+&lt;div&gt; &lt;p&gt;僕にもし子供が産まれたら&lt;br/&gt;世界で2番目に好きだと話そう&lt;/p&gt; &lt;/div&gt; Chrome等で確認すると想定通りになりました。 これで満足していたのですが、実はtext-orientationはIEでは対応しておらず
+数字が横向きになってしまいました。(2019年9月現在)
+対応方法 text-combine-uprightというスタイルがあるので
+これを使って数字部分を縦向きにします。
+変更後のソースは以下のようにします。
+CSS
+div { width: 30px; height: 290px; margin: 20px auto; } p { padding: 20px; border: 2px solid #000; -webkit-writing-mode: vertical-rl; /* 縦書きにする */ -ms-writing-mode: tb-rl; /* 縦書きにする */ writing-mode: vertical-rl; /* 縦書きにする */ } span { font-family: &quot;メイリオ&quot;; -webkit-text-combine: horizontal; /* 英数字の向きを縦にする */ -ms-text-combine-horizontal: all; /* 英数字の向きを縦にする */ text-combine-upright: all; /* 英数字の向きを縦にする */ } HTML
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2019/08/26/wp-media-infomation/" class="catalogue-item">
+    <div>
+        <time datetime="2019-08-26 00:00:00 &#43;0000 UTC" class="catalogue-time">August 26, 2019</time>
+        <h1 class="catalogue-title">【Wordpress】画像ファイルに設定されたタイトルとキャプションを削除する</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            環境  WordPress 4.8.3   やりたい事 Wordpressのメディアに画像ファイルをアップロードする際
+画像のタイトルは基本的には画像のファイル名となりますが
+アップする画像ファイルによってはタイトルやキャプションが設定されている事があります。
+例えば、オリンパスのデジカメで撮った写真だと
+全ての画像のタイトルとキャプションが『OLYMPUS DIGITAL CAMERA』になる事があり
+このままでは管理がしにくく、都度修正するのも手間です。
+そこで、画像ファイルに設定されている値は無視するようにします。
+(WP上ではタイトル＝ファイル名となる)
+対応方法 function.php に以下の記載をするだけです。
+function delete_media_title_caption( $img_meta ) { $img_meta['title'] = ''; $img_meta['caption'] = ''; return $img_meta; } add_filter( 'wp_read_image_metadata', 'delete_media_title_caption' ); これで画像アップ時にファイルに設定されていたタイトルとキャプションは無視されます。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2019/08/15/ssh-portfowarding/" class="catalogue-item">
+    <div>
+        <time datetime="2019-08-15 00:00:00 &#43;0000 UTC" class="catalogue-time">August 15, 2019</time>
+        <h1 class="catalogue-title">SSHポートフォワーディングでローカルから外部サーバーへアクセスする</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            環境  amazonlinux:2017.03-with-sources  Dockerコンテナのベースイメージです。 sshクライアント用のソフトはyumでインストールしてあるとします。     やりたい事 ローカル環境(Docker)で動かしているアプリケーションから
+アクセス制限のかかっているAPIサーバーやDBサーバーへアクセスしたかったので
+SSHポートフォワーディングを使って実現しました。
+SSHポートフォワーディングを使えば、自分が特定のポートで受けた通信を特定のサーバー(SSHで入れる事が条件)を経由して別のサーバーへ受け流す事ができるようになります。
+コマンドは以下のように実行します。
+ssh -f -N -L {自分が待ち受けるポート}:{アクセスしたいサーバーのIPやホスト名}:{アクセスしたいサーバーのポート} -i {SSHするための秘密鍵のパス} {SSH先のユーザー}@{SSH先のサーバー} -p {SSHポート} -4 (sshのオプション説明は調べればすぐ出てくるので割愛します)
+例えば以下のようにコマンドを打つと
+自分が10080ポートで受けた通信はserver2経由でserver1の80ポートに流して、そのレスポンスをそのままリクエスト元に戻す
+という意味になります。
+なお、server2はポート22でec2-userユーザーにSSH接続できるものとします。(秘密鍵認証)
+ssh -f -N -L 10080:server1:80 -i ~/.ssh/id_rsa ec2-user@server2 -p 22 -4 手順 ①純粋なポートフォワーディングを使う 下図のような通信イメージです。
+ WEBアプリのコンテナにてSSHポートフォワーディングを実行。 WEBアプリから自身の3306ポートへ通信が発生したらポートフォワーディング発動し、
+ssh.server.com経由でdb.server.com:3306へアクセスする。 WEBアプリから自身の10443ポートへ通信が発生したらポートフォワーディング発動し、
+ssh.server.com経由でapi.server.com:443へアクセスする。  WEBアプリが動いているDockerコンテナ内にてSSHポートフォワーディングのコマンドを実行します。
+ssh -f -N -L 3306:db.server.com:3306 -L 10443:api.server.com:443 -i /path/to/secret_key user@ssh.server.com -p 22 -4 あとはアプリケーション内で以下の箇所を変更すればポートフォワーディングでアクセスできるようになります。
+・「db.server.com:3306」の通信箇所を「localhost:3306」へ通信するよう変更
+・「api.server.com:443」の通信箇所を「localhost:10443」へ通信するよう変更
+        </p>
+    </div>
+</a>
+
+		
+	</div>
+	
+	<div class="pagination">
+		
+			<a href="/posts/page/4/" class="left arrow">&#8592;</a>
+		
+		
+			<a href="/posts/page/6/" class="right arrow">&#8594;</a>
+		
+	
+		<span>5</span>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.307722 &#43;0900 JST m=&#43;0.127316401">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

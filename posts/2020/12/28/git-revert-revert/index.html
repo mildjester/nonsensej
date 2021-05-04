@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>gitで一旦取り消しRevertをしたら、RevertのRevertをすべし &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">gitで一旦取り消しRevertをしたら、RevertのRevertをすべし</h1>
+		<div class="post-info">
+				<time datetime="2020-12-28 00:00:00 &#43;0000 UTC">December 28, 2020</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/git/">git</a></div>
+				</div>
+			
+		</div>
+		<p>いろんなプロジェクトを渡り鳥していると、「間違ってmaster/developにマージしちゃいました」案件がちょいちょいあります。<br>
+その場合、基本的にはmaster/developでgitのRevertをして対応してました。<br>
+でも、その後RevertのRevertをするのが漏れてしまうパターンがよくあります。</p>
+<p>RevertのRevertが必要だと分かっていて漏れてしまうのは仕方ないのですが、<br>
+以前手伝っていたプロジェクトで「え？なんで必要なの？」っていう人がいたのを思い出したので記事にしてみました。</p>
+<hr>
+<p>まずこんなソースがmasterブランチにあったとします。<br>
+<!-- raw HTML omitted --></p>
+<p>ここで<code>$hoge</code>だけでなく<code>$fooo</code>という値も返せるようにしたくなったとします。<br>
+ブランチ「feature/fooo」を切って修正し、masterにマージします。<br>
+<!-- raw HTML omitted --></p>
+<p>ここで、<code>$fooo</code>を返すメソッドを作ってなかったことに気づき、masterでrevertします。<br>
+<!-- raw HTML omitted --></p>
+<p>「feature/fooo」にメソッドを追加し、masterにマージします。<br>
+クラス変数やコンストラクタの処理が残っているように見えます。<br>
+<!-- raw HTML omitted --><br>
+※なお、ここでコンフリクトは起きていません。</p>
+<p>できあがったソースがこちらです。<br>
+最後に追加したメソッドのみが追加されており、クラス変数やコンストラクタの処理は入っていません。<br>
+<!-- raw HTML omitted --></p>
+<p>これだと想定した挙動になりませんね。</p>
+<hr>
+<p>勘違いされる要素として、Revertは「対象コミットを取り消す」処理だと思っている人がたまにいます。<br>
+Revertはコミットを取り消すのではなく「対象コミットを打ち消すような修正コミットを新たに発行する」処理です。<br>
+Revert対象のコミットが無かったことになっている訳ではありません。</p>
+<p>なので、Revertコミットはそれを更にRevertしないと、Revertコミットの修正が残ってしまいます。</p>
+<p>手順をまとめると以下のようになります。</p>
+<h3 id="ダメなパターン">ダメなパターン</h3>
+<ol>
+<li>作業ブランチからmasterにマージする。</li>
+<li>masterでリバートする。</li>
+<li>作業ブランチで修正を続ける。</li>
+<li>作業ブランチからmasterにマージする。</li>
+</ol>
+<h3 id="良いなパターン">良いなパターン</h3>
+<ol>
+<li>作業ブランチからmasterにマージする。</li>
+<li>masterでリバートする。</li>
+<li>作業ブランチにmasterをマージする。(ダメなパターンで漏れてる)</li>
+<li>作業ブランチでRevertをRevertする。(ダメなパターンで漏れてる)</li>
+<li>作業ブランチで修正を続ける。</li>
+<li>作業ブランチからmasterにマージする。</li>
+</ol>
+<p>という訳でRevertした修正を捨てる訳でなければRevertのRevertをしましょう。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2020/10/25/javascript-autocomplete/" class="left arrow">&#8592;</a>
+		<a href="/posts/2021/01/07/git-revert-revert/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2684618 &#43;0900 JST m=&#43;0.088056301">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+	<meta name="generator" content="Hugo 0.82.0" />
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<meta name="description" content="">
+
+		<title>Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="/index.xml" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	
+
+
+	<div class="catalogue">
+		
+			<a href="/posts/wp/1192/" class="catalogue-item">
+    <div>
+        <time datetime="2018-04-10 09:11:57 &#43;0000 UTC" class="catalogue-time">April 10, 2018</time>
+        <h1 class="catalogue-title">【Linux Mint】PHP7.1のインストール</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            $ set -x LC_ALL C.UTF-8 $ sudo add-apt-repository ppa:ondrej/php $ apt update $ apt install php7.1 php7.1-mbstring php7.1-mcrypt php7.1-mysql php7.1-xml php7.1-xmlrpc composer 
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/1162/" class="catalogue-item">
+    <div>
+        <time datetime="2018-04-09 21:06:39 &#43;0000 UTC" class="catalogue-time">April 9, 2018</time>
+        <h1 class="catalogue-title">【Linux Mint】Dockerの導入</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境 Linux Mint 18.3 cinnamon 64bit
+ Dockerのインストール dockerのGPGを追加
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - dockerリポジトリ追加
+$ sudo add-apt-repository &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable&quot; dockerインストール
+$ apt update $ apt install docker-ce docker-composeのインストール $ apt install docker-compose sudo無しでdockerを使えるようにする 現在のユーザーをdockerというグループに所属させれば使えるようになるらしい。
+sudo gpasswd -a $USER docker service docker restart これで、一度ログアウトすればsudo無しでdockerコマンドが使えるようになります。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/1098/" class="catalogue-item">
+    <div>
+        <time datetime="2018-04-07 14:01:56 &#43;0000 UTC" class="catalogue-time">April 7, 2018</time>
+        <h1 class="catalogue-title">【Linux Mint】OSインストールと設定</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境 Linux Mint 18.3 cinnamon 64bit
+ OS入手 公式ページからISOイメージをダウンロードします。
+https://linuxmint.com/download.phpこだわりが無ければ『Cinnamon 64bit』がオススメらしいので、それにします。
+ダウンロード元に日本が無いので、近そうな台湾にします。
+※韓国はなぜか404になってしまった（2018/03/09現在）
+OSインストール ダウンロードしたISOをDVDなどに焼いて、インストールしたいPCに入れて起動します。
+するとデスクトップが表示されInstallLinuxMintというアイコンがあるのでダブルクリックします。
+後は画面指示に従ってインストールを進めるだけです。
+私は以下のような設定で進めました。（特筆すべき部分のみ）
+ 言語：ここはあえてEnglish※2018/4/18追記 アプリケーションの文字体とかが中華文字みたいになるから日本語にした方が良さそう。 インストール方法：Clean InstallしたかったのでErase disk and install Linux Mint キーボードレイアウト：レノボキーボードはJapanese-JapaneseでOKでした  Windowsとデュアルブートなどにする場合は、事前にWindows側でDiskに空き容量を作っておき
+インストール方法で Linux Mint をWindows Boot Managerとは別にインストールを選択すればよいです。
+インストール後、デュアルブートにならない場合はBIOS設定でセキュアブートをDisableにします。
+Update Managerの設定 右下のタスクバーよりUpdateManagerをクリックします。（盾みたいなアイコン）
+とりあえずLet me review sensitive updatesを選択してOKをクリックします。
+『Do you want to switch to a local mirror?』と聞かれているのでOKをクリックします。
+日本のどれかを選択します。
+Refreshをクリックして最新化して、Install Updatesをクリックする。
+アップデートが完了すると、さらにアップデートできるパッケージが複数表示されるので
+必要に応じてアップデートしておく。
+システムフォントの変更 デフォルトのフォントがあまり良くなかったので変更します。
+※インストール時に言語をEnglishにしてしまった場合のみです。
+最初から日本語でインストールしておけば普通のフォントになりました。
+まず「SystemSettins &gt; Font」を開きます。
+そこのFont Selectionで好きなフォントに変更できます。
+個人的にはTakao Ex Gothic Regularが好きでした。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/1071/" class="catalogue-item">
+    <div>
+        <time datetime="2018-01-29 13:35:42 &#43;0000 UTC" class="catalogue-time">January 29, 2018</time>
+        <h1 class="catalogue-title">docker-composeチートシート</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            環境 macOS High Sierra 10.13.2
+docker-compose 1.18.0
+ ■よく使いそうなコマンド yamlで指定したサービスを全て生成＆起動する docker-compose up -d ※-dオプションを付けるとバックグラウンドで起動する
+ビルドが必要なコンテナはビルドも走る
+現在稼働しているコンテナを確認する docker-compose ps 現在稼働しているコンテナを全て停止＆削除する docker-compose down  ■サービスを個別に操作するコマンド サービス指定でコンテナを生成する docker-compose create {サービス名} サービス指定でコンテナを起動する docker-compose start {サービス名} createとstartを１発で実施する docker-compose run -d {サービス名} サービス指定でコンテナを停止する docker-compose stop {サービス名} ※createやrunコマンド実行時は、指定したサービスにdepends_on等で紐づけられているサービスも一緒に起動する
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/979/" class="catalogue-item">
+    <div>
+        <time datetime="2018-01-17 16:18:41 &#43;0000 UTC" class="catalogue-time">January 17, 2018</time>
+        <h1 class="catalogue-title">Wordpressにお問合せフォームを作る</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            環境 Wordpress 4.9.1
+Contact Form 7 4.9.2
+WP Mail SMTP 1.2.2
+ Wordpressの固定ページにお問合せフォームを作成し、
+問い合わせがあった場合はメールを飛ばします。
+なお、利用するメールサーバは外部のメールサーバとします。
+構築手順 ■プラグインのインストール 以下のプラグインをインストールし、有効化します。
+ Contact Form 7 WP Mail SMTP  ※『Contact Form 7』は類似プラグインで『Contact Form7』(7の前にスペース無し)もあるので注意。
+■お問合せフォームの設定 インストール済みプラグイン一覧画面にて「Contact Form 7」の設定を選択します。
+フォーム一覧画面が表示され、「コンタクトフォーム1」というフォームが自動で作られているので「編集」を選択します。
+ここでフォーム名やフォームの内容を編集できます。
+各タブの内容は以下の通りです。
+ フォーム  WEB画面で表示するフォームの内容を設定できます アスタリスクを付けると必須項目になります   メール  フォームに入力された際に送信するメールに関する設定 送信元については後工程の「WP Mail SMTP」の設定にて実施するので設定不要です   メッセージ  フォームを入力した際に画面上で表示するメッセージ   その他の設定  細かいカスタマイズもできるようだが、ここでは割愛します。
+また、フォーム一覧画面に記載されている「ショートコード」は最終的に固定ページに埋め込むので控えておいてください。
+■メールサーバの設定 インストール済みプラグイン一覧画面にて「WP Mail SMTP」の設定を選択します。
+※左メニューより『設定 &gt; WP Mail SMTP』と選択しても良いです。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/942/" class="catalogue-item">
+    <div>
+        <time datetime="2017-12-20 16:12:33 &#43;0000 UTC" class="catalogue-time">December 20, 2017</time>
+        <h1 class="catalogue-title">【CentOS】OpenVPN &amp; LDAPでVPNサーバ構築</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            環境 CentOS 7.4 OpenVPN 2.4.4
+参考サイト ServerWorldさん：https://www.server-world.info/query?os=CentOS_7&amp;amp;p=openvpncloudpackさん：https://cloudpack.media/73※前提条件 LDAPサーバは既に構築済みとします
+ サーバ作業手順 ■インストール 必要なものをインストールします。
+yum --enablerepo=epel install openvpn openvpn-auth-ldap easy-rsa net-tools bridge-utils ■各種証明書生成 easy-rsaのディレクトリに移動し、各種証明書を生成します。
+cd /usr/share/easy-rsa/2.0 CA 証明書 まず、varsファイルを修正します。
+vim vars 内容は以下の通りです。(コメント行・空行は除外しています)
+export EASY_RSA=&quot;`pwd`&quot; export OPENSSL=&quot;openssl&quot; export PKCS11TOOL=&quot;pkcs11-tool&quot; export GREP=&quot;grep&quot; export KEY_CONFIG=`$EASY_RSA/whichopensslcnf $EASY_RSA` export KEY_DIR=&quot;$EASY_RSA/keys&quot; export PKCS11_MODULE_PATH=&quot;dummy&quot; export PKCS11_PIN=&quot;dummy&quot; export KEY_SIZE=2048 export CA_EXPIRE=3650 export KEY_EXPIRE=3650 export KEY_COUNTRY=&quot;JP&quot; #国 export KEY_PROVINCE=&quot;Tokyo&quot; #都道府県 export KEY_CITY=&quot;Shibuya-ku&quot; #市区町村 export KEY_ORG=&quot;AAA-Company&quot; #組織名 export KEY_EMAIL=&quot;fooo@aaa.com&quot; #メールアドレス export KEY_OU=&quot;BTeam&quot; #チーム名など（任意） export KEY_NAME=&quot;EasyRSA&quot; CA証明書を生成します。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/914/" class="catalogue-item">
+    <div>
+        <time datetime="2017-12-18 14:02:41 &#43;0000 UTC" class="catalogue-time">December 18, 2017</time>
+        <h1 class="catalogue-title">Visual Studio CodeでPHP開発環境構築</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境 Visual Studio Code 1.19.0
+Linux Mint 18.3 cinnamon 64bit
+macOS High Sierra 10.13.1
+(LinuxでもMacでも基本的に同じ操作でいけるはずです)
+ ■Visual Studio Codeの取得 Visual Studio Code(以下、VSCode)本体をダウンロードします。 https://code.visualstudio.com/【Macの場合】
+ダウンロードしてきたzipを回答するとアプリケーションファイル(.app)が出てくるので、アプリケーションディレクトリへ移動しておきます。
+【Linux Mintの場合】
+ダウンロードしてきたdebファイルを実行し、画面上の指示に従って進めるだけです。
+■フォント変更 VSCodeで使うフォントをプログラミング向けのフォント『Ricty Diminished』に変更します。
+まずフォントそのものをPCにインストールします。
+手順はコチラを参照してください。
+PCにフォントがインストールできたら、VSCode側の設定をします。
+まず、メニューの「Code　&gt; 基本設定 &gt; 設定」を開きます。
+次に設定ファイルに以下の行を追加します。
+&quot;editor.fontFamily&quot;: &quot;'Ricty Diminished'&quot;, これでフォントがRicty Diminishedになりました。
+■拡張機能インストール VSCodeを起動したら上部メニューより表示 &gt; 拡張機能を選択します。 もしくは左側にあるアイコンの中の一番下にある四角いアイコンを選択します。 検索窓が表示されるので、キーワード検索をしてインストールすることが可能です。 以下、私がインストールしてみたものです。
+Project Manager プロジェクト管理をするための拡張機能です。 現在開いているワークスペースをプロジェクトとして保存しておくことで プロジェクトの切り替えが簡単になります。 NetBeansやEclipseのように複数プロジェクトを同時に開いておくことはできないようです。
+■使い方上部メニューの表示 &gt; コマンドパレットを開き、検索バーにProject Managerと入力するとProject Manager用のコマンドが表示されます。 (コマンドパレットはCommand + Shft+Pでも開けます)
+主に使うコマンドについては以下の通り。
+   コマンド 内容     Save Project 現在のワークスペースをプロジェクトとして保存   Edit Project 保存済みプロジェクトの編集   List Project to Open 保存済みプロジェクト一覧を表示し、選択したプロジェクトを開く    ftp-simple ファイルやディレクトリをサーバへアップロードしたりダウンロードするための拡張機能。 FTPだけでなく、SFTPも使えます。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/894/" class="catalogue-item">
+    <div>
+        <time datetime="2017-12-12 12:47:09 &#43;0000 UTC" class="catalogue-time">December 12, 2017</time>
+        <h1 class="catalogue-title">【git】ローカルとリモートのブランチを削除するスクリプト</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            マージ済みのブランチを削除する時に、いつもローカルブランチとリモートブランチの両方を削除するのが面倒だったのでスクリプト化しました。
+リモートはorigin限定です。 git_del_br.shという名前で作った例です。
+#!/bin/bash set +eu if [ $# -eq 1 ]; then # delete local branch loBrCheck=`git branch | grep &quot;^[ ]*${1}\$&quot;` if [ ${#loBrCheck} -gt 0 ]; then echo &quot;delete local branch.&quot; git branch -D $1; fi # delete remote branch reBrCheck=`git branch -a | grep &quot;^[ ]*remotes/origin/${1}\$&quot;` if [ ${#reBrCheck} -gt 0 ]; then echo &quot;delete remote branch&quot; git push --delete origin $1; fi else echo echo &quot;##################################&quot; echo &quot; Usage: git_del_br.
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/853/" class="catalogue-item">
+    <div>
+        <time datetime="2017-12-12 00:30:31 &#43;0000 UTC" class="catalogue-time">December 12, 2017</time>
+        <h1 class="catalogue-title">【CentOS】侵入検知したらSlack通知する</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境 CentOS 7.4
+AIDE 0.15.1
+ AIDEという侵入検知ツールを導入し、検査結果をSlackに通知するようにします。
+AIDEインストール yum install -y aide AIDE設定 vim /etc/aide.conf 95行目辺りより監視対象ディレクトリの設定があります。 設定値の記載方法は以下の通り。
+/{DIR_PATH}/ {CHECK_METHOD} #監視対象に含める !/{DIR_PATH}/ #監視対象から除外する 上記の『DIR_PATH』の部分に対象のディレクトリパスを記載し、 『CHECK_METHOD』に監視方法を記載します。
+監視方法については本設定ファイルの９５行目以前に記載があるので、そちらを参照してください。 とりあえずAIDE 0.15.1では「CONTENT_EX」にしておくのが無難そうです。
+監視対象の設定が完了したら、AIDEのデータベースを初期化します。 ※以下コマンド実行後、結構待ちます。
+aide -i 自動監視設定 AIDEでスキャンを実行し、結果をSlack通知するスクリプトを作成します。 仮に、/opt/aide_scan.shという名前で作るとします。
+vim /opt/aide_scan.sh シェルスクリプトの中身は以下のようにします。
+#!/bin/bash set +e ##### Settings ## AIDE LOGFILE=&quot;/var/log/aide/aide.log&quot; AIDEDIR=&quot;/var/lib/aide&quot; ## Slack URL=&quot;https://hooks.slack.com/services/AAAAAAAA/BBBBBBBB/CCCCCCCC&quot; TO=&quot;#aide&quot; EMOJI=&quot;:cop:&quot; NAME=&quot;AIDE-COP&quot; ##### Run AIDE Scan /usr/sbin/aide -u &gt; $LOGFILE cp $AIDEDIR/aide.db.new.gz $AIDEDIR/aide.db.gz x=$(grep &quot;Looks okay&quot; $LOGFILE | wc -l) if [ $x -eq 1 ]; then MSG=&quot;OKだよ&quot; else MSG=&quot;侵入検知！詳細は[${LOGFILE}]を見てね&quot; fi ##### Send To Slack payload=&quot;payload={\&quot;channel\&quot;: \&quot;${TO//\&quot;/\\\&quot;}\&quot;, \&quot;username\&quot;: \&quot;${NAME//\&quot;/\\\&quot;}\&quot;, \&quot;text\&quot;: \&quot;${MSG//\&quot;/\\\&quot;}\&quot;, \&quot;icon_emoji\&quot;: \&quot;${EMOJI}\&quot;}&quot; curl -m 30 --data-urlencode &quot;${payload}&quot; $URL -A 'zabbix-slack-alertscript / https://github.
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/wp/857/" class="catalogue-item">
+    <div>
+        <time datetime="2017-12-11 23:51:12 &#43;0000 UTC" class="catalogue-time">December 11, 2017</time>
+        <h1 class="catalogue-title">【Mac】PCの起動・停止時刻を出力するシェルスクリプト</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            ■環境 macOS High Sierra 10.13.1
+bash 4.4.12
+ 職場の勤怠を付ける際に数日分まとめて入力するのですが、 出勤退勤時刻の目安とするため、Macの起動・停止時刻を出すようにしました。
+まず、このシェルスクリプトはbash　Ver 4.x.x台以上でないと動かないので、 bashのバージョンが３の場合はHomebrewでインストールします。 ※執筆時点でMacにデフォルトで入っているbashはVer 3.x.xでした。
+$ brew install bash $ which bash /usr/local/bin/bash シェルスクリプトを作成します。 仮でホームディレクトリ直下に「kintai.sh」という名前で作る事にします。
+$ vim ~/kintai.sh シェルの内容は以下の通りです。 シバン（１行目のやつ）のパスは上記のwhichコマンドで確認したbashのパスとします。
+#!/usr/local/bin/bash set +e declare -A rebootTimes declare -A shutdownTimes shutdownList=`last | grep &quot;^shutdown&quot; | cut -d &quot; &quot; -f 28-33` while read line; do curdate=`env LANG=eu_US.UTF-8 date -j -f &quot;%a %b %d %H:%M&quot; &quot;${line}&quot; &quot;+%Y/%m/%d&quot;` curtime=`env LANG=eu_US.UTF-8 date -j -f &quot;%a %b %d %H:%M&quot; &quot;${line}&quot; &quot;+%H:%M&quot;` if [ ${#shutdownTimes[${curdate}]} -eq 0 ]; then shutdownTimes[${curdate}]=${curtime} fi done &lt;&lt; END $shutdownList END rebootList=`last | grep &quot;^reboot&quot; | cut -d &quot; &quot; -f 30-35` while read line; do curdate=`env LANG=eu_US.
+        </p>
+    </div>
+</a>
+
+		
+	</div>
+
+	<div class="pagination">
+		
+			<a href="/page/10/" class="left arrow">&#8592;</a>
+		
+		
+			<a href="/page/12/" class="right arrow">&#8594;</a>
+		
+
+		<span>11</span>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.3163711 &#43;0900 JST m=&#43;0.135965601">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

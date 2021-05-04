@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>メールサーバ構築（①postfix編） &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">メールサーバ構築（①postfix編）</h1>
+		<div class="post-info">
+				<time datetime="2015-08-06 23:28:32 &#43;0000 UTC">August 6, 2015</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/centos/">CentOS</a></div>
+				</div>
+			
+		</div>
+		<p>■環境<br>
+CentOS 7<br>
+postfix 2.10.1</p>
+<p>メールアカウントはpasswdに登録されているアカウントを利用します。<br>
+メール専用のアカウントは以下コマンドで作成してください。（SSHログイン不可）</p>
+<pre><code>useradd -s /sbin/nologin demouser1
+</code></pre><p>必要な物をインストール</p>
+<pre><code>yum -y install postfix cyrus-sasl cyrus-sasl-plain cyrus-sasl-md5
+</code></pre><p>メイン設定ファイルの修正(vi /etc/postfix/main.cf)<br>
+以下、設定変更部分</p>
+<pre><code>myhostname = mail.sample.com  
+mydomain = sample.com  
+myorigin = $mydomain  
+inet_interfaces = all  
+mynetworks = 192.168.0.0/23, 127.0.0.0/8  
+relay_domains = $mydestination  
+home_mailbox = Maildir/  
+smtpd_banner = $myhostname ESMTP unknown
+</code></pre><p>以下、設定追加部分<br>
+※SSL証明書の秘密鍵はパスワード無しとします</p>
+<pre><code>smtpd_sasl_auth_enable = yes  
+smtpd_sasl_security_options = noanonymous  
+smtpd_recipient_restrictions =   
+    permit_mynetworks,  
+    permit_sasl_authenticated,  
+    reject_unauth_destination  
+smtpd_tls_cert_file = /etc/pki/sample/sample.crt  
+smtpd_tls_key_file = /etc/pki/sample/sample.key  
+smtpd_tls_CAfile = /etc/pki/sample/sampleCA.crt  
+smtpd_tls_loglevel = 1  
+smtpd_use_tls = yes
+</code></pre><p>マスター設定ファイルの修正(vi /etc/postfix/master.cf)<br>
+以下、設定変更部分</p>
+<pre><code>submission inet n       -       n       -       -       smtpd  
+  -o syslog_name=postfix/submission  
+  -o smtpd_sasl_auth_enable=yes  
+  -o smtpd_client_restrictions=$mua_client_restrictions  
+  -o milter_macro_daemon_name=ORIGINATING  
+smtps     inet  n       -       n       -       -       smtpd  
+  -o smtpd_tls_wrappermode=yes
+</code></pre><p>SASL認証設定ファイルの修正(vi /etc/sasl2/smtpd.conf)<br>
+以下、設定変更部分</p>
+<pre><code>mech_list: plain login cram-md5 digest-md5
+</code></pre><p>SASL認証ファイルへのアカウント追加<br>
+以下コマンド実行時に設定するパスワードを聞かれるので入力する</p>
+<pre><code>saslpasswd2 -c -u sample.com demouser1
+</code></pre><p>##################### 参考 #####################<br>
+SASL認証ファイルに登録したユーザの確認は以下コマンド</p>
+<pre><code>sasldblistusers2
+</code></pre><p>SASL認証ファイルに登録したユーザの削除は以下コマンド</p>
+<pre><code>saslpasswd2 -d -u sample.com demouser1
+</code></pre><hr>
+<p>SASL認証ファイルの権限グループをpostfixに変更</p>
+<pre><code>chgrp postfix /etc/sasldb2
+</code></pre><p>サービス起動</p>
+<pre><code>systemctl start postfix.service  
+systemctl start saslauthd.service
+</code></pre><p>サービスの自動起動設定</p>
+<pre><code>systemctl enable postfix.service  
+systemctl enable saslauthd.service
+</code></pre><p>これでpostfixの設定は完了です。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/18/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2957938 &#43;0900 JST m=&#43;0.115388301">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

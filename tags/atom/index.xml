@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>atom on Nonsense J</title>
+    <link>/tags/atom/</link>
+    <description>Recent content in atom on Nonsense J</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Fri, 29 Sep 2017 19:11:15 +0000</lastBuildDate><atom:link href="/tags/atom/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Atom IDEの環境構築（PHP、Go）</title>
+      <link>/posts/wp/708/</link>
+      <pubDate>Fri, 29 Sep 2017 19:11:15 +0000</pubDate>
+      
+      <guid>/posts/wp/708/</guid>
+      <description>■環境 macOS Sierra 10.12.6
+Atom 1.21.0-beta2
+■参考にしたサイト 公式サイト
+https://ide.atom.io/はくたけ氏のブログ
+http://tech.innovator.jp.net/entry/2017/09/14/165139sayama0402さんのQiita
+https://qiita.com/sayama0402/items/3bd8d905619c514179b7 ナウいエディタ「Atom」は、前から気になっていたのですが、
+ テキストエディタにしては重い IDEにしては機能がすくない  という理由で、少し敬遠していました。
+が、そのAtomからIDEが出たそうなので、試しに使ってみました。
+■手順 ①Atomの入手 以下サイトより、Atom 1.21.0（ベータ版）を入手してインストールする。
+https://atom.io/beta※いくつかの紹介ページを見ましたが、1.21.0が推奨されているようです。 試しに1.20.0(安定板)でも試して見ましたが、確かに動きが怪しかったです。
+②必須パッケージのインストール Atomを起動したら、上部メニュー Packages &amp;gt; Settings View &amp;gt; Install Packages/Themesより、以下を検索してインストールする。
+ atom-ide-ui ide-php ide-go  ③使って見る。 初めてgoのソースコードを開いた際には「ide-go」が依存するパッケージをインストールするか聞かれるので、 インストールします。
+また、「linter」と「atom-ide-diagnostics」が競合している旨のメッセージが出るので、
+そのメッセージの下にある「Disable linter」をクリックして、競合を解決します。
+これで、実際に使い始められそうです。 定義ジャンプや補完機能は十分使えそうなレベルで動いてました。
+また、他の無料IDE（EclipseやNetBeans）に比べると、起動が早かったです。
+その他パッケージのインストール IDEとは関係なく便利なパッケージが沢山あるので入れます。
+以下、実際に入れて見たパッケージです。
+■file-icons各ファイルの拡張子に合わせてアイコンを変えてくれる。
+ちなみに、Atomに新拡張子を紐付けさせるには、上部メニューより「Atom Beta＞Config」をクリックし、 config.csonを編集する必要がある。
+【例：以下の記載で「.inc」という拡張子をPHPファイルとして認識してくれる】
+&amp;quot;*&amp;quot;: core: customFileTypes: &amp;quot;source.php&amp;quot;: [ &amp;quot;inc&amp;quot; ] 『source.php』に該当する部分はPHPファイルを開いた状態で「cmd + opt + P」を押すとポップアップで表示される。 別拡張子のファイルでも同じ操作でできるはず。
+■pigments色コードを記載したら自動で該当の色でハイライトしてくれる。
+■show-ideographic-space全角スペースを見える化</description>
+    </item>
+    
+    <item>
+      <title>【Ubuntu】atomのインストール</title>
+      <link>/posts/wp/139/</link>
+      <pubDate>Wed, 02 Dec 2015 21:37:16 +0000</pubDate>
+      
+      <guid>/posts/wp/139/</guid>
+      <description>Ubuntu環境にテキストエディタのatomをインストールする手順です。
+■環境
+ubuntu 15.04
+以下サイトよりインストーラ（.deb）をダウンロードしてください。
+https://atom.io/ダウンロードしたディレクトリで以下コマンドを実行し、debファイルよりインストールしてください。
+sudo dpkg -i atom-amd64.deb 以上でインストール完了です。
+ランチャーにて「atom」を検索すると表示されます。</description>
+    </item>
+    
+  </channel>
+</rss>

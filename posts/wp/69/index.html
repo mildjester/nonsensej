@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>【Ubuntu】JDKとNetBeans IDEのインストール &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">【Ubuntu】JDKとNetBeans IDEのインストール</h1>
+		<div class="post-info">
+				<time datetime="2015-09-16 23:18:43 &#43;0000 UTC">September 16, 2015</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/ubuntu/">ubuntu</a></div> <div class="tags_item"><a href="/tags/netbeans/">NetBeans</a></div>
+				</div>
+			
+		</div>
+		<p>開発環境としてUbuntuにJDKとNetBeansをインストールします。<br>
+■環境<br>
+Ubuntu 15.04<br>
+openjdk 8<br>
+NetBeans 8.0.2</p>
+<p>JDKがインストールされているか確認し、なければインストールします。</p>
+<pre><code>$ javac -version  
+プログラム 'javac' は以下のパッケージで見つかりました:  
+ * default-jdk  
+ * ecj  
+ * gcj-4.9-jdk  
+ * openjdk-7-jdk  
+ * gcj-4.8-jdk  
+ * openjdk-6-jdk  
+ * openjdk-8-jdk  
+次の操作を試してください: sudo apt-get install &lt;選択したパッケージ&gt;  
+$ sudo apt-get install openjdk-8-jdk  
+$ javac -version  
+Picked up JAVA_TOOL_OPTIONS: -javaagent:/usr/share/java/jayatanaag.jar   
+javac 1.8.0_45-internal
+</code></pre><p><!-- raw HTML omitted --><a href="https://netbeans.org/downloads/index.html">https://netbeans.org/downloads/index.html</a><!-- raw HTML omitted -->よりNetBeansをダウンロードします。<br>
+各開発言語毎に用意されていますが、迷う様なら「すべて」を選択すれば良いと思います。<br>
+私は使用言語が特定の言語に限らなかったので「すべて」を選択しました。</p>
+<p>ダウンロードしたNetBeansのインストールスクリプトを実行します。</p>
+<pre><code>$ cd ~/Downloads  
+$ sh netbeans-8.0.2-linux.sh
+</code></pre><p>インストーラが立ち上がるので、必要に応じてインストール場所を変えたりしながら進めていきます。</p>
+<p>インストーラでの処理が終わったら、インストール完了です。<br>
+ランチャーにて「NetBeans」で検索すれば出てくるようになります。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/57/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/83/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2868602 &#43;0900 JST m=&#43;0.106454701">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

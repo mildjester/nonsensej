@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>golang on Nonsense J</title>
+    <link>/tags/golang/</link>
+    <description>Recent content in golang on Nonsense J</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Fri, 29 Sep 2017 19:11:15 +0000</lastBuildDate><atom:link href="/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Atom IDEの環境構築（PHP、Go）</title>
+      <link>/posts/wp/708/</link>
+      <pubDate>Fri, 29 Sep 2017 19:11:15 +0000</pubDate>
+      
+      <guid>/posts/wp/708/</guid>
+      <description>■環境 macOS Sierra 10.12.6
+Atom 1.21.0-beta2
+■参考にしたサイト 公式サイト
+https://ide.atom.io/はくたけ氏のブログ
+http://tech.innovator.jp.net/entry/2017/09/14/165139sayama0402さんのQiita
+https://qiita.com/sayama0402/items/3bd8d905619c514179b7 ナウいエディタ「Atom」は、前から気になっていたのですが、
+ テキストエディタにしては重い IDEにしては機能がすくない  という理由で、少し敬遠していました。
+が、そのAtomからIDEが出たそうなので、試しに使ってみました。
+■手順 ①Atomの入手 以下サイトより、Atom 1.21.0（ベータ版）を入手してインストールする。
+https://atom.io/beta※いくつかの紹介ページを見ましたが、1.21.0が推奨されているようです。 試しに1.20.0(安定板)でも試して見ましたが、確かに動きが怪しかったです。
+②必須パッケージのインストール Atomを起動したら、上部メニュー Packages &amp;gt; Settings View &amp;gt; Install Packages/Themesより、以下を検索してインストールする。
+ atom-ide-ui ide-php ide-go  ③使って見る。 初めてgoのソースコードを開いた際には「ide-go」が依存するパッケージをインストールするか聞かれるので、 インストールします。
+また、「linter」と「atom-ide-diagnostics」が競合している旨のメッセージが出るので、
+そのメッセージの下にある「Disable linter」をクリックして、競合を解決します。
+これで、実際に使い始められそうです。 定義ジャンプや補完機能は十分使えそうなレベルで動いてました。
+また、他の無料IDE（EclipseやNetBeans）に比べると、起動が早かったです。
+その他パッケージのインストール IDEとは関係なく便利なパッケージが沢山あるので入れます。
+以下、実際に入れて見たパッケージです。
+■file-icons各ファイルの拡張子に合わせてアイコンを変えてくれる。
+ちなみに、Atomに新拡張子を紐付けさせるには、上部メニューより「Atom Beta＞Config」をクリックし、 config.csonを編集する必要がある。
+【例：以下の記載で「.inc」という拡張子をPHPファイルとして認識してくれる】
+&amp;quot;*&amp;quot;: core: customFileTypes: &amp;quot;source.php&amp;quot;: [ &amp;quot;inc&amp;quot; ] 『source.php』に該当する部分はPHPファイルを開いた状態で「cmd + opt + P」を押すとポップアップで表示される。 別拡張子のファイルでも同じ操作でできるはず。
+■pigments色コードを記載したら自動で該当の色でハイライトしてくれる。
+■show-ideographic-space全角スペースを見える化</description>
+    </item>
+    
+    <item>
+      <title>【golang】mapの要素順は変動する</title>
+      <link>/posts/wp/491/</link>
+      <pubDate>Sat, 08 Apr 2017 12:22:59 +0000</pubDate>
+      
+      <guid>/posts/wp/491/</guid>
+      <description>■環境
+OS X El Capitan 10.11.6
+go 1.8 darwin/amd64
+タイトルの件、ちょっと引っかかったのでメモです。
+golangで変数にmapを格納する場合、その要素の順番は
+呼び出すたびに変わります。
+以下サンプルコードです。
+mapをrangeで取り出しながらforで回し、標準出力する
+という処理を3回繰り返します。
+package main import ( &amp;quot;fmt&amp;quot; ) func main() { // create new map fruitColor := make(map[string]string) fruitColor[&amp;quot;pineapple&amp;quot;] = &amp;quot;yellow&amp;quot; fruitColor[&amp;quot;apple&amp;quot;] = &amp;quot;red&amp;quot; fruitColor[&amp;quot;grape&amp;quot;] = &amp;quot;purple&amp;quot; fruitColor[&amp;quot;melon&amp;quot;] = &amp;quot;green&amp;quot; // printout 3 times for i := 1; i &amp;lt;= 3; i++ { fmt.Println(fmt.Sprintf(&amp;quot;===== %d times =====&amp;quot;, i)) for name, color := range fruitColor { fmt.Println(fmt.Sprintf(&amp;quot;%s is %s&amp;quot;, name, color)) } } } これを実行すると、このように出力されます。</description>
+    </item>
+    
+    <item>
+      <title>【golang】NetBeansでgo言語を使えるようにする</title>
+      <link>/posts/wp/223/</link>
+      <pubDate>Wed, 25 May 2016 23:06:28 +0000</pubDate>
+      
+      <guid>/posts/wp/223/</guid>
+      <description>元々NetBeansでPHPをやっているので
+同じIDEでgoも使うために設定してみました。
+■環境
+Ubuntu 16.04
+NetBeans 8.1
+①「http://plugins.netbeans.org/plugin/25606/go」からnbmファイルをダウンロードする。
+②NetBeansのメニューより「Tools-&amp;gt;plugin」を選択
+③Downloadedタグにて「Add Plugins」をクリックして、ダウンロードしたnbmファイルを選択する。
+④「Install」ボタンをクリックする。
+⑤Installを進めていき、最後にNetBeansの再起動をして完了。
+以上でgoが使えるようになります。
+新規プロジェクトでHTML5プロジェクトなどを作成し、プロジェクト内でファイルの新規作成を選択すると
+ファイルのカテゴリにGoが追加されています。
+※2017/1/31 追記GOプロジェクトを作成できるようになるプラグインも見つけました</description>
+    </item>
+    
+  </channel>
+</rss>

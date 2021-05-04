@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Ubuntu 20.04にアップデートした話 &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Ubuntu 20.04にアップデートした話</h1>
+		<div class="post-info">
+				<time datetime="2020-05-17 00:00:00 &#43;0000 UTC">May 17, 2020</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/ubuntu/">ubuntu</a></div>
+				</div>
+			
+		</div>
+		<p>待望のUbuntu 20.04 LTSが出たので、19.10からアップデートしてみました。<br>
+アップデートと同時に発生した事象について記載します。</p>
+<h2 id="消えたアプリ">消えたアプリ</h2>
+<p>アップデートするとインストールしてあった以下のアプリが消えたので、再インストールしました。</p>
+<ul>
+<li>shutter (スクショツール)</li>
+<li>MySQL Workbench</li>
+</ul>
+<h3 id="shutter">shutter</h3>
+<p>こちらのページを参考にさせて頂きました。<br>
+<a href="https://www.debugpoint.com/2020/04/shutter-install-ubuntu/">https://www.debugpoint.com/2020/04/shutter-install-ubuntu/</a></p>
+<p>実施した手順は以下です。</p>
+<pre><code>sudo apt update
+sudo apt upgrade
+sudo add-apt-repository ppa:linuxuprising/shutter
+sudo apt install shutter
+</code></pre><h3 id="mysql-workbench">MySQL Workbench</h3>
+<p>コマンドでちょこちょこやってインストールする方法もあるようですが、素直に公式ページからdebをダウンロードしてインストールしました。<br>
+<a href="https://dev.mysql.com/downloads/workbench/">https://dev.mysql.com/downloads/workbench/</a></p>
+<p>コマンドでインストールする方法も結局↑でダウンロードできるdebをコマンドでインストールしてるだけのようです。</p>
+<h2 id="hdmi周りの不具合発生">HDMI周りの不具合発生</h2>
+<blockquote>
+<p>※2020/6/1追記<br>
+対処法が分かったのでこちらの記事で記載しています。<br>
+<a href="/articles/2020/06/01/ubuntu-20-04-hdmi">ThinkpadにHDMIケーブルを接続したままUbuntu 20.04を起動する</a></p>
+</blockquote>
+<p>私の作業PCはThinkpad T480なのですが、HDMIポートにケーブルを挿した状態で起動しようとすると、ロゴ画面で止まってしまう事象が発生しました。</p>
+<!-- raw HTML omitted -->
+<p>PCのThunderboldポートにもThunderbold→HDMIのケーブルを繋いでいるのですが、そちらは特に挿したまま起動しても問題ありませんでした。<br>
+調べてみると同様の事象を報告している方が複数いたので、おそらくubuntu 20.04の不具合かと思われます。<br>
+<a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1874194">https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1874194</a></p>
+<p>また、ubuntuにログイン後にディスプレイケーブルの抜き差しをするとメニューバーの位置がおかしくなりました。<br>
+これはHDMIポートでもThunderboltポートでも発生します。</p>
+<p>なので、私は以下の手順でPCを起動しています。<br>
+①HDMIケーブルを抜いてPCの電源ON。<br>
+②ubuntuが起動し、ログイン画面が表示されたらHDMIケーブルを挿す。<br>
+③ログインする。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2020/04/15/gulp-uglify-keep-name/" class="left arrow">&#8592;</a>
+		<a href="/posts/2020/05/19/serverless-framework-lambda/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2646003 &#43;0900 JST m=&#43;0.084194701">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>【DNSサーバ】BINDからNSDへの移行 &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">【DNSサーバ】BINDからNSDへの移行</h1>
+		<div class="post-info">
+				<time datetime="2016-10-25 11:21:04 &#43;0000 UTC">October 25, 2016</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/centos/">CentOS</a></div>
+				</div>
+			
+		</div>
+		<p>社内利用のDNSをBIND作っていたのですが、<br>
+BINDは脆弱性が頻繁に発見されるし、DNSキャッシュ機能は要らなかったので<br>
+NSDに切り替えました。</p>
+<p>■環境<br>
+CentOS 6.5<br>
+NSD 4.1.13<br>
+(参考：切替え前)BIND 9.8.2</p>
+<p>まず、yumにepelリポジトリが設定されていない場合はインストールします。</p>
+<pre><code># yum install epel-release.noarch
+</code></pre><p>NSDをインストールします。</p>
+<pre><code># yum install nsd --enablerepo=epel
+</code></pre><p>NSD設定ファイルの最下行にzoneファイルを設定します。</p>
+<pre><code># vim /etc/nsd/nsd.conf  
+〜最下行に以下を追記〜  
+zone:  
+	name: sample.co.jp  
+	zonefile: sample.co.jp.zone
+</code></pre><p>BINDで利用していたzoneファイルをコピーします</p>
+<pre><code># cp {BINDのzoneファイル} /etc/nsd/sample.co.jp.zone
+</code></pre><p>※補足<br>
+調べているとNSDはrebuildコマンドにてzoneファイルからdbファイルを<br>
+生成しなければいけないという記事がありましたが、　私の環境では不要でした。<br>
+（むしろ、rebuildコマンドがありませんでした）</p>
+<p>BINDを停止します。</p>
+<pre><code># service named stop
+</code></pre><p>NSDを起動します。</p>
+<pre><code># service nsd start
+</code></pre>
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/302/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/318/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2820036 &#43;0900 JST m=&#43;0.101598001">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

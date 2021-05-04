@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>PHPExcelの使い方メモ &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">PHPExcelの使い方メモ</h1>
+		<div class="post-info">
+				<time datetime="2017-02-07 11:42:44 &#43;0000 UTC">February 7, 2017</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/php/">PHP</a></div>
+				</div>
+			
+		</div>
+		<p>PHPでExcelを生成できる『PHPExcel』の使い方メモ<br>
+※実際に私が使ったものをメモしているだけなので、機能を網羅している訳ではないです。かしこ。</p>
+<p>インストールはcomposerを使うか、圧縮ファイルをダウンロードしてきて<br>
+適当なディレクトリに解凍します。<br>
+あとは以下をrequireするだけ。<br>
+/格納したパス/PHPExcel/Classes/PHPExcel.php<br>
+/格納したパス/PHPExcel/Classes/PHPExcel/IOFactory.php</p>
+<p>実際のソースコードは以下の通り</p>
+<pre><code>/**  
+ * PHPExcelの新規オブジェクト作成  
+ */  
+$excel = new PHPExcel();  
+  
+/**  
+ * シートを作成してシート名を変える  
+ */  
+$sheetIndex = 0; // シート番号は０から  
+$excel-&gt;setActiveSheetIndex($sheetIndex);  
+$sheet = $excel-&gt;getActiveSheet();  
+$sheet-&gt;setTitle('SampleSheet01');  
+  
+/**  
+ * セルにデータを入力する  
+ */  
+// 基本的な入力  
+$rowCnt = 1; // 行番号は１から  
+$clmCnt = 0; // 列番号は0から  
+$text = 'セルに書き込む内容だよ';  
+$sheet-&gt;setCellValueByColumnAndRow($clmCnt, $rowCnt, $val);  
+  
+// 文字列型で入力  
+$rowCnt++; // 1行下に移動  
+$clmCnt++; // 1列右に移動  
+$text = '000001'; // 文字列型にしないと、左記は「00001」ではなく「1」になってしまう  
+$sheet-&gt;setCellValueExplicitByColumnAndRow($clmCnt, $rowCnt, $val, PHPExcel_Cell_DataType::TYPE_STRING);  
+  
+/**  
+ * セルの書式設定  
+ */  
+// シートのデフォルトフォントを設定する  
+$sheet-&gt;getDefaultStyle()-&gt;getFont()-&gt;setName('ＭＳ Ｐゴシック')-&gt;setSize(11);  
+  
+// 背景色を設定  
+$bgcolor = '000000'; // 16進数で指定  
+$sheet-&gt;getStyleByColumnAndRow($clmCnt, $rowCnt)-&gt;getFill()-&gt;setFillType(PHPExcel_Style_Fill::FILL_SOLID);  
+$sheet-&gt;getStyleByColumnAndRow($clmCnt, $rowCnt)-&gt;getFill()-&gt;getStartColor()-&gt;setRGB($bgcolor);  
+  
+// 文字色を設定  
+$fontcolor = 'FFFFFF'; // 16進数で指定  
+$sheet-&gt;getStyleByColumnAndRow($clmCnt, $rowCnt)-&gt;getFont()-&gt;getColor()-&gt;setARGB($fontcolor);  
+  
+// 太字にする  
+$sheet-&gt;getStyleByColumnAndRow($clmCnt, $rowCnt)-&gt;getFont()-&gt;setBold(true);  
+  
+// セル（行列番号指定）の上だけに罫線(二重線)を引く  
+$sheet-&gt;getStyleByColumnAndRow($clmCnt, $rowCnt)-&gt;getBorders()-&gt;getTop()-&gt;setBorderStyle(PHPExcel_Style_Border::BORDER_DOUBLE);  
+// セル（レンジ指定）の周り全てに罫線(単一線)を引く  
+$sheet-&gt;getStyle('A1:B3')-&gt;getBorders()-&gt;getAllBorders()-&gt;setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);  
+  
+  
+// 列の幅を指定する  
+$sheet-&gt;getColumnDimension('A')-&gt;setWidth(14.5);  
+// 列の幅を自動調整する(※これで効くはずなんですが、効かない事が多々ある)  
+$sheet-&gt;getColumnDimension( PHPExcel_Cell::stringFromColumnIndex($clmCnt))-&gt;setAutoSize(true);  
+</code></pre><p>以上</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/366/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/402/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2825641 &#43;0900 JST m=&#43;0.102158501">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

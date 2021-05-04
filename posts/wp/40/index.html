@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>メールドメインに「localhost」と付いてしまう &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">メールドメインに「localhost」と付いてしまう</h1>
+		<div class="post-info">
+				<time datetime="2015-08-08 16:52:42 &#43;0000 UTC">August 8, 2015</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/centos/">CentOS</a></div>
+				</div>
+			
+		</div>
+		<p>■環境<br>
+CentOS 7<br>
+postfix 2.10.1</p>
+<p>postfixで構築したメールサーバからメールを送信した場合に<br>
+設定は間違えていないはずなのに、送信メールのドメイン部分（@の後ろ）に「localhost」が付いてしまう時の対処法です。<br>
+例えば、『@sample.com』で送りたいのに『@localhost.sample.com』となってしまう場合です。</p>
+<p>※注意<br>
+「設定は間違えていないはず」と思っているだけで本当は何かが間違っているのだと思います。<br>
+postfixの設定以外にも環境ファイルの設定値が悪い場合などもありますが、その調査をしていられない時の<br>
+暫定対処だと思ってください。</p>
+<p>postfixの設定ファイル(/etc/postfix/main.cf)に以下の行を追加してください。</p>
+<pre><code>masquerade_domains = sample.com
+</code></pre><p>これで『sample.com』より前の部分はカットされます。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/18/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/48/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2827901 &#43;0900 JST m=&#43;0.102384601">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

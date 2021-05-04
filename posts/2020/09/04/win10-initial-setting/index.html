@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Windows10で開発PCをセッティングする。 &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Windows10で開発PCをセッティングする。</h1>
+		<div class="post-info">
+				<time datetime="2020-09-04 00:00:00 &#43;0000 UTC">September 4, 2020</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/windows/">Windows</a></div>
+				</div>
+			
+		</div>
+		<p>Windows 10のWSL2やWindows Terminalが良い感じだったので<br>
+開発環境を整えてみました。</p>
+<p>大きな作業は以下を参照</p>
+<ul>
+<li><a href="/articles/2020/09/04/win10-keymap-change">Windowsのキー配置変更</a></li>
+<li><a href="/articles/2020/09/04/win10-wsl2-ubuntu">WSL2でUbuntuを使う</a></li>
+<li><a href="/articles/2020/09/04/windows-terminal-install">Windows Terminalの導入</a></li>
+</ul>
+<h3 id="ウィンドウが勝手に最大化しないようにする">ウィンドウが勝手に最大化しないようにする</h3>
+<p>Win10はデフォルトだとウィンドウを画面の端に持っていくと勝手に最大化されてしまいます。<br>
+邪魔になることが多い機能なので無効にしてしまいます。</p>
+<p>『設定 &gt; システム &gt; マルチタスク』を開き、「ウィンドウのスナップ」をオフにすれば完了です。</p>
+<h3 id="dockerのインストール">Dockerのインストール</h3>
+<p>以下よりDocker Desktop for Windowsをダウンロードします。<br>
+<a href="https://hub.docker.com/editions/community/docker-ce-desktop-windows">https://hub.docker.com/editions/community/docker-ce-desktop-windows</a></p>
+<p>ダウンロードしてきたインストーラーを実行してインストールします。<br>
+インストール時に「Enable WSL 2 Windows Features」のチェックボックスがあるので、忘れずにチェックするようにしてください。</p>
+<p>これでUbuntu側でもdockerコマンドが使えるようになっています。<br>
+もしWSL2より先にDockerをインストールしてしまった場合は「Settings &gt; Resources &gt; WSL INTEGRATION」からWLS上のDockerを有効化できます。</p>
+<h3 id="visual-studio-codeのインストール">Visual Studio Codeのインストール</h3>
+<p>以下よりダウンロードしてインストールします。<br>
+<a href="https://azure.microsoft.com/ja-jp/products/visual-studio-code/">https://azure.microsoft.com/ja-jp/products/visual-studio-code/</a></p>
+<p>Ubuntu側でgitコマンドを使ってソースコードを管理している場合はWindowsからUbuntuに接続する必要があります。<br>
+そのためには『Remote - WSL』という拡張子のインストールをインストールします。<br>
+（おそらくVisual Studio Codeの初回起動時に推奨される）</p>
+<h3 id="mysql-workbenchのインストール">MySQL Workbenchのインストール</h3>
+<p>MySQL Workbenchをインストールするには「Visual C++ 2019」が必要です。<br>
+インストールされていない場合は以下よりダウンロードしてインストールしておきます。<br>
+<a href="https://support.microsoft.com/ja-jp/help/2977003/the-latest-supported-visual-c-downloads">https://support.microsoft.com/ja-jp/help/2977003/the-latest-supported-visual-c-downloads</a></p>
+<p>以下よりMySQL Workbenchをダウンロードしてインストールします。<br>
+<a href="https://dev.mysql.com/downloads/workbench/">https://dev.mysql.com/downloads/workbench/</a></p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2020/09/04/win10-wsl2-ubuntu/" class="left arrow">&#8592;</a>
+		<a href="/posts/2020/09/04/win10-keymap-change/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.266904 &#43;0900 JST m=&#43;0.086498501">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

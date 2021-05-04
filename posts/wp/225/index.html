@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>【Ubuntu】zsh&amp;preztoのインストール &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">【Ubuntu】zsh&amp;preztoのインストール</h1>
+		<div class="post-info">
+				<time datetime="2016-05-06 10:29:33 &#43;0000 UTC">May 6, 2016</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/ubuntu/">ubuntu</a></div>
+				</div>
+			
+		</div>
+		<p>Ubuntuのターミナル（端末）でzsh＆preztoを使う設定です。<br>
+Macの場合は<!-- raw HTML omitted -->こちら<!-- raw HTML omitted --></p>
+<p>■環境<br>
+Ubunt16.04</p>
+<p>①zshとgitをインストールしておきます<br>
+16.04から「apt−get」ではなく「apt」になったようです。</p>
+<pre><code>$ sudo apt install zsh  
+$ sudo apt install git
+</code></pre><p>②preztoを導入します。<br>
+基本的な流れは「<!-- raw HTML omitted --><a href="https://github.com/sorin-ionescu/prezto">https://github.com/sorin-ionescu/prezto</a><!-- raw HTML omitted -->」の通りです。</p>
+<pre><code>$ zsh
+</code></pre><p>※設定画面が開いたら「q」を入力して抜ける。</p>
+<pre><code>$ git clone --recursive https://github.com/sorin-ionescu/prezto.git &quot;${ZDOTDIR:-$HOME}/.zprezto&quot;  
+$ chsh -s /usr/bin/zsh
+</code></pre><p>次にpreztoを使うようにzshの設定をします。<br>
+ターミナルに以下を貼り付けて実行します。（スクリプトファイルなどを作成する必要はなく、ターミナル直貼り付けでOK）</p>
+<pre><code>setopt EXTENDED_GLOB  
+for rcfile in &quot;${ZDOTDIR:-$HOME}&quot;/.zprezto/runcoms/^README.md(.N); do  
+  ln -s &quot;$rcfile&quot; &quot;${ZDOTDIR:-$HOME}/.${rcfile:t}&quot;  
+done
+</code></pre><p>これでターミナルを開き直せばzshになるはずなのですが、なぜか端末を開き直してもzshにならなかったので<br>
+ターミナルのメニューから「編集-&gt;プロファイル編集」を開き、コマンドタブにてカスタムコマンド『zsh』を設定しました。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/216/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/239/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2804063 &#43;0900 JST m=&#43;0.100000801">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

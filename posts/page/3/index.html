@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Posts &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="catalogue">
+		
+			<a href="/posts/2020/07/15/howto-make-bookmarklet/" class="catalogue-item">
+    <div>
+        <time datetime="2020-07-15 00:00:00 &#43;0000 UTC" class="catalogue-time">July 15, 2020</time>
+        <h1 class="catalogue-title">Bookmarklet(ブックマークレット)の作り方</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            Bookmarklet(ブックマークレット)とは 詳細はこちら
+ウィキペディア
+簡単に言えばブラウザのブックマークにURL代わりにjavascriptを入力して保存しておいて。
+そのjavascriptを実行したい時に該当のブックマークをクリックするというものです。
+たとえばブックマークにjavascript:alert('hoge');と登録しておけば、
+そのブックマークをクリックしたら&lt;a href=&quot;javascript:alert('hoge');&quot;&gt;hoge&lt;/a&gt;をクリックした時と同じ事が起きます。
+作り方は色々ありますが、uglify-jsを使って作成する方法を紹介します。
+javascriptの作成 まず、適当にjsファイルを作って適当に実行したいjavascriptのコードを書きます。
+今回は例としてページ内のdivタグの数を数えるスクリプトを作ります。
+以下のコードをsample.jsというファイルに記載しておきます。
+var divElms = document.getElementsByTagName('div'); alert('divの数は' + divElms.length + 'です！'); uglify-jsによるjavascriptの圧縮 uglify-jsを使って作成したsample.jsを圧縮します。
+まず、uglify-jsコマンドを使えるようにインストールします。
+npmをインストールしていない人は先にインストールしておいてください。
+$ npm install -g uglify-js # 環境に応じて必要であればsudoを付けてください 次にjavascriptの圧縮をします。
+以下のコマンドでjavascriptの圧縮ができます。
+※各オプションについては公式ページ参照
+$ uglifyjs -c -m --toplevel -- sample.js 実行結果として以下のように圧縮されたスクリプトが出力されます。
+var e=document.getElementsByTagName(&quot;div&quot;);alert(&quot;divの数は&quot;+e.length+&quot;です！&quot;); この圧縮スクリプトの頭にjavascript:を付けたものがBookmarkletになります。
+ブラウザへのBookmarklet登録 ブラウザのブックマークに新規ページを追加し、URL欄にjavascript:｛生成した圧縮スクリプト｝を登録します。
+Chromeであれば以下のようになります。
+（名前は自分で分かるものであれば何でもいいです）
+これで任意のページを開いている時に、登録したブックマークをクリックすると処理が走ります。
+Googleで実行するとこのようになります。
+これでBookmarkletの作成は完了です。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2020/07/12/vpc-lambda/" class="catalogue-item">
+    <div>
+        <time datetime="2020-07-12 00:00:00 &#43;0000 UTC" class="catalogue-time">July 12, 2020</time>
+        <h1 class="catalogue-title">AWS lambdaからDBアクセスも外部アクセスもできるようにする。</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            AWS lambdaからAWS RDSへアクセスさせるためにはRDSへアクセスできるVPCのサブネットにlambdaを追加します。
+しかし、VPC内のlambdaは何もしないと外部アクセスができなくなります。
+lambdaがRDSと同時に外部システムのAPIなどを利用する際に困りますので、
+VPC内のlambdaから外部アクセスができるように設定します。
+VPC設定 VPC内のlambdaから外部アクセスをさせる設定方法は、実はAWS公式で説明されています。
+基本的にはこの手順を実行すれば良いだけです。
+https://aws.amazon.com/jp/premiumsupport/knowledge-center/internet-access-lambda-function/
+手順詳細は公式ページを見ればよいので、ここではざっくりと流れを書いておきます。
+①〜②はすでにあれば既存の使い回しでも良いです。
+①（なければ）RDSにアクセスできるVPCを作る。
+②（なければ）インターネットゲートウェイを作成して①のVPCにアタッチする。
+③RDSにアクセスできるVPCにサブネットを2つ作る。(public用とprivate用)
+④NATゲートウェイを新規作成し、②で作成したpublic用サブネットを紐づける。
+⑤ルートテーブルを新規作成し、public用サブネットを紐付ける。
+作成したら以下のルートを追加する。
+   項目 設定値     宛先 0.0.0.0/0   ターゲット ③のインターネットゲートウェイ   ⑥ルートテーブルをもう１つ新規作成し、private用サブネットを紐付ける。    　作成したら以下のルートを追加する。        項目 設定値     宛先 0.0.0.0/0   ターゲット ④のNATゲートウェイ    VPC設定はここまでです。
+ここで作成したprivate用サブネットの方にlambdaを追加すればRDSと外部の両方にアクセスできるようになります。
+lambda設定(Serverless Framework) 今回はServerless Frameworkを使ってlambdaを構築します。
+Serverless Frameworkの基本的な構築については前回の記事を参照してください。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2019/03/12/linux-mint-trackpoint/" class="catalogue-item">
+    <div>
+        <time datetime="2020-07-06 00:00:00 &#43;0000 UTC" class="catalogue-time">July 6, 2020</time>
+        <h1 class="catalogue-title">Linux MintでThinkPadのトラックポイントを調整する</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            環境  Linux Mint 19.1 &ldquo;Tessa&rdquo; - MATE (64-bit) ThinkPad T480   ■参考 Ubuntu17.10でtrackpointの速度を調整する
+ トラックポイントの速度調整は『コントロールセンター＞マウスの設定』からもできるのですが、
+設定できる幅に限界があり、もう少し感度を上げたかったので他の方法で調整します。
+■最適な値の探し出し 『感度』と『速度』をいじりながら最適な数値を探します。
+私の場合はsensitivityは180、speedは60にすると丁度良かったです。
+$ sudo -i # cd /sys/devices/platform/i8042/serio1/serio2 # vim sensitivity // 感度 # vim speed // 速さ ■設定値の永続化 さきほど修正していたファイルは再起動時に戻ってしまうので、
+別ファイルにルールを記載しておきます。
+# vim /etc/udev/rules.d/10-trackpoint.rules 記載内容は以下の通りです。
+speedとsensitivityは最適な値を入れてください。
+KERNEL==&quot;serio2&quot;, SUBSYSTEM==&quot;serio&quot;, DRIVERS==&quot;psmouse&quot;, ATTR{sensitivity}:=&quot;180&quot;, ATTR{speed}:=&quot;60&quot; これで設定完了です。
+(おまけ)中央クリックの貼り付けを無効化する デフォルトだとThinkPadの中央クリック(マウスでいうホイールクリック)で貼り付けがされますが、 スクロール中にいきなり貼り付けが実行されたりして不便なので無効化します。
+ ※2020年7月追記
+中央クリックでの貼付けを防ぐだけであれば設定から変更できました。
+コントロールセンター &gt; マウス &gt; Enable middlemouse paste
+ まずデバイス名を取得します。
+以下コマンドを実行すると「TPPS/2 IBM TrackPoint」であることが分かります。
+$ xinput --list | grep TrackPoint ⎜ ↳ TPPS/2 IBM TrackPoint id=14	[slave pointer (2)] デバイスのマッピングを調べます。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2019/03/10/linux-mint-initialize/" class="catalogue-item">
+    <div>
+        <time datetime="2020-07-01 00:00:00 &#43;0000 UTC" class="catalogue-time">July 1, 2020</time>
+        <h1 class="catalogue-title">Linux Mintの初期設定</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            環境  Linux Mint 19.1 &ldquo;Tessa&rdquo; - MATE (64-bit) ThinkPad T480   ※2020年7月追記
+Linux Mint 20 Ulyanaについても追記しました。
+  日本語入力の設定 『コントロールセンター＞入力方法』を開き、日本語の設定をします。
+基本的に上図の通り書かれている手順を実施します。
+ 言語パッケージをインストールする(ここでinstallボタン押すだけ) ウィンドウ上部のInput MethodをFctixにする 一旦ログアウトする   ※2020年7月追記
+Linux Mint 20では最初からFctixが使えるので、ログアウトは不要です。
+ 『コントロールセンター＞Fctix設定』を開き、入力メソッドをMozcだけにします。
+不要な入力メソッドを「-」ボタンをクリックして消すだけです。
+上図のようになればOKです。
+言語設定  ※2020年7月追記
+Linux Mint 20では不要そうです。
+ 『コントロールセンター＞言語』を開き、日本語の設定をします。
+ 「言語」と「地域」を日本にする。（なっているはず） 「言語サポート」にて日本語をインストールする。 「システムロケール」の『システム全体に適用』を実行する。  Chromeなどをインストールした際に日本語になっていない場合はこの手順を再度実施します。
+入力モード切り替えをMac風にする キーボードの変換キーでIME有効、無変換キーでIME無効にすると便利なので設定します。
+『コントロールセンター＞Mozcの設定』を開き、「キー設定の選択」の編集をクリックします。
+するとキー設定ウィンドウが表示されるので設定します。
+下図ではひらがなカタカナキーもIME有効化に割り当てています。
+キー設定画面の右下の「編集」から設定のインポート/エクスポートもできるので、
+再インストール時用に好みの設定をエクスポートしておくと後々楽です。
+半角/全角キーとCapsLockキーを使いやすくする IMEの有効/無効切り替えを上記の通り設定すると半角/全角キーは不要になるので、Escに割り当ててしまいます。
+また、CapsLockも使わないのでCtrlに割り当ててしまいます。
+『コントロールセンター＞キーボード』を開き、
+レイアウトタブの「キーボードの型式」のオプションを開きます。
+ここで「Caps Lock behavior」は『CapsLock is also a Ctrl』を選択し、
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2020/06/14/oreore-certification/" class="catalogue-item">
+    <div>
+        <time datetime="2020-06-14 00:00:00 &#43;0000 UTC" class="catalogue-time">June 14, 2020</time>
+        <h1 class="catalogue-title">EC2上でオレオレ証明書を作る</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            環境  Amazon Linux AMI 2017.03 OpenSSL 1.0.2k-fips 26 Jan 2017   最近はLet&rsquo;s Encryptの登場でめっきり出番が少なくなったオレオレ証明書を作ります。
+Let&rsquo;s EncryptのSSL証明書の方が信頼度が高くブラウザ側で設定する必要がありません。
+インターネットに公開していない環境でもDNSにTXTレコードを追加すればLet&rsquo;s Encryptの証明書を発行できます。
+それでもオレオレ証明書を使いたい人向けの手順です。
+オレオレ証明書(自己証明書)とは SSL証明書はどこかしらの認証局(CA)に認証して貰って発行されるのですが、
+自分でCAを立てて自分で認証したSSL証明書を発行してしまうというものです。
+ざっくりとした流れは以下の通りです。
+①オレオレ認証局を立てる
+②オレオレ認証局でオレオレ証明書を発行する
+③利用ブラウザにオレオレ認証局を認めさせる
+以降の手順では「*.hoge.com」というワイルドカードのSSL証明書を作る前提とします。
+「*.hoge.com」の部分は作成したいドメインに置き換えてください。
+作業ディレクトリ等の準備 EC2にSSHでログインし、以下の通り準備をします。
+オレオレ認証局はhogeCAというディレクトリに作成するものとします。
+sudo -i cd /etc/pki cp -r CA hogeCA cp tls/openssl.cnf hogeCA/. cd hogeCA touch index.txt echo &quot;00&quot; &gt; serial また、以前は無かったと思うのですが
+最近のブラウザはSAN(subjectAltName)というものを設定しておかないと正規の証明書と認めてくれないようです。
+SANを設定するためのファイルを作成しておきます。
+echo &quot;subjectAltName=DNS:*.hoge.com&quot; &gt; san.ext openssl設定変更 以下の通り、今回利用するopenssl.cnfを修正します。
+vim ./openssl.cnf [ CA_default ]セクション修正 作業ディレクトリを変更します。
+dir = /etc/pki/hogeCA [ req_distinguished_name ]セクション修正 今回の手順で会社所在地などを複数回聞かれるので、デフォルト値を設定しておきます。
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2020/06/11/elasticsearch-topics/" class="catalogue-item">
+    <div>
+        <time datetime="2020-06-11 00:00:00 &#43;0000 UTC" class="catalogue-time">June 11, 2020</time>
+        <h1 class="catalogue-title">Elasticsearchの使い方メモ</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            数年前にElasticsearchを利用していた頃の使いかたメモが見つかったので記事にしておきます。
+以下例ではElasticsearchには商品ID(product_id)も持つ商品情報が格納されているものとします。
+ID指定で1件だけ検索するクエリ 単純にproduct_idを指定するだけです。
+{ &quot;query&quot;: { &quot;match&quot;: { &quot;product_id&quot;: &quot;123&quot; } } } ID指定で複数件、順序を指定して検索するクエリ 複数件の検索をします。取得する順序もweightで指定します。
+weightが大きい方が上位に取得されます。
+{ &quot;query&quot;: { &quot;function_score&quot;: { &quot;query&quot;: { &quot;bool&quot;:{ &quot;should&quot;:[ {&quot;match&quot;: {&quot;product_id&quot;: &quot;123&quot;}}, {&quot;match&quot;: {&quot;product_id&quot;: &quot;323&quot;}}, {&quot;match&quot;: {&quot;product_id&quot;: &quot;223&quot;}} ] } }, &quot;functions&quot;: [ { &quot;filter&quot;: { &quot;product_id&quot;: { &quot;product_id&quot;: &quot;123&quot; } }, &quot;weight&quot;: 3 }, { &quot;filter&quot;: { &quot;product_id&quot;: { &quot;product_id&quot;: &quot;323&quot; } }, &quot;weight&quot;: 2 }, { &quot;filter&quot;: { &quot;product_id&quot;: { &quot;product_id&quot;: &quot;223&quot; } }, &quot;weight&quot;: 1 } ] } } } ※メモ
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2020/06/10/aws-s3-redirect/" class="catalogue-item">
+    <div>
+        <time datetime="2020-06-10 00:00:00 &#43;0000 UTC" class="catalogue-time">June 10, 2020</time>
+        <h1 class="catalogue-title">AWS S3を使ったリダイレクトの方法</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            AWS S3上に置いていた静的コンテンツを部分的に別サーバー等に移設した際など
+特定のパスへのアクセスを別サーバー等にリダイレクトする設定です。
+対象のS3の
+「プロパティ」＞「Static website hosting」＞「このバケットを使用してウェブサイトをホストする」
+にリダイレクトルールという欄があるので、以下のように設定します。
+この例では①〜③のリダイレクトルール(RoutingRule)を設定しています。
+&lt;RoutingRules&gt; &lt;RoutingRule&gt;　・・・① &lt;Condition&gt; &lt;KeyPrefixEquals&gt;kokojanai_dokoka.html&lt;/KeyPrefixEquals&gt; &lt;/Condition&gt; &lt;Redirect&gt; &lt;Protocol&gt;https&lt;/Protocol&gt; &lt;HostName&gt;new-server.co.jp&lt;/HostName&gt; &lt;ReplaceKeyWith&gt;kokodayo.html&lt;/ReplaceKeyWith&gt; &lt;/Redirect&gt; &lt;/RoutingRule&gt; &lt;RoutingRule&gt;　・・・② &lt;Condition&gt; &lt;HttpErrorCodeReturnedEquals&gt;403&lt;/HttpErrorCodeReturnedEquals&gt; &lt;/Condition&gt; &lt;Redirect&gt; &lt;Protocol&gt;https&lt;/Protocol&gt; &lt;HostName&gt;new-server.co.jp&lt;/HostName&gt; &lt;/Redirect&gt; &lt;/RoutingRule&gt; &lt;RoutingRule&gt;　・・・③ &lt;Condition&gt; &lt;HttpErrorCodeReturnedEquals&gt;404&lt;/HttpErrorCodeReturnedEquals&gt; &lt;/Condition&gt; &lt;Redirect&gt; &lt;Protocol&gt;https&lt;/Protocol&gt; &lt;HostName&gt;new-server.co.jp&lt;/HostName&gt; &lt;/Redirect&gt; &lt;/RoutingRule&gt; &lt;/RoutingRules&gt;  ①特定パスへのアクセス 特定のパスへアクセスがあった際にパスを書き換えてリダイレクトします。
+S3から新サーバー等に移設した際にパスが変わった場合などに使えます。
+設定する値は以下の通りです。
+   設定項目 設定値 サンプル値     KeyPrefixEquals このパスにアクセスがあったらリダイレクトします。 kokojanai_dokoka.html   Protocol リダイレクト先のプロトコルです https   HostName リダイレクト先のホスト名です new-server.co.jp   ReplaceKeyWith KeyPrefixEqualsの値をこの値で置き換えます。 kokoday.
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2020/06/06/python-dict-list/" class="catalogue-item">
+    <div>
+        <time datetime="2020-06-06 00:00:00 &#43;0000 UTC" class="catalogue-time">June 6, 2020</time>
+        <h1 class="catalogue-title">Dictionaly型から特定の値を取り出しlist型に入れる</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            pythonのテクニック(?)的なものを教わったのでメモです。
+Dictionaly型から、あるキーの値を取り出して配列に取り出す方法について
+特になにも考えずにforで回して取り出してました。
+例えば、idとnameからなるDictionalyからnameを取り出して配列にする場合は以下のようにしていました。
+# Dictionaly定義 fruits_list = [ {'id':1, 'name':'apple'}, {'id':2, 'name':'banana'}, {'id':3, 'name':'cherry'}, ] # Dictionalyからlistに取り出し name_list = [] for fruits in fruits_list: name_list.append(fruits.get('name')) # 出力 # ['apple', 'banana', 'cherry'] print(name_list) しかし、この取り出し処理は1行で書けるようです。
+修正後、以下のようになりました。
+# Dictionaly定義 fruits_list = [ {'id':1, 'name':'apple'}, {'id':2, 'name':'banana'}, {'id':3, 'name':'cherry'}, ] # Dictionalyからlistに取り出し name_list = [fruits.get('name') for fruits in fruits_list] # 出力 # ['apple', 'banana', 'cherry'] print(name_list) スマートですね！
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2020/06/01/ubuntu-20-04-hdmi/" class="catalogue-item">
+    <div>
+        <time datetime="2020-06-01 00:00:00 &#43;0000 UTC" class="catalogue-time">June 1, 2020</time>
+        <h1 class="catalogue-title">ThinkpadにHDMIケーブルを接続したままUbuntu 20.04を起動する</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            環境 ubuntu 20.04 LTS
+ 参考  ubuntu バグフォーラム ubuntu wiki   前回の記事にてUbuntuを20.04にアップデートしたら HDMIケーブルを挿したままPCを起動する事ができなくなった話を書きました。
+Linuxカーネルを書き換えれば動くような話もあったのですが、それはやりたくなかったので放置していました。
+2020/6/1現在、ubuntu公式の対応はまだされていないようなのですが、 ubuntuのバグ報告フォーラムにて 『quiet splashを無効化したらいけた！』という書き込みが5/29にされていました。
+試してみたら確かに動いたので手順を記載します。
+grub設定を変更する 以下のコマンドにてgrubの設定をいじります。
+$ sudo gedit /etc/default/grub 設定ファイルがテキストエディタで開くので、quiet splashの行をコメントアウトします。
+コメントアウト後は保存して閉じます。
+〜省略〜 GRUB_DEFAULT=0 GRUB_TIMEOUT_STYLE=hidden GRUB_TIMEOUT=10 GRUB_DISTRIBUTOR=`lsb_release -i -s 2&gt; /dev/null || echo Debian` #GRUB_CMDLINE_LINUX_DEFAULT=&quot;quiet splash&quot;　←この行を#でコメントアウトする GRUB_CMDLINE_LINUX=&quot;&quot; 〜省略〜 grub設定の反映 以下のupdate-grubコマンドでgrub設定を反映させます。
+しばらく処理が走るので完了するのを待ちます。
+$ sudo update-grub Sourcing file `/etc/default/grub' Sourcing file `/etc/default/grub.d/init-select.cfg' Generating grub configuration file ... Linux イメージを見つけました: /boot/vmlinuz-5.4.0-33-generic Found initrd image: /boot/initrd.
+        </p>
+    </div>
+</a>
+
+		
+			<a href="/posts/2020/05/19/serverless-framework-lambda/" class="catalogue-item">
+    <div>
+        <time datetime="2020-05-19 00:00:00 &#43;0000 UTC" class="catalogue-time">May 19, 2020</time>
+        <h1 class="catalogue-title">Serverless Frameworkを使ってLambda &amp; API Gatewayをデプロイする</h1>
+        <div class="catalogue-line"></div>
+
+        <p>
+            環境 ubuntu 20.04 LTS
+ Serverless Frameworkというサーバーレス環境を簡単に構築できるツールがあります。
+https://www.serverless.com/framework/docs/
+今回はそれを使ってAWS上にLambda &amp; API Gatewayを使ったサーバーレスAPIを作ってみます。
+事前準備(awscliの準備) Serverless Frameworkはaws cliを使ってデプロイするので、インストールしておく必要があります。
+既に作業PC等でawscliを使える状態であれば本手順は飛ばして大丈夫です。
+awscliのインストール 公式ページの手順を実施します。
+https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/install-cliv2-linux.html
+$ curl &quot;https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip&quot; -o &quot;awscliv2.zip&quot; $ unzip awscliv2.zip $ sudo ./aws/install これでawscliのインストールが出来ました。
+念の為バージョンを確認しておきます。
+$ aws --version aws-cli/2.0.14 Python/3.7.3 Linux/5.4.0-31-generic botocore/2.0.0dev18 アクセスキーの準備 awscliで利用するアクセスキーをAWS IAMで生成します。
+手順は公式ページにあります。
+https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/cli-chap-configure.html#cli-quick-configuration
+ざっくりいうと、以下の作業をします。
+①IAMへアクセス
+②アクセスキーを発行するユーザーを選択する。
+③「認証情報」タブの「アクセスキーの作成」をクリックする。
+④表示されるアクセスキーID/シークレットアクセスキーをメモしておく。
+以上です。
+awscliの設定 IAMで取得したアクセスキーとリージョン情報をawscliに設定します。
+$ aws configure AWS Access Key ID [None]: YOUR-ACCESS-KEY-ID AWS Secret Access Key [None]: YOUR-SECRET-ACCESS-KEY Default region name [None]: ap-northeast-1 Default output format [None]: ※output formatを空のままエンターするとjsonになる。
+        </p>
+    </div>
+</a>
+
+		
+	</div>
+	
+	<div class="pagination">
+		
+			<a href="/posts/page/2/" class="left arrow">&#8592;</a>
+		
+		
+			<a href="/posts/page/4/" class="right arrow">&#8594;</a>
+		
+	
+		<span>3</span>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.3029992 &#43;0900 JST m=&#43;0.122593701">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

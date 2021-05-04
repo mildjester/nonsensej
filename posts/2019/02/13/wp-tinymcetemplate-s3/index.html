@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>【Wordpress】TinyMCEテンプレートでS3の画像を使う &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">【Wordpress】TinyMCEテンプレートでS3の画像を使う</h1>
+		<div class="post-info">
+				<time datetime="2019-02-13 00:00:00 &#43;0000 UTC">February 13, 2019</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/wordpress/">Wordpress</a></div>
+				</div>
+			
+		</div>
+		<h2 id="環境">環境</h2>
+<ul>
+<li>Wordpress 4.8.3</li>
+<li>TinyMCEテンプレート 4.8.1</li>
+<li>WP Offload Media Lite 2.0</li>
+</ul>
+<hr>
+<h2 id="事象">事象</h2>
+<p>WP Offload Media Liteを使ってWordpressの画像を全てS3にて管理している場合、
+TinyMCE テンプレートにて作成したテンプレート内に画像をアップして登録しても
+記事編集にてテンプレートを呼び出すと画像が見れなくなってしまいます。<br>
+※WEBサーバー上の画像は削除する設定とします</p>
+<h2 id="原因">原因</h2>
+<p>WP Offload Media Liteでは画像ファイル全てについて『S3上のパス』と『ローカルにあった場合のパス』の両方を紐づけて持っています。<br>
+そして、WP Offload Media Liteは以下のようにデータ内画像パスを置換します。</p>
+<h4 id="データ登録時">データ登録時</h4>
+<p>POSTデータ内の画像パスに『S3上のパス』が存在していた場合は『ローカルにあった場合のパス』に置換してDBに登録する。<br>
+(S3→ローカル置換)</p>
+<h4 id="データ呼出時">データ呼出時</h4>
+<p>DBから呼出したデータ内の画像パスに『ローカルにあった場合のパス』が存在していた場合は『S3上のパス』に置換して画面に表示する。<br>
+(ローカル→S3置換)</p>
+<p>しかし、TinyMCE テンプレートに関してはテンプレート登録時の「S3→ローカル置換」は走るのですが、
+テンプレート呼出し時の「ローカル→S3置換」は走りません。</p>
+<p>よってテンプレート呼出し時は画像パスが『ローカルにあった場合のパス』のままとなり、
+ローカルにそんな画像はないので画像が表示されません。</p>
+<h2 id="対応">対応</h2>
+<p>function.phpにデータ登録時のフィルターを追加し、
+TinyMCE テンプレートの登録時に「ローカル→S3置換」も走るようにします。</p>
+<p>つまり、少々無駄ですがTinyMCE テンプレートの登録時は「S3→ローカル→S3置換」が走るようになります。</p>
+<pre><code>function replace_s3_image_on_tinymcetemplates($content){
+  if ($content['post_type'] !== 'tinymcetemplates' || !class_exists('Amazon_S3_And_CloudFront') || !class_exists('AS3CF_Local_To_S3')) {
+    return $content;
+  }
+
+  $s3PluginPath = str_replace('themes/'.get_template(), 'plugins/amazon-s3-and-cloudfront/wordpress-s3.php', __DIR__);
+  $as3cf = new Amazon_S3_And_CloudFront($s3PluginPath);
+  $localToS3 = new AS3CF_Local_To_S3($as3cf);
+  $content['post_content'] = $localToS3-&gt;filter_post($content['post_content']);
+  
+  return $content;
+}
+add_filter('wp_insert_post_data','replace_s3_image_on_tinymcetemplates');
+</code></pre><p>結構力づくなので、もっと良い方法があれば誰か教えてください。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2019/02/01/git-cmd-cheatsheet/" class="left arrow">&#8592;</a>
+		<a href="/posts/2019/02/14/mac-php-72/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2557749 &#43;0900 JST m=&#43;0.075369401">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

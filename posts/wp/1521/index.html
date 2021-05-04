@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>akamaiのレスポンスヘッダーをChromeで確認する &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">akamaiのレスポンスヘッダーをChromeで確認する</h1>
+		<div class="post-info">
+				<time datetime="2018-09-26 12:02:33 &#43;0000 UTC">September 26, 2018</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/chrome/">Chrome</a></div>
+				</div>
+			
+		</div>
+		<h2 id="背景">背景</h2>
+<p>今お手伝いをしている会社さんではakamaiを使ってページをキャッシュさせてます<br>
+akamaiについてはコチラ<br>
+<!-- raw HTML omitted --><a href="https://www.akamai.com/jp/ja/">https://www.akamai.com/jp/ja/</a><!-- raw HTML omitted --></p>
+<p>WEBページの開発をしていると、今自分が表示しているページが<br>
+akamaiのキャッシュなのかどうなのか知りたい時があります</p>
+<p>Google Chromeの開発者ツールを使えば一般的なレスポンスヘッダーは見れますが<br>
+akamaiのレスポンスヘッダーは特殊なので見えません</p>
+<p>curlコマンドにオプションをつけて叩く方法もありますが<br>
+ログイン必須の画面をチェックするにはCookieの設定もしたりしなければいけません<br>
+<!-- raw HTML omitted --><a href="https://qiita.com/rasaka/items/fc96cd3b8f73a02477cb">https://qiita.com/rasaka/items/fc96cd3b8f73a02477cb</a><!-- raw HTML omitted --></p>
+<h2 id="解決策">解決策</h2>
+<p>そんなとき、Chromeの拡張機能『CDN Headers &amp; Cookies』を使えば<br>
+簡単にakamaiのレスポンスヘッダーを見る事ができます<br>
+<!-- raw HTML omitted --><a href="https://chrome.google.com/webstore/detail/cdn-headers-cookies/obldlamadkihjlkdjblncejeblbogmnb">https://chrome.google.com/webstore/detail/cdn-headers-cookies/obldlamadkihjlkdjblncejeblbogmnb</a><!-- raw HTML omitted --></p>
+<p>使い方は簡単です。</p>
+<h3 id="ストアからchromeに追加する">①ストアからChromeに追加する</h3>
+<p><!-- raw HTML omitted --></p>
+<h3 id="チェックしたい対象ページを開く">②チェックしたい対象ページを開く</h3>
+<h3 id="chromeツールバーにいる黄色いやつをクリックする">③Chromeツールバーにいる黄色いやつをクリックする</h3>
+<p><!-- raw HTML omitted --></p>
+<h3 id="response-headersタグを開きステータスを確認する">④Response Headersタグを開きステータスを確認する</h3>
+<p><!-- raw HTML omitted --></p>
+<p>ステータスの意味などはakamaiのコミュニティにて説明してくれていました<br>
+<!-- raw HTML omitted --><a href="https://community.akamai.com/customers/s/article/Akamairxdxn3?language=en_US">https://community.akamai.com/customers/s/article/Akamairxdxn3?language=en_US</a><!-- raw HTML omitted --></p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/1500/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/1538/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2771924 &#43;0900 JST m=&#43;0.096786901">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

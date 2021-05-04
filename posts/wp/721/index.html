@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Google Cloud Platformにインスタンス作成 &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Google Cloud Platformにインスタンス作成</h1>
+		<div class="post-info">
+				<time datetime="2017-10-08 00:10:11 &#43;0000 UTC">October 8, 2017</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/googleservice/">GoogleService</a></div>
+				</div>
+			
+		</div>
+		<h1 id="参考">参考</h1>
+<p><!-- raw HTML omitted --><a href="https://www.topgate.co.jp/category/gcp">https://www.topgate.co.jp/category/gcp</a><!-- raw HTML omitted --></p>
+<hr>
+<h2 id="インスタンス立ち上げ">インスタンス立ち上げ</h2>
+<p>① 左メニューの「Compute Engine」をクリックする。</p>
+<p>②1分ほど読みこみ待ちになる。<br>
+　読み込み完了後、VMインスタンスの「作成」ボタンをクリックする。<br>
+<!-- raw HTML omitted --></p>
+<p>③また、少々待ちが発生する。<br>
+　インスタンスの作成画面が表示されたら、名前に任意の名称、ゾーンは「asia-northeast1-a」を選択する。(東京リージョンらしい)</p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>設定値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>名前</td>
+<td>任意の名称をつける。</td>
+</tr>
+<tr>
+<td>ゾーン</td>
+<td>「asia-northeast1-a」を選択する。(東京リージョンらしい)</td>
+</tr>
+<tr>
+<td>マシンタイプ</td>
+<td>必要なスペックに合わせて選択する。安さ重視ならmicro。</td>
+</tr>
+<tr>
+<td>ブートディスク</td>
+<td>入れたいOSを選択する。</td>
+</tr>
+<tr>
+<td>IDとAPIへのアクセス</td>
+<td>このインスタンスへ付与する権限のよう。とりあえずデフォルトのままにする。</td>
+</tr>
+<tr>
+<td>ファイアウォール</td>
+<td>HTTPやHTTPSを使うならチェック</td>
+</tr>
+<tr>
+<td>管理</td>
+<td>とりあえずデフォルトのまま</td>
+</tr>
+<tr>
+<td>ディスク</td>
+<td>とりあえずデフォルトのまま</td>
+</tr>
+<tr>
+<td>ネットワーキング</td>
+<td>とりあえずデフォルトのまま</td>
+</tr>
+<tr>
+<td>SSH認証鍵</td>
+<td>自分のローカルPCの認証鍵を登録しておく</td>
+</tr>
+</tbody>
+</table>
+<p>④ここまでできたら、一番下の「作成」ボタンをクリックする。<br>
+　しばらく処理待ちとなるが、処理が完了するとインスタンス生成され、グローバルIPも振られる<br>
+　<br>
+これでインスタンスの立ち上げは完了です。<br>
+SSH鍵登録をしたローカル環境からグローバルIPを指定してSSH接続できるようになっています。</p>
+<pre><code>ssh 999.999.999.999  
+</code></pre><p>※グローバルIPアドレスはインスタンス一覧画面で確認可能</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/708/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/741/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2870251 &#43;0900 JST m=&#43;0.106619601">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

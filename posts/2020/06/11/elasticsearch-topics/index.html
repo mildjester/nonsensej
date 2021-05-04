@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Elasticsearchの使い方メモ &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Elasticsearchの使い方メモ</h1>
+		<div class="post-info">
+				<time datetime="2020-06-11 00:00:00 &#43;0000 UTC">June 11, 2020</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/elasticsearch/">Elasticsearch</a></div>
+				</div>
+			
+		</div>
+		<p>数年前にElasticsearchを利用していた頃の使いかたメモが見つかったので記事にしておきます。<br>
+以下例ではElasticsearchには商品ID(product_id)も持つ商品情報が格納されているものとします。</p>
+<h2 id="id指定で1件だけ検索するクエリ">ID指定で1件だけ検索するクエリ</h2>
+<p>単純にproduct_idを指定するだけです。</p>
+<pre><code>{
+  &quot;query&quot;: {
+    &quot;match&quot;: {
+      &quot;product_id&quot;: &quot;123&quot;
+    }
+  }
+}
+</code></pre><h2 id="id指定で複数件順序を指定して検索するクエリ">ID指定で複数件、順序を指定して検索するクエリ</h2>
+<p>複数件の検索をします。取得する順序もweightで指定します。<br>
+weightが大きい方が上位に取得されます。</p>
+<pre><code>{
+  &quot;query&quot;: {
+    &quot;function_score&quot;: {
+      &quot;query&quot;: {
+        &quot;bool&quot;:{
+          &quot;should&quot;:[
+            {&quot;match&quot;: {&quot;product_id&quot;: &quot;123&quot;}},
+            {&quot;match&quot;: {&quot;product_id&quot;: &quot;323&quot;}},
+            {&quot;match&quot;: {&quot;product_id&quot;: &quot;223&quot;}}
+          ]
+        }
+      },
+      &quot;functions&quot;: [
+        {
+          &quot;filter&quot;: { &quot;product_id&quot;: { &quot;product_id&quot;: &quot;123&quot; } },
+          &quot;weight&quot;: 3
+        },
+        {
+          &quot;filter&quot;: { &quot;product_id&quot;: { &quot;product_id&quot;: &quot;323&quot; } },
+          &quot;weight&quot;: 2
+        },
+        {
+          &quot;filter&quot;: { &quot;product_id&quot;: { &quot;product_id&quot;: &quot;223&quot; } },
+          &quot;weight&quot;: 1
+        }
+      ]
+    }
+  }
+}
+</code></pre><p>※メモ<br>
+shouldはORの意味合いがあります。</p>
+<h2 id="id指定で複数件削除するクエリ">ID指定で複数件削除するクエリ</h2>
+<p>シンプルです。</p>
+<pre><code>{
+  &quot;query&quot;: {
+    &quot;bool&quot;:{
+      &quot;should&quot;:[
+        {&quot;match&quot;: {&quot;product_id&quot;: &quot;123&quot;}},
+        {&quot;match&quot;: {&quot;product_id&quot;: &quot;223&quot;}},
+        {&quot;match&quot;: {&quot;product_id&quot;: &quot;323&quot;}}
+      ]
+    }
+  }
+}
+</code></pre>
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2020/06/10/aws-s3-redirect/" class="left arrow">&#8592;</a>
+		<a href="/posts/2020/06/14/oreore-certification/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2652597 &#43;0900 JST m=&#43;0.084854101">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>AWS lambdaからDBアクセスも外部アクセスもできるようにする。 &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">AWS lambdaからDBアクセスも外部アクセスもできるようにする。</h1>
+		<div class="post-info">
+				<time datetime="2020-07-12 00:00:00 &#43;0000 UTC">July 12, 2020</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/aws/">AWS</a></div>
+				</div>
+			
+		</div>
+		<p>AWS lambdaからAWS RDSへアクセスさせるためにはRDSへアクセスできるVPCのサブネットにlambdaを追加します。<br>
+しかし、VPC内のlambdaは何もしないと外部アクセスができなくなります。</p>
+<p>lambdaがRDSと同時に外部システムのAPIなどを利用する際に困りますので、<br>
+VPC内のlambdaから外部アクセスができるように設定します。</p>
+<h2 id="vpc設定">VPC設定</h2>
+<p>VPC内のlambdaから外部アクセスをさせる設定方法は、実はAWS公式で説明されています。<br>
+基本的にはこの手順を実行すれば良いだけです。<br>
+<a href="https://aws.amazon.com/jp/premiumsupport/knowledge-center/internet-access-lambda-function/">https://aws.amazon.com/jp/premiumsupport/knowledge-center/internet-access-lambda-function/</a></p>
+<p>手順詳細は公式ページを見ればよいので、ここではざっくりと流れを書いておきます。<br>
+①〜②はすでにあれば既存の使い回しでも良いです。</p>
+<p>①（なければ）RDSにアクセスできるVPCを作る。<br>
+②（なければ）インターネットゲートウェイを作成して①のVPCにアタッチする。<br>
+③RDSにアクセスできるVPCにサブネットを2つ作る。(public用とprivate用)<br>
+④NATゲートウェイを新規作成し、②で作成したpublic用サブネットを紐づける。<br>
+⑤ルートテーブルを新規作成し、public用サブネットを紐付ける。<br>
+　作成したら以下のルートを追加する。</p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>設定値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>宛先</td>
+<td>0.0.0.0/0</td>
+</tr>
+<tr>
+<td>ターゲット</td>
+<td>③のインターネットゲートウェイ</td>
+</tr>
+<tr>
+<td>⑥ルートテーブルをもう１つ新規作成し、private用サブネットを紐付ける。</td>
+<td></td>
+</tr>
+<tr>
+<td>　作成したら以下のルートを追加する。</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>設定値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>宛先</td>
+<td>0.0.0.0/0</td>
+</tr>
+<tr>
+<td>ターゲット</td>
+<td>④のNATゲートウェイ</td>
+</tr>
+</tbody>
+</table>
+<p>VPC設定はここまでです。<br>
+ここで作成したprivate用サブネットの方にlambdaを追加すればRDSと外部の両方にアクセスできるようになります。</p>
+<h2 id="lambda設定serverless-framework">lambda設定(Serverless Framework)</h2>
+<p>今回はServerless Frameworkを使ってlambdaを構築します。<br>
+Serverless Frameworkの基本的な構築については<a href="/articles/2020/05/19/serverless-framework-lambda">前回の記事</a>を参照してください。</p>
+<p>前回の記事で作成した<code>serverless.yml</code>のproviderにvpc設定を追加します。</p>
+<pre><code>provider:
+  〜省略〜
+  vpc: 
+    subnetIds:
+      - 今回作成したprivateサブネットのID(subnet-0123456abcde)
+</code></pre><p>【おまけ】<br>
+上記VPC設定では触れていませんが、もしlambdaにセキュリティグループを設定させるなら以下のようにします。</p>
+<pre><code>provider:
+  〜省略〜
+  vpc: 
+    subnetIds:
+      - 今回作成したprivateサブネットのID(subnet-0123456abcde)
+    securityGroupIds:
+      - 設定するセキュリティグループID(sg-012345abcde)
+</code></pre>
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2019/03/12/linux-mint-trackpoint/" class="left arrow">&#8592;</a>
+		<a href="/posts/2020/07/15/howto-make-bookmarklet/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2653631 &#43;0900 JST m=&#43;0.084957601">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

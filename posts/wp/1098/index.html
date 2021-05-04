@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>【Linux Mint】OSインストールと設定 &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">【Linux Mint】OSインストールと設定</h1>
+		<div class="post-info">
+				<time datetime="2018-04-07 14:01:56 &#43;0000 UTC">April 7, 2018</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/linuxmint/">LinuxMint</a></div>
+				</div>
+			
+		</div>
+		<h2 id="環境">■環境</h2>
+<p>Linux Mint 18.3 cinnamon 64bit</p>
+<hr>
+<h2 id="os入手">OS入手</h2>
+<p>公式ページからISOイメージをダウンロードします。<br>
+<!-- raw HTML omitted --><a href="https://linuxmint.com/download.php">https://linuxmint.com/download.php</a><!-- raw HTML omitted --></p>
+<p>こだわりが無ければ『Cinnamon 64bit』がオススメらしいので、それにします。<br>
+<!-- raw HTML omitted --></p>
+<p>ダウンロード元に日本が無いので、近そうな台湾にします。<br>
+※韓国はなぜか404になってしまった（2018/03/09現在）<br>
+<!-- raw HTML omitted --></p>
+<h2 id="osインストール">OSインストール</h2>
+<p>ダウンロードしたISOをDVDなどに焼いて、インストールしたいPCに入れて起動します。<br>
+するとデスクトップが表示され<!-- raw HTML omitted -->InstallLinuxMint<!-- raw HTML omitted -->というアイコンがあるのでダブルクリックします。</p>
+<p>後は画面指示に従ってインストールを進めるだけです。<br>
+私は以下のような設定で進めました。（特筆すべき部分のみ）</p>
+<ul>
+<li>言語：ここはあえて<!-- raw HTML omitted -->English<!-- raw HTML omitted -->　※2018/4/18追記 アプリケーションの文字体とかが中華文字みたいになるから日本語にした方が良さそう。</li>
+<li>インストール方法：Clean Installしたかったので<!-- raw HTML omitted -->Erase disk and install Linux Mint<!-- raw HTML omitted --></li>
+<li>キーボードレイアウト：レノボキーボードは<!-- raw HTML omitted -->Japanese-Japanese<!-- raw HTML omitted -->でOKでした</li>
+</ul>
+<p>Windowsとデュアルブートなどにする場合は、事前にWindows側でDiskに空き容量を作っておき<br>
+インストール方法で <!-- raw HTML omitted -->Linux Mint をWindows Boot Managerとは別にインストール<!-- raw HTML omitted --> を選択すればよいです。<br>
+インストール後、デュアルブートにならない場合はBIOS設定でセキュアブートをDisableにします。</p>
+<h2 id="update-managerの設定">Update Managerの設定</h2>
+<p>右下のタスクバーよりUpdateManagerをクリックします。（盾みたいなアイコン）<br>
+<!-- raw HTML omitted --></p>
+<p>とりあえず<!-- raw HTML omitted -->Let me review sensitive updates<!-- raw HTML omitted -->を選択して<!-- raw HTML omitted -->OK<!-- raw HTML omitted -->をクリックします。<br>
+<!-- raw HTML omitted --></p>
+<p>『Do you want to switch to a local mirror?』と聞かれているので<!-- raw HTML omitted -->OK<!-- raw HTML omitted -->をクリックします。<br>
+<!-- raw HTML omitted --></p>
+<p>日本のどれかを選択します。<br>
+<!-- raw HTML omitted --></p>
+<p>Refreshをクリックして最新化して、Install Updatesをクリックする。<br>
+<!-- raw HTML omitted --></p>
+<p>アップデートが完了すると、さらにアップデートできるパッケージが複数表示されるので<br>
+必要に応じてアップデートしておく。</p>
+<h2 id="システムフォントの変更">システムフォントの変更</h2>
+<p>デフォルトのフォントがあまり良くなかったので変更します。<br>
+※インストール時に言語をEnglishにしてしまった場合のみです。<br>
+　最初から日本語でインストールしておけば普通のフォントになりました。</p>
+<p>まず「SystemSettins &gt; Font」を開きます。<br>
+<!-- raw HTML omitted --></p>
+<p>そこのFont Selectionで好きなフォントに変更できます。<br>
+個人的には<!-- raw HTML omitted -->Takao Ex Gothic Regular<!-- raw HTML omitted -->が好きでした。<br>
+<!-- raw HTML omitted --></p>
+<h2 id="ホームディレクトリの英語化">ホームディレクトリの英語化</h2>
+<p>Linux Mintを日本語でインストールした場合、ホームディレクトリ直下のディレクトリ郡が日本語になります。<br>
+CUIを使っているとディレクトリ名が日本語だと不便なので、以下のコマンドで英語にしておきます。</p>
+<pre><code>env LANG=C xdg-user-dirs-gtk-update  
+</code></pre><p>上記コマンド実行後「ディレクトリ名を変えてもいいですか？（日本語→英語）」と聞いてくるのでYesにします。<br>
+再ログオン後、今度は「ディレクトリ名を変えてもいいですか？（英語→日本語）」と聞いてくるので<br>
+それは『二度と聞かない』にチェックを入れてNoとします。</p>
+<h2 id="日本語入力の追加インストールと設定">日本語入力の追加インストールと設定</h2>
+<p>Linux Mintを日本語でインストールしておけば初めから日本語入力ができますが、<br>
+一部日本語入力用のソフトが入っていないようなので、追加インストールします。</p>
+<p><!-- raw HTML omitted -->システム設定＞入力方法<!-- raw HTML omitted -->を開き、『日本語』をインストールします。<br>
+<!-- raw HTML omitted --></p>
+<p>次にそのまま『言語』タブを開き、言語サポートの『言語のインストールと削除』をクリックします。<br>
+<!-- raw HTML omitted --></p>
+<p>インストールウィンドウが開くので、日本語を選択して『言語パッケージのインストール』をクリックします。<br>
+<!-- raw HTML omitted --></p>
+<p>次にメニューより『Fcitxの設定』を開きます。<br>
+<!-- raw HTML omitted --></p>
+<p>入力メソッドでMozcの上に『キーボード - 日本語』がありますが、<br>
+これは邪魔なので削除してしまいます。<br>
+<!-- raw HTML omitted --></p>
+<p>これで完了です。</p>
+<h2 id="基本ソフトインストール">基本ソフトインストール</h2>
+<h3 id="開発基本セット">開発基本セット</h3>
+<pre><code>$ apt update  
+$ apt install vim git  
+</code></pre><h3 id="slack">Slack</h3>
+<p>Slackは『ソフトウェアの管理』からもインストールできますが、<br>
+そちらだと何故か日本語入力ができないので、公式サイトからDebをダウンロードしてきてインストールした方が良いです。<br>
+<!-- raw HTML omitted --><a href="https://slack.com/intl/ja-jp/downloads/linux">https://slack.com/intl/ja-jp/downloads/linux</a><!-- raw HTML omitted --></p>
+<h3 id="shutter">Shutter</h3>
+<p>MacのSkitchのように画像へ矢印やコメントを挿入できるアプリです。<br>
+Skitchほどリッチなデザインにはなりませんが、画像へコメントを挿入するには充分です。<br>
+<!-- raw HTML omitted -->libgoo-canvas-perl<!-- raw HTML omitted -->をインストールしておかないと編集ができません。</p>
+<pre><code>$ apt install shutter libgoo-canvas-perl
+</code></pre><h2 id="chromium">Chromium</h2>
+<p>Google ChromeのOSS版です。<br>
+機能的にはChromeとほぼ変わりません。<br>
+<!-- raw HTML omitted -->chromium-browser-l10n<!-- raw HTML omitted -->をインストールすると日本語化されます。</p>
+<pre><code>apt install chromium-browser chromium-browser-l10n  
+</code></pre><h2 id="パネルの設定変更">パネルの設定変更</h2>
+<p>（この手順はLinux Mint 19.1 MATEで実施した際に追記してます)<br>
+設定メニューの中にパネル（デスクトップの下にあるツールバー）を変更する項目が見つからなかったのですが<br>
+どうやらパネルを右クリックして「プロパティ」を選択すれば変更できるようでした</p>
+<p>パネルのサイズを変更したり、パネルの横幅を縮めて中央寄せにする（Mac風）にすることもできるようです</p>
+<h2 id="その他">その他</h2>
+<ul>
+<li><!-- raw HTML omitted -->日本語入力できるようにする<!-- raw HTML omitted --></li>
+<li><!-- raw HTML omitted -->プログラミング向けフォントのインストール<!-- raw HTML omitted --></li>
+<li><!-- raw HTML omitted -->terminator+fish+oh-my-fishの設定<!-- raw HTML omitted --></li>
+<li><!-- raw HTML omitted -->PHP7.1のインストール<!-- raw HTML omitted --></li>
+<li><!-- raw HTML omitted -->Visual Studio CodeでPHP開発環境構築<!-- raw HTML omitted --></li>
+<li><!-- raw HTML omitted -->dockerの導入<!-- raw HTML omitted --></li>
+<li><!-- raw HTML omitted -->キーマップを変更する<!-- raw HTML omitted --></li>
+<li><!-- raw HTML omitted -->cpuminer + wpoolでBitZenyをマイニング<!-- raw HTML omitted --></li>
+</ul>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/1071/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/1162/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2754509 &#43;0900 JST m=&#43;0.095045401">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>MastodonインスタンスをHerokuだけで立てる &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">MastodonインスタンスをHerokuだけで立てる</h1>
+		<div class="post-info">
+				<time datetime="2017-04-28 20:05:40 &#43;0000 UTC">April 28, 2017</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags//"></a></div>
+				</div>
+			
+		</div>
+		<p>最近Mastdonが流行っているらしいので<br>
+お金をかけずにMastdonインスタンスをHerokuのみで立ててみます。</p>
+<h2 id="注意">注意</h2>
+<ul>
+<li>本手順ではS３(ストレージ)を利用しないので、アイコンやヘッダーなどは保存されません。</li>
+<li>自分１人用のインスタンスにするつもりで作ってます。</li>
+<li>「Herokuのみ」に拘っており、他の無料ツールと組み合わせることもできますが、やってません。</li>
+</ul>
+<h3 id="参考にしたサイト">■参考にしたサイト</h3>
+<ul>
+<li><!-- raw HTML omitted -->結城浩大先生のブログ<!-- raw HTML omitted --></li>
+<li><!-- raw HTML omitted -->しょっさんのQiita<!-- raw HTML omitted --></li>
+</ul>
+<h3 id="手順インスタンス生成編">■手順(インスタンス生成編)</h3>
+<p>Herokuのアカウントを持っていなければアカウント作成します。<br>
+アカウント作成は<!-- raw HTML omitted -->コチラ<!-- raw HTML omitted -->から。</p>
+<p>mastodon公式の<!-- raw HTML omitted -->Herokuページ<!-- raw HTML omitted -->にて「Deploy to Heroku」ボタンをクリックする。</p>
+<p>Herokuのアプリ新規作成画面が開くので、以下を入力します。</p>
+<ul>
+<li>AppName: 作成するアプリ名</li>
+<li>LOCAL_DOMAIN: {上記のAppName}.herokuapp.com</li>
+<li>S3_ENABLED: false</li>
+<li>SINGLE_USER_MODE: true</li>
+</ul>
+<p>上記入力が完了したら『Deploy』ボタンをクリックします。</p>
+<p>私の場合はここでクレジットカード情報を入力する画面が出ましたが、既にHerokuを使っていて無料枠を使い切っていたから出たのかもしれません。<br>
+ど新規でHeroku登録していれば、何も出ないかもしれません。</p>
+<p>Deployが完了したら、Heroku管理画面の「Resources」画面にて「worker」をONにします。<br>
+右側のエンピツマークをクリックしたらON/OFFを切り替えできるようになります。</p>
+<p>ここまでで、マストドンのインスタンス生成は完了です。</p>
+<h3 id="手順アカウント登録編">■手順（アカウント登録編）</h3>
+<p>普通ならアカウント登録をし、登録したメールアドレスに届いたメールのリンクをクリックすれば<br>
+アカウント登録は完了なのですが、今回はメールサーバーの設定もしてないので、<br>
+無理やりDBを参照して進めます。</p>
+<p>まず、Heroku管理画面の「Resources」画面にて、『Heroku Postgres :: Database』をクリックします。<br>
+するとPostgreSQLの管理画面へ遷移するので、『View Credentials』をクリックし、<br>
+「Heroku CLI」(heroku pg:psql〜)を確認しておきます。<br>
+※後ほど利用するHeroku CLIのコマンドです。</p>
+<p>ブラウザで『{AppName}.herokuapp.com』へアクセスするとアカウント作成画面が開くので<br>
+普通にアカウント登録します。</p>
+<p>次に、Heroku CLIをインストールします。<br>
+インストール手順は<!-- raw HTML omitted -->コチラ<!-- raw HTML omitted -->にまとまってます。</p>
+<p>ローカルPCにPostgreSQLが入っていないなら、インストールしておきます。<br>
+Macなら以下コマンドでインストールできます。</p>
+<pre><code>brew install postgresql  
+</code></pre><p>PostgreSQLが使える状態になったら、HerokuのDBへ接続して<br>
+メールアドレス確認用のtokenを確認します。</p>
+<pre><code># ローカルPCのターミナルにて、確認した「Heroku CLI」コマンドを実行  
+heroku pg:psql postgresql-fitted-xxxxxx --app {AppName}  
+# DB操作モードに切り替わるので、DBよりtokenをselectする  
+select email, confirmation_token from users;  
+</code></pre><p>上記コマンドでtokenが表示されるので、それを含めた以下のURLへブラウザでアクセスします。<br>
+https://{AppName}.herokuapp.com/auth/confirmation?confirmation_token={上記で確認したtoken}</p>
+<p>これでメールアドレスの確認も完了し、Mastdonを利用開始できます。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/569/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/624/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2843268 &#43;0900 JST m=&#43;0.103921301">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>brewインストールでphp-mcryptがインストールできない &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">brewインストールでphp-mcryptがインストールできない</h1>
+		<div class="post-info">
+				<time datetime="2016-09-20 00:15:18 &#43;0000 UTC">September 20, 2016</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/mac/">Mac</a></div> <div class="tags_item"><a href="/tags/php/">PHP</a></div>
+				</div>
+			
+		</div>
+		<p>■環境<br>
+OS X El Capitan(10.11.6)<br>
+Homebrew 0.9.9</p>
+<p>brewインストールでphp-mcryptをインストールした際にエラーが出たので<br>
+エラー内容と、その対応をメモしておきます。</p>
+<p>まず、エラー内容について</p>
+<pre><code># brew install homebrew/php/php70-mcrypt  
+〜中略〜  
+/usr/local/opt/php70/bin/phpize: line 61: /usr/local/Library/Homebrew/shims/super/sed: No such file or directory  
+/usr/local/opt/php70/bin/phpize: line 62: /usr/local/Library/Homebrew/shims/super/sed: No such file or directory  
+/usr/local/opt/php70/bin/phpize: line 63: /usr/local/Library/Homebrew/shims/super/sed: No such file or directory  
+Configuring for:  
+PHP Api Version:  
+Zend Module Api No:  
+Zend Extension Api No:  
+/usr/local/opt/php70/bin/phpize: line 155: /usr/local/Library/Homebrew/shims/super/sed: No such file or directory  
+autoheader: error: AC_CONFIG_HEADERS not found in configure.in  
+〜中略〜
+</code></pre><p>つまり、phpizeで利用している『/usr/local/Library/Homebrew/shims/super/sed』が無いそうです。<br>
+色々調べた結果、私の環境ではそもそもHomebrewのパスが<br>
+『/usr/local/Library/Homebrew』<br>
+ではなく<br>
+『/usr/local/Homebrew/Library/Homebrew』<br>
+となっていました。（なんだこの階層）</p>
+<p>対応としては、phpize内にて$SEDという変数に上記パスを指定していたので、<br>
+自分の環境に合わせてパスを書き換えました。</p>
+<pre><code>SED=&quot;/usr/local/Homebrew/Library/Homebrew/shims/super/sed&quot;
+</code></pre>
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/278/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/302/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2812831 &#43;0900 JST m=&#43;0.100877601">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Cisco IOSスイッチ操作チートシート &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Cisco IOSスイッチ操作チートシート</h1>
+		<div class="post-info">
+				<time datetime="2017-05-02 15:05:24 &#43;0000 UTC">May 2, 2017</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/cisco/">Cisco</a></div>
+				</div>
+			
+		</div>
+		<h4 id="管理者権限になる">管理者権限になる</h4>
+<pre><code>enable  
+</code></pre><p>※省略系はen</p>
+<h4 id="現在の設定を参照する">現在の設定を参照する</h4>
+<pre><code># show interfaces      ※全て見る場合  
+# show interfaces GigabitEthernet0/X  ※特定のインターフェースのみ見る  
+# show vlan  
+</code></pre><p>※「GigabitEthernet0/X」は「Gi0/X」と省略できる</p>
+<h4 id="設定モードに入る">設定モードに入る</h4>
+<pre><code># configure terminal  
+</code></pre><p>※省略系はconf terminal</p>
+<h4 id="設定モードにてsmart-installを無効化する">(設定モードにて)Smart Installを無効化する</h4>
+<pre><code>(config)# no vstack  
+</code></pre><h4 id="設定モードにて管理者権限のパスワードを変更する">(設定モードにて)管理者権限のパスワードを変更する</h4>
+<pre><code>(config)# enable password ｛変更後のパスワード｝  
+</code></pre><h4 id="設定モードにてif設定モードに入る">(設定モードにて)IF設定モードに入る</h4>
+<pre><code>(config)# interface GigabitEthernet0/X  
+</code></pre><h4 id="if設定モードにて停止起動">(IF設定モードにて)停止・起動</h4>
+<pre><code>(config-if)# shutdown  
+(config-if)# no shutdown  
+</code></pre><h4 id="if設定モードにてvlanの切り替え">(IF設定モードにて)vlanの切り替え</h4>
+<pre><code>(config-if)# switchport mode access  
+(config-if)# switchport access vlan {vlan番号}  
+</code></pre><h4 id="各モードを抜ける">各モードを抜ける</h4>
+<pre><code>(なんらかのモード)# exit  
+</code></pre><h4 id="各種設定した内容を保存する">各種設定した内容を保存する</h4>
+<pre><code># write memory  
+</code></pre><p>※最後にこれを実行しておかないと、再起動後に設定内容が戻ってしまう。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/629/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/642/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2853271 &#43;0900 JST m=&#43;0.104924601">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

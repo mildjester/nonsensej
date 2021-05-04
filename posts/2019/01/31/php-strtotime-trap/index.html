@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>【PHP】strtotimeの罠 &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">【PHP】strtotimeの罠</h1>
+		<div class="post-info">
+				<time datetime="2019-01-31 00:00:00 &#43;0000 UTC">January 31, 2019</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/php/">PHP</a></div>
+				</div>
+			
+		</div>
+		<p>今日相談を受けた事象が面白かったので記事にします。</p>
+<h2 id="事象">事象</h2>
+<p>既存のPHPで来月の年月を取得する処理があり<br>
+リリース時は正常に動いていたのに、今日(1/31)見たら年月がズレていたようです。</p>
+<p>ソースコードを見せて貰ったら以下のようになっていました。</p>
+<pre><code>echo date('Ym', strtotime(date('Ym-1') . ' + 1 month'));
+</code></pre><h2 id="原因">原因</h2>
+<p>まず、<code>date('Ym-1')</code> がおかしいですね。<br>
+<code>date('Ym01')</code>とか<code>date('Y-m-01')</code>とかにするべきですね。</p>
+<p>では、なぜリリース時に正常に動いていたのか。<br>
+ここでやっとタイトルの「strtotimeの罠」が関わってきます。</p>
+<pre><code>strtotime(date('Ym-1') . ' + 1 month')
+</code></pre><p>これは、2019/1/31であれば</p>
+<pre><code>strtotime('201901-1 + 1 month')
+</code></pre><p>と、なります。</p>
+<p>ここでstrtotime様はこう考えます。</p>
+<blockquote>
+<p>201901-1？なんやそれ、知らんわ<br>
+とりあえず今日の日付から+1monthしとこ<br>
+今日は1/31だから1ヶ月後は2/31・・・ってそんな日無いわ！<br>
+よっしゃ！繰り上げで3/3にしとこ！</p>
+</blockquote>
+<p>エラーになどしません。<br>
+PHPらしいですね。</p>
+<p>これにより、1/31に実行すると3月を返してしまい、1ヶ月ズレてしまいます。</p>
+<p>もしリリース日やテスト日が月の上旬〜中旬であれば<br>
+strtotime様の月繰り上げが発生しないので<br>
+出力が年月だけだと不具合に気づきません。</p>
+<p>この不具合はテストやってもなかなか出てこないと思うので<br>
+実装段階で気を付けないといけないですね。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2019/01/26/javascript-window-load/" class="left arrow">&#8592;</a>
+		<a href="/posts/2019/02/01/git-cmd-cheatsheet/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2556853 &#43;0900 JST m=&#43;0.075279801">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

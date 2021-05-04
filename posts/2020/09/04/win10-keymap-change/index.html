@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Windows10でキー配置を変更する &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Windows10でキー配置を変更する</h1>
+		<div class="post-info">
+				<time datetime="2020-09-04 00:00:00 &#43;0000 UTC">September 4, 2020</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/windows/">Windows</a></div>
+				</div>
+			
+		</div>
+		<h2 id="参考">参考</h2>
+<ul>
+<li><a href="https://www.atmarkit.co.jp/ait/articles/0907/03/news103.html">Ctrl2Capツールで［Ctrl］と［CapsLock］キーを入れ替える（Windows編）|@IT</a></li>
+</ul>
+<hr>
+<p>Windowsのキー配置を変更してMac風にします。</p>
+<h2 id="capslockをctrlにする">CapsLockをCtrlにする</h2>
+<p>CapsLockは使うことがないのでCtrlキーに割り当ててしまいます。<br>
+MacのCtrlキーと同じ位置にCapsLockはあるので、Macを使っていた人にも操作しやすくなると思います。</p>
+<p>変更するには『Ctrl2Cap』を使います。<br>
+<a href="https://docs.microsoft.com/ja-jp/sysinternals/downloads/ctrl2cap">https://docs.microsoft.com/ja-jp/sysinternals/downloads/ctrl2cap</a></p>
+<p>インストール手順は以下の通りです。<br>
+①ctrl2capのZIPファイルをダウンロードして解凍する。<br>
+②PowerShellを管理者権限で起動し、①の解凍したフォルダに移動する。<br>
+③<code>.\ctrl2cap.exe /install</code>を実行する。</p>
+<p>これで『Ctrl2cap successfully installed.』と表示されたらインストール成功です。<br>
+PCを再起動するとCapsLockがCtrlとして使えるようになります。</p>
+<h2 id="変換無変換キーでimeをonoffする">変換/無変換キーでIMEをON/OFFする</h2>
+<p>Mac風にスペースバーの左右のキーでIMEをON/OFFできるようにします。<br>
+設定手順は以下の通りです。</p>
+<p>①設定を開く。<br>
+②設定の検索で『日本語IMEの設定』を検索して開く。<br>
+③『キーとタッチのカスタマイズ』を開く<br>
+④『各キーに好みの機能を割り当てる』をオンにする。<br>
+⑤無変換キーを「IME-オフ」に割り当てる。<br>
+⑥変換キーを「IME-オン」に割り当てる。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2020/09/04/win10-initial-setting/" class="left arrow">&#8592;</a>
+		<a href="/posts/2020/09/04/windows-terminal-install/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2732515 &#43;0900 JST m=&#43;0.092845901">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

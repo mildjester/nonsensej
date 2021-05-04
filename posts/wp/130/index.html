@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>【Ubuntu】exfat形式の外部メモリのマウントができない &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">【Ubuntu】exfat形式の外部メモリのマウントができない</h1>
+		<div class="post-info">
+				<time datetime="2015-11-15 22:05:23 &#43;0000 UTC">November 15, 2015</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/ubuntu/">ubuntu</a></div>
+				</div>
+			
+		</div>
+		<p>■環境<br>
+ubuntu 15.04</p>
+<p>Ubuntuはデフォルトでは「exfat」のフォーマットに対応していないので、<br>
+外部メモリをマウントしようとすると</p>
+<pre><code>mount: unknown filesystem type 'exfat'
+</code></pre><p>というエラーが出ます。</p>
+<p>※上記はコマンドラインでmountコマンドを実施した際に出力されます。<br>
+　外部メモリを挿した時にUI上では違う「exsisted」エラーが出てくる可能性があります。</p>
+<p>その場合は、以下のコマンドを実施すると「exfat」フォーマットのメモリも扱えるようになります。</p>
+<pre><code>$ sudo apt-get install exfat-fuse exfat-utils
+</code></pre>
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/120/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/139/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2750702 &#43;0900 JST m=&#43;0.094664601">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

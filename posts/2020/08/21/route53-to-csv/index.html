@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Route53のレコードを全てCSVに出力する &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Route53のレコードを全てCSVに出力する</h1>
+		<div class="post-info">
+				<time datetime="2020-08-21 00:00:00 &#43;0000 UTC">August 21, 2020</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/aws/">AWS</a></div>
+				</div>
+			
+		</div>
+		<h2 id="環境">環境</h2>
+<ul>
+<li>Linux Mint 20 Ulyana</li>
+<li>aws-cli/2.0.41</li>
+<li>jq 1.6</li>
+</ul>
+<hr>
+<p>Route53に大量のホストゾーンとレコードが登録されているアカウントで、Route53に登録されている内容を一覧化する必要があったので対応しました。<br>
+ワンライナーで実現しようと思ったのですが、希望した形にできなかったのでシェルスクリプトにしました。</p>
+<h2 id="必要なソフトのインストール">必要なソフトのインストール</h2>
+<h3 id="aws-cli">AWS CLI</h3>
+<p>AWS CLIが無い場合はインストールしておきます。<br>
+<a href="https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/install-cliv2.html">https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/install-cliv2.html</a></p>
+<p>AWS CLIの初期設定はこちら<br>
+<a href="https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/cli-configure-quickstart.html">https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/cli-configure-quickstart.html</a></p>
+<h3 id="jq">jq</h3>
+<p>jqはjsonを整形するツールです。<br>
+Linux Mintであれば以下コマンドでインストールできます。</p>
+<pre><code>apt install jq
+</code></pre><h2 id="route53の内容を取得するスクリプト作成">Route53の内容を取得するスクリプト作成</h2>
+<p>AWS CLIでRoute53の内容をjson形式で取得し、それをjqで整形しながらCSVに出力するシェルスクリプトを作成します。<br>
+スクリプトの内容は以下の通りです。</p>
+<pre><code>#!/bin/bash
+
+# CSVのヘッダ出力
+echo '&quot;HostedZone&quot;,&quot;DomainName&quot;,&quot;DomainType&quot;,&quot;TTL&quot;,&quot;Value&quot;'
+
+# ホストゾーン一覧を取得
+HostedZones=`aws route53 list-hosted-zones --output json --query 'HostedZones'`
+HostedZonesLen=`echo $HostedZones | jq length`
+
+for i in $( seq 0 $(($HostedZonesLen - 1)) ); do
+    Zone=`echo $HostedZones | jq .[$i]`
+    ZoneId=`echo $Zone | jq -c -r '.Id'`
+    ZoneName=`echo $Zone | jq -c -r '.Name'`
+
+    # ホストゾーン内のレコード一覧を取得
+    Records=`aws route53 list-resource-record-sets --hosted-zone-id $ZoneId --output json --query 'ResourceRecordSets'`
+    RecordsLen=`echo $Records | jq length`
+
+    for i in $( seq 0 $(($RecordsLen - 1)) ); do
+        record=`echo $Records | jq .[$i]`
+        name=`echo $record | jq -c -r '.Name'`
+        type=`echo $record | jq -c -r '.Type'`
+        ttl=`echo $record | jq -c -r '.TTL'`
+        data=`echo $record | jq -c -r '.AliasTarget.DNSName // &quot;&quot;'`
+
+        # AliasTargetのDNSNameが設定されていない場合はResourceRecordsのValuesを取得する
+        if [ -z &quot;$data&quot; ]; then
+            data=`echo $record | jq -c -r '.ResourceRecords[].Value'`
+        fi
+
+        # dataにはダブルクォートが含まれる可能性があるのでエスケープしておく
+        data=${data//\&quot;/\&quot;\&quot;}
+
+        # CSVのボディ出力
+        echo &quot;\&quot;${ZoneName}\&quot;,\&quot;${name}\&quot;,\&quot;${type}\&quot;,\&quot;${ttl}\&quot;,\&quot;${data}\&quot;&quot;
+    done
+done
+</code></pre><h3 id="簡単な説明">簡単な説明</h3>
+<p>AWS CLIでホストゾーンの情報をjson形式で取得します。</p>
+<pre><code>aws route53 list-hosted-zones --output json --query 'HostedZones[]'
+</code></pre><p>取得したホストゾーン情報を1件ずつループを回します。<br>
+以下コマンドでホストゾーンのレコードをjson形式で取得します。</p>
+<pre><code>aws route53 list-resource-record-sets --hosted-zone-id $ZoneId --output json --query 'ResourceRecordSets'
+</code></pre><p>そして要所要所でjqコマンドでjsonから必要な情報を抽出しています。</p>
+<h3 id="補足">補足</h3>
+<p>AWS CLIの<code>query</code>オプションはjqコマンドで抽出するのと同じ効果があります。<br>
+つまり、以下のコマンドはどちらも同じ結果となります。</p>
+<pre><code>aws route53 list-resource-record-sets --hosted-zone-id $ZoneId --output json --query 'ResourceRecordSets'
+aws route53 list-resource-record-sets --hosted-zone-id $ZoneId --output json | jq '.ResourceRecordSets'
+</code></pre>
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2020/08/05/replace-with-find-sed/" class="left arrow">&#8592;</a>
+		<a href="/posts/2020/08/26/ec2-ecs-to-csv/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2672987 &#43;0900 JST m=&#43;0.086893201">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

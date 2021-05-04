@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>【Wordpress】画像ファイルに設定されたタイトルとキャプションを削除する &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">【Wordpress】画像ファイルに設定されたタイトルとキャプションを削除する</h1>
+		<div class="post-info">
+				<time datetime="2019-08-26 00:00:00 &#43;0000 UTC">August 26, 2019</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/wordpress/">Wordpress</a></div>
+				</div>
+			
+		</div>
+		<h2 id="環境">環境</h2>
+<ul>
+<li>WordPress 4.8.3</li>
+</ul>
+<hr>
+<h2 id="やりたい事">やりたい事</h2>
+<p>Wordpressのメディアに画像ファイルをアップロードする際<br>
+画像のタイトルは基本的には画像のファイル名となりますが<br>
+アップする画像ファイルによってはタイトルやキャプションが設定されている事があります。</p>
+<p>例えば、オリンパスのデジカメで撮った写真だと<br>
+全ての画像のタイトルとキャプションが『OLYMPUS DIGITAL CAMERA』になる事があり<br>
+このままでは管理がしにくく、都度修正するのも手間です。</p>
+<p>そこで、画像ファイルに設定されている値は無視するようにします。<br>
+(WP上ではタイトル＝ファイル名となる)</p>
+<h2 id="対応方法">対応方法</h2>
+<p><code>function.php</code> に以下の記載をするだけです。</p>
+<pre><code>function delete_media_title_caption( $img_meta ) {
+  $img_meta['title'] = '';
+  $img_meta['caption'] = '';
+  return $img_meta;
+}
+add_filter( 'wp_read_image_metadata', 'delete_media_title_caption' );
+</code></pre><p>これで画像アップ時にファイルに設定されていたタイトルとキャプションは無視されます。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2019/08/15/ssh-portfowarding/" class="left arrow">&#8592;</a>
+		<a href="/posts/2019/09/14/text-orientation-upright/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2614949 &#43;0900 JST m=&#43;0.081089401">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

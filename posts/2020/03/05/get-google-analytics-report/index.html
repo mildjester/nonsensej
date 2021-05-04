@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Google Analyticsから直近のページ閲覧数を取得する &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Google Analyticsから直近のページ閲覧数を取得する</h1>
+		<div class="post-info">
+				<time datetime="2020-03-05 00:00:00 &#43;0000 UTC">March 5, 2020</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/php/">PHP</a></div> <div class="tags_item"><a href="/tags/googleservice/">GoogleService</a></div>
+				</div>
+			
+		</div>
+		<h2 id="環境">環境</h2>
+<ul>
+<li>PHP  7.3</li>
+<li>google/apiclient  2.4</li>
+</ul>
+<h2 id="参考">参考</h2>
+<p><a href="https://developers.google.com/analytics/devguides/reporting/core/v3/quickstart/service-php?hl=ja">https://developers.google.com/analytics/devguides/reporting/core/v3/quickstart/service-php?hl=ja</a></p>
+<hr>
+<p>商品ページにて「24時間以内に○○人が見ています」という販促メッセージを出す時に、乱数を使っているサービスもあるようですが、
+それはさすがに嫌なのでGoogle Analyticsから閲覧実績を取得して表示してみます。<br>
+なお、Google Analyticsからは「昨日から今日まで」のように日付指定しかできないので、「10分以内に」のように厳密な時間を指定して閲覧者数を表示することはできません。</p>
+<h2 id="gcpのサービスアカウント作成">GCPのサービスアカウント作成</h2>
+<p>まず、以下ページにてサービスアカウントを作成します。<br>
+※もしGoogle CloudPlatform(GCP)のプロジェクトを作成していない場合は「プロジェクトを作成」をクリックしてGCPプロジェクトを作成してから実行します。<br>
+<a href="https://console.developers.google.com/iam-admin/serviceaccounts?hl=ja">https://console.developers.google.com/iam-admin/serviceaccounts?hl=ja</a></p>
+<p>「プロジェクトの選択」よりサービスアカウントを作成するプロジェクトを選択し、<br>
+「＋サービスアカウントを作成」をクリックします。</p>
+<p>サービスアカウントの作成画面が開くので以下の通り入力して「作成」をクリックしてください。</p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>入力内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>サービスアカウント名</td>
+<td>独自の自分で判断できる名前</td>
+</tr>
+<tr>
+<td>サービスアカウントID</td>
+<td>独自のID(サービスアカウント名を入力したら勝手に入ります)</td>
+</tr>
+<tr>
+<td>サービスアカウントの説明</td>
+<td>自分が分かる説明</td>
+</tr>
+</tbody>
+</table>
+<p>次にサービスアカウントの権限設定画面が開きますが、そのまま「続行」をクリックします。</p>
+<p>その次の画面で「ユーザーにこのサービス アカウントへのアクセス権を付与」は特に何もしません。<br>
+「キーの作成」の中の「キーを作成」をクリックし、キーのタイプはJSONを選択して「作成」をクリックします。<br>
+JSONファイルがダウンロードされますので取っておいてください。</p>
+<p>サービスアカウントの作成画面はそのまま「完了」をクリックして終わります。<br>
+サービスアカウント一覧に戻り、作成したサービスアカウントのメールアドレスが表示されるので記録しておきます。</p>
+<h2 id="google-analytics-apiの有効化">Google Analytics APIの有効化</h2>
+<p>以下ページにアクセスし、Google Analytics APIを有効化してください。<br>
+<a href="https://console.developers.google.com/apis/api/analytics.googleapis.com/overview">https://console.developers.google.com/apis/api/analytics.googleapis.com/overview</a></p>
+<h2 id="google-analyticsの設定">Google Analyticsの設定</h2>
+<p>さきほど作成したサービスアカウントをGoogle Analyticsに追加します。<br>
+アカウントユーザーまたはプロパティユーザーにサービスアカウントのメールアドレスを追加します。<br>
+権限は「表示と分析」のみ(デフォルト)で大丈夫です。</p>
+<h2 id="スクリプトの作成">スクリプトの作成</h2>
+<p>PHPとcomposerの環境は構築済みの前提とします。</p>
+<p>まず、Google Analytics APIのパッケージを取得します。</p>
+<pre><code>composer require google/apiclient
+</code></pre><p>次に以下のPHPスクリプトを作成します。</p>
+<pre><code>&lt;?php
+require_once __DIR__ . '/vendor/autoload.php';
+
+$analytics = initializeAnalytics();
+$profile = getFirstProfileId($analytics);
+$results = getResults($analytics, $profile);
+printResults($results);
+
+/**
+ * Google Clientを初期化する
+ */
+function initializeAnalytics()
+{
+  $KEY_FILE_LOCATION = {{GCPのサービスアカウント作成時に取得したjsonファイルへのパス}};
+  // 例：$KEY_FILE_LOCATION = __DIR__ . '/config/hogehoge.json';
+
+  $client = new Google_Client();
+  $client-&gt;setApplicationName(&quot;Hello Analytics Reporting&quot;);    // 任意の名前に変更してよいです
+  $client-&gt;setAuthConfig($KEY_FILE_LOCATION);
+  $client-&gt;setScopes(['https://www.googleapis.com/auth/analytics.readonly']);
+  $analytics = new Google_Service_Analytics($client);
+
+  return $analytics;
+}
+
+/**
+ * プロファイルを取得する
+ */
+function getFirstProfileId($analytics) {
+  $accounts = $analytics-&gt;management_accounts-&gt;listManagementAccounts();
+
+  if (count($accounts-&gt;getItems()) &gt; 0) {
+    $items = $accounts-&gt;getItems();
+    $firstAccountId = $items[0]-&gt;getId();
+
+    $properties = $analytics-&gt;management_webproperties
+        -&gt;listManagementWebproperties($firstAccountId);
+
+    if (count($properties-&gt;getItems()) &gt; 0) {
+      $items = $properties-&gt;getItems();
+      $firstPropertyId = $items[0]-&gt;getId();
+
+      $profiles = $analytics-&gt;management_profiles
+          -&gt;listManagementProfiles($firstAccountId, $firstPropertyId);
+
+      if (count($profiles-&gt;getItems()) &gt; 0) {
+        $items = $profiles-&gt;getItems();
+
+        return $items[0]-&gt;getId();
+
+      } else {
+        throw new Exception('No views (profiles) found for this user.');
+      }
+    } else {
+      throw new Exception('No properties found for this user.');
+    }
+  } else {
+    throw new Exception('No accounts found for this user.');
+  }
+}
+
+/**
+ *  取得条件を設定して取得する
+ */
+function getResults($analytics, $profileId) {
+  $from = '1daysAgo';                          // 昨日から
+  $to    = 'today';                            // 今日までのデータを取得します
+  $metrics = &quot;ga:pageviews&quot;;                   // 閲覧者数を取得します
+  $option = [
+    &quot;dimensions&quot; =&gt; 'ga:pagepath',             // ページパス別に閲覧数を取得します
+    &quot;sort&quot; =&gt; &quot;-ga:pageviews&quot;,                 // 閲覧数でソートします。マイナスを付けているので降順になります
+    // &quot;filters&quot; =&gt; &quot;ga:pagepath%3D@/article&quot;,    // コメントアウトを外すと、ページパスに「/article」を含むものに絞ります
+  ];
+
+  return $analytics-&gt;data_ga-&gt;get(
+        'ga:' . $profileId,
+        $from,
+        $to,
+        $metrics,
+        $option
+  );
+ }
+
+/**
+ * 取得結果を出力する
+ */
+function printResults($results) {
+  echo 'page url,previews' . PHP_EOL;
+  foreach ($results as $result){
+    echo $result[0] . ',' . $result[1] . PHP_EOL;
+  }
+}
+</code></pre><p>このPHPを実行すればページ別閲覧者数が取得できます。<br>
+取得した結果の中から該当ページの閲覧数を抜き出してページに表示すれば完了です。</p>
+<p>上記ソース内のfiltersでページURLを細かく絞ってしまえば現在取得したいページの閲覧数だけ取れますが、<br>
+Google Analytics APIの応答は数秒かかるので各ページ個別に閲覧数を取るのは現実的ではありません。<br>
+なので、上記のように閲覧数の多いものから順に取ってキャッシュに入れておき、基本的にはキャッシュから取得するようにした方が良さそうです。<br>
+(キャッシュは1分間に1度更新するなど)</p>
+<h3 id="設定する値について">設定する値について</h3>
+<p>こちらのページでmetricsやdimensionに設定できる値がまとめられています。<br>
+閲覧者数以外を取得したい場合など、参考にしてください。<br>
+<a href="https://ga-dev-tools.appspot.com/dimensions-metrics-explorer/">https://ga-dev-tools.appspot.com/dimensions-metrics-explorer/</a></p>
+<p>その他解説はこちらの公式ページをご参照ください。<br>
+<a href="https://developers.google.com/analytics/devguides/reporting/core/v3/reference">https://developers.google.com/analytics/devguides/reporting/core/v3/reference</a></p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2020/02/18/lightsail-wordpress/" class="left arrow">&#8592;</a>
+		<a href="/posts/2020/03/10/gas-gmail-slack/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.263509 &#43;0900 JST m=&#43;0.083103501">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

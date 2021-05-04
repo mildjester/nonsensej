@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>HTML on Nonsense J</title>
+    <link>/tags/html/</link>
+    <description>Recent content in HTML on Nonsense J</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Fri, 18 May 2018 21:53:41 +0000</lastBuildDate><atom:link href="/tags/html/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>数字入力フォームに文字数制限をつける</title>
+      <link>/posts/wp/1352/</link>
+      <pubDate>Fri, 18 May 2018 21:53:41 +0000</pubDate>
+      
+      <guid>/posts/wp/1352/</guid>
+      <description>HTML5で追加された&amp;lt;input type=&amp;quot;number&amp;quot; /&amp;gt;ですが、maxlengthの指定ができません。
+なので、Javascriptで最大桁数の制御を入れてみます。
+HTML 3桁の例 &amp;lt;input type=&amp;quot;number&amp;quot; name=&amp;quot;bangou3keta&amp;quot; oninput=&amp;quot;sliceMaxLength(this, 3)&amp;quot;&amp;gt; 5桁の例 &amp;lt;input type=&amp;quot;number&amp;quot; name=&amp;quot;bangou5keta&amp;quot; oninput=&amp;quot;sliceMaxLength(this, 5)&amp;quot;&amp;gt; Javascript function sliceMaxLength(elem, maxLength) { elem.value = elem.value.slice(0, maxLength); } また、&amp;lt;input type=&amp;quot;number&amp;quot; /&amp;gt;にすると右端に数字を増減するスピンボタンが表示されます。
+電話番号の入力欄などでは不要なので、以下のCSSで非表示にしてしまいます。
+CSS // Chrome、Safari input[type=&amp;quot;number&amp;quot;]::-webkit-outer-spin-button, input[type=&amp;quot;number&amp;quot;]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; } // Firefox、IE input[type=&amp;quot;number&amp;quot;] { -moz-appearance:textfield; } </description>
+    </item>
+    
+  </channel>
+</rss>

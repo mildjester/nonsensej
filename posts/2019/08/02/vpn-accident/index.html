@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>フリーWi-FiでVPN通信がうまくいかない &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">フリーWi-FiでVPN通信がうまくいかない</h1>
+		<div class="post-info">
+				<time datetime="2019-08-02 00:00:00 &#43;0000 UTC">August 2, 2019</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/vpn/">VPN</a></div>
+				</div>
+			
+		</div>
+		<h4 id="注意">※注意</h4>
+<p>起こった事象と考察をメモしているだけです。<br>
+本当の原因や最適な解決方法は分かっていません。</p>
+<h2 id="事象">事象</h2>
+<p>PCを喫茶店や漫画喫茶、建物のフリーラウンジなどで公開されているフリーWi-Fiにつなぎ、<br>
+そこからVPN(L2TP/IPsec)に繋いだところ一部環境に接続できないという状況になりました。</p>
+<p>具体的には以下のような状態でした。</p>
+<ul>
+<li>[OK] VPN接続は成功している。</li>
+<li>[OK] グローバルIPでの接続は問題なさそう。
+<ul>
+<li><code>curl inet-ip.info</code> コマンドでVPN接続後のIPになっていることを確認。</li>
+<li>グローバルIPで穴あけしているプライベートサイトも表示できている。</li>
+</ul>
+</li>
+<li>[NG] プライベートIPでの接続ができない。
+<ul>
+<li>VPNサーバーからプライベートIPで接続できるサーバーへSSH接続できない。</li>
+</ul>
+</li>
+</ul>
+<h2 id="原因の推察">原因の推察</h2>
+<p>不特定多数の人が使うWi-Fiの場合セキュリティ的に不安があるので<br>
+Wi-Fi接続者同時が通信の傍受などをしないようにルーター側で<br>
+プライベートネットワークを変更するような処理を入れているのかもしれません。</p>
+<h2 id="対策">対策</h2>
+<p>対策らしい対策では無いですが、フリーWi-Fiを使うのをやめるしかなさそうです。<br>
+モバイルWi-Fiを契約して持ち歩いたり、スマホのテザリングを使って接続すればVPN接続はうまくいきました。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2019/07/29/linux-mint-vpn/" class="left arrow">&#8592;</a>
+		<a href="/posts/2019/08/15/ssh-portfowarding/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2600825 &#43;0900 JST m=&#43;0.079676901">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>プログラミング向けフォントのインストール &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">プログラミング向けフォントのインストール</h1>
+		<div class="post-info">
+				<time datetime="2018-04-13 21:21:39 &#43;0000 UTC">April 13, 2018</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/linuxmint/">LinuxMint</a></div> <div class="tags_item"><a href="/tags/mac/">Mac</a></div> <div class="tags_item"><a href="/tags/ubuntu/">ubuntu</a></div>
+				</div>
+			
+		</div>
+		<h2 id="環境">■環境</h2>
+<p>Linux Mint 18.3 cinnamon 64bit<br>
+ubuntu 19.10<br>
+macOS High Sierra 10.13.1<br>
+(LinuxでもMacでも基本的に同じ操作でいけるはずです)</p>
+<hr>
+<h2 id="フォントのインストール">■フォントのインストール</h2>
+<p>プログラミングに向いていると評判の日本語対応フォント『Ricty Diminished』をインストールします。<br>
+確かに見やすいです。文字幅や文字の見分けやすさ（オーとゼロに違いとか）の点で良いです。</p>
+<p>まずはフォント一式をダウンロードします。<br>
+ダウンロードする圧縮ファイルはこちらのページから確認できます。<br>
+※(2019/11/14追記) URLが変わっていたので修正しました<br>
+<!-- raw HTML omitted --><a href="http://www.yusa.lab.uec.ac.jp/~yusa/ricty_diminished.html">http://www.yusa.lab.uec.ac.jp/~yusa/ricty_diminished.html</a><!-- raw HTML omitted --></p>
+<pre><code>$ wget http://www.yusa.lab.uec.ac.jp/~yusa/ricty_diminished/ricty_diminished-4.1.1.tar.gz
+$ tar xf ricty_diminished-4.1.1.tar.gz  
+</code></pre><p>次にダウンロードしたフォントをフォントディレクトリへ移動します。<br>
+【Macの場合】</p>
+<pre><code>$ mv RictyDiminished*.ttf ~/Library/Fonts/.  
+$ brew install fontconfig  
+</code></pre><p>【ubuntu, Linux Mintの場合】</p>
+<pre><code>$ mkdir -p ~/.fonts  
+$ mv RictyDiminished*.ttf ~/.fonts/.  
+</code></pre><p>最後にフォントを読み込みます</p>
+<pre><code>$ fc-cache -vf  
+$ rm -f ricty_diminished-4.1.1.tar.gz  
+</code></pre><p>これでIDEなどで<!-- raw HTML omitted -->Ricty Diminished<!-- raw HTML omitted -->を指定すれば反映されます。<br>
+少しオシャレ（？）な<!-- raw HTML omitted -->Ricty Diminished Discord<!-- raw HTML omitted -->というフォントも指定できるようになりますので、お好みの方を選べば良いと思います。</p>
+<h2 id="おまけ">■おまけ</h2>
+<p>『Cica』というフォントも評価が良いので紹介しておきます。<br>
+<!-- raw HTML omitted --><a href="https://github.com/miiton/Cica">https://github.com/miiton/Cica</a><!-- raw HTML omitted --></p>
+<p>Ricty同様に文字幅や文字の見分けやすさが良く、Rictyと比べると少し丸みを帯びていて可愛いです。</p>
+<p>以下の手順でインストールできます。</p>
+<pre><code>$ wget https://github.com/miiton/Cica/releases/download/v2.1.0/Cica_v2.1.0.zip  
+$ unzip Cica_v2.1.0.zip  
+$ mkdir -p ~/.fonts  
+$ mv Cica-*.ttf ~/.fonts/.  
+$ sudo fc-cache -fv  
+$ rm -f Cica_v2.1.0.zip  
+</code></pre>
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/1192/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/1222/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2748686 &#43;0900 JST m=&#43;0.094463101">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

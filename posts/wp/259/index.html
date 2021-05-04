@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>【Mac】ターミナル設定（iTerm2 &#43; zsh &#43; prezto &#43; peco） &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">【Mac】ターミナル設定（iTerm2 &#43; zsh &#43; prezto &#43; peco）</h1>
+		<div class="post-info">
+				<time datetime="2016-07-26 00:00:40 &#43;0000 UTC">July 26, 2016</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/mac/">Mac</a></div>
+				</div>
+			
+		</div>
+		<p>Ubuntuの場合は<!-- raw HTML omitted -->こちら<!-- raw HTML omitted --></p>
+<h3 id="iterm2を準備する">①iTerm2を準備する</h3>
+<p>iTerm2についてはこちらの記事で記載していますので<br>
+こちらをご参照ください。<br>
+<!-- raw HTML omitted -->【Mac】ターミナル設定（iTerm2 ＋ fish ＋ fisherman）<!-- raw HTML omitted --></p>
+<h3 id="zsh--preztoの導入">②zsh + preztoの導入</h3>
+<p>preztoのインストールは基本的に公式通りです。<br>
+<!-- raw HTML omitted --><a href="https://github.com/sorin-ionescu/prezto">https://github.com/sorin-ionescu/prezto</a><!-- raw HTML omitted --></p>
+<p>まずシェルをzshに切り替えます。Macならzshは元々インストールされているはずです。</p>
+<pre><code>zsh  
+</code></pre><p>次にgithubからソースをダウンロードします。</p>
+<pre><code>git clone --recursive https://github.com/sorin-ionescu/prezto.git &quot;${ZDOTDIR:-$HOME}/.zprezto&quot;  
+</code></pre><p>次にpreztoを使うようにzshの設定をします。<br>
+ターミナルに以下を貼り付けて実行します。（スクリプトファイルなどを作成する必要はなく、ターミナル直貼り付けでOK）</p>
+<pre><code>setopt EXTENDED_GLOB  
+for rcfile in &quot;${ZDOTDIR:-$HOME}&quot;/.zprezto/runcoms/^README.md(.N); do  
+  ln -s &quot;$rcfile&quot; &quot;${ZDOTDIR:-$HOME}/.${rcfile:t}&quot;  
+done  
+</code></pre><p>最後に、通常使うシェルをzshにします。</p>
+<pre><code>chsh -s /bin/zsh  
+</code></pre><p>これでターミナルを再起動すれば、zsh + preztoになっています。</p>
+<h3 id="pecoでコマンド履歴を検索しやすくする">③pecoでコマンド履歴を検索しやすくする</h3>
+<p>まず、pecoをインストールします。</p>
+<pre><code>brew install peco  
+</code></pre><p>あとは.zshrcに以下を記載するだけです。</p>
+<pre><code>function peco-history-selection() {  
+    BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`  
+    CURSOR=$#BUFFER  
+    zle reset-prompt  
+}  
+zle -N peco-history-selection  
+bindkey '^R' peco-history-selection  
+</code></pre><p>ターミナルを再起動するか、以下コマンドでzshrcを再読み込みすれば適用されます。<br>
+Ctrl＋Rで履歴検索画面になります。</p>
+<pre><code>source .zshrc  
+</code></pre>
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/249/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/274/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2810401 &#43;0900 JST m=&#43;0.100634601">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

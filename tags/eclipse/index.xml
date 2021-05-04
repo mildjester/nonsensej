@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Eclipse on Nonsense J</title>
+    <link>/tags/eclipse/</link>
+    <description>Recent content in Eclipse on Nonsense J</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Tue, 08 Mar 2016 12:17:33 +0000</lastBuildDate><atom:link href="/tags/eclipse/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【PHP】Eclipseでカーソルがある変数のハイライトを変更する</title>
+      <link>/posts/wp/206/</link>
+      <pubDate>Tue, 08 Mar 2016 12:17:33 +0000</pubDate>
+      
+      <guid>/posts/wp/206/</guid>
+      <description>たまにカーソルがある変数の色がおかしくなる事があります。
+その際は以下の設定を変更すれば治ります。
+■環境
+Mac (OS X El Capitan 10.11.3)
+Eclipse Luna Service Release 2 (4.4.2)
+【メニューの場所】
+環境設定 → General → Editors → TextEditors → Annotations
+【設定箇所】
+PHP elements ‘ write’ occurences：カーソルがある変数が書き込まれている箇所のハイライト色
+PHP elements ‘ read’ occurences：カーソルがある変数が読まれている箇所のハイライト色
+PHPについて記載しましたが、おそらく他の言語でも大体同じだと思います。
+※上記変更をしても、既に開いているソースコードの色は変わら無いようです。
+変更した色を確認する場合は、設定変更後にソースファイルを開き直してください。</description>
+    </item>
+    
+  </channel>
+</rss>

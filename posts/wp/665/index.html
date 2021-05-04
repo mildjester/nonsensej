@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>【Mac】neovim &amp; dein.vimの設定 &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">【Mac】neovim &amp; dein.vimの設定</h1>
+		<div class="post-info">
+				<time datetime="2017-07-15 00:44:50 &#43;0000 UTC">July 15, 2017</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/mac/">Mac</a></div>
+				</div>
+			
+		</div>
+		<h2 id="環境">■環境</h2>
+<p>macOS Sierra 10.12.6<br>
+fish 2.6.0<br>
+nvim 0.2.0</p>
+<h2 id="参考ページ">■参考ページ</h2>
+<p>NeoVim、そしてdein.vimへ：<!-- raw HTML omitted --><a href="https://qiita.com/okamos/items/2259d5c770d51b88d75b">https://qiita.com/okamos/items/2259d5c770d51b88d75b</a><!-- raw HTML omitted --> <br>
+Shougo氏のGiHub：<!-- raw HTML omitted --><a href="https://github.com/Shougo/dein.vim">https://github.com/Shougo/dein.vim</a><!-- raw HTML omitted --></p>
+<hr>
+<p>普通のvimよりも良いと噂のneovimを導入します。<br>
+プラグインの管理にはdein.vimを使います。</p>
+<h3 id="neovimのインストール">■neovimのインストール</h3>
+<p>brewでインストールできます。<br>
+便利ですね。</p>
+<pre><code>brew install neovim/neovim/neovim  
+</code></pre><h3 id="fishへの設定">■fishへの設定</h3>
+<p>コンフィグファイルのディレクトリを設定します。<br>
+以下はホームディレクトリ直下の『.config』を設定する例です。</p>
+<pre><code>echo 'set -g XDG_CONFIG_HOME &quot;$HOME/.config&quot;' &gt;&gt; ~/.config/fish/config.fish  
+</code></pre><p>ついでに、「vi」「vim」コマンド実行時にneovimが起動するようにしてしまいます。<br>
+これは好みだと思うので、やってもやらなくてもいいです。</p>
+<pre><code>echo 'alias vi=&quot;nvim&quot;' &gt;&gt; ~/.config/fish/config.fish  
+echo 'alias vim=&quot;nvim&quot;' &gt;&gt; ~/.config/fish/config.fish  
+</code></pre><p>また、neovimで利用するカラースキームのデフォルト値を設定しておきます。<br>
+以下を<!-- raw HTML omitted -->~/.config/nvim/init.vim<!-- raw HTML omitted -->の先頭行に記載する。<br>
+上記ディレクトリ、ファイルは初期状態では存在しないので新規作成すること。</p>
+<pre><code>colorscheme {好きなカラースキーム}  
+</code></pre><p>設定できるカラースキームについては以下サイトにて紹介されているので参考になると思います。<br>
+<!-- raw HTML omitted --><a href="https://qiita.com/ryoff/items/134b758afa8cc45a43d3">https://qiita.com/ryoff/items/134b758afa8cc45a43d3</a><!-- raw HTML omitted --></p>
+<p>この辺でターミナルを再起動しておくと、上記で設定した内容が綺麗に読み込まれます。</p>
+<h3 id="deinvimのインストール">■dein.vimのインストール</h3>
+<p>Shougo氏の<!-- raw HTML omitted -->GitHub<!-- raw HTML omitted -->通りに <br>
+インストールを進めます。</p>
+<pre><code>curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh &gt; installer.sh  
+sh installer.sh ~/.config  
+</code></pre><p>上記コマンドが成功すると、.vimrc記載する内容が表示されるので、<br>
+それを少しだけ修正して<!-- raw HTML omitted -->~/.config/nvim/init.vim<!-- raw HTML omitted -->に追記します。</p>
+<p>installer.shの結果出力された内容から変更する箇所は<br>
+下記の自動インストール処理のコメントアウトを外すくらいです。</p>
+<pre><code>&quot;dein Scripts-----------------------------  
+〜中略〜  
+&quot; If you want to install not installed plugins on startup.  
+if dein#check_install()  
+  call dein#install()  
+endif  
+〜中略〜  
+&quot;End dein Scripts-------------------------  
+</code></pre><p>ここまで実施すると次回nvim起動時にプラグインのインストールが行われ、 <br>
+基本的な設定は完了します。</p>
+<h3 id="プラグインの追加">■プラグインの追加</h3>
+<p>deinプラグインを追加してみます。<br>
+Tomlに記載して管理する方法もあるようですが、とりあえずは<!-- raw HTML omitted -->~/.config/nvim/init.vim<!-- raw HTML omitted -->に直接追加する方法について記載します。</p>
+<h4 id="the-nerd-tree">The NERD Tree</h4>
+<p><!-- raw HTML omitted --><a href="https://github.com/scrooloose/nerdtree">https://github.com/scrooloose/nerdtree</a><!-- raw HTML omitted --></p>
+<p>エディタの左端にディレクトリ階層(ツリー)を表示できるようにするプラグインです。<br>
+(IDEみたいになる)</p>
+<p><!-- raw HTML omitted -->~/.config/nvim/init.vim<!-- raw HTML omitted -->の『&quot; Add or remove your plugins here:』と記載があるあたりの下に以下の記載を追加します。</p>
+<pre><code>call dein#add('scrooloose/nerdtree')  
+</code></pre><p><!-- raw HTML omitted -->~/.config/nvim/init.vim<!-- raw HTML omitted -->の末に以下の記載を追加します。</p>
+<pre><code>&quot; The NERD Tree  
+let g:NERDTreeDirArrowExpandable = '▸'  
+let g:NERDTreeDirArrowCollapsible = '▾'  
+map &lt;C-n&gt; :NERDTreeToggle&lt;CR&gt;  
+</code></pre><p>nvim起動後、「:NERDTreeToggle」と打つか「Ctrl ＋ n」を押すと<br>
+ファイルツリーの表示/非表示を切り替えられるようになります。<br>
+※最後のmapコマンドで「Ctrl＋n」に「:NERDTreeToggle」をマッピングしています。</p>
+<h4 id="indent-guides">Indent Guides</h4>
+<p><!-- raw HTML omitted --><a href="https://github.com/nathanaelkane/vim-indent-guides">https://github.com/nathanaelkane/vim-indent-guides</a><!-- raw HTML omitted --></p>
+<p>インデントを色付けして分かりやすくしてくれます。</p>
+<p><!-- raw HTML omitted -->~/.config/nvim/init.vim<!-- raw HTML omitted -->の『&quot; Add or remove your plugins here:』と記載があるあたりの下に以下の記載を追加します。</p>
+<pre><code>call dein#add('nathanaelkane/vim-indent-guides')  
+</code></pre><p><!-- raw HTML omitted -->~/.config/nvim/init.vim<!-- raw HTML omitted -->の末に以下の記載を追加します。</p>
+<pre><code>&quot;Indent Guide  
+let g:indent_guides_enable_on_vim_startup = 1  
+</code></pre><h3 id="その他オススメ設定">■その他オススメ設定</h3>
+<p><!-- raw HTML omitted -->~/.config/nvim/init.vim<!-- raw HTML omitted -->の好きな箇所に以下の設定も記載しておくと使いやすくなります。</p>
+<pre><code>set number &quot;行番号表示  
+set fenc=utf-8 &quot;文字コード設定  
+set cursorline &quot;行に下線を表示  
+set hlsearch &quot;検索語をハイライト  
+set mouse=a &quot;マウス利用可能にする  
+set clipboard+=unnamed &quot;Yankしたものをクリップボードにも反映する  
+</code></pre>
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/656/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/674/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2858869 &#43;0900 JST m=&#43;0.105481301">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

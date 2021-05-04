@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>【git】gitコマンドチートシート &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">【git】gitコマンドチートシート</h1>
+		<div class="post-info">
+				<time datetime="2017-02-11 23:06:36 &#43;0000 UTC">February 11, 2017</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/git/">git</a></div>
+				</div>
+			
+		</div>
+		<p>自分が使うgitコマンドを整理しました。</p>
+<p>■環境<br>
+OS X El Capitan 10.11.6<br>
+git 2.10.1</p>
+<p><!-- raw HTML omitted -->【設定について】<!-- raw HTML omitted --><br>
+グローバルコンフィグの設定<br>
+（全リポジトリの共通設定）</p>
+<pre><code>$ git config --global user.name &amp;quot;jester&amp;quot;  
+$ git config --global user.email &amp;quot;jester@sample.co.jp&amp;quot;
+</code></pre><p>リポジトリ別コンフィグの設定</p>
+<pre><code>(対象リポジトリのディレクトリにて)  
+$ git config user.name &amp;quot;master&amp;quot;  
+$ git config user.email &amp;quot;master@sample.co.jp&amp;quot;
+</code></pre><p><!-- raw HTML omitted -->【リポジトリの作成・リモート設定について】<!-- raw HTML omitted --><br>
+リモートのリポジトリをクローンする</p>
+<pre><code>$ git clone {リモートリポジトリの指定} {生成するディレクトリ}
+</code></pre><p>※生成するディレクトリを省略すると、リモートリポジトリと同じ名前でディレクトリが生成される</p>
+<p>ローカルで新規にリポジトリを作成する</p>
+<pre><code>$ mkdir SampleProject  
+$ cd SampleProject  
+$ git init
+</code></pre><p>ローカルで作成したリポジトリを後からリモートに紐付ける</p>
+<pre><code>(対象のリポジトリディレクトリにて)  
+$ git remote add {名前、originなど} {リモートリポジトリの指定}
+</code></pre><p>リモートリポジトリの変更する</p>
+<pre><code>(対象のリポジトリディレクトリにて)  
+$ git remote set-url {名前、originなど} {リモートリポジトリの指定}
+</code></pre><p>リモートとの紐付けを解除する</p>
+<pre><code>(対象のリポジトリディレクトリにて)  
+$ git remote rm {名前、originなど}
+</code></pre>
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/402/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/349/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2826309 &#43;0900 JST m=&#43;0.102225301">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

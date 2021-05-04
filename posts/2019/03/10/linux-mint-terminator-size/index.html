@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Terminatorのデフォルトサイズを変更する &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Terminatorのデフォルトサイズを変更する</h1>
+		<div class="post-info">
+				<time datetime="2019-03-10 00:00:00 &#43;0000 UTC">March 10, 2019</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/linuxmint/">LinuxMint</a></div>
+				</div>
+			
+		</div>
+		<h2 id="環境">■環境</h2>
+<ul>
+<li>Linux Mint 19.1 &ldquo;Tessa&rdquo; - MATE (64-bit)</li>
+<li>terminator 1.91</li>
+</ul>
+<hr>
+<p>Linux環境でよく使われているターミナルソフトの「Terminator」ですが、<br>
+設定から起動時の縦横サイズを指定できなかったので無理やり設定しました。</p>
+<h2 id="設定方法">設定方法</h2>
+<p>Terminatorのmanページを見ると以下のオプションがあることが分かります。<br>
+<a href="https://linux.die.net/man/1/terminator">https://linux.die.net/man/1/terminator</a></p>
+<pre><code>--geometry=GEOMETRY
+       Specifies the preferred size and position of Terminator's window; see X(7).
+</code></pre><p>x(7)のmanページを見るとgeometryの指定方法が記載されています。<br>
+<a href="https://linux.die.net/man/7/x">https://linux.die.net/man/7/x</a></p>
+<pre><code>-geometry WIDTHxHEIGHT+XOFF+YOFF
+(where WIDTH, HEIGHT, XOFF, and YOFF are numbers)
+</code></pre><p>これを利用して、Terminatorを起動するショートカット（ランチャー）にオプションを付与してしまい、<br>
+サイズと位置を指定するようにします。</p>
+<h2 id="設定例">設定例</h2>
+<p>例えばLinux Mintの場合はパネルにTerminatorを追加して右クリックからプロパティを開き、<br>
+コマンドの部分を以下のように変更してしまいます。</p>
+<pre><code>terminator --geometry=1400x800+200+200
+</code></pre><!-- raw HTML omitted -->
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2019/03/07/google-optimize-interactive/" class="left arrow">&#8592;</a>
+		<a href="/posts/2019/03/10/linux-mint-terminator-fish/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2589059 &#43;0900 JST m=&#43;0.078500301">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

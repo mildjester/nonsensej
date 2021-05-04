@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Apacheのevent MPMのチューニング &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Apacheのevent MPMのチューニング</h1>
+		<div class="post-info">
+				<time datetime="2018-05-26 11:28:56 &#43;0000 UTC">May 26, 2018</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/apache/">Apache</a></div>
+				</div>
+			
+		</div>
+		<p>preforkからeventに乗り換えるとチューニングの考え方が少し変わるので簡単にメモ。</p>
+<p>event MPMではまずApacheの子プロセス（以下プロセス）が複数生成され、<br>
+さらに各プロセスの中にWorker Thread（以下スレッド）が複数生成されるイメージ。</p>
+<p>設定値の意味は以下のようになる</p>
+<pre><code>&lt;IfModule mpm_event_module&gt;  
+  ServerLimit               8 #プロセス数の最大値  
+  StartServers              3 #プロセス数の初期値  
+  MinSpareThreads         192 #空きスレッド数の最小値(下回ったら増やす)  
+  MaxSpareThreads         384 #空きスレッド数の最大値(上回ったら減らす)  
+  ThreadsPerChild          64 #プロセスあたりのスレッド数  
+  MaxRequestWorkers       512 #同時に処理できる最大数  
+  MaxConnectionsPerChild 5000 #プロセスが再起動までに処理するリクエスト数  
+&lt;/IfModule&gt;  
+</code></pre><ul>
+<li><!-- raw HTML omitted -->MaxRequestWorkers<!-- raw HTML omitted -->は最大スレッド数(ServerLimit×ThreadsPerChild)以下にしておくこと。<br>
+スレッド数以上のリクエストが来ると困る。</li>
+<li><!-- raw HTML omitted -->MinSpareThreads<!-- raw HTML omitted -->は初期スレッド数(StartServers×ThreadsPerChild)以下にしておくこと。<br>
+初期スレッド数以上の空きスレッドが必要だと、起動直後にスレッド追加しなければならなくて無駄。</li>
+<li><!-- raw HTML omitted -->MinSpareThreads<!-- raw HTML omitted -->と<!-- raw HTML omitted -->MaxSpareThreads<!-- raw HTML omitted -->は<!-- raw HTML omitted -->ThreadsPerChild<!-- raw HTML omitted -->の倍数になっていた方が良さそう。</li>
+</ul>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/1360/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/1375/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.2751651 &#43;0900 JST m=&#43;0.094759601">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>

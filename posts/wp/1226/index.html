@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+		
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>【Linux Mint】キーマップを変更する &middot; Nonsense J</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Nonsense J</h2>
+				</a>
+				<ul>
+    
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">【Linux Mint】キーマップを変更する</h1>
+		<div class="post-info">
+				<time datetime="2018-04-13 21:33:50 &#43;0000 UTC">April 13, 2018</time>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="/tags/linuxmint/">LinuxMint</a></div>
+				</div>
+			
+		</div>
+		<h2 id="環境">■環境</h2>
+<p>Linux Mint 18.3 cinnamon 64bit</p>
+<hr>
+<h2 id="xmodmap設定">Xmodmap設定</h2>
+<p>ホームディレクトリ直下に<!-- raw HTML omitted -->.Xmodmap<!-- raw HTML omitted -->というファイルを作成し、設定を記載していきます。</p>
+<h3 id="xmodmapへの記載内容">【.Xmodmapへの記載内容】</h3>
+<h4 id="マウス中央クリック貼り付けを無効化">マウス中央クリック貼り付けを無効化</h4>
+<p>ThinkPadキーボードだと中央ボタンをクリックしながらポインタを動かす事が多いですが、<br>
+その時にちょいちょいペーストが走って邪魔なので無効化します。</p>
+<p>.Xmodmapに以下を記載します。</p>
+<pre><code>pointer = 1 9 3 4 5 6 7 8 2 10  
+</code></pre><h4 id="pageup-amp-pagedownをshiftにする">PageUp &amp; PageDownをShiftにする</h4>
+<p>PageUp &amp; PageDownは使わないし指が当たると画面が動いて邪魔なので<br>
+Shiftに変えてしてしまいます。</p>
+<p>.Xmodmapに以下を記載します。</p>
+<pre><code>keycode 112 = Shift_R  
+keycode 117 = Shift_R  
+add Shift = Shift_R  
+</code></pre><h4 id="caps-lockをctrlにする">Caps LockをCtrlにする</h4>
+<p>Caps Lockも使わないし指が当たると大文字入力になって邪魔なので<br>
+こちらはCtrlに変えてしてしまいます。</p>
+<p>.Xmodmapに以下を記載します。</p>
+<pre><code>remove Lock = Caps_Lock  
+keysym Caps_Lock = Control_L  
+add Control = Control_L  
+</code></pre><h3 id="xmodmapの反映">【.Xmodmapの反映】</h3>
+<p><!-- raw HTML omitted -->.Xmodmap<!-- raw HTML omitted -->記載後、以下コマンドで適用されます。</p>
+<pre><code>$ xmodmap ~/.Xmodmap  
+</code></pre><p>ただし、ログインのたびに上記コマンドを打つのは面倒なので<br>
+自動起動するよう設定します。</p>
+<p>①まず、任意のシェルスクリプトを作成し、<!-- raw HTML omitted -->xmodmap ~/.Xmodmap<!-- raw HTML omitted -->を記載する。実行権付与も忘れず。<br>
+②『システム設定＞Startup Applications』を開く。<br>
+（「Startup Applications」は「自動起動するアプリ」と表記されている可能性もあり）<br>
+③『Custom Command』を追加し、①で作成したシェルスクリプトを選択する。</p>
+<h2 id="半角全角切り替えをmac風にする">半角/全角切り替えをMac風にする</h2>
+<p>通常のキーボードについている『半角/全角』ボタンはトグル式で切り替わるので<br>
+現在「半角入力」なのか「全角入力」なのかが分からないと使いづらいです。<br>
+も<br>
+そこで、普段使わない以下のキーをMac風に割り当てます。<br>
+無変換キー：半角入力にする<br>
+変換キー：全角入力にする<br>
+カタカナ/ひらがなキー：誤タッチがあるので、これも全角入力にしてしまいます</p>
+<p>まず、メニューより『Mozcの設定』を開きます。<br>
+<!-- raw HTML omitted --></p>
+<p>次に、一般タブのキー設定の『編集』をクリックします。<br>
+<!-- raw HTML omitted --></p>
+<p>キー設定の一覧が表示されるので以下のように変更してOKをクリックします。<br>
+Hiragana：IMEを有効化<br>
+Henkan：IMEを有効化<br>
+Katakana：IMEを有効化<br>
+Muhenkan：IMEを無効化<br>
+※モード別に複数箇所あります</p>
+<p>これでMac風に変更できました。</p>
+
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/wp/1222/" class="left arrow">&#8592;</a>
+		<a href="/posts/wp/1236/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2021-05-05 05:12:48.274456 &#43;0900 JST m=&#43;0.094050501">2021</time> . Nonsense J
+			</span>
+		</footer>
+
+    </body>
+</html>
