@@ -42,7 +42,7 @@
 				<p class="publish-date">投稿日：<time datetime="2020-03-15 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-03-15</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/aws/">AWS</a></div> <div class="tags_item"><a href="/tags/git/">git</a></div>
+					 <div class="tags_item"><a href="https://mildjester.github.io/nonsensej/tags/aws/">AWS</a></div> <div class="tags_item"><a href="https://mildjester.github.io/nonsensej/tags/git/">git</a></div>
 				</div>
 			
 		</div>
@@ -59,7 +59,7 @@
 <h3 id="github-secretsへのキー登録">GitHub Secretsへのキー登録</h3>
 <p>前手順で取得したIAMユーザーの『アクセスキーID』と『シークレットアクセスキー』をGitHubのSecretsに登録します。</p>
 <p>まず、GitHubの対象リポジトリの『Settings ＞ Secrets』を開き、『Add a new secret』をクリックします。<br>
-<img src="/images/2020/03/github-actions-deploy-001.png" /></p>
+<img src="https://mildjester.github.io/nonsensej/images/2020/03/github-actions-deploy-001.png" /></p>
 <p>Secretsの設定画面になるので以下2つを設定します。</p>
 <table>
 <thead>
@@ -82,7 +82,7 @@
 <h3 id="github-actionsの設定">GitHub Actionsの設定</h3>
 <p>デプロイしたいリポジトリのGitHubページの『Actions』タブを開き、<br>
 「Set up a workflow yourself」をクリックします。<br>
-<img src="/images/2020/03/github-actions-deploy-002.png" /></p>
+<img src="https://mildjester.github.io/nonsensej/images/2020/03/github-actions-deploy-002.png" /></p>
 <p><code>.github/workflows/main.yml</code>の編集画面が開くので、以下のように記載します。</p>
 <pre><code>name: AWS Code Deploy
 
@@ -136,7 +136,7 @@ jobs:
 </table>
 <p>記載できたらコミットします。<br>
 コミットしたら、今回のコミットに対してGitHub Actionが動くので正常終了するか確認してください。<br>
-<img src="/images/2020/03/github-actions-deploy-003.png" /></p>
+<img src="https://mildjester.github.io/nonsensej/images/2020/03/github-actions-deploy-003.png" /></p>
 <p>これで設定は完了です。<br>
 masterブランチが更新される度にAWS Code Deployが走りデプロイされるようになりました。</p>
 <p>今回はデプロイのみのCIだからか、1回1分以内で処理完了していました。<br>
@@ -150,7 +150,7 @@ Actionsはプライベートリポジトリで月間2,000分まで無料(2020年
 			<div class="footer-container">
 				
 				<span>
-				&copy; <time datetime="2021-05-05 07:11:57.3420081 &#43;0900 JST m=&#43;0.100107501">2021</time> . Nonsense J
+				&copy; <time datetime="2021-05-05 11:09:13.1418663 &#43;0900 JST m=&#43;0.082496001">2021</time> . Nonsense J
 				</span>
 			</div>
 		</footer>
