@@ -2,17 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>python on Nonsense J</title>
-    <link>https://mildjester.github.io/nonsensej/tags/python/</link>
+    <link>https://blog2.logical-dice.com/tags/python/</link>
     <description>Recent content in python on Nonsense J</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sat, 06 Jun 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://mildjester.github.io/nonsensej/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 06 Jun 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog2.logical-dice.com/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Dictionaly型から特定の値を取り出しlist型に入れる</title>
-      <link>https://mildjester.github.io/nonsensej/posts/2020/06/06/python-dict-list/</link>
+      <link>https://blog2.logical-dice.com/posts/2020/06/06/python-dict-list/</link>
       <pubDate>Sat, 06 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://mildjester.github.io/nonsensej/posts/2020/06/06/python-dict-list/</guid>
+      <guid>https://blog2.logical-dice.com/posts/2020/06/06/python-dict-list/</guid>
       <description>pythonらしくDictionaly型から特定の値を取り出して配列に入れる方法です。</description>
     </item>
     

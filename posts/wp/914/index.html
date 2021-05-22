@@ -9,12 +9,12 @@
 		<title>Visual Studio CodeでPHP開発環境構築 &middot; Nonsense J</title>
 
 		
-  		<link rel="stylesheet" href="/nonsensej/css/style.css">
-		<link rel="stylesheet" href="/nonsensej/css/fonts.css">
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
 		
-		<link rel="icon" type="image/png" sizes="32x32" href="/nonsensej/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/nonsensej/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/nonsensej/images/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
 
 		
 		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
@@ -23,7 +23,7 @@
     <body>
         		<nav class="nav">
 			<div class="nav-container">
-				<a href="/nonsensej/" class="nav-title">
+				<a href="/" class="nav-title">
 					Nonsense J
 				</a>
 				<ul>
@@ -42,7 +42,7 @@
 				<p class="publish-date">投稿日：<time datetime="2017-12-18 14:02:41 &#43;0000 UTC" class="catalogue-time">2017-12-18</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="https://mildjester.github.io/nonsensej/tags/php/">PHP</a></div> <div class="tags_item"><a href="https://mildjester.github.io/nonsensej/tags/vscode/">VSCode</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.comtags/php/">PHP</a></div> <div class="tags_item"><a href="https://blog2.logical-dice.comtags/vscode/">VSCode</a></div>
 				</div>
 			
 		</div>
@@ -66,14 +66,14 @@ macOS High Sierra 10.13.1<br>
 手順は<a href="/posts/wp/1218" rel="noopener" target="_blank">コチラ</a>を参照してください。</p>
 <p>PCにフォントがインストールできたら、VSCode側の設定をします。<br>
 まず、メニューの「Code　&gt; 基本設定 &gt; 設定」を開きます。<br>
-<img src="https://mildjester.github.io/nonsensej/images/2017/12/85e7fa312b40652c1c3d804cd66dd2eb.png" alt="" /></p>
+<img src="https://blog2.logical-dice.comimages/2017/12/85e7fa312b40652c1c3d804cd66dd2eb.png" alt="" /></p>
 <p>次に設定ファイルに以下の行を追加します。</p>
 <pre><code>&quot;editor.fontFamily&quot;: &quot;'Ricty Diminished'&quot;,  
 </code></pre><p>これでフォントがRicty Diminishedになりました。</p>
 <h3 id="拡張機能インストール">■拡張機能インストール</h3>
 <p>VSCodeを起動したら上部メニューより<code>表示 &gt; 拡張機能</code>を選択します。 <br>
 もしくは左側にあるアイコンの中の一番下にある四角いアイコンを選択します。 <br>
-<img src="https://mildjester.github.io/nonsensej/images/2017/12/vscode001.png" alt="" /></p>
+<img src="https://blog2.logical-dice.comimages/2017/12/vscode001.png" alt="" /></p>
 <p>検索窓が表示されるので、キーワード検索をしてインストールすることが可能です。 <br>
 以下、私がインストールしてみたものです。</p>
 <h4 id="project-manager">Project Manager</h4>
@@ -83,7 +83,7 @@ macOS High Sierra 10.13.1<br>
 NetBeansやEclipseのように複数プロジェクトを同時に開いておくことはできないようです。</p>
 <p><em>■使い方</em> <br>
 上部メニューの<code>表示 &gt; コマンドパレット</code>を開き、検索バーに<code>Project Manager</code>と入力するとProject Manager用のコマンドが表示されます。 <br>
-<img src="https://mildjester.github.io/nonsensej/images/2017/12/vscode002.png" alt="" /><br>
+<img src="https://blog2.logical-dice.comimages/2017/12/vscode002.png" alt="" /><br>
 (コマンドパレットは<code>Command + Shft+P</code>でも開けます)</p>
 <p>主に使うコマンドについては以下の通り。</p>
 <table>
@@ -135,11 +135,11 @@ FTPだけでなく、SFTPも使えます。</p>
 <h4 id="ファイル拡張子毎の言語設定">ファイル拡張子毎の言語設定</h4>
 <p>ファイルの拡張子を通常ではないものにしている場合、ハイライトや補完機能が使えない場合があります。 <br>
 その場合は対象のファイルを開いた状態で右下の「プレーンテキスト」をクリックします。 <br>
-<img src="https://mildjester.github.io/nonsensej/images/2017/12/vscode003.png" alt="" /><br>
+<img src="https://blog2.logical-dice.comimages/2017/12/vscode003.png" alt="" /><br>
 ※既に他の言語が紐づいている場合は、その言語が表示されていると思います。</p>
 <p>すると言語の設定画面が開きます。 <br>
-同じ拡張子のファイル全てに反映させたい場合は検索バーの下にある「'.xxx&rsquo;に対するファイルの関連付けの構成」をクリックします。 <br>
-<img src="https://mildjester.github.io/nonsensej/images/2017/12/vscode004.png" alt="" /></p>
+同じ拡張子のファイル全てに反映させたい場合は検索バーの下にある「'.xxx'に対するファイルの関連付けの構成」をクリックします。 <br>
+<img src="https://blog2.logical-dice.comimages/2017/12/vscode004.png" alt="" /></p>
 <p>ここで言語を設定すれば、今後は選択した言語のハイライトなどが反映されるようになります。</p>
 
 	</div>
@@ -150,7 +150,7 @@ FTPだけでなく、SFTPも使えます。</p>
 			<div class="footer-container">
 				
 				<span>
-				&copy; <time datetime="2021-05-05 11:09:13.1778901 &#43;0900 JST m=&#43;0.118519801">2021</time> . Nonsense J
+				&copy; <time datetime="2021-05-22 23:44:59.7274016 &#43;0900 JST m=&#43;0.199220501">2021</time> . Nonsense J
 				</span>
 			</div>
 		</footer>

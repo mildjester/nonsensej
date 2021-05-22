@@ -2,17 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>VSCode on Nonsense J</title>
-    <link>https://mildjester.github.io/nonsensej/tags/vscode/</link>
+    <link>https://blog2.logical-dice.com/tags/vscode/</link>
     <description>Recent content in VSCode on Nonsense J</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Mon, 18 Dec 2017 14:02:41 +0000</lastBuildDate><atom:link href="https://mildjester.github.io/nonsensej/tags/vscode/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Dec 2017 14:02:41 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog2.logical-dice.com/tags/vscode/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Visual Studio CodeでPHP開発環境構築</title>
-      <link>https://mildjester.github.io/nonsensej/posts/wp/914/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/914/</link>
       <pubDate>Mon, 18 Dec 2017 14:02:41 +0000</pubDate>
       
-      <guid>https://mildjester.github.io/nonsensej/posts/wp/914/</guid>
+      <guid>https://blog2.logical-dice.com/posts/wp/914/</guid>
       <description>■環境Visual Studio Code 1.19.0Linux Mint 18.3 cinnamon 64bitmacOS &amp;hellip;</description>
     </item>
     
