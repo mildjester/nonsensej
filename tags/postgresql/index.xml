@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>PostgreSQL on Nonsense J</title>
+    <title>PostgreSQL on J&#39;s Nonsense</title>
     <link>https://blog2.logical-dice.com/tags/postgresql/</link>
-    <description>Recent content in PostgreSQL on Nonsense J</description>
+    <description>Recent content in PostgreSQL on J&#39;s Nonsense</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <lastBuildDate>Fri, 04 Dec 2015 12:59:49 +0000</lastBuildDate>
