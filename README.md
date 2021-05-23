@@ -1,3 +1,3 @@
 # For GitHub Page
 
-https://mildjester.github.io/nonsensej/  
+https://blog2.logical-dice.com
