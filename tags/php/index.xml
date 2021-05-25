@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>PHP on J&#39;s Nonsense</title>
+    <title>PHP on Logical Dice 技術ブログ</title>
     <link>https://blog2.logical-dice.com/tags/php/</link>
-    <description>Recent content in PHP on J&#39;s Nonsense</description>
+    <description>Recent content in PHP on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
     <lastBuildDate>Sat, 06 Feb 2021 00:00:00 +0000</lastBuildDate>
