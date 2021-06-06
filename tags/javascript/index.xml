@@ -6,10 +6,19 @@
     <description>Recent content in javascript on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sun, 25 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 06 Jun 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://blog2.logical-dice.com/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>lodashのdebounceとthrottleの違い</title>
+      <link>https://blog2.logical-dice.com/posts/2021/06/06/lodash-debounce-vs-throttle/</link>
+      <pubDate>Sun, 06 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog2.logical-dice.com/posts/2021/06/06/lodash-debounce-vs-throttle/</guid>
+      <description>debounceとthrottleの違いを調べた際のメモです。</description>
+    </item>
     
     <item>
       <title>javascriptでライブラリ無しでオートコンプリート</title>
