@@ -80,15 +80,15 @@
 Muhenkanに『IME無効』を割り当てます。</p>
 <p>これでMacのようにIMEのON/OFFを切り替えられるようになりました。</p>
 <h2 id="capslockをctrlに半角全角をescにする">CapsLockをCtrlに、半角/全角をEscにする</h2>
-<p>こちらもMac風になる設定です。
-以下のコマンドを実行するとCapsLockがCtrlになり、半角/全角キーがEsc扱いになります。</p>
-<pre><code>setxkbmap -option ctrl:nocaps,japan:hztg_escape
-</code></pre><p>しかし、これだけだと再起動後に戻ってしまうので
-キーボードの設定ファイルにも設定を記載しておきます。</p>
-<pre><code>sudo vim /etc/default/keyboard
-</code></pre><p>以下の設定を追記します。</p>
-<pre><code>XKBOPTIONS=[&quot;ctrl:nocaps&quot;,&quot;japan:hztg_escape&quot;]
-</code></pre><h2 id="tiling機能をoffにする">tiling機能をOFFにする</h2>
+<p>Gnome Tweak Toolを使って制御します。<br>
+まずは以下コマンドでインストールします。</p>
+<pre><code>sudo apt install gnome-tweak-tool
+</code></pre><p>ランチャーから起動できるので「ユーティリティ &gt; Tweaks」を開きます。<br>
+Tweaksが開いたら『キーボードとマウス』の『追加のレイアウトオプション』をクリックします。<br>
+<img src="https://blog2.logical-dice.com/images/2021/02/ubuntu-20-10-initialize-001.png" /></p>
+<p>オプション画面が開くので『Ctrl position &gt; Caps LockをCtrlとして扱う』と『日本語キーボードオプション &gt; Make Zenkaku Hankaku an additional Esc』にチェックを入れます。<br>
+<img src="https://blog2.logical-dice.com/images/2021/02/ubuntu-20-10-initialize-002.png" /></p>
+<h2 id="tiling機能をoffにする">tiling機能をOFFにする</h2>
 <p>デフォルトだとウィンドウを画面端にドラッグすると勝手に最大化します。
 無くてもいい機能なので以下コマンドで無効化します。</p>
 <pre><code>gsettings set org.gnome.mutter edge-tiling false
@@ -129,7 +129,7 @@ systemctl disable apache2
 			<div class="footer-container">
 				
 				<span>
-				&copy; <time datetime="2021-06-07 01:41:45.2986712 &#43;0900 JST m=&#43;0.081116301">2021</time> . Logical Dice
+				&copy; <time datetime="2021-06-11 00:37:27.14169021 &#43;0900 JST m=&#43;0.096733115">2021</time> . Logical Dice
 				</span>
 			</div>
 		</footer>
