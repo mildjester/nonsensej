@@ -6,10 +6,19 @@
     <description>Recent content in Tags on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sun, 06 Jun 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 19 Jun 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://blog2.logical-dice.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Laravel</title>
+      <link>https://blog2.logical-dice.com/tags/laravel/</link>
+      <pubDate>Sat, 19 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog2.logical-dice.com/tags/laravel/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>javascript</title>
@@ -26,15 +35,6 @@
       <pubDate>Sun, 07 Mar 2021 00:00:00 +0000</pubDate>
       
       <guid>https://blog2.logical-dice.com/tags/windows/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Laravel</title>
-      <link>https://blog2.logical-dice.com/tags/laravel/</link>
-      <pubDate>Sun, 21 Feb 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog2.logical-dice.com/tags/laravel/</guid>
       <description></description>
     </item>
     

@@ -6,10 +6,28 @@
     <description>Recent content in Laravel on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sun, 21 Feb 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 19 Jun 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://blog2.logical-dice.com/tags/laravel/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>【Laravel】モデルをcreateしてもレスポンスをHTTP 200にする</title>
+      <link>https://blog2.logical-dice.com/posts/2021/06/19/laravel-create-http200/</link>
+      <pubDate>Sat, 19 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog2.logical-dice.com/posts/2021/06/19/laravel-create-http200/</guid>
+      <description>モデルをcreateして返却しても201は返さない方法です</description>
+    </item>
+    
+    <item>
+      <title>【Laravel】JTIを指定してJWTトークンを無効化する</title>
+      <link>https://blog2.logical-dice.com/posts/2021/04/12/laravel-jwt-clear/</link>
+      <pubDate>Mon, 12 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog2.logical-dice.com/posts/2021/04/12/laravel-jwt-clear/</guid>
+      <description>JTIを指定してJWTトークンを無効化する方法です</description>
+    </item>
     
     <item>
       <title>【Laravel】Observerが実行されない</title>

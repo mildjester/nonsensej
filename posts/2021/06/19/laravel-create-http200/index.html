@@ -14,7 +14,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>Tags &middot; Logical Dice 技術ブログ</title>
+	<title>【Laravel】モデルをcreateしてもレスポンスをHTTP 200にする &middot; Logical Dice 技術ブログ</title>
 
 	
 	<link rel="stylesheet" href="/css/style.css">
@@ -25,7 +25,7 @@
 	<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
 
 	
-	<link href="/tags/index.xml" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
 </head>
 
     <body>
@@ -46,13 +46,28 @@
 		</nav>
 
         
+
 <main>
-    <h1>Tags</h1>
-	<div class="catalogue">
-        <ul><li><a href="https://blog2.logical-dice.com/tags/laravel/">Laravel</a></li><li><a href="https://blog2.logical-dice.com/tags/javascript/">javascript</a></li><li><a href="https://blog2.logical-dice.com/tags/windows/">Windows</a></li><li><a href="https://blog2.logical-dice.com/tags/ubuntu/">ubuntu</a></li><li><a href="https://blog2.logical-dice.com/tags/git/">git</a></li><li><a href="https://blog2.logical-dice.com/tags/php/">PHP</a></li><li><a href="https://blog2.logical-dice.com/tags/googleservice/">GoogleService</a></li><li><a href="https://blog2.logical-dice.com/tags/typescript/">Typescript</a></li><li><a href="https://blog2.logical-dice.com/tags/vue.js/">Vue.js</a></li><li><a href="https://blog2.logical-dice.com/tags/node/">node</a></li></ul>
-	</div>
-	
-	<div class="pagination"><a href="/tags/page/2/" class="right arrow">&#8594;</a><span>1</span>
+	<div class="post">
+		<h1 class="post-title">【Laravel】モデルをcreateしてもレスポンスをHTTP 200にする</h1>
+		<div class="post-info">
+				<p class="publish-date">投稿日：<time datetime="2021-06-19 00:00:00 &#43;0000 UTC" class="catalogue-time">2021-06-19</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/laravel/">Laravel</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<p>Laravelでモデルをcreateして返却すると、HTTPステータスは自動で201になります。<br>
+何か理由があってHTTP 200に戻したい場合はモデルのwasRecentlyCreatedをfalseにします。</p>
+<pre><code>public function store()
+{
+    $hoge = HogeModel::create();
+    $hoge-&gt;wasRecentlyCreated = false; // create時はtrueになっている
+    return $hoge;
+}
+</code></pre>
 	</div>
 </main>
 
