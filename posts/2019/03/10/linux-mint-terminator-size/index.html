@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -77,18 +89,18 @@ window.addEventListener('DOMContentLoaded', () => {
 <h2 id="設定方法">設定方法</h2>
 <p>Terminatorのmanページを見ると以下のオプションがあることが分かります。<br>
 <a href="https://linux.die.net/man/1/terminator">https://linux.die.net/man/1/terminator</a></p>
-<pre><code>--geometry=GEOMETRY
+<pre tabindex="0"><code>--geometry=GEOMETRY
        Specifies the preferred size and position of Terminator's window; see X(7).
 </code></pre><p>x(7)のmanページを見るとgeometryの指定方法が記載されています。<br>
 <a href="https://linux.die.net/man/7/x">https://linux.die.net/man/7/x</a></p>
-<pre><code>-geometry WIDTHxHEIGHT+XOFF+YOFF
+<pre tabindex="0"><code>-geometry WIDTHxHEIGHT+XOFF+YOFF
 (where WIDTH, HEIGHT, XOFF, and YOFF are numbers)
 </code></pre><p>これを利用して、Terminatorを起動するショートカット（ランチャー）にオプションを付与してしまい、<br>
 サイズと位置を指定するようにします。</p>
 <h2 id="設定例">設定例</h2>
 <p>例えばLinux Mintの場合はパネルにTerminatorを追加して右クリックからプロパティを開き、<br>
 コマンドの部分を以下のように変更してしまいます。</p>
-<pre><code>terminator --geometry=1400x800+200+200
+<pre tabindex="0"><code>terminator --geometry=1400x800+200+200
 </code></pre><img src="https://blog2.logical-dice.com/images/2019/03/linux-mint-terminator-size.png">
 これでパネルからTerminatorを起動すると
 「横幅1400、高さ800、位置は上から200、左から200の場所」

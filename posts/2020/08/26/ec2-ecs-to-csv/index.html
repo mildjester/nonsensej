@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -78,7 +90,7 @@ window.addEventListener('DOMContentLoaded', () => {
 <h2 id="ec2">EC2</h2>
 <p>以下のようなシェルです。<br>
 region一覧は固定で持っているので、今後増減があった場合は手動で修正が必要です。</p>
-<pre><code>#!/bin/bash
+<pre tabindex="0"><code>#!/bin/bash
 
 #region一覧
 regionList=(
@@ -141,7 +153,7 @@ done
 </code></pre><p>このシェルではEC2のドメインやIPアドレスを取得していますが、そこは必要に情報に置き換えても良いです。</p>
 <h2 id="ecs">ECS</h2>
 <p>以下のようなシェルです。</p>
-<pre><code>#!/bin/bash
+<pre tabindex="0"><code>#!/bin/bash
 echo '&quot;ClusterArns&quot;, &quot;IPAddress&quot;'
 
 ClusterArnsList=`aws ecs list-clusters --output json --query 'clusterArns'`

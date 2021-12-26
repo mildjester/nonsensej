@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -85,17 +97,17 @@ openssl 1:1.0.1e-42.el7.9</p>
 <p>そして、メールで送られてきた証明書のうち自分のドメイン名がファイル名に入っていない３つを連結します。<br>
 連結は以下のコマンドで実施できます。連結する順番は以下順を守ってください。<br>
 なお、連結後のファイル名（以下例ではyourdomain_com.ca_bundle）は任意です。</p>
-<pre><code># cat COMODORSADomainValidationSecureServerCA.crt COMODORSAAddTrustCA.crt AddTrustExternalCARoot.crt &gt; yourdomain_com.ca_bundle
+<pre tabindex="0"><code># cat COMODORSADomainValidationSecureServerCA.crt COMODORSAAddTrustCA.crt AddTrustExternalCARoot.crt &gt; yourdomain_com.ca_bundle
 </code></pre><p>ApacheのSSL設定ファイルを編集し、以下の行を修正します。<br>
 (/etc/httpd/conf.d/ssl.conf)</p>
-<pre><code>SSLCertificateFile /etc/pki/comodo/yourdomain_com.crt  
+<pre tabindex="0"><code>SSLCertificateFile /etc/pki/comodo/yourdomain_com.crt  
 SSLCertificateKeyFile /etc/pki/comodo/yourdomain_com.key  
 SSLCertificateChainFile /etc/pki/comodo/yourdomain_com.ca_bundle
 </code></pre><p>Apacheの設定を再読み込みします。</p>
-<pre><code># systemctl reload httpd
+<pre tabindex="0"><code># systemctl reload httpd
 </code></pre><p>これでSSLの設定が反映されるはずです。<br>
 もし駄目だったら、Apacheの再起動をしてみてください。</p>
-<pre><code># systemctl restart httpd
+<pre tabindex="0"><code># systemctl restart httpd
 </code></pre>
 	</div>
 </main>

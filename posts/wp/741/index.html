@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -92,28 +104,28 @@ iTerm2のメニューバーより<br>
 <code>Japanesque</code> が追加されます。</p>
 <h3 id="fish-インストール">fish インストール</h3>
 <p>fishをインストールします。</p>
-<pre><code>$ brew install fish  
+<pre tabindex="0"><code>$ brew install fish  
 </code></pre><p>fishのパスを確認する。</p>
-<pre><code>$ which fish  
+<pre tabindex="0"><code>$ which fish  
 /usr/local/bin/fish  
 </code></pre><p>上記パスをシェル一覧に追記する</p>
-<pre><code>$ sudo vi /etc/shells  
+<pre tabindex="0"><code>$ sudo vi /etc/shells  
 〜末尾にwhichコマンドで確認したパスを追記する〜  
 </code></pre><p>シェルをfishに変更する</p>
-<pre><code>$ chsh -s /usr/local/bin/fish  
+<pre tabindex="0"><code>$ chsh -s /usr/local/bin/fish  
 </code></pre><p>これで、ターミナルを再起動するとfishが立ち上がります。</p>
 <h3 id="fisherman-インストール">fisherman インストール</h3>
 <p>fishermanというfishのプラグイン管理ツールがあります。</p>
 <p>fishermanのgithubベージにインストールコマンドが載っています。<br>
 <a href="https://github.com/fisherman/fisherman" rel="noopener" target="_blank"><a href="https://github.com/fisherman/fisherman">https://github.com/fisherman/fisherman</a></a></p>
-<pre><code>$ curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher  
+<pre tabindex="0"><code>$ curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher  
 </code></pre><p>上記コマンド実行時にバージョン情報が出なかった場合は、一度ターミナルを再起動すると良いです。</p>
 <h3 id="fishのテーマ変更">fishのテーマ変更</h3>
 <p>fishはテーマを変更することで見栄えが変えられます。<br>
 どのようなテーマがあるかは、以下ページが参考になります。<br>
 <a href="https://github.com/oh-my-fish/oh-my-fish/blob/master/docs/Themes.md" rel="noopener" target="_blank"><a href="https://github.com/oh-my-fish/oh-my-fish/blob/master/docs/Themes.md">https://github.com/oh-my-fish/oh-my-fish/blob/master/docs/Themes.md</a></a></p>
 <p>私は「bobthefish」というテーマを利用しており、以下手順でインストールしています。</p>
-<pre><code>$ fisher add oh-my-fish/theme-bobthefish  
+<pre tabindex="0"><code>$ fisher add oh-my-fish/theme-bobthefish  
 $ git clone https://github.com/powerline/fonts.git  
 $ fonts/install.sh  
 $ rm -rf fonts  
@@ -130,7 +142,7 @@ $ rm -rf fonts
 <h4 id="z">z</h4>
 <p>過去の履歴からディレクトリを選択して遷移できるようになります。<br>
 【インストール方法】</p>
-<pre><code>$ fisher add z  
+<pre tabindex="0"><code>$ fisher add z  
 </code></pre><p>【使い方】<br>
 <code>z {文字列}</code> まで入力してタブを押下する。<br>
 上記の{文字列}で履歴からディレクトリ検索をして遷移できる。<br>
@@ -138,17 +150,17 @@ $ rm -rf fonts
 <h4 id="bd">bd</h4>
 <p>親以上のディレクトリ(祖先ディレクトリ？)への遷移が簡単になる。<br>
 【インストール方法】</p>
-<pre><code>$ fisher add 0rax/fish-bd  
+<pre tabindex="0"><code>$ fisher add 0rax/fish-bd  
 </code></pre><p>【使い方】<br>
 <code>$ bd</code>と入力してタブを押すと、親ディレクトリの一覧が表示されるので<br>
 選択してエンターを押すだけで移動できる。</p>
 <h4 id="peco">peco</h4>
 <p>コマンド履歴の検索が容易にできるようになる。</p>
 <p>【インストール方法】</p>
-<pre><code>$ brew install peco  
+<pre tabindex="0"><code>$ brew install peco  
 $ fisher add oh-my-fish/plugin-peco  
 </code></pre><p>上記コマンド後、fishのコンフィグファイルへ以下を記載。</p>
-<pre><code>vim ~/.config/fish/config.fish  
+<pre tabindex="0"><code>vim ~/.config/fish/config.fish  
 〜以下を追記(ファイルがなければ新規作成)〜  
 function fish_user_key_bindings  
   bind \cr 'peco_select_history (commandline -b)'  
@@ -162,10 +174,10 @@ end
 <h4 id="ghq">ghq</h4>
 <p>gitの管理が容易になるプラグイン</p>
 <p>【インストール方法】</p>
-<pre><code>$ brew install ghq  
+<pre tabindex="0"><code>$ brew install ghq  
 $ fisher add yoshiori/fish-peco_select_ghq_repository  
 </code></pre><p>上記コマンド後、fishのコンフィグファイルへ以下を記載。</p>
-<pre><code>vim ~/.config/fish/config.fish  
+<pre tabindex="0"><code>vim ~/.config/fish/config.fish  
 〜以下を追記(ファイルがなければ新規作成)〜  
 function fish_user_key_bindings  
   bind \c] peco_select_ghq_repository  # 追加  
@@ -173,7 +185,7 @@ end
 </code></pre><p>※「function fish_user_key_bindings」の定義が既にされているなら、<br>
 　その中に<code>bind〜</code>の行だけ追記すれば良い。<br>
 　例えば、もし上記のpecoも導入しているのであれば、config.fishの記載は以下のようになる。</p>
-<pre><code>function fish_user_key_bindings  
+<pre tabindex="0"><code>function fish_user_key_bindings  
   bind \cr 'peco_select_history (commandline -b)'  
   bind \c] peco_select_ghq_repository  # 追加  
 end  

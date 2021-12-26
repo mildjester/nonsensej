@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -67,7 +79,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		</div>
 		<hr />
 		<p>以下のコマンドでインストールしようとするとエラーが発生しました。</p>
-<pre><code>$ sudo gem install compass  
+<pre tabindex="0"><code>$ sudo gem install compass  
   
 Fetching: sassa - 3.4.25.gem (100%)  
 Successfully installed sassa - 3.4.25  
@@ -97,7 +109,7 @@ Results logged to /var/lib/gems/2.3.0/extensions/x86_64-linux/2.3.0/ffi-1.9.23/g
 </code></pre><p>調べてみると、どうやらgemのアップデートを先にやらなければならないようでした。<br>
 <a href="https://ericdouglas.github.io/2016/08/21/Installing-Compass-on-Linux-Mint/" target="_blank" rel="noopener"><a href="https://ericdouglas.github.io/2016/08/21/Installing-Compass-on-Linux-Mint/">https://ericdouglas.github.io/2016/08/21/Installing-Compass-on-Linux-Mint/</a></a></p>
 <p>以下のコマンドを実行するとインストールに成功しました。</p>
-<pre><code>$ sudo gem update - system  
+<pre tabindex="0"><code>$ sudo gem update - system  
 $ apt install ruby-ffi  
 $ sudo gem install compass  
 </code></pre>

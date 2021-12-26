@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -73,7 +85,7 @@ window.addEventListener('DOMContentLoaded', () => {
 <p>①秘密鍵と公開鍵を生成<br>
 ローカルPCにて以下を実施します。<br>
 MacでもLinuxでも同じコマンドで生成できるはずです。</p>
-<pre><code>$ ssh-keygen -t rsa -b 4096  
+<pre tabindex="0"><code>$ ssh-keygen -t rsa -b 4096  
 Generating public/private rsa key pair.  
 Enter file in which to save the key (/Users/hoge/.ssh/id_rsa):  
 =&gt;生成するパスとファイル名を指定（空欄のままだと括弧内のファイル名で生成される)  
@@ -85,16 +97,16 @@ Enter same passphrase again:
 catコマンドで中身を見ておく。(後ほど使うのでコピーしておくと良い)</p>
 <p>②公開鍵をサーバに格納<br>
 ログイン先サーバにて以下を実施</p>
-<pre><code>$ mkdir ~/.ssh  
+<pre tabindex="0"><code>$ mkdir ~/.ssh  
 $ vim ~/.ssh/authorized_keys  
 </code></pre><p>この「authorized_keys」に①で生成した公開鍵の中身を貼り付ける。</p>
 <p>以上で秘密鍵認証でログインできるようになっている。<br>
 もし接続できなかった場合は以下設定も確認してみる。</p>
 <p>③【繋がらない場合のみ】sshd設定確認<br>
 ログイン先のサーバにて以下を実施</p>
-<pre><code>$ vim /etc/ssh/sshd_config  
+<pre tabindex="0"><code>$ vim /etc/ssh/sshd_config  
 </code></pre><p>以下の設定となっているか確認</p>
-<pre><code>RSAAuthentication yes  
+<pre tabindex="0"><code>RSAAuthentication yes  
 PubkeyAuthentication yes  
 AuthorizedKeysFile     .ssh/authorized_keys  
 </code></pre><p>※上から２つはコメントアウトされていても良い</p>

@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -76,24 +88,24 @@ window.addEventListener('DOMContentLoaded', () => {
 <p>ThinkPadキーボードだと中央ボタンをクリックしながらポインタを動かす事が多いですが、<br>
 その時にちょいちょいペーストが走って邪魔なので無効化します。</p>
 <p>.Xmodmapに以下を記載します。</p>
-<pre><code>pointer = 1 9 3 4 5 6 7 8 2 10  
+<pre tabindex="0"><code>pointer = 1 9 3 4 5 6 7 8 2 10  
 </code></pre><h4 id="pageup-amp-pagedownをshiftにする">PageUp &amp; PageDownをShiftにする</h4>
 <p>PageUp &amp; PageDownは使わないし指が当たると画面が動いて邪魔なので<br>
 Shiftに変えてしてしまいます。</p>
 <p>.Xmodmapに以下を記載します。</p>
-<pre><code>keycode 112 = Shift_R  
+<pre tabindex="0"><code>keycode 112 = Shift_R  
 keycode 117 = Shift_R  
 add Shift = Shift_R  
 </code></pre><h4 id="caps-lockをctrlにする">Caps LockをCtrlにする</h4>
 <p>Caps Lockも使わないし指が当たると大文字入力になって邪魔なので<br>
 こちらはCtrlに変えてしてしまいます。</p>
 <p>.Xmodmapに以下を記載します。</p>
-<pre><code>remove Lock = Caps_Lock  
+<pre tabindex="0"><code>remove Lock = Caps_Lock  
 keysym Caps_Lock = Control_L  
 add Control = Control_L  
 </code></pre><h3 id="xmodmapの反映">【.Xmodmapの反映】</h3>
 <p><code>.Xmodmap</code>記載後、以下コマンドで適用されます。</p>
-<pre><code>$ xmodmap ~/.Xmodmap  
+<pre tabindex="0"><code>$ xmodmap ~/.Xmodmap  
 </code></pre><p>ただし、ログインのたびに上記コマンドを打つのは面倒なので<br>
 自動起動するよう設定します。</p>
 <p>①まず、任意のシェルスクリプトを作成し、<code>xmodmap ~/.Xmodmap</code>を記載する。実行権付与も忘れず。<br>

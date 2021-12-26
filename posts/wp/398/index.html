@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -73,28 +85,28 @@ git 2.10.1</p>
 <p><strong>【設定について】</strong><br>
 グローバルコンフィグの設定<br>
 （全リポジトリの共通設定）</p>
-<pre><code>$ git config --global user.name &amp;quot;jester&amp;quot;  
+<pre tabindex="0"><code>$ git config --global user.name &amp;quot;jester&amp;quot;  
 $ git config --global user.email &amp;quot;jester@sample.co.jp&amp;quot;
 </code></pre><p>リポジトリ別コンフィグの設定</p>
-<pre><code>(対象リポジトリのディレクトリにて)  
+<pre tabindex="0"><code>(対象リポジトリのディレクトリにて)  
 $ git config user.name &amp;quot;master&amp;quot;  
 $ git config user.email &amp;quot;master@sample.co.jp&amp;quot;
 </code></pre><p><strong>【リポジトリの作成・リモート設定について】</strong><br>
 リモートのリポジトリをクローンする</p>
-<pre><code>$ git clone {リモートリポジトリの指定} {生成するディレクトリ}
+<pre tabindex="0"><code>$ git clone {リモートリポジトリの指定} {生成するディレクトリ}
 </code></pre><p>※生成するディレクトリを省略すると、リモートリポジトリと同じ名前でディレクトリが生成される</p>
 <p>ローカルで新規にリポジトリを作成する</p>
-<pre><code>$ mkdir SampleProject  
+<pre tabindex="0"><code>$ mkdir SampleProject  
 $ cd SampleProject  
 $ git init
 </code></pre><p>ローカルで作成したリポジトリを後からリモートに紐付ける</p>
-<pre><code>(対象のリポジトリディレクトリにて)  
+<pre tabindex="0"><code>(対象のリポジトリディレクトリにて)  
 $ git remote add {名前、originなど} {リモートリポジトリの指定}
 </code></pre><p>リモートリポジトリの変更する</p>
-<pre><code>(対象のリポジトリディレクトリにて)  
+<pre tabindex="0"><code>(対象のリポジトリディレクトリにて)  
 $ git remote set-url {名前、originなど} {リモートリポジトリの指定}
 </code></pre><p>リモートとの紐付けを解除する</p>
-<pre><code>(対象のリポジトリディレクトリにて)  
+<pre tabindex="0"><code>(対象のリポジトリディレクトリにて)  
 $ git remote rm {名前、originなど}
 </code></pre>
 	</div>

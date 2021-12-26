@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -71,24 +83,24 @@ window.addEventListener('DOMContentLoaded', () => {
 <hr>
 <h3 id="fishのインストール">fishのインストール</h3>
 <p>brewでfishをインストールする。</p>
-<pre><code>brew install fish  
+<pre tabindex="0"><code>brew install fish  
 </code></pre><p>※brew自体のインストールについては<a href="/posts/wp/285" target="_blank">こちら</a>参照。</p>
 <p>次にシェル一覧にfishを追加する。</p>
-<pre><code>vim /etc/shells  
+<pre tabindex="0"><code>vim /etc/shells  
 # 以下行を追加  
 /usr/local/bin/fish  
 </code></pre><p>次に通常利用するシェルをfishに設定する。</p>
-<pre><code>chsh -s /usr/local/bin/fish  
+<pre tabindex="0"><code>chsh -s /usr/local/bin/fish  
 </code></pre><h3 id="oh-my-fishのインストール">oh-my-fishのインストール</h3>
 <p>以下コマンドを実行するだけ。</p>
-<pre><code>curl -L http://get.oh-my.fish | fish  
+<pre tabindex="0"><code>curl -L http://get.oh-my.fish | fish  
 </code></pre><h3 id="pecoのインストール">pecoのインストール</h3>
 <p>pecoはbrewとomfコマンドでインストールできる。</p>
-<pre><code>brew install peco  
+<pre tabindex="0"><code>brew install peco  
 omf install peco  
 </code></pre><p>インストールできたら、fishの設定ファイルにpecoの設定を追記する。<br>
 fishの設定ファイルが存在しない場合は新規作成する。</p>
-<pre><code>vim ~/.config/fish/config.fish  
+<pre tabindex="0"><code>vim ~/.config/fish/config.fish  
 # 以下行を追記する  
 function fish_user_key_bindings  
     bind \cr peco_select_history  

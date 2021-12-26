@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -81,9 +93,9 @@ rails 3.2.13</p>
 <h2 id="order-by句がおかしい">①order by句がおかしい</h2>
 <p>オーダー句がおかしいとエラーになったので、app/models/gmanager.rbの９行目を修正した<br>
 【修正前】</p>
-<pre><code>mem = Member.where(:project_id =&gt; pid).order(user_id: :asc)
+<pre tabindex="0"><code>mem = Member.where(:project_id =&gt; pid).order(user_id: :asc)
 </code></pre><p>【修正後】</p>
-<pre><code>mem = Member.where(:project_id =&gt; pid).order(&quot;user_id asc&quot;)
+<pre tabindex="0"><code>mem = Member.where(:project_id =&gt; pid).order(&quot;user_id asc&quot;)
 </code></pre><h2 id="オーナー未指定のグループがあると動かない">②オーナー未指定のグループがあると動かない</h2>
 <p>まあ、インストール直後は全てのグループにオーナーが指定されていないのですが、<br>
 オーナーが未指定の場合はユーザテーブルのID=1のユーザがオーナーになるそうです。<br>
@@ -104,14 +116,14 @@ rails 3.2.13</p>
 なので、一致するようソート処理を入れます。</p>
 <p>app/models/gmanager.rbの34行目と48行目に同じ修正を入れる。<br>
 【修正前】</p>
-<pre><code>keys = CustomField.where(:type =&gt; 'UserCustomField')
+<pre tabindex="0"><code>keys = CustomField.where(:type =&gt; 'UserCustomField')
 </code></pre><p>【修正後】</p>
-<pre><code>keys = CustomField.where(:type =&gt; 'UserCustomField').order(:id)
+<pre tabindex="0"><code>keys = CustomField.where(:type =&gt; 'UserCustomField').order(:id)
 </code></pre><p>app/models/gmanager.rbの49行目も修正する。<br>
 【修正前】</p>
-<pre><code>values = User.find(id).custom_values
+<pre tabindex="0"><code>values = User.find(id).custom_values
 </code></pre><p>【修正後】</p>
-<pre><code>values = User.find(id).custom_values.order(:custom_field_id)
+<pre tabindex="0"><code>values = User.find(id).custom_values.order(:custom_field_id)
 </code></pre><p>これで動くようになりました。</p>
 <h2 id="番外編">〜番外編〜</h2>
 <p>このプラグインはプロジェクトに所属している人をグループに追加することしかできません。<br>

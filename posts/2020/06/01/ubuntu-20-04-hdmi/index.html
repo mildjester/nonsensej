@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -84,10 +96,10 @@ Linuxカーネルを書き換えれば動くような話もあったのですが
 試してみたら確かに動いたので手順を記載します。</p>
 <h2 id="grub設定を変更する">grub設定を変更する</h2>
 <p>以下のコマンドにてgrubの設定をいじります。</p>
-<pre><code>$ sudo gedit /etc/default/grub
+<pre tabindex="0"><code>$ sudo gedit /etc/default/grub
 </code></pre><p>設定ファイルがテキストエディタで開くので、<code>quiet splash</code>の行をコメントアウトします。<br>
 コメントアウト後は保存して閉じます。</p>
-<pre><code>〜省略〜
+<pre tabindex="0"><code>〜省略〜
 GRUB_DEFAULT=0
 GRUB_TIMEOUT_STYLE=hidden
 GRUB_TIMEOUT=10
@@ -98,7 +110,7 @@ GRUB_CMDLINE_LINUX=&quot;&quot;
 </code></pre><h2 id="grub設定の反映">grub設定の反映</h2>
 <p>以下のupdate-grubコマンドでgrub設定を反映させます。<br>
 しばらく処理が走るので完了するのを待ちます。</p>
-<pre><code>$ sudo update-grub
+<pre tabindex="0"><code>$ sudo update-grub
 Sourcing file `/etc/default/grub'
 Sourcing file `/etc/default/grub.d/init-select.cfg'
 Generating grub configuration file ...

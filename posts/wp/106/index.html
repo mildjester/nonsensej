@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -76,15 +88,15 @@ Openssh 6.6.1</p>
 <p>以下の設定でポート番号変更とルート権限ログインの無効化を実施します<br>
 以下の行を修正（なければ追加）してください</p>
 <p>(/etc/ssh/sshd_config)</p>
-<pre><code>Port 1234　※任意の番号  
+<pre tabindex="0"><code>Port 1234　※任意の番号  
 PermitRootLogin no
 </code></pre><p>「wheel」グループのアカウントを作成します</p>
-<pre><code># useradd testuser　※任意のアカウント（既存のアカウントを使うなら不要）  
+<pre tabindex="0"><code># useradd testuser　※任意のアカウント（既存のアカウントを使うなら不要）  
 # usermod -g wheel -G wheel testuser
 </code></pre><p>以下の設定でルート権限にsuできるグループを「wheel」に限定します<br>
 以下の行を修正（なければ追加）してください</p>
 <p>(/etc/pam.d/su)</p>
-<pre><code>auth            required        pam_wheel.so use_uid
+<pre tabindex="0"><code>auth            required        pam_wheel.so use_uid
 </code></pre><p>以上で設定は完了ですが、設定をしたターミナルを閉じる前に新規ターミナルを立ち上げて<br>
 上記wheelグループに設定したアカウントにてsshログイン＆suが出来ることを確認してください。<br>
 確認前に設定したターミナルを閉じてしまうと、設定に失敗していた場合に最悪だとルート権限になれなくなります。</p>

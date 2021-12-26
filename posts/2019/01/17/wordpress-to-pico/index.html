@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -81,7 +93,7 @@ Wordpressの/wp-content/uploads/配下のファイルを<br>
 <p>WordpressのDBから記事情報を取得します。</p>
 <p>MySQL Workbenchにて以下のSQLを実行し、<br>
 結果をjsonで出力しておきます</p>
-<pre><code>SELECT p.ID, p.post_date, u.user_nicename, p.post_title, p.post_content, t.tags
+<pre tabindex="0"><code>SELECT p.ID, p.post_date, u.user_nicename, p.post_title, p.post_content, t.tags
 FROM wp_posts p
 LEFT JOIN wp_users u ON u.ID = p.post_author
 LEFT JOIN (
@@ -96,7 +108,7 @@ WHERE post_status = 'publish';
 </code></pre><p>次に出力したjsonからpico用の記事mdファイルを生成します<br>
 以下のようなPHPスクリプトを実行すれば取得したJSONファイルから<br>
 mdファイルを生成できます</p>
-<pre><code>&lt;?php
+<pre tabindex="0"><code>&lt;?php
 // 出力したjsonは「tmp_insert.json」だとします
 $jsonStr = file_get_contents('./tmp_insert.json');
 $json = json_decode($jsonStr);
@@ -138,7 +150,7 @@ EOF;
 (必須ではないですが、Google検索などから旧記事へ来てしまう人のため)</p>
 <p>Apacheの場合は以下のようになります。<br>
 設定ファイルかhtaccessに記載してください。</p>
-<pre><code>&lt;IfModule mod_rewrite.c&gt;
+<pre tabindex="0"><code>&lt;IfModule mod_rewrite.c&gt;
     RewriteEngine On
 
     # 旧ブログからのリダイレクト
@@ -146,7 +158,7 @@ EOF;
     RewriteRule .* /posts/%1? [R=301,L]
 &lt;/IfModule&gt;
 </code></pre><p>Nginxの場合は設定ファイルに以下を記載します。</p>
-<pre><code>if ($args ~ &quot;p=(.*)&quot;) {
+<pre tabindex="0"><code>if ($args ~ &quot;p=(.*)&quot;) {
     set $articleId $1;
     rewrite ^.*$ /posts/wp/$articleId? permanent;
 }

@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -132,14 +144,14 @@ VPC内のlambdaから外部アクセスができるように設定します。</
 <p>今回はServerless Frameworkを使ってlambdaを構築します。<br>
 Serverless Frameworkの基本的な構築については<a href="/posts/2020/05/19/serverless-framework-lambda">前回の記事</a>を参照してください。</p>
 <p>前回の記事で作成した<code>serverless.yml</code>のproviderにvpc設定を追加します。</p>
-<pre><code>provider:
+<pre tabindex="0"><code>provider:
   〜省略〜
   vpc: 
     subnetIds:
       - 今回作成したprivateサブネットのID(subnet-0123456abcde)
 </code></pre><p>【おまけ】<br>
 上記VPC設定では触れていませんが、もしlambdaにセキュリティグループを設定させるなら以下のようにします。</p>
-<pre><code>provider:
+<pre tabindex="0"><code>provider:
   〜省略〜
   vpc: 
     subnetIds:

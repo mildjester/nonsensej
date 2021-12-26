@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -75,15 +87,15 @@ bash 4.4.12</p>
 <p>まず、このシェルスクリプトはbash　Ver 4.x.x台以上でないと動かないので、 <br>
 bashのバージョンが３の場合はHomebrewでインストールします。 <br>
 ※執筆時点でMacにデフォルトで入っているbashはVer 3.x.xでした。</p>
-<pre><code>$ brew install bash  
+<pre tabindex="0"><code>$ brew install bash  
 $ which bash  
 /usr/local/bin/bash
 </code></pre><p>シェルスクリプトを作成します。 <br>
 仮でホームディレクトリ直下に「kintai.sh」という名前で作る事にします。</p>
-<pre><code>$ vim ~/kintai.sh  
+<pre tabindex="0"><code>$ vim ~/kintai.sh  
 </code></pre><p>シェルの内容は以下の通りです。 <br>
 シバン（１行目のやつ）のパスは上記のwhichコマンドで確認したbashのパスとします。</p>
-<pre><code>#!/usr/local/bin/bash  
+<pre tabindex="0"><code>#!/usr/local/bin/bash  
 set +e  
   
 declare -A rebootTimes  
@@ -121,7 +133,7 @@ for ((i=0; i &lt; ${today}; i++)); do
     echo &quot;${target} : ${rebootTimes[${target}]} - ${shutdownTimes[${target}]}&quot;  
 done
 </code></pre><p>あとはこのシェルに実行権限をつけて実行するだけです。</p>
-<pre><code>$ chmod +x ~/kintai.sh  
+<pre tabindex="0"><code>$ chmod +x ~/kintai.sh  
 $ ~/kintai.sh  
 2017/12/01 : 10:14 - 19:16  
 2017/12/02 :  -  

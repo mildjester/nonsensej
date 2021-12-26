@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -72,23 +84,23 @@ docker-compose 1.18.0</p>
 <hr>
 <h3 id="よく使いそうなコマンド">■よく使いそうなコマンド</h3>
 <h4 id="yamlで指定したサービスを全て生成起動する">yamlで指定したサービスを全て生成＆起動する</h4>
-<pre><code>docker-compose up -d  
+<pre tabindex="0"><code>docker-compose up -d  
 </code></pre><p>※-dオプションを付けるとバックグラウンドで起動する<br>
 　ビルドが必要なコンテナはビルドも走る</p>
 <h4 id="現在稼働しているコンテナを確認する">現在稼働しているコンテナを確認する</h4>
-<pre><code>docker-compose ps  
+<pre tabindex="0"><code>docker-compose ps  
 </code></pre><h4 id="現在稼働しているコンテナを全て停止削除する">現在稼働しているコンテナを全て停止＆削除する</h4>
-<pre><code>docker-compose down  
+<pre tabindex="0"><code>docker-compose down  
 </code></pre><hr>
 <h3 id="サービスを個別に操作するコマンド">■サービスを個別に操作するコマンド</h3>
 <h4 id="サービス指定でコンテナを生成する">サービス指定でコンテナを生成する</h4>
-<pre><code>docker-compose create {サービス名}  
+<pre tabindex="0"><code>docker-compose create {サービス名}  
 </code></pre><h4 id="サービス指定でコンテナを起動する">サービス指定でコンテナを起動する</h4>
-<pre><code>docker-compose start {サービス名}  
+<pre tabindex="0"><code>docker-compose start {サービス名}  
 </code></pre><h4 id="createとstartを１発で実施する">createとstartを１発で実施する</h4>
-<pre><code>docker-compose run -d {サービス名}  
+<pre tabindex="0"><code>docker-compose run -d {サービス名}  
 </code></pre><h4 id="サービス指定でコンテナを停止する">サービス指定でコンテナを停止する</h4>
-<pre><code>docker-compose stop {サービス名}  
+<pre tabindex="0"><code>docker-compose stop {サービス名}  
 </code></pre><p>※<code>create</code>や<code>run</code>コマンド実行時は、指定したサービスに<code>depends_on</code>等で紐づけられているサービスも一緒に起動する</p>
 
 	</div>

@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -88,14 +100,14 @@ Certbotというツールが公開されており、<br>
 <p>※以下手順はroot権限で実施しています。</p>
 <p>まず、サーバー上の任意のディレクトリにLet&rsquo;s Encryptから証明書を取得するツールをダウンロードします。<br>
 サーバにgitが入っていない場合は、ローカルでダウンロードしたものをFTPなどでアップしても良いと思います。</p>
-<pre><code># git clone https://github.com/letsencrypt/letsencrypt
+<pre tabindex="0"><code># git clone https://github.com/letsencrypt/letsencrypt
 </code></pre><p>ダウンロードしたら、ツールの初期構築をします。<br>
 以下コマンドにて必要なソフトウェアのインストールなどが走り、完了したらletsencrypt-autoのヘルプが表示されます。</p>
-<pre><code># cd letsencrypt  
+<pre tabindex="0"><code># cd letsencrypt  
 # ./letsencrypt-auto --help --debug
 </code></pre><p>次にツールを実行し、実際に証明書を取得します。<br>
 その際、４４３ポートを利用しているプロセスがあるとエラーとなるので、この瞬間はApacheを止める必要がありました。</p>
-<pre><code># systemctl stop httpd  
+<pre tabindex="0"><code># systemctl stop httpd  
 # ./letsencrypt-auto certonly --standalone -d your-domain.com  
 # systemctl start httpd
 </code></pre><p>※上記の「your-domain.com」には証明書を生成するドメインを入力してください。</p>
@@ -103,31 +115,31 @@ Certbotというツールが公開されており、<br>
 以下のディレクトリ配下に証明書や秘密鍵（のシンボリックリンク）が生成されているので、<br>
 Apacheの設定ファイルへ記載します。<br>
 ■生成されるディレクトリ</p>
-<pre><code>/etc/letsencrypt/live/your-domain.com/
+<pre tabindex="0"><code>/etc/letsencrypt/live/your-domain.com/
 </code></pre><p>■生成されるファイル</p>
-<pre><code>cert.pem　：　SSL証明書本体  
+<pre tabindex="0"><code>cert.pem　：　SSL証明書本体  
 chain.pem　：　チェイン証明書  
 fullchain.pem　：　SSL証明書本体とチェイン証明書を結合したもの  
 privkey.pem　：　秘密鍵
 </code></pre><p>これらをApacheの設定ファイル（一般的に/etc/httpd/conf.d/ssl.conf）に設定する。<br>
 ・設定パターン１</p>
-<pre><code>SSLCertificateFile /etc/letsencrypt/live/your-domain.com/cert.pem  
+<pre tabindex="0"><code>SSLCertificateFile /etc/letsencrypt/live/your-domain.com/cert.pem  
 SSLCertificateKeyFile /etc/letsencrypt/live/your-domain.com/privkey.pem  
 SSLCertificateChainFile /etc/letsencrypt/live/your-domain.com/chain.pem
 </code></pre><p>・設定パターン2</p>
-<pre><code>SSLCertificateFile /etc/letsencrypt/live/your-domain.com/cert.pem  
+<pre tabindex="0"><code>SSLCertificateFile /etc/letsencrypt/live/your-domain.com/cert.pem  
 SSLCertificateKeyFile /etc/letsencrypt/live/your-domain.com/privkey.pem  
 SSLCertificateChainFile /etc/letsencrypt/live/your-domain.com/chain.pem
 </code></pre><p>※Apacheのバージョンが2.4.8以上の場合は「SSLCertificateChainFile」の設定はできないので、<br>
 　「SSLCertificateKeyFile」にfullchain.pemを設定すること。</p>
 <p>ここで生成した証明書は3ヶ月間しか有効期限がないので、定期的に更新が必要です。<br>
 証明書を更新するコマンドは以下です。</p>
-<pre><code>./letsencrypt-auto renew
+<pre tabindex="0"><code>./letsencrypt-auto renew
 </code></pre><p>ただし、更新は有効期限が残り30日を切らないと実行されないらしく、<br>
 上記コマンドを実行しても何も更新せずに終わります。</p>
 <p>「Apache停止→証明書更新→Apache起動」を実施するシェルを作ります。<br>
 70日以内に生成した証明書が存在する場合は何もしません。</p>
-<pre><code>#!/bin/bash  
+<pre tabindex="0"><code>#!/bin/bash  
 serchResult=`find /etc/letsencrypt/archive/your-domain.com/ -mtime -70 -regex &quot;.*cert[0-9]?\.pem&quot;`  
 if [ -n &quot;$serchResult&quot; ]; then  
     echo &quot;certs are not due for renewal yet&quot;  
@@ -140,7 +152,7 @@ else
 fi
 </code></pre><p>※上記はツールをopt配下に配置した場合です。</p>
 <p>このシェルをcronで毎日深夜に実行するよう設定します。</p>
-<pre><code># SSL update  
+<pre tabindex="0"><code># SSL update  
 5 0 * * * sh /etc/letsencrypt/renew.sh
 </code></pre><p>※上記はシェルを/etc/letsencrypt/renew.shに作った場合の例です。</p>
 <p>これで設定完了です。</p>

@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -74,7 +86,7 @@ window.addEventListener('DOMContentLoaded', () => {
 <p>この事象はmigrateで利用する「/database/migrations」ディレクトリに配置されているファイルが<br>
 autoloadされていない事が原因のようです。</p>
 <p>解決するにはプロジェクトのrootディレクトリにて以下コマンドを実行し、autoloadを再編成します。</p>
-<pre><code>composer dump-autoload  
+<pre tabindex="0"><code>composer dump-autoload  
 </code></pre><p>※composerインストールについては<a href="/posts/wp/515" target="_blank">コチラ</a></p>
 <p>もしサーバにcomposerを入れられない場合は作業PCにて上記コマンドを実行すると<br>
 「/vendor」ディレクトリ配下が更新されるのでサーバにアップロードしてください。</p>

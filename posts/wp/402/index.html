@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -83,26 +95,26 @@ SyntaxHighlighter Evolved 3.2.1<br>
 プラグインで読み込まないようにします。</p>
 <p>具体的には、プラグイン内のPHPファイルを修正し、不要な言語の設定を読み込んでいそうな行を<br>
 コメントアウトします。</p>
-<pre><code># cd /{wordpressが配置されているディレクトリ}/wp-content/plugins/syntaxhighlighter  
+<pre tabindex="0"><code># cd /{wordpressが配置されているディレクトリ}/wp-content/plugins/syntaxhighlighter  
 # vim syntaxhighlighter.php
 </code></pre><p>コメントアウト箇所は114行目あたりから始まる以下の部分です。</p>
-<pre><code>wp_register_script( 'syntaxhighlighter-brush-○○○',〜〜〜　$this-&gt;agshver );
+<pre tabindex="0"><code>wp_register_script( 'syntaxhighlighter-brush-○○○',〜〜〜　$this-&gt;agshver );
 </code></pre><p>上記の「○○○」部分に言語名が入っているので、不要な言語の行はコメントアウトします。</p>
 <p>あと、あまり効果があるか分かりませんが、テーマも使わないものはコメントアウトしてしまいました。<br>
 該当箇所は149行目あたりから始まる以下の部分です。</p>
-<pre><code>wp_register_stype( 'syntaxhighlighter-theme-○○○',〜〜〜　$this-&gt;agshver );
+<pre tabindex="0"><code>wp_register_stype( 'syntaxhighlighter-theme-○○○',〜〜〜　$this-&gt;agshver );
 </code></pre><p>上記の「○○○」部分にテーマ名が入ります。</p>
 <p>上記でコメントアウトした言語、テーマについて<br>
 下の方の行で配列に格納されているので、そこもコメントアウトします。</p>
 <p>言語についての配列は、162行目あたりにあります。</p>
-<pre><code>$this-&gt;brushes = (array) apply_filters( 'syntaxhighlighter_brushes', array(  
+<pre tabindex="0"><code>$this-&gt;brushes = (array) apply_filters( 'syntaxhighlighter_brushes', array(  
     'as3'           =&gt; 'as3',  
     'actionscript3' =&gt; 'as3',  
     'bash'          =&gt; 'bash',  
     'shell'         =&gt; 'bash',  
     以下略
 </code></pre><p>テーマについての配列は、243行目あたりにあります。</p>
-<pre><code>$this-&gt;themes = (array) apply_filters( 'syntaxhighlighter_themes', array(  
+<pre tabindex="0"><code>$this-&gt;themes = (array) apply_filters( 'syntaxhighlighter_themes', array(  
     'default'    =&gt; __( 'Default',      'syntaxhighlighter' ),  
     'django'     =&gt; __( 'Django',       'syntaxhighlighter' ),  
     'eclipse'    =&gt; __( 'Eclipse',      'syntaxhighlighter' ),  

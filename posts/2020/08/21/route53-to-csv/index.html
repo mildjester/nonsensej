@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -84,11 +96,11 @@ window.addEventListener('DOMContentLoaded', () => {
 <h3 id="jq">jq</h3>
 <p>jqはjsonを整形するツールです。<br>
 Linux Mintであれば以下コマンドでインストールできます。</p>
-<pre><code>apt install jq
+<pre tabindex="0"><code>apt install jq
 </code></pre><h2 id="route53の内容を取得するスクリプト作成">Route53の内容を取得するスクリプト作成</h2>
 <p>AWS CLIでRoute53の内容をjson形式で取得し、それをjqで整形しながらCSVに出力するシェルスクリプトを作成します。<br>
 スクリプトの内容は以下の通りです。</p>
-<pre><code>#!/bin/bash
+<pre tabindex="0"><code>#!/bin/bash
 
 # CSVのヘッダ出力
 echo '&quot;HostedZone&quot;,&quot;DomainName&quot;,&quot;DomainType&quot;,&quot;TTL&quot;,&quot;Value&quot;'
@@ -127,15 +139,15 @@ for i in $( seq 0 $(($HostedZonesLen - 1)) ); do
 done
 </code></pre><h3 id="簡単な説明">簡単な説明</h3>
 <p>AWS CLIでホストゾーンの情報をjson形式で取得します。</p>
-<pre><code>aws route53 list-hosted-zones --output json --query 'HostedZones[]'
+<pre tabindex="0"><code>aws route53 list-hosted-zones --output json --query 'HostedZones[]'
 </code></pre><p>取得したホストゾーン情報を1件ずつループを回します。<br>
 以下コマンドでホストゾーンのレコードをjson形式で取得します。</p>
-<pre><code>aws route53 list-resource-record-sets --hosted-zone-id $ZoneId --output json --query 'ResourceRecordSets'
+<pre tabindex="0"><code>aws route53 list-resource-record-sets --hosted-zone-id $ZoneId --output json --query 'ResourceRecordSets'
 </code></pre><p>そして要所要所でjqコマンドでjsonから必要な情報を抽出しています。</p>
 <h3 id="補足">補足</h3>
 <p>AWS CLIの<code>query</code>オプションはjqコマンドで抽出するのと同じ効果があります。<br>
 つまり、以下のコマンドはどちらも同じ結果となります。</p>
-<pre><code>aws route53 list-resource-record-sets --hosted-zone-id $ZoneId --output json --query 'ResourceRecordSets'
+<pre tabindex="0"><code>aws route53 list-resource-record-sets --hosted-zone-id $ZoneId --output json --query 'ResourceRecordSets'
 aws route53 list-resource-record-sets --hosted-zone-id $ZoneId --output json | jq '.ResourceRecordSets'
 </code></pre>
 	</div>

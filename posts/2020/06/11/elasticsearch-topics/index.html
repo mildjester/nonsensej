@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -70,7 +82,7 @@ window.addEventListener('DOMContentLoaded', () => {
 以下例ではElasticsearchには商品ID(product_id)も持つ商品情報が格納されているものとします。</p>
 <h2 id="id指定で1件だけ検索するクエリ">ID指定で1件だけ検索するクエリ</h2>
 <p>単純にproduct_idを指定するだけです。</p>
-<pre><code>{
+<pre tabindex="0"><code>{
   &quot;query&quot;: {
     &quot;match&quot;: {
       &quot;product_id&quot;: &quot;123&quot;
@@ -80,7 +92,7 @@ window.addEventListener('DOMContentLoaded', () => {
 </code></pre><h2 id="id指定で複数件順序を指定して検索するクエリ">ID指定で複数件、順序を指定して検索するクエリ</h2>
 <p>複数件の検索をします。取得する順序もweightで指定します。<br>
 weightが大きい方が上位に取得されます。</p>
-<pre><code>{
+<pre tabindex="0"><code>{
   &quot;query&quot;: {
     &quot;function_score&quot;: {
       &quot;query&quot;: {
@@ -113,7 +125,7 @@ weightが大きい方が上位に取得されます。</p>
 shouldはORの意味合いがあります。</p>
 <h2 id="id指定で複数件削除するクエリ">ID指定で複数件削除するクエリ</h2>
 <p>シンプルです。</p>
-<pre><code>{
+<pre tabindex="0"><code>{
   &quot;query&quot;: {
     &quot;bool&quot;:{
       &quot;should&quot;:[

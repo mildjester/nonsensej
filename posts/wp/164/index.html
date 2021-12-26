@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -72,12 +84,12 @@ CentOS Linux release 7.2.1511 (Core)<br>
 Apache/2.4.6</p>
 <p>Apacheがダイジェスト認証に対応しているか確認します。<br>
 以下のコマンドにて結果が出力されれば対応しています。</p>
-<pre><code># grep digest /etc/httpd/conf.modules.d/ -r  
+<pre tabindex="0"><code># grep digest /etc/httpd/conf.modules.d/ -r  
 conf.modules.d/00-base.conf:LoadModule auth_digest_module modules/mod_auth_digest.so
 </code></pre><p>ダイジェスト認証用のIDとパスワードのセットを作成します。<br>
 下記の「Sample Auth」は認証名で「sampleuser」は設定するIDです。適宜書き換えてください。<br>
 また「/etc/httpd/conf/.hpass」が生成されるファイルですが、パスもファイル名も任意です。</p>
-<pre><code># htdigest -c /etc/httpd/conf/.htpass ’Sample Auth' sampleuser  
+<pre tabindex="0"><code># htdigest -c /etc/httpd/conf/.htpass ’Sample Auth' sampleuser  
 Adding password for sampleuser in realm Logical Dice Auth.  
 New password:　←設定するパスワードを入力する  
 Re-type new password:　←設定するパスワードを再度入力する
@@ -85,7 +97,7 @@ Re-type new password:　←設定するパスワードを再度入力する
 以下の例では「/var/www/html/sample」配下のコンテンツにWEBブラウザにてアクセスした際に<br>
 ダイジェスト認証が表示されるようになります。<br>
 下記のAuthUserFileは上記で生成したファイルを指定してください。</p>
-<pre><code>&lt;Location &quot;/sample/&quot;&gt;  
+<pre tabindex="0"><code>&lt;Location &quot;/sample/&quot;&gt;  
    AuthType Digest  
    AuthName “Sample Auth&quot;  
    AuthUserFile &quot;/etc/httpd/conf/.htpass&quot;  

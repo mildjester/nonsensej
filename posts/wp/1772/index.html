@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -81,7 +93,7 @@ IAM側の権限設定は適当で良いです</p>
 <h3 id="s3設定">S3設定</h3>
 <p>次にS3にてWordpress用のバケットを用意し<br>
 バケットポリシーに以下を設定します</p>
-<pre><code>{  
+<pre tabindex="0"><code>{  
     &quot;Version&quot;: &quot;2012-10-17&quot;,  
     &quot;Statement&quot;: [  
         {  
@@ -137,7 +149,7 @@ IAM側の権限設定は適当で良いです</p>
 <a href="https://blog2.logical-dice.com/images/2018/12/Wordpress-S3-001.png"><img class="alignnone size-medium wp-image-1775" src="https://blog2.logical-dice.com/images/2018/12/Wordpress-S3-001.png" alt="" width="300" height="178"></a></p>
 <p>次にwp-config.phpにIAMのアクセスキーを設定します<br>
 （下記「AAA…」と「BBB…」は該当のものに書き換えてください）</p>
-<pre><code>define( 'DBI_AWS_ACCESS_KEY_ID', 'AAAAAAAAAAAAAAAAA' );  
+<pre tabindex="0"><code>define( 'DBI_AWS_ACCESS_KEY_ID', 'AAAAAAAAAAAAAAAAA' );  
 define( 'DBI_AWS_SECRET_ACCESS_KEY', 'BBBBBBBBBBBBBBB' );  
 </code></pre><p>これでWordpressとAWSの連携ができるようになります</p>
 <h3 id="プラグインwp-offload-media-lite">プラグイン：WP Offload Media Lite</h3>
@@ -171,10 +183,10 @@ SQL内の以下部分は各環境に合わせて書き替えてください<br>
 <p>以下、S3のリージョンは東京である前提にしています<br>
 東京でない場合はS3のホスト名も該当のものに書き換えてください</p>
 <p>まず記事内の画像URL差し替え</p>
-<pre><code>UPDATE wp_posts  
+<pre tabindex="0"><code>UPDATE wp_posts  
 SET post_content = REPLACE(post_content, &quot;https://webserver_hostname/wp-content/uploads/&quot;, &quot;https://cloudfront_hostname/wp-content/uploads/&quot;);  
 </code></pre><p>次にアイキャッチの画像URL差し替え</p>
-<pre><code>UPDATE wp_posts  
+<pre tabindex="0"><code>UPDATE wp_posts  
 SET guid = REPLACE(guid, &quot;https://webserver_hostname/wp-content/uploads/&quot;, &quot;https://cloudfront_hostname/wp-content/uploads/&quot;);  
 </code></pre><p>次にmeta情報に各画像ファイルのS3の情報を追加します<br>
 （UPDATEではなくINSERT）</p>
@@ -182,7 +194,7 @@ SET guid = REPLACE(guid, &quot;https://webserver_hostname/wp-content/uploads/&qu
 生成したINSERT文を実行すれば完了です<br>
 SQL内の <code>s3_bucket_name</code> の部分は対象バケット名に書き換えてください<br>
 また、S3バケットが東京リージョンでない場合は<code>ap-northeast-1</code>の部分も書き換えてください</p>
-<pre><code>SELECT  CONCAT('insert into wp_postmeta(post_id, meta_key, meta_value) values('  
+<pre tabindex="0"><code>SELECT  CONCAT('insert into wp_postmeta(post_id, meta_key, meta_value) values('  
 , post_id, ', \'amazonS3_info\', \'a:4:{s:8:\&quot;provider\&quot;;s:3:\&quot;aws\&quot;;s:6:\&quot;region\&quot;;s:14:\&quot;ap-northeast-1\&quot;;s:6:\&quot;bucket\&quot;;s:14:\&quot;s3_bucket_name\&quot;;s:3:\&quot;key\&quot;;s:',length(meta_value) + 19,':\&quot;wp-content/uploads/', meta_value, '\&quot;;}\');'  
 ) AS record from wp_postmeta where meta_key = '_wp_attached_file';  
 </code></pre><p>Wordpressのバージョン等によってはINSERT文を少し変えないといけないかもしれません<br>

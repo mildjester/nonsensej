@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -74,12 +86,12 @@ fish 2.5.0</p>
 <p>Brewでもインストールできるらしいが、公式ページの手順に従った方が良さそう。<br>
 公式ページ：<a href="https://github.com/asdf-vm/asdf" rel="noopener" target="_blank"><a href="https://github.com/asdf-vm/asdf">https://github.com/asdf-vm/asdf</a></a></p>
 <p>まず、asdfをgithubからクローンし、fishのコンフィグに追加する。</p>
-<pre><code>$ git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.3.0  
+<pre tabindex="0"><code>$ git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.3.0  
 $ echo 'source ~/.asdf/asdf.fish' &gt;&gt; ~/.config/fish/config.fish  
 $ mkdir -p ~/.config/fish/completions; and cp ~/.asdf/completions/asdf.fish ~/.config/fish/completions  
 </code></pre><p>asdfで必要になるアプリケーションをbrewでインストールしておく。<br>
 下記はだいたい公式サイトで記載されているもの。</p>
-<pre><code>$ brew install coreutils automake autoconf openssl libyaml readline libxslt libtool unixodbc  
+<pre tabindex="0"><code>$ brew install coreutils automake autoconf openssl libyaml readline libxslt libtool unixodbc  
 </code></pre><p>また、言語別で必要になるアプリケーションもある。<br>
 詳細は言語別のgithubページを参照<br>
 <a href="https://github.com/asdf-vm/asdf-plugins" target="_blank"><a href="https://github.com/asdf-vm/asdf-plugins">https://github.com/asdf-vm/asdf-plugins</a></a></p>
@@ -89,18 +101,18 @@ icu4cは2017年10月現在、最新バージョンを入れてしまうとPHPビ
 参考：<a href="https://github.com/phpbrew/phpbrew/issues/899" rel="noopener" target="_blank"><a href="https://github.com/phpbrew/phpbrew/issues/899">https://github.com/phpbrew/phpbrew/issues/899</a></a></p>
 </blockquote>
 <p>asdfで管理対象の言語を追加する。</p>
-<pre><code>$ asdf plugin-add {任意の名前} {githubリポジトリ}  
+<pre tabindex="0"><code>$ asdf plugin-add {任意の名前} {githubリポジトリ}  
 ===== (例） asdf plugin-add go https://github.com/kennyp/asdf-golang  
 </code></pre><p>上記で設定するリポジトリは以下を参照<br>
 <a href="https://github.com/asdf-vm/asdf-plugins" target="_blank"><a href="https://github.com/asdf-vm/asdf-plugins">https://github.com/asdf-vm/asdf-plugins</a></a><br>
 もしここでエラーが出てしまった場合は必要なアプリケーションが入っていない可能性があるので、<br>
 エラー文言を参考にbrewインストールしておく。</p>
 <p>インストールできるバージョン一覧を見る。</p>
-<pre><code>$ asdf list-all {さきほどの名前}  
+<pre tabindex="0"><code>$ asdf list-all {さきほどの名前}  
 ===== (例） asdf list-all go  
 </code></pre><p>上記で確認したバージョンの中から希望のバージョンをインストールし、 <br>
 利用できるように設定する。</p>
-<pre><code>$ asdf install {さきほどの名前} {バージョン}  
+<pre tabindex="0"><code>$ asdf install {さきほどの名前} {バージョン}  
 ===== (例） asdf install go 1.8.4  
 $ asdf global {さきほどの名前} {バージョン}  
 ===== (例） asdf global go 1.8.4  

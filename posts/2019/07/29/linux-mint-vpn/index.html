@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -78,19 +90,19 @@ window.addEventListener('DOMContentLoaded', () => {
 <p>自分でつけた名前なので調べる必要は無いかもしれませんが<br>
 一応以下コマンドで調べられます。<br>
 (以下例だと『SampleVPN』がVPN名)</p>
-<pre><code>$ nmcli connection | grep vpn
+<pre tabindex="0"><code>$ nmcli connection | grep vpn
 SampleVPN           123abc12-1a2b-1234-12a1-1234567890ab  vpn       --
 </code></pre><h3 id="vpn接続">VPN接続</h3>
 <p>以下コマンドでVPN接続します。</p>
-<pre><code>nmcli con up id {VPN名}
+<pre tabindex="0"><code>nmcli con up id {VPN名}
 # 例： nmcli con up id SampleVPN
 </code></pre><h3 id="vpn切断">VPN切断</h3>
 <p>以下コマンドでVPN切断します。</p>
-<pre><code>nmcli con down id {VPN名}
+<pre tabindex="0"><code>nmcli con down id {VPN名}
 # 例： nmcli con down id SampleVPN
 </code></pre><h3 id="短縮コマンド登録">短縮コマンド登録</h3>
 <p>エイリアスを登録しておくと楽です。</p>
-<pre><code>alias up-vpn=&quot;nmcli con up id SampleVPN&quot;
+<pre tabindex="0"><code>alias up-vpn=&quot;nmcli con up id SampleVPN&quot;
 alias down-vpn=&quot;nmcli con down id SampleVPN&quot;
 </code></pre>
 	</div>

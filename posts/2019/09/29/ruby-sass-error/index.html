@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -69,22 +81,22 @@ window.addEventListener('DOMContentLoaded', () => {
 		<h2 id="インストール方法">インストール方法</h2>
 <p>最終的に行き着いたインストール方法です。<br>
 インストールするだけならこちらを実行してください。</p>
-<pre><code>$ apt install ruby-sass ruby-dev
+<pre tabindex="0"><code>$ apt install ruby-sass ruby-dev
 $ sudo gem install listen --version '~&gt; 3.0'
 </code></pre><h2 id="躓いた点">躓いた点</h2>
 <p>エラーメッセージで検索する人もいると思うので、<br>
 躓いた工程をメモしておきます。</p>
 <p>まず、最初にsassだけインストールしました。</p>
-<pre><code>$ apt install ruby-sass
+<pre tabindex="0"><code>$ apt install ruby-sass
 </code></pre><p>すると、sassコマンドでwatchをする際にエラーが出ました。</p>
-<pre><code>$ sass --watch ./sass:./css --style compact --no-cache
+<pre tabindex="0"><code>$ sass --watch ./sass:./css --style compact --no-cache
 &gt;&gt;&gt; Sass is watching for changes. Press Ctrl-C to stop.
 LoadError: cannot load such file -- listen
 Run &quot;gem install listen --version '~&gt; 3.0'&quot; to get it.
   Use --trace for backtrace.
 </code></pre><p>watchをするためにはlistenが必要であるようです。<br>
 そこでlistenをインストールしようとしましたが、エラーになりました。</p>
-<pre><code>$ sudo gem install listen --version '~&gt; 3.0'
+<pre tabindex="0"><code>$ sudo gem install listen --version '~&gt; 3.0'
 Building native extensions. This could take a while...
 ERROR:  Error installing listen:
 	ERROR: Failed to build gem native extension.
@@ -100,7 +112,7 @@ Results logged to /var/lib/gems/2.5.0/extensions/x86_64-linux/2.5.0/ffi-1.11.1/g
 </code></pre><p>調べたら、どうやらruby-devが必要らしかったです。<br>
 <a href="https://qiita.com/kyrieleison/items/81c14780ad490049202c">https://qiita.com/kyrieleison/items/81c14780ad490049202c</a></p>
 <p>ruby-devをインストールしてからlistenをインストールしたら成功しました。</p>
-<pre><code>$ apt install ruby-dev
+<pre tabindex="0"><code>$ apt install ruby-dev
 $ sudo gem install listen --version '~&gt; 3.0'
 </code></pre><p>これでsassコマンドが動くようになりました。</p>
 

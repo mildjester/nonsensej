@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -74,9 +86,9 @@ window.addEventListener('DOMContentLoaded', () => {
 <a href="https://github.com/macchky/cpuminer" rel="noopener" target="_blank"><a href="https://github.com/macchky/cpuminer">https://github.com/macchky/cpuminer</a></a></p>
 <p>事前に必要な物をインストールします。<br>
 ※libjansson4は公式ページには記載がありませんが、ないとminerd実行時にエラーとなります。</p>
-<pre><code>apt install build-essential libcurl4-openssl-dev libjansson4  
+<pre tabindex="0"><code>apt install build-essential libcurl4-openssl-dev libjansson4  
 </code></pre><p>cpuminerバイナリをダウンロードして実行ファイルを取り出します。</p>
-<pre><code>wget https://github.com/macchky/cpuminer/releases/download/v2.6.0/ZNYminer260.zip  
+<pre tabindex="0"><code>wget https://github.com/macchky/cpuminer/releases/download/v2.6.0/ZNYminer260.zip  
 unzip unzip ZNYminer260.zip  
 chmod +x ZNYminer260/linux/minerd  
 sudo mv ZNYminer260/linux/minerd /usr/local/bin/.  
@@ -92,10 +104,10 @@ rm -rf unzip ZNYminer260*
 wpoolに記載されている下記コマンドを実行すればマイニングが開始されます。<br>
 マイニング停止はCtrl+Cです。<br>
 <a href="https://wpool.work/" rel="noopener" target="_blank"><a href="https://wpool.work/">https://wpool.work/</a></a></p>
-<pre><code>minerd -a yescrypt -o stratum+tcp://wpool.work:15022 -u {BitZeny Walletで取得したアドレス}  
+<pre tabindex="0"><code>minerd -a yescrypt -o stratum+tcp://wpool.work:15022 -u {BitZeny Walletで取得したアドレス}  
 </code></pre><p>マイニング中は以下のように結果が流れていきます。<br>
 「yay!!!」となっているところがマイニング成功です。</p>
-<pre><code>[2018-04-20 15:42:35] Stratum requested work restart  
+<pre tabindex="0"><code>[2018-04-20 15:42:35] Stratum requested work restart  
 [2018-04-20 15:42:35] thread 1: 32638 hashes, 0.76 khash/s  
 [2018-04-20 15:42:35] thread 0: 1957 hashes, 0.77 khash/s  
 [2018-04-20 15:42:35] thread 3: 4647 hashes, 0.77 khash/s  

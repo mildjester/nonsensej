@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -78,7 +90,7 @@ MultilingualPress 2.11.1</p>
 <p>上記のリンク先にマルチサイト化をするための手順が記載されています。<br>
 <a href="https://multilingualpress.org/docs/install-wordpress-multisite/" rel="noopener" target="_blank"><a href="https://multilingualpress.org/docs/install-wordpress-multisite/">https://multilingualpress.org/docs/install-wordpress-multisite/</a></a></p>
 <p>まず、Wordpressがインストールされているディレクトリにある<code>wp-config.php</code>を編集し、マルチサイトを有効化します。</p>
-<pre><code>define('WP_DEBUG', false);  
+<pre tabindex="0"><code>define('WP_DEBUG', false);  
   
 define('WP_ALLOW_MULTISITE', TRUE);  &lt;=これを追記  
   
@@ -90,7 +102,7 @@ if ( !defined('ABSPATH') )
 </code></pre><p>次にプラグインを全て停止させ、管理画面より「ツール ＞ サイトネットワークの設置」を開き、『インストール』をクリックします。<br>
 <img src="https://blog2.logical-dice.com/images/2018/04/04b279018ccd8885f814183242c7e189.png" alt="" /></p>
 <p>すると、再度<code>wp-config.php</code>を修正するよう案内が表示されるので、案内通りに修正します。</p>
-<pre><code>define('WP_DEBUG', false);  
+<pre tabindex="0"><code>define('WP_DEBUG', false);  
   
 define('WP_ALLOW_MULTISITE', TRUE);  
   
@@ -107,7 +119,7 @@ define('BLOG_ID_CURRENT_SITE', 1);                  &lt;=これを追記
 if ( !defined('ABSPATH') )  
     define('ABSPATH', dirname(__FILE__) . '/');  
 </code></pre><p>また、<code>.htaccess</code>に次の記載をするよう指示がありますので、それも従います。</p>
-<pre><code>RewriteEngine On  
+<pre tabindex="0"><code>RewriteEngine On  
 RewriteBase /  
 RewriteRule ^index\.php$ - [L]  
   
@@ -121,7 +133,7 @@ RewriteRule ^(wp-(content|admin|includes).*) $1 [L]
 RewriteRule ^(.*\.php)$ $1 [L]  
 RewriteRule . index.php [L]  
 </code></pre><p>nginxを使っている場合は<code>.htaccess</code>が効かないので、nginx.confに以下の記載を追加します。</p>
-<pre><code>rewrite ^/wp-admin$ /wp-admin/ redirect;  
+<pre tabindex="0"><code>rewrite ^/wp-admin$ /wp-admin/ redirect;  
 if (!-e $request_filename){  
     rewrite ^/(wp-(content|admin|includes).*) /$1 break;  
     rewrite ^/(.*\.php)$ /$1 break;  

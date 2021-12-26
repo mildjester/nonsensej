@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -71,17 +83,17 @@ window.addEventListener('DOMContentLoaded', () => {
 <hr>
 <h2 id="dockerのインストール">Dockerのインストール</h2>
 <p>dockerのGPGを追加</p>
-<pre><code>$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -  
+<pre tabindex="0"><code>$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -  
 </code></pre><p>dockerリポジトリ追加</p>
-<pre><code>$ sudo add-apt-repository &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable&quot;  
+<pre tabindex="0"><code>$ sudo add-apt-repository &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable&quot;  
 </code></pre><p>dockerインストール</p>
-<pre><code>$ apt update  
+<pre tabindex="0"><code>$ apt update  
 $ apt install docker-ce  
 </code></pre><h2 id="docker-composeのインストール">docker-composeのインストール</h2>
-<pre><code>$ apt install docker-compose  
+<pre tabindex="0"><code>$ apt install docker-compose  
 </code></pre><h2 id="sudo無しでdockerを使えるようにする">sudo無しでdockerを使えるようにする</h2>
 <p>現在のユーザーを<code>docker</code>というグループに所属させれば使えるようになるらしい。</p>
-<pre><code>sudo gpasswd -a $USER docker  
+<pre tabindex="0"><code>sudo gpasswd -a $USER docker  
 service docker restart  
 </code></pre><p>これで、一度ログアウトすればsudo無しでdockerコマンドが使えるようになります。</p>
 

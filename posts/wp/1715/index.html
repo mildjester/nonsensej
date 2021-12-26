@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -104,24 +116,24 @@ window.addEventListener('DOMContentLoaded', () => {
 例えば「所有者AAA」のリポジトリに使う秘密鍵は<code>~/.ssh/id_rsa_1</code>、<br>
 「所有者BBB」のリポジトリに使う秘密鍵は<code>~/.ssh/id_rsa_2</code>とする場合は<br>
 以下のようになります。</p>
-<pre><code>specialKeys=(  
+<pre tabindex="0"><code>specialKeys=(  
     'AAA::~/.ssh/id_rsa_1'  
     'BBB::~/.ssh/id_rsa_2'  
 )  
 </code></pre><p>④<code>~/.bashrc</code>に以下のエイリアスを追記しておきます。<br>
 通常使っているシェルがbash以外（zshやfishなど）の場合は、そちらの設定ファイルへ追記してください。</p>
-<pre><code># gitコマンドを置き換える  
+<pre tabindex="0"><code># gitコマンドを置き換える  
 alias git=&quot;/path-to-gits-repository/gits.sh&quot;  
 </code></pre><p>※path-to-gits-repositoryはリポジトリをcloneまたはダウンロードしてきたディレクトリを指定してください</p>
 <p>これで何も考えずにgitコマンドを打っても、裏で勝手に秘密鍵を切り替えてくれるようになります。</p>
 <h3 id="備考ghqを使っている場合">備考：ghqを使っている場合</h3>
 <p>私は<code>git clone</code>よりも<code>ghq get</code>をよく使うので、そのスクリプトも用意しました。<br>
 基本的な設定は上記と同じで、エイリアスの設定だけ追加します。</p>
-<pre><code>alias ghq_get=&quot;~/git/github.com/mildjester/gits/ghq_get.sh&quot;  
+<pre tabindex="0"><code>alias ghq_get=&quot;~/git/github.com/mildjester/gits/ghq_get.sh&quot;  
 </code></pre><p>こちらは完全にコマンドを置き換える訳ではないのですが<br>
 以下のコマンドでリポジトリを取得する事ができるようになります。<br>
 (ghqとgetの間がスペースではなくアンダーバーになるだけ)</p>
-<pre><code>ghq_get git@github.com:AAAA/hogehoge.git  
+<pre tabindex="0"><code>ghq_get git@github.com:AAAA/hogehoge.git  
 </code></pre>
 	</div>
 </main>

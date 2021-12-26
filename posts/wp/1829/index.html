@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -76,7 +88,7 @@ window.addEventListener('DOMContentLoaded', () => {
 <p>まずMacにUSBメモリを刺し、ターミナルで<code>diskutil list</code>を実行します<br>
 これでUSBメモリのdisk番号を調べます（NAMEやSIZEを見る）<br>
 私の場合は <code>/dev/disk2</code> がUSBメモリでした</p>
-<pre><code>$ diskutil list
+<pre tabindex="0"><code>$ diskutil list
 /dev/disk0 (internal):  
    #:                       TYPE NAME                    SIZE       IDENTIFIER  
    0:      GUID_partition_scheme                         121.3 GB   disk0  
@@ -99,10 +111,10 @@ window.addEventListener('DOMContentLoaded', () => {
 </code></pre><p>対象ディスクをフォーマットします<br>
 以下の <code>HOGEHOGE</code> の部分はフォーマット後のUSBメモリの名前ですので<br>
 任意のものを入れてください</p>
-<pre><code>$ diskutil eraseDisk MS-DOS HOGEHOGE /dev/disk2  
+<pre tabindex="0"><code>$ diskutil eraseDisk MS-DOS HOGEHOGE /dev/disk2  
 </code></pre><p>フォーマットが終わったらアンマウントし、isoイメージを焼きます<br>
 （ddコマンドで結構待ちます）</p>
-<pre><code>$ diskutil unmountDisk /dev/disk2  
+<pre tabindex="0"><code>$ diskutil unmountDisk /dev/disk2  
 Unmount of all volumes on disk2 was successful  
 $ cd ~/Downloads   #isoイメージをDLした場所に読み替えてください  
 $ sudo dd if=linuxmint-19.1-mate-64bit.iso of=/dev/rdisk2 bs=32m  

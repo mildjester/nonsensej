@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -72,11 +84,11 @@ AdobeよりFlashPlayerをダウンロードします。<br>
 この記事を書いた時は「install_flash_player_11_linux.x86_64.tar.gz」をダウンロードしました。</p>
 <p>ダウンロードしたファイルを解凍してできたディレクトリに入り、<br>
 必要なファイルをコピーしていきます。</p>
-<pre><code>sudo cp -a libflashplayer.so /usr/lib/chromium-browser/libs/.  
+<pre tabindex="0"><code>sudo cp -a libflashplayer.so /usr/lib/chromium-browser/libs/.  
 sudo cp -a usr/* /usr/.
 </code></pre><p>■Cromiumの場合<br>
 <del datetime="2016-06-21T14:36:14+00:00">以下のコマンドだけでインストールできます。</del></p>
-<pre><code>&lt;del datetime=&quot;2016-06-21T14:36:14+00:00&quot;&gt;sudo apt-get install pepperflashplugin-nonfree&lt;/del&gt;  
+<pre tabindex="0"><code>&lt;del datetime=&quot;2016-06-21T14:36:14+00:00&quot;&gt;sudo apt-get install pepperflashplugin-nonfree&lt;/del&gt;  
 &lt;del datetime=&quot;2016-05-04T14:36:14+00:00&quot;&gt;sudo update-pepperflashplugin-nonfree --install&lt;/del&gt;  
 </code></pre><p>※（2016/6/21編集）上記コマンドでのインストールでは最新版のFlashプレイヤーが取得できなくなています。<br>
 　Adobeの公式サイトでダウンロードできるので、そちらから入手しましょう。<br>

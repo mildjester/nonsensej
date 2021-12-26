@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -93,7 +105,7 @@ Linux Mint, Android, iPhoneで接続できるようにします。</p>
 <li>OSのみ</li>
 <li>Amazon Linux</li>
 </ul>
-<p><img src="https://blog2.logical-dice.com/images/2019/07/lightsail-vpn-002.png" /></p>
+<img src="https://blog2.logical-dice.com/images/2019/07/lightsail-vpn-002.png" />
 <p>インスタンスプランはVPNの利用予定に合わせて選びます。<br>
 個人でちょっと使う程度であれば最安のプランでよいと思います。<br>
 <img src="https://blog2.logical-dice.com/images/2019/07/lightsail-vpn-003.png" /></p>
@@ -119,16 +131,16 @@ Linux Mint, Android, iPhoneで接続できるようにします。</p>
 手元のターミナルからsshで繋いでも良いです。</p>
 <h3 id="lightsailの時刻を日本時間に合わせる">Lightsailの時刻を日本時間に合わせる</h3>
 <p>念の為タイムゾーンを日本にしておきます。</p>
-<pre><code>sudo cp -p /usr/share/zoneinfo/Japan /etc/localtime
+<pre tabindex="0"><code>sudo cp -p /usr/share/zoneinfo/Japan /etc/localtime
 sudo service rsyslog restart
 sudo service crond restart
 </code></pre><h2 id="openvpn設定">OpenVPN設定</h2>
 <h3 id="openvpnインストール">OpenVPNインストール</h3>
 <p>以下コマンドを実行します。</p>
-<pre><code>sudo yum install openvpn
+<pre tabindex="0"><code>sudo yum install openvpn
 </code></pre><h3 id="認証局の作成">認証局の作成</h3>
 <p>以下コマンドを実行します。</p>
-<pre><code>wget https://github.com/OpenVPN/easy-rsa/releases/download/v3.0.4/EasyRSA-3.0.4.tgz
+<pre tabindex="0"><code>wget https://github.com/OpenVPN/easy-rsa/releases/download/v3.0.4/EasyRSA-3.0.4.tgz
 tar -xf EasyRSA-3.0.4.tgz
 sudo mv EasyRSA-3.0.4 /usr/local/EasyRSA
 cd /usr/local/EasyRSA/
@@ -158,23 +170,23 @@ cd /usr/local/EasyRSA/
 </tbody>
 </table>
 <h3 id="dhパラメータを生成">DHパラメータを生成</h3>
-<pre><code>./easyrsa gen-dh
+<pre tabindex="0"><code>./easyrsa gen-dh
 </code></pre><h3 id="サーバー用の証明書秘密鍵を生成">サーバー用の証明書＆秘密鍵を生成</h3>
-<pre><code>./easyrsa build-server-full server nopass
+<pre tabindex="0"><code>./easyrsa build-server-full server nopass
 </code></pre><p>実行後にパスフレーズを聞かれるので、さきほど設定したパスフレーズを入力してください。</p>
 <h3 id="クライアント用の証明書秘密鍵を生成">クライアント用の証明書＆秘密鍵を生成</h3>
 <p>以下コマンドを接続する利用者分実施します。<br>
 同じ利用者でも、PCとスマホの両方から同時接続するのであれば別クライアントとして証明書＆秘密鍵を生成する必要があります。</p>
-<pre><code>./easyrsa build-client-full {クライアント名} nopass
+<pre tabindex="0"><code>./easyrsa build-client-full {クライアント名} nopass
 #例） ./easyrsa build-client-full client1 nopass
 </code></pre><p>実行後にパスフレーズを聞かれるので、さきほど設定したパスフレーズを入力してください。
 クライアント名は接続者が識別できるような任意の名前にしてください。</p>
 <h3 id="vpnサーバーのipアドレスネットマスクの確認">VPNサーバーのIPアドレス＆ネットマスクの確認</h3>
 <p>以下のコマンドを実行します。</p>
-<pre><code>ip a
+<pre tabindex="0"><code>ip a
 </code></pre><p>この出力結果のeth0のinetを確認しておく。<br>
 （以下のxxx.xxx.xxx.xxx/xxの部分）</p>
-<pre><code>2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 9001 qdisc pfifo_fast state UP group default qlen 1000
+<pre tabindex="0"><code>2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 9001 qdisc pfifo_fast state UP group default qlen 1000
     link/ether 06:7a:be:17:01:aa brd ff:ff:ff:ff:ff:ff
     inet xxx.xxx.xxx.xxx/xx brd 172.26.15.255 scope global eth0
        valid_lft forever preferred_lft forever
@@ -182,18 +194,18 @@ cd /usr/local/EasyRSA/
        valid_lft forever preferred_lft forever
 </code></pre><h3 id="設定ファイル修正">設定ファイル修正</h3>
 <p>生成したサーバー用ファイルをOpenVPNのディレクトリへコピーします。</p>
-<pre><code>sudo cp pki/ca.crt /etc/openvpn/.
+<pre tabindex="0"><code>sudo cp pki/ca.crt /etc/openvpn/.
 sudo cp pki/issued/server.crt /etc/openvpn/.
 sudo cp pki/private/server.key /etc/openvpn/.
 sudo cp pki/dh.pem /etc/openvpn/dh2048.pem
 </code></pre><p>※dhだけファイル名を変更しています</p>
 <p>次に設定ファイルを編集します。</p>
-<pre><code>sudo cp /usr/share/doc/openvpn-2.4.4/sample/sample-config-files/server.conf /etc/openvpn/server.conf
+<pre tabindex="0"><code>sudo cp /usr/share/doc/openvpn-2.4.4/sample/sample-config-files/server.conf /etc/openvpn/server.conf
 sudo vim /etc/openvpn/server.conf
 </code></pre><p>編集後の設定は以下のようになります。<br>
 <code>push &quot;route xxx.xxx.xxx.xxx yyy.yyy.yyy.yyy&quot;</code> の部分は<br>
 さきほど確認したVPNサーバーのIPアドレス＆サブネットマスクにします。</p>
-<pre><code>$ grep -v &quot;^$&quot; /etc/openvpn/server.conf | grep -v &quot;^#&quot; | grep -v &quot;^;&quot;
+<pre tabindex="0"><code>$ grep -v &quot;^$&quot; /etc/openvpn/server.conf | grep -v &quot;^#&quot; | grep -v &quot;^;&quot;
 port 1194
 proto tcp
 dev tun
@@ -218,7 +230,7 @@ log-append  /var/log/openvpn/openvpn.log
 verb 3
 explicit-exit-notify 0
 </code></pre><p>元のサンプルファイルとの差分は以下のようになっています</p>
-<pre><code>$ diff /usr/share/doc/openvpn-2.4.4/sample/sample-config-files/server.conf /etc/openvpn/server.conf
+<pre tabindex="0"><code>$ diff /usr/share/doc/openvpn-2.4.4/sample/sample-config-files/server.conf /etc/openvpn/server.conf
 35,36c35,36
 &lt; ;proto tcp
 &lt; proto udp
@@ -251,18 +263,18 @@ explicit-exit-notify 0
 ---
 &gt; explicit-exit-notify 0
 </code></pre><p>設定したログ出力ディレクトリも作成しておきます。</p>
-<pre><code>sudo mkdir /var/log/openvpn
+<pre tabindex="0"><code>sudo mkdir /var/log/openvpn
 sudo chmod 0600 /var/log/openvpn
 </code></pre><h3 id="takeyの作成">ta.keyの作成</h3>
-<pre><code>sudo openvpn --genkey --secret /etc/openvpn/ta.key
+<pre tabindex="0"><code>sudo openvpn --genkey --secret /etc/openvpn/ta.key
 </code></pre><h3 id="パケット転送を有効にする">パケット転送を有効にする</h3>
-<pre><code>sudo sed -i -e &quot;s/net.ipv4.ip_forward = 0/net.ipv4.ip_forward = 1/g&quot; /etc/sysctl.conf
+<pre tabindex="0"><code>sudo sed -i -e &quot;s/net.ipv4.ip_forward = 0/net.ipv4.ip_forward = 1/g&quot; /etc/sysctl.conf
 sudo sysctl -p
 </code></pre><h3 id="ルーティングを変更する">ルーティングを変更する</h3>
-<pre><code>sudo iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE
+<pre tabindex="0"><code>sudo iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE
 sudo service iptables save
 </code></pre><h3 id="openvpnを起動">OpenVPNを起動</h3>
-<pre><code>sudo chkconfig openvpn on
+<pre tabindex="0"><code>sudo chkconfig openvpn on
 sudo service openvpn start
 </code></pre><h2 id="クライアントの設定">クライアントの設定</h2>
 <p>VPNサーバーで生成したファイルのうち、クライアントの設定用に必要なファイルは以下4点です。</p>
@@ -277,7 +289,7 @@ sudo service openvpn start
 <p>ovpnファイルに記載する内容は以下の通りです。<br>
 証明書や鍵の情報はovpnファイルに埋め込んでしまった方が便利なので、埋め込んでしまいます。<br>
 ※xxx.xxx.xxx.xxxはVPNサーバーのグローバルIPアドレスに置き換えてください。</p>
-<pre><code>client
+<pre tabindex="0"><code>client
 dev tun
 proto tcp
 remote xxx.xxx.xxx.xxx 1194

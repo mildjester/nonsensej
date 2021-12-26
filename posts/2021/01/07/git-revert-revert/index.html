@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -69,7 +81,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		<p>Typescript + Vue.jsの構成で親コンポーネントから子コンポーネントのプロパティにアクセスする場合、<br>
 普通のjavascriptと同じように実装するとエラーとなる場合があります。</p>
 <p>例えば、以下のように記載するとします。</p>
-<pre><code># template
+<pre tabindex="0"><code># template
 &lt;HogeChild ref=&quot;hogeChildRef&quot; /&gt;
 
 # script
@@ -87,11 +99,11 @@ export default class HogeParent extends Vue {
   }
 }
 </code></pre><p>すると以下のエラーが発生することがあります。</p>
-<pre><code>Property 'someFlg' does not exist on type 'Vue | Element | Vue[] | Element[]'.
+<pre tabindex="0"><code>Property 'someFlg' does not exist on type 'Vue | Element | Vue[] | Element[]'.
   Property 'someFlg' does not exist on type 'Vue'.Vetur(2339)
 </code></pre><p>この場合、Typescriptを使う場合は子コンポーネント呼び出し時にも型を指定してあげる必要があります。<br>
 子コンポーネント呼び出し部分を以下のようにすると動きます。</p>
-<pre><code>  changeChildFlg(): void {
+<pre tabindex="0"><code>  changeChildFlg(): void {
     const hogeChildRef = &lt;HogeChild&gt;this.$refs.hogeChildRef;
     hogeChildRef.someFlg = true;
   }

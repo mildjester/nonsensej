@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -79,7 +91,7 @@ Wordpress: <code>https://www.sample.com/blog</code></p>
 <h4 id="apache設定">Apache設定</h4>
 <p>httpd.confなどに以下のようにリバースプロキシ設定をします。<br>
 他リバースプロキシに影響しないようにLocationで括ります。</p>
-<pre><code>&lt;Location &quot;/blog&quot;&gt;
+<pre tabindex="0"><code>&lt;Location &quot;/blog&quot;&gt;
     ProxyPass http://sub.sample.com/blog
     ProxyPassReverse http://sub.sample.com/blog
     ProxyPassReverseCookieDomain sub.sample.com www.sample.com
@@ -94,7 +106,7 @@ WordpressソースはDocumentRoot配下に<code>blog</code>ディレクトリを
 <p>これでWordpressページ自体は表示されますが、必要なJS/CSS/画像などの外部ファイルのURLが非SSLとなってしまい<br>
 Chromeなどだとエラーとなってしまいます。<br>
 なので、<code>.htaccess</code>に以下追記して強制的にSSL通信扱いになるようにします。</p>
-<pre><code>SetEnv HTTPS on
+<pre tabindex="0"><code>SetEnv HTTPS on
 </code></pre><p>※補足<br>
 非SSLで<code>http://sample.com/blog</code>にアクセスした場合はどうするのって話もありますが、<br>
 そもそも非SSLページは推奨されないので、今回は考えてません。<br>
@@ -105,7 +117,7 @@ Chromeなどだとエラーとなってしまいます。<br>
 <p>ここまでの対応だと<code>$_SERVER['HTTP_HOST']</code>と<code>$_SERVER['SERVER_NAME']</code>が<code>sub.sample.com</code>のままになってしまいます。<br>
 ページ表示上は問題無さそうですが、管理画面でブラウザのconsoleに警告が出て気持ち悪いので修正しておきます。</p>
 <p>wp-config.phpの先頭に以下の記載を付け加えておきます。</p>
-<pre><code>if (isset($_SERVER['HTTP_X_FORWARDED_HOST']) &amp;&amp; $_SERVER['HTTP_X_FORWARDED_HOST'] === 'www.sample.com') {
+<pre tabindex="0"><code>if (isset($_SERVER['HTTP_X_FORWARDED_HOST']) &amp;&amp; $_SERVER['HTTP_X_FORWARDED_HOST'] === 'www.sample.com') {
     $_SERVER['HTTP_HOST'] = 'www.sample.com';
     $_SERVER['SERVER_NAME'] = 'www.sample.com';
 }

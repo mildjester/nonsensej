@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -71,15 +83,15 @@ window.addEventListener('DOMContentLoaded', () => {
 <hr>
 <p>今更ですがsudoコマンドについて整理しておきたかったので書きました。</p>
 <p>まず基本として、rootユーザーとしてコマンドを実行する場合は<code>sudo {コマンド}</code>を打ちます。</p>
-<pre><code>$ sudo id
+<pre tabindex="0"><code>$ sudo id
 uid=0(root) gid=0(root) 所属グループ=0(root)
 </code></pre><p>もしrootユーザー以外になり代わるたい場合は<code>-u</code>オプションで指定します。</p>
-<pre><code>$ sudo -u apache id
+<pre tabindex="0"><code>$ sudo -u apache id
 uid=48(apache) gid=48(apache) 所属グループ=48(apache)
 </code></pre><p>もし特定のユーザーに頻繁になり代わる場合は<br>
 <code>.bashrc</code>などにfunction定義しておくと楽です。<br>
 (今回一番書きたかったこと)</p>
-<pre><code># Apacheユーザとしてコマンド実行する
+<pre tabindex="0"><code># Apacheユーザとしてコマンド実行する
 sudoa () {
     sudo -u apache $*
 }
@@ -90,14 +102,14 @@ agit() {
 </code></pre><p>こうしておくと<code>agit pull</code>と打てば<br>
 Apacheユーザとして<code>git pull</code>を打つことができます。</p>
 <p>また、以下のような簡単なスクリプトも書けます。</p>
-<pre><code>hoge() {
+<pre tabindex="0"><code>hoge() {
     sudo -u yamada sh -c '
         NAME=`id | grep -o -E &quot;\([^)]+\)&quot; | grep -o -m 1 -E &quot;[^\()]+&quot;`
         echo &quot;hello ${NAME}!&quot;
     '
 }
 </code></pre><p>実行結果は以下のようになります。</p>
-<pre><code>$ hoge
+<pre tabindex="0"><code>$ hoge
 hello yamada!
 </code></pre>
 	</div>

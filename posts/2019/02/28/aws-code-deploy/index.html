@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -106,20 +118,20 @@ IAMロール作成画面にてAWSサービス ＞ CodeDeployを選びます。<b
 <img src="https://blog2.logical-dice.com/images/2019/02/AWS-CodeDeploy-EC2-002.png"/></p>
 <p>次にコンソールにて対象インスタンスにログインし、CodeDeployのエージェントをインストールします。<br>
 ダウンロードするインストーラーはrubyが無いと動かないので、インストールされていない場合はインストールしておきます。</p>
-<pre><code>$ sudo yum install ruby # rubyがインストールされてない場合
+<pre tabindex="0"><code>$ sudo yum install ruby # rubyがインストールされてない場合
 $ sudo yum install aws-cli # aws-cliがインストールされていない場合
 $ aws s3 cp s3://aws-codedeploy-ap-northeast-1/latest/install . --region ap-northeast-1
 $ chmod +x ./install
 $ sudo ./install auto
 </code></pre><p>インストールが完了したら念の為動作している事を確認する。</p>
-<pre><code>$ sudo service codedeploy-agent status
+<pre tabindex="0"><code>$ sudo service codedeploy-agent status
 The AWS CodeDeploy agent is running as PID 12345
 </code></pre><p>もし上記のロール割り当てより先にCodeDeployエージェントを起動してしまった場合は、<br>
 ロール割り当て後にCodeDeployエージェントを再起動すれば大丈夫です。</p>
-<pre><code>$ sudo service codedeploy-agent restart
+<pre tabindex="0"><code>$ sudo service codedeploy-agent restart
 </code></pre><h2 id="リポジトリ準備">リポジトリ準備</h2>
 <p>デプロイ対象のgitリポジトリのTOP階層に<code>appspec.yml</code>というファイルを作成し、以下のように記載します。</p>
-<pre><code>version: 0.0
+<pre tabindex="0"><code>version: 0.0
 os: linux
 files:
   - source: ./
@@ -169,7 +181,7 @@ files:
 ※コンテンツの上書きを指定しないと既存コンテンツがある場合にコケます。<br>
 <img src="https://blog2.logical-dice.com/images/2019/02/AWS-CodeDeploy-CD-013.png"/></p>
 <p>デプロイが途中でコケてしまう場合はEC2上で以下のエージェントのログを確認してください。</p>
-<pre><code>/var/log/aws/codedeploy-agent/codedeploy-agent.log
+<pre tabindex="0"><code>/var/log/aws/codedeploy-agent/codedeploy-agent.log
 </code></pre>
 	</div>
 </main>

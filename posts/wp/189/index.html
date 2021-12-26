@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -71,16 +83,16 @@ window.addEventListener('DOMContentLoaded', () => {
 MySQL 5.6.26</p>
 <p>これからDBの作成をする場合は、設定ファイル「/etc/my.cnf」に追記することで<br>
 作成するDBの文字コードを設定できます。</p>
-<pre><code>[mysqld]  
+<pre tabindex="0"><code>[mysqld]  
 character-set-server=utf8  
 [client]  
 default-character-set=utf8
 </code></pre><p>作成済みDBの文字コードを設定する場合は以下のコマンドを実行してください。</p>
-<pre><code># mysql  
+<pre tabindex="0"><code># mysql  
 mysql&gt; ALTER DATABASE sample_db CHARACTER SET utf8;  
 mysql&gt; SHOW CREATE DATABASE sample_db;
 </code></pre><p>作成済みテーブルの文字コードを設定する場合は以下のコマンドを実行してください。</p>
-<pre><code># mysql  
+<pre tabindex="0"><code># mysql  
 【テーブルとカラム両方に設定する場合】mysql&gt; ALTER TABLE sample_table CONVERT TO CHARACTER SET utf8;  
 【テーブルのみ設定する場合】mysql&gt; ALTER TABLE sample_table charset=utf8;  
 mysql&gt; SHOW CREATE TABLE sample_table;

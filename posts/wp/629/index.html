@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -72,18 +84,18 @@ window.addEventListener('DOMContentLoaded', () => {
 <h3 id="bonding設定">bonding設定</h3>
 <p>参考URL：<a href="https://bacchi.me/linux/bonding/" target="_blank"><a href="https://bacchi.me/linux/bonding/">https://bacchi.me/linux/bonding/</a></a></p>
 <p>現状確認しておきます。</p>
-<pre><code>nmcli c  
+<pre tabindex="0"><code>nmcli c  
 ip a  
 </code></pre><p>bonding用インターフェースを追加します。</p>
-<pre><code>nmcli connection add type bond autoconnect no con-name bond0 ifname bond0 mode active-backup  
+<pre tabindex="0"><code>nmcli connection add type bond autoconnect no con-name bond0 ifname bond0 mode active-backup  
 </code></pre><p>物理インターフェースをbondに紐付けます</p>
-<pre><code>nmcli connection add type bond-slave autoconnect no ifname eno1 master bond0  
+<pre tabindex="0"><code>nmcli connection add type bond-slave autoconnect no ifname eno1 master bond0  
 nmcli connection add type bond-slave autoconnect no ifname eno2 master bond0  
 </code></pre><p>bondにIPを設定します。</p>
-<pre><code>nmcli c mod bond0 ipv4.method manual ipv4.address &quot;192.168.999.999/32&quot; ipv4.gateway &quot;192.168.999.254&quot; ipv6.method ignore  
+<pre tabindex="0"><code>nmcli c mod bond0 ipv4.method manual ipv4.address &quot;192.168.999.999/32&quot; ipv4.gateway &quot;192.168.999.254&quot; ipv6.method ignore  
 nmcli c mod bond0 ipv4.dns 192.168.999.254  
 </code></pre><p>物理インターフェースを無効にし、bondインターフェースを有効にします。</p>
-<pre><code>nmcli c m eno1 connection.autoconnect no  
+<pre tabindex="0"><code>nmcli c m eno1 connection.autoconnect no  
 nmcli c m eno2 connection.autoconnect no  
   
 nmcli c m bond-slave-eno1 connection.autoconnect yes  
@@ -94,16 +106,16 @@ nmcli c up bond-slave-eno1
 nmcli c up bond-slave-eno2  
 nmcli c up bond0  
 </code></pre><h3 id="ホスト名変更">ホスト名変更</h3>
-<pre><code>hostnamectl set-hostname sample.com  
+<pre tabindex="0"><code>hostnamectl set-hostname sample.com  
 </code></pre><h3 id="selinux無効化">SELinux無効化</h3>
 <p>SELinuxが不要な場合は無効化します。</p>
-<pre><code>vim /etc/sysconfig/selinux  
+<pre tabindex="0"><code>vim /etc/sysconfig/selinux  
 SELINUX=enforcing  
 SELINUX=disabled  
 </code></pre><h3 id="firewalld停止">firewalld停止</h3>
 <p>別のファイアーウォール内のサーバである場合、<br>
 不要なのでfirewalldは停止しておきます。</p>
-<pre><code>systemctl stop firewalld  
+<pre tabindex="0"><code>systemctl stop firewalld  
 systemctl disable firewalld  
 </code></pre>
 	</div>

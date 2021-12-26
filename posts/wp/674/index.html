@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -78,18 +90,18 @@ foreverでの起動ができなくなっていました。 <br>
 ===追記ここまで=====</p>
 <h3 id="手順">■手順</h3>
 <p>npmとnodejsが入っていない場合は、yumでインストールします</p>
-<pre><code>yum install npm nodejs  
+<pre tabindex="0"><code>yum install npm nodejs  
 </code></pre><p>vueアプリを簡単に導入できるツール「vue-cli」と <br>
 nodeアプリをデーモン的に起動できる「forever」をインストールします <br>
 ※これらはグローバル領域にインストールするので「-g」オプションをつけます</p>
-<pre><code>npm install -g vue-cli forever  
+<pre tabindex="0"><code>npm install -g vue-cli forever  
 </code></pre><p>プロジェクトディレクトリを作成します <br>
 プロジェクトを作成したいディレクトリで以下を実行します</p>
-<pre><code>vue init webpack samplevue    
+<pre tabindex="0"><code>vue init webpack samplevue    
 ※「samplevue」は作成したいディレクトリ名    
 </code></pre><p>上記実行後に色々質問をされるので、作りたい環境に合わせて回答します <br>
 以下は回答例です</p>
-<pre><code>? Project name samplevue  
+<pre tabindex="0"><code>? Project name samplevue  
 ? Project description This is Sample  
 ? Author Djiro  
 ? Vue build standalone  
@@ -99,13 +111,13 @@ nodeアプリをデーモン的に起動できる「forever」をインストー
 ? Setup e2e tests with Nightwatch? No  
 ? Should we run `npm install` for you after the project has been created? (recommended) npm  
 </code></pre><p>作成したディレクトリに移動し、必要なファイルをインストールします</p>
-<pre><code>cd samplevue    
+<pre tabindex="0"><code>cd samplevue    
 npm install  
 </code></pre><p>ここまで終わったら、foreverでvueアプリを起動できる状態になっています <br>
 dev環境で起動したい場合、以下のコマンドで起動できます</p>
-<pre><code>forever start build/dev-server.js  
+<pre tabindex="0"><code>forever start build/dev-server.js  
 </code></pre><p>ここで指定するjsファイルは、作成したプロジェクトディレクトリ直下にある『package.json』を見れば、７行目あたりから記載されています</p>
-<pre><code>{  
+<pre tabindex="0"><code>{  
   &quot;name&quot;: &quot;samplevue&quot;,  
   &quot;version&quot;: &quot;1.0.0&quot;,  
 〜中略〜  
@@ -115,7 +127,7 @@ dev環境で起動したい場合、以下のコマンドで起動できます</
     &quot;build&quot;: &quot;node build/build.js&quot;,  
 〜以下略〜  
 </code></pre><p>これで、8080ポートにアクセスすればVueアプリが表示されるようになっています <br>
-<code><a href="http://yourdomain.com">http://yourdomain.com</a>:8080/</code></p>
+<code><a href="http://yourdomain.com:8080/">http://yourdomain.com:8080/</a></code></p>
 <p>その他、foreverの利用方法については<a href="/posts/wp/677" target="_blank">コチラ</a></p>
 
 	</div>

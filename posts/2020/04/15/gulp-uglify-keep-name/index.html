@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -76,7 +88,7 @@ window.addEventListener('DOMContentLoaded', () => {
 圧縮したJSファイル内でのみ呼び出される変数・関数であれば良いのですが、外部からも呼び出したいというパターンもあると思います。特に関数。</p>
 <p>変数名や関数名を保持したい場合は、gulp-uglify実行時に以下の用にオプションを指定してあげればOKです。</p>
 <p>(gulpfile.js例)</p>
-<pre><code>var gulp = require('gulp');
+<pre tabindex="0"><code>var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 
 var uglify_option = {

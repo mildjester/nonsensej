@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -77,19 +89,19 @@ window.addEventListener('DOMContentLoaded', () => {
 <p>ダウンロードしたISOをUSBメモリに起動可能USBとして焼きます。<br>
 1.USBをMacに挿す。<br>
 2.以下コマンドにてUSBメモリのdisk番号を確認する。</p>
-<pre><code>$ diskutil list
+<pre tabindex="0"><code>$ diskutil list
 </code></pre><p>3.以下のコマンドにてUSBメモリを初期化する。</p>
-<pre><code>$ diskutil eraseDisk MS-DOS NOTITLE /dev/diskX  
+<pre tabindex="0"><code>$ diskutil eraseDisk MS-DOS NOTITLE /dev/diskX  
 ※「NOTITLE」作成するUSB名(任意)  
 ※diskXは1.で確認したdisk番号
 </code></pre><p>4.焼き込みをするため、USBメモリをアンマウント</p>
-<pre><code>$ diskutil unmountDisk /dev/diskX
+<pre tabindex="0"><code>$ diskutil unmountDisk /dev/diskX
 </code></pre><p>5.ISOを書き込む。</p>
-<pre><code>$ cd {CentOSのISOがある場所}  
+<pre tabindex="0"><code>$ cd {CentOSのISOがある場所}  
 $ sudo dd if=CentOS-7-x86_64-Everything-1511.iso of=/dev/diskX bs=4028  
 ※処理完了まで、かなり待ちます
 </code></pre><p>6.USBメモリを取り外し可能状態にする。</p>
-<pre><code>$ diskutil eject /dev/diskX
+<pre tabindex="0"><code>$ diskutil eject /dev/diskX
 </code></pre><h2 id="raidコントローラの準備">RAIDコントローラの準備</h2>
 <p>次にGen8用のRAIDコントローラをダウンロードします。<br>
 これがないとHPサーバが備えているのRAID機能が使えない。<br>
@@ -100,7 +112,7 @@ $ sudo dd if=CentOS-7-x86_64-Everything-1511.iso of=/dev/diskX bs=4028
 MacはUSBメモリを挿すと自動でマウントするので、ディスクユーティリティからマウント解除して<br>
 以下コマンドを実施。<br>
 （先にUSBの初期化〜アンマウントはISO書き込みと同じ手順を実施）</p>
-<pre><code>$ cd {RAIDドライバをダウンロードした場所}  
+<pre tabindex="0"><code>$ cd {RAIDドライバをダウンロードした場所}  
 $ gunzip hpvsa-1.2.14-113.rhel7u2.x86_64.dd.gz  
 $ sudo dd if=hpvsa-1.2.14-113.rhel7u2.x86_64.dd of=/dev/diskX  
 $ diskutil eject /dev/diskX
@@ -109,7 +121,7 @@ $ diskutil eject /dev/diskX
 （事前にUSBブートできるようにBIOS設定はしておくこと）</p>
 <p>しばらくするとCentOSの文字が表示され、インストール方法を選択画面が表示されます。<br>
 ここでEscを押下すると「boot:」というプロンプトが現れるので、 以下を入力する。</p>
-<pre><code>linux modprobe.blacklist=ahci inst.dd
+<pre tabindex="0"><code>linux modprobe.blacklist=ahci inst.dd
 </code></pre><p>インストールが進み途中でドライバーが入ったディスクの選択画面が表示されます。<br>
 まず<code>r</code>と入力してディスク一覧の再読み込みを行ない、該当するディスクの番号を入力します。</p>
 <p>次にドライバー一覧が表示され、インストールするドライバーを選択しろと言われるので<br>

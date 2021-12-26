@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -91,24 +103,24 @@ Docker ToolboxではなくDocker for Windowsをインストールしてくださ
 基本的な書き方はMacやLinuxと同じなので割愛します。</p>
 <p>気をつけなければいけないのはvolumesの書き方です。<br>
 相対パスで記載する場合は以下のように他OS同様の記載ができます。</p>
-<pre><code>volumes:  
+<pre tabindex="0"><code>volumes:  
     ./php.ini:/etc/php.ini  
 </code></pre><p>次に絶対パスで記載する場合ですが、「C:¥」の部分は「/c/」と書きます。<br>
 例えば「C:¥develop¥app」にあるディレクトリを共有する場合は以下のような記載になります。</p>
-<pre><code>volumes:  
+<pre tabindex="0"><code>volumes:  
     /c/develop/app:/var/www/html  
 </code></pre><p>後に出てくるVirtualboxの共有フォルダ設定次第ではこの通りにしない事も可能かもしれませんが、<br>
 できるだけシンプルに構築するため、このようにします。</p>
 <p>もしMySQLのコンテナを作成する場合は<br>
 データの永続化のためのホスト側ディレクトリを指定することはできません。</p>
 <p>つまり、この書き方だとNGで</p>
-<pre><code>services:  
+<pre tabindex="0"><code>services:  
   mysql:  
     〜中略〜  
     volumes:  
       - ./mysql/data:/var/lib/mysql  
 </code></pre><p>この書き方ならOKです</p>
-<pre><code>services:  
+<pre tabindex="0"><code>services:  
   mysql:  
     〜中略〜  
     volumes:  

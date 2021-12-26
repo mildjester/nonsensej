@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -97,7 +109,7 @@ PHPからWebHooksを使ってメッセージ送信するライブラリを作っ
 <img src="https://blog2.logical-dice.com/images/2020/03/gas-gmail-slack-001.png" /></p>
 <p>コード編集画面が開くので、「コード.gs」内を以下のように記載します。<br>
 最初の「初期設定」の部分は自分の環境に合わせて修正してください。</p>
-<pre><code>// 初期設定
+<pre tabindex="0"><code>// 初期設定
 const HOOK_URL = 'https://hooks.slack.com/services/AAAAAAA/BBBBBBB/CCCCCCC'; // 取得したWebHooks URL
 const SEND_CHANNEL = 'general'; // Gmailの内容を送信したいSlackチャンネル
 
@@ -191,7 +203,7 @@ function send(message) {
 Slackにはあくまで「こんなメール来てますよ」程度の通知を送りたいだけであれば<br>
 本文は適当な文字数で切った方が良いです。</p>
 <p>例えば150文字で切る場合はこんな感じです。</p>
-<pre><code>var sendText = '【件名】\n' + message.getSubject()
+<pre tabindex="0"><code>var sendText = '【件名】\n' + message.getSubject()
              + '\n【本文】\n' + message.getPlainBody().substr(0, 150); //150文字で切る
 </code></pre><h3 id="slackで表示される名前とアイコンについて">Slackで表示される名前とアイコンについて</h3>
 <p>「jsonData」に設定している「username」と「icon_emoji」を変更することで<br>

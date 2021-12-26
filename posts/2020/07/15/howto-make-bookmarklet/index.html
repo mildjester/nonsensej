@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -78,19 +90,19 @@ window.addEventListener('DOMContentLoaded', () => {
 <p>まず、適当にjsファイルを作って適当に実行したいjavascriptのコードを書きます。<br>
 今回は例としてページ内のdivタグの数を数えるスクリプトを作ります。</p>
 <p>以下のコードをsample.jsというファイルに記載しておきます。</p>
-<pre><code>var divElms = document.getElementsByTagName('div');
+<pre tabindex="0"><code>var divElms = document.getElementsByTagName('div');
 alert('divの数は' + divElms.length + 'です！');
 </code></pre><h2 id="uglify-jsによるjavascriptの圧縮">uglify-jsによるjavascriptの圧縮</h2>
 <p>uglify-jsを使って作成したsample.jsを圧縮します。</p>
 <p>まず、uglify-jsコマンドを使えるようにインストールします。<br>
 npmをインストールしていない人は先にインストールしておいてください。</p>
-<pre><code>$ npm install -g uglify-js      # 環境に応じて必要であればsudoを付けてください
+<pre tabindex="0"><code>$ npm install -g uglify-js      # 環境に応じて必要であればsudoを付けてください
 </code></pre><p>次にjavascriptの圧縮をします。<br>
 以下のコマンドでjavascriptの圧縮ができます。<br>
 ※各オプションについては<a href="https://www.npmjs.com/package/uglify-js">公式ページ</a>参照</p>
-<pre><code>$ uglifyjs -c -m --toplevel -- sample.js
+<pre tabindex="0"><code>$ uglifyjs -c -m --toplevel -- sample.js
 </code></pre><p>実行結果として以下のように圧縮されたスクリプトが出力されます。</p>
-<pre><code>var e=document.getElementsByTagName(&quot;div&quot;);alert(&quot;divの数は&quot;+e.length+&quot;です！&quot;);
+<pre tabindex="0"><code>var e=document.getElementsByTagName(&quot;div&quot;);alert(&quot;divの数は&quot;+e.length+&quot;です！&quot;);
 </code></pre><p>この圧縮スクリプトの頭に<code>javascript:</code>を付けたものがBookmarkletになります。</p>
 <h2 id="ブラウザへのbookmarklet登録">ブラウザへのBookmarklet登録</h2>
 <p>ブラウザのブックマークに新規ページを追加し、URL欄に<code>javascript:｛生成した圧縮スクリプト｝</code>を登録します。<br>

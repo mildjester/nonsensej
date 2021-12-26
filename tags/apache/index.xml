@@ -6,11 +6,7 @@
     <description>Recent content in Apache on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Tue, 19 Nov 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://blog2.logical-dice.com/tags/apache/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 19 Nov 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/apache/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>htaccessで本番環境だけ特定のディレクトリを隠す</title>
       <link>https://blog2.logical-dice.com/posts/2019/11/19/apache-directory-hidden/</link>

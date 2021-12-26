@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -80,17 +92,17 @@ window.addEventListener('DOMContentLoaded', () => {
 <h3 id="最適な値の探し出し">■最適な値の探し出し</h3>
 <p>『感度』と『速度』をいじりながら最適な数値を探します。<br>
 私の場合はsensitivityは180、speedは60にすると丁度良かったです。</p>
-<pre><code>$ sudo -i
+<pre tabindex="0"><code>$ sudo -i
 # cd /sys/devices/platform/i8042/serio1/serio2
 # vim sensitivity   // 感度
 # vim speed         // 速さ
 </code></pre><h3 id="設定値の永続化">■設定値の永続化</h3>
 <p>さきほど修正していたファイルは再起動時に戻ってしまうので、<br>
 別ファイルにルールを記載しておきます。</p>
-<pre><code># vim /etc/udev/rules.d/10-trackpoint.rules
+<pre tabindex="0"><code># vim /etc/udev/rules.d/10-trackpoint.rules
 </code></pre><p>記載内容は以下の通りです。<br>
 speedとsensitivityは最適な値を入れてください。</p>
-<pre><code>KERNEL==&quot;serio2&quot;,
+<pre tabindex="0"><code>KERNEL==&quot;serio2&quot;,
 SUBSYSTEM==&quot;serio&quot;,
 DRIVERS==&quot;psmouse&quot;,
 ATTR{sensitivity}:=&quot;180&quot;,
@@ -106,17 +118,17 @@ ATTR{speed}:=&quot;60&quot;
 </blockquote>
 <p>まずデバイス名を取得します。<br>
 以下コマンドを実行すると「TPPS/2 IBM TrackPoint」であることが分かります。</p>
-<pre><code>$ xinput --list | grep TrackPoint
+<pre tabindex="0"><code>$ xinput --list | grep TrackPoint
 ⎜   ↳ TPPS/2 IBM TrackPoint                   	id=14	[slave  pointer  (2)]
 </code></pre><p>デバイスのマッピングを調べます。<br>
 以下コマンドを実行すると中央クリックはボタンマッピングの「2」であることが分かります。</p>
-<pre><code>$ xinput get-button-map &quot;TPPS/2 IBM TrackPoint&quot;
+<pre tabindex="0"><code>$ xinput get-button-map &quot;TPPS/2 IBM TrackPoint&quot;
 1 2 3 4 5 6 7 
 $ xinput --list &quot;TPPS/2 IBM TrackPoint&quot; | grep &quot;Button labels&quot;
 Button labels: &quot;Button Left&quot; &quot;Button Middle&quot; &quot;Button Right&quot; &quot;Button Wheel Up&quot; &quot;Button Wheel Down&quot; &quot;Button Horiz Wheel Left&quot; &quot;Button Horiz Wheel Right&quot;
 </code></pre><p>中央クリックを無効化します。<br>
 ボタンマッピングにて無効化にしたいボタンの数字を「0」に置き換えます。</p>
-<pre><code>xinput set-button-map &quot;TPPS/2 IBM TrackPoint&quot; 1 0 3 4 5 6 7
+<pre tabindex="0"><code>xinput set-button-map &quot;TPPS/2 IBM TrackPoint&quot; 1 0 3 4 5 6 7
 </code></pre><p>永続化するには上記コマンドを<code>~/.profile</code>に追記するだけです。</p>
 
 	</div>

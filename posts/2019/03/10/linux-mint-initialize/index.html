@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -133,20 +145,20 @@ Linux Mint 20では不要そうです。</p>
 <p>『コントロールセンター＞ウィンドウ』を開き、場所タブにある「Enable window tiling」のチェックを外せば無効化されます。</p>
 <h2 id="aptで色々インストールする">aptで色々インストールする</h2>
 <h3 id="基本セットvim派">基本セット（vim派）</h3>
-<pre><code>apt install vim git npm
+<pre tabindex="0"><code>apt install vim git npm
 </code></pre><h3 id="セキュリティソフト">セキュリティソフト</h3>
-<pre><code>apt install clamav clamav-daemon
+<pre tabindex="0"><code>apt install clamav clamav-daemon
 </code></pre><h3 id="php関係使う人は">PHP関係（使う人は）</h3>
-<pre><code>apt install php7.2 composer php7.2-bcmath php7.2-common php7.2-gd php7.2-json php7.2-mbstring php7.2-mysql php7.2-xml php7.2-xmlrpc
+<pre tabindex="0"><code>apt install php7.2 composer php7.2-bcmath php7.2-common php7.2-gd php7.2-json php7.2-mbstring php7.2-mysql php7.2-xml php7.2-xmlrpc
 </code></pre><blockquote>
 <p>※2020年7月追記<br>
 Linux Mint 20ではデフォルトでphp7.4がインストールできます。</p>
 </blockquote>
-<pre><code>apt install php7.4 composer php7.4-bcmath php7.4-common php7.4-gd php7.4-json php7.4-mbstring php7.4-mysql php7.4-xml php7.4-xmlrpc
+<pre tabindex="0"><code>apt install php7.4 composer php7.4-bcmath php7.4-common php7.4-gd php7.4-json php7.4-mbstring php7.4-mysql php7.4-xml php7.4-xmlrpc
 </code></pre><p>なお、phpインストール時にapache2も自動でインストールされる場合があり、<br>
 自動起動する設定になっている可能性があります。<br>
 なので、apache2の自動起動はOFFにしておきましょう。</p>
-<pre><code>sudo systemctl disable apache2
+<pre tabindex="0"><code>sudo systemctl disable apache2
 </code></pre><h3 id="shutter使う人は">Shutter（使う人は）</h3>
 <p>Shutterとは画像に簡単に文字・矢印・モザイク・アイコンなどを挿入できるツールです。<br>
 MacのSkitchのようなアプリです。（分かる人には分かる）</p>
@@ -154,7 +166,7 @@ MacのSkitchのようなアプリです。（分かる人には分かる）</p>
 <p>※2020/7/1追記<br>
 ppa等が変わっていたようなので修正</p>
 </blockquote>
-<pre><code>sudo add-apt-repository ppa:linuxuprising/ppa
+<pre tabindex="0"><code>sudo add-apt-repository ppa:linuxuprising/ppa
 apt update
 apt install shutter
 </code></pre><h2 id="webからダウンロードする">WEBからダウンロードする</h2>
@@ -168,7 +180,7 @@ apt install shutter
 そちらだとなぜか日本語入力ができないのでWEBから取得します。(2019/3/10時点)</p>
 <p>Stationは<code>AppImage</code>という見慣れない拡張子でダウンロードされます。<br>
 これはターミナルから実行権限を与えて実行することでインストールできます。</p>
-<pre><code>chmod +x browserX-1.39.2-x86_64.AppImage
+<pre tabindex="0"><code>chmod +x browserX-1.39.2-x86_64.AppImage
 ./browserX-1.39.2-x86_64.AppImage
 </code></pre><p>(後で見たときに何か分からなくなりそうなら、Station.AppImageなどにファイル名を変更しても良いです)</p>
 <h2 id="その他参考ページ">その他参考ページ</h2>

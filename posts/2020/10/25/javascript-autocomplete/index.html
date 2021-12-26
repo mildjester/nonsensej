@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -82,10 +94,10 @@ window.addEventListener('DOMContentLoaded', () => {
 <a href="/demo/cursor-key-autocomplete/">デモ</a></p>
 <p>HTMLは以下のようになっているとします。<br>
 テキストボックスに文字を入力するとulタグ内に選択肢が表示されるようにします。</p>
-<pre><code>&lt;input type=&quot;text&quot; id=&quot;keyword&quot; placeholder=&quot;都道府県名を入れてください&quot; autocomplete=&quot;off&quot;/&gt;
+<pre tabindex="0"><code>&lt;input type=&quot;text&quot; id=&quot;keyword&quot; placeholder=&quot;都道府県名を入れてください&quot; autocomplete=&quot;off&quot;/&gt;
 &lt;ul id=&quot;outputBox&quot;&gt;&lt;/ul&gt;
 </code></pre><p>javascriptは以下の通りです。</p>
-<pre><code>// 都道府県一覧
+<pre tabindex="0"><code>// 都道府県一覧
 const prefectureList = ['北海道','青森県','岩手県','宮城県','秋田県','山形県','福島県',
               '茨城県','栃木県','群馬県','埼玉県','千葉県','東京都','神奈川県',
               '新潟県','富山県','石川県','福井県','山梨県','長野県','岐阜県',

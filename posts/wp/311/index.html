@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -74,25 +86,25 @@ CentOS 6.5<br>
 NSD 4.1.13<br>
 (参考：切替え前)BIND 9.8.2</p>
 <p>まず、yumにepelリポジトリが設定されていない場合はインストールします。</p>
-<pre><code># yum install epel-release.noarch
+<pre tabindex="0"><code># yum install epel-release.noarch
 </code></pre><p>NSDをインストールします。</p>
-<pre><code># yum install nsd --enablerepo=epel
+<pre tabindex="0"><code># yum install nsd --enablerepo=epel
 </code></pre><p>NSD設定ファイルの最下行にzoneファイルを設定します。</p>
-<pre><code># vim /etc/nsd/nsd.conf  
+<pre tabindex="0"><code># vim /etc/nsd/nsd.conf  
 〜最下行に以下を追記〜  
 zone:  
 	name: sample.co.jp  
 	zonefile: sample.co.jp.zone
 </code></pre><p>BINDで利用していたzoneファイルをコピーします</p>
-<pre><code># cp {BINDのzoneファイル} /etc/nsd/sample.co.jp.zone
+<pre tabindex="0"><code># cp {BINDのzoneファイル} /etc/nsd/sample.co.jp.zone
 </code></pre><p>※補足<br>
 調べているとNSDはrebuildコマンドにてzoneファイルからdbファイルを<br>
 生成しなければいけないという記事がありましたが、　私の環境では不要でした。<br>
 （むしろ、rebuildコマンドがありませんでした）</p>
 <p>BINDを停止します。</p>
-<pre><code># service named stop
+<pre tabindex="0"><code># service named stop
 </code></pre><p>NSDを起動します。</p>
-<pre><code># service nsd start
+<pre tabindex="0"><code># service nsd start
 </code></pre>
 	</div>
 </main>

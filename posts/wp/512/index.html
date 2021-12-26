@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -72,9 +84,9 @@ window.addEventListener('DOMContentLoaded', () => {
 <p>Laravel5でカスタムバリデーションを追加した際の手順です。</p>
 <p>まず、サービスプロバイダーを作成します。今回は『ValidatorServiceProvider』という名前で作る事にします。<br>
 以下コマンドを実行すると、『/app/providers/ValidatorServiceProvider.php』が生成されます。</p>
-<pre><code>php artisan make:provider ValidatorServiceProvider  
+<pre tabindex="0"><code>php artisan make:provider ValidatorServiceProvider  
 </code></pre><p>作成したサービスプロバイダーを『/config/app.php』に追記します。</p>
-<pre><code>    &quot;providers&quot; =&gt; [  
+<pre tabindex="0"><code>    &quot;providers&quot; =&gt; [  
 〜〜　省略　〜〜  
         App\Providers\ValidatorServiceProvider::class,  
 〜〜　省略　〜〜  
@@ -84,7 +96,7 @@ window.addEventListener('DOMContentLoaded', () => {
 ・頭文字は「A」または「Z」<br>
 ・2文字目以降は数字６桁</p>
 <p>このバリデーションルールを『shainbangou』という名前のルールで登録するとこうなります。</p>
-<pre><code>namespace App\Providers;  
+<pre tabindex="0"><code>namespace App\Providers;  
   
 use Illuminate\Support\ServiceProvider;  
 use Validator;  
@@ -101,7 +113,7 @@ class ValidatorServiceProvider extends ServiceProvider
 </code></pre><p>次にエラー文言の設定をします。<br>
 viewにて社員番号はempIdという変数名で設定されているとします。<br>
 【/resources/lang/ja/validation.php】</p>
-<pre><code>return [  
+<pre tabindex="0"><code>return [  
 〜〜　省略　〜〜  
     'custom' =&gt; [  
         'empId' =&gt; [  

@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -72,17 +84,17 @@ Macの場合は<a href="/posts/wp/259">こちら</a></p>
 Ubunt16.04</p>
 <p>①zshとgitをインストールしておきます<br>
 16.04から「apt−get」ではなく「apt」になったようです。</p>
-<pre><code>$ sudo apt install zsh  
+<pre tabindex="0"><code>$ sudo apt install zsh  
 $ sudo apt install git
 </code></pre><p>②preztoを導入します。<br>
 基本的な流れは「<a href="https://github.com/sorin-ionescu/prezto" target="_blank"><a href="https://github.com/sorin-ionescu/prezto">https://github.com/sorin-ionescu/prezto</a></a>」の通りです。</p>
-<pre><code>$ zsh
+<pre tabindex="0"><code>$ zsh
 </code></pre><p>※設定画面が開いたら「q」を入力して抜ける。</p>
-<pre><code>$ git clone --recursive https://github.com/sorin-ionescu/prezto.git &quot;${ZDOTDIR:-$HOME}/.zprezto&quot;  
+<pre tabindex="0"><code>$ git clone --recursive https://github.com/sorin-ionescu/prezto.git &quot;${ZDOTDIR:-$HOME}/.zprezto&quot;  
 $ chsh -s /usr/bin/zsh
 </code></pre><p>次にpreztoを使うようにzshの設定をします。<br>
 ターミナルに以下を貼り付けて実行します。（スクリプトファイルなどを作成する必要はなく、ターミナル直貼り付けでOK）</p>
-<pre><code>setopt EXTENDED_GLOB  
+<pre tabindex="0"><code>setopt EXTENDED_GLOB  
 for rcfile in &quot;${ZDOTDIR:-$HOME}&quot;/.zprezto/runcoms/^README.md(.N); do  
   ln -s &quot;$rcfile&quot; &quot;${ZDOTDIR:-$HOME}/.${rcfile:t}&quot;  
 done

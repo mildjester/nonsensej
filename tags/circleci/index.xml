@@ -6,11 +6,7 @@
     <description>Recent content in CircleCI on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Mon, 04 Mar 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://blog2.logical-dice.com/tags/circleci/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 04 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/circleci/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CircleCIからAWS Code Deployを実行する</title>
       <link>https://blog2.logical-dice.com/posts/2019/03/04/aws-code-deploy-circleci/</link>

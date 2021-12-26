@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -73,7 +85,7 @@ window.addEventListener('DOMContentLoaded', () => {
 <a href="/posts/2020/07/15/howto-make-bookmarklet">Bookmarklet(ブックマークレット)の作り方</a></p>
 <h2 id="bookmarklet作成">Bookmarklet作成</h2>
 <p>まず、GitHubの草部分の色を変えるスクリプトを書いてみます。</p>
-<pre><code>// GitHubの草部分の要素を取得
+<pre tabindex="0"><code>// GitHubの草部分の要素を取得
 var kusaElmList = document.getElementsByClassName('day')
 
 for (var i=0; i&lt;kusaElmList.length; i++){
@@ -88,12 +100,12 @@ for (var i=0; i&lt;kusaElmList.length; i++){
   }
 }
 </code></pre><p>これをBookmarkletにします。</p>
-<pre><code>javascript:for(var t=document.getElementsByClassName(&quot;day&quot;),e=0;e&lt;t.length;e++){var l=t[e];e%2==0?l.setAttribute(&quot;fill&quot;,&quot;#2A7&quot;):l.setAttribute(&quot;fill&quot;,&quot;#000&quot;)}
+<pre tabindex="0"><code>javascript:for(var t=document.getElementsByClassName(&quot;day&quot;),e=0;e&lt;t.length;e++){var l=t[e];e%2==0?l.setAttribute(&quot;fill&quot;,&quot;#2A7&quot;):l.setAttribute(&quot;fill&quot;,&quot;#000&quot;)}
 </code></pre><p>実行結果はこちら。<br>
 <img src="https://blog2.logical-dice.com/images/2020/07/bookmarklet-kimetsu-001.png" /></p>
 <p>色はそれっぽくなりましたが、まだ隙間が気になります。<br>
 なので、隙間も埋めるよう修正します。</p>
-<pre><code>// GitHubの草部分の要素を取得
+<pre tabindex="0"><code>// GitHubの草部分の要素を取得
 var kusaElmList = document.getElementsByClassName('day');
 
 for (var i=0; i&lt;kusaElmList.length; i++){
@@ -114,7 +126,7 @@ for (var i=0; i&lt;kusaElmList.length; i++){
   }
 }
 </code></pre><p>これをBookmarkletにします。</p>
-<pre><code>javascript:for(var t=document.getElementsByClassName(&quot;day&quot;),e=0;e&lt;t.length;e++){var l=t[e];l.setAttribute(&quot;width&quot;,&quot;15&quot;),l.setAttribute(&quot;height&quot;,&quot;15&quot;),l.style.rx=0,e%2==(l.style.ry=0)?l.setAttribute(&quot;fill&quot;,&quot;#2A7&quot;):l.setAttribute(&quot;fill&quot;,&quot;#000&quot;)}
+<pre tabindex="0"><code>javascript:for(var t=document.getElementsByClassName(&quot;day&quot;),e=0;e&lt;t.length;e++){var l=t[e];l.setAttribute(&quot;width&quot;,&quot;15&quot;),l.setAttribute(&quot;height&quot;,&quot;15&quot;),l.style.rx=0,e%2==(l.style.ry=0)?l.setAttribute(&quot;fill&quot;,&quot;#2A7&quot;):l.setAttribute(&quot;fill&quot;,&quot;#000&quot;)}
 </code></pre><p>実行結果はこちら。<br>
 <img src="https://blog2.logical-dice.com/images/2020/07/bookmarklet-kimetsu-002.png" /></p>
 <p>いい感じになりました。</p>

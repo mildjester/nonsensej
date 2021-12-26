@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -70,12 +82,12 @@ window.addEventListener('DOMContentLoaded', () => {
 zabbix 3.2<br>
 PHP 7.1</p>
 <p>PHP7.1でzabbixを動かすと、以下の警告が出ました。</p>
-<pre><code>A non well formed numeric value encountered [zabbix.php:21 → require_once() → ZBase-&gt;run() → ZBase-&gt;processRequest() → CView-&gt;getOutput() → include() → make_status_of_zbx() → CFrontendSetup-&gt;checkRequirements() → CFrontendSetup-&gt;checkPhpMemoryLimit() → str2mem() in include/func.inc.php:410]  
+<pre tabindex="0"><code>A non well formed numeric value encountered [zabbix.php:21 → require_once() → ZBase-&gt;run() → ZBase-&gt;processRequest() → CView-&gt;getOutput() → include() → make_status_of_zbx() → CFrontendSetup-&gt;checkRequirements() → CFrontendSetup-&gt;checkPhpMemoryLimit() → str2mem() in include/func.inc.php:410]  
 A non well formed numeric value encountered [zabbix.php:21 → require_once() → ZBase-&gt;run() → ZBase-&gt;processRequest() → CView-&gt;getOutput() → include() → make_status_of_zbx() → CFrontendSetup-&gt;checkRequirements() → CFrontendSetup-&gt;checkPhpPostMaxSize() → str2mem() in include/func.inc.php:410]  
 A non well formed numeric value encountered [zabbix.php:21 → require_once() → ZBase-&gt;run() → ZBase-&gt;processRequest() → CView-&gt;getOutput() → include() → make_status_of_zbx() → CFrontendSetup-&gt;checkRequirements() → CFrontendSetup-&gt;checkPhpUploadMaxFilesize() → str2mem() in include/func.inc.php:410]
 </code></pre><p>警告が出ている箇所は以下のようになっています。<br>
 [/usr/share/zabbix/include/func.inc.php]</p>
-<pre><code> 394 /**  
+<pre tabindex="0"><code> 394 /**  
  395  * Converts strings like 2M or 5k to bytes  
  396  *  
  397  * @param string $val  
@@ -104,7 +116,7 @@ A non well formed numeric value encountered [zabbix.php:21 → require_once() �
 （警告は出ているが、処理自体は正常に行なわれている）</p>
 <p>解決策は色々あると思いますが、とりあえず以下のように修正したら<br>
 警告は表示されなくなりました。（404行目を追加しています）</p>
-<pre><code> 401 function str2mem($val) {  
+<pre tabindex="0"><code> 401 function str2mem($val) {  
  402         $val = trim($val);  
  403         $last = strtolower(substr($val, -1));  
  404         $val = intval($val);  

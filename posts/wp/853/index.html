@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -72,12 +84,12 @@ AIDE 0.15.1</p>
 <hr>
 <p>AIDEという侵入検知ツールを導入し、検査結果をSlackに通知するようにします。</p>
 <h3 id="aideインストール">AIDEインストール</h3>
-<pre><code>yum install -y aide  
+<pre tabindex="0"><code>yum install -y aide  
 </code></pre><h3 id="aide設定">AIDE設定</h3>
-<pre><code>vim /etc/aide.conf  
+<pre tabindex="0"><code>vim /etc/aide.conf  
 </code></pre><p>95行目辺りより監視対象ディレクトリの設定があります。 <br>
 設定値の記載方法は以下の通り。</p>
-<pre><code>/{DIR_PATH}/ {CHECK_METHOD} #監視対象に含める  
+<pre tabindex="0"><code>/{DIR_PATH}/ {CHECK_METHOD} #監視対象に含める  
 !/{DIR_PATH}/ #監視対象から除外する
 </code></pre><p>上記の『DIR_PATH』の部分に対象のディレクトリパスを記載し、 <br>
 『CHECK_METHOD』に監視方法を記載します。</p>
@@ -85,13 +97,13 @@ AIDE 0.15.1</p>
 とりあえずAIDE 0.15.1では「CONTENT_EX」にしておくのが無難そうです。</p>
 <p>監視対象の設定が完了したら、AIDEのデータベースを初期化します。 <br>
 ※以下コマンド実行後、結構待ちます。</p>
-<pre><code>aide -i  
+<pre tabindex="0"><code>aide -i  
 </code></pre><h3 id="自動監視設定">自動監視設定</h3>
 <p>AIDEでスキャンを実行し、結果をSlack通知するスクリプトを作成します。 <br>
 仮に、<code>/opt/aide_scan.sh</code>という名前で作るとします。</p>
-<pre><code>vim /opt/aide_scan.sh  
+<pre tabindex="0"><code>vim /opt/aide_scan.sh  
 </code></pre><p>シェルスクリプトの中身は以下のようにします。</p>
-<pre><code>#!/bin/bash  
+<pre tabindex="0"><code>#!/bin/bash  
 set +e  
   
 ##### Settings  
@@ -154,7 +166,7 @@ curl -m 30 --data-urlencode &quot;${payload}&quot; $URL -A 'zabbix-slack-alertsc
 </table>
 <p>作成したスクリプトを1日1回cronで回します。 <br>
 以下はcronの設定例です。</p>
-<pre><code>0 10 * * * /bin/sh /opt/aide_scan.sh &gt; /dev/null 2&gt;&amp;1  
+<pre tabindex="0"><code>0 10 * * * /bin/sh /opt/aide_scan.sh &gt; /dev/null 2&gt;&amp;1  
 </code></pre><p>これで1日1回AIDEが侵入検知してくれるようになります。</p>
 
 	</div>

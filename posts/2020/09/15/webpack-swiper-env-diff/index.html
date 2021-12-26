@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -76,15 +88,15 @@ window.addEventListener('DOMContentLoaded', () => {
 <p>webpackでswiperを取り込んでビルドしようとした時の話。<br>
 swiper.scssがなぜか開発環境では取り込めてて、本番環境では取り込めてないという事象が起きました。</p>
 <p>つまり、↓だとswiper.scssが取り込まれたCSSが出力されるんですが</p>
-<pre><code>node node_modules/webpack/bin/webpack.js --mode development
+<pre tabindex="0"><code>node node_modules/webpack/bin/webpack.js --mode development
 </code></pre><p>↓だとswiper.scssが取り込まれていないCSSが出力されます。</p>
-<pre><code>node node_modules/webpack/bin/webpack.js --mode production
+<pre tabindex="0"><code>node node_modules/webpack/bin/webpack.js --mode production
 </code></pre><h2 id="対応">対応</h2>
 <p>原因は結局不明だったのですが<br>
 swiperのバージョンを6.0.0から6.2.0に変更したら治りました。</p>
 <h3 id="事象が起きているときの状態">事象が起きているときの状態</h3>
 <p>npmインストールしていたパッケージ</p>
-<pre><code>&quot;devDependencies&quot;: {
+<pre tabindex="0"><code>&quot;devDependencies&quot;: {
   &quot;css-loader&quot;: &quot;^4.3.0&quot;,
   &quot;mini-css-extract-plugin&quot;: &quot;^0.11.2&quot;,
   &quot;sass&quot;: &quot;^1.26.10&quot;,
@@ -95,7 +107,7 @@ swiperのバージョンを6.0.0から6.2.0に変更したら治りました。<
   &quot;webpack-cli&quot;: &quot;^3.3.12&quot;
 }
 </code></pre><p>webpack.config.js</p>
-<pre><code>const path = require('path');
+<pre tabindex="0"><code>const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
@@ -127,7 +139,7 @@ module.exports = {
   ]
 }
 </code></pre><p>/src/js/index.js</p>
-<pre><code>import &quot;swiper/swiper.scss&quot;;
+<pre tabindex="0"><code>import &quot;swiper/swiper.scss&quot;;
 
 ～以下Javascriptの処理～
 

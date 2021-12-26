@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -75,19 +87,19 @@ exiftool 10.55</p>
 <h4 id="exiftoolインストール">exiftoolインストール</h4>
 <p>写真の情報を取り出すには、exiftoolというツールを使います。 <br>
 brewでインストールできます。</p>
-<pre><code>brew install exiftool  
+<pre tabindex="0"><code>brew install exiftool  
 </code></pre><h4 id="写真の詳細情報を確認してみる">写真の詳細情報を確認してみる</h4>
 <p>単純に</p>
-<pre><code>exiftool 対象ファイル  
+<pre tabindex="0"><code>exiftool 対象ファイル  
 </code></pre><p>というコマンドでファイルの全詳細情報は取れます。<br>
 撮影日時だけに絞りたい場合は</p>
-<pre><code>exiftool -DateTimeOriginal 対象ファイル  
+<pre tabindex="0"><code>exiftool -DateTimeOriginal 対象ファイル  
 </code></pre><p>とすれば絞れます。</p>
 <p>が、</p>
 <p>どうやら使っているカメラによって撮影日時情報が画像データに含まれていない場合や、 <br>
 上記で指定した「Date/Time Original」以外のタグ名で存在する場合があるようです。</p>
 <p>その場合は</p>
-<pre><code>exiftool 対象ファイル  
+<pre tabindex="0"><code>exiftool 対象ファイル  
 </code></pre><p>で全情報を表示して、それっぽいのを選ぶしか無さそうです。</p>
 
 	</div>

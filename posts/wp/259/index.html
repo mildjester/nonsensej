@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -75,23 +87,23 @@ window.addEventListener('DOMContentLoaded', () => {
 <p>preztoのインストールは基本的に公式通りです。<br>
 <a href="https://github.com/sorin-ionescu/prezto" target="_blank"><a href="https://github.com/sorin-ionescu/prezto">https://github.com/sorin-ionescu/prezto</a></a></p>
 <p>まずシェルをzshに切り替えます。Macならzshは元々インストールされているはずです。</p>
-<pre><code>zsh  
+<pre tabindex="0"><code>zsh  
 </code></pre><p>次にgithubからソースをダウンロードします。</p>
-<pre><code>git clone --recursive https://github.com/sorin-ionescu/prezto.git &quot;${ZDOTDIR:-$HOME}/.zprezto&quot;  
+<pre tabindex="0"><code>git clone --recursive https://github.com/sorin-ionescu/prezto.git &quot;${ZDOTDIR:-$HOME}/.zprezto&quot;  
 </code></pre><p>次にpreztoを使うようにzshの設定をします。<br>
 ターミナルに以下を貼り付けて実行します。（スクリプトファイルなどを作成する必要はなく、ターミナル直貼り付けでOK）</p>
-<pre><code>setopt EXTENDED_GLOB  
+<pre tabindex="0"><code>setopt EXTENDED_GLOB  
 for rcfile in &quot;${ZDOTDIR:-$HOME}&quot;/.zprezto/runcoms/^README.md(.N); do  
   ln -s &quot;$rcfile&quot; &quot;${ZDOTDIR:-$HOME}/.${rcfile:t}&quot;  
 done  
 </code></pre><p>最後に、通常使うシェルをzshにします。</p>
-<pre><code>chsh -s /bin/zsh  
+<pre tabindex="0"><code>chsh -s /bin/zsh  
 </code></pre><p>これでターミナルを再起動すれば、zsh + preztoになっています。</p>
 <h3 id="pecoでコマンド履歴を検索しやすくする">③pecoでコマンド履歴を検索しやすくする</h3>
 <p>まず、pecoをインストールします。</p>
-<pre><code>brew install peco  
+<pre tabindex="0"><code>brew install peco  
 </code></pre><p>あとは.zshrcに以下を記載するだけです。</p>
-<pre><code>function peco-history-selection() {  
+<pre tabindex="0"><code>function peco-history-selection() {  
     BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`  
     CURSOR=$#BUFFER  
     zle reset-prompt  
@@ -100,7 +112,7 @@ zle -N peco-history-selection
 bindkey '^R' peco-history-selection  
 </code></pre><p>ターミナルを再起動するか、以下コマンドでzshrcを再読み込みすれば適用されます。<br>
 Ctrl＋Rで履歴検索画面になります。</p>
-<pre><code>source .zshrc  
+<pre tabindex="0"><code>source .zshrc  
 </code></pre>
 	</div>
 </main>

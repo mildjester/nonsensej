@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -79,17 +91,17 @@ window.addEventListener('DOMContentLoaded', () => {
 今回はあくまでpreforkをチューニングする前提での手順です。</p>
 <h2 id="サーバー物理メモリ確認">サーバー物理メモリ確認</h2>
 <p>まず、サーバーの物理メモリを調べます</p>
-<pre><code># cat /proc/meminfo | head -n 1
+<pre tabindex="0"><code># cat /proc/meminfo | head -n 1
 MemTotal:        2004484 kB
 </code></pre><p>このサーバーの搭載メモリは2GBのようです。</p>
 <h2 id="現在のメモリ使用状況確認">現在のメモリ使用状況確認</h2>
 <p>まずサーバー全体の使用メモリを確認します。<br>
 以下のワンライナーで出します。(単位はMB)</p>
-<pre><code># ps aux | awk '{print $6}' | awk '{sum=sum+($1/1024);cnt++;} END{print &quot;sum=&quot;sum}'
+<pre tabindex="0"><code># ps aux | awk '{print $6}' | awk '{sum=sum+($1/1024);cnt++;} END{print &quot;sum=&quot;sum}'
 sum=919.656
 </code></pre><p>次にhttpdの子プロセスの使用メモリを確認します。<br>
 以下のワンライナーで出します。(単位はMB)</p>
-<pre><code># ps aux | grep httpd | grep apache | awk '{print $6}' | awk '{sum=sum+($1/1024);cnt++;} END{print &quot;sum=&quot;sum &quot; cnt=&quot;cnt &quot; ave=&quot;sum/cnt;}'
+<pre tabindex="0"><code># ps aux | grep httpd | grep apache | awk '{print $6}' | awk '{sum=sum+($1/1024);cnt++;} END{print &quot;sum=&quot;sum &quot; cnt=&quot;cnt &quot; ave=&quot;sum/cnt;}'
 sum=804.273 cnt=20 ave=40.2137
 </code></pre><p>出力結果は以下のようにしています。</p>
 <table>
@@ -136,7 +148,7 @@ sum=804.273 cnt=20 ave=40.2137
 <li>生成できるApacheプロセス数 = 35個程度　・・・⑧(⑦÷⑤)</li>
 </ul>
 <p>Apacheの設定にてこれを設定します。</p>
-<pre><code>&lt;IfModule mpm_prefork_module&gt;
+<pre tabindex="0"><code>&lt;IfModule mpm_prefork_module&gt;
 StartServers               5
 MinSpareServers            5
 MaxSpareServers           10
@@ -148,7 +160,7 @@ MaxConnectionsPerChild     0
 httpd.confに追記するか/etc/httpd/conf.d/配下に新設定ファイルを作成して記載するのでも良いです。</p>
 <p>他にも基本的にhttpd子プロセスは常時20個くらい動いていて欲しかったりして、<br>
 最終的に以下の設定にしました。</p>
-<pre><code>&lt;IfModule mpm_prefork_module&gt;
+<pre tabindex="0"><code>&lt;IfModule mpm_prefork_module&gt;
 StartServers              20 #httpd起動時にプロセスを20個動かす
 MinSpareServers            5
 MaxSpareServers           20 #リクエスト待ちプロセスは最大20個とする

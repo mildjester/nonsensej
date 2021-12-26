@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -71,27 +83,27 @@ window.addEventListener('DOMContentLoaded', () => {
 CentOS release 6.6<br>
 postgresql 8.4.20</p>
 <p>まずpostgreSQLをインストールし、初期化をします。</p>
-<pre><code>$ su -  
+<pre tabindex="0"><code>$ su -  
 # yum install postgresql-server  
 # service postgresql initdb
 </code></pre><p>次に外部からアクセスできるように設定をします。<br>
 「192.168.xxx.xxx/32」の部分はDBへアクセスするホストに合わせて修正してください。</p>
-<pre><code># vi /var/lib/pgsql/data/pg_hba.conf  
+<pre tabindex="0"><code># vi /var/lib/pgsql/data/pg_hba.conf  
 local   all         all                               trust  
 host    all         all         192.168.xxx.xxx/32    trust
-</code></pre><pre><code># vim postgresql.conf  
+</code></pre><pre tabindex="0"><code># vim postgresql.conf  
 listen_addresses = ‘*’
 </code></pre><p>設定が完了したらpostgreSQLを起動します。</p>
-<pre><code># service postgresql start
+<pre tabindex="0"><code># service postgresql start
 </code></pre><p>次に利用するユーザとデータベースを作成します。</p>
-<pre><code># su - postgres  
+<pre tabindex="0"><code># su - postgres  
 $ psql  
 postgres=# CREATE USER sampleUser WITH PASSWORD ’samplePass';  
 postgres=# CREATE DATABASE sampleDB WITH OWNER=sampleUser ENCODING='UTF8' TEMPLATE template0;  
 postgres=# ¥q
 </code></pre><p>これで利用準備は完了です。<br>
 コマンドラインから作成したDBへ作成したユーザでアクセスする場合は以下コマンドでアクセスできます。</p>
-<pre><code>$ psql -U sampleUser -d sampleDB
+<pre tabindex="0"><code>$ psql -U sampleUser -d sampleDB
 </code></pre>
 	</div>
 </main>

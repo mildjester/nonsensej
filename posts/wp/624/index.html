@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -74,21 +86,21 @@ Zabbix 3.2.1</p>
 <p>WEBでzabbixのソースをダウンロードします。<br>
 <a href="https://sourceforge.net/projects/zabbix/files/ZABBIX%20Latest%20Stable/3.2.1/" target="_blank"><a href="https://sourceforge.net/projects/zabbix/files/ZABBIX%20Latest%20Stable/3.2.1/">https://sourceforge.net/projects/zabbix/files/ZABBIX%20Latest%20Stable/3.2.1/</a></a></p>
 <p>Macサーバに送ります。</p>
-<pre><code>$ scp zabbix-3.2.1.tar.gz user@192.168.999.999:~/Downloads/.  
+<pre tabindex="0"><code>$ scp zabbix-3.2.1.tar.gz user@192.168.999.999:~/Downloads/.  
 </code></pre><p>※Macサーバ上で直接ダウンロードできるなら、その方が早いです。</p>
 <p>macサーバにて解凍〜インストールを行ないます。</p>
-<pre><code>tar xzf zabbix-3.2.1.tar.gz  
+<pre tabindex="0"><code>tar xzf zabbix-3.2.1.tar.gz  
 cd zabbix-3.2.1  
 ./configure --enable-agent  
 make install  
 sudo cp conf/zabbix_agentd.conf /usr/local/etc/.  
 sudo cp src/zabbix_agent/zabbix_agentd /usr/local/sbin/  
 </code></pre><p>Zabbixエージェントの設定を変更します。</p>
-<pre><code>sudo vim /usr/local/etc/zabbix_agentd.conf  
+<pre tabindex="0"><code>sudo vim /usr/local/etc/zabbix_agentd.conf  
 # 127.0.0.1の部分をZabbixサーバのIPアドレスに変更  
 # Hostnameはagentサーバのホスト（サーバ側に設定したものと同じ）に変更  
 </code></pre><p>Zabbixエージェントを実行します。</p>
-<pre><code>/usr/local/sbin/zabbix_agentd  
+<pre tabindex="0"><code>/usr/local/sbin/zabbix_agentd  
 </code></pre><h3 id="補足">【補足】</h3>
 <p>インストール時にzabbixユーザが作成されるはずですが、<br>
 ユーザ作成に失敗している場合は別途ユーザ作成しておかないとエージェントの実行ができません。</p>

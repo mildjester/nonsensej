@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -71,15 +83,15 @@ window.addEventListener('DOMContentLoaded', () => {
 <p>既存のPHPで来月の年月を取得する処理があり<br>
 リリース時は正常に動いていたのに、今日(1/31)見たら年月がズレていたようです。</p>
 <p>ソースコードを見せて貰ったら以下のようになっていました。</p>
-<pre><code>echo date('Ym', strtotime(date('Ym-1') . ' + 1 month'));
+<pre tabindex="0"><code>echo date('Ym', strtotime(date('Ym-1') . ' + 1 month'));
 </code></pre><h2 id="原因">原因</h2>
 <p>まず、<code>date('Ym-1')</code> がおかしいですね。<br>
 <code>date('Ym01')</code>とか<code>date('Y-m-01')</code>とかにするべきですね。</p>
 <p>では、なぜリリース時に正常に動いていたのか。<br>
 ここでやっとタイトルの「strtotimeの罠」が関わってきます。</p>
-<pre><code>strtotime(date('Ym-1') . ' + 1 month')
+<pre tabindex="0"><code>strtotime(date('Ym-1') . ' + 1 month')
 </code></pre><p>これは、2019/1/31であれば</p>
-<pre><code>strtotime('201901-1 + 1 month')
+<pre tabindex="0"><code>strtotime('201901-1 + 1 month')
 </code></pre><p>と、なります。</p>
 <p>ここでstrtotime様はこう考えます。</p>
 <blockquote>

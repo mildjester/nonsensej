@@ -6,11 +6,7 @@
     <description>Recent content in Mac on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Thu, 14 Feb 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://blog2.logical-dice.com/tags/mac/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 14 Feb 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/mac/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>MacにPHP7.2をインストールする</title>
       <link>https://blog2.logical-dice.com/posts/2019/02/14/mac-php-72/</link>

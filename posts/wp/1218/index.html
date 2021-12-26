@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -79,17 +91,17 @@ macOS High Sierra 10.13.1<br>
 ダウンロードする圧縮ファイルはこちらのページから確認できます。<br>
 ※(2019/11/14追記) URLが変わっていたので修正しました<br>
 <a href="http://www.yusa.lab.uec.ac.jp/~yusa/ricty_diminished.html" rel="noopener" target="_blank"><a href="http://www.yusa.lab.uec.ac.jp/~yusa/ricty_diminished.html">http://www.yusa.lab.uec.ac.jp/~yusa/ricty_diminished.html</a></a></p>
-<pre><code>$ wget http://www.yusa.lab.uec.ac.jp/~yusa/ricty_diminished/ricty_diminished-4.1.1.tar.gz
+<pre tabindex="0"><code>$ wget http://www.yusa.lab.uec.ac.jp/~yusa/ricty_diminished/ricty_diminished-4.1.1.tar.gz
 $ tar xf ricty_diminished-4.1.1.tar.gz  
 </code></pre><p>次にダウンロードしたフォントをフォントディレクトリへ移動します。<br>
 【Macの場合】</p>
-<pre><code>$ mv RictyDiminished*.ttf ~/Library/Fonts/.  
+<pre tabindex="0"><code>$ mv RictyDiminished*.ttf ~/Library/Fonts/.  
 $ brew install fontconfig  
 </code></pre><p>【ubuntu, Linux Mintの場合】</p>
-<pre><code>$ mkdir -p ~/.fonts  
+<pre tabindex="0"><code>$ mkdir -p ~/.fonts  
 $ mv RictyDiminished*.ttf ~/.fonts/.  
 </code></pre><p>最後にフォントを読み込みます</p>
-<pre><code>$ fc-cache -vf  
+<pre tabindex="0"><code>$ fc-cache -vf  
 $ rm -f ricty_diminished-4.1.1.tar.gz  
 </code></pre><p>これでIDEなどで<code>Ricty Diminished</code>を指定すれば反映されます。<br>
 少しオシャレ（？）な<code>Ricty Diminished Discord</code>というフォントも指定できるようになりますので、お好みの方を選べば良いと思います。</p>
@@ -98,7 +110,7 @@ $ rm -f ricty_diminished-4.1.1.tar.gz
 <a href="https://github.com/miiton/Cica" rel="noopener" target="_blank"><a href="https://github.com/miiton/Cica">https://github.com/miiton/Cica</a></a></p>
 <p>Ricty同様に文字幅や文字の見分けやすさが良く、Rictyと比べると少し丸みを帯びていて可愛いです。</p>
 <p>以下の手順でインストールできます。</p>
-<pre><code>$ wget https://github.com/miiton/Cica/releases/download/v2.1.0/Cica_v2.1.0.zip  
+<pre tabindex="0"><code>$ wget https://github.com/miiton/Cica/releases/download/v2.1.0/Cica_v2.1.0.zip  
 $ unzip Cica_v2.1.0.zip  
 $ mkdir -p ~/.fonts  
 $ mv Cica-*.ttf ~/.fonts/.  

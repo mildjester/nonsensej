@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -71,19 +83,19 @@ window.addEventListener('DOMContentLoaded', () => {
 <p>CentOS 7.3<br>
 fish 2.3.1</p>
 <p>epelリポジトリが入っていない人はインストールします。</p>
-<pre><code>yum -y install epel-release
+<pre tabindex="0"><code>yum -y install epel-release
 </code></pre><p>fishをyumでインストールします。</p>
-<pre><code>yum -y install fish
+<pre tabindex="0"><code>yum -y install fish
 </code></pre><p>今だけfishを使う場合は、コマンドでそのままfishと打ちます。</p>
-<pre><code>fish
+<pre tabindex="0"><code>fish
 </code></pre><p>恒久的にfishを使いたい場合はchshしておきます。</p>
-<pre><code>chsh -s /usr/bin/fish　｛ユーザ名｝
+<pre tabindex="0"><code>chsh -s /usr/bin/fish　｛ユーザ名｝
 </code></pre><p> </p>
 <p>これでfishが使えるようになりました。</p>
 <hr>
 <h4 id="参考">〜参考〜</h4>
 <p>CentOS6.X系の場合は以下でfishのインストールできるようです。</p>
-<pre><code>wget -P /etc/yum.repos.d/ http://download.opensuse.org/repositories/shells:fish:release:2/CentOS_6/shells:fish:release:2.repo  
+<pre tabindex="0"><code>wget -P /etc/yum.repos.d/ http://download.opensuse.org/repositories/shells:fish:release:2/CentOS_6/shells:fish:release:2.repo  
 yum -y install fish  
 </code></pre><hr>
 <h3 id="oh-my-fishインストール">【oh-my-fishインストール】</h3>
@@ -94,40 +106,40 @@ oh-my-fishのインストールにはgit 1.9.5以上が必要なので<br>
 <p>ソースからコンパイルする際に必要なものをインストールします。<br>
 私の環境では以下でしたが、ここは各環境に合わせてインストールしてください。<br>
 ソースからコンパイルする方法を調べれば出てくると思います。</p>
-<pre><code>yum install curl-devel expat-devel gettext-devel  openssl-devel zlib-devel perl-ExtUtils-MakeMaker autoconf gettext gcc
+<pre tabindex="0"><code>yum install curl-devel expat-devel gettext-devel  openssl-devel zlib-devel perl-ExtUtils-MakeMaker autoconf gettext gcc
 </code></pre><p>ソースコードをダウンロードしてきます</p>
-<pre><code>cd /tmp/  
+<pre tabindex="0"><code>cd /tmp/  
 wget https://www.kernel.org/pub/software/scm/git/git-2.9.3.tar.gz  
 tar xzf git-2.9.3.tar.gz
 </code></pre><p>※最新のソースは以下で確認<br>
 <a href="https://www.kernel.org/pub/software/scm/git/" target="_blank"><a href="https://www.kernel.org/pub/software/scm/git/">https://www.kernel.org/pub/software/scm/git/</a></a></p>
 <p>gitをインストールします。<br>
 configureのオプション「&ndash;with-curl」を付けないと、oh-my-fishインストール時にコケます。</p>
-<pre><code>cd git-2.9.3  
+<pre tabindex="0"><code>cd git-2.9.3  
 make configure  
 ./configure --with-curl  
 make  
 make install
 </code></pre><p>『/usr/local/bin』配下にgit系コマンドが配置されるので、<br>
 もしPATHを通していない場合は追加する。</p>
-<pre><code>set -U fish_user_paths $fish_user_paths /usr/local/bin  
+<pre tabindex="0"><code>set -U fish_user_paths $fish_user_paths /usr/local/bin  
 git --version  
 git version 2.9.3
 </code></pre><p>最後にoh-my-fishをインストールして完了です。</p>
-<pre><code>curl -L https://get.oh-my.fish | fish
+<pre tabindex="0"><code>curl -L https://get.oh-my.fish | fish
 </code></pre><p>oh-my-fishのインストール詳細についてはこちらを参照してください。<br>
 <a href="https://github.com/oh-my-fish/oh-my-fish" target="_blank"><a href="https://github.com/oh-my-fish/oh-my-fish">https://github.com/oh-my-fish/oh-my-fish</a></a></p>
 <h3 id="pecoインストール">【pecoインストール】</h3>
 <p>ついでにpecoもインストールしておきます。</p>
 <p>peco本体はgithubからダウンロードし、利用可能な状態にしておきます。</p>
-<pre><code>cd /tmp/  
+<pre tabindex="0"><code>cd /tmp/  
 wget https://github.com/peco/peco/releases/download/v0.5.1/peco_linux_amd64.tar.gz  
 tar xzf peco_linux_amd64.tar.gz  
 mv peco_linux_amd64/peco /usr/local/bin/.  
 </code></pre><p>oh-my-fishでpecoをfishに取り込みます。</p>
-<pre><code>omf install peco  
+<pre tabindex="0"><code>omf install peco  
 </code></pre><p>最後にfishのコンフィグファイルを修正します。</p>
-<pre><code>vim ~/.config/fish/config.fish  
+<pre tabindex="0"><code>vim ~/.config/fish/config.fish  
 # 記載する内容  
 function fish_user_key_bindings  
     bind \cr peco_select_history  

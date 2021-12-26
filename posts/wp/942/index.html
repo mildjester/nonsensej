@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -78,15 +90,15 @@ cloudpackさん：<a href="https://cloudpack.media/73" rel="noopener" target="_b
 <h1 id="サーバ作業手順">サーバ作業手順</h1>
 <h2 id="インストール">■インストール</h2>
 <p>必要なものをインストールします。</p>
-<pre><code>yum --enablerepo=epel install openvpn openvpn-auth-ldap easy-rsa net-tools bridge-utils  
+<pre tabindex="0"><code>yum --enablerepo=epel install openvpn openvpn-auth-ldap easy-rsa net-tools bridge-utils  
 </code></pre><h2 id="各種証明書生成">■各種証明書生成</h2>
 <p>easy-rsaのディレクトリに移動し、各種証明書を生成します。</p>
-<pre><code>cd /usr/share/easy-rsa/2.0   
+<pre tabindex="0"><code>cd /usr/share/easy-rsa/2.0   
 </code></pre><h3 id="ca-証明書">CA 証明書</h3>
 <p>まず、varsファイルを修正します。</p>
-<pre><code>vim vars  
+<pre tabindex="0"><code>vim vars  
 </code></pre><p>内容は以下の通りです。(コメント行・空行は除外しています)</p>
-<pre><code>export EASY_RSA=&quot;`pwd`&quot;  
+<pre tabindex="0"><code>export EASY_RSA=&quot;`pwd`&quot;  
 export OPENSSL=&quot;openssl&quot;  
 export PKCS11TOOL=&quot;pkcs11-tool&quot;  
 export GREP=&quot;grep&quot;  
@@ -105,30 +117,30 @@ export KEY_EMAIL=&quot;fooo@aaa.com&quot; #メールアドレス
 export KEY_OU=&quot;BTeam&quot;           #チーム名など（任意）  
 export KEY_NAME=&quot;EasyRSA&quot;  
 </code></pre><p>CA証明書を生成します。</p>
-<pre><code>source ./vars  
+<pre tabindex="0"><code>source ./vars  
 ./clean-all  
 ./build-ca  
 〜色々聞かれるが全てそのままエンターで良さそう〜  
 </code></pre><h3 id="サーバー証明書">サーバー証明書</h3>
 <p>サーバ証明書を生成します。</p>
-<pre><code>./build-key-server server  
+<pre tabindex="0"><code>./build-key-server server  
 〜色々聞かれるが基本的にはそのままエンターで良さそう〜  
 〜途中でYes/Noを聞かれるので、そこは「y」と入力する〜  
 </code></pre><h3 id="diffie-hellmandh">Diffie Hellman(DH)</h3>
 <p>DHを生成します。</p>
-<pre><code>./build-dh  
+<pre tabindex="0"><code>./build-dh  
 </code></pre><h3 id="各種証明書の移動">各種証明書の移動</h3>
 <p>OpenVPNのディレクトリに生成した証明書達を移動します。</p>
-<pre><code>cp keys/ca.crt /etc/openvpn/.  
+<pre tabindex="0"><code>cp keys/ca.crt /etc/openvpn/.  
 cp keys/server.crt /etc/openvpn/.  
 cp keys/server.key /etc/openvpn/.  
 cp keys/dh2048.pem /etc/openvpn/.  
 </code></pre><h2 id="openvpn設定">■OpenVPN設定</h2>
 <p>OpenVPNのサーバ設定をします。</p>
-<pre><code>cp /usr/share/doc/openvpn-2.4.4/sample/sample-config-files/server.conf /etc/openvpn/server.conf  
+<pre tabindex="0"><code>cp /usr/share/doc/openvpn-2.4.4/sample/sample-config-files/server.conf /etc/openvpn/server.conf  
 vim /etc/openvpn/server.conf  
 </code></pre><p>内容は以下の通りです。(コメント行・空行は除外しています)</p>
-<pre><code>port 1194  
+<pre tabindex="0"><code>port 1194  
 proto tcp  
 dev tun  
 ca ca.crt  
@@ -148,9 +160,9 @@ plugin    /usr/lib64/openvpn/plugin/lib/openvpn-auth-ldap.so &quot;/etc/openvpn/
 client-cert-not-required  
 username-as-common-name  
 </code></pre><p>LDAPサーバへの接続設定もします。</p>
-<pre><code>vim /etc/openvpn/auth/ldap.conf  
+<pre tabindex="0"><code>vim /etc/openvpn/auth/ldap.conf  
 </code></pre><p>内容は以下の通りです。(コメント行・空行は除外しています)</p>
-<pre><code>&lt;LDAP&gt;  
+<pre tabindex="0"><code>&lt;LDAP&gt;  
     URL     ldap://ldap.sample.com   #LDAPサーバへのURL  
     Timeout     15  
     TLSEnable   no  
@@ -165,7 +177,7 @@ username-as-common-name
 <p>VPN接続してきたクライアントがVPNサーバ経由で外部連携するためにはiptableでマスカレードしてあげる必要があります。 <br>
 openvpn起動時にiptable設定ができるようスクリプトを作っておきます。</p>
 <h4 id="起動スクリプト">起動スクリプト</h4>
-<pre><code>#!/bin/bash  
+<pre tabindex="0"><code>#!/bin/bash  
   
 # 設定クリア  
 /etc/openvpn/openvpn-shutdown  
@@ -177,7 +189,7 @@ iptables -t nat -A POSTROUTING -s 192.168.10.0/24 -o eno1 -j MASQUERADE
 iptables -I OUTPUT -o tun+ -j ACCEPT  
 iptables -I FORWARD -o tun+ -j ACCEPT  
 </code></pre><h4 id="停止スクリプト">停止スクリプト</h4>
-<pre><code>#!/bin/bash  
+<pre tabindex="0"><code>#!/bin/bash  
   
 # iptablesルール削除関数  
 delete() {  
@@ -200,7 +212,7 @@ delete
 target='OUTPUT'  
 delete  
 </code></pre><h2 id="起動">■起動</h2>
-<pre><code>systemctl start iptables  
+<pre tabindex="0"><code>systemctl start iptables  
 systemctl start openvpn  
 sh /etc/openvpn/openvpn-startup  
 </code></pre><h1 id="クライアント作業手順">クライアント作業手順</h1>
@@ -211,7 +223,7 @@ sh /etc/openvpn/openvpn-startup
 <p>サーバ側で生成した<code>ca.crt</code>をクライアント側にダウンロードし、その同じディレクトリに<code>sample.ovpn</code>を作成します。 <br>
 ※上記「sample」部分については任意の名前にしてください。それがTunnelblink上での接続先名になります。</p>
 <p>sample.ovpnの中身は以下のようにしてください。</p>
-<pre><code>client  
+<pre tabindex="0"><code>client  
   
 auth-user-pass  
   

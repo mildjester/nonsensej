@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +26,12 @@
 </head>
 
     <body>
-        <nav class="nav">
+        
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
   <div class="nav-container fx jc-sb">
     <a href="/" class="nav-title">
       Logical Dice 技術ブログ
@@ -74,11 +86,11 @@ Apache 2.2.32</p>
 <p>AWSのEC2上で動いているApacheサーバーでの話。</p>
 <p>SEO対策で<code>/index.html</code>を<code>/</code>にリダイレクトしたかったので<br>
 <code>.htaccess</code> に以下を設定しました。</p>
-<pre><code>RewriteRule ^(.*)index.html$ $1 [R=301,L]  
+<pre tabindex="0"><code>RewriteRule ^(.*)index.html$ $1 [R=301,L]  
 </code></pre><p>検証インスタンスでは上手く動いたので、本番インスタンスにも反映させたところ<br>
 <code>https://〜/index.html</code>(443ポート) が <code>http://〜/</code>(80ポート)にリダイレクトされるようになってしまいました。</p>
 <p>なんでだろう？と思いながら以下のような分岐を作ってみましたが、結果は変わらずでした。</p>
-<pre><code># 一旦プロトコルはhttpとしておく  
+<pre tabindex="0"><code># 一旦プロトコルはhttpとしておく  
 RewriteRule .* - [E=X_PRTCL:http]  
 # リクエストプロトコルがhttpsの場合、リダイレクト先もhttpsにする  
 RewriteCond %{HTTPS} on  
@@ -87,11 +99,11 @@ RewriteRule ^(.*)index.html$ %{ENV:X_PRTCL}://%{HTTP_HOST}/$1 [R=301,L]
 </code></pre><p>なぜ443ポート(https)の通信が80ポート(http)扱いになってしまったかというと<br>
 本番環境のEC2はELBを通しているのが原因でした。</p>
 <p>つまり、検証環境では</p>
-<pre><code>PC  
+<pre tabindex="0"><code>PC  
 ↓443ポート  
 EC2  
 </code></pre><p>だったのに対して、本番環境では</p>
-<pre><code>PC  
+<pre tabindex="0"><code>PC  
 ↓443ポート  
 ELB  
 ↓80ポート  
@@ -100,7 +112,7 @@ EC2
 <p>ELBを経由した場合、HTTPプロトコルを判定するには<code>X-Forwarded-Proto</code>というパラメータを見る必要があるようです。<br>
 <a href="https://docs.aws.amazon.com/ja_jp/elasticloadbalancing/latest/classic/x-forwarded-headers.html" rel="noopener" target="_blank"><a href="https://docs.aws.amazon.com/ja_jp/elasticloadbalancing/latest/classic/x-forwarded-headers.html">https://docs.aws.amazon.com/ja_jp/elasticloadbalancing/latest/classic/x-forwarded-headers.html</a></a></p>
 <p>以下のようにhtaccessへ記載すればELB経由でも上手く動きました</p>
-<pre><code># 一旦プロトコルはhttpとしておく  
+<pre tabindex="0"><code># 一旦プロトコルはhttpとしておく  
 RewriteRule .* - [E=X_PRTCL:http]  
 # リクエストプロトコルがhttpsの場合、リダイレクト先もhttpsにする  
 RewriteCond %{HTTPS} on [OR] # ELBを経由しない時用  
