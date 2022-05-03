@@ -2,28 +2,40 @@
 
 var data = [
   {
-    url: "https://blog2.logical-dice.com/tags/laravel/",
-    title: "Laravel",
-    date: "2021-06-19T00:00:00Z",
-    body: "Laravel"
+    url: "https://blog2.logical-dice.com/tags/aws/",
+    title: "AWS",
+    date: "2022-05-03T00:00:00Z",
+    body: "AWS"
   },
   {
     url: "https://blog2.logical-dice.com/",
     title: "Logical Dice 技術ブログ",
-    date: "2021-06-19T00:00:00Z",
+    date: "2022-05-03T00:00:00Z",
     body: "Logical Dice 技術ブログ"
   },
   {
     url: "https://blog2.logical-dice.com/posts/",
     title: "Posts",
-    date: "2021-06-19T00:00:00Z",
+    date: "2022-05-03T00:00:00Z",
     body: "Posts"
   },
   {
     url: "https://blog2.logical-dice.com/tags/",
     title: "Tags",
-    date: "2021-06-19T00:00:00Z",
+    date: "2022-05-03T00:00:00Z",
     body: "Tags"
+  },
+  {
+    url: "https://blog2.logical-dice.com/posts/2022/05/03/ec2-not-inservice/",
+    title: "【AWS】Auto ScalingのインスタンスがInServiceにならない",
+    date: "2022-05-03T00:00:00Z",
+    body: "【AWS】Auto ScalingのインスタンスがInServiceにならない ■発生した事象 AWSにてシステムを構築しており、EC2のオートスケール設定をしてあったのですが、突然オートスケールで立ち上がったインスタンスのライフサイクルが『InService』にならずに『Pending:Wait』から変わらない事象が発生しました。 今まではオートスケールで正常にインスタンスが立ち上がっていたのですが、ある日突然発生しました。 ■原因 原因はAutoscalingとCodeDeployの不一致でした。 システムはCodeDeployでGitHubのソースを持ってきてEC2にデプロイする構成で、Autoscalingでインスタンスを生成した際にはデプロイグループが紐づいているCodeDeployが実行されます。 AWS ユーザーガイド 事象発生時は「デプロイグループが紐づいているCodeDeploy」が存在しておらず、Autoscalingのライフサイクルフックが完了することができずにライフサイクルが『Pending:Wait』で止まっていたようでした。 基本的には自動的にAutoscalingグループとデプロイグループは紐づいているはずですが、何かしら障害や不具合があるとズレることがあります。 ライフサイクルが『InService』にならない時は、デプロイグループに設定されている「環境設定: Amazon EC2 Auto Scaling グループ」がAutoscalingグループと一致しているか確認した方が良さそうです。"
+  },
+  {
+    url: "https://blog2.logical-dice.com/tags/laravel/",
+    title: "Laravel",
+    date: "2021-06-19T00:00:00Z",
+    body: "Laravel"
   },
   {
     url: "https://blog2.logical-dice.com/posts/2021/06/19/laravel-create-http200/",
@@ -192,12 +204,6 @@ var data = [
     title: "WSL2でUbuntuを使えるようにする",
     date: "2020-09-04T00:00:00Z",
     body: "WSL2でUbuntuを使えるようにする 参考 Windows 10 用 Windows Subsystem for Linux のインストール ガイド WSL の場所を変更する|パソコン鳥のブログ Windows 10のWLS2でUbuntu20.04を使えるようにします。 Windows 10のアップデート WSL2を使うにはWindowsのバージョン 1903以降、ビルド 18362以上である必要があります。 バージョンを確認するには「Winキー＋Rキー」で『ファイル名を指定して実行』を開き、 名前にwinverを入力して「OK」をクリックします。 Windows Updateで最新化できれば良いですが、更新が来ない場合もあるので その場合は更新アシスタントを利用します。 https://www.microsoft.com/ja-jp/software-download/windows10 WSL2をインストールする 管理者権限でPowerShellを開いて、以下を実行します。 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart ここまで実行したら一度再起動します。 再起動後、再度PowerShellを管理者権限で開き、以下コマンドを実行します。 wsl --set-default-version 2 もしカーネルの更新が必要という旨のメッセージが表示された場合は 以下を参考にカーネルの更新をしてから再実行します。 https://docs.microsoft.com/ja-jp/windows/wsl/wsl2-kernel Ubuntuのインストール Microsoft Storeで「Ubuntu」と検索し、Ubuntu20.04をインストールします。 その後、Ubuntuを起動すると初期設定が走るので、アカウント設定等をします。 デフォルトではaptでの取得元が海外になっているので、以下コマンドで日本に変更します。 sudo sed -i -e 's|archive.ubuntu.com|ftp.riken.go.jp/Linux|g' /etc/apt/sources.list ここまででWSL2 でUbuntuを使えるようになりました。 ですが、デフォルトではCドライブにUbuntu用の領域をとってしまうので、Dドライブに移したいと思います。 WSLの場所を移動させるツール『LxRunOffline』を利用します。 まず、GitHubより圧縮ファイルをダウンロードして解凍しておきます。(LxRunOffline-vX.X.X-mingw.zip) https://github.com/DDoSolitary/LxRunOffline/releases 次にWSLを配置するフォルダを作成しておきます。 本例ではD:\\wslを作ります。 PowerShellを管理者権限で開き、以下コマンドで先ほど作成したフォルダに権限を付与します。 icacls D:\\wsl /grant $env:USERNAME\u0026quot;:(OI)(CI)(F)\u0026quot; そのままPowerShellでLxRunOfflineを解凍したフォルダに移動し、以下コマンドを実行します。 net stop LxssManager .\\LxRunOffline.exe move -n Ubuntu-20.04 -d d:\\wsl\\Ubuntu-20.04 net start LxssManager これでUbuntuのインストールは完了です。 もしアンインストールする場合は以下のコマンドを実行してください。 wsl -t Ubuntu-20.04 .\\LxRunOffline.exe ui -n Ubuntu-20.04 ※補足 WSL2配置の場所を移動させなくても/mnt/d/にDドライブがマウントされているのでDドライブを利用することは可能です。 ただし/mnt/配下のWindowsディレクトリへのアクセスは時間がかかるので、WSLの配置場所を変更する方がおススメです。 Ubuntu内で起動しているサーバーにWindows側からローカルとしてアクセスする Ubuntu内のDocker等でWEBサーバーを立ち上げた際に、Windows側のブラウザからhttp://localhostでアクセスできない場合があります。 ローカルとして繋ぐために、Windows側のホームディレクト(C:\\Users\\hogeUser)直下に.wslconfigというファイルを作成し、 以下を記載しておきます。 [wsl2] localhostForwarding=True また、Windowsの高速スタートアップが有効になっていると上手くいかない事があるので無効にしておきます。 「設定＞システム＞電源とスリープ＞電源の追加設定＞電源ボタンの動作を選択する」を開き、 『高速スタートアップを有効にする（推奨）』のチェックボックスを外してください。 Ubuntuから参照するDNSサーバーを変更する WSLでは名前解決に使うDNSサーバーが自動で設定され、/etc/resolv.confに記載されます。 このファイルは修正してもデフォルトではWSL起動の度に書き換えられてしまいます。 このままだと稀にUbuntu内で名前解決ができなることがあるので、 resolv.confが自動更新されないようにして、向け先をGoogleのDNSサーバー「8.8.8.8」に変更します。 まず、自動更新を止めるために/etc/wsl.confに以下を追記します。（ファイルがなければ新規作成） [network] generateResolvConf = false ※この内容は自動生成されているresolv.confにも記載されています。 この状態でWSLを再起動すると設定が反映されます。 PCを再起動するか、Windows側のPowershellなどでwsl --shutdownを実行してください。 WSLに再度アクセスして/etc/resolv.confにDNS設定をします。 もし/etc/resolv.confが/run/～へのリンボリックリンクになっている場合はunlinkコマンドでリンク解除しておきます。 /etc/resolv.confを編集し、nameserverを以下のように編集します。 nameserver 8.8.8.8 これでWSL(Ubuntu)での名前解決に使うDNSサーバーをGoogleのDNSサーバーに変更できました。 Ubuntu側からWindows側のフォルダで権限変更できるようにする Ubuntu側では/mnt/内にWindows側のフォルダがあるので参照はできますが、 デフォルトではchmodでの権限変更ができません。 もしWindows側のフォルダ・ファイルの権限変更をしたい場合は/etc/wsl.confを作成して以下を記載します。 [automount] options = \u0026quot;metadata\u0026quot; ※補足 Ubuntu側からWindows側のファイルへアクセスするのは激重なので、 基本的にはUbuntuからWindows側のファイルを扱うことは勧めません。"
-  },
-  {
-    url: "https://blog2.logical-dice.com/tags/aws/",
-    title: "AWS",
-    date: "2020-08-26T00:00:00Z",
-    body: "AWS"
   },
   {
     url: "https://blog2.logical-dice.com/posts/2020/08/26/ec2-ecs-to-csv/",
