@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>PHPで文字化けが直らない場合の対処 &middot; Nonsense J</title>
+	<title>PHPで文字化けが直らない場合の対処|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,47 +70,43 @@
 	<div class="post">
 		<h1 class="post-title">PHPで文字化けが直らない場合の対処</h1>
 		<div class="post-info">
-				<time datetime="2015-10-06 21:38:07 &#43;0000 UTC">October 6, 2015</time>
+				<p class="publish-date">投稿日：<time datetime="2015-10-06 21:38:07 &#43;0000 UTC" class="catalogue-time">2015-10-06</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/php/">PHP</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/php/">PHP</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<p>■環境<br>
 CentOS 6.6<br>
 Apache2.2</p>
 <p>日本語が文字化けするのでphpのソースで以下の記載をしていました。</p>
-<pre><code>setlocale(LC_ALL, 'ja_JP.UTF-8');
+<pre tabindex="0"><code>setlocale(LC_ALL, &#39;ja_JP.UTF-8&#39;);
 </code></pre><p>これでも文字化けが直っていたので良いのですが、<br>
 この対応方法だと同サーバにてアプリケーションを作成する度に記載が必要です。<br>
 なので、デフォルトで「ja_JP.UTF-8」を設定しました。</p>
 <p>①sysconfigで設定する方法<br>
 /etc/sysconfig/httpdで以下の設定をすれば直りました。</p>
-<pre><code>#HTTPD_LANG=C  
+<pre tabindex="0"><code>#HTTPD_LANG=C  
 HTTPD_LANG=ja_JP.UTF-8
 </code></pre><p>②php.iniで設定する方法<br>
 /etc/php.iniで以下の設定をすれば良いという記事を見ました。<br>
 私の環境では以下の設定をしても文字化けは解消しなかったのですが、念のため載せておきます。</p>
-<pre><code>;intl.default_locale =  
+<pre tabindex="0"><code>;intl.default_locale =  
 intl.default_locale =ja_JP.UTF-8
 </code></pre>
-	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/69/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/106/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
 	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2895828 &#43;0900 JST m=&#43;0.109177201">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

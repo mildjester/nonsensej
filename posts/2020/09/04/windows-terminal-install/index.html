@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>Windows Terminalの導入 &middot; Nonsense J</title>
+	<title>Windows Terminalの導入|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,71 +70,67 @@
 	<div class="post">
 		<h1 class="post-title">Windows Terminalの導入</h1>
 		<div class="post-info">
-				<time datetime="2020-09-04 00:00:00 &#43;0000 UTC">September 4, 2020</time>
+				<p class="publish-date">投稿日：<time datetime="2020-09-04 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-09-04</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/windows/">Windows</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/windows/">Windows</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<p>Windows TerminalでUbuntuを使えるようにします。</p>
 <h2 id="windows-terminalのインストール">Windows Terminalのインストール</h2>
 <p>Microsoft Storeで「Windows Terminal」を検索してインストールするだけです。</p>
 <h2 id="windows-terminalのデフォルトをubuntuにする">Windows TerminalのデフォルトをUbuntuにする</h2>
 <p>Windows Terminalを起動して設定を開きます。<br>
 settings.jsonが開くので、「profiles &gt; list」の中からUbuntuのguidを探します。</p>
-<pre><code>{
-    &quot;guid&quot;: &quot;{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}&quot;,  ←これ
-    &quot;hidden&quot;: false,
-    &quot;name&quot;: &quot;Ubuntu-20.04&quot;,
-    &quot;source&quot;: &quot;Windows.Terminal.Wsl&quot;
+<pre tabindex="0"><code>{
+    &#34;guid&#34;: &#34;{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}&#34;,  ←これ
+    &#34;hidden&#34;: false,
+    &#34;name&#34;: &#34;Ubuntu-20.04&#34;,
+    &#34;source&#34;: &#34;Windows.Terminal.Wsl&#34;
 },
 </code></pre><p>見つけたguidを「defaultProfile」に設定します。</p>
-<pre><code>&quot;defaultProfile&quot;: &quot;{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}&quot;,   ←ここに入れる
+<pre tabindex="0"><code>&#34;defaultProfile&#34;: &#34;{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}&#34;,   ←ここに入れる
 </code></pre><h2 id="起動時のディレクトリを指定する">起動時のディレクトリを指定する</h2>
 <p>Windows Terminalを起動した際に開く場所はWindows側のホームディレクトリになっています。<br>
 Ubuntuを使う際はUbuntu側のホームディレクトリから始まって欲しいので変更します。</p>
 <p>settings.jsonのUbuntuの設定にstartingDirectoryを追加します。<br>
 Ubuntu内の<code>/home/hogeuser</code>からスタートしたい場合は以下のように設定します。</p>
-<pre><code>{
-    &quot;guid&quot;: &quot;{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}&quot;,
-    &quot;hidden&quot;: false,
-    &quot;name&quot;: &quot;Ubuntu-20.04&quot;,
-    &quot;source&quot;: &quot;Windows.Terminal.Wsl&quot;,
-    &quot;startingDirectory&quot;: &quot;//wsl$/Ubuntu-20.04/home/hogeuser&quot;  ←これを追加
+<pre tabindex="0"><code>{
+    &#34;guid&#34;: &#34;{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}&#34;,
+    &#34;hidden&#34;: false,
+    &#34;name&#34;: &#34;Ubuntu-20.04&#34;,
+    &#34;source&#34;: &#34;Windows.Terminal.Wsl&#34;,
+    &#34;startingDirectory&#34;: &#34;//wsl$/Ubuntu-20.04/home/hogeuser&#34;  ←これを追加
 },
 </code></pre><h2 id="フォントを指定する">フォントを指定する</h2>
 <p>Ubuntuのシェルはfishを利用しているのですが、fishのテーマによってはフォントを変更する必要があります。<br>
-fishの導入方法については<a href="/articles/2019/03/10/linux-mint-terminator-fish">こちら</a></p>
+fishの導入方法については<a href="/posts/2019/03/10/linux-mint-terminator-fish">こちら</a></p>
 <p>settings.jsonのUbuntuの設定にfontFaceを追加します。<br>
 もしフォントサイズを変更したい場合はfontSizeも追加してください。</p>
 <p>フォントを「Cascadia Code PL」に変更し、フォントサイズを11にする場合は以下のようになります。</p>
-<pre><code>{
-    &quot;guid&quot;: &quot;{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}&quot;,
-    &quot;hidden&quot;: false,
-    &quot;name&quot;: &quot;Ubuntu-20.04&quot;,
-    &quot;source&quot;: &quot;Windows.Terminal.Wsl&quot;,
-    &quot;startingDirectory&quot;: &quot;//wsl$/Ubuntu-20.04/home/hogeuser&quot;,
-    &quot;fontFace&quot;: &quot;Cascadia Code PL&quot;,  ←これを追加
-    &quot;fontSize&quot;: 11  ←これを追加
+<pre tabindex="0"><code>{
+    &#34;guid&#34;: &#34;{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}&#34;,
+    &#34;hidden&#34;: false,
+    &#34;name&#34;: &#34;Ubuntu-20.04&#34;,
+    &#34;source&#34;: &#34;Windows.Terminal.Wsl&#34;,
+    &#34;startingDirectory&#34;: &#34;//wsl$/Ubuntu-20.04/home/hogeuser&#34;,
+    &#34;fontFace&#34;: &#34;Cascadia Code PL&#34;,  ←これを追加
+    &#34;fontSize&#34;: 11  ←これを追加
 },
 </code></pre>
-	</div>
-
-	<div class="pagination">
-		<a href="/posts/2020/09/04/win10-keymap-change/" class="left arrow">&#8592;</a>
-		<a href="/posts/2020/09/15/webpack-swiper-env-diff/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
 	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2670172 &#43;0900 JST m=&#43;0.086611601">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

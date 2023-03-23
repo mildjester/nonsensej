@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>Google Analyticsから直近のページ閲覧数を取得する &middot; Nonsense J</title>
+	<title>Google Analyticsから直近のページ閲覧数を取得する|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,13 +70,14 @@
 	<div class="post">
 		<h1 class="post-title">Google Analyticsから直近のページ閲覧数を取得する</h1>
 		<div class="post-info">
-				<time datetime="2020-03-05 00:00:00 &#43;0000 UTC">March 5, 2020</time>
+				<p class="publish-date">投稿日：<time datetime="2020-03-05 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-03-05</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/php/">PHP</a></div> <div class="tags_item"><a href="/tags/googleservice/">GoogleService</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/php/">PHP</a></div> <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/googleservice/">GoogleService</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<h2 id="環境">環境</h2>
 <ul>
 <li>PHP  7.3</li>
@@ -102,10 +134,10 @@ JSONファイルがダウンロードされますので取っておいてくだ�
 <h2 id="スクリプトの作成">スクリプトの作成</h2>
 <p>PHPとcomposerの環境は構築済みの前提とします。</p>
 <p>まず、Google Analytics APIのパッケージを取得します。</p>
-<pre><code>composer require google/apiclient
+<pre tabindex="0"><code>composer require google/apiclient
 </code></pre><p>次に以下のPHPスクリプトを作成します。</p>
-<pre><code>&lt;?php
-require_once __DIR__ . '/vendor/autoload.php';
+<pre tabindex="0"><code>&lt;?php
+require_once __DIR__ . &#39;/vendor/autoload.php&#39;;
 
 $analytics = initializeAnalytics();
 $profile = getFirstProfileId($analytics);
@@ -118,12 +150,12 @@ printResults($results);
 function initializeAnalytics()
 {
   $KEY_FILE_LOCATION = {{GCPのサービスアカウント作成時に取得したjsonファイルへのパス}};
-  // 例：$KEY_FILE_LOCATION = __DIR__ . '/config/hogehoge.json';
+  // 例：$KEY_FILE_LOCATION = __DIR__ . &#39;/config/hogehoge.json&#39;;
 
   $client = new Google_Client();
-  $client-&gt;setApplicationName(&quot;Hello Analytics Reporting&quot;);    // 任意の名前に変更してよいです
+  $client-&gt;setApplicationName(&#34;Hello Analytics Reporting&#34;);    // 任意の名前に変更してよいです
   $client-&gt;setAuthConfig($KEY_FILE_LOCATION);
-  $client-&gt;setScopes(['https://www.googleapis.com/auth/analytics.readonly']);
+  $client-&gt;setScopes([&#39;https://www.googleapis.com/auth/analytics.readonly&#39;]);
   $analytics = new Google_Service_Analytics($client);
 
   return $analytics;
@@ -155,13 +187,13 @@ function getFirstProfileId($analytics) {
         return $items[0]-&gt;getId();
 
       } else {
-        throw new Exception('No views (profiles) found for this user.');
+        throw new Exception(&#39;No views (profiles) found for this user.&#39;);
       }
     } else {
-      throw new Exception('No properties found for this user.');
+      throw new Exception(&#39;No properties found for this user.&#39;);
     }
   } else {
-    throw new Exception('No accounts found for this user.');
+    throw new Exception(&#39;No accounts found for this user.&#39;);
   }
 }
 
@@ -169,17 +201,17 @@ function getFirstProfileId($analytics) {
  *  取得条件を設定して取得する
  */
 function getResults($analytics, $profileId) {
-  $from = '1daysAgo';                          // 昨日から
-  $to    = 'today';                            // 今日までのデータを取得します
-  $metrics = &quot;ga:pageviews&quot;;                   // 閲覧者数を取得します
+  $from = &#39;1daysAgo&#39;;                          // 昨日から
+  $to    = &#39;today&#39;;                            // 今日までのデータを取得します
+  $metrics = &#34;ga:pageviews&#34;;                   // 閲覧者数を取得します
   $option = [
-    &quot;dimensions&quot; =&gt; 'ga:pagepath',             // ページパス別に閲覧数を取得します
-    &quot;sort&quot; =&gt; &quot;-ga:pageviews&quot;,                 // 閲覧数でソートします。マイナスを付けているので降順になります
-    // &quot;filters&quot; =&gt; &quot;ga:pagepath%3D@/article&quot;,    // コメントアウトを外すと、ページパスに「/article」を含むものに絞ります
+    &#34;dimensions&#34; =&gt; &#39;ga:pagepath&#39;,             // ページパス別に閲覧数を取得します
+    &#34;sort&#34; =&gt; &#34;-ga:pageviews&#34;,                 // 閲覧数でソートします。マイナスを付けているので降順になります
+    // &#34;filters&#34; =&gt; &#34;ga:pagepath%3D@/article&#34;,    // コメントアウトを外すと、ページパスに「/article」を含むものに絞ります
   ];
 
   return $analytics-&gt;data_ga-&gt;get(
-        'ga:' . $profileId,
+        &#39;ga:&#39; . $profileId,
         $from,
         $to,
         $metrics,
@@ -191,9 +223,9 @@ function getResults($analytics, $profileId) {
  * 取得結果を出力する
  */
 function printResults($results) {
-  echo 'page url,previews' . PHP_EOL;
+  echo &#39;page url,previews&#39; . PHP_EOL;
   foreach ($results as $result){
-    echo $result[0] . ',' . $result[1] . PHP_EOL;
+    echo $result[0] . &#39;,&#39; . $result[1] . PHP_EOL;
   }
 }
 </code></pre><p>このPHPを実行すればページ別閲覧者数が取得できます。<br>
@@ -210,21 +242,16 @@ Google Analytics APIの応答は数秒かかるので各ページ個別に閲覧
 <a href="https://developers.google.com/analytics/devguides/reporting/core/v3/reference">https://developers.google.com/analytics/devguides/reporting/core/v3/reference</a></p>
 
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/2020/02/18/lightsail-wordpress/" class="left arrow">&#8592;</a>
-		<a href="/posts/2020/03/10/gas-gmail-slack/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.263509 &#43;0900 JST m=&#43;0.083103501">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

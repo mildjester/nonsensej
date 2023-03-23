@@ -1,49 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>CakePHP on Nonsense J</title>
-    <link>/tags/cakephp/</link>
-    <description>Recent content in CakePHP on Nonsense J</description>
+    <title>CakePHP on Logical Dice 技術ブログ</title>
+    <link>https://blog2.logical-dice.com/tags/cakephp/</link>
+    <description>Recent content in CakePHP on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sun, 10 Jun 2018 09:20:20 +0000</lastBuildDate><atom:link href="/tags/cakephp/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 10 Jun 2018 09:20:20 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/cakephp/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CakePHP2のローカル検証環境構築</title>
-      <link>/posts/wp/1375/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/1375/</link>
       <pubDate>Sun, 10 Jun 2018 09:20:20 +0000</pubDate>
       
-      <guid>/posts/wp/1375/</guid>
-      <description>環境 CakePHP 2.10.10
- 今更ながらCakePHP2を仕事で使う可能性があったので、
-勉強するためローカルに環境構築しました。
-環境構築はDockerを利用しており、以下3つのコンテナを作成しています。
- nginx php-fpm MySQL  【参考】出来上がったものはこちら
-https://github.com/mildjester/my-training-cakephpCakePHPのDocument関連は「Book」という名称で公開されていますので
-こちらを参考にして進めていきます。
-（CakePHPは全体的に料理っぽい命名がされているので、レシピ本ってこと？）
-https://book.cakephp.org/2.0/ja/index.htmlCakePHPのインストール BookによるとCakePHP2のダウンロードは公式ページより行なえるそうなのですが、
-現在の公式ページにはダウンロードできそうなリンクはありませんでした。
-なので、GitHubからダウンロードしてきます。
-私が見た時はVersion.2系の最新は「2.10.10」だったので、それの圧縮ファイルダウンロードしました。
-https://github.com/cakephp/cakephp/tagsダウンロードしてきた圧縮ファイルを解凍したらCakePHP2の基本構造が出てきます。
-これをDockerで作った環境で動くように突っ込みます。
-Docker環境についてはコチラを参照してください。
-https://github.com/mildjester/my-training-cakephp/tree/master/dockerこの状態でDockerを起動すればCakePHPの初期画面が表示されます。
-初期設定 上記の初期画面で色々とWarning等が出ているので
-これの対応をしていきます。
-Databaseの設定 /app/Config/database.php.defaultというファイルがあるので、それを同じディレクトリにdatabase.phpという名前でコピーします。
-コピーしたファイルにデータベースの設定について記載されていますので、構築するDBの情報を記載します。
-また、ここに記載するDB情報に合わせてMySQLにもDBやユーザーを作成しておきます。
-（MySQLの操作については割愛）
-Coreの修正 /app/Config/core.phpにセキュリティ関連のSaltやCipherSeedが設定されています。
-初期値のままだと宜しくないので修正しておきます。
-Configure::write(&#39;Security.salt&#39;, &#39;DYhG93b0qyJfIxfs2guVoUubWwvniR2G0FgaC9mi&#39;); // 任意の半角英数にする Configure::write(&#39;Security.cipherSeed&#39;, &#39;76859309657453542496749683645&#39;); // 任意の数字にする DebugKitの設定 CakePHP用のDebugKitがあるのでインストールしておきます。
-https://github.com/cakephp/debug_kit/tree/2.2まず、Composerでインストールし、生成されるPluginを/app/Plugin配下へ移動させます。
-composer require cakephp/debug_kit &amp;quot;^2.2.0&amp;quot; mv Plugin/DebugKit app/Plugin/. もしローカルにComposerが入ってない場合は、php-fpmのDockerコンテナに入って実行しても構いません。
-本例のDocker環境の場合は以下コマンドでコンテナに入れます。
-docker-compose -f cakedock/docker-compose.yml exec --user=www-data workspace sh # または、上記コマンドをMakefile化してあるので、以下コマンドでも入れます make workspace 次に/app/Config/bootstrap.phpの69行目あたりにプラグイン読み込み設定を記載する箇所があるので
-そこにDebugKitを読み込む設定を追記します。
-CakePlugin::load(&#39;DebugKit&#39;); ここまで対応すれば初期画面の警告はAllGreenになるはずです。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/1375/</guid>
+      <description>環境CakePHP 2.10.10今更ながらCakePHP2を仕事で使う可能性があったので、勉強するためローカルに環境構築しまし&amp;hellip;</description>
     </item>
     
   </channel>

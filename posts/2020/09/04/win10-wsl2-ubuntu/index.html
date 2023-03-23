@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>WSL2でUbuntuを使えるようにする &middot; Nonsense J</title>
+	<title>WSL2でUbuntuを使えるようにする|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,13 +70,14 @@
 	<div class="post">
 		<h1 class="post-title">WSL2でUbuntuを使えるようにする</h1>
 		<div class="post-info">
-				<time datetime="2020-09-04 00:00:00 &#43;0000 UTC">September 4, 2020</time>
+				<p class="publish-date">投稿日：<time datetime="2020-09-04 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-09-04</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/windows/">Windows</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/windows/">Windows</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<h2 id="参考">参考</h2>
 <ul>
 <li><a href="https://docs.microsoft.com/ja-jp/windows/wsl/install-win10">Windows 10 用 Windows Subsystem for Linux のインストール ガイド</a></li>
@@ -62,11 +94,11 @@
 <a href="https://www.microsoft.com/ja-jp/software-download/windows10">https://www.microsoft.com/ja-jp/software-download/windows10</a></p>
 <h2 id="wsl2をインストールする">WSL2をインストールする</h2>
 <p>管理者権限でPowerShellを開いて、以下を実行します。</p>
-<pre><code>dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+<pre tabindex="0"><code>dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 </code></pre><p>ここまで実行したら一度再起動します。</p>
 <p>再起動後、再度PowerShellを管理者権限で開き、以下コマンドを実行します。</p>
-<pre><code>wsl --set-default-version 2
+<pre tabindex="0"><code>wsl --set-default-version 2
 </code></pre><p>もしカーネルの更新が必要という旨のメッセージが表示された場合は<br>
 以下を参考にカーネルの更新をしてから再実行します。<br>
 <a href="https://docs.microsoft.com/ja-jp/windows/wsl/wsl2-kernel">https://docs.microsoft.com/ja-jp/windows/wsl/wsl2-kernel</a></p>
@@ -74,7 +106,7 @@ dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /nores
 <p>Microsoft Storeで「Ubuntu」と検索し、Ubuntu20.04をインストールします。<br>
 その後、Ubuntuを起動すると初期設定が走るので、アカウント設定等をします。</p>
 <p>デフォルトではaptでの取得元が海外になっているので、以下コマンドで日本に変更します。</p>
-<pre><code>sudo sed -i -e 's|archive.ubuntu.com|ftp.riken.go.jp/Linux|g' /etc/apt/sources.list
+<pre tabindex="0"><code>sudo sed -i -e &#39;s|archive.ubuntu.com|ftp.riken.go.jp/Linux|g&#39; /etc/apt/sources.list
 </code></pre><p>ここまででWSL2 でUbuntuを使えるようになりました。<br>
 ですが、デフォルトではCドライブにUbuntu用の領域をとってしまうので、Dドライブに移したいと思います。</p>
 <p>WSLの場所を移動させるツール『LxRunOffline』を利用します。<br>
@@ -83,14 +115,14 @@ dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /nores
 <p>次にWSLを配置するフォルダを作成しておきます。<br>
 本例では<code>D:\wsl</code>を作ります。</p>
 <p>PowerShellを管理者権限で開き、以下コマンドで先ほど作成したフォルダに権限を付与します。</p>
-<pre><code>icacls D:\wsl /grant $env:USERNAME&quot;:(OI)(CI)(F)&quot;
+<pre tabindex="0"><code>icacls D:\wsl /grant $env:USERNAME&#34;:(OI)(CI)(F)&#34;
 </code></pre><p>そのままPowerShellでLxRunOfflineを解凍したフォルダに移動し、以下コマンドを実行します。</p>
-<pre><code>net stop LxssManager
+<pre tabindex="0"><code>net stop LxssManager
 .\LxRunOffline.exe move -n Ubuntu-20.04 -d d:\wsl\Ubuntu-20.04
 net start LxssManager
 </code></pre><p>これでUbuntuのインストールは完了です。<br>
 もしアンインストールする場合は以下のコマンドを実行してください。</p>
-<pre><code>wsl -t Ubuntu-20.04
+<pre tabindex="0"><code>wsl -t Ubuntu-20.04
 .\LxRunOffline.exe ui -n Ubuntu-20.04
 </code></pre><h3 id="補足">※補足</h3>
 <p>WSL2配置の場所を移動させなくても<code>/mnt/d/</code>にDドライブがマウントされているのでDドライブを利用することは可能です。<br>
@@ -99,7 +131,7 @@ net start LxssManager
 <p>Ubuntu内のDocker等でWEBサーバーを立ち上げた際に、Windows側のブラウザからhttp://localhostでアクセスできない場合があります。<br>
 ローカルとして繋ぐために、Windows側のホームディレクト(C:\Users\hogeUser)直下に<code>.wslconfig</code>というファイルを作成し、<br>
 以下を記載しておきます。</p>
-<pre><code>[wsl2]
+<pre tabindex="0"><code>[wsl2]
 localhostForwarding=True
 </code></pre><p>また、Windowsの高速スタートアップが有効になっていると上手くいかない事があるので無効にしておきます。<br>
 「設定＞システム＞電源とスリープ＞電源の追加設定＞電源ボタンの動作を選択する」を開き、<br>
@@ -110,7 +142,7 @@ localhostForwarding=True
 <p>このままだと稀にUbuntu内で名前解決ができなることがあるので、<br>
 resolv.confが自動更新されないようにして、向け先をGoogleのDNSサーバー「8.8.8.8」に変更します。</p>
 <p>まず、自動更新を止めるために<code>/etc/wsl.conf</code>に以下を追記します。（ファイルがなければ新規作成）</p>
-<pre><code>[network]
+<pre tabindex="0"><code>[network]
 generateResolvConf = false
 </code></pre><p>※この内容は自動生成されているresolv.confにも記載されています。</p>
 <p>この状態でWSLを再起動すると設定が反映されます。<br>
@@ -118,34 +150,29 @@ PCを再起動するか、Windows側のPowershellなどで<code>wsl --shutdown</
 <p>WSLに再度アクセスして<code>/etc/resolv.conf</code>にDNS設定をします。<br>
 もし<code>/etc/resolv.conf</code>が<code>/run/～</code>へのリンボリックリンクになっている場合はunlinkコマンドでリンク解除しておきます。</p>
 <p><code>/etc/resolv.conf</code>を編集し、nameserverを以下のように編集します。</p>
-<pre><code>nameserver 8.8.8.8
+<pre tabindex="0"><code>nameserver 8.8.8.8
 </code></pre><p>これでWSL(Ubuntu)での名前解決に使うDNSサーバーをGoogleのDNSサーバーに変更できました。</p>
 <h2 id="ubuntu側からwindows側のフォルダで権限変更できるようにする">Ubuntu側からWindows側のフォルダで権限変更できるようにする</h2>
 <p>Ubuntu側では/mnt/内にWindows側のフォルダがあるので参照はできますが、<br>
 デフォルトではchmodでの権限変更ができません。</p>
 <p>もしWindows側のフォルダ・ファイルの権限変更をしたい場合は<code>/etc/wsl.conf</code>を作成して以下を記載します。</p>
-<pre><code>[automount]
-options = &quot;metadata&quot;
+<pre tabindex="0"><code>[automount]
+options = &#34;metadata&#34;
 </code></pre><p>※補足<br>
 Ubuntu側からWindows側のファイルへアクセスするのは激重なので、<br>
 基本的にはUbuntuからWindows側のファイルを扱うことは勧めません。</p>
 
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/2020/08/26/ec2-ecs-to-csv/" class="left arrow">&#8592;</a>
-		<a href="/posts/2020/09/04/win10-initial-setting/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2673547 &#43;0900 JST m=&#43;0.086949101">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

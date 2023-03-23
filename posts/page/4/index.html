@@ -1,338 +1,232 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>Posts &middot; Nonsense J</title>
+	<title>Posts|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
 <main>
 	<div class="catalogue">
 		
-			<a href="/posts/2020/05/17/update-ubuntu-20-04/" class="catalogue-item">
-    <div>
-        <time datetime="2020-05-17 00:00:00 &#43;0000 UTC" class="catalogue-time">May 17, 2020</time>
-        <h1 class="catalogue-title">Ubuntu 20.04にアップデートした話</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            待望のUbuntu 20.04 LTSが出たので、19.10からアップデートしてみました。
-アップデートと同時に発生した事象について記載します。
-消えたアプリ アップデートするとインストールしてあった以下のアプリが消えたので、再インストールしました。
- shutter (スクショツール) MySQL Workbench  shutter こちらのページを参考にさせて頂きました。
-https://www.debugpoint.com/2020/04/shutter-install-ubuntu/
-実施した手順は以下です。
-sudo apt update sudo apt upgrade sudo add-apt-repository ppa:linuxuprising/shutter sudo apt install shutter MySQL Workbench コマンドでちょこちょこやってインストールする方法もあるようですが、素直に公式ページからdebをダウンロードしてインストールしました。
-https://dev.mysql.com/downloads/workbench/
-コマンドでインストールする方法も結局↑でダウンロードできるdebをコマンドでインストールしてるだけのようです。
-HDMI周りの不具合発生  ※2020/6/1追記
-対処法が分かったのでこちらの記事で記載しています。
-ThinkpadにHDMIケーブルを接続したままUbuntu 20.04を起動する
- 私の作業PCはThinkpad T480なのですが、HDMIポートにケーブルを挿した状態で起動しようとすると、ロゴ画面で止まってしまう事象が発生しました。
-PCのThunderboldポートにもThunderbold→HDMIのケーブルを繋いでいるのですが、そちらは特に挿したまま起動しても問題ありませんでした。
-調べてみると同様の事象を報告している方が複数いたので、おそらくubuntu 20.04の不具合かと思われます。
-https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1874194
-また、ubuntuにログイン後にディスプレイケーブルの抜き差しをするとメニューバーの位置がおかしくなりました。
-これはHDMIポートでもThunderboltポートでも発生します。
-なので、私は以下の手順でPCを起動しています。
-①HDMIケーブルを抜いてPCの電源ON。
-②ubuntuが起動し、ログイン画面が表示されたらHDMIケーブルを挿す。
-③ログインする。
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2020/06/14/oreore-certification/">
+    <h1 class="catalogue-title">EC2上でオレオレ証明書を作る</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2020-06-14 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-06-14</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/aws/">AWS</a></div> <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/linux/">Linux</a></div>
     </div>
-</a>
+    
+    <p>最近はめっきり使われなくなったオレオレ証明書を作成する手順です。</p>
+</div>
+
 
 		
-			<a href="/posts/2020/04/15/gulp-uglify-keep-name/" class="catalogue-item">
-    <div>
-        <time datetime="2020-04-15 00:00:00 &#43;0000 UTC" class="catalogue-time">April 15, 2020</time>
-        <h1 class="catalogue-title">gulp-uglifyで圧縮時に変数／関数名を圧縮させない</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            参考  github mishoo/UglifyJS2   意外と調べても情報が出てこなかったのでメモです。
-gulp-uglifyを使ってJSファイルを圧縮すると定義している変数名や関数名も圧縮されてアルファベット1文字等になります。
-圧縮したJSファイル内でのみ呼び出される変数・関数であれば良いのですが、外部からも呼び出したいというパターンもあると思います。特に関数。
-変数名や関数名を保持したい場合は、gulp-uglify実行時に以下の用にオプションを指定してあげればOKです。
-(gulpfile.js例)
-var gulp = require('gulp'); var uglify = require('gulp-uglify'); var uglify_option = { keep_fnames: true, // function名を圧縮させない場合に指定 mangle: false // 変数名を圧縮させない場合に指定 } gulp.task(&quot;default&quot;, function() { return gulp.src('src/*.js') .pipe(uglify(uglify_option)) .pipe(gulp.dest('dest')); }); 
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2020/06/11/elasticsearch-topics/">
+    <h1 class="catalogue-title">Elasticsearchの使い方メモ</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2020-06-11 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-06-11</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/elasticsearch/">Elasticsearch</a></div>
     </div>
-</a>
+    
+    <p>数年前のElasticsearchのメモが出てきたので晒します。</p>
+</div>
+
 
 		
-			<a href="/posts/2020/03/20/javascript-input-event/" class="catalogue-item">
-    <div>
-        <time datetime="2020-03-20 00:00:00 &#43;0000 UTC" class="catalogue-time">March 20, 2020</time>
-        <h1 class="catalogue-title">javascriptの入力イベントでIME未確定時は発火させない設定方法</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            テキストボックスに入力中の内容をjavascriptでチェックする場合など
-keydownイベントを使うとIME未確定時にも発火してしまい無駄に沢山処理が走ってしまいますし、
-textInputイベントは対応していないブラウザがあるし、
-そんな時の対応方法です。
-javascriptのイベントにはIME入力開始時の「compositionstart」とIME確定時の「compositionend」というものがあります。
-これを使ってIME入力中を判定できるフラグを作ります。
-具体的には以下のようにします。
-&lt;input type=&quot;text&quot; id=&quot;hoge&quot; /&gt; &lt;script&gt; // とりあえずオブジェクト化してますが、ベタ書きでも構いません var inputEventHandler = { compFlg : false, // IME入力中フラグ initialize : function(){ let targetElm = document.getElementById('hoge'); targetElm.addEventListener('keydown', function() { // ブラウザによりcompositionendイベントとの発火タイミングが前後するのでsetTimeoutで少し遅らせます setTimeout(function(){ if (self.compFlg) { return; } console.log('ここで何か処理を実行する'); }, 10) }); targetElm.addEventListener('compositionstart', function() { self.compFlg = true; }); targetElm.addEventListener('compositionend', function() { self.compFlg = false; }); } } inputEventHandler.initialize(); &lt;/script&gt; 
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2020/06/10/aws-s3-redirect/">
+    <h1 class="catalogue-title">AWS S3を使ったリダイレクトの方法</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2020-06-10 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-06-10</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/aws/">AWS</a></div>
     </div>
-</a>
+    
+    <p>AWSのS3を使ってリダイレクトを設定します。</p>
+</div>
+
 
 		
-			<a href="/posts/2020/03/15/github-actions-deploy/" class="catalogue-item">
-    <div>
-        <time datetime="2020-03-15 00:00:00 &#43;0000 UTC" class="catalogue-time">March 15, 2020</time>
-        <h1 class="catalogue-title">GitHub ActionsでAWS Code Deployを回す</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            GitHub ActionsからAWSコマンドを簡単に叩けるようだったので試してみました。
-今回CIでやることは『masterにプッシュされたらCodeDeployを走らせる』のみです。
-AWS Code Deployの設定 こちらの記事で手順を紹介しています。
-AWS Code DeployでEC2にデプロイする
-AWS IAMの設定 こちらの記事で手順を紹介しています。
-今回CircleCIは使わないので、「IAM準備」の手順のみ参照してください。
-CircleCIからAWS Code Deployを実行する
-GitHub Secretsへのキー登録 前手順で取得したIAMユーザーの『アクセスキーID』と『シークレットアクセスキー』をGitHubのSecretsに登録します。
-まず、GitHubの対象リポジトリの『Settings ＞ Secrets』を開き、『Add a new secret』をクリックします。
-Secretsの設定画面になるので以下2つを設定します。
-   Name Value     AWS_ACCESS_KEY_ID IAMのアクセスキーID   AWS_SECRET_ACCESS_KEY IAMのシークレットアクセスキー    GitHub Actionsの設定 デプロイしたいリポジトリのGitHubページの『Actions』タブを開き、
-「Set up a workflow yourself」をクリックします。
-.github/workflows/main.ymlの編集画面が開くので、以下のように記載します。
-name: AWS Code Deploy on: push: branches: [ master ] jobs: build: runs-on: ubuntu-latest steps: - name: Run AWS CodeDeploy with: args: deploy create-deployment --application-name &quot;※APP_NAME※&quot; --deployment-group-name &quot;※GROUP_NAME※&quot; --github-location repository=&quot;※REPO※&quot;,commitId=&quot;${{ github.
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2020/06/06/python-dict-list/">
+    <h1 class="catalogue-title">Dictionaly型から特定の値を取り出しlist型に入れる</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2020-06-06 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-06-06</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/python/">python</a></div>
     </div>
-</a>
+    
+    <p>pythonらしくDictionaly型から特定の値を取り出して配列に入れる方法です。</p>
+</div>
+
 
 		
-			<a href="/posts/2020/03/10/gas-gmail-slack/" class="catalogue-item">
-    <div>
-        <time datetime="2020-03-10 00:00:00 &#43;0000 UTC" class="catalogue-time">March 10, 2020</time>
-        <h1 class="catalogue-title">GASでGmailをSlackに転送する</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            参考  Class GmailApp(公式ドキュメント) 【GAS】Gmailを定期的に確認し新規メールをSlackに通知する 【Google Apps Script】Gmailの新着(未読)メールを取得する【コピペでOK】   元々IFTTTやZepierを使ってGmailをSlackと連携させていたのですが、
-最近Gmail側のセキュリティ変更でうまく連携できなくなってきたので
-Google Apps Script(GAS)を使って連携させることにしました。
-GASでやることは
-『5分周期でメールをチェックし、未読メールがあればSlackに転送して既読にする』
-です。
-SlackのWebHooks URLの取得 GASに限らず、API経由でSlackに通知を出したい時に使うURLを取得します。
-これを取得しておけば自作botを作ったりできます。
-こちらのページから自分のSlackチームにWebHooksを追加できます。
-（要Slackログイン）
-https://slack.com/apps/A0F7XDUAZ-incoming-webhooks
-https://hooks.slack.com/services/AAAAAAA/BBBBBBB/CCCCCCCという形式のURLが取得できれば完了です。
-ちなみに、今回のGASの話とは関係ないですけど
-PHPからWebHooksを使ってメッセージ送信するライブラリを作っています。
-全然誰にも使われてないですけど、参考までに載せておきます。
-https://github.com/mildjester/slackwebhock
-Google Apps Scriptの作成 まず、自分のGASのページを開きます。
-https://script.google.com/u/0/home?hl=ja
-そこで「新しいプロジェクト」をクリックしてください。
-コード編集画面が開くので、「コード.gs」内を以下のように記載します。
-最初の「初期設定」の部分は自分の環境に合わせて修正してください。
-// 初期設定 const HOOK_URL = 'https://hooks.slack.com/services/AAAAAAA/BBBBBBB/CCCCCCC'; // 取得したWebHooks URL const SEND_CHANNEL = 'general'; // Gmailの内容を送信したいSlackチャンネル function main() { // 検索条件：受信トレイにある未読メールで１０分以内に受信したもの var after = parseInt(((new Date()).getTime() - 10 * 60 * 1000) / 1000); //10分前の時刻をUNIX時間で取得 var searchTarget = 'in:inbox is:unread after:' + after; GmailApp .
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2020/06/01/ubuntu-20-04-hdmi/">
+    <h1 class="catalogue-title">ThinkpadにHDMIケーブルを接続したままUbuntu 20.04を起動する</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2020-06-01 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-06-01</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/ubuntu/">ubuntu</a></div>
     </div>
-</a>
+    
+    <p>ThinkpadにUbuntu 20.04を入れるとHDMIケーブルを挿したまま起動できなくなったので対応しました。</p>
+</div>
+
 
 		
-			<a href="/posts/2020/03/05/get-google-analytics-report/" class="catalogue-item">
-    <div>
-        <time datetime="2020-03-05 00:00:00 &#43;0000 UTC" class="catalogue-time">March 5, 2020</time>
-        <h1 class="catalogue-title">Google Analyticsから直近のページ閲覧数を取得する</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            環境  PHP 7.3 google/apiclient 2.4  参考 https://developers.google.com/analytics/devguides/reporting/core/v3/quickstart/service-php?hl=ja
- 商品ページにて「24時間以内に○○人が見ています」という販促メッセージを出す時に、乱数を使っているサービスもあるようですが、 それはさすがに嫌なのでGoogle Analyticsから閲覧実績を取得して表示してみます。
-なお、Google Analyticsからは「昨日から今日まで」のように日付指定しかできないので、「10分以内に」のように厳密な時間を指定して閲覧者数を表示することはできません。
-GCPのサービスアカウント作成 まず、以下ページにてサービスアカウントを作成します。
-※もしGoogle CloudPlatform(GCP)のプロジェクトを作成していない場合は「プロジェクトを作成」をクリックしてGCPプロジェクトを作成してから実行します。
-https://console.developers.google.com/iam-admin/serviceaccounts?hl=ja
-「プロジェクトの選択」よりサービスアカウントを作成するプロジェクトを選択し、
-「＋サービスアカウントを作成」をクリックします。
-サービスアカウントの作成画面が開くので以下の通り入力して「作成」をクリックしてください。
-   項目 入力内容     サービスアカウント名 独自の自分で判断できる名前   サービスアカウントID 独自のID(サービスアカウント名を入力したら勝手に入ります)   サービスアカウントの説明 自分が分かる説明    次にサービスアカウントの権限設定画面が開きますが、そのまま「続行」をクリックします。
-その次の画面で「ユーザーにこのサービス アカウントへのアクセス権を付与」は特に何もしません。
-「キーの作成」の中の「キーを作成」をクリックし、キーのタイプはJSONを選択して「作成」をクリックします。
-JSONファイルがダウンロードされますので取っておいてください。
-サービスアカウントの作成画面はそのまま「完了」をクリックして終わります。
-サービスアカウント一覧に戻り、作成したサービスアカウントのメールアドレスが表示されるので記録しておきます。
-Google Analytics APIの有効化 以下ページにアクセスし、Google Analytics APIを有効化してください。
-https://console.developers.google.com/apis/api/analytics.googleapis.com/overview
-Google Analyticsの設定 さきほど作成したサービスアカウントをGoogle Analyticsに追加します。
-アカウントユーザーまたはプロパティユーザーにサービスアカウントのメールアドレスを追加します。
-権限は「表示と分析」のみ(デフォルト)で大丈夫です。
-スクリプトの作成 PHPとcomposerの環境は構築済みの前提とします。
-まず、Google Analytics APIのパッケージを取得します。
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2020/05/19/serverless-framework-lambda/">
+    <h1 class="catalogue-title">Serverless Frameworkを使ってLambda &amp; API Gatewayをデプロイする</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2020-05-19 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-05-19</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/aws/">AWS</a></div>
     </div>
-</a>
+    
+    <p>試しにServerless Frameworkを使ってLambda &amp; API Gatewayをデプロイしてみた時の手順メモです。</p>
+</div>
+
 
 		
-			<a href="/posts/2020/02/18/lightsail-wordpress/" class="catalogue-item">
-    <div>
-        <time datetime="2020-02-18 00:00:00 &#43;0000 UTC" class="catalogue-time">February 18, 2020</time>
-        <h1 class="catalogue-title">lightsail上に自前でWordpressを構築する(CentOS編)</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            環境  CentOS Linux release 7.6.1810 (Core) nginx 1.1.17 php 7.4.2 MySQL 8.0.19   以前の記事でAmazon Linux上でWordpressを構築しましたが、
-lightsailのAmazon Linux上だとなぜかcertbotが正常に動かなくなったので
-CentOSで再構築することにしました。
-インスタンス作成 lightsailのインスタンスを作成します。
-プラットフォーム：Linux/Unix
-設計図の選択：OSのみ CentOS
-インスタンス設定 作成したインスタンスの設定をします。
-対象インスタンスのネットワーキングを開き、静的IPをアタッチしておきます。
-また、HTTPSで公開する場合はファイアウォールにてTCPの443ポートを開けておきます。
-サーバーへのログイン＆初期設定 インスタンスにSSHにて接続し、以下コマンドを実行していきます。
-まずrootになります。
-以降のコマンドはrootで実行するものとします。
-$ sudo -i タイムゾーンを日本にします。
-# timedatectl set-timezone Asia/Tokyo 基本的なアプリケーションを入れておきます。
-yum install git vim SELinuxの無効化 SELinuxがあると色々動かないことがあるので無効にしてしまいます。
-(nginxが403になったり)
-ちゃんとセキュアな環境を作りたい場合はSELinuxが有効でもちゃんと諸々動く環境を作った方がいいですが、
-今回はそこまででは無かったので割愛しています。
-現在有効か確認します。
-以下コマンドで「Enforcing」と出たら有効です。
-# getenforce Enforcing 設定ファイルを修正して無効にします。
-# vim /etc/selinux/config 以下部分を修正します。 SELINUX=disabled これでlightsailのコンソールからインスタンスを再起動をすると反映されます。
-nginxのインストール 公式の手順を参考にします。
-http://nginx.org/en/linux_packages.html#RHEL-CentOS
-# yum install yum-utils # vim /etc/yum.
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2020/05/17/update-ubuntu-20-04/">
+    <h1 class="catalogue-title">Ubuntu 20.04にアップデートした話</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2020-05-17 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-05-17</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/ubuntu/">ubuntu</a></div>
     </div>
-</a>
+    
+    <p>作業PCをUbuntu 19.10から20.04 LTSにアップデートした時の話です。</p>
+</div>
+
 
 		
-			<a href="/posts/2020/02/13/etax-legal-record/" class="catalogue-item">
-    <div>
-        <time datetime="2020-02-13 00:00:00 &#43;0000 UTC" class="catalogue-time">February 13, 2020</time>
-        <h1 class="catalogue-title">e-taxで法定調書関係の申請をする。</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            決算を迎え、e-taxにて法定調書関係の申請をしたので、その手順メモです。
-なお、計算方法等はマネーフォワード給与にて行なっていますので割愛しています。
-申請書の作成 e-taxの左メニューから作成＞申告・申請等開き、新規作成をクリックします。
-次に以下を選び『次へ』をクリックします。
-もし税目の選択肢に「法定調書関係」が無い場合は、e-tax起動時のインストールメニューにて「法定調書」をインストールしてください。
- 手続きの種類：申請・届出 税目：法定調書関係  次に以下２つにチェックを入れて『次へ』をクリックします。
- 給与所得の源泉徴収等の法定調書（及び同合計表）  給与所得の源泉徴収票 給与所得の源泉徴収票等の法定調書合計表    申告・申請等名を指定する画面になるので、自分で分かる程度の名前をつけて『OK』をクリックします。
-（「XXXX年度_法定調書」など）
-次に基本情報の入力画面になるので、以下を入力or確認して『OK』をクリックします。
- 提出税務署：申請する税務署（自分の会社がある自治体） 提出年月日：今の日付 法人名(カナ)：自分の会社名カナ 法人名（必須）：自分の法人名 納税地：自分の会社の住所と電話番号 代表者名（カナ）： 代表者名（必須）： 代表者：代表者の住所電話番号 金融機関：会社の銀行口座  帳票一覧が開くので、さきほど選択した「給与所得の源泉徴収票」をダブルクリックで開きます。
-提出区分を聞かれるので「新規分提出」を選択し、提出対象の年度を入力して「OK」をクリックします。
-すると帳票の中身が修正できるようになるので記載します。
-（入力内容は私はマネーフォワード給与から帳票をDLして参照しました）
-小さくて文字が見づらいですが、右クリックすると拡大メニューが出ます。
-記載が終わったら「作成完了」をクリックします。
-控えが必要ならここで印刷などしておきます。
-帳票一覧に戻るので、「給与所得の源泉徴収票等の法定調書合計表」の方をダブルクリックで開きます。
-こちらも同様に記載をして「作成完了」をクリックします。
-マネーフォワード給与から帳票をDLしてきて転記する場合の注意点ですが、
-給与の提出区分の部分だけ３０（書面）ではなく１４（電子）に変更する必要があります。
-申請書の署名 e-tax左メニューの「署名可能一覧へ」＞「電子署名」を開きます。
-作成したデータが表示されるので署名をします。
-申請書の送信 e-tax左メニューの「送信可能一覧へ」＞「送信」を開きます。
-先ほど作成した帳票が表示されるので、選択して『送信』をクリックします。
-何か問題があればエラーが表示されるので、エラー指摘箇所を訂正して再度送信します。
-これで法定調書関係の申請は完了です。
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2020/04/15/gulp-uglify-keep-name/">
+    <h1 class="catalogue-title">gulp-uglifyで圧縮時に変数／関数名を圧縮させない</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2020-04-15 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-04-15</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/javascript/">javascript</a></div> <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/node/">node</a></div>
     </div>
-</a>
+    
+    <p>gulp-uglifyでJSファイルを圧縮する際に変数名や関数名をそのままにする方法です。</p>
+</div>
+
 
 		
-			<a href="/posts/2019/12/15/lightsail-wordpress/" class="catalogue-item">
-    <div>
-        <time datetime="2019-12-15 00:00:00 &#43;0000 UTC" class="catalogue-time">December 15, 2019</time>
-        <h1 class="catalogue-title">lightsail上に自前でWordpressを構築する(Amazon Linux編)</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            環境 Amazon Linux AMI 2018.03 (lightsail)
-  ※2020年2月追記
-lightsailのAmazon Linuxでcretbotの挙動があやしくなってきたので
-CentOS版も作りました。
-記事はこちら
- lightsailではWordpressを載せたインスタンスを生成できますが、
-全部載せbitnami環境があまり好きではなかったので
-空のインスタンスに自分でWordpress環境を構築しました。
-構築する環境は
-nginx + php-fpm(PHP7.2)
-とします。
-インスタンス作成 lightsailのインスタンスを作成します。
-プラットフォーム：Linux/Unix
-設計図の選択：OSのみ Amazon Linux
-インスタンス設定 作成したインスタンスの設定をします。
-対象インスタンスのネットワーキングを開き、静的IPをアタッチしておきます。
-また、HTTPSで公開する場合はファイアウォールにてTCPの443ポートを開けておきます。
-各種インストール＆設定 インスタンスにSSHにて接続し、以下コマンドを実行していきます。
-まずrootになります。
-sudo -i いろいろインストールします。
-yum install -y git nginx php72-fpm php72-bcmath php72-cli php72-common php72-devel php72-gd php72-json php72-mbstring php72-mysqlnd php72-pdo php72-xml mysql-server nginxの設定 nginxの設定ファイルを追加します。
-ファイル名の.confより前は任意です。
-vim /etc/nginx/conf.d/wordpress.conf 以下のように記載します。
-(Wordpressおきまりのやつです)
-server { listen 80; listen [::]:80; server_name your-domain.jp; root /usr/share/nginx/html; index index.
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2020/03/20/javascript-input-event/">
+    <h1 class="catalogue-title">javascriptの入力イベントでIME未確定時は発火させない設定方法</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2020-03-20 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-03-20</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/javascript/">javascript</a></div>
     </div>
-</a>
+    
+    <p>テキスト入力イベントでIME未確定時には発火させたくないので調べました</p>
+</div>
+
 
 		
-			<a href="/posts/2019/11/19/apache-directory-hidden/" class="catalogue-item">
-    <div>
-        <time datetime="2019-11-19 00:00:00 &#43;0000 UTC" class="catalogue-time">November 19, 2019</time>
-        <h1 class="catalogue-title">htaccessで本番環境だけ特定のディレクトリを隠す</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            環境  httpd 2.2.34   概要 Apache環境で本番環境・検証環境共にソースコードはgitリポジトリを丸ごとcloneしている状態で
-git管理下の特定のディレクトリ内のページは検証環境でのみ表示させるという方法です。
-（テスト用ページ）
-対応方法 本番環境のドメインが「www.honban.com」で検証環境は別ドメインだとした場合、
-隠したいディレクトリに.htaccessを配置して以下を記載します。
-RewriteEngine On RewriteCond %{http_host} ^www.honban.com RewriteRule ^(.*) - [R=404,L] これは『ドメインが本番環境の場合(RewriteCondの部分)は404ページを表示する(RewriteRuleの部分)』という意味になります。
-これで検証環境では該当ディレクトリ内のページは表示でき、本番環境では404ページが表示されるようにできました。
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2020/03/15/github-actions-deploy/">
+    <h1 class="catalogue-title">GitHub ActionsでAWS Code Deployを回す</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2020-03-15 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-03-15</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/aws/">AWS</a></div> <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/git/">git</a></div>
     </div>
-</a>
+    
+    <p>GitHub ActionsからAWS Code Deployを回してデプロイする手順です。</p>
+</div>
+
 
 		
 	</div>
@@ -351,10 +245,12 @@ RewriteEngine On RewriteCond %{http_host} ^www.honban.com RewriteRule ^(.*) - [R
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.3055138 &#43;0900 JST m=&#43;0.125108201">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

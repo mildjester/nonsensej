@@ -1,39 +1,70 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-	<meta name="generator" content="Hugo 0.82.0" />
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-			<meta name="description" content="">
+	<meta name="generator" content="Hugo 0.109.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
 
-		<title>Nonsense J</title>
+	<title>Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="/index.xml" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="/index.xml" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -43,360 +74,188 @@
 
 	<div class="catalogue">
 		
-			<a href="/posts/2019/01/21/certboy-amazon-linux-2/" class="catalogue-item">
-    <div>
-        <time datetime="2019-01-21 00:00:00 &#43;0000 UTC" class="catalogue-time">January 21, 2019</time>
-        <h1 class="catalogue-title">【Let&#39;sEncrypt】Amazon Linux2でCertbotを使う</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            事象 Amazon Linux 2で従来の方法でcertbotをインストールすると
-コマンド時に以下のエラーが出て使えませんでした。
-Sorry, I don't know how to bootstrap Certbot on your operating system! You will need to install OS dependencies, configure virtualenv, and run pip install manually. Please see https://letsencrypt.readthedocs.org/en/latest/contributing.html#prerequisites for more info. 従来の方法はこちら
-解決方法 以下の方法でcertbotをインストールすれば正常に使えました。
-curl -O http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm sudo yum install epel-release-latest-7.noarch.rpm sudo yum install certbot 参考 serverfault
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2019/02/14/mac-php-72/">
+    <h1 class="catalogue-title">MacにPHP7.2をインストールする</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2019-02-14 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-02-14</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/mac/">Mac</a></div> <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/php/">PHP</a></div>
     </div>
-</a>
+    
+    <p>MacにPHP7.2をインストールする方法です</p>
+</div>
+
 
 		
-			<a href="/posts/2019/01/17/wordpress-to-pico/" class="catalogue-item">
-    <div>
-        <time datetime="2019-01-17 00:00:00 &#43;0000 UTC" class="catalogue-time">January 17, 2019</time>
-        <h1 class="catalogue-title">WordpressからPicoへデータ移行</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            まず、事前にpicoのブログ化が完了しているものとします
-CMSのpicoをブログ化
-かなりの力技です
-綺麗な方法ではないのでご了承ください
-Wordpressからのイメージ取得 まずWordpressから画像ファイル一式をダウンロードしてきます。
-Wordpressの/wp-content/uploads/配下のファイルを
-全てpico内にダウンロードしてきます。
-今回の例ではpico直下にimagesディレクトリを作成し、
-そこにダウンロードするとします。
-階層としてはpico/images/2019/01/hogehoge.pngのようになります。
-Wordpressからの記事取得 WordpressのDBから記事情報を取得します。
-MySQL Workbenchにて以下のSQLを実行し、
-結果をjsonで出力しておきます
-SELECT p.ID, p.post_date, u.user_nicename, p.post_title, p.post_content, t.tags FROM wp_posts p LEFT JOIN wp_users u ON u.ID = p.post_author LEFT JOIN ( SELECT tr.object_id AS post_id, group_concat(t.name) AS tags FROM wp_term_relationships tr LEFT JOIN wp_term_taxonomy tt ON tt.term_taxonomy_id = tr.term_taxonomy_id LEFT JOIN wp_terms t ON t.term_id = tt.term_id WHERE tt.taxonomy = 'post_tag' GROUP BY tr.object_id ) t ON t.
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2019/02/13/wp-tinymcetemplate-s3/">
+    <h1 class="catalogue-title">【Wordpress】TinyMCEテンプレートでS3の画像を使う</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2019-02-13 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-02-13</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/wordpress/">Wordpress</a></div>
     </div>
-</a>
+    
+    <p>TinyMCE テンプレートとWP Offload Media Lite併用時にS3の画像が取れない時の対処法です</p>
+</div>
+
 
 		
-			<a href="/posts/2019/01/16/pico-blog/" class="catalogue-item">
-    <div>
-        <time datetime="2019-01-16 00:00:00 &#43;0000 UTC" class="catalogue-time">January 16, 2019</time>
-        <h1 class="catalogue-title">picoでブログ構築</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            picoの基本的な構築はこちらを参照してください。
-PHP製のCMS「pico」の紹介
-picoを使ってブログを構築する方法です。
-公式ページにpicoをブログ化する手順が書いてあります。
-公式の手順
-公式の方法はWEBページ内にブログ領域を作る方法のようなので
-そもそもメインコンテンツがブログである場合は以下のように修正します。
-なお、できあがったものをテンプレートとして公開しています。
-簡単にブログ解説したいだけの人はこちらをご利用ください。
-mildjester/pico-blog
- プラグインの追加 プラグインはpico/pluginsの中にダウンロードしておきます。
-ページネーション https://github.com/rewdy/Pico-Pagination/releases
-ダウンロードした圧縮ファイルの中にpagination.phpがあるので
-それを/pico/pluginsの中に配置します。
-そしてconfig.ymlにプラグイン用の設定を追記しておきます。
-## # Plugin: Pico-Pagination # pagination_limit: 10 # 一覧ページにて１ページに表示する記事数 pagination_next_text: 次へ&gt;&gt; # 次へリンクのテキスト pagination_prev_text: &lt;&lt;戻る # 戻るリンクのテキスト タグ https://github.com/PontusHorn/Pico-Tags
-PicoTags.phpを/pico/pluginsの中に配置します。
-サイト内検索 https://github.com/mwgg/Pico-Search
-40-PicoSearch.phpを/pico/pluginsの中に配置します。
-このプラグインではページのタイトルをキーにして検索する事はできるようですが。
-記事本文をキーにして検索することはできないようでした。
-サイトマップ https://github.com/DaveKin/Pico_Sitemap/
-PicoXMLSitemap.phpを/pico/pluginsの中に配置します。
-テーマの編集 /pico/themes配下のテーマを編集します。
-デフォルトの/pico/themes/defaultをそのまま編集しても良いですし
-defaultをコピーして自分用のテーマを作っても良いです。
-別テーマを作成する場合はconfig.ymlのtheme: defaultの部分も作成したテーマのディレクトリ名に変更してください。
-なお、公式ページなどからテーマをダウンロードすることも可能です。 ただしpico 1.x用のテーマだからか、そのままではうまく動かなかったりするので要注意です。
-公式ページのテーマ一覧
-index.twigの分離 デフォルトではindex.twigにHTMLの全てが記載されていますが、
-テンプレートを増やした際にメンテナンス性が悪くなるので
-ヘッダー部分とフッター部分を分離してしまいます。
-まずindex.twigと同じディレクトリに_header.twigを作成し、
-index.twigの１行目から&lt;div id=&quot;main&quot;&gt;の上までをコピーします。
-次に、同様に_footer.twigを作成して&lt;div id=&quot;main&quot;&gt;の閉じタグの下から
-最終行までをコピーします。
-そしてindex.twigのヘッダーとフッターにコピーした部分は削除し、
-代わりに{% include '_header.twig' %} と {% include '_footer.
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2019/02/01/git-cmd-cheatsheet/">
+    <h1 class="catalogue-title">gitコマンドチートシート(応用編)</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2019-02-01 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-02-01</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/git/">git</a></div>
     </div>
-</a>
+    
+    <p>gitコマンドの応用編チートシートです</p>
+</div>
+
 
 		
-			<a href="/posts/2019/01/15/pico-introduction/" class="catalogue-item">
-    <div>
-        <time datetime="2019-01-15 00:00:00 &#43;0000 UTC" class="catalogue-time">January 15, 2019</time>
-        <h1 class="catalogue-title">PHP製のCMS「pico」の紹介</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            picoとは PHP製のCMSで、DBなど利用せずファイルだけでWEBページが作成できます。
-公式サイト
-ページにはMarkdownを使えるので、Markdownでメモなどを取ることが多い人には
-使いやすいCMSなのではないかと思います。
-Wordpressと比べてどうか ページの書きやすさ Markdownに慣れている人にとっては書きやすいと思いますが
-慣れていないライターさんなどを雇っている場合などは向かないと思います。
-また、表現がMarkdownの域に絞られるので、直接HTMLを書けたWordpressの方が
-描画は自由にできるかもしれません。
-picoでもMarkdown内にHTML書けました
-構築のしやすさ 基礎構築だけならソースコードを持ってきて終わりなので楽です。
-ただし、プラグインを追加するにはテーマファイルに手を入れる必要があったりするので
-単純に「インストール」をクリックするだけのWordpressに比べればそこが手間です。
-あと、日本語の情報が少ないのも構築する上ではネックになるかもしれません。
-管理のしやすさ 『管理画面』が無いので設定は全てソースコード上で行ないます。
-なので、非エンジニアが運用するには難しいかと思います。
-ですが、DBがないのでバックアップ管理などは楽です。
-GitHubのprivateリポジトリが無料で作れるようになったので
-全てそこで管理してしまえば良いと思います。
-また、管理画面が無いのでセキュリティ的にも強いと思います。
-機能面 Wordpressでデフォルトで用意されているタグやカテゴリがpicoには無いので
-若干の不便さはあります。
-一応プラグインで追加はできますが、やや煩雑です。
-また、プラグインやテーマの数でもWordpressの方が勝ります。
-picoの導入 プロジェクト作成 まず、composerでプロジェクトを作成します。
-※composerが分からない人はこちら
-composer create-project picocms/pico-composer pico 生成されたpicoディレクトリをそのままWEBサーバー上に配置すれば
-もう既にデフォルトのページが表示されます
-デフォルトページにはコンテンツの配置方法などが記載されているので
-確認しておくと良いと思います。
-URLリライト設定 picoはURLリライトを利用します。
-(必須ではないが無いとURLの見た目がカッコ悪いし、SEO的にも良くなさそう)
-URLリライトについてはpico内の.htaccessに記載されています。
-.htaccessはApacheでなければ作動しないので、Nginxの場合は別途設定が必要です。
-公式のリライト設定手順
-設定ファイル作成 pico/config/config.yml.templateをコピー or リネームして
-pico/config/config.ymlを作成してください。
-とりあえず初期段階で書き換えるのは以下くらいかと思います。
-   設定項目 設定内容     site_title サイトのタイトルに書き換え   timezone 日本ならAsia/Tokyo     ※注意
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2019/01/31/php-strtotime-trap/">
+    <h1 class="catalogue-title">【PHP】strtotimeの罠</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2019-01-31 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-01-31</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/php/">PHP</a></div>
     </div>
-</a>
+    
+    <p>PHPのstrtotimeのハマりそうな挙動です</p>
+</div>
+
 
 		
-			<a href="/posts/wp/1829/" class="catalogue-item">
-    <div>
-        <time datetime="2018-12-20 16:25:54 &#43;0000 UTC" class="catalogue-time">December 20, 2018</time>
-        <h1 class="catalogue-title">Linux Mint 19.1 MATEをUSBメモリからインストール</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            PCを再構築する必要があったので、Linux Mintの最新バージョンを入れて見ました
-インストール準備をした作業環境はMacで、USBメモリにイメージを焼いてインストールしています
-OSイメージのダウンロード 今回選んだのは『Linux Mint 19.1 &ldquo;Tessa&rdquo; - MATE (64-bit)』です
-こちらからダウンロードできます（とりあえず近そうなTaiwanなどからDL）
-https://linuxmint.com/edition.php?id=263インストールメディア(USB)の作成 まずMacにUSBメモリを刺し、ターミナルでdiskutil listを実行します
-これでUSBメモリのdisk番号を調べます（NAMEやSIZEを見る）
-私の場合は /dev/disk2がUSBメモリでした
-$ diskutil list /dev/disk0 (internal): #: TYPE NAME SIZE IDENTIFIER 0: GUID_partition_scheme 121.3 GB disk0 1: EFI EFI 314.6 MB disk0s1 2: Apple_APFS Container disk1 121.0 GB disk0s2 /dev/disk1 (synthesized): #: TYPE NAME SIZE IDENTIFIER 0: APFS Container Scheme - +121.0 GB disk1 Physical Store disk0s2 1: APFS Volume Macintosh HD 70.2 GB disk1s1 2: APFS Volume Preboot 69.
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2019/01/26/javascript-window-load/">
+    <h1 class="catalogue-title">window.onloadが動かない</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2019-01-26 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-01-26</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/javascript/">javascript</a></div>
     </div>
-</a>
+    
+    <p>window.onloadが動かない原因の1つについて</p>
+</div>
+
 
 		
-			<a href="/posts/wp/1772/" class="catalogue-item">
-    <div>
-        <time datetime="2018-12-11 19:30:54 &#43;0000 UTC" class="catalogue-time">December 11, 2018</time>
-        <h1 class="catalogue-title">Wordpressの画像をS3&#43;CloudFrontで配信する</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            環境 WordPress 4.8.3
- AWS設定手順 IAM設定 まず、WordpressとAWSの連携に使うIAMユーザーを準備します
-今回の手順ではバケット側のポリシーで権限付与するので
-IAM側の権限設定は適当で良いです
-準備したIAMユーザーの以下を控えておいてください
-・ARN
-・アクセスキーID
-・シークレットアクセスキー
-S3設定 次にS3にてWordpress用のバケットを用意し
-バケットポリシーに以下を設定します
-{ &quot;Version&quot;: &quot;2012-10-17&quot;, &quot;Statement&quot;: [ { &quot;Sid&quot;: &quot;AllowBucketAccess&quot;, &quot;Effect&quot;: &quot;Allow&quot;, &quot;Principal&quot;: { &quot;AWS&quot;: &quot;arn:aws:iam::準備したIAMのARN&quot; }, &quot;Action&quot;: [ &quot;s3:GetBucketLocation&quot;, &quot;s3:ListBucket&quot;, &quot;s3:PutObject&quot;, &quot;s3:PutObjectAcl&quot;, &quot;s3:GetObject&quot;, &quot;s3:DeleteObject&quot; ], &quot;Resource&quot;: [ &quot;arn:aws:s3:::対象のバケット/*&quot;, &quot;arn:aws:s3:::対象のバケット&quot; ] } ] } CloudFront設定 ユーザーにS3へ直接画像を取りに来させる事も可能なのですが
-転送料金が結構高くなるのでCloudFront経由でS3に繋がせるようにします
-まずloudFrontの設定画面にて「Create Distribution」をクリックします
- 次にWebの「Get Started」をクリックします。
- 「Origin Domain Name」にCloud Front経由にしたいS3バケットを指定します
-テキストボックスに見えますが、クリックすると選択肢が表示されます
-「Origin Domain Name」を選択すると、「Origin ID」にも勝手に値が入ります
- 上記入力したら下までスクロールして「Create Distribution」をクリックします
-CloudFrontの一覧に戻りますので
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2019/01/25/linux-mint-docker/">
+    <h1 class="catalogue-title">Docker環境の構築手順</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2019-01-25 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-01-25</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/linuxmint/">LinuxMint</a></div> <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/ubuntu/">ubuntu</a></div> <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/docker/">Docker</a></div>
     </div>
-</a>
+    
+    <p>Linux MintやubuntuにてDockerをインストールする方法です</p>
+</div>
+
 
 		
-			<a href="/posts/wp/1755/" class="catalogue-item">
-    <div>
-        <time datetime="2018-11-26 23:38:42 &#43;0000 UTC" class="catalogue-time">November 26, 2018</time>
-        <h1 class="catalogue-title">Google Tag Managerで発火しない時</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            Google Tag　Managerを使ってトリガーを設定したはずが
-思い通りにGoogle Analytics上で集計できない時の調査方法です。
-まず、Google Tag Managerの管理画面にて「プレビューモード」にします。
-公開ボタンの横にある『プレビュー』をクリックするだけです。
-プレビューモードになったら、同じブラウザでテストしたいページを開きます。
-すると、Google Tag Managerのコンソールが表示されます。
-画面上クリックをするとクリックイベントが発生するのが分かります。
-ここでコンソール内の『Variables』または『Data Layer』のを開くと
-どのようなトリガーが発火したのかが分かります。
-これで確認したクリック時に発火したトリガー（IDやClass）が
-Google Tag Managerで設定したトリガーと一致しているか確認します。
-ありそうな間違い Google Tag Managerのイベントは一番内側の要素がトリガーになります。
-javascriptのonClickとは違うので注意が必要です。
-例えば以下のソースコードの場合、sample.pngをクリックした時に
-id=&ldquo;fooo&rdquo;のクリックイベントは発火しません。
-&lt;div id=&quot;wrapper&quot;&gt; &lt;div id=&quot;fooo&quot;&gt; &lt;img src=&quot;./sample.png&quot; /&gt; &lt;/div&gt; &lt;/div&gt; 
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2019/01/21/certboy-amazon-linux-2/">
+    <h1 class="catalogue-title">【Let&#39;sEncrypt】Amazon Linux2でCertbotを使う</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2019-01-21 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-01-21</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/aws/">AWS</a></div>
     </div>
-</a>
+    
+    <p>Amazon Linux2でCertbotを使う方法です。</p>
+</div>
+
 
 		
-			<a href="/posts/wp/1741/" class="catalogue-item">
-    <div>
-        <time datetime="2018-11-26 22:32:40 &#43;0000 UTC" class="catalogue-time">November 26, 2018</time>
-        <h1 class="catalogue-title">Google Tag Managerの基本設定</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            Google AnalyticsをGoogle Tag Managerに切り替えた際のメモです。
-前提条件としてGoogle Analyticsのアカウントはあることとします。
-アカウント作成 まずGoogle Tag Managerのページにてアカウントを作成します
-https://tagmanager.google.comアカウント名は任意の物を入力し、国は日本を選択して『続行』をクリックします。
-するとコンテナの作成になるので
-任意のコンテナ名と利用場所（WEBページかスマホアプリかなど）を選択します。
-今回はWEBを選択したとします。
-規約に同意するとHTMLに埋め込むタグが表示されます。
-&lt;head&gt;内に埋めるタグと&lt;body&gt;に埋めるタグが生成されるので
-それぞれ対応する場所に埋め込みます。
-これでGoogle Tag Managerを使う準備ができました。
-イベントトラッキングの設定 クリックをトラッキングする設定をしてみます。
-Google Tag Managerの管理画面を開くと「新しいタグ」のリンクがあるのでクリックします。
-タグとは検知する項目みたいなものです。
-タグの設定画面が開くので、タグの名前や種類を指定します。
-とりあえず、簡単に下図のような設定をします。
-「Google アナリティクス設定」という項目があるので、「新しい変数」を選択します。
-するとトラッキングIDを入力する欄が出てくるので、Google AnalyticsのトラッキングIDを入力してください。
-すべて入力したら「保存」をクリックして閉じます。
-次に下の方にスクロールするとトリガーの設定ができます
-トリガーとは、イベントを検知する条件です。
-プラスマークをクリックすると新規トリガーを作成できます。
-トリガーの名前や内容を設定します。
-基本的には下図のような設定でよいです。
-クリック対象の要素にIDが付いている場合は「Click ID」で良いですが
-もしIDを指定していなくてClassなどしか設定されていない場合は
-「Click　Classes」を選択してください。
-全て完了したら『保存』をクリックしてトリガー設定画面を閉じ、
-タグ設定画面でも『保存』をクリックして閉じます。
-最後にGoogle Tag ManagerのTOP画面にて「公開」をクリックすれば完了です。
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2019/01/17/wordpress-to-pico/">
+    <h1 class="catalogue-title">WordpressからPicoへデータ移行</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2019-01-17 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-01-17</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/pico/">pico</a></div> <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/wordpress/">Wordpress</a></div>
     </div>
-</a>
+    
+    <p>WordpressのデータをPicoへ移行する方法です</p>
+</div>
+
 
 		
-			<a href="/posts/wp/1735/" class="catalogue-item">
-    <div>
-        <time datetime="2018-11-19 10:29:41 &#43;0000 UTC" class="catalogue-time">November 19, 2018</time>
-        <h1 class="catalogue-title">Chromeの開発者ツールを新タブでも維持する</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            Chromeの開発者ツールはデフォルトでは新タブには反映されないのですが
-スマホモードでページの確認をしている時などは新タブもスマホモードのまま開きたい事が多いです。
-以下の設定をすれば新タブも開発者ツールを維持したまま開く事ができます。
-①開発者ツールのsettingsをクリックする。
-②下の方にスクロールしていき、Auto-open DevTools for popupsにチェックを入れる。
-これだけです。
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2019/01/16/pico-blog/">
+    <h1 class="catalogue-title">picoでブログ構築</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2019-01-16 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-01-16</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/pico/">pico</a></div>
     </div>
-</a>
+    
+    <p>PHP製のCMS「pico」でブログを構築する方法です。</p>
+</div>
+
 
 		
-			<a href="/posts/wp/1715/" class="catalogue-item">
-    <div>
-        <time datetime="2018-11-14 20:37:00 &#43;0000 UTC" class="catalogue-time">November 14, 2018</time>
-        <h1 class="catalogue-title">gitコマンドで複数のGitHubアカウントを使い分ける</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            環境 Mac OS
-(Linuxでも動く気がします）
- ※ 2019/3/29追記 GitHubの利用規約にて1個人で複数の無料アカウントを運用する事は禁止されているようでした。
-https://help.github.com/en/articles/github-terms-of-service#b-account-terms
-もし複数の無料アカウントを利用している場合はアカウントの統合などを検討した方が良いです。
-無料アカウントと有料アカウントを使い分ける場合などは本手順を参考にして貰えればと思います。
-概要 GitHubではアカウントに秘密鍵が紐づいており
-gitコマンドを実行した際に指定した秘密鍵で利用アカウントを判定しています。
-（秘密鍵未指定の場合はデフォルトの秘密鍵）
-フリーランスをしていると自分のGitHubアカウントとは別で
-取引先様のGitHubアカウントを作成する必要があったりするのですが
-１台のPCで複数GitHubアカウントを使っていると秘密鍵の切り替えが面倒です。
-私も最初はこちらの記事のように.ssh/configに別ホストとして設定していたのですが
-これだとcloneする時などにいちいちホスト名を書き換えたりしなければいけなかったりして
-それも少し面倒でした。（特にリポジトリが沢山あるプロジェクトだったので）
-https://qiita.com/yamataku29/items/4744c9c70ad793c83b82というわけで
-リポジトリ所有者（ユーザーもしくはOrganizations）と秘密鍵の紐づけを設定しておけば
-自動でgitコマンド実行時に秘密鍵を使い分けてくれるスクリプトを作りました。
-こちらです
-https://github.com/mildjester/gits 使い方 ①cloneでもZIPダウンロードでも良いので上記リポジトリをダウンロードしてきます。
-②config_templateを同ディレクトリにconfigという名前でコピーします。
-③コピーして生成したconfigの以下変数を設定します
-■defaultKey
-デフォルトの秘密鍵へのパス。基本的にテンプレートのままでいいはず。
-■specialKeys
-デフォルト以外の秘密鍵を使うリポジトリ所有者と秘密鍵の紐付け一覧。
-形式は『リポジトリ所有者::秘密鍵のパス』なので
-例えば「所有者AAA」のリポジトリに使う秘密鍵は~/.ssh/id_rsa_1、
-「所有者BBB」のリポジトリに使う秘密鍵は~/.ssh/id_rsa_2とする場合は
-以下のようになります。
-specialKeys=( 'AAA::~/.ssh/id_rsa_1' 'BBB::~/.ssh/id_rsa_2' ) ④~/.bashrcに以下のエイリアスを追記しておきます。
-通常使っているシェルがbash以外（zshやfishなど）の場合は、そちらの設定ファイルへ追記してください。
-# gitコマンドを置き換える alias git=&quot;/path-to-gits-repository/gits.sh&quot; ※path-to-gits-repositoryはリポジトリをcloneまたはダウンロードしてきたディレクトリを指定してください
-これで何も考えずにgitコマンドを打っても、裏で勝手に秘密鍵を切り替えてくれるようになります。
-備考：ghqを使っている場合 私はgit cloneよりもghq getをよく使うので、そのスクリプトも用意しました。
-基本的な設定は上記と同じで、エイリアスの設定だけ追加します。
-alias ghq_get=&quot;~/git/github.com/mildjester/gits/ghq_get.sh&quot; こちらは完全にコマンドを置き換える訳ではないのですが
-以下のコマンドでリポジトリを取得する事ができるようになります。
-(ghqとgetの間がスペースではなくアンダーバーになるだけ)
-ghq_get git@github.com:AAAA/hogehoge.git 
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2019/01/15/pico-introduction/">
+    <h1 class="catalogue-title">PHP製のCMS「pico」の紹介</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2019-01-15 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-01-15</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/pico/">pico</a></div>
     </div>
-</a>
+    
+    <p>PHP製のCMS「pico」の紹介です。</p>
+</div>
+
 
 		
 	</div>
 
 	<div class="pagination">
 		
-			<a href="/page/7/" class="left arrow">&#8592;</a>
+			<a href="/page/7/" class="left arrow">＜＜戻る</a>
 		
 		
-			<a href="/page/9/" class="right arrow">&#8594;</a>
+			<a href="/page/9/" class="right arrow">次へ＞＞</a>
 		
 
-		<span>8</span>
+		<span>8 / 20</span>
 	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.3115043 &#43;0900 JST m=&#43;0.131098801">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>PHPExcelの使い方メモ &middot; Nonsense J</title>
+	<title>PHPExcelの使い方メモ|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,13 +70,14 @@
 	<div class="post">
 		<h1 class="post-title">PHPExcelの使い方メモ</h1>
 		<div class="post-info">
-				<time datetime="2017-02-07 11:42:44 &#43;0000 UTC">February 7, 2017</time>
+				<p class="publish-date">投稿日：<time datetime="2017-02-07 11:42:44 &#43;0000 UTC" class="catalogue-time">2017-02-07</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/php/">PHP</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/php/">PHP</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<p>PHPでExcelを生成できる『PHPExcel』の使い方メモ<br>
 ※実際に私が使ったものをメモしているだけなので、機能を網羅している訳ではないです。かしこ。</p>
 <p>インストールはcomposerを使うか、圧縮ファイルをダウンロードしてきて<br>
@@ -54,7 +86,7 @@
 /格納したパス/PHPExcel/Classes/PHPExcel.php<br>
 /格納したパス/PHPExcel/Classes/PHPExcel/IOFactory.php</p>
 <p>実際のソースコードは以下の通り</p>
-<pre><code>/**  
+<pre tabindex="0"><code>/**  
  * PHPExcelの新規オブジェクト作成  
  */  
 $excel = new PHPExcel();  
@@ -65,7 +97,7 @@ $excel = new PHPExcel();
 $sheetIndex = 0; // シート番号は０から  
 $excel-&gt;setActiveSheetIndex($sheetIndex);  
 $sheet = $excel-&gt;getActiveSheet();  
-$sheet-&gt;setTitle('SampleSheet01');  
+$sheet-&gt;setTitle(&#39;SampleSheet01&#39;);  
   
 /**  
  * セルにデータを入力する  
@@ -73,28 +105,28 @@ $sheet-&gt;setTitle('SampleSheet01');
 // 基本的な入力  
 $rowCnt = 1; // 行番号は１から  
 $clmCnt = 0; // 列番号は0から  
-$text = 'セルに書き込む内容だよ';  
+$text = &#39;セルに書き込む内容だよ&#39;;  
 $sheet-&gt;setCellValueByColumnAndRow($clmCnt, $rowCnt, $val);  
   
 // 文字列型で入力  
 $rowCnt++; // 1行下に移動  
 $clmCnt++; // 1列右に移動  
-$text = '000001'; // 文字列型にしないと、左記は「00001」ではなく「1」になってしまう  
+$text = &#39;000001&#39;; // 文字列型にしないと、左記は「00001」ではなく「1」になってしまう  
 $sheet-&gt;setCellValueExplicitByColumnAndRow($clmCnt, $rowCnt, $val, PHPExcel_Cell_DataType::TYPE_STRING);  
   
 /**  
  * セルの書式設定  
  */  
 // シートのデフォルトフォントを設定する  
-$sheet-&gt;getDefaultStyle()-&gt;getFont()-&gt;setName('ＭＳ Ｐゴシック')-&gt;setSize(11);  
+$sheet-&gt;getDefaultStyle()-&gt;getFont()-&gt;setName(&#39;ＭＳ Ｐゴシック&#39;)-&gt;setSize(11);  
   
 // 背景色を設定  
-$bgcolor = '000000'; // 16進数で指定  
+$bgcolor = &#39;000000&#39;; // 16進数で指定  
 $sheet-&gt;getStyleByColumnAndRow($clmCnt, $rowCnt)-&gt;getFill()-&gt;setFillType(PHPExcel_Style_Fill::FILL_SOLID);  
 $sheet-&gt;getStyleByColumnAndRow($clmCnt, $rowCnt)-&gt;getFill()-&gt;getStartColor()-&gt;setRGB($bgcolor);  
   
 // 文字色を設定  
-$fontcolor = 'FFFFFF'; // 16進数で指定  
+$fontcolor = &#39;FFFFFF&#39;; // 16進数で指定  
 $sheet-&gt;getStyleByColumnAndRow($clmCnt, $rowCnt)-&gt;getFont()-&gt;getColor()-&gt;setARGB($fontcolor);  
   
 // 太字にする  
@@ -103,31 +135,26 @@ $sheet-&gt;getStyleByColumnAndRow($clmCnt, $rowCnt)-&gt;getFont()-&gt;setBold(tr
 // セル（行列番号指定）の上だけに罫線(二重線)を引く  
 $sheet-&gt;getStyleByColumnAndRow($clmCnt, $rowCnt)-&gt;getBorders()-&gt;getTop()-&gt;setBorderStyle(PHPExcel_Style_Border::BORDER_DOUBLE);  
 // セル（レンジ指定）の周り全てに罫線(単一線)を引く  
-$sheet-&gt;getStyle('A1:B3')-&gt;getBorders()-&gt;getAllBorders()-&gt;setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);  
+$sheet-&gt;getStyle(&#39;A1:B3&#39;)-&gt;getBorders()-&gt;getAllBorders()-&gt;setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);  
   
   
 // 列の幅を指定する  
-$sheet-&gt;getColumnDimension('A')-&gt;setWidth(14.5);  
+$sheet-&gt;getColumnDimension(&#39;A&#39;)-&gt;setWidth(14.5);  
 // 列の幅を自動調整する(※これで効くはずなんですが、効かない事が多々ある)  
 $sheet-&gt;getColumnDimension( PHPExcel_Cell::stringFromColumnIndex($clmCnt))-&gt;setAutoSize(true);  
 </code></pre><p>以上</p>
 
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/366/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/402/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2825641 &#43;0900 JST m=&#43;0.102158501">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

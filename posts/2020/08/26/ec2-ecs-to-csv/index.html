@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>EC2とECSのレコードを全てCSVに出力する &middot; Nonsense J</title>
+	<title>EC2とECSのレコードを全てCSVに出力する|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,13 +70,14 @@
 	<div class="post">
 		<h1 class="post-title">EC2とECSのレコードを全てCSVに出力する</h1>
 		<div class="post-info">
-				<time datetime="2020-08-26 00:00:00 &#43;0000 UTC">August 26, 2020</time>
+				<p class="publish-date">投稿日：<time datetime="2020-08-26 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-08-26</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/aws/">AWS</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/aws/">AWS</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<h2 id="環境">環境</h2>
 <ul>
 <li>Linux Mint 20 Ulyana</li>
@@ -53,12 +85,12 @@
 <li>jq 1.6</li>
 </ul>
 <hr>
-<p><a href="/articles/2020/08/21/route53-to-csv">前回</a>の続きです。</p>
+<p><a href="/posts/2020/08/21/route53-to-csv">前回</a>の続きです。</p>
 <p>前回AWS Route53のレコードをCSVに出力するシェルスクリプトを作ったので、同様にEC2・ECSの情報を出力するシェルスクリプトを作ってみます。</p>
 <h2 id="ec2">EC2</h2>
 <p>以下のようなシェルです。<br>
 region一覧は固定で持っているので、今後増減があった場合は手動で修正が必要です。</p>
-<pre><code>#!/bin/bash
+<pre tabindex="0"><code>#!/bin/bash
 
 #region一覧
 regionList=(
@@ -87,95 +119,90 @@ me-south-1
 sa-east-1
 )
 
-echo '&quot;AvailabilityZone&quot;, &quot;Name&quot;, &quot;PublicDnsName&quot;,&quot;PublicIpAddress&quot;,&quot;PrivateDnsName&quot;,&quot;PrivateIpAddress&quot;'
+echo &#39;&#34;AvailabilityZone&#34;, &#34;Name&#34;, &#34;PublicDnsName&#34;,&#34;PublicIpAddress&#34;,&#34;PrivateDnsName&#34;,&#34;PrivateIpAddress&#34;&#39;
 
 for region in ${regionList[@]}; do
-    EC2List=`aws ec2 describe-instances --region ${region} --output json --query 'Reservations[].Instances[]'`
+    EC2List=`aws ec2 describe-instances --region ${region} --output json --query &#39;Reservations[].Instances[]&#39;`
     EC2ListLen=`echo $EC2List | jq length`
 
     for i in $( seq 0 $(($EC2ListLen - 1)) ); do
         EC2=`echo $EC2List | jq .[$i]`
-        avZone=`echo $EC2 | jq -c -r '.Placement.AvailabilityZone // &quot;&quot;'`
-        priDns=`echo $EC2 | jq -c -r '.PrivateDnsName // &quot;&quot;'`
-        priIp=`echo $EC2 | jq -c -r '.PrivateIpAddress // &quot;&quot;'`
-        pubDns=`echo $EC2 | jq -c -r '.PublicDnsName // &quot;&quot;'`
-        pubIp=`echo $EC2 | jq -c -r '.PublicIpAddress // &quot;&quot;'`
+        avZone=`echo $EC2 | jq -c -r &#39;.Placement.AvailabilityZone // &#34;&#34;&#39;`
+        priDns=`echo $EC2 | jq -c -r &#39;.PrivateDnsName // &#34;&#34;&#39;`
+        priIp=`echo $EC2 | jq -c -r &#39;.PrivateIpAddress // &#34;&#34;&#39;`
+        pubDns=`echo $EC2 | jq -c -r &#39;.PublicDnsName // &#34;&#34;&#39;`
+        pubIp=`echo $EC2 | jq -c -r &#39;.PublicIpAddress // &#34;&#34;&#39;`
         
-        Tags=`echo $EC2 | jq -c -r '.Tags'`
+        Tags=`echo $EC2 | jq -c -r &#39;.Tags&#39;`
         TagsLen=`echo $Tags | jq length`
 
-        name='None'
+        name=&#39;None&#39;
         for j in $( seq 0 $(($TagsLen - 1)) ); do
             tag=`echo $Tags | jq .[$j]`
-            key=`echo $tag | jq -c -r '.Key'`
+            key=`echo $tag | jq -c -r &#39;.Key&#39;`
 
-            if [ &quot;$key&quot; = &quot;Name&quot; ]; then
-                name=`echo $tag | jq -c -r '.Value // &quot;&quot;'`
+            if [ &#34;$key&#34; = &#34;Name&#34; ]; then
+                name=`echo $tag | jq -c -r &#39;.Value // &#34;&#34;&#39;`
                 break
             fi
         done
 
-        echo &quot;\&quot;${avZone}\&quot;,\&quot;${name}\&quot;,\&quot;${pubDns}\&quot;,\&quot;${pubIp}\&quot;,\&quot;${priDns}\&quot;,\&quot;${priIp}\&quot;&quot;
+        echo &#34;\&#34;${avZone}\&#34;,\&#34;${name}\&#34;,\&#34;${pubDns}\&#34;,\&#34;${pubIp}\&#34;,\&#34;${priDns}\&#34;,\&#34;${priIp}\&#34;&#34;
     done
 done
 </code></pre><p>このシェルではEC2のドメインやIPアドレスを取得していますが、そこは必要に情報に置き換えても良いです。</p>
 <h2 id="ecs">ECS</h2>
 <p>以下のようなシェルです。</p>
-<pre><code>#!/bin/bash
-echo '&quot;ClusterArns&quot;, &quot;IPAddress&quot;'
+<pre tabindex="0"><code>#!/bin/bash
+echo &#39;&#34;ClusterArns&#34;, &#34;IPAddress&#34;&#39;
 
-ClusterArnsList=`aws ecs list-clusters --output json --query 'clusterArns'`
+ClusterArnsList=`aws ecs list-clusters --output json --query &#39;clusterArns&#39;`
 ClusterArnsListLen=`echo $ClusterArnsList | jq length`
 for i in $( seq 0 $(($ClusterArnsListLen - 1)) ); do
     clusterArns=`echo $ClusterArnsList | jq .[$i]`
-    clusterArns=${clusterArns//\&quot;/}
-    TaskArnsList=`aws ecs list-tasks --cluster $clusterArns --output json --query 'taskArns'`
+    clusterArns=${clusterArns//\&#34;/}
+    TaskArnsList=`aws ecs list-tasks --cluster $clusterArns --output json --query &#39;taskArns&#39;`
     TaskArnsListLen=`echo $TaskArnsList | jq length`
 
     for j in $( seq 0 $(($TaskArnsListLen - 1)) ); do
         taskArns=`echo $TaskArnsList | jq .[$j]`
-        taskArns=${taskArns//\&quot;/}
+        taskArns=${taskArns//\&#34;/}
 
-        Tasks=`aws ecs describe-tasks --cluster ${clusterArns} --tasks ${taskArns} --output json --query 'tasks'`
+        Tasks=`aws ecs describe-tasks --cluster ${clusterArns} --tasks ${taskArns} --output json --query &#39;tasks&#39;`
         TasksLen=`echo $Tasks | jq length`
 
         for k in $( seq 0 $(($TasksLen - 1)) ); do
             task=`echo $Tasks | jq .[$k]`
 
-            TaskDetails=`echo $task | jq -c -r '.attachments[].details'`
+            TaskDetails=`echo $task | jq -c -r &#39;.attachments[].details&#39;`
             TaskDetailsLen=`echo $TaskDetails | jq length`
 
             for l in $( seq 0 $(($TaskDetailsLen - 1)) ); do
                 taskDetail=`echo $TaskDetails | jq .[$l]`
-                name=`echo $taskDetail | jq -c -r '.name'`
+                name=`echo $taskDetail | jq -c -r &#39;.name&#39;`
 
-                if [ &quot;$name&quot; = &quot;privateIPv4Address&quot; ]; then
-                    ipaddress=`echo $taskDetail | jq -c -r '.value'`
+                if [ &#34;$name&#34; = &#34;privateIPv4Address&#34; ]; then
+                    ipaddress=`echo $taskDetail | jq -c -r &#39;.value&#39;`
                     break;
                 fi
             done
-            echo &quot;\&quot;${clusterArns}\&quot;,\&quot;${ipaddress}\&quot;&quot;
+            echo &#34;\&#34;${clusterArns}\&#34;,\&#34;${ipaddress}\&#34;&#34;
         done
     done
 done
 </code></pre><p>こちらもECSのIPアドレスを出力しています。必要な情報に差し替えてください。</p>
 
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/2020/08/21/route53-to-csv/" class="left arrow">&#8592;</a>
-		<a href="/posts/2020/09/04/win10-wsl2-ubuntu/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2670638 &#43;0900 JST m=&#43;0.086658301">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

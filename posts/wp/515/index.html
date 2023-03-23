@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>Composerのインストール方法 &middot; Nonsense J</title>
+	<title>Composerのインストール方法|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,13 +70,14 @@
 	<div class="post">
 		<h1 class="post-title">Composerのインストール方法</h1>
 		<div class="post-info">
-				<time datetime="2017-04-11 16:08:08 &#43;0000 UTC">April 11, 2017</time>
+				<p class="publish-date">投稿日：<time datetime="2017-04-11 16:08:08 &#43;0000 UTC" class="catalogue-time">2017-04-11</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/mac/">Mac</a></div> <div class="tags_item"><a href="/tags/composer/">Composer</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/mac/">Mac</a></div> <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/composer/">Composer</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<h2 id="環境">■環境</h2>
 <p>macOS Sierra 10.12.4<br>
 CentOS 6.8</p>
@@ -53,35 +85,30 @@ CentOS 6.8</p>
 <p>作業用MacとCentOSサーバにComposerをインストールしたので、その際のメモです。</p>
 <h3 id="macの場合">【Macの場合】</h3>
 <p>brewでインストールできます。</p>
-<pre><code>brew install homebrew/php/composer  
+<pre tabindex="0"><code>brew install homebrew/php/composer  
 </code></pre><p>※※※※※※※※※※※※※※※※※※※※※※※※※※※※※<br>
 2018年12月 追記<br>
 上記コマンドだとエラーが出るようになりました。<br>
 現在は以下のコマンドでインストールできるようです</p>
-<pre><code>brew install composer  
+<pre tabindex="0"><code>brew install composer  
 </code></pre><p>※※※※※※※※※※※※※※※※※※※※※※※※※※※※※</p>
 <h3 id="centosの場合">【CentOSの場合】</h3>
 <p>CURLでインストーラを取得し、生成された実行ファイルをPATHが通っているディレクトリに移動します。</p>
-<pre><code>curl -sS https://getcomposer.org/installer | php  
+<pre tabindex="0"><code>curl -sS https://getcomposer.org/installer | php  
 mv composer.phar /usr/bin/composer  
 </code></pre><p>以上</p>
 
-	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/512/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/520/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
 	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2839851 &#43;0900 JST m=&#43;0.103579501">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

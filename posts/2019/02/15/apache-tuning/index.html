@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>Apacheにサーバーのメモリを食い尽くさせない &middot; Nonsense J</title>
+	<title>Apacheにサーバーのメモリを食い尽くさせない|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,13 +70,14 @@
 	<div class="post">
 		<h1 class="post-title">Apacheにサーバーのメモリを食い尽くさせない</h1>
 		<div class="post-info">
-				<time datetime="2019-02-15 00:00:00 &#43;0000 UTC">February 15, 2019</time>
+				<p class="publish-date">投稿日：<time datetime="2019-02-15 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-02-15</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/apache/">Apache</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/apache/">Apache</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<h2 id="環境">環境</h2>
 <ul>
 <li>Amazon Linux AMI 2018.03</li>
@@ -59,17 +91,17 @@
 今回はあくまでpreforkをチューニングする前提での手順です。</p>
 <h2 id="サーバー物理メモリ確認">サーバー物理メモリ確認</h2>
 <p>まず、サーバーの物理メモリを調べます</p>
-<pre><code># cat /proc/meminfo | head -n 1
+<pre tabindex="0"><code># cat /proc/meminfo | head -n 1
 MemTotal:        2004484 kB
 </code></pre><p>このサーバーの搭載メモリは2GBのようです。</p>
 <h2 id="現在のメモリ使用状況確認">現在のメモリ使用状況確認</h2>
 <p>まずサーバー全体の使用メモリを確認します。<br>
 以下のワンライナーで出します。(単位はMB)</p>
-<pre><code># ps aux | awk '{print $6}' | awk '{sum=sum+($1/1024);cnt++;} END{print &quot;sum=&quot;sum}'
+<pre tabindex="0"><code># ps aux | awk &#39;{print $6}&#39; | awk &#39;{sum=sum+($1/1024);cnt++;} END{print &#34;sum=&#34;sum}&#39;
 sum=919.656
 </code></pre><p>次にhttpdの子プロセスの使用メモリを確認します。<br>
 以下のワンライナーで出します。(単位はMB)</p>
-<pre><code># ps aux | grep httpd | grep apache | awk '{print $6}' | awk '{sum=sum+($1/1024);cnt++;} END{print &quot;sum=&quot;sum &quot; cnt=&quot;cnt &quot; ave=&quot;sum/cnt;}'
+<pre tabindex="0"><code># ps aux | grep httpd | grep apache | awk &#39;{print $6}&#39; | awk &#39;{sum=sum+($1/1024);cnt++;} END{print &#34;sum=&#34;sum &#34; cnt=&#34;cnt &#34; ave=&#34;sum/cnt;}&#39;
 sum=804.273 cnt=20 ave=40.2137
 </code></pre><p>出力結果は以下のようにしています。</p>
 <table>
@@ -116,7 +148,7 @@ sum=804.273 cnt=20 ave=40.2137
 <li>生成できるApacheプロセス数 = 35個程度　・・・⑧(⑦÷⑤)</li>
 </ul>
 <p>Apacheの設定にてこれを設定します。</p>
-<pre><code>&lt;IfModule mpm_prefork_module&gt;
+<pre tabindex="0"><code>&lt;IfModule mpm_prefork_module&gt;
 StartServers               5
 MinSpareServers            5
 MaxSpareServers           10
@@ -128,7 +160,7 @@ MaxConnectionsPerChild     0
 httpd.confに追記するか/etc/httpd/conf.d/配下に新設定ファイルを作成して記載するのでも良いです。</p>
 <p>他にも基本的にhttpd子プロセスは常時20個くらい動いていて欲しかったりして、<br>
 最終的に以下の設定にしました。</p>
-<pre><code>&lt;IfModule mpm_prefork_module&gt;
+<pre tabindex="0"><code>&lt;IfModule mpm_prefork_module&gt;
 StartServers              20 #httpd起動時にプロセスを20個動かす
 MinSpareServers            5
 MaxSpareServers           20 #リクエスト待ちプロセスは最大20個とする
@@ -138,21 +170,16 @@ MaxConnectionsPerChild  5000 #ある程度処理したら子プロセスには�
 &lt;/IfModule&gt;
 </code></pre>
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/2019/02/14/mac-php-72/" class="left arrow">&#8592;</a>
-		<a href="/posts/2019/02/28/aws-code-deploy/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2575235 &#43;0900 JST m=&#43;0.077118001">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

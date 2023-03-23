@@ -1,401 +1,172 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Mac on Nonsense J</title>
-    <link>/tags/mac/</link>
-    <description>Recent content in Mac on Nonsense J</description>
+    <title>Mac on Logical Dice 技術ブログ</title>
+    <link>https://blog2.logical-dice.com/tags/mac/</link>
+    <description>Recent content in Mac on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Thu, 14 Feb 2019 00:00:00 +0000</lastBuildDate><atom:link href="/tags/mac/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 Feb 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/mac/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>MacにPHP7.2をインストールする</title>
-      <link>/posts/2019/02/14/mac-php-72/</link>
+      <link>https://blog2.logical-dice.com/posts/2019/02/14/mac-php-72/</link>
       <pubDate>Thu, 14 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2019/02/14/mac-php-72/</guid>
-      <description>環境  macOS Mojave 10.14.2 fish 2.7.1 Homebrew 2.0.1 PHP 7.2.15   Homebrewを使ってMacにPHP7.2をインストールします。
-Homebrewがインストールされていない場合は以下を参照してください。
-【Mac】Homebrewインストール
-まず、Homebrew上でPHP7.2を探します。
-$brew search php72 ==&amp;gt; Formulae php@7.2 パッケージが分かったのでインストールします。
-$ brew install php@7.2 〜たくさん省略〜 If you need to have php@7.2 first in your PATH run: echo &#39;set -g fish_user_paths &amp;quot;/usr/local/opt/php@7.2/bin&amp;quot; $fish_user_paths&#39; &amp;gt;&amp;gt; ~/.config/fish/config.fish echo &#39;set -g fish_user_paths &amp;quot;/usr/local/opt/php@7.2/sbin&amp;quot; $fish_user_paths&#39; &amp;gt;&amp;gt; ~/.config/fish/config.fish 〜少し省略〜 インストール完了の直前くらいに上記のような設定追加をするような指示が出力されます。
-私はシェルにfishを使っているので上記のようなコマンドでしたが、bashやzshを使っている場合は違うコマンドになると思います。
-指示通りに設定をします。
-$ echo &#39;set -g fish_user_paths &amp;quot;/usr/local/opt/php@7.2/bin&amp;quot; $fish_user_paths&#39; &amp;gt;&amp;gt; ~/.config/fish/config.fish $ echo &#39;set -g fish_user_paths &amp;quot;/usr/local/opt/php@7.</description>
+      <guid>https://blog2.logical-dice.com/posts/2019/02/14/mac-php-72/</guid>
+      <description>MacにPHP7.2をインストールする方法です</description>
     </item>
     
     <item>
       <title>プログラミング向けフォントのインストール</title>
-      <link>/posts/wp/1218/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/1218/</link>
       <pubDate>Fri, 13 Apr 2018 21:21:39 +0000</pubDate>
       
-      <guid>/posts/wp/1218/</guid>
-      <description>■環境 Linux Mint 18.3 cinnamon 64bit
-ubuntu 19.10
-macOS High Sierra 10.13.1
-(LinuxでもMacでも基本的に同じ操作でいけるはずです)
- ■フォントのインストール プログラミングに向いていると評判の日本語対応フォント『Ricty Diminished』をインストールします。
-確かに見やすいです。文字幅や文字の見分けやすさ（オーとゼロに違いとか）の点で良いです。
-まずはフォント一式をダウンロードします。
-ダウンロードする圧縮ファイルはこちらのページから確認できます。
-※(2019/11/14追記) URLが変わっていたので修正しました
-http://www.yusa.lab.uec.ac.jp/~yusa/ricty_diminished.html$ wget http://www.yusa.lab.uec.ac.jp/~yusa/ricty_diminished/ricty_diminished-4.1.1.tar.gz $ tar xf ricty_diminished-4.1.1.tar.gz 次にダウンロードしたフォントをフォントディレクトリへ移動します。
-【Macの場合】
-$ mv RictyDiminished*.ttf ~/Library/Fonts/. $ brew install fontconfig 【ubuntu, Linux Mintの場合】
-$ mkdir -p ~/.fonts $ mv RictyDiminished*.ttf ~/.fonts/. 最後にフォントを読み込みます
-$ fc-cache -vf $ rm -f ricty_diminished-4.1.1.tar.gz これでIDEなどでRicty Diminishedを指定すれば反映されます。
-少しオシャレ（？）なRicty Diminished Discordというフォントも指定できるようになりますので、お好みの方を選べば良いと思います。
-■おまけ 『Cica』というフォントも評価が良いので紹介しておきます。
-https://github.com/miiton/CicaRicty同様に文字幅や文字の見分けやすさが良く、Rictyと比べると少し丸みを帯びていて可愛いです。
-以下の手順でインストールできます。
-$ wget https://github.com/miiton/Cica/releases/download/v2.1.0/Cica_v2.1.0.zip $ unzip Cica_v2.</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/1218/</guid>
+      <description>プログラミングに向いている「Ricty Diminished」をインストールする手順です</description>
     </item>
     
     <item>
       <title>【Mac】PCの起動・停止時刻を出力するシェルスクリプト</title>
-      <link>/posts/wp/857/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/857/</link>
       <pubDate>Mon, 11 Dec 2017 23:51:12 +0000</pubDate>
       
-      <guid>/posts/wp/857/</guid>
-      <description>■環境 macOS High Sierra 10.13.1
-bash 4.4.12
- 職場の勤怠を付ける際に数日分まとめて入力するのですが、 出勤退勤時刻の目安とするため、Macの起動・停止時刻を出すようにしました。
-まず、このシェルスクリプトはbash　Ver 4.x.x台以上でないと動かないので、 bashのバージョンが３の場合はHomebrewでインストールします。 ※執筆時点でMacにデフォルトで入っているbashはVer 3.x.xでした。
-$ brew install bash $ which bash /usr/local/bin/bash シェルスクリプトを作成します。 仮でホームディレクトリ直下に「kintai.sh」という名前で作る事にします。
-$ vim ~/kintai.sh シェルの内容は以下の通りです。 シバン（１行目のやつ）のパスは上記のwhichコマンドで確認したbashのパスとします。
-#!/usr/local/bin/bash set +e declare -A rebootTimes declare -A shutdownTimes shutdownList=`last | grep &amp;quot;^shutdown&amp;quot; | cut -d &amp;quot; &amp;quot; -f 28-33` while read line; do curdate=`env LANG=eu_US.UTF-8 date -j -f &amp;quot;%a %b %d %H:%M&amp;quot; &amp;quot;${line}&amp;quot; &amp;quot;+%Y/%m/%d&amp;quot;` curtime=`env LANG=eu_US.UTF-8 date -j -f &amp;quot;%a %b %d %H:%M&amp;quot; &amp;quot;${line}&amp;quot; &amp;quot;+%H:%M&amp;quot;` if [ ${#shutdownTimes[${curdate}]} -eq 0 ]; then shutdownTimes[${curdate}]=${curtime} fi done &amp;lt;&amp;lt; END $shutdownList END rebootList=`last | grep &amp;quot;^reboot&amp;quot; | cut -d &amp;quot; &amp;quot; -f 30-35` while read line; do curdate=`env LANG=eu_US.</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/857/</guid>
+      <description>■環境macOS High Sierra 10.13.1bash 4.4.12職場の勤怠を付ける際に数日分まとめて入力するのです&amp;hellip;</description>
     </item>
     
     <item>
       <title>【Mac】圧縮解凍ソフトのインストール(Win対応)</title>
-      <link>/posts/wp/799/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/799/</link>
       <pubDate>Fri, 13 Oct 2017 19:48:22 +0000</pubDate>
       
-      <guid>/posts/wp/799/</guid>
-      <description>■環境 macOS Sierra 10.12.6
- Windowsで圧縮したファイルがMacで正常に開けなかったり
-Macで圧縮したファイルがWindowsで正常に開けなかったり
-そんな時はMac側で以下ソフトを使うと解決します。
-Windows → Macの圧縮ファイル連携 『The Unarchiver』というソフトを使って解凍すると正常に解凍できます。
-OneDriveからダウンロードした圧縮ファイルの解凍が正常にできない場合にも使えます。
-MacのAppStoreで配信されていますので、検索してインストールしてください。
-使い方は、解凍したい圧縮ファイルを『The Unarchiver』で開くだけです。
-Mac → Windowsの圧縮ファイル連携 『WinArchiver Lite』というソフトを使って圧縮すると、Win側で正常に解凍できます。
-こちらもMacのAppStoreで配信されています。
-使い方は、圧縮したいファイル・ディレクトリを『WinArchiver Lite』で開く、
-または『WinArchiver Lite』を起動しておいて、圧縮したいファイル・ディレクトリを『WinArchiver Lite』のウィンドウに
-ドラッグ＆ドロップすると、Win対応の圧縮ファイルが生成できます。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/799/</guid>
+      <description>■環境macOS Sierra 10.12.6Windowsで圧縮したファイルがMacで正常に開けなかったりMacで圧縮したファ&amp;hellip;</description>
     </item>
     
     <item>
       <title>【Mac】ForiClientでVPNを繋ぐ</title>
-      <link>/posts/wp/776/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/776/</link>
       <pubDate>Fri, 13 Oct 2017 11:43:37 +0000</pubDate>
       
-      <guid>/posts/wp/776/</guid>
-      <description>■環境 macOS Sierra 10.12.6
-FortiClient 5.6.0.703
- ■本体のダウンロード &amp;amp; インストール 公式サイトよりインストーラをダウンロードする。
-http://www.forticlient.com/downloadsダウンロードしてきたdmgファイルをダブルクリックするとインストーラが走るので、
-あとはインストーラに従えばインストール完了
-■VPN設定 FortiClientを起動し、「リモートアクセス ＞ 歯車マーク ＞ 新規接続の追加」をクリックする。
-接続先の設定をして、『追加』ボタンをクリックする。
-その後、パスワードを入力して『接続』ボタンをクリックすれば接続される。
-一度設定しておけば、今後の接続＆切断は右上のタスクバーのFortiClientアイコンから実施できる。
-※FortiClientアイコンは盾マークの中に、VPN接続時は鍵マーク、VPN切断時は四角いマークとなっている。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/776/</guid>
+      <description>■環境macOS Sierra 10.12.6FortiClient 5.6.0.703■本体のダウンロード &amp;amp; インス&amp;hellip;</description>
     </item>
     
     <item>
       <title>【Mac】NetBeansのインストール</title>
-      <link>/posts/wp/737/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/737/</link>
       <pubDate>Fri, 13 Oct 2017 11:05:07 +0000</pubDate>
       
-      <guid>/posts/wp/737/</guid>
-      <description>■環境 macOS Sierra 10.12.6
-NetBeans 8.2
- コードの補完やFTP機能を標準装備していたりと
-無料のIDEの中では個人的には使いやすいと思っています。
-あと、ねこびーんが可愛い。
-■JDK &amp;amp; NetBeans本体のダウンロード &amp;amp; インストール JDKとNetBeansがセットになっているパッケージがあるので、それをダウンロードします。
-http://www.oracle.com/technetwork/java/javase/downloads/jdk-netbeans-jsp-142931.html 【補足】
-既にJDKをインストールしている場合は、以下のサイトからNetBeans本体のみをダウンロードすれば良いです。
-https://netbeans.org/downloads/こちらのサイトからダウンロードする場合は、利用する言語に合わせたパッケージをインストールできます。
- ダウンロードしてきたdmgファイルをダブルクリックしてマウントし、
-出てきたpkgファイルをダブルクリックすると、インストーラーが走ります。
-そのままインストーラーに従い進めるとインストール完了です。
-LaunchpadにNetBeansが追加されてます。
-■NetBeansの設定 【基本設定】 上部メニューより「NetBeans ＞ Preferences」をクリックすると設定画面が開きます。
-基本的に触るとしたら以下のタブくらいだと思います。
-それ以外のタブをいじる人は、もはや説明も不要なレベルの人だと思うので説明も割愛します。
-一般タブ NetBeansから開くブラウザの指定をしたり、プロキシの設定をしたりできます。
-よく分からなければデフォルトのままでよいです。
-エディタタブ ソースコードのフォーマットを指定したり、NetBeansが表示する警告を設定したりできます。
-インデントをタブにするかスペースにするか。どのくらいインデントを深くすると警告を出すか。など
-個人の好みやチームのコーディング規約に合わせて変更してください。
-分からない項目はデフォルトのままで良いと思います。
-フォントと色タブ タブ名のままですが、NetBeansで使うフォントと色を設定できます。
-見づらい色などがあれば変更すれば良いです。
-キーマップタブ ショートカットキーの設定です。基本的にはデフォルトのままでいいと思います。
-どんなショートカットがあるのかを確認するために、一度眺めてみるのもいいと思います。
-外観タブ IDEの見栄え全般の設定です。
-「ルック・アンド・フィール」でテーマの変更ができるので、好みのテーマがありそうであれば変更してください。
-※ルック・アンド・フィールの反映にはIDEの再起動が必要です。
-【プラグイン導入】 利用したい言語に合わせてプラグインをインストールします。
-NetBeansの上部メニューより「ツール ＞ プラグイン」をクリックし、プラグイン管理画面を開きます。
-「使用可能なプラグイン」というタブより新規プラグインのインストールができます。
-暗いテーマが好きな場合 「Dark Look And Feel Themes」というプラグインがあります。
-これをインストールすれば、基本設定にあった「ルック・アンド・フィール」の選択肢が増えるので、
-設定画面から変更してください。
-個人的には「Dark Nimbus」が好きです。
-PHPを使う場合 PHPの開発をするなら「PHP」というプラグインは必須です。
-あとはフレームワークやテストツールの補助プラグインもあるので、それらを必要に応じてインストールすれば良いです。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/737/</guid>
+      <description>■環境macOS Sierra 10.12.6NetBeans 8.2コードの補完やFTP機能を標準装備していたりと無料のIDE&amp;hellip;</description>
     </item>
     
     <item>
       <title>【Mac】Homebrewインストール</title>
-      <link>/posts/wp/750/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/750/</link>
       <pubDate>Thu, 12 Oct 2017 16:27:26 +0000</pubDate>
       
-      <guid>/posts/wp/750/</guid>
-      <description>■環境 macOS Sierra(10.12.5)
- HomebrewはmacOS用のパッケージマネージャーです。
-インストールするためのコマンドは公式ページにて記載されています。
-http://brew.sh/index_ja.html２０１７年１０月現在では以下のコマンドでインストールしました。
-/usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot; これでbrewコマンドが使えるようになりました。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/750/</guid>
+      <description>■環境macOS Sierra(10.12.5)HomebrewはmacOS用のパッケージマネージャーです。インストールするため&amp;hellip;</description>
     </item>
     
     <item>
       <title>【Mac】PC購入後・初期化後の設定</title>
-      <link>/posts/wp/734/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/734/</link>
       <pubDate>Thu, 12 Oct 2017 16:23:00 +0000</pubDate>
       
-      <guid>/posts/wp/734/</guid>
-      <description>初期状態のMacBookから行なう設定をまとめました
-■設定一覧  Homebrewインストール ターミナル設定（iTerm2 ＋ fish ＋ fisherman） 秘密鍵＆公開鍵の生成 neovim &amp;amp; dein.vimの設定  ■とりあえず入れておくアプリ  圧縮解凍ソフト(Win対応) Calendar 2 Skitch  </description>
+      <guid>https://blog2.logical-dice.com/posts/wp/734/</guid>
+      <description>初期状態のMacBookから行なう設定をまとめました■設定一覧Homebrewインストールターミナル設定（iTerm2 ＋ fi&amp;hellip;</description>
     </item>
     
     <item>
       <title>【Mac】ターミナル設定（iTerm2 ＋ fish ＋ fisherman）</title>
-      <link>/posts/wp/741/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/741/</link>
       <pubDate>Thu, 12 Oct 2017 16:01:40 +0000</pubDate>
       
-      <guid>/posts/wp/741/</guid>
-      <description>■環境 iTerm2 3.2.5
-fish 2.7.1
-fisherman 3.1.1
-■参考サイト fish shell を使いたい人生だった
- ターミナルのシェルをiTerm2 &amp;amp; fishにする手順です。
-デフォルトである程度便利機能が入っているので、zshでカスタマイズするのが面倒な人におすすめです。
-iTerm2インストール 公式ページよりzipをダウンロードします。
-https://www.iterm2.com/downloads.htmlダウンロードしたzipを解凍すると「iTerm」というファイルが出てくるので、それをアプリケーションにドラッグ＆ドロップします。
-これでLanchPadから起動できるようになりました。
-iTerm2の配色変更 iTerm2のデフォルトのままの色だとディレクトリが見づらかったりするので配色を変えます。
-iTerm2のメニューバーより
-iTerm2 &amp;gt; Preferences &amp;gt; Profiles &amp;gt; Colorsとクリックしていき
-そこの Color Paresetより好きなテーマを選びます。
-配色設定ファイルをダウンロード設定することもできます。
-私の場合は『Japanesque』という配色をよく使っています。
-https://github.com/aereal/dotfiles/tree/master/colors/Japanesqueこの『Japanesque.itermcolors』をiTerm2で開くと、上記の Color Paresetの選択肢に
-Japanesqueが追加されます。
-fish インストール fishをインストールします。
-$ brew install fish fishのパスを確認する。
-$ which fish /usr/local/bin/fish 上記パスをシェル一覧に追記する
-$ sudo vi /etc/shells 〜末尾にwhichコマンドで確認したパスを追記する〜 シェルをfishに変更する
-$ chsh -s /usr/local/bin/fish これで、ターミナルを再起動するとfishが立ち上がります。
-fisherman インストール fishermanというfishのプラグイン管理ツールがあります。
-fishermanのgithubベージにインストールコマンドが載っています。
-https://github.com/fisherman/fisherman$ curl -Lo ~/.</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/741/</guid>
+      <description>■環境iTerm2 3.2.5fish 2.7.1fisherman 3.1.1■参考サイトfish shell を使いたい人生&amp;hellip;</description>
     </item>
     
     <item>
       <title>【Mac】コマンドラインから写真の撮影日時などを確認する</title>
-      <link>/posts/wp/703/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/703/</link>
       <pubDate>Sun, 24 Sep 2017 15:27:02 +0000</pubDate>
       
-      <guid>/posts/wp/703/</guid>
-      <description>■環境 macOS Sierra 10.12.6
-exiftool 10.55
- Macのコマンドラインから写真の撮影日時を確認する方法が知りたかったため調べてみました。 最終目標はファイル名に撮影日時を付与する事です。
-exiftoolインストール 写真の情報を取り出すには、exiftoolというツールを使います。 brewでインストールできます。
-brew install exiftool 写真の詳細情報を確認してみる 単純に
-exiftool 対象ファイル というコマンドでファイルの全詳細情報は取れます。
-撮影日時だけに絞りたい場合は
-exiftool -DateTimeOriginal 対象ファイル とすれば絞れます。
-が、
-どうやら使っているカメラによって撮影日時情報が画像データに含まれていない場合や、 上記で指定した「Date/Time Original」以外のタグ名で存在する場合があるようです。
-その場合は
-exiftool 対象ファイル で全情報を表示して、それっぽいのを選ぶしか無さそうです。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/703/</guid>
+      <description>■環境macOS Sierra 10.12.6exiftool 10.55Macのコマンドラインから写真の撮影日時を確認する方法&amp;hellip;</description>
     </item>
     
     <item>
       <title>【Mac】言語パッケージ管理用にasdfを導入する(fish環境)</title>
-      <link>/posts/wp/689/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/689/</link>
       <pubDate>Sat, 19 Aug 2017 17:11:43 +0000</pubDate>
       
-      <guid>/posts/wp/689/</guid>
-      <description>■環境 macOS Sierra 10.12.6 fish 2.5.0
- ■手順 Brewでもインストールできるらしいが、公式ページの手順に従った方が良さそう。
-公式ページ：https://github.com/asdf-vm/asdfまず、asdfをgithubからクローンし、fishのコンフィグに追加する。
-$ git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.3.0 $ echo &#39;source ~/.asdf/asdf.fish&#39; &amp;gt;&amp;gt; ~/.config/fish/config.fish $ mkdir -p ~/.config/fish/completions; and cp ~/.asdf/completions/asdf.fish ~/.config/fish/completions asdfで必要になるアプリケーションをbrewでインストールしておく。
-下記はだいたい公式サイトで記載されているもの。
-$ brew install coreutils automake autoconf openssl libyaml readline libxslt libtool unixodbc また、言語別で必要になるアプリケーションもある。
-詳細は言語別のgithubページを参照
-https://github.com/asdf-vm/asdf-plugins 【メモ】
-icu4cは2017年10月現在、最新バージョンを入れてしまうとPHPビルドできなくなってしまうので、旧バージョンをインストールした方が良いらしい
-参考：https://github.com/phpbrew/phpbrew/issues/899 asdfで管理対象の言語を追加する。
-$ asdf plugin-add {任意の名前} {githubリポジトリ} ===== (例） asdf plugin-add go https://github.com/kennyp/asdf-golang 上記で設定するリポジトリは以下を参照
-https://github.com/asdf-vm/asdf-pluginsもしここでエラーが出てしまった場合は必要なアプリケーションが入っていない可能性があるので、
-エラー文言を参考にbrewインストールしておく。
-インストールできるバージョン一覧を見る。
-$ asdf list-all {さきほどの名前} ===== (例） asdf list-all go 上記で確認したバージョンの中から希望のバージョンをインストールし、 利用できるように設定する。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/689/</guid>
+      <description>■環境macOS Sierra 10.12.6fish 2.5.0■手順Brewでもインストールできるらしいが、公式ページの手順&amp;hellip;</description>
     </item>
     
     <item>
       <title>【Mac】neovim &amp; dein.vimの設定</title>
-      <link>/posts/wp/665/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/665/</link>
       <pubDate>Sat, 15 Jul 2017 00:44:50 +0000</pubDate>
       
-      <guid>/posts/wp/665/</guid>
-      <description>■環境 macOS Sierra 10.12.6
-fish 2.6.0
-nvim 0.2.0
-■参考ページ NeoVim、そしてdein.vimへ：https://qiita.com/okamos/items/2259d5c770d51b88d75bShougo氏のGiHub：https://github.com/Shougo/dein.vim 普通のvimよりも良いと噂のneovimを導入します。
-プラグインの管理にはdein.vimを使います。
-■neovimのインストール brewでインストールできます。
-便利ですね。
-brew install neovim/neovim/neovim ■fishへの設定 コンフィグファイルのディレクトリを設定します。
-以下はホームディレクトリ直下の『.config』を設定する例です。
-echo &#39;set -g XDG_CONFIG_HOME &amp;quot;$HOME/.config&amp;quot;&#39; &amp;gt;&amp;gt; ~/.config/fish/config.fish ついでに、「vi」「vim」コマンド実行時にneovimが起動するようにしてしまいます。
-これは好みだと思うので、やってもやらなくてもいいです。
-echo &#39;alias vi=&amp;quot;nvim&amp;quot;&#39; &amp;gt;&amp;gt; ~/.config/fish/config.fish echo &#39;alias vim=&amp;quot;nvim&amp;quot;&#39; &amp;gt;&amp;gt; ~/.config/fish/config.fish また、neovimで利用するカラースキームのデフォルト値を設定しておきます。
-以下を~/.config/nvim/init.vimの先頭行に記載する。
-上記ディレクトリ、ファイルは初期状態では存在しないので新規作成すること。
-colorscheme {好きなカラースキーム} 設定できるカラースキームについては以下サイトにて紹介されているので参考になると思います。
-https://qiita.com/ryoff/items/134b758afa8cc45a43d3この辺でターミナルを再起動しておくと、上記で設定した内容が綺麗に読み込まれます。
-■dein.vimのインストール Shougo氏のGitHub通りに インストールを進めます。
-curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh &amp;gt; installer.sh sh installer.sh ~/.config 上記コマンドが成功すると、.vimrc記載する内容が表示されるので、
-それを少しだけ修正して~/.config/nvim/init.vimに追記します。
-installer.shの結果出力された内容から変更する箇所は
-下記の自動インストール処理のコメントアウトを外すくらいです。
-&amp;quot;dein Scripts----------------------------- 〜中略〜 &amp;quot; If you want to install not installed plugins on startup.</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/665/</guid>
+      <description>■環境macOS Sierra 10.12.6fish 2.6.0nvim 0.2.0■参考ページNeoVim、そしてdein&amp;hellip;.</description>
     </item>
     
     <item>
       <title>MacにDocker環境を作る</title>
-      <link>/posts/wp/642/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/642/</link>
       <pubDate>Mon, 08 May 2017 11:01:23 +0000</pubDate>
       
-      <guid>/posts/wp/642/</guid>
-      <description>■環境 macOS Sierra 10.12.4
- Dockerのインストール 公式ページ(こちら)の「Get Docker for Mac(Stable)」をクリックし、
-Dockerのdmgをダウンロードする。
-ダウンロードしたdmgを実行すると「Docker.app」を「Applications」へドラッグ＆ドロップするよう表示されるので、
-その通りに実施する。
-これで、LaunchpadにDockerが追加されましたので、クリックして起動します。
-初回起動時に設定が走るので、Macのパスワードを聞かれます。
-しばらく設定が走り、「Docker is now up and running!」が表示されれば設定完了です。
-ターミナルを立ち上げ、以下コマンドを実行するとDockerのバージョンを返すようになっているはずです。
-docker version 問題なければ「Got it」をクリックしてDockerのウィンドウを閉じます。
-ウィンドウを閉じてもバックグラウンドで動いているので、
-ステータスバーに鯨のアイコンが表示されています。
-初期設定 デフォルトではMacにログオンしたら自動でDockerが起動するようになっていますが、
-普段はDockerを起動しておく必要がない場合はステータスバーの鯨をクリックし、
-Preferences &amp;gt; General &amp;gt; Start Docker when you log inのチェックボックスを外しておきます。
-（検証時のみDockrが欲しい人など）
-その場合、Dockerを利用するタイミングでLaunchpadからDockerを起動してください。
-その他、Dockerコンテナと共有するディレクトリなどもPreferencesで変更できるので、
-必要に応じて設定を変更してください。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/642/</guid>
+      <description>■環境macOS Sierra 10.12.4Dockerのインストール公式ページ(こちら)の「Get Docker for M&amp;hellip;</description>
     </item>
     
     <item>
       <title>MacにZabbixエージェントを入れる</title>
-      <link>/posts/wp/624/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/624/</link>
       <pubDate>Tue, 02 May 2017 14:49:34 +0000</pubDate>
       
-      <guid>/posts/wp/624/</guid>
-      <description>■環境 Mac OS 10.9.5
-Zabbix 3.2.1
- Mac OSのサーバにZabbixエージェントを入れた際の手順メモです。
-WEBでzabbixのソースをダウンロードします。
-https://sourceforge.net/projects/zabbix/files/ZABBIX%20Latest%20Stable/3.2.1/Macサーバに送ります。
-$ scp zabbix-3.2.1.tar.gz user@192.168.999.999:~/Downloads/. ※Macサーバ上で直接ダウンロードできるなら、その方が早いです。
-macサーバにて解凍〜インストールを行ないます。
-tar xzf zabbix-3.2.1.tar.gz cd zabbix-3.2.1 ./configure --enable-agent make install sudo cp conf/zabbix_agentd.conf /usr/local/etc/. sudo cp src/zabbix_agent/zabbix_agentd /usr/local/sbin/ Zabbixエージェントの設定を変更します。
-sudo vim /usr/local/etc/zabbix_agentd.conf # 127.0.0.1の部分をZabbixサーバのIPアドレスに変更 # Hostnameはagentサーバのホスト（サーバ側に設定したものと同じ）に変更 Zabbixエージェントを実行します。
-/usr/local/sbin/zabbix_agentd 【補足】 インストール時にzabbixユーザが作成されるはずですが、
-ユーザ作成に失敗している場合は別途ユーザ作成しておかないとエージェントの実行ができません。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/624/</guid>
+      <description>■環境Mac OS 10.9.5Zabbix 3.2.1Mac OSのサーバにZabbixエージェントを入れた際の手順メモです。&amp;hellip;</description>
     </item>
     
     <item>
       <title>【Mac】fish &#43; oh-my-fish &#43; pecoの導入方法</title>
-      <link>/posts/wp/569/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/569/</link>
       <pubDate>Thu, 20 Apr 2017 00:31:51 +0000</pubDate>
       
-      <guid>/posts/wp/569/</guid>
-      <description>環境 OS X ElCapitan 10.11.6
- fishのインストール brewでfishをインストールする。
-brew install fish ※brew自体のインストールについてはこちら参照。
-次にシェル一覧にfishを追加する。
-vim /etc/shells # 以下行を追加 /usr/local/bin/fish 次に通常利用するシェルをfishに設定する。
-chsh -s /usr/local/bin/fish oh-my-fishのインストール 以下コマンドを実行するだけ。
-curl -L http://get.oh-my.fish | fish pecoのインストール pecoはbrewとomfコマンドでインストールできる。
-brew install peco omf install peco インストールできたら、fishの設定ファイルにpecoの設定を追記する。
-fishの設定ファイルが存在しない場合は新規作成する。
-vim ~/.config/fish/config.fish # 以下行を追記する function fish_user_key_bindings bind \cr peco_select_history end 以上で設定完了です。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/569/</guid>
+      <description>環境OS X ElCapitan 10.11.6fishのインストールbrewでfishをインストールする。brew insta&amp;hellip;</description>
     </item>
     
     <item>
       <title>Composerのインストール方法</title>
-      <link>/posts/wp/515/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/515/</link>
       <pubDate>Tue, 11 Apr 2017 16:08:08 +0000</pubDate>
       
-      <guid>/posts/wp/515/</guid>
-      <description>■環境 macOS Sierra 10.12.4
-CentOS 6.8
- 作業用MacとCentOSサーバにComposerをインストールしたので、その際のメモです。
-【Macの場合】 brewでインストールできます。
-brew install homebrew/php/composer ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
-2018年12月 追記
-上記コマンドだとエラーが出るようになりました。
-現在は以下のコマンドでインストールできるようです
-brew install composer ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
-【CentOSの場合】 CURLでインストーラを取得し、生成された実行ファイルをPATHが通っているディレクトリに移動します。
-curl -sS https://getcomposer.org/installer | php mv composer.phar /usr/bin/composer 以上</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/515/</guid>
+      <description>■環境macOS Sierra 10.12.4CentOS 6.8作業用MacとCentOSサーバにComposerをインストー&amp;hellip;</description>
     </item>
     
     <item>
       <title>brewインストールでphp-mcryptがインストールできない</title>
-      <link>/posts/wp/295/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/295/</link>
       <pubDate>Tue, 20 Sep 2016 00:15:18 +0000</pubDate>
       
-      <guid>/posts/wp/295/</guid>
-      <description>■環境
-OS X El Capitan(10.11.6)
-Homebrew 0.9.9
-brewインストールでphp-mcryptをインストールした際にエラーが出たので
-エラー内容と、その対応をメモしておきます。
-まず、エラー内容について
-# brew install homebrew/php/php70-mcrypt 〜中略〜 /usr/local/opt/php70/bin/phpize: line 61: /usr/local/Library/Homebrew/shims/super/sed: No such file or directory /usr/local/opt/php70/bin/phpize: line 62: /usr/local/Library/Homebrew/shims/super/sed: No such file or directory /usr/local/opt/php70/bin/phpize: line 63: /usr/local/Library/Homebrew/shims/super/sed: No such file or directory Configuring for: PHP Api Version: Zend Module Api No: Zend Extension Api No: /usr/local/opt/php70/bin/phpize: line 155: /usr/local/Library/Homebrew/shims/super/sed: No such file or directory autoheader: error: AC_CONFIG_HEADERS not found in configure.</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/295/</guid>
+      <description>■環境OS X El Capitan(10.11.6)Homebrew 0.9.9brewインストールでphp-mcryptをイ&amp;hellip;</description>
     </item>
     
     <item>
       <title>【Mac】ターミナル設定（iTerm2 &#43; zsh &#43; prezto &#43; peco）</title>
-      <link>/posts/wp/259/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/259/</link>
       <pubDate>Tue, 26 Jul 2016 00:00:40 +0000</pubDate>
       
-      <guid>/posts/wp/259/</guid>
-      <description>Ubuntuの場合はこちら①iTerm2を準備する iTerm2についてはこちらの記事で記載していますので
-こちらをご参照ください。
-【Mac】ターミナル設定（iTerm2 ＋ fish ＋ fisherman）②zsh + preztoの導入 preztoのインストールは基本的に公式通りです。
-https://github.com/sorin-ionescu/preztoまずシェルをzshに切り替えます。Macならzshは元々インストールされているはずです。
-zsh 次にgithubからソースをダウンロードします。
-git clone --recursive https://github.com/sorin-ionescu/prezto.git &amp;quot;${ZDOTDIR:-$HOME}/.zprezto&amp;quot; 次にpreztoを使うようにzshの設定をします。
-ターミナルに以下を貼り付けて実行します。（スクリプトファイルなどを作成する必要はなく、ターミナル直貼り付けでOK）
-setopt EXTENDED_GLOB for rcfile in &amp;quot;${ZDOTDIR:-$HOME}&amp;quot;/.zprezto/runcoms/^README.md(.N); do ln -s &amp;quot;$rcfile&amp;quot; &amp;quot;${ZDOTDIR:-$HOME}/.${rcfile:t}&amp;quot; done 最後に、通常使うシェルをzshにします。
-chsh -s /bin/zsh これでターミナルを再起動すれば、zsh + preztoになっています。
-③pecoでコマンド履歴を検索しやすくする まず、pecoをインストールします。
-brew install peco あとは.zshrcに以下を記載するだけです。
-function peco-history-selection() { BUFFER=`history -n 1 | tail -r | awk &#39;!a[$0]++&#39; | peco` CURSOR=$#BUFFER zle reset-prompt } zle -N peco-history-selection bindkey &#39;^R&#39; peco-history-selection ターミナルを再起動するか、以下コマンドでzshrcを再読み込みすれば適用されます。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/259/</guid>
+      <description>Ubuntuの場合はこちら①iTerm2を準備するiTerm2についてはこちらの記事で記載していますのでこちらをご参照ください。&amp;hellip;</description>
     </item>
     
   </channel>

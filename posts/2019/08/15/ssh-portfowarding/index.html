@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>SSHポートフォワーディングでローカルから外部サーバーへアクセスする &middot; Nonsense J</title>
+	<title>SSHポートフォワーディングでローカルから外部サーバーへアクセスする|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,13 +70,14 @@
 	<div class="post">
 		<h1 class="post-title">SSHポートフォワーディングでローカルから外部サーバーへアクセスする</h1>
 		<div class="post-info">
-				<time datetime="2019-08-15 00:00:00 &#43;0000 UTC">August 15, 2019</time>
+				<p class="publish-date">投稿日：<time datetime="2019-08-15 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-08-15</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/docker/">Docker</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/docker/">Docker</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<h2 id="環境">環境</h2>
 <ul>
 <li>amazonlinux:2017.03-with-sources
@@ -62,13 +94,13 @@
 SSHポートフォワーディングを使って実現しました。</p>
 <p>SSHポートフォワーディングを使えば、自分が特定のポートで受けた通信を特定のサーバー(SSHで入れる事が条件)を経由して別のサーバーへ受け流す事ができるようになります。<br>
 コマンドは以下のように実行します。</p>
-<pre><code>ssh -f -N -L {自分が待ち受けるポート}:{アクセスしたいサーバーのIPやホスト名}:{アクセスしたいサーバーのポート} -i {SSHするための秘密鍵のパス} {SSH先のユーザー}@{SSH先のサーバー} -p {SSHポート} -4
+<pre tabindex="0"><code>ssh -f -N -L {自分が待ち受けるポート}:{アクセスしたいサーバーのIPやホスト名}:{アクセスしたいサーバーのポート} -i {SSHするための秘密鍵のパス} {SSH先のユーザー}@{SSH先のサーバー} -p {SSHポート} -4
 </code></pre><p>(sshのオプション説明は調べればすぐ出てくるので割愛します)</p>
 <p>例えば以下のようにコマンドを打つと<br>
 <code>自分が10080ポートで受けた通信はserver2経由でserver1の80ポートに流して、そのレスポンスをそのままリクエスト元に戻す</code><br>
 という意味になります。<br>
 なお、server2はポート22でec2-userユーザーにSSH接続できるものとします。(秘密鍵認証)</p>
-<pre><code>ssh -f -N -L 10080:server1:80 -i ~/.ssh/id_rsa ec2-user@server2 -p 22 -4
+<pre tabindex="0"><code>ssh -f -N -L 10080:server1:80 -i ~/.ssh/id_rsa ec2-user@server2 -p 22 -4
 </code></pre><h2 id="手順">手順</h2>
 <h3 id="純粋なポートフォワーディングを使う">①純粋なポートフォワーディングを使う</h3>
 <p>下図のような通信イメージです。</p>
@@ -79,9 +111,9 @@ ssh.server.com経由でdb.server.com:3306へアクセスする。</li>
 <li>WEBアプリから自身の10443ポートへ通信が発生したらポートフォワーディング発動し、<br>
 ssh.server.com経由でapi.server.com:443へアクセスする。</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<img src="https://blog2.logical-dice.com/images/2019/08/ssh-portfowarding-001.png" />  
 <p>WEBアプリが動いているDockerコンテナ内にてSSHポートフォワーディングのコマンドを実行します。</p>
-<pre><code>ssh -f -N -L 3306:db.server.com:3306  -L 10443:api.server.com:443  -i /path/to/secret_key user@ssh.server.com -p 22 -4
+<pre tabindex="0"><code>ssh -f -N -L 3306:db.server.com:3306  -L 10443:api.server.com:443  -i /path/to/secret_key user@ssh.server.com -p 22 -4
 </code></pre><p>あとはアプリケーション内で以下の箇所を変更すればポートフォワーディングでアクセスできるようになります。<br>
 ・「db.server.com:3306」の通信箇所を「localhost:3306」へ通信するよう変更<br>
 ・「api.server.com:443」の通信箇所を「localhost:10443」へ通信するよう変更</p>
@@ -96,20 +128,20 @@ ssh.server.com経由でdb.server.com:3306へアクセスする。</li>
 <li>WEBアプリから踏み台コンテナの443ポートへ通信が発生したらポートフォワーディング発動し、<br>
 ssh.server.com経由でapi.server.com:443へアクセスする。</li>
 </ul>
-<p><!-- raw HTML omitted --></p>
+<img src="https://blog2.logical-dice.com/images/2019/08/ssh-portfowarding-002.png" />  
 <p>踏み台専用のDockerコンテナを作成し、コンテナの実行コマンドとしてSSHポートフォワーディングのコマンドを実行するようにします。<br>
 ※プロセスがバックグラウンドに行かないように、fオプションを外しています。</p>
-<pre><code>ssh -N -L 0.0.0.0:3306:db.server.com:3306 -L 0.0.0.0:443:api.server.com:443 -i /path/to/secret_key user@ssh.server.com -p 22 -4
+<pre tabindex="0"><code>ssh -N -L 0.0.0.0:3306:db.server.com:3306 -L 0.0.0.0:443:api.server.com:443 -i /path/to/secret_key user@ssh.server.com -p 22 -4
 </code></pre><p>あとはWEBアプリが動いているコンテナのhostsに<br>
 『db.server.com』と『api.server.com』が踏み台コンテナのIPアドレスとなるように記載します。<br>
 踏み台コンテナのIPアドレスは以下のコマンドで調べられます。</p>
-<pre><code>nslookup {踏み台コンテナ名} | grep Address | tail -n +2 | cut -f2 -d ' '
+<pre tabindex="0"><code>nslookup {踏み台コンテナ名} | grep Address | tail -n +2 | cut -f2 -d &#39; &#39;
 </code></pre><p>シェルスクリプトにするとこんな感じになります。</p>
-<pre><code>#!/bin/bash -eu
+<pre tabindex="0"><code>#!/bin/bash -eu
 
-HUMIDAI_IP=`nslookup humidai | grep Address | tail -n +2 | cut -f2 -d ' '`
-echo &quot;${HUMIDAI_IP}	db.server.com&quot; &gt;&gt; /etc/hosts
-echo &quot;${HUMIDAI_IP}	api.server.com&quot; &gt;&gt; /etc/hosts
+HUMIDAI_IP=`nslookup humidai | grep Address | tail -n +2 | cut -f2 -d &#39; &#39;`
+echo &#34;${HUMIDAI_IP}	db.server.com&#34; &gt;&gt; /etc/hosts
+echo &#34;${HUMIDAI_IP}	api.server.com&#34; &gt;&gt; /etc/hosts
 </code></pre><p>これでSSHポートフォワーディングを使った通信の設定は完了です。</p>
 <h3 id="補足">補足</h3>
 <p>ポートフォワーディングを使ってアクセスしたいサーバーがDBサーバーだけであれば<br>
@@ -119,21 +151,16 @@ echo &quot;${HUMIDAI_IP}	api.server.com&quot; &gt;&gt; /etc/hosts
 ②の手順のような踏み台コンテナが必要となります。</p>
 
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/2019/08/02/vpn-accident/" class="left arrow">&#8592;</a>
-		<a href="/posts/2019/08/26/wp-media-infomation/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2606049 &#43;0900 JST m=&#43;0.080199301">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

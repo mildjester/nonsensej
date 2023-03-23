@@ -1,439 +1,208 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>ubuntu on Nonsense J</title>
-    <link>/tags/ubuntu/</link>
-    <description>Recent content in ubuntu on Nonsense J</description>
+    <title>ubuntu on Logical Dice 技術ブログ</title>
+    <link>https://blog2.logical-dice.com/tags/ubuntu/</link>
+    <description>Recent content in ubuntu on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Wed, 17 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 17 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Howdyを使ってubuntuで顔認証する</title>
-      <link>/posts/2021/02/17/ubuntu-howdy/</link>
+      <link>https://blog2.logical-dice.com/posts/2021/02/17/ubuntu-howdy/</link>
       <pubDate>Wed, 17 Feb 2021 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2021/02/17/ubuntu-howdy/</guid>
-      <description>環境  Ubuntu 20.10 Thinkpad T480  参考  https://github.com/boltgolt/howdy https://wiki.archlinux.jp/index.php/Howdy   Windowsを使っている時に顔認証（Windows Hello）でログインできるのがとても便利だったのでUbuntuでも実現してみます。
-UbuntuではHowdyというアプリケーションで実現できそうなので設定してみました。
-赤外線カメラ情報の取得 顔認証には赤外線カメラを使います。
-カメラ情報を取得するためにv4l-utilsを利用します。
-v4l-utilsインストール sudo apt-get install v4l-utils カメラ情報確認 以下コマンドでカメラ情報を確認します。
-赤外線カメラ(IR Camera)の項目を確認します。
-v4l2-ctl --list-devices --all # 以下出力結果で見る場所 Integrated IR Camera: Integrate (usb-0000:00:14.0-5): /dev/video0　←赤外線カメラのパスはvideo0※ /dev/video1 Format Video Capture: Width/Height : 340/340　←キャプチャサイズは340×340 ※Thinkpat T480だとvideo1も列挙されてましたが、後々の設定でvideo1を指定すると動きませんでした。
-Howdy導入 Howdyのインストール まず必要なソフトをインストールします。
-sudo add-apt-repository ppa:boltgolt/howdy sudo apt update sudo apt install howdy 途中で以下のようにセキュア具合を聞かれます。
-自分の好みや状況に合わせて選択してください。
-(f:早さ重視、b:バランス型、s:セキュリティ重視)
-After detection, Howdy knows how certain it is that the match is correct.</description>
+      <guid>https://blog2.logical-dice.com/posts/2021/02/17/ubuntu-howdy/</guid>
+      <description>ubuntu 20.10で顔認証をするための設定です</description>
     </item>
     
     <item>
       <title>ubuntuで多機能マウスを設定する</title>
-      <link>/posts/2021/02/14/ubuntu-mouse-keymap/</link>
+      <link>https://blog2.logical-dice.com/posts/2021/02/14/ubuntu-mouse-keymap/</link>
       <pubDate>Sun, 14 Feb 2021 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2021/02/14/ubuntu-mouse-keymap/</guid>
-      <description>環境  Ubuntu 20.10 Elecom M-DT2DR BK(マウス)  参考  https://help.ubuntu.com/community/MouseCustomizations https://wiki.archlinux.jp/index.php/Xbindkeys   Ubuntuにマルチボタンのマウス（Elecom M-DT2DR）を接続すると、何をしなくても通常のマウス操作や「進む」「戻る」ボタンは機能します。
-ですが、機能ボタン（Fn 1〜3）には何もマッピングされていないので、音量操作をマッピングします。
-手順 インストール まず必要なソフトをインストールします。
-sudo apt install xbindkeys ボタン番号の取得 次にマウスのボタン番号を取得します。
-まず以下コマンドを実行してボタン検知ができる状態にします。
-xev 現れる白い四角が書かれたウィンドウにマウスカーソルを持っていき、その状態でマウスのボタンを押すとコンソールに情報が表示されます。
-例えば私のマウス（M-DT2DR）のFn 1であれば以下のようにbutton 10と表示されます。
-ButtonRelease event, serial 36, synthetic NO, window 0x4000001, root 0x7ed, subw 0x4000002, time 1758091, (31,39), root:(1951,76), state 0x0, button 10, same_screen YES 同様に、Fn 2はbutton 11でFn 3はbutton 12でした。
-ボタンのマッピング ボタンマッピングするための設定ファイルを作成します。
-設定ファイルは空ファイルから始めても良いのですが、一応デフォルト値から生成しておきます。
-xbindkeys --defaults &amp;gt; ~/.xbindkeysrc 作成した設定ファイルに以下を追記します。
-# Increase volume &amp;quot;pactl set-sink-volume @DEFAULT_SINK@ +1000&amp;quot; b:10 # Decrease volume &amp;quot;pactl set-sink-volume @DEFAULT_SINK@ -1000&amp;quot; b:11 # Mute volume &amp;quot;pactl set-sink-mute @DEFAULT_SINK@ toggle&amp;quot; b:12 設定ファイルを保存したら、以下コマンドで読み込みます。</description>
+      <guid>https://blog2.logical-dice.com/posts/2021/02/14/ubuntu-mouse-keymap/</guid>
+      <description>ubuntu 20.10で多機能マウスのボタンマッピングをした際のメモです</description>
     </item>
     
     <item>
       <title>ubuntu 20.10の初期設定</title>
-      <link>/posts/2021/02/11/ubuntu-20-10-initialize/</link>
+      <link>https://blog2.logical-dice.com/posts/2021/02/11/ubuntu-20-10-initialize/</link>
       <pubDate>Thu, 11 Feb 2021 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2021/02/11/ubuntu-20-10-initialize/</guid>
-      <description>環境  Ubuntu 20.10 ThinkPad T480   Thinkpad T480にubuntu20.10をインストールした際のメモです。
-日本語入力設定 そのままでも日本語入力はできますが、入力ソースをMozcに切り替えたりしないといけないので 入力ソースのMozcの優先度を高くします。
-アプリランチャーより『設定』を開き、『地域と言語』を開きます。 そこの入力ソースに「日本語」と「日本語(Mozc)」が並んでいるので 「日本語(Mozc)」が上にくるように並べ替えます。
-各入力ソースの左端の6丸をドラッグすれば順番を入れ替えられます。
-IMEのON/OFFをMac風にする アプリランチャーより『Mozcの設定』を開き、『一般』タグを開きます。 「キー設定の選択」の横にある「編集」ボタンをクリックするとキー設定を変更できます。
-そこでHenkan/Hiragana/Katakanaあたりに『IME有効』を割り当て、 Muhenkanに『IME無効』を割り当てます。
-これでMacのようにIMEのON/OFFを切り替えられるようになりました。
-CapsLockをCtrlに、半角/全角をEscにする こちらもMac風になる設定です。 以下のコマンドを実行するとCapsLockがCtrlになり、半角/全角キーがEsc扱いになります。
-setxkbmap -option ctrl:nocaps,japan:hztg_escape しかし、これだけだと再起動後に戻ってしまうので キーボードの設定ファイルにも設定を記載しておきます。
-sudo vim /etc/default/keyboard 以下の設定を追記します。
-XKBOPTIONS=[&amp;quot;ctrl:nocaps&amp;quot;,&amp;quot;japan:hztg_escape&amp;quot;] tiling機能をOFFにする デフォルトだとウィンドウを画面端にドラッグすると勝手に最大化します。 無くてもいい機能なので以下コマンドで無効化します。
-gsettings set org.gnome.mutter edge-tiling false 諸々インストール 基本セット sudo apt install vim curl npm PHP sudo apt install php7.4 composer php7.4-bcmath php7.4-common php7.4-gd php7.4-json php7.4-mbstring php7.4-mysql php7.4-xml php7.4-xmlrpc MySQL Workbench 公式ページからdebをダウンロードしてインストールしました。 https://dev.mysql.com/downloads/workbench/</description>
+      <guid>https://blog2.logical-dice.com/posts/2021/02/11/ubuntu-20-10-initialize/</guid>
+      <description>Thinkpad T480にubuntu 20.10をインストールした際のメモです</description>
     </item>
     
     <item>
       <title>ThinkpadにHDMIケーブルを接続したままUbuntu 20.04を起動する</title>
-      <link>/posts/2020/06/01/ubuntu-20-04-hdmi/</link>
+      <link>https://blog2.logical-dice.com/posts/2020/06/01/ubuntu-20-04-hdmi/</link>
       <pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2020/06/01/ubuntu-20-04-hdmi/</guid>
-      <description>環境 ubuntu 20.04 LTS
- 参考  ubuntu バグフォーラム ubuntu wiki   前回の記事にてUbuntuを20.04にアップデートしたら HDMIケーブルを挿したままPCを起動する事ができなくなった話を書きました。
-Linuxカーネルを書き換えれば動くような話もあったのですが、それはやりたくなかったので放置していました。
-2020/6/1現在、ubuntu公式の対応はまだされていないようなのですが、 ubuntuのバグ報告フォーラムにて 『quiet splashを無効化したらいけた！』という書き込みが5/29にされていました。
-試してみたら確かに動いたので手順を記載します。
-grub設定を変更する 以下のコマンドにてgrubの設定をいじります。
-$ sudo gedit /etc/default/grub 設定ファイルがテキストエディタで開くので、quiet splashの行をコメントアウトします。
-コメントアウト後は保存して閉じます。
-〜省略〜 GRUB_DEFAULT=0 GRUB_TIMEOUT_STYLE=hidden GRUB_TIMEOUT=10 GRUB_DISTRIBUTOR=`lsb_release -i -s 2&amp;gt; /dev/null || echo Debian` #GRUB_CMDLINE_LINUX_DEFAULT=&amp;quot;quiet splash&amp;quot;　←この行を#でコメントアウトする GRUB_CMDLINE_LINUX=&amp;quot;&amp;quot; 〜省略〜 grub設定の反映 以下のupdate-grubコマンドでgrub設定を反映させます。
-しばらく処理が走るので完了するのを待ちます。
-$ sudo update-grub Sourcing file `/etc/default/grub&#39; Sourcing file `/etc/default/grub.d/init-select.cfg&#39; Generating grub configuration file ... Linux イメージを見つけました: /boot/vmlinuz-5.4.0-33-generic Found initrd image: /boot/initrd.</description>
+      <guid>https://blog2.logical-dice.com/posts/2020/06/01/ubuntu-20-04-hdmi/</guid>
+      <description>ThinkpadにUbuntu 20.04を入れるとHDMIケーブルを挿したまま起動できなくなったので対応しました。</description>
     </item>
     
     <item>
       <title>Ubuntu 20.04にアップデートした話</title>
-      <link>/posts/2020/05/17/update-ubuntu-20-04/</link>
+      <link>https://blog2.logical-dice.com/posts/2020/05/17/update-ubuntu-20-04/</link>
       <pubDate>Sun, 17 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2020/05/17/update-ubuntu-20-04/</guid>
-      <description>待望のUbuntu 20.04 LTSが出たので、19.10からアップデートしてみました。
-アップデートと同時に発生した事象について記載します。
-消えたアプリ アップデートするとインストールしてあった以下のアプリが消えたので、再インストールしました。
- shutter (スクショツール) MySQL Workbench  shutter こちらのページを参考にさせて頂きました。
-https://www.debugpoint.com/2020/04/shutter-install-ubuntu/
-実施した手順は以下です。
-sudo apt update sudo apt upgrade sudo add-apt-repository ppa:linuxuprising/shutter sudo apt install shutter MySQL Workbench コマンドでちょこちょこやってインストールする方法もあるようですが、素直に公式ページからdebをダウンロードしてインストールしました。
-https://dev.mysql.com/downloads/workbench/
-コマンドでインストールする方法も結局↑でダウンロードできるdebをコマンドでインストールしてるだけのようです。
-HDMI周りの不具合発生  ※2020/6/1追記
-対処法が分かったのでこちらの記事で記載しています。
-ThinkpadにHDMIケーブルを接続したままUbuntu 20.04を起動する
- 私の作業PCはThinkpad T480なのですが、HDMIポートにケーブルを挿した状態で起動しようとすると、ロゴ画面で止まってしまう事象が発生しました。
-PCのThunderboldポートにもThunderbold→HDMIのケーブルを繋いでいるのですが、そちらは特に挿したまま起動しても問題ありませんでした。
-調べてみると同様の事象を報告している方が複数いたので、おそらくubuntu 20.04の不具合かと思われます。
-https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1874194
-また、ubuntuにログイン後にディスプレイケーブルの抜き差しをするとメニューバーの位置がおかしくなりました。
-これはHDMIポートでもThunderboltポートでも発生します。
-なので、私は以下の手順でPCを起動しています。
-①HDMIケーブルを抜いてPCの電源ON。
-②ubuntuが起動し、ログイン画面が表示されたらHDMIケーブルを挿す。
-③ログインする。</description>
+      <guid>https://blog2.logical-dice.com/posts/2020/05/17/update-ubuntu-20-04/</guid>
+      <description>作業PCをUbuntu 19.10から20.04 LTSにアップデートした時の話です。</description>
     </item>
     
     <item>
       <title>Linux用ターミナル『Tilix』</title>
-      <link>/posts/2019/11/08/ubuntu-tilix/</link>
+      <link>https://blog2.logical-dice.com/posts/2019/11/08/ubuntu-tilix/</link>
       <pubDate>Fri, 08 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2019/11/08/ubuntu-tilix/</guid>
-      <description>環境  Ubuntu 19.10   今までubuntu等のLinux環境ではターミナルはTerminatorを使っていたのですが、
-Tilixというターミナルも良さそうだったので使ってみました。
-使い勝手はTerminatorよりも良い気がします。
-インストール方法 以下コマンドだけでインストール可能です。
-sudo apt install tilix 設定 ウィンドウ右上の３本線マークをクリックすると「設定」メニューが出てきます。
-そちらからウィンドウの色・サイズやフォントの変更などができます。
-タブ分割方法 ウィンドウ左上にタブ分割するボタンがあるので、そちらをクリックするだけでタブ分割できます。
-ショートカットキーもありますが、デフォルトのショートカットキーはubuntuでは別アクションにマッピングされているので
-使う場合は『設定＞ショートカット』からショートカットキーを変更してください。
-fish + fishermanの導入 基本的にterminatorと導入手順は同じです。
-こちらを参照してください。
-terminator + fish + fishermanの導入</description>
+      <guid>https://blog2.logical-dice.com/posts/2019/11/08/ubuntu-tilix/</guid>
+      <description>ubuntuに『Tilix』を入れてみたので紹介します</description>
     </item>
     
     <item>
       <title>ubuntu 19.10の初期設定</title>
-      <link>/posts/2019/11/06/ubuntu-initialize/</link>
+      <link>https://blog2.logical-dice.com/posts/2019/11/06/ubuntu-initialize/</link>
       <pubDate>Wed, 06 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2019/11/06/ubuntu-initialize/</guid>
-      <description>環境  Ubuntu 19.10 ThinkPad T480   Thinkpad T480にubuntu 19.10をインストールした際のメモです。
-日本語入力設定 そのままでも日本語入力はできますが、入力ソースをMozcに切り替えたりしないといけないので
-入力ソースのMozcの優先度を高くします。
-アプリランチャーより『設定』を開き、『地域と言語』を開きます。
-そこの入力ソースに「日本語」と「日本語(Mozc)」が並んでいるので
-「日本語(Mozc)」が上にくるように並べ替えます。
-各入力ソースの左端の6丸をドラッグすれば順番を入れ替えられます。
-IMEのON/OFFをMac風にする アプリランチャーより『Mozcの設定』を開き、『一般』タグを開きます。
-「キー設定の選択」の横にある「編集」ボタンをクリックするとキー設定を変更できます。
-そこでHenkan/Hiragana/Katakanaあたりに『IME有効』を割り当て、
-Muhenkanに『IME無効』を割り当てます。
-これでMacのようにIMEのON/OFFを切り替えられるようになりました。
-CapsLockをCtrlに、半角/全角をEscにする こちらもMac風になる設定です。
-以下のコマンドを実行するとCapsLockがCtrlになり、半角/全角キーがEsc扱いになります。
-setxkbmap -option ctrl:nocaps,japan:hztg_escape tiling機能をOFFにする デフォルトだとウィンドウを画面端にドラッグすると勝手に最大化します。
-無くてもいい機能なので以下コマンドで無効化します。
-gsettings set org.gnome.shell.overrides edge-tiling false ※2019/12/2追記 ubuntu 19.10では、上記だけではtilingが無効になっていませんでした。
-以下の実行も必要そうです。(むしろ、こちらだけでよさそう)
-gsettings set org.gnome.mutter edge-tiling false 諸々インストール PHP sudo apt install php7.3 composer php7.3-bcmath php7.3-common php7.3-gd php7.3-json php7.3-mbstring php7.3-mysql php7.3-xml php7.3-xmlrpc MySQL Workbench sudo apt install mysql-workbench mysql-client Shutter(スクショツール) 既存画像に文字や矢印を書き込む事もできるので便利です。</description>
+      <guid>https://blog2.logical-dice.com/posts/2019/11/06/ubuntu-initialize/</guid>
+      <description>Thinkpad T480にubuntu 19.10をインストールした際のメモです</description>
     </item>
     
     <item>
       <title>VPNクライアント設定(L2TP over IPsec)</title>
-      <link>/posts/2019/03/13/linux-mint-l2tp/</link>
+      <link>https://blog2.logical-dice.com/posts/2019/03/13/linux-mint-l2tp/</link>
       <pubDate>Wed, 13 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2019/03/13/linux-mint-l2tp/</guid>
-      <description>環境  Linux Mint 19.1 &amp;ldquo;Tessa&amp;rdquo; - MATE (64-bit) ubuntu 19.10  ■参考 ask ubuntu
- Linux MintでのVPNクライアント設定に少し苦戦したのでメモです。
-ubuntuでもほぼ同手順で対応可能でした。
-必要なアプリケーションのインストール 以下のコマンドでインストールします。
-(ubuntuの場合はaptの前にsudoを付けてください)
-$ apt update $ apt install network-manager-l2tp-gnome strongswan libstrongswan-extra-plugins libcharon-extra-plugins ネットワーク設定 まず、『コントロールセンター＞ネットワーク接続』を開きます。
-(ubuntuの場合は『設定＞ネットワーク』)
-現在のネットワーク一覧が表示されるので、「＋」マーク(追加ボタン)をクリックします。
-接続の種類を聞かれるのでVPNの中にある『Layer 2 Tunneling Protocol(L2TP)』を選択して『作成』をクリックします。
-L2TPの設定画面が開くので、VPNタブにて以下を設定します。
-   項目 設定値     ゲートウェイ VPNサーバーのIPアドレスorホスト名   ユーザー名 VPN接続する際のユーザー名   パスワード 上記ユーザーのパスワード※   NTドメイン 空欄のまま    ※補足 パスワードは入力欄右端の？アイコンをクリックしてポリシーを選択すれば入力できます。
-パスワードを接続の都度入力する場合はここでは空欄で良いです。</description>
+      <guid>https://blog2.logical-dice.com/posts/2019/03/13/linux-mint-l2tp/</guid>
+      <description>Linux MintやubuntuにL2TP over IPsecのVPNクライアント設定をします。</description>
     </item>
     
     <item>
       <title>terminator &#43; fish &#43; fishermanの導入</title>
-      <link>/posts/2019/03/10/linux-mint-terminator-fish/</link>
+      <link>https://blog2.logical-dice.com/posts/2019/03/10/linux-mint-terminator-fish/</link>
       <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2019/03/10/linux-mint-terminator-fish/</guid>
-      <description>■環境 Linux Mint 19.1 &amp;ldquo;Tessa&amp;rdquo; - MATE (64-bit)
-ubuntu 19.10
- ※以降のaptコマンドはUbuntuの場合はsudoを付けてください。
-terminatorインストール terminatorをインストールします。
-apt install terminator  (※2019年11月追記)
-Terminatorもいいですが、Tilixというターミナルも良いです。
-詳しくは↓こちら↓
-Linux用ターミナル『Tilix』
- fishインストール fishをインストールします。
-apt install fish インストール後、反映するため一度ログアウトします。
-なお、Terminatorはデフォルトのウィンドウサイズが微妙なので変更した方が良いです。
-Terminatorのデフォルトサイズを変更する
-fishをデフォルトシェルに設定 $ grep fish /etc/shells /usr/bin/fish ←表示されなかったら`which fish`の結果を/etc/shellsに追記する $ chsh -s /usr/bin/fish fishermanのインストール fishermanというfishのプラグイン管理ツールがあります。
-fishermanのgithubベージにインストールコマンドが載っています。
-https://github.com/fisherman/fisherman
-$ curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish $ fisher -v fisher version 3.1.1 ~/.config/fish/functions/fisher.fish ※fisher -vでバージョンが出ない場合は、一回ターミナルを開き直してください。
-テーマの変更 fishはテーマを変更することで見栄えが変えられます。
-どのようなテーマがあるかは、以下ページが参考になります。
-https://github.com/oh-my-fish/oh-my-fish/blob/master/docs/Themes.md
-私は「bobthefish」というテーマを利用しており、以下手順でインストールしています。
-$ fisher install oh-my-fish/theme-bobthefish # fisherのバージョンによってはfisher installではなくfisher add bobthefishではPowerLineのフォントが必要なので、そちらもインストールします。</description>
+      <guid>https://blog2.logical-dice.com/posts/2019/03/10/linux-mint-terminator-fish/</guid>
+      <description>Linux Mintやubuntuにterminatorとfish&amp;amp;fisherman環境を構築する手順メモです</description>
     </item>
     
     <item>
       <title>Docker環境の構築手順</title>
-      <link>/posts/2019/01/25/linux-mint-docker/</link>
+      <link>https://blog2.logical-dice.com/posts/2019/01/25/linux-mint-docker/</link>
       <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2019/01/25/linux-mint-docker/</guid>
-      <description>■環境 Linux Mint 19.1
-ubuntu 19.10
- Linux Mint 18.3についてはコチラにて記載していましたが 19.1ではaptにて簡単にインストールできるようになっていたので再記載します。
-インストール手順 以下のコマンドを実行します。
-(ubuntuの場合はaptの前にsudoを付けてください)
-apt install docker.io docker-compose sudo gpasswd -a $USER docker service docker restart これで再起動すればdocker, docker-composeコマンドが使えるようになります。
-（ログアウトだけではdockerグループへの参加が上手く反映されないことがある。要再起動）</description>
+      <guid>https://blog2.logical-dice.com/posts/2019/01/25/linux-mint-docker/</guid>
+      <description>Linux MintやubuntuにてDockerをインストールする方法です</description>
     </item>
     
     <item>
       <title>プログラミング向けフォントのインストール</title>
-      <link>/posts/wp/1218/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/1218/</link>
       <pubDate>Fri, 13 Apr 2018 21:21:39 +0000</pubDate>
       
-      <guid>/posts/wp/1218/</guid>
-      <description>■環境 Linux Mint 18.3 cinnamon 64bit
-ubuntu 19.10
-macOS High Sierra 10.13.1
-(LinuxでもMacでも基本的に同じ操作でいけるはずです)
- ■フォントのインストール プログラミングに向いていると評判の日本語対応フォント『Ricty Diminished』をインストールします。
-確かに見やすいです。文字幅や文字の見分けやすさ（オーとゼロに違いとか）の点で良いです。
-まずはフォント一式をダウンロードします。
-ダウンロードする圧縮ファイルはこちらのページから確認できます。
-※(2019/11/14追記) URLが変わっていたので修正しました
-http://www.yusa.lab.uec.ac.jp/~yusa/ricty_diminished.html$ wget http://www.yusa.lab.uec.ac.jp/~yusa/ricty_diminished/ricty_diminished-4.1.1.tar.gz $ tar xf ricty_diminished-4.1.1.tar.gz 次にダウンロードしたフォントをフォントディレクトリへ移動します。
-【Macの場合】
-$ mv RictyDiminished*.ttf ~/Library/Fonts/. $ brew install fontconfig 【ubuntu, Linux Mintの場合】
-$ mkdir -p ~/.fonts $ mv RictyDiminished*.ttf ~/.fonts/. 最後にフォントを読み込みます
-$ fc-cache -vf $ rm -f ricty_diminished-4.1.1.tar.gz これでIDEなどでRicty Diminishedを指定すれば反映されます。
-少しオシャレ（？）なRicty Diminished Discordというフォントも指定できるようになりますので、お好みの方を選べば良いと思います。
-■おまけ 『Cica』というフォントも評価が良いので紹介しておきます。
-https://github.com/miiton/CicaRicty同様に文字幅や文字の見分けやすさが良く、Rictyと比べると少し丸みを帯びていて可愛いです。
-以下の手順でインストールできます。
-$ wget https://github.com/miiton/Cica/releases/download/v2.1.0/Cica_v2.1.0.zip $ unzip Cica_v2.</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/1218/</guid>
+      <description>プログラミングに向いている「Ricty Diminished」をインストールする手順です</description>
     </item>
     
     <item>
       <title>【Ubuntu】シャットダウンが遅い</title>
-      <link>/posts/wp/242/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/242/</link>
       <pubDate>Sun, 22 May 2016 00:35:22 +0000</pubDate>
       
-      <guid>/posts/wp/242/</guid>
-      <description>■環境
-Ubuntu 16.04
-Ubuntuを16.04にしたら、シャットダウンに時間がかかるようになったので対応します。
-参考： http://sicklylife.at-ninja.jp/memo/ubuntu1604/settings.htmlシステム設定ファイルを修正します。
-# vim /etc/systemd/system.conf 〜以下項目のコメントアウトを外して修正〜 DefaultTimeoutStopSec=10s </description>
+      <guid>https://blog2.logical-dice.com/posts/wp/242/</guid>
+      <description>■環境Ubuntu 16.04Ubuntuを16.04にしたら、シャットダウンに時間がかかるようになったので対応します。参考： &amp;hellip;</description>
     </item>
     
     <item>
       <title>【Ubuntu】デュアルブート環境で時計が狂うのを防ぐ</title>
-      <link>/posts/wp/239/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/239/</link>
       <pubDate>Sun, 22 May 2016 00:30:55 +0000</pubDate>
       
-      <guid>/posts/wp/239/</guid>
-      <description>■環境
-Ubuntu 16.04
-Windows10
-Ubuntuを16.04にしたら、デュアルブートのWindowsとUbuntuを切り替えた際に
-時刻がズレるようになったので対応します。
-参考：http://sicklylife.at-ninja.jp/memo/ubuntu1604/settings.html
-ターミナルで以下をコマンドを実行するのみです。
-sudo timedatectl set-local-rtc true</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/239/</guid>
+      <description>■環境Ubuntu 16.04Windows10Ubuntuを16.04にしたら、デュアルブートのWindowsとUbuntuを&amp;hellip;</description>
     </item>
     
     <item>
       <title>【Ubuntu】zsh&amp;preztoのインストール</title>
-      <link>/posts/wp/225/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/225/</link>
       <pubDate>Fri, 06 May 2016 10:29:33 +0000</pubDate>
       
-      <guid>/posts/wp/225/</guid>
-      <description>Ubuntuのターミナル（端末）でzsh＆preztoを使う設定です。
-Macの場合はこちら■環境
-Ubunt16.04
-①zshとgitをインストールしておきます
-16.04から「apt−get」ではなく「apt」になったようです。
-$ sudo apt install zsh $ sudo apt install git ②preztoを導入します。
-基本的な流れは「https://github.com/sorin-ionescu/prezto」の通りです。
-$ zsh ※設定画面が開いたら「q」を入力して抜ける。
-$ git clone --recursive https://github.com/sorin-ionescu/prezto.git &amp;quot;${ZDOTDIR:-$HOME}/.zprezto&amp;quot; $ chsh -s /usr/bin/zsh 次にpreztoを使うようにzshの設定をします。
-ターミナルに以下を貼り付けて実行します。（スクリプトファイルなどを作成する必要はなく、ターミナル直貼り付けでOK）
-setopt EXTENDED_GLOB for rcfile in &amp;quot;${ZDOTDIR:-$HOME}&amp;quot;/.zprezto/runcoms/^README.md(.N); do ln -s &amp;quot;$rcfile&amp;quot; &amp;quot;${ZDOTDIR:-$HOME}/.${rcfile:t}&amp;quot; done これでターミナルを開き直せばzshになるはずなのですが、なぜか端末を開き直してもzshにならなかったので
-ターミナルのメニューから「編集-&amp;gt;プロファイル編集」を開き、コマンドタブにてカスタムコマンド『zsh』を設定しました。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/225/</guid>
+      <description>Ubuntuのターミナル（端末）でzsh＆preztoを使う設定です。Macの場合はこちら■環境Ubunt16.04①zshとg&amp;hellip;</description>
     </item>
     
     <item>
       <title>Ubuntu16.04のインストール後にしたこと</title>
-      <link>/posts/wp/216/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/216/</link>
       <pubDate>Wed, 04 May 2016 23:54:50 +0000</pubDate>
       
-      <guid>/posts/wp/216/</guid>
-      <description>ubuntuの16.04が出ていたので、インストールしてみました。
-その際に実施した内容です。（随時更新していくと思います）
-ホームディレクトリを日本語から英語に変更する。ターミナル（端末）をbashからzshに変更FlashPlayerインストールデュアルブート時の時刻ずれ対応シャットダウンの高速化■その他ソフトウェアのインストール（UbuntuSoftwareでインストール）
-【WEBブラウザ】
-Chromium
-【PDF編集ソフト】
-Inkscape
-【DVD書き込みソフト】
-K3b</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/216/</guid>
+      <description>ubuntuの16.04が出ていたので、インストールしてみました。その際に実施した内容です。（随時更新していくと思います）■ホー&amp;hellip;</description>
     </item>
     
     <item>
       <title>【Ubuntu】InkscapeでPDFを開くとズレてしまう場合</title>
-      <link>/posts/wp/196/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/196/</link>
       <pubDate>Thu, 04 Feb 2016 12:37:03 +0000</pubDate>
       
-      <guid>/posts/wp/196/</guid>
-      <description>知っている人にとっては当たり前の話かもしれませんが
-InkscapeでPDFを編集しようと開くと、一部文字がズレてしまう事象に困っていました。
-対応方法はInkscapeで開く際に出てくるポップアップで
-「import via Poppler」にチェックを入れてから「OK」をクリックだけです。
-今まではポップアップは何も触らず「OK」をクリックしてました。
-ちゃんと操作方法は調べなければいけないと思いました。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/196/</guid>
+      <description>知っている人にとっては当たり前の話かもしれませんがInkscapeでPDFを編集しようと開くと、一部文字がズレてしまう事象に困っ&amp;hellip;</description>
     </item>
     
     <item>
       <title>【Ubuntu】UXtermの設定</title>
-      <link>/posts/wp/136/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/136/</link>
       <pubDate>Wed, 02 Dec 2015 21:41:14 +0000</pubDate>
       
-      <guid>/posts/wp/136/</guid>
-      <description>ubuntuのターミナルは「UXterm」と普通の「端末」がありますが、
-UXtermの方がカスタマイズできたりするので、UXtermを設定して使います。
-■環境
-ubuntu 15.04
-UXterm用の設定ファイル(~/.Xresources)を作成し、以下を貼り付けます。
-これはあくまで私の設定ですので、適当に変更して良いです
-UXTerm*utf8 : 1 UXTerm*locale : true UXTerm*selectToClipboard : true UXTerm*faceName : Dejavu Sans Mono:style=book UXTerm*faceNameDoublesize : Takao Pゴシック,TakaoPGothic:style=Regular UXTerm*faceSize : 11 UXTerm*background : black UXTerm*foreground : white UXTerm*saveLines : 2000 UXTerm*geometry : 100x20+100+100 編集が終ったら、以下コマンドで反映させます。
-xrdb ~/.Xresources
-あとはUXtermを再起動させれば反映されます。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/136/</guid>
+      <description>ubuntuのターミナルは「UXterm」と普通の「端末」がありますが、UXtermの方がカスタマイズできたりするので、UXte&amp;hellip;</description>
     </item>
     
     <item>
       <title>【Ubuntu】atomのインストール</title>
-      <link>/posts/wp/139/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/139/</link>
       <pubDate>Wed, 02 Dec 2015 21:37:16 +0000</pubDate>
       
-      <guid>/posts/wp/139/</guid>
-      <description>Ubuntu環境にテキストエディタのatomをインストールする手順です。
-■環境
-ubuntu 15.04
-以下サイトよりインストーラ（.deb）をダウンロードしてください。
-https://atom.io/ダウンロードしたディレクトリで以下コマンドを実行し、debファイルよりインストールしてください。
-sudo dpkg -i atom-amd64.deb 以上でインストール完了です。
-ランチャーにて「atom」を検索すると表示されます。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/139/</guid>
+      <description>Ubuntu環境にテキストエディタのatomをインストールする手順です。■環境ubuntu 15.04以下サイトよりインストーラ&amp;hellip;</description>
     </item>
     
     <item>
       <title>【Ubuntu】exfat形式の外部メモリのマウントができない</title>
-      <link>/posts/wp/130/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/130/</link>
       <pubDate>Sun, 15 Nov 2015 22:05:23 +0000</pubDate>
       
-      <guid>/posts/wp/130/</guid>
-      <description>■環境
-ubuntu 15.04
-Ubuntuはデフォルトでは「exfat」のフォーマットに対応していないので、
-外部メモリをマウントしようとすると
-mount: unknown filesystem type &#39;exfat&#39; というエラーが出ます。
-※上記はコマンドラインでmountコマンドを実施した際に出力されます。
-外部メモリを挿した時にUI上では違う「exsisted」エラーが出てくる可能性があります。
-その場合は、以下のコマンドを実施すると「exfat」フォーマットのメモリも扱えるようになります。
-$ sudo apt-get install exfat-fuse exfat-utils </description>
+      <guid>https://blog2.logical-dice.com/posts/wp/130/</guid>
+      <description>■環境ubuntu 15.04Ubuntuはデフォルトでは「exfat」のフォーマットに対応していないので、外部メモリをマウント&amp;hellip;</description>
     </item>
     
     <item>
       <title>【Ubuntu】JDKとNetBeans IDEのインストール</title>
-      <link>/posts/wp/69/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/69/</link>
       <pubDate>Wed, 16 Sep 2015 23:18:43 +0000</pubDate>
       
-      <guid>/posts/wp/69/</guid>
-      <description>開発環境としてUbuntuにJDKとNetBeansをインストールします。
-■環境
-Ubuntu 15.04
-openjdk 8
-NetBeans 8.0.2
-JDKがインストールされているか確認し、なければインストールします。
-$ javac -version プログラム &#39;javac&#39; は以下のパッケージで見つかりました: * default-jdk * ecj * gcj-4.9-jdk * openjdk-7-jdk * gcj-4.8-jdk * openjdk-6-jdk * openjdk-8-jdk 次の操作を試してください: sudo apt-get install &amp;lt;選択したパッケージ&amp;gt; $ sudo apt-get install openjdk-8-jdk $ javac -version Picked up JAVA_TOOL_OPTIONS: -javaagent:/usr/share/java/jayatanaag.jar javac 1.8.0_45-internal https://netbeans.org/downloads/index.htmlよりNetBeansをダウンロードします。
-各開発言語毎に用意されていますが、迷う様なら「すべて」を選択すれば良いと思います。
-私は使用言語が特定の言語に限らなかったので「すべて」を選択しました。
-ダウンロードしたNetBeansのインストールスクリプトを実行します。
-$ cd ~/Downloads $ sh netbeans-8.0.2-linux.sh インストーラが立ち上がるので、必要に応じてインストール場所を変えたりしながら進めていきます。
-インストーラでの処理が終わったら、インストール完了です。
-ランチャーにて「NetBeans」で検索すれば出てくるようになります。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/69/</guid>
+      <description>開発環境としてUbuntuにJDKとNetBeansをインストールします。■環境Ubuntu 15.04openjdk 8Net&amp;hellip;</description>
     </item>
     
     <item>
       <title>【Ubuntu】FlashPlayerのインストール</title>
-      <link>/posts/wp/57/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/57/</link>
       <pubDate>Thu, 27 Aug 2015 21:56:00 +0000</pubDate>
       
-      <guid>/posts/wp/57/</guid>
-      <description>UbuntuのブラウザでFlashPlayerをインストールする手順です。
-■Firefoxの場合
-AdobeよりFlashPlayerをダウンロードします。
-この記事を書いた時は「install_flash_player_11_linux.x86_64.tar.gz」をダウンロードしました。
-ダウンロードしたファイルを解凍してできたディレクトリに入り、
-必要なファイルをコピーしていきます。
-sudo cp -a libflashplayer.so /usr/lib/chromium-browser/libs/. sudo cp -a usr/* /usr/. ■Cromiumの場合
-以下のコマンドだけでインストールできます。&amp;lt;del datetime=&amp;quot;2016-06-21T14:36:14+00:00&amp;quot;&amp;gt;sudo apt-get install pepperflashplugin-nonfree&amp;lt;/del&amp;gt; &amp;lt;del datetime=&amp;quot;2016-05-04T14:36:14+00:00&amp;quot;&amp;gt;sudo update-pepperflashplugin-nonfree --install&amp;lt;/del&amp;gt; ※（2016/6/21編集）上記コマンドでのインストールでは最新版のFlashプレイヤーが取得できなくなています。
-Adobeの公式サイトでダウンロードできるので、そちらから入手しましょう。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/57/</guid>
+      <description>UbuntuのブラウザでFlashPlayerをインストールする手順です。■Firefoxの場合AdobeよりFlashPlay&amp;hellip;</description>
     </item>
     
     <item>
       <title>【Ubuntu】ホームディレクトリを日本語から英語にする</title>
-      <link>/posts/wp/48/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/48/</link>
       <pubDate>Thu, 27 Aug 2015 21:36:09 +0000</pubDate>
       
-      <guid>/posts/wp/48/</guid>
-      <description>日本語版Ubuntuをインストールすると、ホームディレクトリ内のディレクトリ名が日本語になっています。 コマンドラインで操作する時に日本語があると不都合があるので、英語表記に変更します。 例）音楽⇛Music
-ターミナルを開いて、以下コマンドを実行します。
-LANG=C xdg-user-dirs-gtk-update 確認ダイアログが表示されるので『Update Names』ボタンを押下します。
-これでディレクトリ名が英語になります。
-PCを再起動後、再度確認ダイアログが表示されるので
-『次回から表示しない』をチェックして『古い名前のままにする』を押下します。
-これで今後は再起動後もディレクトリ名が英語のままとなります。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/48/</guid>
+      <description>日本語版Ubuntuをインストールすると、ホームディレクトリ内のディレクトリ名が日本語になっています。コマンドラインで操作する時&amp;hellip;</description>
     </item>
     
   </channel>

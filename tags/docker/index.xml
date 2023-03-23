@@ -1,161 +1,73 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Docker on Nonsense J</title>
-    <link>/tags/docker/</link>
-    <description>Recent content in Docker on Nonsense J</description>
+    <title>Docker on Logical Dice 技術ブログ</title>
+    <link>https://blog2.logical-dice.com/tags/docker/</link>
+    <description>Recent content in Docker on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Thu, 15 Aug 2019 00:00:00 +0000</lastBuildDate><atom:link href="/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 15 Aug 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>SSHポートフォワーディングでローカルから外部サーバーへアクセスする</title>
-      <link>/posts/2019/08/15/ssh-portfowarding/</link>
+      <link>https://blog2.logical-dice.com/posts/2019/08/15/ssh-portfowarding/</link>
       <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2019/08/15/ssh-portfowarding/</guid>
-      <description>環境  amazonlinux:2017.03-with-sources  Dockerコンテナのベースイメージです。 sshクライアント用のソフトはyumでインストールしてあるとします。     やりたい事 ローカル環境(Docker)で動かしているアプリケーションから
-アクセス制限のかかっているAPIサーバーやDBサーバーへアクセスしたかったので
-SSHポートフォワーディングを使って実現しました。
-SSHポートフォワーディングを使えば、自分が特定のポートで受けた通信を特定のサーバー(SSHで入れる事が条件)を経由して別のサーバーへ受け流す事ができるようになります。
-コマンドは以下のように実行します。
-ssh -f -N -L {自分が待ち受けるポート}:{アクセスしたいサーバーのIPやホスト名}:{アクセスしたいサーバーのポート} -i {SSHするための秘密鍵のパス} {SSH先のユーザー}@{SSH先のサーバー} -p {SSHポート} -4 (sshのオプション説明は調べればすぐ出てくるので割愛します)
-例えば以下のようにコマンドを打つと
-自分が10080ポートで受けた通信はserver2経由でserver1の80ポートに流して、そのレスポンスをそのままリクエスト元に戻す
-という意味になります。
-なお、server2はポート22でec2-userユーザーにSSH接続できるものとします。(秘密鍵認証)
-ssh -f -N -L 10080:server1:80 -i ~/.ssh/id_rsa ec2-user@server2 -p 22 -4 手順 ①純粋なポートフォワーディングを使う 下図のような通信イメージです。
- WEBアプリのコンテナにてSSHポートフォワーディングを実行。 WEBアプリから自身の3306ポートへ通信が発生したらポートフォワーディング発動し、
-ssh.server.com経由でdb.server.com:3306へアクセスする。 WEBアプリから自身の10443ポートへ通信が発生したらポートフォワーディング発動し、
-ssh.server.com経由でapi.server.com:443へアクセスする。  WEBアプリが動いているDockerコンテナ内にてSSHポートフォワーディングのコマンドを実行します。
-ssh -f -N -L 3306:db.server.com:3306 -L 10443:api.server.com:443 -i /path/to/secret_key user@ssh.server.com -p 22 -4 あとはアプリケーション内で以下の箇所を変更すればポートフォワーディングでアクセスできるようになります。
-・「db.server.com:3306」の通信箇所を「localhost:3306」へ通信するよう変更
-・「api.server.com:443」の通信箇所を「localhost:10443」へ通信するよう変更</description>
+      <guid>https://blog2.logical-dice.com/posts/2019/08/15/ssh-portfowarding/</guid>
+      <description>SSHポートフォワーディングを使ってローカルのDocker環境からSSHサーバーを踏み台にして別サーバーへアクセスさせる手順です。</description>
     </item>
     
     <item>
       <title>Docker環境の構築手順</title>
-      <link>/posts/2019/01/25/linux-mint-docker/</link>
+      <link>https://blog2.logical-dice.com/posts/2019/01/25/linux-mint-docker/</link>
       <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2019/01/25/linux-mint-docker/</guid>
-      <description>■環境 Linux Mint 19.1
-ubuntu 19.10
- Linux Mint 18.3についてはコチラにて記載していましたが 19.1ではaptにて簡単にインストールできるようになっていたので再記載します。
-インストール手順 以下のコマンドを実行します。
-(ubuntuの場合はaptの前にsudoを付けてください)
-apt install docker.io docker-compose sudo gpasswd -a $USER docker service docker restart これで再起動すればdocker, docker-composeコマンドが使えるようになります。
-（ログアウトだけではdockerグループへの参加が上手く反映されないことがある。要再起動）</description>
+      <guid>https://blog2.logical-dice.com/posts/2019/01/25/linux-mint-docker/</guid>
+      <description>Linux MintやubuntuにてDockerをインストールする方法です</description>
     </item>
     
     <item>
       <title>WindowsでDocker Toolbox＆docker-composeを動かす</title>
-      <link>/posts/wp/1500/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/1500/</link>
       <pubDate>Fri, 21 Sep 2018 17:55:45 +0000</pubDate>
       
-      <guid>/posts/wp/1500/</guid>
-      <description>仕事でWindows利用者にDocker環境を構築してもらう事があったのですが
-結構苦労したので手順を残します。
-■□ 注意■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□
-MacやLinuxでdocker-composeを普通に使える前提で手順を書きます。 Dockerやdocker-compose自体の説明はあまり書きません □■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□
-もし、Windows10 64bit(Home以外)を使っている人であればこの記事の作業は不要です。
-Docker ToolboxではなくDocker for Windowsをインストールしてください。
-（たぶん、Docker for Windowsの方が楽に構築できると思われます）
-Docker Toolboxのインストール まずDocker Toolboxをダウンロードします。
-以下のページにてDocker Toolboxをダウンロードしてください。
-https://docs.docker.com/toolbox/overview/#ready-to-get-startedダウンロードしてきたEXEファイルを実行するとインストーラーが走りますので、
-そのまま次へ次へと進みます。
-インストールが完了すると『Docker Quickstart Terminal』というショートカットが
-デスクトップに作られるので実行します。
-しばらく待つとDockerが立ち上がります。(クジラのAAが表示されます)
-docker-compose.ymlの作成 docker-compose.ymlを書きます。
-基本的な書き方はMacやLinuxと同じなので割愛します。
-気をつけなければいけないのはvolumesの書き方です。
-相対パスで記載する場合は以下のように他OS同様の記載ができます。
-volumes: ./php.ini:/etc/php.ini 次に絶対パスで記載する場合ですが、「C:¥」の部分は「/c/」と書きます。
-例えば「C:¥develop¥app」にあるディレクトリを共有する場合は以下のような記載になります。
-volumes: /c/develop/app:/var/www/html 後に出てくるVirtualboxの共有フォルダ設定次第ではこの通りにしない事も可能かもしれませんが、
-できるだけシンプルに構築するため、このようにします。
-もしMySQLのコンテナを作成する場合は
-データの永続化のためのホスト側ディレクトリを指定することはできません。
-つまり、この書き方だとNGで
-services: mysql: 〜中略〜 volumes: - ./mysql/data:/var/lib/mysql この書き方ならOKです
-services: mysql: 〜中略〜 volumes: - mydb:/var/lib/mysql 〜中略〜 volumes: mydb VirtualBoxの設定 Docker Toolboxでコンテナを動かす場合に一番引っかかる部分かもしれません。
-ポートフォワーディングの設定 docker-compose.ymlにてポートフォワーディングを8080:80と設定しただけでは
-ローカルPCにて http://localhost:8080にアクセスしてもDockerコンテナに
-リクエストは飛びません。
-なぜかというと、WindowsでDocker Toolboxを使ってコンテナを動かした場合は</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/1500/</guid>
+      <description>仕事でWindows利用者にDocker環境を構築してもらう事があったのですが結構苦労したので手順を残します。■□ 注意 ■□■&amp;hellip;</description>
     </item>
     
     <item>
       <title>【Linux Mint】Dockerの導入</title>
-      <link>/posts/wp/1162/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/1162/</link>
       <pubDate>Mon, 09 Apr 2018 21:06:39 +0000</pubDate>
       
-      <guid>/posts/wp/1162/</guid>
-      <description>■環境 Linux Mint 18.3 cinnamon 64bit
- Dockerのインストール dockerのGPGを追加
-$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - dockerリポジトリ追加
-$ sudo add-apt-repository &amp;quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable&amp;quot; dockerインストール
-$ apt update $ apt install docker-ce docker-composeのインストール $ apt install docker-compose sudo無しでdockerを使えるようにする 現在のユーザーをdockerというグループに所属させれば使えるようになるらしい。
-sudo gpasswd -a $USER docker service docker restart これで、一度ログアウトすればsudo無しでdockerコマンドが使えるようになります。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/1162/</guid>
+      <description>■環境Linux Mint 18.3 cinnamon 64bitDockerのインストールdockerのGPGを追加$ cur&amp;hellip;</description>
     </item>
     
     <item>
       <title>docker-composeチートシート</title>
-      <link>/posts/wp/1071/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/1071/</link>
       <pubDate>Mon, 29 Jan 2018 13:35:42 +0000</pubDate>
       
-      <guid>/posts/wp/1071/</guid>
-      <description>環境 macOS High Sierra 10.13.2
-docker-compose 1.18.0
- ■よく使いそうなコマンド yamlで指定したサービスを全て生成＆起動する docker-compose up -d ※-dオプションを付けるとバックグラウンドで起動する
-ビルドが必要なコンテナはビルドも走る
-現在稼働しているコンテナを確認する docker-compose ps 現在稼働しているコンテナを全て停止＆削除する docker-compose down  ■サービスを個別に操作するコマンド サービス指定でコンテナを生成する docker-compose create {サービス名} サービス指定でコンテナを起動する docker-compose start {サービス名} createとstartを１発で実施する docker-compose run -d {サービス名} サービス指定でコンテナを停止する docker-compose stop {サービス名} ※createやrunコマンド実行時は、指定したサービスにdepends_on等で紐づけられているサービスも一緒に起動する</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/1071/</guid>
+      <description>環境macOS High Sierra 10.13.2docker-compose 1.18.0■よく使いそうなコマンドyaml&amp;hellip;</description>
     </item>
     
     <item>
       <title>Dockerチートシート</title>
-      <link>/posts/wp/842/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/842/</link>
       <pubDate>Tue, 28 Nov 2017 16:22:31 +0000</pubDate>
       
-      <guid>/posts/wp/842/</guid>
-      <description>DockerHubにログイン まずこれをしておかないとDockerHubにて公開されているイメージを取ってこれない。 ※要DockerHubアカウント
-docker login Dockerイメージ作成 Dockerfileからイメージを作成する。 Dockerfileの作り方そのものは割愛。
-docker build --no-cache=true -t {好きなイメージ名} {Dockerfileがあるディレクトリパス} 現在ローカルにあるイメージ確認 docker images イメージからコンテナ作成 docker run -itd -h {好きなホスト名} -v {ホストのディレクトリ}:{コンテナのディレクトリ} --name {好きなコンテナ名} -p {ホスト側ポート}:{コンテナ側ポート}　{イメージ名} {実行コマンド} ■補足 【vオプション】 ホストのディレクトリとコンテナのディレクトリを共有するオプション 例えば-v /home:/homeとすると、ホストのhomeディレクトリとコンテナのhomeディレクトリの中身が同期される。
-【pオプション】 ホスト側にどのポートにアクセスがあった場合、コンテナのどのポートに流すかを設定する。 例えば-p 80:80とすればホストの80ポートへのアクセスはコンテナの80ポートへ流れる。　複数ポートを設定したい場合は-p 80:80 -p 443:443のように複数指定する事も可能。
-また、ホスト側が複数IPアドレスを持っている場合などに-p 192.168.1.1:80:80のようにIPアドレスを指定する事も可能。
-【実行コマンド】
-Dockerfileにて実行コマンドを指定していた場合は省略可能。　特定のコマンドを実行したい訳でない場合は/bin/bashを指定しておくと無難。　コンテナ一覧を確認する docker ps -a -aオプションをつけないと停止しているコンテナは表示されない。
-ホストからコンテナに入る docker exec -it {コンテナ名} {実行シェル} ■補足 【実行シェル】
-どのシェルでログインしたいか。 分からなければbashにしておくと無難。
-コンテナを停止する docker stop {コンテナ名} コンテナを起動する docker start {コンテナ名} コンテナを削除する コンテナが停止している状態で以下を実行。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/842/</guid>
+      <description>DockerHubにログインまずこれをしておかないとDockerHubにて公開されているイメージを取ってこれない。※要Docke&amp;hellip;</description>
     </item>
     
     <item>
       <title>MacにDocker環境を作る</title>
-      <link>/posts/wp/642/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/642/</link>
       <pubDate>Mon, 08 May 2017 11:01:23 +0000</pubDate>
       
-      <guid>/posts/wp/642/</guid>
-      <description>■環境 macOS Sierra 10.12.4
- Dockerのインストール 公式ページ(こちら)の「Get Docker for Mac(Stable)」をクリックし、
-Dockerのdmgをダウンロードする。
-ダウンロードしたdmgを実行すると「Docker.app」を「Applications」へドラッグ＆ドロップするよう表示されるので、
-その通りに実施する。
-これで、LaunchpadにDockerが追加されましたので、クリックして起動します。
-初回起動時に設定が走るので、Macのパスワードを聞かれます。
-しばらく設定が走り、「Docker is now up and running!」が表示されれば設定完了です。
-ターミナルを立ち上げ、以下コマンドを実行するとDockerのバージョンを返すようになっているはずです。
-docker version 問題なければ「Got it」をクリックしてDockerのウィンドウを閉じます。
-ウィンドウを閉じてもバックグラウンドで動いているので、
-ステータスバーに鯨のアイコンが表示されています。
-初期設定 デフォルトではMacにログオンしたら自動でDockerが起動するようになっていますが、
-普段はDockerを起動しておく必要がない場合はステータスバーの鯨をクリックし、
-Preferences &amp;gt; General &amp;gt; Start Docker when you log inのチェックボックスを外しておきます。
-（検証時のみDockrが欲しい人など）
-その場合、Dockerを利用するタイミングでLaunchpadからDockerを起動してください。
-その他、Dockerコンテナと共有するディレクトリなどもPreferencesで変更できるので、
-必要に応じて設定を変更してください。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/642/</guid>
+      <description>■環境macOS Sierra 10.12.4Dockerのインストール公式ページ(こちら)の「Get Docker for M&amp;hellip;</description>
     </item>
     
   </channel>

@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>【Wordpress】テーマで指定されたCSSがうまく読み込めない &middot; Nonsense J</title>
+	<title>【Wordpress】テーマで指定されたCSSがうまく読み込めない|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,13 +70,14 @@
 	<div class="post">
 		<h1 class="post-title">【Wordpress】テーマで指定されたCSSがうまく読み込めない</h1>
 		<div class="post-info">
-				<time datetime="2017-08-21 01:57:10 &#43;0000 UTC">August 21, 2017</time>
+				<p class="publish-date">投稿日：<time datetime="2017-08-21 01:57:10 &#43;0000 UTC" class="catalogue-time">2017-08-21</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/wordpress/">Wordpress</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/wordpress/">Wordpress</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<p>Wordpressで他人が作成したテーマを使っているとCSSがうまく読み込めない時があります。<br>
 条件としては以下の両方に当てはまっている場合だと思います。</p>
 <ul>
@@ -53,34 +85,29 @@
 <li>テーマ内にstyle.css以外のCSSファイルがあり、それをwp_enqueue_styleを使って読み込んでいる</li>
 </ul>
 <p>このとき、ブラウザの開発ツールでコンソールを表示すると、以下のようなエラーが発生していると思います。</p>
-<pre><code>Access to Font at 'http://yourdomain1.com/wp-content/themes/sparkling/assets/fonts/glyphicons-halflings-regular.woff2' from origin 'http://yourdomain2.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://yourdomain2.com' is therefore not allowed access.  
+<pre tabindex="0"><code>Access to Font at &#39;http://yourdomain1.com/wp-content/themes/sparkling/assets/fonts/glyphicons-halflings-regular.woff2&#39; from origin &#39;http://yourdomain2.com&#39; has been blocked by CORS policy: No &#39;Access-Control-Allow-Origin&#39; header is present on the requested resource. Origin &#39;http://yourdomain2.com&#39; is therefore not allowed access.  
 </code></pre><p>クロスドメインなどが原因のようなのですが、手早く直したかったので<br>
 以下の修正をして直しました。</p>
 <p>①wp_enqueue_styleをしている箇所をコメントアウトする。(テーマによるが、function.phpなどに記載あり)</p>
-<pre><code>// wp_enqueue_style( 'bs', get_template_directory_uri() . '/assets/css/bootstrap.min.css' );  
-// wp_enqueue_style( 'awe', get_template_directory_uri() . '/assets/css/font-awesome.min.css' );  
+<pre tabindex="0"><code>// wp_enqueue_style( &#39;bs&#39;, get_template_directory_uri() . &#39;/assets/css/bootstrap.min.css&#39; );  
+// wp_enqueue_style( &#39;awe&#39;, get_template_directory_uri() . &#39;/assets/css/font-awesome.min.css&#39; );  
 </code></pre><p>②htmlのheadタグ内にてCSS読み込み処理を記載する。(テーマによるが、header.phpなどに記載あり)<br>
 ※以下例ではCDNを指定しています。</p>
-<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css&quot;&gt;  
-&lt;link rel=&quot;stylesheet&quot; href=&quot;//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css&quot;&gt;  
+<pre tabindex="0"><code>&lt;link rel=&#34;stylesheet&#34; href=&#34;//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css&#34;&gt;  
+&lt;link rel=&#34;stylesheet&#34; href=&#34;//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css&#34;&gt;  
 </code></pre><p>これで正常にCSSが読み込まれ、ブラウザのコンソールからもエラーが消えました。</p>
 
-	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/689/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/703/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
 	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.286576 &#43;0900 JST m=&#43;0.106170501">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

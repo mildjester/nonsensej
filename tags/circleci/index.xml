@@ -1,120 +1,46 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>CircleCI on Nonsense J</title>
-    <link>/tags/circleci/</link>
-    <description>Recent content in CircleCI on Nonsense J</description>
+    <title>CircleCI on Logical Dice 技術ブログ</title>
+    <link>https://blog2.logical-dice.com/tags/circleci/</link>
+    <description>Recent content in CircleCI on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Mon, 04 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="/tags/circleci/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 04 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/circleci/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CircleCIからAWS Code Deployを実行する</title>
-      <link>/posts/2019/03/04/aws-code-deploy-circleci/</link>
+      <link>https://blog2.logical-dice.com/posts/2019/03/04/aws-code-deploy-circleci/</link>
       <pubDate>Mon, 04 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2019/03/04/aws-code-deploy-circleci/</guid>
-      <description>前記事にてCodeDeployの設定は完了したので、それをCircleCIから実行します。
-公式の手順ではS3に一度ソースコードを置いてからEC2に展開しているのですが、
-できればS3は使いたくなかったのでこちらの記事を参考にしました。
-CircleCI+AWS-CodedeployでStaging環境などに自動デプロイさせる
-IAM準備 CircleCI用のIAMユーザーを作成します。
-まず適当なユーザー名をつけ、アクセスの種類は『プログラムによるアクセス』にチェックをつけ次のステップへ進みます。
-既存ポリシーの『AWSCodeDeployFullAccess』を付与して次のステップへ進みます。
-タグは不要なので、そのまま次のステップに進んで大丈夫です。
-ユーザーの作成をします。
-作成したユーザーの「アクセスキーID」と「シークレットアクセスキー」をメモして終了です。
-※シークレットアクセスキーはこのタイミングでしか確認できないので忘れないよう注意
-CircleCIの設定ファイル作成 リポジトリ内に.circleci/config.ymlを作成し、以下のように記載します。
-version: 2 jobs: deploy: docker: - image: cdssnc/aws-cli steps: - run: name: &amp;quot;Set AWS region&amp;quot; command: aws configure set region ap-northeast-1 - run: name: &amp;quot;Run AWS CodeDeploy&amp;quot; command: aws deploy create-deployment --application-name ${DEPLOY_APPLICATION} --deployment-group-name ${DEPLOY_GROUP} --github-location repository=&amp;quot;${DEPLOY_REPOSITORY}&amp;quot;,commitId=&amp;quot;${CIRCLE_SHA1}&amp;quot; workflows: version: 2 build_deploy: jobs: - deploy: filters: branches: only: master AWS CodeDeployをキックすることしか記載していないので、他にも処理が必要な場合は追記してください。
-なお、以下の値は後ほどCircleCIの環境変数にて設定するので変数にしています。
-変数にせずに直接config.ymlに書き込んでも良いです。
-   変数名 内容     DEPLOY_APPLICATION 前記事にて設定したCodeDeployのアプリケーション名   DEPLOY_GROUP 前記事にて設定したCodeDeployのデプロイグループ   DEPLOY_REPOSITORY デプロイ対象のGitHubリポジトリ(「ユーザー名/リポジトリ名」形式)    作成できたらGitHubのmasterブランチにプッシュしておきます。</description>
+      <guid>https://blog2.logical-dice.com/posts/2019/03/04/aws-code-deploy-circleci/</guid>
+      <description>S3を使わずCircleCIからAWS Code Deployを実行する方法です</description>
     </item>
     
     <item>
       <title>CircleCIの通知をSlackへ飛ばす</title>
-      <link>/posts/wp/1573/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/1573/</link>
       <pubDate>Sun, 14 Oct 2018 22:01:37 +0000</pubDate>
       
-      <guid>/posts/wp/1573/</guid>
-      <description>参考サイト CircleCIの結果をSlackに通知する 以下のCircle CIの基本設定は完了している前提とします。
-Circle CIでプルリク時にUnitテストが走るようにする上記手順を実施しただけではCircle CIの通知はメールで届くので
-それをSlackに届くよう変更します。
-Slackの設定 まず、SlackにCircle CIアプリをInstallします。
-https://my.slack.com/apps/A0F7VRE7N-circleciInstallをクリックすると、通知するチャンネルを選択する画面が表示されます。
-好きなチャンネルを指定してください。
-次の画面でCircle CIの設定画面にて何をすれば良いか説明してくれます。
-Circle CIに設定するWebhookのURL（通知を飛ばすためのURL）が表示されているので確認しておいてください。
-また、その説明の下に通知時の名前やアイコンを変更できる欄があるので、変更したければ変更してください。
-Circle CIの設定 該当プロジェクトの画面にて設定(歯車アイコン)をクリックし、設定画面を開きます。
-左メニューより『NOTIFICATIONS &amp;gt; Chat Notifications』を開き、
-『Webhook URL』へ先ほどSlackの画面にて確認したWebhook URLを入力して『Save』をクリックします。
-ここで『&amp;amp; Test Hook』をクリックすると設定したチャンネルにテスト通知が届きます。
-ちゃんと設定できたか確認するために実行しておくと良いと思います。
-上記のように「Hello from CircleCI」が届けば、設定完了です。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/1573/</guid>
+      <description>参考サイトCircleCIの結果をSlackに通知する以下のCircle CIの基本設定は完了している前提とします。Circle&amp;hellip;</description>
     </item>
     
     <item>
       <title>CircleCIで自動デプロイする</title>
-      <link>/posts/wp/1538/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/1538/</link>
       <pubDate>Sat, 13 Oct 2018 23:20:06 +0000</pubDate>
       
-      <guid>/posts/wp/1538/</guid>
-      <description>参考サイト Circle CIでwebサイトを自動デプロイ GitHubのmasterブランチへマージされたらサーバーにデプロイされるようにする方法です。
-ソースコードはPHPを前提としています。
-こちらのCircleCIを動かす基本設定は完了している前提とします。
-Circle CIでプルリク時にUnitテストが走るようにするCI用ユーザ準備 まず、CircleCIからデプロイするサーバーへSSH接続する為の鍵ペアを作成します。
-既存の鍵ペアを使っても動きますが、念のためCI用は別にしておいた方が良いと思います。
-ssh-keygen -t rsa -b 4096 -C &amp;quot;ci@nonsensej.xyz&amp;quot; -f ~/.ssh/ci-key 上記コマンドを実行するとパスフレーズを２回聞かれますが、どちらも空のままエンターで良いです。
-鍵生成が完了したらホームディレクトリの.ssh配下にci-key(秘密鍵)とci-key.pub(公開鍵)が生成されます。
-ci-key.pubは後工程で使いますので、中身を確認しておいてください。
-※上記コマンドで鍵ファイル名をci-keyと指定していますが、これは任意の名前で良いです。
-次に、デプロイするサーバー上でデプロイする為のユーザーを作成し、
-さきほど作成した鍵ペアでSSH接続できるようにします。
-こちらも既存ユーザーを使っても動きますが、念のためCI用は別にしておいた方が良いと思います。
-adduser -g nginx ciuser su - ciuser mkdir .ssh vim .ssh/authorized_keys // ci-key.pubの内容を貼り付け CircleCI管理画面設定 次にCircleCIのWEBコンソールで設定をします。
-該当プロジェクトの画面にて設定(歯車アイコン)をクリックし、設定画面を開きます。
-SSH Keyの設定 左メニューより『PERMISSIONS &amp;gt; SSH Permissions』を開き、『Add SSH Key』をクリックします。
-ポップアップが開くので、以下を設定します。
-Hostname : デプロイするサーバーのホスト名
-Private Key : 最初に作ったci-keyの中身全て
-完了したら、今登録した鍵情報のFingerprintが表示されるので確認しておきます。
-（後工程のCircleCI設定ファイル編集時に使います）
-環境変数の設定 後工程で編集するCircleCI設定ファイルで環境変数を使うことができるので設定します。
-この作業は別に必須ではないです。
-設定ファイルを使いまわしたい場合は、環境により変動する部分を環境変数にしておいてもいいかもしれません。
-左メニューより『BUILD SETTINGS &amp;gt; Environment Variables』を開き、『Add Variable』をクリックします。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/1538/</guid>
+      <description>参考サイトCircle CIでwebサイトを自動デプロイGitHubのmasterブランチへマージされたらサーバーにデプロイされ&amp;hellip;</description>
     </item>
     
     <item>
       <title>CircleCIでプルリク時にUnitテストが走るようにする</title>
-      <link>/posts/wp/1477/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/1477/</link>
       <pubDate>Tue, 14 Aug 2018 01:30:40 +0000</pubDate>
       
-      <guid>/posts/wp/1477/</guid>
-      <description>CircleCIを使って、GitHubにてプルリクエストを投げた際に
-Unitテストが走るようにします。
-ソースコードはPHPで、Unitテストにはphpunitを使っている前提とします。
-Circle CIのアカウント登録 Circle CIのホームページにアクセスし、右上のSign Upをクリックします。
-GitHubかBitBucketのアカウントでログインできるようです。
-今回はGitHubのアカウントでログインしました。
-連携を許可するか聞かれるのでAuthorize circleciをクリックします。
-Circle CIにプロジェクト作成 アカウント作成が完了したらプロジェクト作成するためAdd Projectsをクリックします。
-紐付けるリポジトリのSet Up Projectをクリックします。
-対象リポジトリの環境を設定します。
-該当するものをクリックします。
-下にスクロールすると今後の流れが書いてあります。
-まず該当リポジトリに.circleci/config.ymlを作成します。
-config.ymlの内容はとりあえず内容はCopy To Clipboardでコピーしたもの(2018/8/11現在)に
-以下の修正を加えたものにしています。
-①Dockerイメージ変更Dockerイメージを自分のサーバーの環境に近いものに変更します。
-どのようなイメージがあるかは詳細はDockerHubで確認してください。
-https://hub.docker.com/r/circleci/(使いたいDockerイメージが別にであるなら、circleci公式のイメージじゃなくても動くらしい)
-なお、サンプルのconfig.ymlに書いてあったcircleci/php:7.1.5-browsersは存在しません。
-サンプルのまま実行すると以下のエラーが発生します。
-Error response from daemon: manifest for circleci/php:7.1.5-browsers not found ②phpunit実行コマンドを変更composerなどでphpunitを入れている場合はコマンドが違うと思うので変更します。
-出来上がったconfig.ymlが以下です
-# PHP CircleCI 2.0 configuration file # # Check https://circleci.com/docs/2.0/language-php/ for more details # version: 2 jobs: build: docker: # specify the version you desire here #- image: circleci/php:7.</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/1477/</guid>
+      <description>CircleCIを使って、GitHubにてプルリクエストを投げた際にUnitテストが走るようにします。ソースコードはPHPで、U&amp;hellip;</description>
     </item>
     
   </channel>

@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>COMODOのSSL証明書をApacheに設定する方法 &middot; Nonsense J</title>
+	<title>COMODOのSSL証明書をApacheに設定する方法|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,13 +70,14 @@
 	<div class="post">
 		<h1 class="post-title">COMODOのSSL証明書をApacheに設定する方法</h1>
 		<div class="post-info">
-				<time datetime="2015-10-20 20:25:57 &#43;0000 UTC">October 20, 2015</time>
+				<p class="publish-date">投稿日：<time datetime="2015-10-20 20:25:57 &#43;0000 UTC" class="catalogue-time">2015-10-20</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/apache/">Apache</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/apache/">Apache</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<p>COMODOの証明書を購入した後の設定が複雑だったので、まとめました。<br>
 購入手順についてはSSL購入サイトを見れば分かると思うので割愛します。</p>
 <p>■環境<br>
@@ -65,34 +97,29 @@ openssl 1:1.0.1e-42.el7.9</p>
 <p>そして、メールで送られてきた証明書のうち自分のドメイン名がファイル名に入っていない３つを連結します。<br>
 連結は以下のコマンドで実施できます。連結する順番は以下順を守ってください。<br>
 なお、連結後のファイル名（以下例ではyourdomain_com.ca_bundle）は任意です。</p>
-<pre><code># cat COMODORSADomainValidationSecureServerCA.crt COMODORSAAddTrustCA.crt AddTrustExternalCARoot.crt &gt; yourdomain_com.ca_bundle
+<pre tabindex="0"><code># cat COMODORSADomainValidationSecureServerCA.crt COMODORSAAddTrustCA.crt AddTrustExternalCARoot.crt &gt; yourdomain_com.ca_bundle
 </code></pre><p>ApacheのSSL設定ファイルを編集し、以下の行を修正します。<br>
 (/etc/httpd/conf.d/ssl.conf)</p>
-<pre><code>SSLCertificateFile /etc/pki/comodo/yourdomain_com.crt  
+<pre tabindex="0"><code>SSLCertificateFile /etc/pki/comodo/yourdomain_com.crt  
 SSLCertificateKeyFile /etc/pki/comodo/yourdomain_com.key  
 SSLCertificateChainFile /etc/pki/comodo/yourdomain_com.ca_bundle
 </code></pre><p>Apacheの設定を再読み込みします。</p>
-<pre><code># systemctl reload httpd
+<pre tabindex="0"><code># systemctl reload httpd
 </code></pre><p>これでSSLの設定が反映されるはずです。<br>
 もし駄目だったら、Apacheの再起動をしてみてください。</p>
-<pre><code># systemctl restart httpd
+<pre tabindex="0"><code># systemctl restart httpd
 </code></pre>
-	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/106/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/130/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
 	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2724624 &#43;0900 JST m=&#43;0.092056901">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

@@ -1,313 +1,118 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Wordpress on Nonsense J</title>
-    <link>/tags/wordpress/</link>
-    <description>Recent content in Wordpress on Nonsense J</description>
+    <title>Wordpress on Logical Dice 技術ブログ</title>
+    <link>https://blog2.logical-dice.com/tags/wordpress/</link>
+    <description>Recent content in Wordpress on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Tue, 18 Feb 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/wordpress/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Feb 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/wordpress/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>lightsail上に自前でWordpressを構築する(CentOS編)</title>
-      <link>/posts/2020/02/18/lightsail-wordpress/</link>
+      <link>https://blog2.logical-dice.com/posts/2020/02/18/lightsail-wordpress/</link>
       <pubDate>Tue, 18 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2020/02/18/lightsail-wordpress/</guid>
-      <description>環境  CentOS Linux release 7.6.1810 (Core) nginx 1.1.17 php 7.4.2 MySQL 8.0.19   以前の記事でAmazon Linux上でWordpressを構築しましたが、
-lightsailのAmazon Linux上だとなぜかcertbotが正常に動かなくなったので
-CentOSで再構築することにしました。
-インスタンス作成 lightsailのインスタンスを作成します。
-プラットフォーム：Linux/Unix
-設計図の選択：OSのみ CentOS
-インスタンス設定 作成したインスタンスの設定をします。
-対象インスタンスのネットワーキングを開き、静的IPをアタッチしておきます。
-また、HTTPSで公開する場合はファイアウォールにてTCPの443ポートを開けておきます。
-サーバーへのログイン＆初期設定 インスタンスにSSHにて接続し、以下コマンドを実行していきます。
-まずrootになります。
-以降のコマンドはrootで実行するものとします。
-$ sudo -i タイムゾーンを日本にします。
-# timedatectl set-timezone Asia/Tokyo 基本的なアプリケーションを入れておきます。
-yum install git vim SELinuxの無効化 SELinuxがあると色々動かないことがあるので無効にしてしまいます。
-(nginxが403になったり)
-ちゃんとセキュアな環境を作りたい場合はSELinuxが有効でもちゃんと諸々動く環境を作った方がいいですが、
-今回はそこまででは無かったので割愛しています。
-現在有効か確認します。
-以下コマンドで「Enforcing」と出たら有効です。
-# getenforce Enforcing 設定ファイルを修正して無効にします。
-# vim /etc/selinux/config 以下部分を修正します。 SELINUX=disabled これでlightsailのコンソールからインスタンスを再起動をすると反映されます。
-nginxのインストール 公式の手順を参考にします。
-http://nginx.org/en/linux_packages.html#RHEL-CentOS
-# yum install yum-utils # vim /etc/yum.</description>
+      <guid>https://blog2.logical-dice.com/posts/2020/02/18/lightsail-wordpress/</guid>
+      <description>lightsailのCentOS7上でWordpressを構築する手順です</description>
     </item>
     
     <item>
       <title>lightsail上に自前でWordpressを構築する(Amazon Linux編)</title>
-      <link>/posts/2019/12/15/lightsail-wordpress/</link>
+      <link>https://blog2.logical-dice.com/posts/2019/12/15/lightsail-wordpress/</link>
       <pubDate>Sun, 15 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2019/12/15/lightsail-wordpress/</guid>
-      <description>環境 Amazon Linux AMI 2018.03 (lightsail)
-  ※2020年2月追記
-lightsailのAmazon Linuxでcretbotの挙動があやしくなってきたので
-CentOS版も作りました。
-記事はこちら
- lightsailではWordpressを載せたインスタンスを生成できますが、
-全部載せbitnami環境があまり好きではなかったので
-空のインスタンスに自分でWordpress環境を構築しました。
-構築する環境は
-nginx + php-fpm(PHP7.2)
-とします。
-インスタンス作成 lightsailのインスタンスを作成します。
-プラットフォーム：Linux/Unix
-設計図の選択：OSのみ Amazon Linux
-インスタンス設定 作成したインスタンスの設定をします。
-対象インスタンスのネットワーキングを開き、静的IPをアタッチしておきます。
-また、HTTPSで公開する場合はファイアウォールにてTCPの443ポートを開けておきます。
-各種インストール＆設定 インスタンスにSSHにて接続し、以下コマンドを実行していきます。
-まずrootになります。
-sudo -i いろいろインストールします。
-yum install -y git nginx php72-fpm php72-bcmath php72-cli php72-common php72-devel php72-gd php72-json php72-mbstring php72-mysqlnd php72-pdo php72-xml mysql-server nginxの設定 nginxの設定ファイルを追加します。
-ファイル名の.confより前は任意です。
-vim /etc/nginx/conf.d/wordpress.conf 以下のように記載します。
-(Wordpressおきまりのやつです)
-server { listen 80; listen [::]:80; server_name your-domain.jp; root /usr/share/nginx/html; index index.</description>
+      <guid>https://blog2.logical-dice.com/posts/2019/12/15/lightsail-wordpress/</guid>
+      <description>bitnamiを利用せずにlightsail上にWordpressを構築する手順です</description>
     </item>
     
     <item>
       <title>リバースプロキシ先でWordpressを動かす</title>
-      <link>/posts/2019/10/15/reverseproxy-wordpress/</link>
+      <link>https://blog2.logical-dice.com/posts/2019/10/15/reverseproxy-wordpress/</link>
       <pubDate>Tue, 15 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2019/10/15/reverseproxy-wordpress/</guid>
-      <description>環境 Apache 2.2.34
- サーバーA(www.sample.com)でメインサイトが動いていて、サーバーB(sub.sample.com)でWordpressが動いている時に
-Apacheのリバースプロキシを使って以下のようにアクセスできるようにします。
-メインサイト: https://www.sample.com/
-Wordpress: https://www.sample.com/blog
-なお、既に他のリバースプロキシも設定されており、極力そちらへの影響はないように設定します。
-他ページ(サーバーC): https://www.sample.com/media
-■サーバーAの設定 Apache設定 httpd.confなどに以下のようにリバースプロキシ設定をします。
-他リバースプロキシに影響しないようにLocationで括ります。
-&amp;lt;Location &amp;quot;/blog&amp;quot;&amp;gt; ProxyPass http://sub.sample.com/blog ProxyPassReverse http://sub.sample.com/blog ProxyPassReverseCookieDomain sub.sample.com www.sample.com ProxyPassReverseCookiePath / /blog/ &amp;lt;/Location&amp;gt; これで/blog配下へのアクセスはサーバーB(sub.sample.com)に飛ばすようになります。
-■サーバーBの設定 Apache設定 Apacheの設定はsub.sample.comにアクセスがある想定で記載しておけば大丈夫です。
-WordpressソースはDocumentRoot配下にblogディレクトリを作成して格納します。
-SSL通信扱いにする これでWordpressページ自体は表示されますが、必要なJS/CSS/画像などの外部ファイルのURLが非SSLとなってしまい
-Chromeなどだとエラーとなってしまいます。
-なので、.htaccessに以下追記して強制的にSSL通信扱いになるようにします。
-SetEnv HTTPS on ※補足
-非SSLでhttp://sample.com/blogにアクセスした場合はどうするのって話もありますが、
-そもそも非SSLページは推奨されないので、今回は考えてません。
-http://sample.com/blogにアクセスが来たらhttps://sample.com/blogにリダイレクトしましょう。
-どうしても非SSLとSSLの両方で受けたければSSL接続時はリバースプロキシ時に「X-Forwarded-HTTPS: on」を設定するなど対策してください。
-「外部→(HTTPS)→ELB→(HTTP)→サーバーA→(HTTP)→サーバーB」のような構成だと結構面倒です。
-ホスト名を補正する ここまでの対応だと$_SERVER[&#39;HTTP_HOST&#39;]と$_SERVER[&#39;SERVER_NAME&#39;]がsub.sample.comのままになってしまいます。
-ページ表示上は問題無さそうですが、管理画面でブラウザのconsoleに警告が出て気持ち悪いので修正しておきます。
-wp-config.phpの先頭に以下の記載を付け加えておきます。
-if (isset($_SERVER[&#39;HTTP_X_FORWARDED_HOST&#39;]) &amp;amp;&amp;amp; $_SERVER[&#39;HTTP_X_FORWARDED_HOST&#39;] === &#39;www.sample.com&#39;) { $_SERVER[&#39;HTTP_HOST&#39;] = &#39;www.sample.com&#39;; $_SERVER[&#39;SERVER_NAME&#39;] = &#39;www.sample.com&#39;; } これでwww.sample.comからリバースプロキシで飛ばされてきたアクセス時はホスト名が書き換わるようになりました。
-（これはもっといい方法があるかもしれませんが、とりあえずこの方法でも対応できています。）</description>
+      <guid>https://blog2.logical-dice.com/posts/2019/10/15/reverseproxy-wordpress/</guid>
+      <description>Apacheのリバースプロキシ先でWordpressを動かす設定メモです</description>
     </item>
     
     <item>
       <title>【Wordpress】画像ファイルに設定されたタイトルとキャプションを削除する</title>
-      <link>/posts/2019/08/26/wp-media-infomation/</link>
+      <link>https://blog2.logical-dice.com/posts/2019/08/26/wp-media-infomation/</link>
       <pubDate>Mon, 26 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2019/08/26/wp-media-infomation/</guid>
-      <description>環境  WordPress 4.8.3   やりたい事 Wordpressのメディアに画像ファイルをアップロードする際
-画像のタイトルは基本的には画像のファイル名となりますが
-アップする画像ファイルによってはタイトルやキャプションが設定されている事があります。
-例えば、オリンパスのデジカメで撮った写真だと
-全ての画像のタイトルとキャプションが『OLYMPUS DIGITAL CAMERA』になる事があり
-このままでは管理がしにくく、都度修正するのも手間です。
-そこで、画像ファイルに設定されている値は無視するようにします。
-(WP上ではタイトル＝ファイル名となる)
-対応方法 function.php に以下の記載をするだけです。
-function delete_media_title_caption( $img_meta ) { $img_meta[&#39;title&#39;] = &#39;&#39;; $img_meta[&#39;caption&#39;] = &#39;&#39;; return $img_meta; } add_filter( &#39;wp_read_image_metadata&#39;, &#39;delete_media_title_caption&#39; ); これで画像アップ時にファイルに設定されていたタイトルとキャプションは無視されます。</description>
+      <guid>https://blog2.logical-dice.com/posts/2019/08/26/wp-media-infomation/</guid>
+      <description>Wordpressで画像アップ時にタイトルとキャプションに勝手に文字列が設定されるのを防ぐ方法です。</description>
     </item>
     
     <item>
       <title>【Wordpress】TinyMCEテンプレートでS3の画像を使う</title>
-      <link>/posts/2019/02/13/wp-tinymcetemplate-s3/</link>
+      <link>https://blog2.logical-dice.com/posts/2019/02/13/wp-tinymcetemplate-s3/</link>
       <pubDate>Wed, 13 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2019/02/13/wp-tinymcetemplate-s3/</guid>
-      <description>環境  Wordpress 4.8.3 TinyMCEテンプレート 4.8.1 WP Offload Media Lite 2.0   事象 WP Offload Media Liteを使ってWordpressの画像を全てS3にて管理している場合、 TinyMCE テンプレートにて作成したテンプレート内に画像をアップして登録しても 記事編集にてテンプレートを呼び出すと画像が見れなくなってしまいます。
-※WEBサーバー上の画像は削除する設定とします
-原因 WP Offload Media Liteでは画像ファイル全てについて『S3上のパス』と『ローカルにあった場合のパス』の両方を紐づけて持っています。
-そして、WP Offload Media Liteは以下のようにデータ内画像パスを置換します。
-データ登録時 POSTデータ内の画像パスに『S3上のパス』が存在していた場合は『ローカルにあった場合のパス』に置換してDBに登録する。
-(S3→ローカル置換)
-データ呼出時 DBから呼出したデータ内の画像パスに『ローカルにあった場合のパス』が存在していた場合は『S3上のパス』に置換して画面に表示する。
-(ローカル→S3置換)
-しかし、TinyMCE テンプレートに関してはテンプレート登録時の「S3→ローカル置換」は走るのですが、 テンプレート呼出し時の「ローカル→S3置換」は走りません。
-よってテンプレート呼出し時は画像パスが『ローカルにあった場合のパス』のままとなり、 ローカルにそんな画像はないので画像が表示されません。
-対応 function.phpにデータ登録時のフィルターを追加し、 TinyMCE テンプレートの登録時に「ローカル→S3置換」も走るようにします。
-つまり、少々無駄ですがTinyMCE テンプレートの登録時は「S3→ローカル→S3置換」が走るようになります。
-function replace_s3_image_on_tinymcetemplates($content){ if ($content[&#39;post_type&#39;] !== &#39;tinymcetemplates&#39; || !class_exists(&#39;Amazon_S3_And_CloudFront&#39;) || !class_exists(&#39;AS3CF_Local_To_S3&#39;)) { return $content; } $s3PluginPath = str_replace(&#39;themes/&#39;.get_template(), &#39;plugins/amazon-s3-and-cloudfront/wordpress-s3.php&#39;, __DIR__); $as3cf = new Amazon_S3_And_CloudFront($s3PluginPath); $localToS3 = new AS3CF_Local_To_S3($as3cf); $content[&#39;post_content&#39;] = $localToS3-&amp;gt;filter_post($content[&#39;post_content&#39;]); return $content; } add_filter(&#39;wp_insert_post_data&#39;,&#39;replace_s3_image_on_tinymcetemplates&#39;); 結構力づくなので、もっと良い方法があれば誰か教えてください。</description>
+      <guid>https://blog2.logical-dice.com/posts/2019/02/13/wp-tinymcetemplate-s3/</guid>
+      <description>TinyMCE テンプレートとWP Offload Media Lite併用時にS3の画像が取れない時の対処法です</description>
     </item>
     
     <item>
       <title>WordpressからPicoへデータ移行</title>
-      <link>/posts/2019/01/17/wordpress-to-pico/</link>
+      <link>https://blog2.logical-dice.com/posts/2019/01/17/wordpress-to-pico/</link>
       <pubDate>Thu, 17 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2019/01/17/wordpress-to-pico/</guid>
-      <description>まず、事前にpicoのブログ化が完了しているものとします
-CMSのpicoをブログ化
-かなりの力技です
-綺麗な方法ではないのでご了承ください
-Wordpressからのイメージ取得 まずWordpressから画像ファイル一式をダウンロードしてきます。
-Wordpressの/wp-content/uploads/配下のファイルを
-全てpico内にダウンロードしてきます。
-今回の例ではpico直下にimagesディレクトリを作成し、
-そこにダウンロードするとします。
-階層としてはpico/images/2019/01/hogehoge.pngのようになります。
-Wordpressからの記事取得 WordpressのDBから記事情報を取得します。
-MySQL Workbenchにて以下のSQLを実行し、
-結果をjsonで出力しておきます
-SELECT p.ID, p.post_date, u.user_nicename, p.post_title, p.post_content, t.tags FROM wp_posts p LEFT JOIN wp_users u ON u.ID = p.post_author LEFT JOIN ( SELECT tr.object_id AS post_id, group_concat(t.name) AS tags FROM wp_term_relationships tr LEFT JOIN wp_term_taxonomy tt ON tt.term_taxonomy_id = tr.term_taxonomy_id LEFT JOIN wp_terms t ON t.term_id = tt.term_id WHERE tt.taxonomy = &#39;post_tag&#39; GROUP BY tr.object_id ) t ON t.</description>
+      <guid>https://blog2.logical-dice.com/posts/2019/01/17/wordpress-to-pico/</guid>
+      <description>WordpressのデータをPicoへ移行する方法です</description>
     </item>
     
     <item>
       <title>Wordpressの画像をS3&#43;CloudFrontで配信する</title>
-      <link>/posts/wp/1772/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/1772/</link>
       <pubDate>Tue, 11 Dec 2018 19:30:54 +0000</pubDate>
       
-      <guid>/posts/wp/1772/</guid>
-      <description>環境 WordPress 4.8.3
- AWS設定手順 IAM設定 まず、WordpressとAWSの連携に使うIAMユーザーを準備します
-今回の手順ではバケット側のポリシーで権限付与するので
-IAM側の権限設定は適当で良いです
-準備したIAMユーザーの以下を控えておいてください
-・ARN
-・アクセスキーID
-・シークレットアクセスキー
-S3設定 次にS3にてWordpress用のバケットを用意し
-バケットポリシーに以下を設定します
-{ &amp;quot;Version&amp;quot;: &amp;quot;2012-10-17&amp;quot;, &amp;quot;Statement&amp;quot;: [ { &amp;quot;Sid&amp;quot;: &amp;quot;AllowBucketAccess&amp;quot;, &amp;quot;Effect&amp;quot;: &amp;quot;Allow&amp;quot;, &amp;quot;Principal&amp;quot;: { &amp;quot;AWS&amp;quot;: &amp;quot;arn:aws:iam::準備したIAMのARN&amp;quot; }, &amp;quot;Action&amp;quot;: [ &amp;quot;s3:GetBucketLocation&amp;quot;, &amp;quot;s3:ListBucket&amp;quot;, &amp;quot;s3:PutObject&amp;quot;, &amp;quot;s3:PutObjectAcl&amp;quot;, &amp;quot;s3:GetObject&amp;quot;, &amp;quot;s3:DeleteObject&amp;quot; ], &amp;quot;Resource&amp;quot;: [ &amp;quot;arn:aws:s3:::対象のバケット/*&amp;quot;, &amp;quot;arn:aws:s3:::対象のバケット&amp;quot; ] } ] } CloudFront設定 ユーザーにS3へ直接画像を取りに来させる事も可能なのですが
-転送料金が結構高くなるのでCloudFront経由でS3に繋がせるようにします
-まずloudFrontの設定画面にて「Create Distribution」をクリックします
- 次にWebの「Get Started」をクリックします。
- 「Origin Domain Name」にCloud Front経由にしたいS3バケットを指定します
-テキストボックスに見えますが、クリックすると選択肢が表示されます
-「Origin Domain Name」を選択すると、「Origin ID」にも勝手に値が入ります
- 上記入力したら下までスクロールして「Create Distribution」をクリックします
-CloudFrontの一覧に戻りますので</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/1772/</guid>
+      <description>環境WordPress 4.8.3AWS設定手順IAM設定まず、WordpressとAWSの連携に使うIAMユーザーを準備します&amp;hellip;</description>
     </item>
     
     <item>
       <title>AWS ELB配下でWordpressを動かす際のSSL対応</title>
-      <link>/posts/wp/1439/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/1439/</link>
       <pubDate>Fri, 20 Jul 2018 17:56:57 +0000</pubDate>
       
-      <guid>/posts/wp/1439/</guid>
-      <description>■環境 AWS ELB
-AWS EC2
-Apache 2.2.32
-Wordpress 4.1.1
- EC-CUBEではありませんが、内容的にはほぼ以下の伊賀もの様の記事通りです。
-続カッコの付け方WordpressでもリクエストURLを見ており、httpsでアクセスした場合のみhttpsでCSSを取得するようになっているのですが
-AWS ELBがポートを80に変えてしまうため以下の事象が起こります。
-① ChromeでHTTPSのWordpressページを開く
-② WordpressがCSSなどはHTTPで取得するよう返す
-③ Chrome様が『HTTPSのページのリソースはHTTPSで取得せぇや！』と怒る
-※ELB周りの話はこちらでも書いてます
-AWS ELB配下でApacheのRewriteRuleが上手く動かなかった話対応方法上記記事同様に、Wordpress（Ver4.1.1時点）でも $_SERVER[&amp;lsquo;HTTPS&amp;rsquo;]を見ているので、
-Apacheの設定（.htaccessでも可）で書き換えてしまえば解決です。
-# ELBがhttpsで受けている場合はHTTPSを有効にする SetEnvIf X-Forwarded-Proto ^https$ HTTPS=on # httpアクセスはhttpsにリダイレクトする(設定するかは任意) RewriteEngine on RewriteCond %{HTTP:X-Forwarded-Proto} ^http$ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R,L] </description>
+      <guid>https://blog2.logical-dice.com/posts/wp/1439/</guid>
+      <description>■環境AWS ELBAWS EC2Apache 2.2.32Wordpress 4.1.1EC-CUBEではありませんが、内容的&amp;hellip;</description>
     </item>
     
     <item>
       <title>Wordpressを多言語対応させる</title>
-      <link>/posts/wp/1291/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/1291/</link>
       <pubDate>Tue, 24 Apr 2018 00:56:56 +0000</pubDate>
       
-      <guid>/posts/wp/1291/</guid>
-      <description>■環境 Wordpress 4.9.5
-MultilingualPress 2.11.1
- ■手順 まずMultilingualPressというプラグインをインストールします。
-インストール後、プラグインを有効化しようとするとマルチサイトを有効にしないといけない旨のメッセージが表示されます。
-上記のリンク先にマルチサイト化をするための手順が記載されています。
-https://multilingualpress.org/docs/install-wordpress-multisite/まず、Wordpressがインストールされているディレクトリにあるwp-config.phpを編集し、マルチサイトを有効化します。
-define(&#39;WP_DEBUG&#39;, false); define(&#39;WP_ALLOW_MULTISITE&#39;, TRUE); &amp;lt;=これを追記 /* 編集が必要なのはここまでです ! WordPress でブログをお楽しみください。 */ /** Absolute path to the WordPress directory. */ if ( !defined(&#39;ABSPATH&#39;) ) define(&#39;ABSPATH&#39;, dirname(__FILE__) . &#39;/&#39;); 次にプラグインを全て停止させ、管理画面より「ツール ＞ サイトネットワークの設置」を開き、『インストール』をクリックします。
-すると、再度wp-config.phpを修正するよう案内が表示されるので、案内通りに修正します。
-define(&#39;WP_DEBUG&#39;, false); define(&#39;WP_ALLOW_MULTISITE&#39;, TRUE); define(&#39;MULTISITE&#39;, true); &amp;lt;=これを追記 define(&#39;SUBDOMAIN_INSTALL&#39;, true); &amp;lt;=これを追記 define(&#39;DOMAIN_CURRENT_SITE&#39;, &#39;your-domain.com&#39;); &amp;lt;=これを追記 define(&#39;PATH_CURRENT_SITE&#39;, &#39;/&#39;); &amp;lt;=これを追記 define(&#39;SITE_ID_CURRENT_SITE&#39;, 1); &amp;lt;=これを追記 define(&#39;BLOG_ID_CURRENT_SITE&#39;, 1); &amp;lt;=これを追記 /* 編集が必要なのはここまでです ! WordPress でブログをお楽しみください。 */ /** Absolute path to the WordPress directory.</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/1291/</guid>
+      <description>■環境Wordpress 4.9.5MultilingualPress 2.11.1■手順まずMultilingualPress&amp;hellip;</description>
     </item>
     
     <item>
       <title>Wordpressにお問合せフォームを作る</title>
-      <link>/posts/wp/979/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/979/</link>
       <pubDate>Wed, 17 Jan 2018 16:18:41 +0000</pubDate>
       
-      <guid>/posts/wp/979/</guid>
-      <description>環境 Wordpress 4.9.1
-Contact Form 7 4.9.2
-WP Mail SMTP 1.2.2
- Wordpressの固定ページにお問合せフォームを作成し、
-問い合わせがあった場合はメールを飛ばします。
-なお、利用するメールサーバは外部のメールサーバとします。
-構築手順 ■プラグインのインストール 以下のプラグインをインストールし、有効化します。
- Contact Form 7 WP Mail SMTP  ※『Contact Form 7』は類似プラグインで『Contact Form7』(7の前にスペース無し)もあるので注意。
-■お問合せフォームの設定 インストール済みプラグイン一覧画面にて「Contact Form 7」の設定を選択します。
-フォーム一覧画面が表示され、「コンタクトフォーム1」というフォームが自動で作られているので「編集」を選択します。
-ここでフォーム名やフォームの内容を編集できます。
-各タブの内容は以下の通りです。
- フォーム  WEB画面で表示するフォームの内容を設定できます アスタリスクを付けると必須項目になります   メール  フォームに入力された際に送信するメールに関する設定 送信元については後工程の「WP Mail SMTP」の設定にて実施するので設定不要です   メッセージ  フォームを入力した際に画面上で表示するメッセージ   その他の設定  細かいカスタマイズもできるようだが、ここでは割愛します。
-また、フォーム一覧画面に記載されている「ショートコード」は最終的に固定ページに埋め込むので控えておいてください。
-■メールサーバの設定 インストール済みプラグイン一覧画面にて「WP Mail SMTP」の設定を選択します。
-※左メニューより『設定 &amp;gt; WP Mail SMTP』と選択しても良いです。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/979/</guid>
+      <description>環境Wordpress 4.9.1Contact Form 7 4.9.2WP Mail SMTP 1.2.2Wordpress&amp;hellip;</description>
     </item>
     
     <item>
       <title>【Wordpress】テーマで指定されたCSSがうまく読み込めない</title>
-      <link>/posts/wp/698/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/698/</link>
       <pubDate>Mon, 21 Aug 2017 01:57:10 +0000</pubDate>
       
-      <guid>/posts/wp/698/</guid>
-      <description>Wordpressで他人が作成したテーマを使っているとCSSがうまく読み込めない時があります。
-条件としては以下の両方に当てはまっている場合だと思います。
- Wordpressの管理画面と公開画面でドメインが違う テーマ内にstyle.css以外のCSSファイルがあり、それをwp_enqueue_styleを使って読み込んでいる  このとき、ブラウザの開発ツールでコンソールを表示すると、以下のようなエラーが発生していると思います。
-Access to Font at &#39;http://yourdomain1.com/wp-content/themes/sparkling/assets/fonts/glyphicons-halflings-regular.woff2&#39; from origin &#39;http://yourdomain2.com&#39; has been blocked by CORS policy: No &#39;Access-Control-Allow-Origin&#39; header is present on the requested resource. Origin &#39;http://yourdomain2.com&#39; is therefore not allowed access. クロスドメインなどが原因のようなのですが、手早く直したかったので
-以下の修正をして直しました。
-①wp_enqueue_styleをしている箇所をコメントアウトする。(テーマによるが、function.phpなどに記載あり)
-// wp_enqueue_style( &#39;bs&#39;, get_template_directory_uri() . &#39;/assets/css/bootstrap.min.css&#39; ); // wp_enqueue_style( &#39;awe&#39;, get_template_directory_uri() . &#39;/assets/css/font-awesome.min.css&#39; ); ②htmlのheadタグ内にてCSS読み込み処理を記載する。(テーマによるが、header.phpなどに記載あり)
-※以下例ではCDNを指定しています。
-&amp;lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css&amp;quot;&amp;gt; &amp;lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css&amp;quot;&amp;gt; これで正常にCSSが読み込まれ、ブラウザのコンソールからもエラーが消えました。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/698/</guid>
+      <description>Wordpressで他人が作成したテーマを使っているとCSSがうまく読み込めない時があります。条件としては以下の両方に当てはまっ&amp;hellip;</description>
     </item>
     
     <item>
       <title>【Wordpress】SyntaxHighlighter Evolvedを高速化する</title>
-      <link>/posts/wp/402/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/402/</link>
       <pubDate>Fri, 10 Feb 2017 18:23:37 +0000</pubDate>
       
-      <guid>/posts/wp/402/</guid>
-      <description>Wordperssのプラグイン『SyntaxHighlighter Evolved』を入れていたところ
-画面表示がとても遅くなったので高速化しました。
-〜〜〜2017/2/11 追記〜〜〜
-プラグインを変えた方が早いかもしれないです
-「WP Code Highlight.js」に変えてみたところ、表示は問題なく早いですし
-paddingなどもこちらの方が気に入ってます。
-〜〜〜追記終わり〜〜〜
-■環境
-CentOS 7.3
-Wordpress 4.7.2
-SyntaxHighlighter Evolved 3.2.1
-※前提条件として、Wordpressを置いてあるサーバを操作できる権限があることとします
-『SyntaxHighlighter Evolved』は各種言語に対応しているのですが、
-実際、自分は書かないなーという言語も入っているので、不要なものは
-プラグインで読み込まないようにします。
-具体的には、プラグイン内のPHPファイルを修正し、不要な言語の設定を読み込んでいそうな行を
-コメントアウトします。
-# cd /{wordpressが配置されているディレクトリ}/wp-content/plugins/syntaxhighlighter # vim syntaxhighlighter.php コメントアウト箇所は114行目あたりから始まる以下の部分です。
-wp_register_script( &#39;syntaxhighlighter-brush-○○○&#39;,〜〜〜　$this-&amp;gt;agshver ); 上記の「○○○」部分に言語名が入っているので、不要な言語の行はコメントアウトします。
-あと、あまり効果があるか分かりませんが、テーマも使わないものはコメントアウトしてしまいました。
-該当箇所は149行目あたりから始まる以下の部分です。
-wp_register_stype( &#39;syntaxhighlighter-theme-○○○&#39;,〜〜〜　$this-&amp;gt;agshver ); 上記の「○○○」部分にテーマ名が入ります。
-上記でコメントアウトした言語、テーマについて
-下の方の行で配列に格納されているので、そこもコメントアウトします。
-言語についての配列は、162行目あたりにあります。
-$this-&amp;gt;brushes = (array) apply_filters( &#39;syntaxhighlighter_brushes&#39;, array( &#39;as3&#39; =&amp;gt; &#39;as3&#39;, &#39;actionscript3&#39; =&amp;gt; &#39;as3&#39;, &#39;bash&#39; =&amp;gt; &#39;bash&#39;, &#39;shell&#39; =&amp;gt; &#39;bash&#39;, 以下略 テーマについての配列は、243行目あたりにあります。
-$this-&amp;gt;themes = (array) apply_filters( &#39;syntaxhighlighter_themes&#39;, array( &#39;default&#39; =&amp;gt; __( &#39;Default&#39;, &#39;syntaxhighlighter&#39; ), &#39;django&#39; =&amp;gt; __( &#39;Django&#39;, &#39;syntaxhighlighter&#39; ), &#39;eclipse&#39; =&amp;gt; __( &#39;Eclipse&#39;, &#39;syntaxhighlighter&#39; ), &#39;emacs&#39; =&amp;gt; __( &#39;Emacs&#39;, &#39;syntaxhighlighter&#39; ), &#39;fadetogrey&#39; =&amp;gt; __( &#39;Fade to Grey&#39;, &#39;syntaxhighlighter&#39; ), &#39;midnight&#39; =&amp;gt; __( &#39;Midnight&#39;, &#39;syntaxhighlighter&#39; ), &#39;rdark&#39; =&amp;gt; __( &#39;RDark&#39;, &#39;syntaxhighlighter&#39; ), &#39;none&#39; =&amp;gt; __( &#39;[None]&#39;, &#39;syntaxhighlighter&#39; ), ) ); 上記箇所を適当にコメントアウトすると、画面表示がいくらか早くなりました。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/402/</guid>
+      <description>Wordperssのプラグイン『SyntaxHighlighter Evolved』を入れていたところ画面表示がとても遅くなった&amp;hellip;</description>
     </item>
     
   </channel>

@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>【PHP】strtotimeの罠 &middot; Nonsense J</title>
+	<title>【PHP】strtotimeの罠|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,27 +70,28 @@
 	<div class="post">
 		<h1 class="post-title">【PHP】strtotimeの罠</h1>
 		<div class="post-info">
-				<time datetime="2019-01-31 00:00:00 &#43;0000 UTC">January 31, 2019</time>
+				<p class="publish-date">投稿日：<time datetime="2019-01-31 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-01-31</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/php/">PHP</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/php/">PHP</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<p>今日相談を受けた事象が面白かったので記事にします。</p>
 <h2 id="事象">事象</h2>
 <p>既存のPHPで来月の年月を取得する処理があり<br>
 リリース時は正常に動いていたのに、今日(1/31)見たら年月がズレていたようです。</p>
 <p>ソースコードを見せて貰ったら以下のようになっていました。</p>
-<pre><code>echo date('Ym', strtotime(date('Ym-1') . ' + 1 month'));
+<pre tabindex="0"><code>echo date(&#39;Ym&#39;, strtotime(date(&#39;Ym-1&#39;) . &#39; + 1 month&#39;));
 </code></pre><h2 id="原因">原因</h2>
 <p>まず、<code>date('Ym-1')</code> がおかしいですね。<br>
 <code>date('Ym01')</code>とか<code>date('Y-m-01')</code>とかにするべきですね。</p>
 <p>では、なぜリリース時に正常に動いていたのか。<br>
 ここでやっとタイトルの「strtotimeの罠」が関わってきます。</p>
-<pre><code>strtotime(date('Ym-1') . ' + 1 month')
+<pre tabindex="0"><code>strtotime(date(&#39;Ym-1&#39;) . &#39; + 1 month&#39;)
 </code></pre><p>これは、2019/1/31であれば</p>
-<pre><code>strtotime('201901-1 + 1 month')
+<pre tabindex="0"><code>strtotime(&#39;201901-1 + 1 month&#39;)
 </code></pre><p>と、なります。</p>
 <p>ここでstrtotime様はこう考えます。</p>
 <blockquote>
@@ -78,21 +110,16 @@ strtotime様の月繰り上げが発生しないので<br>
 実装段階で気を付けないといけないですね。</p>
 
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/2019/01/26/javascript-window-load/" class="left arrow">&#8592;</a>
-		<a href="/posts/2019/02/01/git-cmd-cheatsheet/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2556853 &#43;0900 JST m=&#43;0.075279801">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

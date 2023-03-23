@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>Serverless Frameworkを使ってLambda &amp; API Gatewayをデプロイする &middot; Nonsense J</title>
+	<title>Serverless Frameworkを使ってLambda &amp; API Gatewayをデプロイする|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,13 +70,14 @@
 	<div class="post">
 		<h1 class="post-title">Serverless Frameworkを使ってLambda &amp; API Gatewayをデプロイする</h1>
 		<div class="post-info">
-				<time datetime="2020-05-19 00:00:00 &#43;0000 UTC">May 19, 2020</time>
+				<p class="publish-date">投稿日：<time datetime="2020-05-19 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-05-19</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/aws/">AWS</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/aws/">AWS</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<h2 id="環境">環境</h2>
 <p>ubuntu 20.04 LTS</p>
 <hr>
@@ -58,12 +90,12 @@
 <h3 id="awscliのインストール">awscliのインストール</h3>
 <p>公式ページの手順を実施します。<br>
 <a href="https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/install-cliv2-linux.html">https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/install-cliv2-linux.html</a></p>
-<pre><code>$ curl &quot;https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip&quot; -o &quot;awscliv2.zip&quot;
+<pre tabindex="0"><code>$ curl &#34;https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip&#34; -o &#34;awscliv2.zip&#34;
 $ unzip awscliv2.zip
 $ sudo ./aws/install
 </code></pre><p>これでawscliのインストールが出来ました。<br>
 念の為バージョンを確認しておきます。</p>
-<pre><code>$ aws --version
+<pre tabindex="0"><code>$ aws --version
 aws-cli/2.0.14 Python/3.7.3 Linux/5.4.0-31-generic botocore/2.0.0dev18
 </code></pre><h3 id="アクセスキーの準備">アクセスキーの準備</h3>
 <p>awscliで利用するアクセスキーをAWS IAMで生成します。<br>
@@ -77,7 +109,7 @@ aws-cli/2.0.14 Python/3.7.3 Linux/5.4.0-31-generic botocore/2.0.0dev18
 <p>以上です。</p>
 <h3 id="awscliの設定">awscliの設定</h3>
 <p>IAMで取得したアクセスキーとリージョン情報をawscliに設定します。</p>
-<pre><code>$ aws configure
+<pre tabindex="0"><code>$ aws configure
 AWS Access Key ID [None]: YOUR-ACCESS-KEY-ID
 AWS Secret Access Key [None]: YOUR-SECRET-ACCESS-KEY
 Default region name [None]: ap-northeast-1
@@ -85,24 +117,24 @@ Default output format [None]:
 </code></pre><p>※output formatを空のままエンターするとjsonになる。</p>
 <p>もし複数のAWSアカウントを使い分けている場合などであれば、以下のように実行することでアクセスキーを設定するプロファイルを指定することもできます。<br>
 以下の<code>profile01</code>は好きなプロファイル名を入れてください。</p>
-<pre><code>$ aws configure --profile profile01
+<pre tabindex="0"><code>$ aws configure --profile profile01
 </code></pre><p>これでプロファイルを切り替えながらawscliを使えるようになります。</p>
 <h2 id="serverless-frameworkの環境構築">Serverless Frameworkの環境構築</h2>
 <h3 id="serverless-frameworkのインストール">Serverless Frameworkのインストール</h3>
 <p>公式ページの手順に従います。<br>
 <a href="https://www.serverless.com/framework/docs/getting-started/">https://www.serverless.com/framework/docs/getting-started/</a></p>
 <p>ubuntu(Linux)では以下コマンドを実行します。</p>
-<pre><code>curl -o- -L https://slss.io/install | bash
+<pre tabindex="0"><code>curl -o- -L https://slss.io/install | bash
 </code></pre><h3 id="serverless-frameworkのテンプレート読込">Serverless Frameworkのテンプレート読込</h3>
 <p>作業ディレクトリにて<code>serverless</code>コマンドを実行し、いくつか質問されるので答えることでServerless Frameworkを利用するためのテンプレートを読み込めます。<br>
 下記例ではLambdaの言語はpython、サービス名は<code>sw-test</code>としています。<br>
 ※slsコマンドはserverlessコマンドの短縮系です</p>
-<pre><code>$ sls
+<pre tabindex="0"><code>$ sls
 Serverless: No project detected. Do you want to create a new one? Yes
 Serverless: What do you want to make? AWS Python
 Serverless: What do you want to call this project? sw-test
 
-Project successfully created in 'sw-test' folder.
+Project successfully created in &#39;sw-test&#39; folder.
 
 You can monitor, troubleshoot, and test your new service with a free Serverless account.
 
@@ -115,7 +147,7 @@ Serverless: Would you like to setup a command line &lt;tab&gt; completion? No
 <h3 id="serverless-frameworkの設定">Serverless Frameworkの設定</h3>
 <p>上記で生成したテンプレートに検証/本番環境別のconfigを追加して環境別の変数を定義できるようにします。<br>
 ファイル構成はこんな感じです。</p>
-<pre><code>sw-test
+<pre tabindex="0"><code>sw-test
  ├─conf            ・・・設定ファイルディレクトリ（追加）
  │  ├─dev.yml     ・・・検証環境の設定ファイル（追加）
  │  └─prd.yml     ・・・本番環境の設定ファイル（追加）
@@ -124,12 +156,12 @@ Serverless: Would you like to setup a command line &lt;tab&gt; completion? No
 </code></pre><p>ファイルの中身は以下の通りです。</p>
 <p>【dev.yml】<br>
 とりあえずリージョンだけ。</p>
-<pre><code>region: us-west-2
+<pre tabindex="0"><code>region: us-west-2
 </code></pre><p>【prd.yml】<br>
 とりあえずリージョンだけ。</p>
-<pre><code>region: ap-northeast-1
+<pre tabindex="0"><code>region: ap-northeast-1
 </code></pre><p>【serverless.yml】</p>
-<pre><code>service: sw-test
+<pre tabindex="0"><code>service: sw-test
 
 custom:
   default_stage: dev
@@ -157,35 +189,30 @@ functions:
 つまり<code>http:</code>の部分からスペース2つ分下げるのが正解のようです。<br>
 (YAMLに慣れている人にとっては当たり前なのかもしれませんが、ちょっと躓きました)</p>
 <p>上記ができていないとデプロイ時に以下のエラーがでます。</p>
-<pre><code>Serverless Error ---------------------------------------
+<pre tabindex="0"><code>Serverless Error ---------------------------------------
  
-  Missing or invalid &quot;path&quot; property in function &quot;hello&quot; for http event in serverless.yml. If you define an http event, make sure you pass a valid value for it, either as string syntax, or object syntax. Please check the indentation of your config values if you use the object syntax. Please check the docs for more options.
+  Missing or invalid &#34;path&#34; property in function &#34;hello&#34; for http event in serverless.yml. If you define an http event, make sure you pass a valid value for it, either as string syntax, or object syntax. Please check the indentation of your config values if you use the object syntax. Please check the docs for more options.
 </code></pre><h3 id="デプロイ実行">デプロイ実行</h3>
 <p>awscliのプロファイルを分けた場合は先にプロファイルを指定します。</p>
-<pre><code>export AWS_PROFILE=&quot;profile01&quot;
+<pre tabindex="0"><code>export AWS_PROFILE=&#34;profile01&#34;
 </code></pre><p>デプロイします。</p>
-<pre><code>sls deploy
+<pre tabindex="0"><code>sls deploy
 </code></pre><p>特にエラーが発生しなければ、これで検証環境リージョンのLambdaとAPI Gatewayにアプリケーションが追加されています。<br>
 本番環境にリリースしたい場合は以下のようにstageを指定してdeployします。</p>
-<pre><code>sls deploy --stage prd
+<pre tabindex="0"><code>sls deploy --stage prd
 </code></pre><p>以上です。</p>
 
-	</div>
-
-	<div class="pagination">
-		<a href="/posts/2020/05/17/update-ubuntu-20-04/" class="left arrow">&#8592;</a>
-		<a href="/posts/2020/06/01/ubuntu-20-04-hdmi/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
 	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2706792 &#43;0900 JST m=&#43;0.090273701">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

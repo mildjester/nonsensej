@@ -1,39 +1,70 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-	<meta name="generator" content="Hugo 0.82.0" />
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-			<meta name="description" content="">
+	<meta name="generator" content="Hugo 0.109.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
 
-		<title>Nonsense J</title>
+	<title>Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="/index.xml" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="/index.xml" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -43,324 +74,188 @@
 
 	<div class="catalogue">
 		
-			<a href="/posts/wp/440/" class="catalogue-item">
-    <div>
-        <time datetime="2017-02-17 00:00:18 &#43;0000 UTC" class="catalogue-time">February 17, 2017</time>
-        <h1 class="catalogue-title">CentOS7にfishを入れる</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            最近人気らしいfishを試しに入れてみました。
-■環境 CentOS 7.3
-fish 2.3.1
-epelリポジトリが入っていない人はインストールします。
-yum -y install epel-release fishをyumでインストールします。
-yum -y install fish 今だけfishを使う場合は、コマンドでそのままfishと打ちます。
-fish 恒久的にfishを使いたい場合はchshしておきます。
-chsh -s /usr/bin/fish　｛ユーザ名｝  これでfishが使えるようになりました。
- 〜参考〜 CentOS6.X系の場合は以下でfishのインストールできるようです。
-wget -P /etc/yum.repos.d/ http://download.opensuse.org/repositories/shells:fish:release:2/CentOS_6/shells:fish:release:2.repo yum -y install fish  【oh-my-fishインストール】 ついでにoh-my-fishもインストールします。
-CentOS7でyumインストールできるgitのバージョンは1.8系(2017年4月現在)なのですが、
-oh-my-fishのインストールにはgit 1.9.5以上が必要なので
-ソースからコンパイルします。
-ソースからコンパイルする際に必要なものをインストールします。
-私の環境では以下でしたが、ここは各環境に合わせてインストールしてください。
-ソースからコンパイルする方法を調べれば出てくると思います。
-yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel perl-ExtUtils-MakeMaker autoconf gettext gcc ソースコードをダウンロードしてきます
-cd /tmp/ wget https://www.kernel.org/pub/software/scm/git/git-2.9.3.tar.gz tar xzf git-2.9.3.tar.gz ※最新のソースは以下で確認
-https://www.kernel.org/pub/software/scm/git/gitをインストールします。
-configureのオプション「&ndash;with-curl」を付けないと、oh-my-fishインストール時にコケます。
-cd git-2.9.3 make configure .
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/wp/515/">
+    <h1 class="catalogue-title">Composerのインストール方法</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2017-04-11 16:08:08 &#43;0000 UTC" class="catalogue-time">2017-04-11</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/mac/">Mac</a></div> <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/composer/">Composer</a></div>
     </div>
-</a>
+    
+    <p>■環境macOS Sierra 10.12.4CentOS 6.8作業用MacとCentOSサーバにComposerをインストー&hellip;</p>
+</div>
+
 
 		
-			<a href="/posts/wp/424/" class="catalogue-item">
-    <div>
-        <time datetime="2017-02-14 00:48:55 &#43;0000 UTC" class="catalogue-time">February 14, 2017</time>
-        <h1 class="catalogue-title">zabbixでPHPの警告が出る場合の対処</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            ■環境
-zabbix 3.2
-PHP 7.1
-PHP7.1でzabbixを動かすと、以下の警告が出ました。
-A non well formed numeric value encountered [zabbix.php:21 → require_once() → ZBase-&gt;run() → ZBase-&gt;processRequest() → CView-&gt;getOutput() → include() → make_status_of_zbx() → CFrontendSetup-&gt;checkRequirements() → CFrontendSetup-&gt;checkPhpMemoryLimit() → str2mem() in include/func.inc.php:410] A non well formed numeric value encountered [zabbix.php:21 → require_once() → ZBase-&gt;run() → ZBase-&gt;processRequest() → CView-&gt;getOutput() → include() → make_status_of_zbx() → CFrontendSetup-&gt;checkRequirements() → CFrontendSetup-&gt;checkPhpPostMaxSize() → str2mem() in include/func.inc.php:410] A non well formed numeric value encountered [zabbix.php:21 → require_once() → ZBase-&gt;run() → ZBase-&gt;processRequest() → CView-&gt;getOutput() → include() → make_status_of_zbx() → CFrontendSetup-&gt;checkRequirements() → CFrontendSetup-&gt;checkPhpUploadMaxFilesize() → str2mem() in include/func.
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/wp/512/">
+    <h1 class="catalogue-title">【PHP】Laravel5でカスタムバリデーションを追加する</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2017-04-11 15:11:41 &#43;0000 UTC" class="catalogue-time">2017-04-11</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/php/">PHP</a></div> <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/laravel/">Laravel</a></div>
     </div>
-</a>
+    
+    <p>■環境Laravel 5.1Laravel5でカスタムバリデーションを追加した際の手順です。まず、サービスプロバイダーを作成しま&hellip;</p>
+</div>
+
 
 		
-			<a href="/posts/wp/349/" class="catalogue-item">
-    <div>
-        <time datetime="2017-02-14 00:20:50 &#43;0000 UTC" class="catalogue-time">February 14, 2017</time>
-        <h1 class="catalogue-title">CentOS 7.3にzabbix 3.2をインストール</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            ■環境 CentOS 7.3
-zabbix 3.2
-PHP 7.1
-MySQL 14.14
-Apache 2.4
- ①zabbixをyumでインストールするためのリポジトリをインストール
-# yum install http://repo.zabbix.com/zabbix/3.2/rhel/7/x86_64/zabbix-release-3.2-1.el7.noarch.rpm ②zabbixの本体をインストール
-# yum install \ zabbix-server-mysql \ zabbix-web-mysql \ zabbix-web \ zabbix-agent \ zabbix-get \ zabbix-sender \ zabbix-web-japanese ※MySQLではなくPostgreSQLを使う場合は、上記の『mysql』を『pgsql』にするだけです。
-③MySQLの設定
-# mysql mysql&gt; CREATE USER 'zabbix'@'localhost' IDENTIFIED BY 'zabbixpassword'; mysql&gt; CREATE DATABASE zabbix CHARACTER SET utf8; mysql&gt; GRANT ALL ON zabbix.* to 'zabbix'@'localhost'; mysql&gt; quit # zcat /usr/share/doc/zabbix-server-mysql-3.2.1/create.sql.gz | mysql -uroot zabbix パスワードは任意のものを入れてください。
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/wp/501/">
+    <h1 class="catalogue-title">gitの履歴から特定のコミット以降の履歴だけを残してクリアする</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2017-04-10 19:39:28 &#43;0000 UTC" class="catalogue-time">2017-04-10</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/git/">git</a></div>
     </div>
-</a>
+    
+    <p>個人で開発しているアプリケーションのgitリポジトリで履歴がグチャグチャしてしまったので、コミット履歴をちょっと弄った時のメモで&hellip;</p>
+</div>
+
 
 		
-			<a href="/posts/wp/398/" class="catalogue-item">
-    <div>
-        <time datetime="2017-02-11 23:06:36 &#43;0000 UTC" class="catalogue-time">February 11, 2017</time>
-        <h1 class="catalogue-title">【git】gitコマンドチートシート</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            自分が使うgitコマンドを整理しました。
-■環境
-OS X El Capitan 10.11.6
-git 2.10.1
-【設定について】グローバルコンフィグの設定
-（全リポジトリの共通設定）
-$ git config --global user.name &amp;quot;jester&amp;quot; $ git config --global user.email &amp;quot;jester@sample.co.jp&amp;quot; リポジトリ別コンフィグの設定
-(対象リポジトリのディレクトリにて) $ git config user.name &amp;quot;master&amp;quot; $ git config user.email &amp;quot;master@sample.co.jp&amp;quot; 【リポジトリの作成・リモート設定について】リモートのリポジトリをクローンする
-$ git clone {リモートリポジトリの指定} {生成するディレクトリ} ※生成するディレクトリを省略すると、リモートリポジトリと同じ名前でディレクトリが生成される
-ローカルで新規にリポジトリを作成する
-$ mkdir SampleProject $ cd SampleProject $ git init ローカルで作成したリポジトリを後からリモートに紐付ける
-(対象のリポジトリディレクトリにて) $ git remote add {名前、originなど} {リモートリポジトリの指定} リモートリポジトリの変更する
-(対象のリポジトリディレクトリにて) $ git remote set-url {名前、originなど} {リモートリポジトリの指定} リモートとの紐付けを解除する
-(対象のリポジトリディレクトリにて) $ git remote rm {名前、originなど} 
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/wp/491/">
+    <h1 class="catalogue-title">【golang】mapの要素順は変動する</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2017-04-08 12:22:59 &#43;0000 UTC" class="catalogue-time">2017-04-08</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/golang/">golang</a></div>
     </div>
-</a>
+    
+    <p>■環境OS X El Capitan 10.11.6go 1.8 darwin/amd64タイトルの件、ちょっと引っかかったので&hellip;</p>
+</div>
+
 
 		
-			<a href="/posts/wp/402/" class="catalogue-item">
-    <div>
-        <time datetime="2017-02-10 18:23:37 &#43;0000 UTC" class="catalogue-time">February 10, 2017</time>
-        <h1 class="catalogue-title">【Wordpress】SyntaxHighlighter Evolvedを高速化する</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            Wordperssのプラグイン『SyntaxHighlighter Evolved』を入れていたところ
-画面表示がとても遅くなったので高速化しました。
-〜〜〜2017/2/11 追記〜〜〜
-プラグインを変えた方が早いかもしれないです
-「WP Code Highlight.js」に変えてみたところ、表示は問題なく早いですし
-paddingなどもこちらの方が気に入ってます。
-〜〜〜追記終わり〜〜〜
-■環境
-CentOS 7.3
-Wordpress 4.7.2
-SyntaxHighlighter Evolved 3.2.1
-※前提条件として、Wordpressを置いてあるサーバを操作できる権限があることとします
-『SyntaxHighlighter Evolved』は各種言語に対応しているのですが、
-実際、自分は書かないなーという言語も入っているので、不要なものは
-プラグインで読み込まないようにします。
-具体的には、プラグイン内のPHPファイルを修正し、不要な言語の設定を読み込んでいそうな行を
-コメントアウトします。
-# cd /{wordpressが配置されているディレクトリ}/wp-content/plugins/syntaxhighlighter # vim syntaxhighlighter.php コメントアウト箇所は114行目あたりから始まる以下の部分です。
-wp_register_script( 'syntaxhighlighter-brush-○○○',〜〜〜　$this-&gt;agshver ); 上記の「○○○」部分に言語名が入っているので、不要な言語の行はコメントアウトします。
-あと、あまり効果があるか分かりませんが、テーマも使わないものはコメントアウトしてしまいました。
-該当箇所は149行目あたりから始まる以下の部分です。
-wp_register_stype( 'syntaxhighlighter-theme-○○○',〜〜〜　$this-&gt;agshver ); 上記の「○○○」部分にテーマ名が入ります。
-上記でコメントアウトした言語、テーマについて
-下の方の行で配列に格納されているので、そこもコメントアウトします。
-言語についての配列は、162行目あたりにあります。
-$this-&gt;brushes = (array) apply_filters( 'syntaxhighlighter_brushes', array( 'as3' =&gt; 'as3', 'actionscript3' =&gt; 'as3', 'bash' =&gt; 'bash', 'shell' =&gt; 'bash', 以下略 テーマについての配列は、243行目あたりにあります。
-$this-&gt;themes = (array) apply_filters( 'syntaxhighlighter_themes', array( 'default' =&gt; __( 'Default', 'syntaxhighlighter' ), 'django' =&gt; __( 'Django', 'syntaxhighlighter' ), 'eclipse' =&gt; __( 'Eclipse', 'syntaxhighlighter' ), 'emacs' =&gt; __( 'Emacs', 'syntaxhighlighter' ), 'fadetogrey' =&gt; __( 'Fade to Grey', 'syntaxhighlighter' ), 'midnight' =&gt; __( 'Midnight', 'syntaxhighlighter' ), 'rdark' =&gt; __( 'RDark', 'syntaxhighlighter' ), 'none' =&gt; __( '[None]', 'syntaxhighlighter' ), ) ); 上記箇所を適当にコメントアウトすると、画面表示がいくらか早くなりました。
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/wp/467/">
+    <h1 class="catalogue-title">【法人】地方税のeLTAXでの申請手順メモ</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2017-03-10 00:04:51 &#43;0000 UTC" class="catalogue-time">2017-03-10</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/%e6%b3%95%e4%ba%ba%e4%ba%8b%e5%8b%99/">法人事務</a></div>
     </div>
-</a>
+    
+    <p>法人（休眠中）の地方税に関する確定申告をeLTAXで行なったので、その手順をメモします。休眠中じゃなくても、大体の手順は同じだと&hellip;</p>
+</div>
+
 
 		
-			<a href="/posts/wp/384/" class="catalogue-item">
-    <div>
-        <time datetime="2017-02-07 11:42:44 &#43;0000 UTC" class="catalogue-time">February 7, 2017</time>
-        <h1 class="catalogue-title">PHPExcelの使い方メモ</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            PHPでExcelを生成できる『PHPExcel』の使い方メモ
-※実際に私が使ったものをメモしているだけなので、機能を網羅している訳ではないです。かしこ。
-インストールはcomposerを使うか、圧縮ファイルをダウンロードしてきて
-適当なディレクトリに解凍します。
-あとは以下をrequireするだけ。
-/格納したパス/PHPExcel/Classes/PHPExcel.php
-/格納したパス/PHPExcel/Classes/PHPExcel/IOFactory.php
-実際のソースコードは以下の通り
-/** * PHPExcelの新規オブジェクト作成 */ $excel = new PHPExcel(); /** * シートを作成してシート名を変える */ $sheetIndex = 0; // シート番号は０から $excel-&gt;setActiveSheetIndex($sheetIndex); $sheet = $excel-&gt;getActiveSheet(); $sheet-&gt;setTitle('SampleSheet01'); /** * セルにデータを入力する */ // 基本的な入力 $rowCnt = 1; // 行番号は１から $clmCnt = 0; // 列番号は0から $text = 'セルに書き込む内容だよ'; $sheet-&gt;setCellValueByColumnAndRow($clmCnt, $rowCnt, $val); // 文字列型で入力 $rowCnt++; // 1行下に移動 $clmCnt++; // 1列右に移動 $text = '000001'; // 文字列型にしないと、左記は「00001」ではなく「1」になってしまう $sheet-&gt;setCellValueExplicitByColumnAndRow($clmCnt, $rowCnt, $val, PHPExcel_Cell_DataType::TYPE_STRING); /** * セルの書式設定 */ // シートのデフォルトフォントを設定する $sheet-&gt;getDefaultStyle()-&gt;getFont()-&gt;setName('ＭＳ Ｐゴシック')-&gt;setSize(11); // 背景色を設定 $bgcolor = '000000'; // 16進数で指定 $sheet-&gt;getStyleByColumnAndRow($clmCnt, $rowCnt)-&gt;getFill()-&gt;setFillType(PHPExcel_Style_Fill::FILL_SOLID); $sheet-&gt;getStyleByColumnAndRow($clmCnt, $rowCnt)-&gt;getFill()-&gt;getStartColor()-&gt;setRGB($bgcolor); // 文字色を設定 $fontcolor = 'FFFFFF'; // 16進数で指定 $sheet-&gt;getStyleByColumnAndRow($clmCnt, $rowCnt)-&gt;getFont()-&gt;getColor()-&gt;setARGB($fontcolor); // 太字にする $sheet-&gt;getStyleByColumnAndRow($clmCnt, $rowCnt)-&gt;getFont()-&gt;setBold(true); // セル（行列番号指定）の上だけに罫線(二重線)を引く $sheet-&gt;getStyleByColumnAndRow($clmCnt, $rowCnt)-&gt;getBorders()-&gt;getTop()-&gt;setBorderStyle(PHPExcel_Style_Border::BORDER_DOUBLE); // セル（レンジ指定）の周り全てに罫線(単一線)を引く $sheet-&gt;getStyle('A1:B3')-&gt;getBorders()-&gt;getAllBorders()-&gt;setBorderStyle(PHPExcel_Style_Border::BORDER_THIN); // 列の幅を指定する $sheet-&gt;getColumnDimension('A')-&gt;setWidth(14.
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/wp/444/">
+    <h1 class="catalogue-title">Redmine2.3.2にグループ管理プラグインを入れる</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2017-02-27 15:16:05 &#43;0000 UTC" class="catalogue-time">2017-02-27</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/ruby/">ruby</a></div>
     </div>
-</a>
+    
+    <p>redmineにグループ管理のプラグインを入れたが、ちゃんと動かなかったのでつまづいた所をメモする。※補足Ruby on Rai&hellip;</p>
+</div>
+
 
 		
-			<a href="/posts/wp/366/" class="catalogue-item">
-    <div>
-        <time datetime="2017-02-07 00:38:00 &#43;0000 UTC" class="catalogue-time">February 7, 2017</time>
-        <h1 class="catalogue-title">MFクラウド会計を使った休眠法人決算</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            休眠法人の決算を税理士を雇わずに終わらせる。
-MFクラウド会計の無料プランを使う。
-①各種設定＞事業所　で必要な情報を設定する。
-②各種設定＞開始残高 で、昨年から繰り越した現金や預金の金額を設定する。
-③銀行の利子が入っていると思うので、その分だけ振替伝票を記載する。
-④以下をPDF出力する。
-「決算・申告メニュー＞決算書」
-「会計帳簿メニュー＞現預金出納帳」
-「会計帳簿メニュー＞総勘定元帳」
-⑤e-taxにて確定申告する。
-手順詳細はコチラこれで、税務署から何も言われなければ完了。
-呼び出しを食らったら、大人しく従います。
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/wp/440/">
+    <h1 class="catalogue-title">CentOS7にfishを入れる</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2017-02-17 00:00:18 &#43;0000 UTC" class="catalogue-time">2017-02-17</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/centos/">CentOS</a></div>
     </div>
-</a>
+    
+    <p>最近人気らしいfishを試しに入れてみました。■環境CentOS 7.3fish 2.3.1epelリポジトリが入っていない人は&hellip;</p>
+</div>
+
 
 		
-			<a href="/posts/wp/372/" class="catalogue-item">
-    <div>
-        <time datetime="2017-02-07 00:25:56 &#43;0000 UTC" class="catalogue-time">February 7, 2017</time>
-        <h1 class="catalogue-title">【法人】国税のe-taxでの申請手順メモ</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            法人（休眠中）の国税に関する確定申告をe-taxで行なったので、その手順をメモします。
-休眠中じゃなくても、大体の手順は同じだと思います。
-※eLTAX(地方税）についてはこちら■必要なもの  Windows PC ICカードリーダー 決算書など、確定申告書に添付する資料のPDF  ■手順 ①e-tax利用準備 電子証明書は法人のものでなくても、代表個人のものでもよいです。 マイナンバーカードに電子証明書が付いているので、それを使うのが一番早いと思います。
-作業手順は以下に従ってください。 http://www.e-tax.nta.go.jp/hojin.html②e-taxソフトでの申請データ作成 e-taxソフトやソフト起動時に入力する利用者識別番号も①の手順で取得できます。
- ※注意 利用者識別番号は使い続けていれば過去に発行した物もずっと有効（？）らしいですが、 年に１回使う程度だと失効している可能性があります。(私は失効していました) 利用者識別番号が無効と言われた場合は、手順①を再度実施してください。
- 左メニューの『作成＞申告・申請等＞新規作成』にて申告書を作成します。
-【１つめ：確定申告書申告書】
-以下を選択して「次へ」をクリックします。
-手続の種類：申告
-税目：法人税・地方法人税
-帳票の年：自分の事業にあった項目
-もし存在しない場合はe-tax起動時のメニューにて追加インストールしてください。
-また、インストール済みでも個人用の利用者識別番号を入力してしまうと法人用の申告書は表示されないようですのでご注意ください。
-以下を作成します。 【普通法人の確定申告（青色）】
-・別紙1(1)　各事業年度の所得に係る申告書
-・別紙2　同族会社等の判定に関する明細書
-・別紙4　所得の金額の計算に関する明細書
-・別紙7(1)　欠損金又は災害損失金の損金参入に関する明細書
-・法人事業概要説明書
- ※注意 作成する帳票を選ぶ画面がチェックボックスになっていますが複数選べません。 まずは別紙1を選んで作成し、後から他の書類を追加してください。
- 【2つめ：確定申告の添付書類】
-以下を選択して「次へ」をクリックします。
-手続の種類：申告
-税目：法人税・地方法人税
-帳票の年：自分の事業にあった項目
-以下を作成します。 【イメージ添付書類（法人税申告）】
-・添付書類送付書
--&gt;決算書、出納帳、総勘定元帳のPDFを添付する
-③e-taxソフトでの署名 左メニュー『署名可能一覧へ＞電子署名』にて、上記で作成したデータに署名をします。
-署名に使う電子証明書は①で取得したものです。
-④e-taxソフトでの送信 左メニュー『送信可能一覧へ＞送信』にて、まずは手順②で作成した２つの書類を紐付けます。 下側の単独送信不可の書類（作成した添付書類）を選択した状態で「紐付け」をクリックします。
-すると紐付け画面が表示されるので、確定申告書を選択して「OK」をクリックします。
-これで紐付けが完了したので、上側の送信可能書類（作成した確定申告書）を選択した状態で「送信」をクリックします。
-その後、利用者識別番号の暗証番号を入力すれば送信完了です。
-以上でe-taxでの申請は完了。
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/wp/424/">
+    <h1 class="catalogue-title">zabbixでPHPの警告が出る場合の対処</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2017-02-14 00:48:55 &#43;0000 UTC" class="catalogue-time">2017-02-14</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/php/">PHP</a></div> <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/zabbix/">zabbix</a></div>
     </div>
-</a>
+    
+    <p>■環境zabbix 3.2PHP 7.1PHP7.1でzabbixを動かすと、以下の警告が出ました。A non well for&hellip;</p>
+</div>
+
 
 		
-			<a href="/posts/wp/355/" class="catalogue-item">
-    <div>
-        <time datetime="2017-01-18 00:51:55 &#43;0000 UTC" class="catalogue-time">January 18, 2017</time>
-        <h1 class="catalogue-title">【CentOS &#43; Apache】Let’s Encryptで無料SSL証明書の取得＆自動更新をする</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            ■環境 CentOS 7.3
-Apache 2.4.6
- Let&rsquo;s Encryptで無料SSL証明書を取得し、自動更新する設定をします。
-########## 2017/04/05追記 ##########
-Certbotというツールが公開されており、
-本手順を実施するよりも、そちらを利用した方が簡単です。
-https://certbot.eff.org設定方法はこちら
-【Let&rsquo;sEncrypt】Certbotの使い方(CentOS7 + nginx)################################
-■前提 対象サーバがインターネット網に公開しているサーバであること。
-→証明書発行時に認証のためLet&rsquo;s Encrypt側からアクセスがあるようです。
-そのため、ファイアーウォールなどで外部からのアクセスを遮断している環境では証明書発行ができません。
-2017/1/19現在、アクセス時のIPアドレスも公開しておりません。
-https://letsencrypt.jp/faq/#IP設定手順 ※以下手順はroot権限で実施しています。
-まず、サーバー上の任意のディレクトリにLet&rsquo;s Encryptから証明書を取得するツールをダウンロードします。
-サーバにgitが入っていない場合は、ローカルでダウンロードしたものをFTPなどでアップしても良いと思います。
-# git clone https://github.com/letsencrypt/letsencrypt ダウンロードしたら、ツールの初期構築をします。
-以下コマンドにて必要なソフトウェアのインストールなどが走り、完了したらletsencrypt-autoのヘルプが表示されます。
-# cd letsencrypt # ./letsencrypt-auto --help --debug 次にツールを実行し、実際に証明書を取得します。
-その際、４４３ポートを利用しているプロセスがあるとエラーとなるので、この瞬間はApacheを止める必要がありました。
-# systemctl stop httpd # ./letsencrypt-auto certonly --standalone -d your-domain.com # systemctl start httpd ※上記の「your-domain.com」には証明書を生成するドメインを入力してください。
-これで証明書が生成できました。
-以下のディレクトリ配下に証明書や秘密鍵（のシンボリックリンク）が生成されているので、
-Apacheの設定ファイルへ記載します。
-■生成されるディレクトリ
-/etc/letsencrypt/live/your-domain.com/ ■生成されるファイル
-cert.pem　：　SSL証明書本体 chain.pem　：　チェイン証明書 fullchain.
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/wp/349/">
+    <h1 class="catalogue-title">CentOS 7.3にzabbix 3.2をインストール</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2017-02-14 00:20:50 &#43;0000 UTC" class="catalogue-time">2017-02-14</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/centos/">CentOS</a></div> <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/zabbix/">zabbix</a></div>
     </div>
-</a>
+    
+    <p>■環境CentOS 7.3zabbix 3.2PHP 7.1MySQL 14.14Apache 2.4①zabbixをyumでイ&hellip;</p>
+</div>
+
 
 		
-			<a href="/posts/wp/318/" class="catalogue-item">
-    <div>
-        <time datetime="2016-12-01 13:29:48 &#43;0000 UTC" class="catalogue-time">December 1, 2016</time>
-        <h1 class="catalogue-title">HP Proliant Microserver Gen 8 にCentOS7を入れる</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            ■作業環境 ・OS X El Capitan 10.11.6
- ■手順 CentOS7の準備 まず、CentOSのISOイメージをダウンロードします。
-ここから『Everything ISO』をダウンロードしておきます。
-https://www.centos.org/download/ダウンロードしたISOをUSBメモリに起動可能USBとして焼きます。
-1.USBをMacに挿す。
-2.以下コマンドにてUSBメモリのdisk番号を確認する。
-$ diskutil list 3.以下のコマンドにてUSBメモリを初期化する。
-$ diskutil eraseDisk MS-DOS NOTITLE /dev/diskX ※「NOTITLE」作成するUSB名(任意) ※diskXは1.で確認したdisk番号 4.焼き込みをするため、USBメモリをアンマウント
-$ diskutil unmountDisk /dev/diskX 5.ISOを書き込む。
-$ cd {CentOSのISOがある場所} $ sudo dd if=CentOS-7-x86_64-Everything-1511.iso of=/dev/diskX bs=4028 ※処理完了まで、かなり待ちます 6.USBメモリを取り外し可能状態にする。
-$ diskutil eject /dev/diskX RAIDコントローラの準備 次にGen8用のRAIDコントローラをダウンロードします。
-これがないとHPサーバが備えているのRAID機能が使えない。
-http://downloads.linux.hpe.com/SDR/repo/spp/RedHat/7/x86_64/current/ここから「hpvsa-1.2.14-113.rhel7u2.x86_64.dd.gz」をダウンロードします。
-※『rhel7u2』の部分はインストールするCentOSに合わせて読み替えてください。
-ダウンロードしたら、CentOSを焼いたUSBメモリとは別のUSBメモリに焼きます。
-MacはUSBメモリを挿すと自動でマウントするので、ディスクユーティリティからマウント解除して
-以下コマンドを実施。
-（先にUSBの初期化〜アンマウントはISO書き込みと同じ手順を実施）
-$ cd {RAIDドライバをダウンロードした場所} $ gunzip hpvsa-1.2.14-113.rhel7u2.x86_64.dd.gz $ sudo dd if=hpvsa-1.2.14-113.rhel7u2.x86_64.dd of=/dev/diskX $ diskutil eject /dev/diskX インストール実施 作成したUSBメモリ２本をサーバに刺し、サーバを起動します。
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/wp/398/">
+    <h1 class="catalogue-title">【git】gitコマンドチートシート</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2017-02-11 23:06:36 &#43;0000 UTC" class="catalogue-time">2017-02-11</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/git/">git</a></div>
     </div>
-</a>
+    
+    <p>自分が使うgitコマンドを整理しました。■環境OS X El Capitan 10.11.6git 2.10.1【設定について】&hellip;</p>
+</div>
+
 
 		
 	</div>
 
 	<div class="pagination">
 		
-			<a href="/page/14/" class="left arrow">&#8592;</a>
+			<a href="/page/14/" class="left arrow">＜＜戻る</a>
 		
 		
-			<a href="/page/16/" class="right arrow">&#8594;</a>
+			<a href="/page/16/" class="right arrow">次へ＞＞</a>
 		
 
-		<span>15</span>
+		<span>15 / 20</span>
 	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.3211607 &#43;0900 JST m=&#43;0.140755201">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

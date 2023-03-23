@@ -1,25 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Typescript on Nonsense J</title>
-    <link>/tags/typescript/</link>
-    <description>Recent content in Typescript on Nonsense J</description>
+    <title>Typescript on Logical Dice 技術ブログ</title>
+    <link>https://blog2.logical-dice.com/tags/typescript/</link>
+    <description>Recent content in Typescript on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Thu, 07 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 07 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Typescript &#43; Vue.jsで子コンポーネントのプロパティにアクセスする</title>
-      <link>/posts/2021/01/07/git-revert-revert/</link>
+      <link>https://blog2.logical-dice.com/posts/2021/01/07/git-revert-revert/</link>
       <pubDate>Thu, 07 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2021/01/07/git-revert-revert/</guid>
-      <description>Typescript + Vue.jsの構成で親コンポーネントから子コンポーネントのプロパティにアクセスする場合、
-普通のjavascriptと同じように実装するとエラーとなる場合があります。
-例えば、以下のように記載するとします。
-# template &amp;lt;HogeChild ref=&amp;quot;hogeChildRef&amp;quot; /&amp;gt; # script import HogeChild from &amp;quot;〜対象ファイルパス〜&amp;quot;; @Component({ components: { HogeChild } }) export default class HogeParent extends Vue { changeChildFlg(): void { this.$refs.hogeChildRef.someFlg = true; } } すると以下のエラーが発生することがあります。
-Property &#39;someFlg&#39; does not exist on type &#39;Vue | Element | Vue[] | Element[]&#39;. Property &#39;someFlg&#39; does not exist on type &#39;Vue&#39;.Vetur(2339) この場合、Typescriptを使う場合は子コンポーネント呼び出し時にも型を指定してあげる必要があります。
-子コンポーネント呼び出し部分を以下のようにすると動きます。
- changeChildFlg(): void { const hogeChildRef = &amp;lt;HogeChild&amp;gt;this.$refs.hogeChildRef; hogeChildRef.</description>
+      <guid>https://blog2.logical-dice.com/posts/2021/01/07/git-revert-revert/</guid>
+      <description>Typescript + Vue.jsで子コンポーネントのプロパティにアクセスする方法です。</description>
     </item>
     
   </channel>

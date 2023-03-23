@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>Cisco IOSスイッチ操作チートシート &middot; Nonsense J</title>
+	<title>Cisco IOSスイッチ操作チートシート|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,58 +70,54 @@
 	<div class="post">
 		<h1 class="post-title">Cisco IOSスイッチ操作チートシート</h1>
 		<div class="post-info">
-				<time datetime="2017-05-02 15:05:24 &#43;0000 UTC">May 2, 2017</time>
+				<p class="publish-date">投稿日：<time datetime="2017-05-02 15:05:24 &#43;0000 UTC" class="catalogue-time">2017-05-02</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/cisco/">Cisco</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/cisco/">Cisco</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<h4 id="管理者権限になる">管理者権限になる</h4>
-<pre><code>enable  
+<pre tabindex="0"><code>enable  
 </code></pre><p>※省略系はen</p>
 <h4 id="現在の設定を参照する">現在の設定を参照する</h4>
-<pre><code># show interfaces      ※全て見る場合  
+<pre tabindex="0"><code># show interfaces      ※全て見る場合  
 # show interfaces GigabitEthernet0/X  ※特定のインターフェースのみ見る  
 # show vlan  
 </code></pre><p>※「GigabitEthernet0/X」は「Gi0/X」と省略できる</p>
 <h4 id="設定モードに入る">設定モードに入る</h4>
-<pre><code># configure terminal  
+<pre tabindex="0"><code># configure terminal  
 </code></pre><p>※省略系はconf terminal</p>
 <h4 id="設定モードにてsmart-installを無効化する">(設定モードにて)Smart Installを無効化する</h4>
-<pre><code>(config)# no vstack  
+<pre tabindex="0"><code>(config)# no vstack  
 </code></pre><h4 id="設定モードにて管理者権限のパスワードを変更する">(設定モードにて)管理者権限のパスワードを変更する</h4>
-<pre><code>(config)# enable password ｛変更後のパスワード｝  
+<pre tabindex="0"><code>(config)# enable password ｛変更後のパスワード｝  
 </code></pre><h4 id="設定モードにてif設定モードに入る">(設定モードにて)IF設定モードに入る</h4>
-<pre><code>(config)# interface GigabitEthernet0/X  
+<pre tabindex="0"><code>(config)# interface GigabitEthernet0/X  
 </code></pre><h4 id="if設定モードにて停止起動">(IF設定モードにて)停止・起動</h4>
-<pre><code>(config-if)# shutdown  
+<pre tabindex="0"><code>(config-if)# shutdown  
 (config-if)# no shutdown  
 </code></pre><h4 id="if設定モードにてvlanの切り替え">(IF設定モードにて)vlanの切り替え</h4>
-<pre><code>(config-if)# switchport mode access  
+<pre tabindex="0"><code>(config-if)# switchport mode access  
 (config-if)# switchport access vlan {vlan番号}  
 </code></pre><h4 id="各モードを抜ける">各モードを抜ける</h4>
-<pre><code>(なんらかのモード)# exit  
+<pre tabindex="0"><code>(なんらかのモード)# exit  
 </code></pre><h4 id="各種設定した内容を保存する">各種設定した内容を保存する</h4>
-<pre><code># write memory  
+<pre tabindex="0"><code># write memory  
 </code></pre><p>※最後にこれを実行しておかないと、再起動後に設定内容が戻ってしまう。</p>
 
-	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/629/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/642/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
 	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2853271 &#43;0900 JST m=&#43;0.104924601">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

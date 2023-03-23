@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>数字入力フォームに文字数制限をつける &middot; Nonsense J</title>
+	<title>数字入力フォームに文字数制限をつける|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,55 +70,51 @@
 	<div class="post">
 		<h1 class="post-title">数字入力フォームに文字数制限をつける</h1>
 		<div class="post-info">
-				<time datetime="2018-05-18 21:53:41 &#43;0000 UTC">May 18, 2018</time>
+				<p class="publish-date">投稿日：<time datetime="2018-05-18 21:53:41 &#43;0000 UTC" class="catalogue-time">2018-05-18</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/html/">HTML</a></div> <div class="tags_item"><a href="/tags/javascript/">javascript</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/html/">HTML</a></div> <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/javascript/">javascript</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<p>HTML5で追加された<code>&lt;input type=&quot;number&quot; /&gt;</code>ですが、maxlengthの指定ができません。<br>
 なので、Javascriptで最大桁数の制御を入れてみます。</p>
 <h4 id="html">HTML</h4>
-<pre><code>3桁の例  
-&lt;input type=&quot;number&quot; name=&quot;bangou3keta&quot; oninput=&quot;sliceMaxLength(this, 3)&quot;&gt;  
+<pre tabindex="0"><code>3桁の例  
+&lt;input type=&#34;number&#34; name=&#34;bangou3keta&#34; oninput=&#34;sliceMaxLength(this, 3)&#34;&gt;  
 5桁の例  
-&lt;input type=&quot;number&quot; name=&quot;bangou5keta&quot; oninput=&quot;sliceMaxLength(this, 5)&quot;&gt;  
+&lt;input type=&#34;number&#34; name=&#34;bangou5keta&#34; oninput=&#34;sliceMaxLength(this, 5)&#34;&gt;  
 </code></pre><h4 id="javascript">Javascript</h4>
-<pre><code>function sliceMaxLength(elem, maxLength) {  
+<pre tabindex="0"><code>function sliceMaxLength(elem, maxLength) {  
     elem.value = elem.value.slice(0, maxLength);  
 }  
 </code></pre><p>また、<code>&lt;input type=&quot;number&quot; /&gt;</code>にすると右端に数字を増減するスピンボタンが表示されます。<br>
 電話番号の入力欄などでは不要なので、以下のCSSで非表示にしてしまいます。</p>
 <h4 id="css">CSS</h4>
-<pre><code>// Chrome、Safari  
-input[type=&quot;number&quot;]::-webkit-outer-spin-button,  
-input[type=&quot;number&quot;]::-webkit-inner-spin-button {  
+<pre tabindex="0"><code>// Chrome、Safari  
+input[type=&#34;number&#34;]::-webkit-outer-spin-button,  
+input[type=&#34;number&#34;]::-webkit-inner-spin-button {  
   -webkit-appearance: none;  
   margin: 0;  
 }  
   
 // Firefox、IE  
-input[type=&quot;number&quot;] {  
+input[type=&#34;number&#34;] {  
   -moz-appearance:textfield;  
 }  
 </code></pre>
-	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/1291/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/1360/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
 	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2745136 &#43;0900 JST m=&#43;0.094108101">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

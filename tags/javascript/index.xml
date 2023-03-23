@@ -1,190 +1,109 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>javascript on Nonsense J</title>
-    <link>/tags/javascript/</link>
-    <description>Recent content in javascript on Nonsense J</description>
+    <title>javascript on Logical Dice 技術ブログ</title>
+    <link>https://blog2.logical-dice.com/tags/javascript/</link>
+    <description>Recent content in javascript on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sun, 25 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 06 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>lodashのdebounceとthrottleの違い</title>
+      <link>https://blog2.logical-dice.com/posts/2021/06/06/lodash-debounce-vs-throttle/</link>
+      <pubDate>Sun, 06 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog2.logical-dice.com/posts/2021/06/06/lodash-debounce-vs-throttle/</guid>
+      <description>debounceとthrottleの違いを調べた際のメモです。</description>
+    </item>
+    
     <item>
       <title>javascriptでライブラリ無しでオートコンプリート</title>
-      <link>/posts/2020/10/25/javascript-autocomplete/</link>
+      <link>https://blog2.logical-dice.com/posts/2020/10/25/javascript-autocomplete/</link>
       <pubDate>Sun, 25 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2020/10/25/javascript-autocomplete/</guid>
-      <description>javascriptを使ってイチからオートコンプリートを実装しました。
-オートコンプリートは何もなければライブラリを使って実装するのが早いですが、 イチから自分で実装する機会があったのでメモを残します。
-要件  PC(Chrome, IE, Safari), Android(Chrome), iPhone(safari)に対応する。 入力したキーワードを含む都道府県を選択肢として表示する。 選択肢をクリックしたら選択したこととする。 PCでは選択肢からカーソルキー&amp;amp;エンターキーでも選択できるようにする。  この4つ目が肝です。
-対応方法 こちらに動くものを用意してあります。
-デモ
-HTMLは以下のようになっているとします。
-テキストボックスに文字を入力するとulタグ内に選択肢が表示されるようにします。
-&amp;lt;input type=&amp;quot;text&amp;quot; id=&amp;quot;keyword&amp;quot; placeholder=&amp;quot;都道府県名を入れてください&amp;quot; autocomplete=&amp;quot;off&amp;quot;/&amp;gt; &amp;lt;ul id=&amp;quot;outputBox&amp;quot;&amp;gt;&amp;lt;/ul&amp;gt; javascriptは以下の通りです。
-// 都道府県一覧 const prefectureList = [&#39;北海道&#39;,&#39;青森県&#39;,&#39;岩手県&#39;,&#39;宮城県&#39;,&#39;秋田県&#39;,&#39;山形県&#39;,&#39;福島県&#39;, &#39;茨城県&#39;,&#39;栃木県&#39;,&#39;群馬県&#39;,&#39;埼玉県&#39;,&#39;千葉県&#39;,&#39;東京都&#39;,&#39;神奈川県&#39;, &#39;新潟県&#39;,&#39;富山県&#39;,&#39;石川県&#39;,&#39;福井県&#39;,&#39;山梨県&#39;,&#39;長野県&#39;,&#39;岐阜県&#39;, &#39;静岡県&#39;,&#39;愛知県&#39;,&#39;三重県&#39;,&#39;滋賀県&#39;,&#39;京都府&#39;,&#39;大阪府&#39;,&#39;兵庫県&#39;, &#39;奈良県&#39;,&#39;和歌山県&#39;,&#39;鳥取県&#39;,&#39;島根県&#39;,&#39;岡山県&#39;,&#39;広島県&#39;,&#39;山口県&#39;, &#39;徳島県&#39;,&#39;香川県&#39;,&#39;愛媛県&#39;,&#39;高知県&#39;,&#39;福岡県&#39;,&#39;佐賀県&#39;,&#39;長崎県&#39;, &#39;熊本県&#39;,&#39;大分県&#39;,&#39;宮崎県&#39;,&#39;鹿児島県&#39;,&#39;沖縄県&#39;]; // in/out要素を変数に入れておく const inputElm = document.getElementById(&#39;keyword&#39;); const outboxElm = document.getElementById(&#39;outputBox&#39;); /** * テキストボックスに文字入力時 */ inputElm.addEventListener(&#39;compositionend&#39;, function(e) { // タブキーは次の要素に移動させるのでスルー if (e.key == &#39;Tab&#39;) { return; } outboxElm.innerHTML = &#39;&#39;; let _this = this; setTimeout(function(){ // 入力された文字を含む都道府県を抽出する prefectureList.</description>
+      <guid>https://blog2.logical-dice.com/posts/2020/10/25/javascript-autocomplete/</guid>
+      <description>javascriptでライブラリを使わずにカーソルキーで選択できるオートコンプリートを実装します。</description>
     </item>
     
     <item>
       <title>GitHubの草を炭治郎柄にする</title>
-      <link>/posts/2020/07/16/bookmarklet-kimetsu/</link>
+      <link>https://blog2.logical-dice.com/posts/2020/07/16/bookmarklet-kimetsu/</link>
       <pubDate>Thu, 16 Jul 2020 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2020/07/16/bookmarklet-kimetsu/</guid>
-      <description>私は鬼滅の刃自体は見たことが無いのですが、それでも主人公の炭治郎の着物はよく目にします。
-あの柄を見ると、ちょっとGitHubの草っぽいなと思ってました。
-というわけで、GitHubの草を炭治郎の着物柄にしてみます。
-Bookmarkletの説明や作り方についてはこちらを参照。
-Bookmarklet(ブックマークレット)の作り方
-Bookmarklet作成 まず、GitHubの草部分の色を変えるスクリプトを書いてみます。
-// GitHubの草部分の要素を取得 var kusaElmList = document.getElementsByClassName(&#39;day&#39;) for (var i=0; i&amp;lt;kusaElmList.length; i++){ var kusa = kusaElmList[i] if (i % 2 == 0){ // 偶数マスは緑 kusa.setAttribute(&#39;fill&#39;,&#39;#2A7&#39;) }else{ // 奇数マスは黒 kusa.setAttribute(&#39;fill&#39;,&#39;#000&#39;) } } これをBookmarkletにします。
-javascript:for(var t=document.getElementsByClassName(&amp;quot;day&amp;quot;),e=0;e&amp;lt;t.length;e++){var l=t[e];e%2==0?l.setAttribute(&amp;quot;fill&amp;quot;,&amp;quot;#2A7&amp;quot;):l.setAttribute(&amp;quot;fill&amp;quot;,&amp;quot;#000&amp;quot;)} 実行結果はこちら。
-色はそれっぽくなりましたが、まだ隙間が気になります。
-なので、隙間も埋めるよう修正します。
-// GitHubの草部分の要素を取得 var kusaElmList = document.getElementsByClassName(&#39;day&#39;); for (var i=0; i&amp;lt;kusaElmList.length; i++){ var kusa = kusaElmList[i]; // 草の大きさと形を整える kusa.setAttribute(&#39;width&#39;,&#39;15&#39;); kusa.setAttribute(&#39;height&#39;,&#39;15&#39;); kusa.style.rx=0; kusa.style.ry=0; if (i % 2 == 0){ // 偶数マスは緑 kusa.</description>
+      <guid>https://blog2.logical-dice.com/posts/2020/07/16/bookmarklet-kimetsu/</guid>
+      <description>Bookmarkletを使ってGitHubの草を炭治郎の着物柄にします。</description>
     </item>
     
     <item>
       <title>Bookmarklet(ブックマークレット)の作り方</title>
-      <link>/posts/2020/07/15/howto-make-bookmarklet/</link>
+      <link>https://blog2.logical-dice.com/posts/2020/07/15/howto-make-bookmarklet/</link>
       <pubDate>Wed, 15 Jul 2020 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2020/07/15/howto-make-bookmarklet/</guid>
-      <description>Bookmarklet(ブックマークレット)とは 詳細はこちら
-ウィキペディア
-簡単に言えばブラウザのブックマークにURL代わりにjavascriptを入力して保存しておいて。
-そのjavascriptを実行したい時に該当のブックマークをクリックするというものです。
-たとえばブックマークにjavascript:alert(&#39;hoge&#39;);と登録しておけば、
-そのブックマークをクリックしたら&amp;lt;a href=&amp;quot;javascript:alert(&#39;hoge&#39;);&amp;quot;&amp;gt;hoge&amp;lt;/a&amp;gt;をクリックした時と同じ事が起きます。
-作り方は色々ありますが、uglify-jsを使って作成する方法を紹介します。
-javascriptの作成 まず、適当にjsファイルを作って適当に実行したいjavascriptのコードを書きます。
-今回は例としてページ内のdivタグの数を数えるスクリプトを作ります。
-以下のコードをsample.jsというファイルに記載しておきます。
-var divElms = document.getElementsByTagName(&#39;div&#39;); alert(&#39;divの数は&#39; + divElms.length + &#39;です！&#39;); uglify-jsによるjavascriptの圧縮 uglify-jsを使って作成したsample.jsを圧縮します。
-まず、uglify-jsコマンドを使えるようにインストールします。
-npmをインストールしていない人は先にインストールしておいてください。
-$ npm install -g uglify-js # 環境に応じて必要であればsudoを付けてください 次にjavascriptの圧縮をします。
-以下のコマンドでjavascriptの圧縮ができます。
-※各オプションについては公式ページ参照
-$ uglifyjs -c -m --toplevel -- sample.js 実行結果として以下のように圧縮されたスクリプトが出力されます。
-var e=document.getElementsByTagName(&amp;quot;div&amp;quot;);alert(&amp;quot;divの数は&amp;quot;+e.length+&amp;quot;です！&amp;quot;); この圧縮スクリプトの頭にjavascript:を付けたものがBookmarkletになります。
-ブラウザへのBookmarklet登録 ブラウザのブックマークに新規ページを追加し、URL欄にjavascript:｛生成した圧縮スクリプト｝を登録します。
-Chromeであれば以下のようになります。
-（名前は自分で分かるものであれば何でもいいです）
-これで任意のページを開いている時に、登録したブックマークをクリックすると処理が走ります。
-Googleで実行するとこのようになります。
-これでBookmarkletの作成は完了です。</description>
+      <guid>https://blog2.logical-dice.com/posts/2020/07/15/howto-make-bookmarklet/</guid>
+      <description>uglify-jsを使ってBookmarkletを作る方法をざっくりと説明</description>
     </item>
     
     <item>
       <title>gulp-uglifyで圧縮時に変数／関数名を圧縮させない</title>
-      <link>/posts/2020/04/15/gulp-uglify-keep-name/</link>
+      <link>https://blog2.logical-dice.com/posts/2020/04/15/gulp-uglify-keep-name/</link>
       <pubDate>Wed, 15 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2020/04/15/gulp-uglify-keep-name/</guid>
-      <description>参考  github mishoo/UglifyJS2   意外と調べても情報が出てこなかったのでメモです。
-gulp-uglifyを使ってJSファイルを圧縮すると定義している変数名や関数名も圧縮されてアルファベット1文字等になります。
-圧縮したJSファイル内でのみ呼び出される変数・関数であれば良いのですが、外部からも呼び出したいというパターンもあると思います。特に関数。
-変数名や関数名を保持したい場合は、gulp-uglify実行時に以下の用にオプションを指定してあげればOKです。
-(gulpfile.js例)
-var gulp = require(&#39;gulp&#39;); var uglify = require(&#39;gulp-uglify&#39;); var uglify_option = { keep_fnames: true, // function名を圧縮させない場合に指定 mangle: false // 変数名を圧縮させない場合に指定 } gulp.task(&amp;quot;default&amp;quot;, function() { return gulp.src(&#39;src/*.js&#39;) .pipe(uglify(uglify_option)) .pipe(gulp.dest(&#39;dest&#39;)); }); </description>
+      <guid>https://blog2.logical-dice.com/posts/2020/04/15/gulp-uglify-keep-name/</guid>
+      <description>gulp-uglifyでJSファイルを圧縮する際に変数名や関数名をそのままにする方法です。</description>
     </item>
     
     <item>
       <title>javascriptの入力イベントでIME未確定時は発火させない設定方法</title>
-      <link>/posts/2020/03/20/javascript-input-event/</link>
+      <link>https://blog2.logical-dice.com/posts/2020/03/20/javascript-input-event/</link>
       <pubDate>Fri, 20 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2020/03/20/javascript-input-event/</guid>
-      <description>テキストボックスに入力中の内容をjavascriptでチェックする場合など
-keydownイベントを使うとIME未確定時にも発火してしまい無駄に沢山処理が走ってしまいますし、
-textInputイベントは対応していないブラウザがあるし、
-そんな時の対応方法です。
-javascriptのイベントにはIME入力開始時の「compositionstart」とIME確定時の「compositionend」というものがあります。
-これを使ってIME入力中を判定できるフラグを作ります。
-具体的には以下のようにします。
-&amp;lt;input type=&amp;quot;text&amp;quot; id=&amp;quot;hoge&amp;quot; /&amp;gt; &amp;lt;script&amp;gt; // とりあえずオブジェクト化してますが、ベタ書きでも構いません var inputEventHandler = { compFlg : false, // IME入力中フラグ initialize : function(){ let targetElm = document.getElementById(&#39;hoge&#39;); targetElm.addEventListener(&#39;keydown&#39;, function() { // ブラウザによりcompositionendイベントとの発火タイミングが前後するのでsetTimeoutで少し遅らせます setTimeout(function(){ if (self.compFlg) { return; } console.log(&#39;ここで何か処理を実行する&#39;); }, 10) }); targetElm.addEventListener(&#39;compositionstart&#39;, function() { self.compFlg = true; }); targetElm.addEventListener(&#39;compositionend&#39;, function() { self.compFlg = false; }); } } inputEventHandler.initialize(); &amp;lt;/script&amp;gt; </description>
+      <guid>https://blog2.logical-dice.com/posts/2020/03/20/javascript-input-event/</guid>
+      <description>テキスト入力イベントでIME未確定時には発火させたくないので調べました</description>
     </item>
     
     <item>
       <title>Bookmarkletでパスワードを自動で入力させる</title>
-      <link>/posts/2019/10/02/bookmarklet-mizuho/</link>
+      <link>https://blog2.logical-dice.com/posts/2019/10/02/bookmarklet-mizuho/</link>
       <pubDate>Wed, 02 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2019/10/02/bookmarklet-mizuho/</guid>
-      <description>みずほダイレクトで振込時の第2暗証番号6桁から数字4桁を抽出するのが面倒だったので、
-Bookmarkletを使って入力すべき数字4桁を表示できるようにしました。
-Bookmarkletの説明や作り方についてはこちらを参照。
-Bookmarklet(ブックマークレット)の作り方
-みずほダイレクトに仕込んでみる みずほダイレクトの振込時に第2暗証番号を入力する画面まで来たら
-以下のjavascriptを実行すると第2暗証番号が表示されます。
-var secondPass = &#39;123456&#39;; // ここに第2暗証番号の6桁を入れてください var orderNum = 0; var pickPw = &#39;入力するパスワード: &#39;; // 聞かれる第2パスワード4桁を順に処理する for (var i = 1; i&amp;lt;=4; i++) { // 第2パスワードの何番目の数字を聞かれているかチェック orderNum = Number(document.getElementById(&#39;txtScndPwdDgt&#39; + i).innerHTML); // 第2パスワードから対象の数字を抜き出してテキストに追加する pickPw += secondPass.substr(orderNum -1, 1) } // 入力すべき4桁の数字を表示する alert(pickPw); これをBookmarklet用に圧縮し、頭にjavascript:を付けます。
-（圧縮方法はコチラを参照）
-javascript:for(var t,e=&amp;quot;入力するパスワード: &amp;quot;,r=1;r&amp;lt;=4;r++)t=Number(document.getElementById(&amp;quot;txtScndPwdDgt&amp;quot;+r).innerHTML),e+=&amp;quot;123456&amp;quot;.substr(t-1,1);alert(e); あとはブラウザのブックマークに新しくページを追加し、URLに上記のjavascriptを入力しておくだけです。
-みずほダイレクト以外のサイトでもブラウザの開発者ツールでHTML要素を調べれば
-似たような処理を作れると思います。</description>
+      <guid>https://blog2.logical-dice.com/posts/2019/10/02/bookmarklet-mizuho/</guid>
+      <description>みずほダイレクトで振込時の第2暗証番号を調べるのが面倒だったので、ワンクリックで自動抽出できるようにしました</description>
     </item>
     
     <item>
       <title>IME有効時の入力イベントを調べる</title>
-      <link>/posts/2019/04/10/javascript-event/</link>
+      <link>https://blog2.logical-dice.com/posts/2019/04/10/javascript-event/</link>
       <pubDate>Wed, 10 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2019/04/10/javascript-event/</guid>
-      <description>PC/Android/iOSでIME有効時に入力イベントが結構違ったので調べました。
-調べた環境は以下の通りです。
-   OS ブラウザ     PC (Linux Mint 19.1 MATE) Chrome Ver.73.0   Android 8.0.0 (Galaxy S8) Chrome Ver.73.0   iOS 12.2 (iPhone 6) Safari 12.1    テキストボックスに文字を入力した際のイベントを調べました。
-調べたイベントはkeydown, keyup, keypress, textInput, inputです。
-（Androidはブラウザ以外にもキーボードアプリも影響あるのかな？）
-IME有効 入力中（未確定） ひらがなで文字を1文字ずつ入力している時のイベントです。
-   イベント PC Android iOS 取れる値     keydown  ○ ○ 今回入力前の文字列   keyup ○ ○ ○ ※OSにより違う   keypress   ○ 今回入力前の文字列   textInput       input  ○ ○ 今回入力後の文字列    ※keyupで取れる値は以下の通りでした。</description>
+      <guid>https://blog2.logical-dice.com/posts/2019/04/10/javascript-event/</guid>
+      <description>PC/Android/iOSでIME有効時に入力イベントが結構違ったので調べました。</description>
     </item>
     
     <item>
       <title>window.onloadが動かない</title>
-      <link>/posts/2019/01/26/javascript-window-load/</link>
+      <link>https://blog2.logical-dice.com/posts/2019/01/26/javascript-window-load/</link>
       <pubDate>Sat, 26 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2019/01/26/javascript-window-load/</guid>
-      <description>事象 javascriptのwindow.onloadを利用して処理を書いても
-動作しない時がある。
-原因 window.onloadはページを1回表示する際に1度しか実行されない。
-もし複数箇所にてwindow.onloadを記載していた場合は
-そのうちの1つしか実行されない。
-jsファイルを複数に分けていても同様なので
-意識してないところでwindow.onloadが使われていて陥る可能性が高い。
-解決方法 別の記載に変更する
-// 別の記載例 window.addEventListener(&#39;load&#39;, function(){ console.log(&#39;これとか&#39;) }) // jQueryが使えるなら $(window).on(&#39;load&#39;, function(){ console.log(&#39;これとか&#39;) }) </description>
+      <guid>https://blog2.logical-dice.com/posts/2019/01/26/javascript-window-load/</guid>
+      <description>window.onloadが動かない原因の1つについて</description>
     </item>
     
     <item>
       <title>同じForm内に複数のreCAPTCHA認証ボタンを設置する</title>
-      <link>/posts/wp/1627/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/1627/</link>
       <pubDate>Fri, 26 Oct 2018 13:27:25 +0000</pubDate>
       
-      <guid>/posts/wp/1627/</guid>
-      <description>WEBページのreCAPTCHA対応しているform内に複数のsubmitボタンを設置する方法です。
-前提としてPOSTデータより g-recaptcha-responseを取り出して認証しているとします。
-単純にsubmitボタンを複数設置した場合、うまく動きません。
-例えば、以下のようなフォームを作った場合
-&amp;lt;script&amp;gt; function mySubmit(){ document.getElementById(&amp;quot;myForm&amp;quot;).submit(); } &amp;lt;/script&amp;gt; &amp;lt;form id=&amp;quot;myForm&amp;quot; action=&amp;quot;/hoge&amp;quot;&amp;gt; &amp;lt;button class=&amp;quot;g-recaptcha&amp;quot; data-sitekey=&amp;quot;各自のサイトキー&amp;quot; data-callback=&amp;quot;mySubmit&amp;quot;&amp;gt;送信1&amp;lt;/button&amp;gt; 〜いろいろ〜 &amp;lt;button class=&amp;quot;g-recaptcha&amp;quot; data-sitekey=&amp;quot;各自のサイトキー&amp;quot; data-callback=&amp;quot;mySubmit&amp;quot;&amp;gt;送信2&amp;lt;/button&amp;gt; &amp;lt;/form&amp;gt; 送信1ボタンのすぐ上に、このようなreCAPTCHA用の要素が生成されます。
-&amp;lt;div&amp;gt; &amp;lt;div class=&amp;quot;grecaptcha-badge&amp;quot; 〜略〜 &amp;gt; &amp;lt;div class=&amp;quot;grecaptcha-logo&amp;quot;&amp;gt; &amp;lt;iframe src=&amp;quot;https://www.google.com/recaptcha/〜略〜 &amp;gt;&amp;lt;/iframe&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;grecaptcha-error&amp;quot;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;textarea id=&amp;quot;g-recaptcha-response&amp;quot; name=&amp;quot;g-recaptcha-response&amp;quot; 〜略〜 &amp;gt;&amp;lt;/textarea&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; そして、送信2ボタンのすぐ上にも同様に要素が生成されます。
-送信1ボタンとの違いはiframe内とtextareaのidです。
-textareaのidはボタンの数が増える毎に連番が付与されるようです。
-&amp;lt;div&amp;gt; &amp;lt;div class=&amp;quot;grecaptcha-badge&amp;quot; 〜略〜 &amp;gt; &amp;lt;div class=&amp;quot;grecaptcha-logo&amp;quot;&amp;gt; &amp;lt;iframe src=&amp;quot;https://www.google.com/recaptcha/〜略〜 &amp;gt;&amp;lt;/iframe&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;grecaptcha-error&amp;quot;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;textarea id=&amp;quot;g-recaptcha-response-1&amp;quot; name=&amp;quot;g-recaptcha-response&amp;quot; 〜略〜 &amp;gt;&amp;lt;/textarea&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; このままではPOSTデータに同名のパラメータが存在してしまうので正常に動きません。
-そこで、クリックしなかったボタンに紐づくreCAPTCHA要素は削除してしまいます。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/1627/</guid>
+      <description>WEBページのreCAPTCHA対応しているform内に複数のsubmitボタンを設置する方法です。前提としてPOSTデータより&amp;hellip;</description>
     </item>
     
     <item>
       <title>数字入力フォームに文字数制限をつける</title>
-      <link>/posts/wp/1352/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/1352/</link>
       <pubDate>Fri, 18 May 2018 21:53:41 +0000</pubDate>
       
-      <guid>/posts/wp/1352/</guid>
-      <description>HTML5で追加された&amp;lt;input type=&amp;quot;number&amp;quot; /&amp;gt;ですが、maxlengthの指定ができません。
-なので、Javascriptで最大桁数の制御を入れてみます。
-HTML 3桁の例 &amp;lt;input type=&amp;quot;number&amp;quot; name=&amp;quot;bangou3keta&amp;quot; oninput=&amp;quot;sliceMaxLength(this, 3)&amp;quot;&amp;gt; 5桁の例 &amp;lt;input type=&amp;quot;number&amp;quot; name=&amp;quot;bangou5keta&amp;quot; oninput=&amp;quot;sliceMaxLength(this, 5)&amp;quot;&amp;gt; Javascript function sliceMaxLength(elem, maxLength) { elem.value = elem.value.slice(0, maxLength); } また、&amp;lt;input type=&amp;quot;number&amp;quot; /&amp;gt;にすると右端に数字を増減するスピンボタンが表示されます。
-電話番号の入力欄などでは不要なので、以下のCSSで非表示にしてしまいます。
-CSS // Chrome、Safari input[type=&amp;quot;number&amp;quot;]::-webkit-outer-spin-button, input[type=&amp;quot;number&amp;quot;]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; } // Firefox、IE input[type=&amp;quot;number&amp;quot;] { -moz-appearance:textfield; } </description>
+      <guid>https://blog2.logical-dice.com/posts/wp/1352/</guid>
+      <description>数字入力フォームに文字数制限をつける方法です</description>
     </item>
     
   </channel>

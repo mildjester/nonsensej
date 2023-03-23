@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>Redmine2.3.2にグループ管理プラグインを入れる &middot; Nonsense J</title>
+	<title>Redmine2.3.2にグループ管理プラグインを入れる|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,13 +70,14 @@
 	<div class="post">
 		<h1 class="post-title">Redmine2.3.2にグループ管理プラグインを入れる</h1>
 		<div class="post-info">
-				<time datetime="2017-02-27 15:16:05 &#43;0000 UTC">February 27, 2017</time>
+				<p class="publish-date">投稿日：<time datetime="2017-02-27 15:16:05 &#43;0000 UTC" class="catalogue-time">2017-02-27</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/ruby/">ruby</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/ruby/">ruby</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<p>redmineにグループ管理のプラグインを入れたが、ちゃんと動かなかったので<br>
 つまづいた所をメモする。<br>
 ※補足<br>
@@ -56,14 +88,14 @@ CentOS 6.5<br>
 Redmine 2.3.2<br>
 ruby 2.0.0<br>
 rails 3.2.13</p>
-<p><!-- raw HTML omitted --><a href="https://github.com/fathomssen/redmine_group_manager">https://github.com/fathomssen/redmine_group_manager</a><!-- raw HTML omitted --><br>
+<p><a href="https://github.com/fathomssen/redmine_group_manager" target="_blank"><a href="https://github.com/fathomssen/redmine_group_manager">https://github.com/fathomssen/redmine_group_manager</a></a><br>
 基本的なインストール方法はREADME.rdoc通り</p>
 <h2 id="order-by句がおかしい">①order by句がおかしい</h2>
 <p>オーダー句がおかしいとエラーになったので、app/models/gmanager.rbの９行目を修正した<br>
 【修正前】</p>
-<pre><code>mem = Member.where(:project_id =&gt; pid).order(user_id: :asc)
+<pre tabindex="0"><code>mem = Member.where(:project_id =&gt; pid).order(user_id: :asc)
 </code></pre><p>【修正後】</p>
-<pre><code>mem = Member.where(:project_id =&gt; pid).order(&quot;user_id asc&quot;)
+<pre tabindex="0"><code>mem = Member.where(:project_id =&gt; pid).order(&#34;user_id asc&#34;)
 </code></pre><h2 id="オーナー未指定のグループがあると動かない">②オーナー未指定のグループがあると動かない</h2>
 <p>まあ、インストール直後は全てのグループにオーナーが指定されていないのですが、<br>
 オーナーが未指定の場合はユーザテーブルのID=1のユーザがオーナーになるそうです。<br>
@@ -84,14 +116,14 @@ rails 3.2.13</p>
 なので、一致するようソート処理を入れます。</p>
 <p>app/models/gmanager.rbの34行目と48行目に同じ修正を入れる。<br>
 【修正前】</p>
-<pre><code>keys = CustomField.where(:type =&gt; 'UserCustomField')
+<pre tabindex="0"><code>keys = CustomField.where(:type =&gt; &#39;UserCustomField&#39;)
 </code></pre><p>【修正後】</p>
-<pre><code>keys = CustomField.where(:type =&gt; 'UserCustomField').order(:id)
+<pre tabindex="0"><code>keys = CustomField.where(:type =&gt; &#39;UserCustomField&#39;).order(:id)
 </code></pre><p>app/models/gmanager.rbの49行目も修正する。<br>
 【修正前】</p>
-<pre><code>values = User.find(id).custom_values
+<pre tabindex="0"><code>values = User.find(id).custom_values
 </code></pre><p>【修正後】</p>
-<pre><code>values = User.find(id).custom_values.order(:custom_field_id)
+<pre tabindex="0"><code>values = User.find(id).custom_values.order(:custom_field_id)
 </code></pre><p>これで動くようになりました。</p>
 <h2 id="番外編">〜番外編〜</h2>
 <p>このプラグインはプロジェクトに所属している人をグループに追加することしかできません。<br>
@@ -99,24 +131,19 @@ rails 3.2.13</p>
 プラグインを大幅に修正しました。</p>
 <p>プロジェクトに未所属のメンバーもグループに追加できるようにしたプラグインは<br>
 こちらです。<br>
-<!-- raw HTML omitted --><a href="https://github.com/mildjester/redmine_group_manager">https://github.com/mildjester/redmine_group_manager</a><!-- raw HTML omitted --></p>
+<a href="https://github.com/mildjester/redmine_group_manager" target="_blank"><a href="https://github.com/mildjester/redmine_group_manager">https://github.com/mildjester/redmine_group_manager</a></a></p>
 
-	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/440/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/467/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
 	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2834086 &#43;0900 JST m=&#43;0.103003101">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

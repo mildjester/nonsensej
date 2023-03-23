@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>【golang】mapの要素順は変動する &middot; Nonsense J</title>
+	<title>【golang】mapの要素順は変動する|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,13 +70,14 @@
 	<div class="post">
 		<h1 class="post-title">【golang】mapの要素順は変動する</h1>
 		<div class="post-info">
-				<time datetime="2017-04-08 12:22:59 &#43;0000 UTC">April 8, 2017</time>
+				<p class="publish-date">投稿日：<time datetime="2017-04-08 12:22:59 &#43;0000 UTC" class="catalogue-time">2017-04-08</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/golang/">golang</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/golang/">golang</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<p>■環境<br>
 OS X El Capitan 10.11.6<br>
 go 1.8 darwin/amd64</p>
@@ -55,31 +87,31 @@ go 1.8 darwin/amd64</p>
 <p>以下サンプルコードです。<br>
 mapをrangeで取り出しながらforで回し、標準出力する<br>
 という処理を3回繰り返します。</p>
-<pre><code>package main  
+<pre tabindex="0"><code>package main  
   
 import (  
-	&quot;fmt&quot;  
+	&#34;fmt&#34;  
 )  
   
 func main() {  
 	// create new map  
 	fruitColor := make(map[string]string)  
-	fruitColor[&quot;pineapple&quot;] = &quot;yellow&quot;  
-	fruitColor[&quot;apple&quot;] = &quot;red&quot;  
-	fruitColor[&quot;grape&quot;] = &quot;purple&quot;  
-	fruitColor[&quot;melon&quot;] = &quot;green&quot;  
+	fruitColor[&#34;pineapple&#34;] = &#34;yellow&#34;  
+	fruitColor[&#34;apple&#34;] = &#34;red&#34;  
+	fruitColor[&#34;grape&#34;] = &#34;purple&#34;  
+	fruitColor[&#34;melon&#34;] = &#34;green&#34;  
   
 	// printout 3 times  
 	for i := 1; i &lt;= 3; i++ {  
-		fmt.Println(fmt.Sprintf(&quot;===== %d times =====&quot;, i))  
+		fmt.Println(fmt.Sprintf(&#34;===== %d times =====&#34;, i))  
 		for name, color := range fruitColor {  
-			fmt.Println(fmt.Sprintf(&quot;%s is %s&quot;, name, color))  
+			fmt.Println(fmt.Sprintf(&#34;%s is %s&#34;, name, color))  
 		}  
 	}  
 }  
 </code></pre><p>これを実行すると、このように出力されます。<br>
 要素順は変動するので、実行する度に変わると思います。</p>
-<pre><code>===== 1 times =====  
+<pre tabindex="0"><code>===== 1 times =====  
 apple is red  
 grape is purple  
 melon is green  
@@ -98,32 +130,32 @@ grape is purple
 ユーザが画面を表示する度に順番が変わるのは気持ち悪いので<br>
 sliceを使って表示順を保持しておいた方が良いです。</p>
 <p>sliceを使う例は以下の通りです。</p>
-<pre><code>package main  
+<pre tabindex="0"><code>package main  
   
 import (  
-	&quot;fmt&quot;  
+	&#34;fmt&#34;  
 )  
   
 func main() {  
 	// create new map  
 	fruitColor := make(map[string]string)  
-	fruitColor[&quot;pineapple&quot;] = &quot;yellow&quot;  
-	fruitColor[&quot;apple&quot;] = &quot;red&quot;  
-	fruitColor[&quot;grape&quot;] = &quot;purple&quot;  
-	fruitColor[&quot;melon&quot;] = &quot;green&quot;  
+	fruitColor[&#34;pineapple&#34;] = &#34;yellow&#34;  
+	fruitColor[&#34;apple&#34;] = &#34;red&#34;  
+	fruitColor[&#34;grape&#34;] = &#34;purple&#34;  
+	fruitColor[&#34;melon&#34;] = &#34;green&#34;  
 	// set display order  
-	fruitList := []string{&quot;pineapple&quot;,&quot;apple&quot;,&quot;grape&quot;,&quot;melon&quot;}  
+	fruitList := []string{&#34;pineapple&#34;,&#34;apple&#34;,&#34;grape&#34;,&#34;melon&#34;}  
   
 	// printout 3 times  
 	for i := 1; i &lt;= 3; i++ {  
-		fmt.Println(fmt.Sprintf(&quot;===== %d times =====&quot;, i))  
+		fmt.Println(fmt.Sprintf(&#34;===== %d times =====&#34;, i))  
 		for _, name := range fruitList {  
-			fmt.Println(fmt.Sprintf(&quot;%s is %s&quot;, name, fruitColor[name]))  
+			fmt.Println(fmt.Sprintf(&#34;%s is %s&#34;, name, fruitColor[name]))  
 		}  
 	}  
 }  
 </code></pre><p>これを実行すると以下のようになります。</p>
-<pre><code>===== 1 times =====  
+<pre tabindex="0"><code>===== 1 times =====  
 pineapple is yellow  
 apple is red  
 grape is purple  
@@ -140,21 +172,16 @@ grape is purple
 melon is green
 </code></pre>
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/467/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/501/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2834489 &#43;0900 JST m=&#43;0.103043401">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

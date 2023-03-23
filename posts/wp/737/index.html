@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>【Mac】NetBeansのインストール &middot; Nonsense J</title>
+	<title>【Mac】NetBeansのインストール|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,13 +70,14 @@
 	<div class="post">
 		<h1 class="post-title">【Mac】NetBeansのインストール</h1>
 		<div class="post-info">
-				<time datetime="2017-10-13 11:05:07 &#43;0000 UTC">October 13, 2017</time>
+				<p class="publish-date">投稿日：<time datetime="2017-10-13 11:05:07 &#43;0000 UTC" class="catalogue-time">2017-10-13</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/netbeans/">NetBeans</a></div> <div class="tags_item"><a href="/tags/mac/">Mac</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/netbeans/">NetBeans</a></div> <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/mac/">Mac</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<h2 id="環境">■環境</h2>
 <p>macOS Sierra 10.12.6<br>
 NetBeans 8.2</p>
@@ -55,12 +87,12 @@ NetBeans 8.2</p>
 あと、ねこびーんが可愛い。</p>
 <h2 id="jdk-amp-netbeans本体のダウンロード-amp-インストール">■JDK &amp; NetBeans本体のダウンロード &amp; インストール</h2>
 <p>JDKとNetBeansがセットになっているパッケージがあるので、それをダウンロードします。<br>
-<!-- raw HTML omitted --><a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk-netbeans-jsp-142931.html">http://www.oracle.com/technetwork/java/javase/downloads/jdk-netbeans-jsp-142931.html</a><!-- raw HTML omitted --><br>
-<!-- raw HTML omitted --></p>
+<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk-netbeans-jsp-142931.html" target="_blank" rel="noopener"><a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk-netbeans-jsp-142931.html">http://www.oracle.com/technetwork/java/javase/downloads/jdk-netbeans-jsp-142931.html</a></a><br>
+<img src="https://blog2.logical-dice.com/images/2017/10/netbeans001-1.png" alt="" /></p>
 <blockquote>
 <p>【補足】<br>
 既にJDKをインストールしている場合は、以下のサイトからNetBeans本体のみをダウンロードすれば良いです。<br>
-<!-- raw HTML omitted --><a href="https://netbeans.org/downloads/">https://netbeans.org/downloads/</a><!-- raw HTML omitted --><br>
+<a href="https://netbeans.org/downloads/" target="_blank" rel="noopener"><a href="https://netbeans.org/downloads/">https://netbeans.org/downloads/</a></a><br>
 こちらのサイトからダウンロードする場合は、利用する言語に合わせたパッケージをインストールできます。</p>
 </blockquote>
 <p>ダウンロードしてきたdmgファイルをダブルクリックしてマウントし、<br>
@@ -104,21 +136,16 @@ NetBeansの上部メニューより「ツール ＞ プラグイン」をクリ�
 あとはフレームワークやテストツールの補助プラグインもあるので、それらを必要に応じてインストールすれば良いです。</p>
 
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/750/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/776/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2920955 &#43;0900 JST m=&#43;0.111689901">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

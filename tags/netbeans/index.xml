@@ -1,99 +1,37 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>NetBeans on Nonsense J</title>
-    <link>/tags/netbeans/</link>
-    <description>Recent content in NetBeans on Nonsense J</description>
+    <title>NetBeans on Logical Dice 技術ブログ</title>
+    <link>https://blog2.logical-dice.com/tags/netbeans/</link>
+    <description>Recent content in NetBeans on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Fri, 13 Oct 2017 11:05:07 +0000</lastBuildDate><atom:link href="/tags/netbeans/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 13 Oct 2017 11:05:07 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/netbeans/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【Mac】NetBeansのインストール</title>
-      <link>/posts/wp/737/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/737/</link>
       <pubDate>Fri, 13 Oct 2017 11:05:07 +0000</pubDate>
       
-      <guid>/posts/wp/737/</guid>
-      <description>■環境 macOS Sierra 10.12.6
-NetBeans 8.2
- コードの補完やFTP機能を標準装備していたりと
-無料のIDEの中では個人的には使いやすいと思っています。
-あと、ねこびーんが可愛い。
-■JDK &amp;amp; NetBeans本体のダウンロード &amp;amp; インストール JDKとNetBeansがセットになっているパッケージがあるので、それをダウンロードします。
-http://www.oracle.com/technetwork/java/javase/downloads/jdk-netbeans-jsp-142931.html 【補足】
-既にJDKをインストールしている場合は、以下のサイトからNetBeans本体のみをダウンロードすれば良いです。
-https://netbeans.org/downloads/こちらのサイトからダウンロードする場合は、利用する言語に合わせたパッケージをインストールできます。
- ダウンロードしてきたdmgファイルをダブルクリックしてマウントし、
-出てきたpkgファイルをダブルクリックすると、インストーラーが走ります。
-そのままインストーラーに従い進めるとインストール完了です。
-LaunchpadにNetBeansが追加されてます。
-■NetBeansの設定 【基本設定】 上部メニューより「NetBeans ＞ Preferences」をクリックすると設定画面が開きます。
-基本的に触るとしたら以下のタブくらいだと思います。
-それ以外のタブをいじる人は、もはや説明も不要なレベルの人だと思うので説明も割愛します。
-一般タブ NetBeansから開くブラウザの指定をしたり、プロキシの設定をしたりできます。
-よく分からなければデフォルトのままでよいです。
-エディタタブ ソースコードのフォーマットを指定したり、NetBeansが表示する警告を設定したりできます。
-インデントをタブにするかスペースにするか。どのくらいインデントを深くすると警告を出すか。など
-個人の好みやチームのコーディング規約に合わせて変更してください。
-分からない項目はデフォルトのままで良いと思います。
-フォントと色タブ タブ名のままですが、NetBeansで使うフォントと色を設定できます。
-見づらい色などがあれば変更すれば良いです。
-キーマップタブ ショートカットキーの設定です。基本的にはデフォルトのままでいいと思います。
-どんなショートカットがあるのかを確認するために、一度眺めてみるのもいいと思います。
-外観タブ IDEの見栄え全般の設定です。
-「ルック・アンド・フィール」でテーマの変更ができるので、好みのテーマがありそうであれば変更してください。
-※ルック・アンド・フィールの反映にはIDEの再起動が必要です。
-【プラグイン導入】 利用したい言語に合わせてプラグインをインストールします。
-NetBeansの上部メニューより「ツール ＞ プラグイン」をクリックし、プラグイン管理画面を開きます。
-「使用可能なプラグイン」というタブより新規プラグインのインストールができます。
-暗いテーマが好きな場合 「Dark Look And Feel Themes」というプラグインがあります。
-これをインストールすれば、基本設定にあった「ルック・アンド・フィール」の選択肢が増えるので、
-設定画面から変更してください。
-個人的には「Dark Nimbus」が好きです。
-PHPを使う場合 PHPの開発をするなら「PHP」というプラグインは必須です。
-あとはフレームワークやテストツールの補助プラグインもあるので、それらを必要に応じてインストールすれば良いです。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/737/</guid>
+      <description>■環境macOS Sierra 10.12.6NetBeans 8.2コードの補完やFTP機能を標準装備していたりと無料のIDE&amp;hellip;</description>
     </item>
     
     <item>
       <title>【golang】NetBeansでgo言語を使えるようにする</title>
-      <link>/posts/wp/223/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/223/</link>
       <pubDate>Wed, 25 May 2016 23:06:28 +0000</pubDate>
       
-      <guid>/posts/wp/223/</guid>
-      <description>元々NetBeansでPHPをやっているので
-同じIDEでgoも使うために設定してみました。
-■環境
-Ubuntu 16.04
-NetBeans 8.1
-①「http://plugins.netbeans.org/plugin/25606/go」からnbmファイルをダウンロードする。
-②NetBeansのメニューより「Tools-&amp;gt;plugin」を選択
-③Downloadedタグにて「Add Plugins」をクリックして、ダウンロードしたnbmファイルを選択する。
-④「Install」ボタンをクリックする。
-⑤Installを進めていき、最後にNetBeansの再起動をして完了。
-以上でgoが使えるようになります。
-新規プロジェクトでHTML5プロジェクトなどを作成し、プロジェクト内でファイルの新規作成を選択すると
-ファイルのカテゴリにGoが追加されています。
-※2017/1/31 追記GOプロジェクトを作成できるようになるプラグインも見つけました</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/223/</guid>
+      <description>元々NetBeansでPHPをやっているので同じIDEでgoも使うために設定してみました。■環境Ubuntu 16.04NetB&amp;hellip;</description>
     </item>
     
     <item>
       <title>【Ubuntu】JDKとNetBeans IDEのインストール</title>
-      <link>/posts/wp/69/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/69/</link>
       <pubDate>Wed, 16 Sep 2015 23:18:43 +0000</pubDate>
       
-      <guid>/posts/wp/69/</guid>
-      <description>開発環境としてUbuntuにJDKとNetBeansをインストールします。
-■環境
-Ubuntu 15.04
-openjdk 8
-NetBeans 8.0.2
-JDKがインストールされているか確認し、なければインストールします。
-$ javac -version プログラム &#39;javac&#39; は以下のパッケージで見つかりました: * default-jdk * ecj * gcj-4.9-jdk * openjdk-7-jdk * gcj-4.8-jdk * openjdk-6-jdk * openjdk-8-jdk 次の操作を試してください: sudo apt-get install &amp;lt;選択したパッケージ&amp;gt; $ sudo apt-get install openjdk-8-jdk $ javac -version Picked up JAVA_TOOL_OPTIONS: -javaagent:/usr/share/java/jayatanaag.jar javac 1.8.0_45-internal https://netbeans.org/downloads/index.htmlよりNetBeansをダウンロードします。
-各開発言語毎に用意されていますが、迷う様なら「すべて」を選択すれば良いと思います。
-私は使用言語が特定の言語に限らなかったので「すべて」を選択しました。
-ダウンロードしたNetBeansのインストールスクリプトを実行します。
-$ cd ~/Downloads $ sh netbeans-8.0.2-linux.sh インストーラが立ち上がるので、必要に応じてインストール場所を変えたりしながら進めていきます。
-インストーラでの処理が終わったら、インストール完了です。
-ランチャーにて「NetBeans」で検索すれば出てくるようになります。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/69/</guid>
+      <description>開発環境としてUbuntuにJDKとNetBeansをインストールします。■環境Ubuntu 15.04openjdk 8Net&amp;hellip;</description>
     </item>
     
   </channel>

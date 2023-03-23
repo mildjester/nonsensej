@@ -1,279 +1,100 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>git on Nonsense J</title>
-    <link>/tags/git/</link>
-    <description>Recent content in git on Nonsense J</description>
+    <title>git on Logical Dice 技術ブログ</title>
+    <link>https://blog2.logical-dice.com/tags/git/</link>
+    <description>Recent content in git on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sat, 06 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 06 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/git/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>修正したファイルだけPHP_CodeSnifferでチェックする</title>
-      <link>/posts/2021/02/06/phpcs-git-diff/</link>
+      <link>https://blog2.logical-dice.com/posts/2021/02/06/phpcs-git-diff/</link>
       <pubDate>Sat, 06 Feb 2021 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2021/02/06/phpcs-git-diff/</guid>
-      <description>PHP_CodeSniffer (phpcs)を使ってコードのPSR2のフォーマットチェックをする際、
-普段からphpcsを使っているプロジェクトで無いと警告が大量に出て見切れません。
-そこで、git diffを使って、今回修正したファイルだけphpcsでチェックすることにしました。
-起点ブランチを作る まず、修正の起点ブランチを用意します。
-起点ブランチとは、phpcsでチェックしたい修正をし始める前の状態のブランチです。
-他の人が更新していなければ既存のマージ先ブランチ(master, develop等)で良いですが、
-他の人がマージ先ブランチを更新していた場合はgit diffで他の人の修正分も差分として出てしまうのでダメです。
-(自分の修正分だけをgit diffで出すオプションはたぶん無いはず)
-その場合はgit logで自分が修正を始めた１つ前のコミットIDを確認して、
-git checkout -b tempBranch 『コミットID』でブランチを作ってしまうのが簡単だと思います。
-tempBranchの部分は作成する起点ブランチ名なので、なんでも良いです。
-phpcsでチェックする 起点ブランチが用意できたら早速phpcsでチェックします。
-チェックしたいブランチになっている状態で以下コマンドを実行します。
-git diff 『起点ブランチ』 --name-only | xargs phpcs --standard=&amp;quot;PSR2&amp;quot; これで修正したファイルについてのみphpcsを実行できました。
-※補足 phpcsの実行パスについては自分の環境に合わせて修正してください。
-例えばcomposerでプロジェクトに入れたphpcsを利用する場合は./vendor/bin/phpcsという風になると思います。</description>
+      <guid>https://blog2.logical-dice.com/posts/2021/02/06/phpcs-git-diff/</guid>
+      <description>git diffを使い修正したファイルだけphpcsでチェックする方法です</description>
     </item>
     
     <item>
       <title>gitで一旦取り消しRevertをしたら、RevertのRevertをすべし</title>
-      <link>/posts/2020/12/28/git-revert-revert/</link>
+      <link>https://blog2.logical-dice.com/posts/2020/12/28/git-revert-revert/</link>
       <pubDate>Mon, 28 Dec 2020 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2020/12/28/git-revert-revert/</guid>
-      <description>いろんなプロジェクトを渡り鳥していると、「間違ってmaster/developにマージしちゃいました」案件がちょいちょいあります。
-その場合、基本的にはmaster/developでgitのRevertをして対応してました。
-でも、その後RevertのRevertをするのが漏れてしまうパターンがよくあります。
-RevertのRevertが必要だと分かっていて漏れてしまうのは仕方ないのですが、
-以前手伝っていたプロジェクトで「え？なんで必要なの？」っていう人がいたのを思い出したので記事にしてみました。
- まずこんなソースがmasterブランチにあったとします。
-ここで$hogeだけでなく$foooという値も返せるようにしたくなったとします。
-ブランチ「feature/fooo」を切って修正し、masterにマージします。
-ここで、$foooを返すメソッドを作ってなかったことに気づき、masterでrevertします。
-「feature/fooo」にメソッドを追加し、masterにマージします。
-クラス変数やコンストラクタの処理が残っているように見えます。
-※なお、ここでコンフリクトは起きていません。
-できあがったソースがこちらです。
-最後に追加したメソッドのみが追加されており、クラス変数やコンストラクタの処理は入っていません。
-これだと想定した挙動になりませんね。
- 勘違いされる要素として、Revertは「対象コミットを取り消す」処理だと思っている人がたまにいます。
-Revertはコミットを取り消すのではなく「対象コミットを打ち消すような修正コミットを新たに発行する」処理です。
-Revert対象のコミットが無かったことになっている訳ではありません。
-なので、Revertコミットはそれを更にRevertしないと、Revertコミットの修正が残ってしまいます。
-手順をまとめると以下のようになります。
-ダメなパターン  作業ブランチからmasterにマージする。 masterでリバートする。 作業ブランチで修正を続ける。 作業ブランチからmasterにマージする。  良いなパターン  作業ブランチからmasterにマージする。 masterでリバートする。 作業ブランチにmasterをマージする。(ダメなパターンで漏れてる) 作業ブランチでRevertをRevertする。(ダメなパターンで漏れてる) 作業ブランチで修正を続ける。 作業ブランチからmasterにマージする。  という訳でRevertした修正を捨てる訳でなければRevertのRevertをしましょう。</description>
+      <guid>https://blog2.logical-dice.com/posts/2020/12/28/git-revert-revert/</guid>
+      <description>gitでRevertしたあと、RevertのRevertをしないと大変な事になる。</description>
     </item>
     
     <item>
       <title>GitHub ActionsでAWS Code Deployを回す</title>
-      <link>/posts/2020/03/15/github-actions-deploy/</link>
+      <link>https://blog2.logical-dice.com/posts/2020/03/15/github-actions-deploy/</link>
       <pubDate>Sun, 15 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2020/03/15/github-actions-deploy/</guid>
-      <description>GitHub ActionsからAWSコマンドを簡単に叩けるようだったので試してみました。
-今回CIでやることは『masterにプッシュされたらCodeDeployを走らせる』のみです。
-AWS Code Deployの設定 こちらの記事で手順を紹介しています。
-AWS Code DeployでEC2にデプロイする
-AWS IAMの設定 こちらの記事で手順を紹介しています。
-今回CircleCIは使わないので、「IAM準備」の手順のみ参照してください。
-CircleCIからAWS Code Deployを実行する
-GitHub Secretsへのキー登録 前手順で取得したIAMユーザーの『アクセスキーID』と『シークレットアクセスキー』をGitHubのSecretsに登録します。
-まず、GitHubの対象リポジトリの『Settings ＞ Secrets』を開き、『Add a new secret』をクリックします。
-Secretsの設定画面になるので以下2つを設定します。
-   Name Value     AWS_ACCESS_KEY_ID IAMのアクセスキーID   AWS_SECRET_ACCESS_KEY IAMのシークレットアクセスキー    GitHub Actionsの設定 デプロイしたいリポジトリのGitHubページの『Actions』タブを開き、
-「Set up a workflow yourself」をクリックします。
-.github/workflows/main.ymlの編集画面が開くので、以下のように記載します。
-name: AWS Code Deploy on: push: branches: [ master ] jobs: build: runs-on: ubuntu-latest steps: - name: Run AWS CodeDeploy with: args: deploy create-deployment --application-name &amp;quot;※APP_NAME※&amp;quot; --deployment-group-name &amp;quot;※GROUP_NAME※&amp;quot; --github-location repository=&amp;quot;※REPO※&amp;quot;,commitId=&amp;quot;${{ github.</description>
+      <guid>https://blog2.logical-dice.com/posts/2020/03/15/github-actions-deploy/</guid>
+      <description>GitHub ActionsからAWS Code Deployを回してデプロイする手順です。</description>
     </item>
     
     <item>
       <title>gitコマンドチートシート(応用編)</title>
-      <link>/posts/2019/02/01/git-cmd-cheatsheet/</link>
+      <link>https://blog2.logical-dice.com/posts/2019/02/01/git-cmd-cheatsheet/</link>
       <pubDate>Fri, 01 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2019/02/01/git-cmd-cheatsheet/</guid>
-      <description>gitコマンドの応用的な使い方です。
-これができればgit中級者になれるかもしれません。
-削除されたリモートブランチの情報を削除する gitはプルをする度にリモートに存在するブランチの情報を取得します。
-（git branch -aで見れるremote/xxxxxがそれです)
-普通にgit pullを実行するとリモートブランチの取得はしますが
-リモートで削除されたブランチについては何もしてくれないので
-ローカルにリモート情報として残り続けてしまいます。
-リモートで削除されたブランチ情報をローカルから削除したい場合は
-プル実行時に以下のオプションを付与します。
-git pull --prune 強制プル(force pull) ブランチの状態を強制的にリモートの状態に合わせます。
-ローカルのブランチがよく分からない状態になって捨てたい時や
-誰かがリモートにforce pushした物を取り込む時に使えます。
-(複数人が見てるブランチでforce pushするのは外道ですが…)
-git fetch git reset --hard origin/{ブランチ名} ※リモートはoriginの前提
-直前のコミットに追加修正する ちょっと修正が漏れていた時などに直前のコミットに追加修正を混ぜ込む方法です。
-これを使うとコミット履歴を増やさずに済みます。
-git add . git commit --fixup=HEAD git rebase -i --autosquash HEAD~2 (このあとのrebase画面はそのまま保存して閉じる) ★注意★ 直前のコミットがプッシュ済みであった場合
-上記コマンド後にforce pushが必要になります。
-他の人と共有しているブランチにてforce pushをすると
-他の人がpullできなくなる恐れがあります。
-自分だけが触っているブランチで行いましょう。
-マージ時にコミットログを1つにまとめる 細かくコミットをしながら作業を進めたい時などに
-作業ブランチを作り、そこで遠慮なくコミットを沢山し、
-その作業ブランチを元ブランチに戻す時にコミットログを1つに集約できます。
-git merge --squash {マージ対象ブランチ} git commit Commitコメントに元々のCommitログがデフォルトで記載されていますが
-そこは削除してしまっても構いません。
-(残しておいても良いです)
-現在のブランチとmasterブランチの差分を確認する githubでプルリク送る時に見れるアレですね。
-コマンドからも確認することができます。</description>
+      <guid>https://blog2.logical-dice.com/posts/2019/02/01/git-cmd-cheatsheet/</guid>
+      <description>gitコマンドの応用編チートシートです</description>
     </item>
     
     <item>
       <title>gitコマンドで複数のGitHubアカウントを使い分ける</title>
-      <link>/posts/wp/1715/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/1715/</link>
       <pubDate>Wed, 14 Nov 2018 20:37:00 +0000</pubDate>
       
-      <guid>/posts/wp/1715/</guid>
-      <description>環境 Mac OS
-(Linuxでも動く気がします）
- ※ 2019/3/29追記 GitHubの利用規約にて1個人で複数の無料アカウントを運用する事は禁止されているようでした。
-https://help.github.com/en/articles/github-terms-of-service#b-account-terms
-もし複数の無料アカウントを利用している場合はアカウントの統合などを検討した方が良いです。
-無料アカウントと有料アカウントを使い分ける場合などは本手順を参考にして貰えればと思います。
-概要 GitHubではアカウントに秘密鍵が紐づいており
-gitコマンドを実行した際に指定した秘密鍵で利用アカウントを判定しています。
-（秘密鍵未指定の場合はデフォルトの秘密鍵）
-フリーランスをしていると自分のGitHubアカウントとは別で
-取引先様のGitHubアカウントを作成する必要があったりするのですが
-１台のPCで複数GitHubアカウントを使っていると秘密鍵の切り替えが面倒です。
-私も最初はこちらの記事のように.ssh/configに別ホストとして設定していたのですが
-これだとcloneする時などにいちいちホスト名を書き換えたりしなければいけなかったりして
-それも少し面倒でした。（特にリポジトリが沢山あるプロジェクトだったので）
-https://qiita.com/yamataku29/items/4744c9c70ad793c83b82というわけで
-リポジトリ所有者（ユーザーもしくはOrganizations）と秘密鍵の紐づけを設定しておけば
-自動でgitコマンド実行時に秘密鍵を使い分けてくれるスクリプトを作りました。
-こちらです
-https://github.com/mildjester/gits 使い方 ①cloneでもZIPダウンロードでも良いので上記リポジトリをダウンロードしてきます。
-②config_templateを同ディレクトリにconfigという名前でコピーします。
-③コピーして生成したconfigの以下変数を設定します
-■defaultKey
-デフォルトの秘密鍵へのパス。基本的にテンプレートのままでいいはず。
-■specialKeys
-デフォルト以外の秘密鍵を使うリポジトリ所有者と秘密鍵の紐付け一覧。
-形式は『リポジトリ所有者::秘密鍵のパス』なので
-例えば「所有者AAA」のリポジトリに使う秘密鍵は~/.ssh/id_rsa_1、
-「所有者BBB」のリポジトリに使う秘密鍵は~/.ssh/id_rsa_2とする場合は
-以下のようになります。
-specialKeys=( &#39;AAA::~/.ssh/id_rsa_1&#39; &#39;BBB::~/.ssh/id_rsa_2&#39; ) ④~/.bashrcに以下のエイリアスを追記しておきます。
-通常使っているシェルがbash以外（zshやfishなど）の場合は、そちらの設定ファイルへ追記してください。
-# gitコマンドを置き換える alias git=&amp;quot;/path-to-gits-repository/gits.sh&amp;quot; ※path-to-gits-repositoryはリポジトリをcloneまたはダウンロードしてきたディレクトリを指定してください
-これで何も考えずにgitコマンドを打っても、裏で勝手に秘密鍵を切り替えてくれるようになります。
-備考：ghqを使っている場合 私はgit cloneよりもghq getをよく使うので、そのスクリプトも用意しました。
-基本的な設定は上記と同じで、エイリアスの設定だけ追加します。
-alias ghq_get=&amp;quot;~/git/github.com/mildjester/gits/ghq_get.sh&amp;quot; こちらは完全にコマンドを置き換える訳ではないのですが
-以下のコマンドでリポジトリを取得する事ができるようになります。
-(ghqとgetの間がスペースではなくアンダーバーになるだけ)
-ghq_get git@github.com:AAAA/hogehoge.git </description>
+      <guid>https://blog2.logical-dice.com/posts/wp/1715/</guid>
+      <description>環境Mac OS(Linuxでも動く気がします）概要GitHubではアカウントに秘密鍵が紐づいておりgit コマンドを実行した際&amp;hellip;</description>
     </item>
     
     <item>
       <title>CircleCIでプルリク時にUnitテストが走るようにする</title>
-      <link>/posts/wp/1477/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/1477/</link>
       <pubDate>Tue, 14 Aug 2018 01:30:40 +0000</pubDate>
       
-      <guid>/posts/wp/1477/</guid>
-      <description>CircleCIを使って、GitHubにてプルリクエストを投げた際に
-Unitテストが走るようにします。
-ソースコードはPHPで、Unitテストにはphpunitを使っている前提とします。
-Circle CIのアカウント登録 Circle CIのホームページにアクセスし、右上のSign Upをクリックします。
-GitHubかBitBucketのアカウントでログインできるようです。
-今回はGitHubのアカウントでログインしました。
-連携を許可するか聞かれるのでAuthorize circleciをクリックします。
-Circle CIにプロジェクト作成 アカウント作成が完了したらプロジェクト作成するためAdd Projectsをクリックします。
-紐付けるリポジトリのSet Up Projectをクリックします。
-対象リポジトリの環境を設定します。
-該当するものをクリックします。
-下にスクロールすると今後の流れが書いてあります。
-まず該当リポジトリに.circleci/config.ymlを作成します。
-config.ymlの内容はとりあえず内容はCopy To Clipboardでコピーしたもの(2018/8/11現在)に
-以下の修正を加えたものにしています。
-①Dockerイメージ変更Dockerイメージを自分のサーバーの環境に近いものに変更します。
-どのようなイメージがあるかは詳細はDockerHubで確認してください。
-https://hub.docker.com/r/circleci/(使いたいDockerイメージが別にであるなら、circleci公式のイメージじゃなくても動くらしい)
-なお、サンプルのconfig.ymlに書いてあったcircleci/php:7.1.5-browsersは存在しません。
-サンプルのまま実行すると以下のエラーが発生します。
-Error response from daemon: manifest for circleci/php:7.1.5-browsers not found ②phpunit実行コマンドを変更composerなどでphpunitを入れている場合はコマンドが違うと思うので変更します。
-出来上がったconfig.ymlが以下です
-# PHP CircleCI 2.0 configuration file # # Check https://circleci.com/docs/2.0/language-php/ for more details # version: 2 jobs: build: docker: # specify the version you desire here #- image: circleci/php:7.</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/1477/</guid>
+      <description>CircleCIを使って、GitHubにてプルリクエストを投げた際にUnitテストが走るようにします。ソースコードはPHPで、U&amp;hellip;</description>
     </item>
     
     <item>
       <title>【git】ローカルとリモートのブランチを削除するスクリプト</title>
-      <link>/posts/wp/894/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/894/</link>
       <pubDate>Tue, 12 Dec 2017 12:47:09 +0000</pubDate>
       
-      <guid>/posts/wp/894/</guid>
-      <description>マージ済みのブランチを削除する時に、いつもローカルブランチとリモートブランチの両方を削除するのが面倒だったのでスクリプト化しました。
-リモートはorigin限定です。 git_del_br.shという名前で作った例です。
-#!/bin/bash set +eu if [ $# -eq 1 ]; then # delete local branch loBrCheck=`git branch | grep &amp;quot;^[ ]*${1}\$&amp;quot;` if [ ${#loBrCheck} -gt 0 ]; then echo &amp;quot;delete local branch.&amp;quot; git branch -D $1; fi # delete remote branch reBrCheck=`git branch -a | grep &amp;quot;^[ ]*remotes/origin/${1}\$&amp;quot;` if [ ${#reBrCheck} -gt 0 ]; then echo &amp;quot;delete remote branch&amp;quot; git push --delete origin $1; fi else echo echo &amp;quot;##################################&amp;quot; echo &amp;quot; Usage: git_del_br.</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/894/</guid>
+      <description>マージ済みのブランチを削除する時に、いつもローカルブランチとリモートブランチの両方を削除するのが面倒だったのでスクリプト化しまし&amp;hellip;</description>
     </item>
     
     <item>
       <title>gitの履歴から特定のコミット以降の履歴だけを残してクリアする</title>
-      <link>/posts/wp/501/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/501/</link>
       <pubDate>Mon, 10 Apr 2017 19:39:28 +0000</pubDate>
       
-      <guid>/posts/wp/501/</guid>
-      <description>個人で開発しているアプリケーションのgitリポジトリで履歴がグチャグチャしてしまったので、
-コミット履歴をちょっと弄った時のメモです。
-====================================
-※注意※
-gitの履歴は過去に何があったかを調べる際の手がかりになるので、
-削除する理由がないのであれば残しておきましょう。
-特に、他人と共同で修正しているリポジトリであれば尚更です。 履歴を残し始める直前のバージョンの状態を作る
-# git clone &amp;lt;git URL&amp;gt; tmpRepo1 # cd tmpRepo1 # git checkout {残し始めたいコミットの直前のコミット番号} # rm -rf .git # cd ../ 作業用のリポジトリを作る
-# git clone &amp;lt;git URL&amp;gt; tmpRepo2 # cd tmpRepo2 # git checkout --orphan tmpBr 初期状態をコミットする
-# rm -rf &amp;lt;.git以外の全て&amp;gt; # cp -r ../tmpRepo1/* . # git add . # git commit -m &amp;quot;Initialization&amp;quot; 残したいコミット履歴に対して、次の処理を過去から順に繰り返し実施する
-# git cherry-pick {残したいコミット} なお、残したいコミット履歴がマージ履歴の場合は以下の手順となる
-# git cherry-pick -m 1 {残したいマージコミット} # git commit --allow-empty コメントの編集画面が出るが、そのまま:wqして抜ける</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/501/</guid>
+      <description>個人で開発しているアプリケーションのgitリポジトリで履歴がグチャグチャしてしまったので、コミット履歴をちょっと弄った時のメモで&amp;hellip;</description>
     </item>
     
     <item>
       <title>【git】gitコマンドチートシート</title>
-      <link>/posts/wp/398/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/398/</link>
       <pubDate>Sat, 11 Feb 2017 23:06:36 +0000</pubDate>
       
-      <guid>/posts/wp/398/</guid>
-      <description>自分が使うgitコマンドを整理しました。
-■環境
-OS X El Capitan 10.11.6
-git 2.10.1
-【設定について】グローバルコンフィグの設定
-（全リポジトリの共通設定）
-$ git config --global user.name &amp;amp;quot;jester&amp;amp;quot; $ git config --global user.email &amp;amp;quot;jester@sample.co.jp&amp;amp;quot; リポジトリ別コンフィグの設定
-(対象リポジトリのディレクトリにて) $ git config user.name &amp;amp;quot;master&amp;amp;quot; $ git config user.email &amp;amp;quot;master@sample.co.jp&amp;amp;quot; 【リポジトリの作成・リモート設定について】リモートのリポジトリをクローンする
-$ git clone {リモートリポジトリの指定} {生成するディレクトリ} ※生成するディレクトリを省略すると、リモートリポジトリと同じ名前でディレクトリが生成される
-ローカルで新規にリポジトリを作成する
-$ mkdir SampleProject $ cd SampleProject $ git init ローカルで作成したリポジトリを後からリモートに紐付ける
-(対象のリポジトリディレクトリにて) $ git remote add {名前、originなど} {リモートリポジトリの指定} リモートリポジトリの変更する
-(対象のリポジトリディレクトリにて) $ git remote set-url {名前、originなど} {リモートリポジトリの指定} リモートとの紐付けを解除する
-(対象のリポジトリディレクトリにて) $ git remote rm {名前、originなど} </description>
+      <guid>https://blog2.logical-dice.com/posts/wp/398/</guid>
+      <description>自分が使うgitコマンドを整理しました。■環境OS X El Capitan 10.11.6git 2.10.1【設定について】&amp;hellip;</description>
     </item>
     
     <item>
       <title>SVNサーバ(svn&#43;ssh)のリポジトリをgitサーバに移行する</title>
-      <link>/posts/wp/278/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/278/</link>
       <pubDate>Wed, 10 Aug 2016 12:04:21 +0000</pubDate>
       
-      <guid>/posts/wp/278/</guid>
-      <description>■前提条件
-gitはサーバ＆クライアントのどちらも既に使える環境であること
-①gitサーバで空のリポジトリを作成する。
-作成方法は各Gitサーバでの手法に従えば良いと思います。
-（コマンドだったり、gitlabで作成したり）
-②ローカルにSVNリポジトリを読み込んだgitリポジトリを作成する。
-$ git svn clone --prefix svn/ svn+ssh://svn.sample.com/home/svn/svnhoge githoge 以下、読み替えてください。
-【svn.sample.com】　SVNサーバのホスト名(IPアドレス)
-【/home/svn/svnhoge】　移行対象のリポジトリのパス
-※上記２つはSVNを使っていた頃に指定していたものと同じです
-【githoge】　作成するgitリポジトリのディレクトリ名
-③ローカルにリポジトリができるので、gitサーバと紐付けする
-$ cd githoge $ git remote add origin gituser@git.sample.com:git/githoge.git 以下、読み替えてください。
-【gituser】　gitを利用する際のアカウント
-【git.sample.com】　gitサーバのホスト名(IPアドレス)
-【git/githoge.git】　①で作成したgitリポジトリ
-以上で完了です。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/278/</guid>
+      <description>■前提条件gitはサーバ＆クライアントのどちらも既に使える環境であること①gitサーバで空のリポジトリを作成する。作成方法は各G&amp;hellip;</description>
     </item>
     
   </channel>

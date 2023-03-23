@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>Route53のレコードを全てCSVに出力する &middot; Nonsense J</title>
+	<title>Route53のレコードを全てCSVに出力する|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,13 +70,14 @@
 	<div class="post">
 		<h1 class="post-title">Route53のレコードを全てCSVに出力する</h1>
 		<div class="post-info">
-				<time datetime="2020-08-21 00:00:00 &#43;0000 UTC">August 21, 2020</time>
+				<p class="publish-date">投稿日：<time datetime="2020-08-21 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-08-21</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/aws/">AWS</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/aws/">AWS</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<h2 id="環境">環境</h2>
 <ul>
 <li>Linux Mint 20 Ulyana</li>
@@ -64,76 +96,71 @@
 <h3 id="jq">jq</h3>
 <p>jqはjsonを整形するツールです。<br>
 Linux Mintであれば以下コマンドでインストールできます。</p>
-<pre><code>apt install jq
+<pre tabindex="0"><code>apt install jq
 </code></pre><h2 id="route53の内容を取得するスクリプト作成">Route53の内容を取得するスクリプト作成</h2>
 <p>AWS CLIでRoute53の内容をjson形式で取得し、それをjqで整形しながらCSVに出力するシェルスクリプトを作成します。<br>
 スクリプトの内容は以下の通りです。</p>
-<pre><code>#!/bin/bash
+<pre tabindex="0"><code>#!/bin/bash
 
 # CSVのヘッダ出力
-echo '&quot;HostedZone&quot;,&quot;DomainName&quot;,&quot;DomainType&quot;,&quot;TTL&quot;,&quot;Value&quot;'
+echo &#39;&#34;HostedZone&#34;,&#34;DomainName&#34;,&#34;DomainType&#34;,&#34;TTL&#34;,&#34;Value&#34;&#39;
 
 # ホストゾーン一覧を取得
-HostedZones=`aws route53 list-hosted-zones --output json --query 'HostedZones'`
+HostedZones=`aws route53 list-hosted-zones --output json --query &#39;HostedZones&#39;`
 HostedZonesLen=`echo $HostedZones | jq length`
 
 for i in $( seq 0 $(($HostedZonesLen - 1)) ); do
     Zone=`echo $HostedZones | jq .[$i]`
-    ZoneId=`echo $Zone | jq -c -r '.Id'`
-    ZoneName=`echo $Zone | jq -c -r '.Name'`
+    ZoneId=`echo $Zone | jq -c -r &#39;.Id&#39;`
+    ZoneName=`echo $Zone | jq -c -r &#39;.Name&#39;`
 
     # ホストゾーン内のレコード一覧を取得
-    Records=`aws route53 list-resource-record-sets --hosted-zone-id $ZoneId --output json --query 'ResourceRecordSets'`
+    Records=`aws route53 list-resource-record-sets --hosted-zone-id $ZoneId --output json --query &#39;ResourceRecordSets&#39;`
     RecordsLen=`echo $Records | jq length`
 
     for i in $( seq 0 $(($RecordsLen - 1)) ); do
         record=`echo $Records | jq .[$i]`
-        name=`echo $record | jq -c -r '.Name'`
-        type=`echo $record | jq -c -r '.Type'`
-        ttl=`echo $record | jq -c -r '.TTL'`
-        data=`echo $record | jq -c -r '.AliasTarget.DNSName // &quot;&quot;'`
+        name=`echo $record | jq -c -r &#39;.Name&#39;`
+        type=`echo $record | jq -c -r &#39;.Type&#39;`
+        ttl=`echo $record | jq -c -r &#39;.TTL&#39;`
+        data=`echo $record | jq -c -r &#39;.AliasTarget.DNSName // &#34;&#34;&#39;`
 
         # AliasTargetのDNSNameが設定されていない場合はResourceRecordsのValuesを取得する
-        if [ -z &quot;$data&quot; ]; then
-            data=`echo $record | jq -c -r '.ResourceRecords[].Value'`
+        if [ -z &#34;$data&#34; ]; then
+            data=`echo $record | jq -c -r &#39;.ResourceRecords[].Value&#39;`
         fi
 
         # dataにはダブルクォートが含まれる可能性があるのでエスケープしておく
-        data=${data//\&quot;/\&quot;\&quot;}
+        data=${data//\&#34;/\&#34;\&#34;}
 
         # CSVのボディ出力
-        echo &quot;\&quot;${ZoneName}\&quot;,\&quot;${name}\&quot;,\&quot;${type}\&quot;,\&quot;${ttl}\&quot;,\&quot;${data}\&quot;&quot;
+        echo &#34;\&#34;${ZoneName}\&#34;,\&#34;${name}\&#34;,\&#34;${type}\&#34;,\&#34;${ttl}\&#34;,\&#34;${data}\&#34;&#34;
     done
 done
 </code></pre><h3 id="簡単な説明">簡単な説明</h3>
 <p>AWS CLIでホストゾーンの情報をjson形式で取得します。</p>
-<pre><code>aws route53 list-hosted-zones --output json --query 'HostedZones[]'
+<pre tabindex="0"><code>aws route53 list-hosted-zones --output json --query &#39;HostedZones[]&#39;
 </code></pre><p>取得したホストゾーン情報を1件ずつループを回します。<br>
 以下コマンドでホストゾーンのレコードをjson形式で取得します。</p>
-<pre><code>aws route53 list-resource-record-sets --hosted-zone-id $ZoneId --output json --query 'ResourceRecordSets'
+<pre tabindex="0"><code>aws route53 list-resource-record-sets --hosted-zone-id $ZoneId --output json --query &#39;ResourceRecordSets&#39;
 </code></pre><p>そして要所要所でjqコマンドでjsonから必要な情報を抽出しています。</p>
 <h3 id="補足">補足</h3>
 <p>AWS CLIの<code>query</code>オプションはjqコマンドで抽出するのと同じ効果があります。<br>
 つまり、以下のコマンドはどちらも同じ結果となります。</p>
-<pre><code>aws route53 list-resource-record-sets --hosted-zone-id $ZoneId --output json --query 'ResourceRecordSets'
-aws route53 list-resource-record-sets --hosted-zone-id $ZoneId --output json | jq '.ResourceRecordSets'
+<pre tabindex="0"><code>aws route53 list-resource-record-sets --hosted-zone-id $ZoneId --output json --query &#39;ResourceRecordSets&#39;
+aws route53 list-resource-record-sets --hosted-zone-id $ZoneId --output json | jq &#39;.ResourceRecordSets&#39;
 </code></pre>
-	</div>
-
-	<div class="pagination">
-		<a href="/posts/2020/08/05/replace-with-find-sed/" class="left arrow">&#8592;</a>
-		<a href="/posts/2020/08/26/ec2-ecs-to-csv/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
 	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2672987 &#43;0900 JST m=&#43;0.086893201">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

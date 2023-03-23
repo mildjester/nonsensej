@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Cisco on Nonsense J</title>
-    <link>/tags/cisco/</link>
-    <description>Recent content in Cisco on Nonsense J</description>
+    <title>Cisco on Logical Dice 技術ブログ</title>
+    <link>https://blog2.logical-dice.com/tags/cisco/</link>
+    <description>Recent content in Cisco on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Tue, 02 May 2017 15:05:24 +0000</lastBuildDate><atom:link href="/tags/cisco/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 02 May 2017 15:05:24 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/cisco/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cisco IOSスイッチ操作チートシート</title>
-      <link>/posts/wp/631/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/631/</link>
       <pubDate>Tue, 02 May 2017 15:05:24 +0000</pubDate>
       
-      <guid>/posts/wp/631/</guid>
-      <description>管理者権限になる enable ※省略系はen
-現在の設定を参照する # show interfaces ※全て見る場合 # show interfaces GigabitEthernet0/X ※特定のインターフェースのみ見る # show vlan ※「GigabitEthernet0/X」は「Gi0/X」と省略できる
-設定モードに入る # configure terminal ※省略系はconf terminal
-(設定モードにて)Smart Installを無効化する (config)# no vstack (設定モードにて)管理者権限のパスワードを変更する (config)# enable password ｛変更後のパスワード｝ (設定モードにて)IF設定モードに入る (config)# interface GigabitEthernet0/X (IF設定モードにて)停止・起動 (config-if)# shutdown (config-if)# no shutdown (IF設定モードにて)vlanの切り替え (config-if)# switchport mode access (config-if)# switchport access vlan {vlan番号} 各モードを抜ける (なんらかのモード)# exit 各種設定した内容を保存する # write memory ※最後にこれを実行しておかないと、再起動後に設定内容が戻ってしまう。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/631/</guid>
+      <description>管理者権限になるenable※省略系はen現在の設定を参照する# show interfaces      ※全て見る場合# s&amp;hellip;</description>
     </item>
     
   </channel>

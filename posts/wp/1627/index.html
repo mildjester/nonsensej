@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>同じForm内に複数のreCAPTCHA認証ボタンを設置する &middot; Nonsense J</title>
+	<title>同じForm内に複数のreCAPTCHA認証ボタンを設置する|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,90 +70,86 @@
 	<div class="post">
 		<h1 class="post-title">同じForm内に複数のreCAPTCHA認証ボタンを設置する</h1>
 		<div class="post-info">
-				<time datetime="2018-10-26 13:27:25 &#43;0000 UTC">October 26, 2018</time>
+				<p class="publish-date">投稿日：<time datetime="2018-10-26 13:27:25 &#43;0000 UTC" class="catalogue-time">2018-10-26</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/javascript/">javascript</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/javascript/">javascript</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<p>WEBページのreCAPTCHA対応しているform内に複数のsubmitボタンを設置する方法です。<br>
-前提としてPOSTデータより <!-- raw HTML omitted -->g-recaptcha-response<!-- raw HTML omitted --> を取り出して認証しているとします。</p>
+前提としてPOSTデータより <code>g-recaptcha-response</code> を取り出して認証しているとします。</p>
 <p>単純にsubmitボタンを複数設置した場合、うまく動きません。<br>
 例えば、以下のようなフォームを作った場合</p>
-<pre><code>&lt;script&gt;  
+<pre tabindex="0"><code>&lt;script&gt;  
 function mySubmit(){  
-  document.getElementById(&quot;myForm&quot;).submit();  
+  document.getElementById(&#34;myForm&#34;).submit();  
 }  
 &lt;/script&gt;  
   
-&lt;form id=&quot;myForm&quot; action=&quot;/hoge&quot;&gt;  
-  &lt;button class=&quot;g-recaptcha&quot; data-sitekey=&quot;各自のサイトキー&quot; data-callback=&quot;mySubmit&quot;&gt;送信1&lt;/button&gt;  
+&lt;form id=&#34;myForm&#34; action=&#34;/hoge&#34;&gt;  
+  &lt;button class=&#34;g-recaptcha&#34; data-sitekey=&#34;各自のサイトキー&#34; data-callback=&#34;mySubmit&#34;&gt;送信1&lt;/button&gt;  
   〜いろいろ〜  
-  &lt;button class=&quot;g-recaptcha&quot; data-sitekey=&quot;各自のサイトキー&quot; data-callback=&quot;mySubmit&quot;&gt;送信2&lt;/button&gt;  
+  &lt;button class=&#34;g-recaptcha&#34; data-sitekey=&#34;各自のサイトキー&#34; data-callback=&#34;mySubmit&#34;&gt;送信2&lt;/button&gt;  
 &lt;/form&gt;  
 </code></pre><p>送信1ボタンのすぐ上に、このようなreCAPTCHA用の要素が生成されます。</p>
-<pre><code>&lt;div&gt;  
-  &lt;div class=&quot;grecaptcha-badge&quot; 〜略〜 &gt;  
-    &lt;div class=&quot;grecaptcha-logo&quot;&gt;  
-      &lt;iframe src=&quot;https://www.google.com/recaptcha/〜略〜 &gt;&lt;/iframe&gt;  
+<pre tabindex="0"><code>&lt;div&gt;  
+  &lt;div class=&#34;grecaptcha-badge&#34; 〜略〜 &gt;  
+    &lt;div class=&#34;grecaptcha-logo&#34;&gt;  
+      &lt;iframe src=&#34;https://www.google.com/recaptcha/〜略〜 &gt;&lt;/iframe&gt;  
     &lt;/div&gt;  
-    &lt;div class=&quot;grecaptcha-error&quot;&gt;&lt;/div&gt;  
-    &lt;textarea id=&quot;g-recaptcha-response&quot; name=&quot;g-recaptcha-response&quot; 〜略〜 &gt;&lt;/textarea&gt;  
+    &lt;div class=&#34;grecaptcha-error&#34;&gt;&lt;/div&gt;  
+    &lt;textarea id=&#34;g-recaptcha-response&#34; name=&#34;g-recaptcha-response&#34; 〜略〜 &gt;&lt;/textarea&gt;  
   &lt;/div&gt;  
 &lt;/div&gt;  
 </code></pre><p>そして、送信2ボタンのすぐ上にも同様に要素が生成されます。<br>
 送信1ボタンとの違いはiframe内とtextareaのidです。<br>
 textareaのidはボタンの数が増える毎に連番が付与されるようです。</p>
-<pre><code>&lt;div&gt;  
-    &lt;div class=&quot;grecaptcha-badge&quot; 〜略〜 &gt;  
-        &lt;div class=&quot;grecaptcha-logo&quot;&gt;  
-            &lt;iframe src=&quot;https://www.google.com/recaptcha/〜略〜 &gt;&lt;/iframe&gt;  
+<pre tabindex="0"><code>&lt;div&gt;  
+    &lt;div class=&#34;grecaptcha-badge&#34; 〜略〜 &gt;  
+        &lt;div class=&#34;grecaptcha-logo&#34;&gt;  
+            &lt;iframe src=&#34;https://www.google.com/recaptcha/〜略〜 &gt;&lt;/iframe&gt;  
         &lt;/div&gt;  
-        &lt;div class=&quot;grecaptcha-error&quot;&gt;&lt;/div&gt;  
-        &lt;textarea id=&quot;g-recaptcha-response-1&quot; name=&quot;g-recaptcha-response&quot; 〜略〜 &gt;&lt;/textarea&gt;  
+        &lt;div class=&#34;grecaptcha-error&#34;&gt;&lt;/div&gt;  
+        &lt;textarea id=&#34;g-recaptcha-response-1&#34; name=&#34;g-recaptcha-response&#34; 〜略〜 &gt;&lt;/textarea&gt;  
     &lt;/div&gt;  
 &lt;/div&gt;  
 </code></pre><p>このままではPOSTデータに同名のパラメータが存在してしまうので正常に動きません。</p>
 <p>そこで、クリックしなかったボタンに紐づくreCAPTCHA要素は削除してしまいます。<br>
 具体的には以下のようなコードになります。</p>
-<pre><code>&lt;script&gt;  
+<pre tabindex="0"><code>&lt;script&gt;  
 function mySubmit(delId){  
   document.getElementById(delId).parentNode.remove()  
-  document.getElementById(&quot;myForm&quot;).submit();  
+  document.getElementById(&#34;myForm&#34;).submit();  
 }  
 function mySubmit1() {  
-  mySubmit(&quot;g-recaptcha-response-1&quot;)  
+  mySubmit(&#34;g-recaptcha-response-1&#34;)  
 }  
 function mySubmit2() {  
-  mySubmit(&quot;g-recaptcha-response&quot;)  
+  mySubmit(&#34;g-recaptcha-response&#34;)  
 }  
 &lt;/script&gt;  
   
-&lt;form id=&quot;myForm&quot; action=&quot;/hoge&quot;&gt;  
-  &lt;button class=&quot;g-recaptcha&quot; data-sitekey=&quot;各自のサイトキー&quot; data-callback=&quot;mySubmit1&quot;&gt;送信1&lt;/button&gt;  
+&lt;form id=&#34;myForm&#34; action=&#34;/hoge&#34;&gt;  
+  &lt;button class=&#34;g-recaptcha&#34; data-sitekey=&#34;各自のサイトキー&#34; data-callback=&#34;mySubmit1&#34;&gt;送信1&lt;/button&gt;  
   〜いろいろ〜  
-  &lt;button class=&quot;g-recaptcha&quot; data-sitekey=&quot;各自のサイトキー&quot; data-callback=&quot;mySubmit2&quot;&gt;送信2&lt;/button&gt;  
+  &lt;button class=&#34;g-recaptcha&#34; data-sitekey=&#34;各自のサイトキー&#34; data-callback=&#34;mySubmit2&#34;&gt;送信2&lt;/button&gt;  
 &lt;/form&gt;  
 </code></pre><p>これでPOSTデータにreCAPTCHAのパラメータが重複することはなくなるので<br>
 正常に認証することができるようになります。</p>
 
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/1573/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/1715/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2778715 &#43;0900 JST m=&#43;0.097465901">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

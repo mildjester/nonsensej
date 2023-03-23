@@ -1,39 +1,70 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-	<meta name="generator" content="Hugo 0.82.0" />
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-			<meta name="description" content="">
+	<meta name="generator" content="Hugo 0.109.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
 
-		<title>Nonsense J</title>
+	<title>Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="/index.xml" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="/index.xml" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -43,306 +74,188 @@
 
 	<div class="catalogue">
 		
-			<a href="/posts/2019/08/02/vpn-accident/" class="catalogue-item">
-    <div>
-        <time datetime="2019-08-02 00:00:00 &#43;0000 UTC" class="catalogue-time">August 2, 2019</time>
-        <h1 class="catalogue-title">フリーWi-FiでVPN通信がうまくいかない</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            ※注意 起こった事象と考察をメモしているだけです。
-本当の原因や最適な解決方法は分かっていません。
-事象 PCを喫茶店や漫画喫茶、建物のフリーラウンジなどで公開されているフリーWi-Fiにつなぎ、
-そこからVPN(L2TP/IPsec)に繋いだところ一部環境に接続できないという状況になりました。
-具体的には以下のような状態でした。
- [OK] VPN接続は成功している。 [OK] グローバルIPでの接続は問題なさそう。  curl inet-ip.info コマンドでVPN接続後のIPになっていることを確認。 グローバルIPで穴あけしているプライベートサイトも表示できている。   [NG] プライベートIPでの接続ができない。  VPNサーバーからプライベートIPで接続できるサーバーへSSH接続できない。    原因の推察 不特定多数の人が使うWi-Fiの場合セキュリティ的に不安があるので
-Wi-Fi接続者同時が通信の傍受などをしないようにルーター側で
-プライベートネットワークを変更するような処理を入れているのかもしれません。
-対策 対策らしい対策では無いですが、フリーWi-Fiを使うのをやめるしかなさそうです。
-モバイルWi-Fiを契約して持ち歩いたり、スマホのテザリングを使って接続すればVPN接続はうまくいきました。
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2019/10/02/bookmarklet-mizuho/">
+    <h1 class="catalogue-title">Bookmarkletでパスワードを自動で入力させる</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2019-10-02 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-10-02</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/bookmarklet/">bookmarklet</a></div> <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/javascript/">javascript</a></div>
     </div>
-</a>
+    
+    <p>みずほダイレクトで振込時の第2暗証番号を調べるのが面倒だったので、ワンクリックで自動抽出できるようにしました</p>
+</div>
+
 
 		
-			<a href="/posts/2019/07/29/linux-mint-vpn/" class="catalogue-item">
-    <div>
-        <time datetime="2019-07-29 00:00:00 &#43;0000 UTC" class="catalogue-time">July 29, 2019</time>
-        <h1 class="catalogue-title">コマンドラインからVPNの接続＆切断をする</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            環境  Linux Mint 19.1 &ldquo;Tessa&rdquo; - MATE (64-bit)   Linux MintはGUIにてVPNの設定ができ、VPNの接続＆切断もGUIから行なえます。
-しかし、ターミナル操作中などコマンドからVPNを操作したいときがあるので
-コマンドを調べました。
-VPN名確認 自分でつけた名前なので調べる必要は無いかもしれませんが
-一応以下コマンドで調べられます。
-(以下例だと『SampleVPN』がVPN名)
-$ nmcli connection | grep vpn SampleVPN 123abc12-1a2b-1234-12a1-1234567890ab vpn -- VPN接続 以下コマンドでVPN接続します。
-nmcli con up id {VPN名} # 例： nmcli con up id SampleVPN VPN切断 以下コマンドでVPN切断します。
-nmcli con down id {VPN名} # 例： nmcli con down id SampleVPN 短縮コマンド登録 エイリアスを登録しておくと楽です。
-alias up-vpn=&quot;nmcli con up id SampleVPN&quot; alias down-vpn=&quot;nmcli con down id SampleVPN&quot; 
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2019/09/29/ruby-sass-error/">
+    <h1 class="catalogue-title">Linux Mintにsassをインストールする</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2019-09-29 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-09-29</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/linuxmint/">LinuxMint</a></div>
     </div>
-</a>
+    
+    <p>Linux Mintにsassをインストールしようとしたら少し躓いたのでメモです</p>
+</div>
+
 
 		
-			<a href="/posts/2019/07/25/lightsail-vpn/" class="catalogue-item">
-    <div>
-        <time datetime="2019-07-25 00:00:00 &#43;0000 UTC" class="catalogue-time">July 25, 2019</time>
-        <h1 class="catalogue-title">LightsailにOpenVPNサーバーを立てる</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            環境  Amazon Linux AMI release 2018.03 openvpn 2.4.4  参考  LightsailでVPN Serverを構築する|memoTech AmazonLinuxにOpenVPNサーバを構築する|ねこの足跡R   国内のVPNサービスを契約していたのですが
-同時に1デバイスしか接続できないし、回線がめっちゃ遅かったので
-自前でVPNサーバーを立てることにしました。
-AWSのLightsail上にOpenVPNでサーバーを立てて
-Linux Mint, Android, iPhoneで接続できるようにします。
-インスタンス設定 新規インスタンス作成 Lightsailのページにて『インスタンスの作成』をクリックします。
-https://lightsail.aws.amazon.com/ls/webapp/home/instances
-インスタンスイメージとして以下を選択します。
- Lunux/Unix OSのみ Amazon Linux  インスタンスプランはVPNの利用予定に合わせて選びます。
-個人でちょっと使う程度であれば最安のプランでよいと思います。
-インスタンス名を適当につけて「インスタンスを作成」をクリックします。
-静的IPの設定 インスタンス一覧画面に戻るので
-先程作成したインスタンスの「︙」から『管理』をクリックします。
-ネットワーキングタブを開き、「静的IPの作成」をクリックします。
-静的IPの設定画面になるので、適用するインスタンス（今作ったインスタンス）と
-静的IPの名前を決めて「作成」をクリックします。
-ポート開放 対象インスタンスの『ネットワーキング』タブを開きます。
-ファイアウォールの「＋追加」をクリックし、TCPの1194ポートを開きます。
-Lightsailへの接続 インスタンス一覧にて再度「︙」から『接続』をクリックします。
-別ウィンドウでターミナル調のブラウザが立ち上がるので、以降の作業を実施します。
-手元のターミナルからsshで繋いでも良いです。
-Lightsailの時刻を日本時間に合わせる 念の為タイムゾーンを日本にしておきます。
-sudo cp -p /usr/share/zoneinfo/Japan /etc/localtime sudo service rsyslog restart sudo service crond restart OpenVPN設定 OpenVPNインストール 以下コマンドを実行します。
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2019/09/28/linux-mint-virtualbox/">
+    <h1 class="catalogue-title">Linux Mint上でWindows10を動かす</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2019-09-28 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-09-28</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/linuxmint/">LinuxMint</a></div>
     </div>
-</a>
+    
+    <p>Linux MintにVirtualBoxを入れて検証用にWindows10を動かした手順です</p>
+</div>
+
 
 		
-			<a href="/posts/2019/07/16/withholding-income-tax/" class="catalogue-item">
-    <div>
-        <time datetime="2019-07-16 00:00:00 &#43;0000 UTC" class="catalogue-time">July 16, 2019</time>
-        <h1 class="catalogue-title">e-taxで源泉所得税を申請する。</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            e-taxにて源泉所得税の申請をしたので、その手順メモです。
-税務署に行って紙で源泉所得税の申請ができる程度の基礎知識はある前提とします。
-申請書の作成 e-taxの左メニューから作成＞申告・申請等開き、新規作成をクリックします。
-次に以下を選び『次へ』をクリックします。
- 手続きの種類：申請・届出 税目：源泉所得税  次に以下をチェックを入れて『次へ』をクリックします。
- 徴収高計算書関係  給与所得・退職所得等の所得税徴収高計算書（※）  給与所得・退職所得等の所得税徴収高計算書（※）      ※所得税の納付を毎月してる会社は「一般」、半年分まとめて納税してる会社は「納期特例分」です
-申告・申請等名を指定する画面になるので、自分で分かる程度の名前をつけて『OK』をクリックします。
-（「XXXX年度〇期_源泉所得税」など）
-次に基本情報の入力画面になるので、以下を入力or確認して『OK』をクリックします。
- 提出税務署：申請する税務署（自分の会社がある自治体） 提出年月日：今の日付 法人名(カナ)：自分の会社名カナ 法人名（必須）：自分の法人名 納税地：自分の会社の住所と電話番号 代表者名（カナ）： 代表者名（必須）： 代表者：代表者の住所電話番号 金融機関：会社の銀行口座  帳票一覧が開くので、さきほど選択した帳票をダブルクリックで開きます。
-すると帳票の中身が修正できるようになるので記載します。
-小さくて文字が見づらいですが、右クリックすると拡大メニューが出ます。
-基本的に「いつの期間に」「何人に」「いくら支給して」「いくら源泉徴収したか」を書くだけです。
-（右端の「納期等の区分」(名前は変わるかも)にも「いつの期間に」を記載しなければならないので要注意）
-公式の説明はこちら。
-http://www.e-tax.nta.go.jp/tetsuzuki/tetsuzuki4_4.htm
-記載が終わったら「作成完了」をクリックします。
-控えが必要ならここで印刷などしておきます。
-申請書の送信 e-tax左メニューの「送信可能一覧へ」＞「送信」を開きます。
-先ほど作成した帳票が表示されるので、選択して『送信』をクリックします。
-何か問題があればエラーが表示されるので、エラー指摘箇所を訂正して再度送信します。
-源泉所得税の支払い 送信が完了するとメッセージボックスに受付完了のメッセージが届き、
-そのメッセージの下のボタンから払込ができます。
-オンラインで払う場合
-クレジットカード払いは手数料が取られるので
-インターネットバンキングの方が良いです。
-これで源泉所得税の申請は完了です。
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2019/09/14/text-orientation-upright/">
+    <h1 class="catalogue-title">CSSでtext-orientationは使ってはいけない</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2019-09-14 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-09-14</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/css/">CSS</a></div>
     </div>
-</a>
+    
+    <p>text-orientationを使って失敗してしまったことの記録です</p>
+</div>
+
 
 		
-			<a href="/posts/2019/07/02/exiftool-modify-alldate/" class="catalogue-item">
-    <div>
-        <time datetime="2019-07-02 00:00:00 &#43;0000 UTC" class="catalogue-time">July 2, 2019</time>
-        <h1 class="catalogue-title">コマンドで画像の撮影日等を変更する</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            環境  Linux Mint 19.1 &ldquo;Tessa&rdquo; - MATE (64-bit) exiftool 10.80   写真をスキャナを使って取り込むと画像ファイルに撮影日が反映されないので
-exiftoolというEXIF情報を扱えるツールを使って撮影日を変更します。
-※この手順ではEXIF情報を無理やり書き込んでいるだけなので、
-ファイルフォーマットがEXIF形式(?)に変わるわけではなさそうです。
-まずexiftoolがインストールされていない場合はインストールします。
-apt install exiftool 現状のEXIF情報を参照するには以下のようにコマンドを実行します。
-下記コマンドだとカレントディレクトリにあるpngファイル全てのEXIF情報を参照できます。
-exiftool -s ./*png (./*pngの部分は画像ファイルが置いてあるパスに読み替えてください) 続いて撮影日付等を書き換えます。
-以下のコマンドで撮影日時等を「2019/02/23 00:00:00」に変更しています。
-exiftool -overwrite_original -alldates='2019:02:23 00:00:00+09:00' ./*png exiftool -overwrite_original -TimeStamp='2019:02:23 00:00:00+09:00' ./*png ※overwrite_originalを指定する事で上書きするようにしているのですが
-もし書換え前のデータを残したい場合はこのオプションを外してください。
-次にファイルの更新日も修正してしまいます。
-ファイルの更新日はどうでも良い人は飛ばして良いです。
-exiftool -overwrite_original -FileModifyDate='2019:02:23 00:00:00+09:00' ./*png 再度EXIF情報を確認すると、日付データが更新されている事が分かります。
-exiftool -s ./*png 
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2019/08/26/wp-media-infomation/">
+    <h1 class="catalogue-title">【Wordpress】画像ファイルに設定されたタイトルとキャプションを削除する</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2019-08-26 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-08-26</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/wordpress/">Wordpress</a></div>
     </div>
-</a>
+    
+    <p>Wordpressで画像アップ時にタイトルとキャプションに勝手に文字列が設定されるのを防ぐ方法です。</p>
+</div>
+
 
 		
-			<a href="/posts/2019/04/17/linuxmint-access-point/" class="catalogue-item">
-    <div>
-        <time datetime="2019-04-17 00:00:00 &#43;0000 UTC" class="catalogue-time">April 17, 2019</time>
-        <h1 class="catalogue-title">Linux Mintを無線LANのアクセスポイントにする</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            環境  Linux Mint 19.1 &ldquo;Tessa&rdquo; - MATE (64-bit)   VPN経由でないと表示できないページをPC, Android, iOSで同時に見たかったのですが
-自分の契約しているVPNが1度に1デバイスしか接続できなかったので
-PC(Linux Mint)でVPN接続し、その接続を無線LANで共有するようにしました。
-Macでいうところの「ネットワークの共有」です。
-参考 Linuxで簡単に無線Lanアクセスポイントを作る
-だいたい参考ページ通りですが、うまく動かない箇所があったので少しだけコマンドを修正しています。
-環境構築 必要なソフトウェアのインストールします。
-apt install util-linux procps hostapd iproute2 iw アクセスポイントを作成するスクリプトの取得します。
-wget https://raw.githubusercontent.com/oblique/create_ap/master/create_ap 実行権限を付与してパスが通っている場所に移動させます。
-sudo chmod +x create_ap sudo mv create_ap /usr/local/bin/. ネットワークの共有 事前にネットワークインターフェース(NIC)を調べます。
-ip a すごいざっくりいうと
-eで始まるNICは有線LANで、wで始まるNICは無線LANです。
-また、VPNの場合はVPNの種類(pppなど)が付いていると思います。
-loやbrで始まるのは内部的に使っているものなので基本的に無視して良いです。
-分からなければ『コントロールセンター＞ネットワーク接続』にて利用したいNICの詳細を開き、
-デバイスの「XX:XX:XX:XX:XX:XX」が一致するNICを選べば良いです。
-このNICの中から『外界⇔PC』通信用のNICと『PC⇔スマホ』通信用のNICを決めます。
-注意点としては上記2つのNICは物理的に別のハードウェアでなければならないという事です。
-例えば、PCに無線LANのNICが1つしか無い場合は『PC⇔スマホ』のNICにそれを使うので、
-『外界⇔PC』のNICは有線LANを使ったりしなければなりません。
-利用するNICが決まったら以下の用にコマンドを打ちます。
-sudo create_ap {スマホとのNIC} {外界とのNIC} {SSID} {SSIDの接続パスワード} たとえば、スマホとのNICが無線LANwlp3s0で、外界とのNICがVPNppp0の場合は以下のコマンドでアクセスポイントを開始できます。
-なお、以下コマンドではSSIDはMyAPでパスワードはMyPasswordとなります。
-sudo create_ap wlp3s0 ppp0 MyAP MyPassword 上記コマンド実行後、ターミナルにはアクセスポイントとしての稼働ログが流れます。
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2019/08/15/ssh-portfowarding/">
+    <h1 class="catalogue-title">SSHポートフォワーディングでローカルから外部サーバーへアクセスする</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2019-08-15 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-08-15</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/docker/">Docker</a></div>
     </div>
-</a>
+    
+    <p>SSHポートフォワーディングを使ってローカルのDocker環境からSSHサーバーを踏み台にして別サーバーへアクセスさせる手順です。</p>
+</div>
+
 
 		
-			<a href="/posts/2019/04/10/javascript-event/" class="catalogue-item">
-    <div>
-        <time datetime="2019-04-10 00:00:00 &#43;0000 UTC" class="catalogue-time">April 10, 2019</time>
-        <h1 class="catalogue-title">IME有効時の入力イベントを調べる</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            PC/Android/iOSでIME有効時に入力イベントが結構違ったので調べました。
-調べた環境は以下の通りです。
-   OS ブラウザ     PC (Linux Mint 19.1 MATE) Chrome Ver.73.0   Android 8.0.0 (Galaxy S8) Chrome Ver.73.0   iOS 12.2 (iPhone 6) Safari 12.1    テキストボックスに文字を入力した際のイベントを調べました。
-調べたイベントはkeydown, keyup, keypress, textInput, inputです。
-（Androidはブラウザ以外にもキーボードアプリも影響あるのかな？）
-IME有効 入力中（未確定） ひらがなで文字を1文字ずつ入力している時のイベントです。
-   イベント PC Android iOS 取れる値     keydown  ○ ○ 今回入力前の文字列   keyup ○ ○ ○ ※OSにより違う   keypress   ○ 今回入力前の文字列   textInput       input  ○ ○ 今回入力後の文字列    ※keyupで取れる値は以下の通りでした。
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2019/08/02/vpn-accident/">
+    <h1 class="catalogue-title">フリーWi-FiでVPN通信がうまくいかない</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2019-08-02 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-08-02</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/vpn/">VPN</a></div>
     </div>
-</a>
+    
+    <p>フリーWi-Fiを使ってVPNに繋いだら一部上手く動かなかった話です。</p>
+</div>
+
 
 		
-			<a href="/posts/2019/03/13/linux-mint-l2tp/" class="catalogue-item">
-    <div>
-        <time datetime="2019-03-13 00:00:00 &#43;0000 UTC" class="catalogue-time">March 13, 2019</time>
-        <h1 class="catalogue-title">VPNクライアント設定(L2TP over IPsec)</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            環境  Linux Mint 19.1 &ldquo;Tessa&rdquo; - MATE (64-bit) ubuntu 19.10  ■参考 ask ubuntu
- Linux MintでのVPNクライアント設定に少し苦戦したのでメモです。
-ubuntuでもほぼ同手順で対応可能でした。
-必要なアプリケーションのインストール 以下のコマンドでインストールします。
-(ubuntuの場合はaptの前にsudoを付けてください)
-$ apt update $ apt install network-manager-l2tp-gnome strongswan libstrongswan-extra-plugins libcharon-extra-plugins ネットワーク設定 まず、『コントロールセンター＞ネットワーク接続』を開きます。
-(ubuntuの場合は『設定＞ネットワーク』)
-現在のネットワーク一覧が表示されるので、「＋」マーク(追加ボタン)をクリックします。
-接続の種類を聞かれるのでVPNの中にある『Layer 2 Tunneling Protocol(L2TP)』を選択して『作成』をクリックします。
-L2TPの設定画面が開くので、VPNタブにて以下を設定します。
-   項目 設定値     ゲートウェイ VPNサーバーのIPアドレスorホスト名   ユーザー名 VPN接続する際のユーザー名   パスワード 上記ユーザーのパスワード※   NTドメイン 空欄のまま    ※補足 パスワードは入力欄右端の？アイコンをクリックしてポリシーを選択すれば入力できます。
-パスワードを接続の都度入力する場合はここでは空欄で良いです。
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2019/07/29/linux-mint-vpn/">
+    <h1 class="catalogue-title">コマンドラインからVPNの接続＆切断をする</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2019-07-29 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-07-29</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/linuxmint/">LinuxMint</a></div>
     </div>
-</a>
+    
+    <p>Linux MintにてコマンドラインからVPNの接続と切断をする方法です。</p>
+</div>
+
 
 		
-			<a href="/posts/2019/03/10/linux-mint-terminator-fish/" class="catalogue-item">
-    <div>
-        <time datetime="2019-03-10 00:00:00 &#43;0000 UTC" class="catalogue-time">March 10, 2019</time>
-        <h1 class="catalogue-title">terminator &#43; fish &#43; fishermanの導入</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            ■環境 Linux Mint 19.1 &ldquo;Tessa&rdquo; - MATE (64-bit)
-ubuntu 19.10
- ※以降のaptコマンドはUbuntuの場合はsudoを付けてください。
-terminatorインストール terminatorをインストールします。
-apt install terminator  (※2019年11月追記)
-Terminatorもいいですが、Tilixというターミナルも良いです。
-詳しくは↓こちら↓
-Linux用ターミナル『Tilix』
- fishインストール fishをインストールします。
-apt install fish インストール後、反映するため一度ログアウトします。
-なお、Terminatorはデフォルトのウィンドウサイズが微妙なので変更した方が良いです。
-Terminatorのデフォルトサイズを変更する
-fishをデフォルトシェルに設定 $ grep fish /etc/shells /usr/bin/fish ←表示されなかったら`which fish`の結果を/etc/shellsに追記する $ chsh -s /usr/bin/fish fishermanのインストール fishermanというfishのプラグイン管理ツールがあります。
-fishermanのgithubベージにインストールコマンドが載っています。
-https://github.com/fisherman/fisherman
-$ curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish $ fisher -v fisher version 3.1.1 ~/.config/fish/functions/fisher.fish ※fisher -vでバージョンが出ない場合は、一回ターミナルを開き直してください。
-テーマの変更 fishはテーマを変更することで見栄えが変えられます。
-どのようなテーマがあるかは、以下ページが参考になります。
-https://github.com/oh-my-fish/oh-my-fish/blob/master/docs/Themes.md
-私は「bobthefish」というテーマを利用しており、以下手順でインストールしています。
-$ fisher install oh-my-fish/theme-bobthefish # fisherのバージョンによってはfisher installではなくfisher add bobthefishではPowerLineのフォントが必要なので、そちらもインストールします。
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2019/07/25/lightsail-vpn/">
+    <h1 class="catalogue-title">LightsailにOpenVPNサーバーを立てる</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2019-07-25 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-07-25</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/aws/">AWS</a></div> <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/vpn/">VPN</a></div>
     </div>
-</a>
+    
+    <p>AWSのLightsailにOpenVPNサーバーを立てる手順です。</p>
+</div>
+
 
 		
-			<a href="/posts/2019/03/10/linux-mint-terminator-size/" class="catalogue-item">
-    <div>
-        <time datetime="2019-03-10 00:00:00 &#43;0000 UTC" class="catalogue-time">March 10, 2019</time>
-        <h1 class="catalogue-title">Terminatorのデフォルトサイズを変更する</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            ■環境  Linux Mint 19.1 &ldquo;Tessa&rdquo; - MATE (64-bit) terminator 1.91   Linux環境でよく使われているターミナルソフトの「Terminator」ですが、
-設定から起動時の縦横サイズを指定できなかったので無理やり設定しました。
-設定方法 Terminatorのmanページを見ると以下のオプションがあることが分かります。
-https://linux.die.net/man/1/terminator
---geometry=GEOMETRY Specifies the preferred size and position of Terminator's window; see X(7). x(7)のmanページを見るとgeometryの指定方法が記載されています。
-https://linux.die.net/man/7/x
--geometry WIDTHxHEIGHT+XOFF+YOFF (where WIDTH, HEIGHT, XOFF, and YOFF are numbers) これを利用して、Terminatorを起動するショートカット（ランチャー）にオプションを付与してしまい、
-サイズと位置を指定するようにします。
-設定例 例えばLinux Mintの場合はパネルにTerminatorを追加して右クリックからプロパティを開き、
-コマンドの部分を以下のように変更してしまいます。
-terminator --geometry=1400x800+200+200 
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2019/07/16/withholding-income-tax/">
+    <h1 class="catalogue-title">e-taxで源泉所得税を申請する。</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2019-07-16 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-07-16</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/%e6%b3%95%e4%ba%ba%e4%ba%8b%e5%8b%99/">法人事務</a></div>
     </div>
-</a>
+    
+    <p>e-taxで源泉所得税を申請する手順メモです。</p>
+</div>
+
 
 		
 	</div>
 
 	<div class="pagination">
 		
-			<a href="/page/5/" class="left arrow">&#8592;</a>
+			<a href="/page/5/" class="left arrow">＜＜戻る</a>
 		
 		
-			<a href="/page/7/" class="right arrow">&#8594;</a>
+			<a href="/page/7/" class="right arrow">次へ＞＞</a>
 		
 
-		<span>6</span>
+		<span>6 / 20</span>
 	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.3086089 &#43;0900 JST m=&#43;0.128203401">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

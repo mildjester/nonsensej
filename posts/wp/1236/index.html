@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>【Linux Mint】cpuminer &#43; wpoolでBitZenyをマイニング &middot; Nonsense J</title>
+	<title>【Linux Mint】cpuminer &#43; wpoolでBitZenyをマイニング|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,24 +70,25 @@
 	<div class="post">
 		<h1 class="post-title">【Linux Mint】cpuminer &#43; wpoolでBitZenyをマイニング</h1>
 		<div class="post-info">
-				<time datetime="2018-04-20 10:25:55 &#43;0000 UTC">April 20, 2018</time>
+				<p class="publish-date">投稿日：<time datetime="2018-04-20 10:25:55 &#43;0000 UTC" class="catalogue-time">2018-04-20</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/linuxmint/">LinuxMint</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/linuxmint/">LinuxMint</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<h2 id="環境">■環境</h2>
 <p>Linux Mint 18.3 cinnamon 64bit</p>
 <hr>
 <h2 id="cpuminerのインストール">cpuminerのインストール</h2>
 <p>基本的な流れはcpuminerのgithubページに記載されている通りです。<br>
-<!-- raw HTML omitted --><a href="https://github.com/macchky/cpuminer">https://github.com/macchky/cpuminer</a><!-- raw HTML omitted --></p>
+<a href="https://github.com/macchky/cpuminer" rel="noopener" target="_blank"><a href="https://github.com/macchky/cpuminer">https://github.com/macchky/cpuminer</a></a></p>
 <p>事前に必要な物をインストールします。<br>
 ※libjansson4は公式ページには記載がありませんが、ないとminerd実行時にエラーとなります。</p>
-<pre><code>apt install build-essential libcurl4-openssl-dev libjansson4  
+<pre tabindex="0"><code>apt install build-essential libcurl4-openssl-dev libjansson4  
 </code></pre><p>cpuminerバイナリをダウンロードして実行ファイルを取り出します。</p>
-<pre><code>wget https://github.com/macchky/cpuminer/releases/download/v2.6.0/ZNYminer260.zip  
+<pre tabindex="0"><code>wget https://github.com/macchky/cpuminer/releases/download/v2.6.0/ZNYminer260.zip  
 unzip unzip ZNYminer260.zip  
 chmod +x ZNYminer260/linux/minerd  
 sudo mv ZNYminer260/linux/minerd /usr/local/bin/.  
@@ -64,18 +96,18 @@ rm -rf unzip ZNYminer260*
 </code></pre><h2 id="bitzeny-walletの登録">BitZeny Walletの登録</h2>
 <p>BitZenyの受け取り用にWalletを作っておきます。<br>
 以下サイトにてWalletが作成できます。<br>
-<!-- raw HTML omitted --><a href="https://bitzeny.jp">https://bitzeny.jp</a><!-- raw HTML omitted --></p>
+<a href="https://bitzeny.jp" rel="noopener" target="_blank"><a href="https://bitzeny.jp">https://bitzeny.jp</a></a></p>
 <p>アカウントを作成し、ログイン後の画面でWalletのアドレスが確認できます。<br>
-<!-- raw HTML omitted --></p>
+<img src="https://blog2.logical-dice.com/images/2018/04/Screenshot-from-2018-04-20-10-20-38.png" alt="" /></p>
 <h2 id="マイニングの開始">マイニングの開始</h2>
 <p>minerdを使ってマイニングを開始します。<br>
 wpoolに記載されている下記コマンドを実行すればマイニングが開始されます。<br>
 マイニング停止はCtrl+Cです。<br>
-<!-- raw HTML omitted --><a href="https://wpool.work/">https://wpool.work/</a><!-- raw HTML omitted --></p>
-<pre><code>minerd -a yescrypt -o stratum+tcp://wpool.work:15022 -u {BitZeny Walletで取得したアドレス}  
+<a href="https://wpool.work/" rel="noopener" target="_blank"><a href="https://wpool.work/">https://wpool.work/</a></a></p>
+<pre tabindex="0"><code>minerd -a yescrypt -o stratum+tcp://wpool.work:15022 -u {BitZeny Walletで取得したアドレス}  
 </code></pre><p>マイニング中は以下のように結果が流れていきます。<br>
 「yay!!!」となっているところがマイニング成功です。</p>
-<pre><code>[2018-04-20 15:42:35] Stratum requested work restart  
+<pre tabindex="0"><code>[2018-04-20 15:42:35] Stratum requested work restart  
 [2018-04-20 15:42:35] thread 1: 32638 hashes, 0.76 khash/s  
 [2018-04-20 15:42:35] thread 0: 1957 hashes, 0.77 khash/s  
 [2018-04-20 15:42:35] thread 3: 4647 hashes, 0.77 khash/s  
@@ -97,21 +129,16 @@ wpoolに記載されている下記コマンドを実行すればマイニング
 [2018-04-20 15:43:33] thread 3: 5300 hashes, 0.77 khash/s  
 </code></pre>
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/1226/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/1245/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2745761 &#43;0900 JST m=&#43;0.094170601">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

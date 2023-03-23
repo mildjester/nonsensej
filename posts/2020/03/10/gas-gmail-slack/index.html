@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>GASでGmailをSlackに転送する &middot; Nonsense J</title>
+	<title>GASでGmailをSlackに転送する|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,13 +70,14 @@
 	<div class="post">
 		<h1 class="post-title">GASでGmailをSlackに転送する</h1>
 		<div class="post-info">
-				<time datetime="2020-03-10 00:00:00 &#43;0000 UTC">March 10, 2020</time>
+				<p class="publish-date">投稿日：<time datetime="2020-03-10 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-03-10</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/googleservice/">GoogleService</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/googleservice/">GoogleService</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<h2 id="参考">参考</h2>
 <ul>
 <li><a href="https://developers.google.com/apps-script/reference/gmail/gmail-app">Class GmailApp(公式ドキュメント)</a></li>
@@ -74,17 +106,17 @@ PHPからWebHooksを使ってメッセージ送信するライブラリを作っ
 <p>まず、自分のGASのページを開きます。<br>
 <a href="https://script.google.com/u/0/home?hl=ja">https://script.google.com/u/0/home?hl=ja</a></p>
 <p>そこで「新しいプロジェクト」をクリックしてください。<br>
-<!-- raw HTML omitted --></p>
+<img src="https://blog2.logical-dice.com/images/2020/03/gas-gmail-slack-001.png" /></p>
 <p>コード編集画面が開くので、「コード.gs」内を以下のように記載します。<br>
 最初の「初期設定」の部分は自分の環境に合わせて修正してください。</p>
-<pre><code>// 初期設定
-const HOOK_URL = 'https://hooks.slack.com/services/AAAAAAA/BBBBBBB/CCCCCCC'; // 取得したWebHooks URL
-const SEND_CHANNEL = 'general'; // Gmailの内容を送信したいSlackチャンネル
+<pre tabindex="0"><code>// 初期設定
+const HOOK_URL = &#39;https://hooks.slack.com/services/AAAAAAA/BBBBBBB/CCCCCCC&#39;; // 取得したWebHooks URL
+const SEND_CHANNEL = &#39;general&#39;; // Gmailの内容を送信したいSlackチャンネル
 
 function main() {
   // 検索条件：受信トレイにある未読メールで１０分以内に受信したもの
   var after = parseInt(((new Date()).getTime() - 10 * 60 * 1000) / 1000);  //10分前の時刻をUNIX時間で取得
-  var searchTarget = 'in:inbox is:unread after:' + after;
+  var searchTarget = &#39;in:inbox is:unread after:&#39; + after;
 
   GmailApp
   .search(searchTarget)
@@ -97,20 +129,20 @@ function main() {
 }
 
 function send(message) {
-  var sendText = '【件名】\n' + message.getSubject()
-               + '\n【本文】\n' + message.getPlainBody();
+  var sendText = &#39;【件名】\n&#39; + message.getSubject()
+               + &#39;\n【本文】\n&#39; + message.getPlainBody();
   
   var jsonData = {
-    &quot;icon_emoji&quot;: ':mailbox:',
-    &quot;channel&quot; : SEND_CHANNEL,
-    &quot;username&quot; : message.getFrom(),
-    &quot;text&quot; : sendText
+    &#34;icon_emoji&#34;: &#39;:mailbox:&#39;,
+    &#34;channel&#34; : SEND_CHANNEL,
+    &#34;username&#34; : message.getFrom(),
+    &#34;text&#34; : sendText
   };
 
   var options = {
-    &quot;method&quot; : &quot;post&quot;,
-    &quot;contentType&quot; : &quot;application/json&quot;,
-    &quot;payload&quot; : JSON.stringify(jsonData)
+    &#34;method&#34; : &#34;post&#34;,
+    &#34;contentType&#34; : &#34;application/json&#34;,
+    &#34;payload&#34; : JSON.stringify(jsonData)
   };
 
   UrlFetchApp.fetch(HOOK_URL, options);
@@ -118,15 +150,15 @@ function send(message) {
 </code></pre><p>上記を記載したら「Ctrl + s」か上部メニューのフロッピーマークをクリックして保存します。<br>
 保存時にプロジェクト名を聞かれるので好きな名前を付けてください。<br>
 （例：Gmail2Slack）<br>
-<!-- raw HTML omitted --></p>
+<img src="https://blog2.logical-dice.com/images/2020/03/gas-gmail-slack-002.png" /></p>
 <h2 id="google-apps-scriptの自動実行設定">Google Apps Scriptの自動実行設定</h2>
 <p>作成したスクリプトの自動実行設定をします。<br>
 上部メニューの時計マークをクリックしてください。<br>
-<!-- raw HTML omitted --></p>
+<img src="https://blog2.logical-dice.com/images/2020/03/gas-gmail-slack-003.png" /></p>
 <p>作成したスクリプトのトリガー画面が開くので、「トリガーを追加」をクリックしてください。<br>
-<!-- raw HTML omitted --></p>
+<img src="https://blog2.logical-dice.com/images/2020/03/gas-gmail-slack-004.png" /></p>
 <p>トリガー追加画面が開くので、以下のように入力して「保存」をクリックしてください。<br>
-<!-- raw HTML omitted --></p>
+<img src="https://blog2.logical-dice.com/images/2020/03/gas-gmail-slack-005.png" /></p>
 <table>
 <thead>
 <tr>
@@ -171,8 +203,8 @@ function send(message) {
 Slackにはあくまで「こんなメール来てますよ」程度の通知を送りたいだけであれば<br>
 本文は適当な文字数で切った方が良いです。</p>
 <p>例えば150文字で切る場合はこんな感じです。</p>
-<pre><code>var sendText = '【件名】\n' + message.getSubject()
-             + '\n【本文】\n' + message.getPlainBody().substr(0, 150); //150文字で切る
+<pre tabindex="0"><code>var sendText = &#39;【件名】\n&#39; + message.getSubject()
+             + &#39;\n【本文】\n&#39; + message.getPlainBody().substr(0, 150); //150文字で切る
 </code></pre><h3 id="slackで表示される名前とアイコンについて">Slackで表示される名前とアイコンについて</h3>
 <p>「jsonData」に設定している「username」と「icon_emoji」を変更することで<br>
 Slack通知時の名前とアイコンも変更できます。</p>
@@ -182,21 +214,16 @@ Slack通知時の名前とアイコンも変更できます。</p>
 もし大量にメールを受信している人の場合は処理が重くなるかもしれないので、その場合はいい感じに時間調整してください。</p>
 
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/2020/03/05/get-google-analytics-report/" class="left arrow">&#8592;</a>
-		<a href="/posts/2020/03/15/github-actions-deploy/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2644258 &#43;0900 JST m=&#43;0.084020301">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

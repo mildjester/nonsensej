@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>CentOS7にfishを入れる &middot; Nonsense J</title>
+	<title>CentOS7にfishを入れる|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,31 +70,32 @@
 	<div class="post">
 		<h1 class="post-title">CentOS7にfishを入れる</h1>
 		<div class="post-info">
-				<time datetime="2017-02-17 00:00:18 &#43;0000 UTC">February 17, 2017</time>
+				<p class="publish-date">投稿日：<time datetime="2017-02-17 00:00:18 &#43;0000 UTC" class="catalogue-time">2017-02-17</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/centos/">CentOS</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/centos/">CentOS</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<p>最近人気らしいfishを試しに入れてみました。</p>
 <h3 id="環境">■環境</h3>
 <p>CentOS 7.3<br>
 fish 2.3.1</p>
 <p>epelリポジトリが入っていない人はインストールします。</p>
-<pre><code>yum -y install epel-release
+<pre tabindex="0"><code>yum -y install epel-release
 </code></pre><p>fishをyumでインストールします。</p>
-<pre><code>yum -y install fish
+<pre tabindex="0"><code>yum -y install fish
 </code></pre><p>今だけfishを使う場合は、コマンドでそのままfishと打ちます。</p>
-<pre><code>fish
+<pre tabindex="0"><code>fish
 </code></pre><p>恒久的にfishを使いたい場合はchshしておきます。</p>
-<pre><code>chsh -s /usr/bin/fish　｛ユーザ名｝
+<pre tabindex="0"><code>chsh -s /usr/bin/fish　｛ユーザ名｝
 </code></pre><p> </p>
 <p>これでfishが使えるようになりました。</p>
 <hr>
 <h4 id="参考">〜参考〜</h4>
 <p>CentOS6.X系の場合は以下でfishのインストールできるようです。</p>
-<pre><code>wget -P /etc/yum.repos.d/ http://download.opensuse.org/repositories/shells:fish:release:2/CentOS_6/shells:fish:release:2.repo  
+<pre tabindex="0"><code>wget -P /etc/yum.repos.d/ http://download.opensuse.org/repositories/shells:fish:release:2/CentOS_6/shells:fish:release:2.repo  
 yum -y install fish  
 </code></pre><hr>
 <h3 id="oh-my-fishインストール">【oh-my-fishインストール】</h3>
@@ -74,40 +106,40 @@ oh-my-fishのインストールにはgit 1.9.5以上が必要なので<br>
 <p>ソースからコンパイルする際に必要なものをインストールします。<br>
 私の環境では以下でしたが、ここは各環境に合わせてインストールしてください。<br>
 ソースからコンパイルする方法を調べれば出てくると思います。</p>
-<pre><code>yum install curl-devel expat-devel gettext-devel  openssl-devel zlib-devel perl-ExtUtils-MakeMaker autoconf gettext gcc
+<pre tabindex="0"><code>yum install curl-devel expat-devel gettext-devel  openssl-devel zlib-devel perl-ExtUtils-MakeMaker autoconf gettext gcc
 </code></pre><p>ソースコードをダウンロードしてきます</p>
-<pre><code>cd /tmp/  
+<pre tabindex="0"><code>cd /tmp/  
 wget https://www.kernel.org/pub/software/scm/git/git-2.9.3.tar.gz  
 tar xzf git-2.9.3.tar.gz
 </code></pre><p>※最新のソースは以下で確認<br>
-<!-- raw HTML omitted --><a href="https://www.kernel.org/pub/software/scm/git/">https://www.kernel.org/pub/software/scm/git/</a><!-- raw HTML omitted --></p>
+<a href="https://www.kernel.org/pub/software/scm/git/" target="_blank"><a href="https://www.kernel.org/pub/software/scm/git/">https://www.kernel.org/pub/software/scm/git/</a></a></p>
 <p>gitをインストールします。<br>
 configureのオプション「&ndash;with-curl」を付けないと、oh-my-fishインストール時にコケます。</p>
-<pre><code>cd git-2.9.3  
+<pre tabindex="0"><code>cd git-2.9.3  
 make configure  
 ./configure --with-curl  
 make  
 make install
 </code></pre><p>『/usr/local/bin』配下にgit系コマンドが配置されるので、<br>
 もしPATHを通していない場合は追加する。</p>
-<pre><code>set -U fish_user_paths $fish_user_paths /usr/local/bin  
+<pre tabindex="0"><code>set -U fish_user_paths $fish_user_paths /usr/local/bin  
 git --version  
 git version 2.9.3
 </code></pre><p>最後にoh-my-fishをインストールして完了です。</p>
-<pre><code>curl -L https://get.oh-my.fish | fish
+<pre tabindex="0"><code>curl -L https://get.oh-my.fish | fish
 </code></pre><p>oh-my-fishのインストール詳細についてはこちらを参照してください。<br>
-<!-- raw HTML omitted --><a href="https://github.com/oh-my-fish/oh-my-fish">https://github.com/oh-my-fish/oh-my-fish</a><!-- raw HTML omitted --></p>
+<a href="https://github.com/oh-my-fish/oh-my-fish" target="_blank"><a href="https://github.com/oh-my-fish/oh-my-fish">https://github.com/oh-my-fish/oh-my-fish</a></a></p>
 <h3 id="pecoインストール">【pecoインストール】</h3>
 <p>ついでにpecoもインストールしておきます。</p>
 <p>peco本体はgithubからダウンロードし、利用可能な状態にしておきます。</p>
-<pre><code>cd /tmp/  
+<pre tabindex="0"><code>cd /tmp/  
 wget https://github.com/peco/peco/releases/download/v0.5.1/peco_linux_amd64.tar.gz  
 tar xzf peco_linux_amd64.tar.gz  
 mv peco_linux_amd64/peco /usr/local/bin/.  
 </code></pre><p>oh-my-fishでpecoをfishに取り込みます。</p>
-<pre><code>omf install peco  
+<pre tabindex="0"><code>omf install peco  
 </code></pre><p>最後にfishのコンフィグファイルを修正します。</p>
-<pre><code>vim ~/.config/fish/config.fish  
+<pre tabindex="0"><code>vim ~/.config/fish/config.fish  
 # 記載する内容  
 function fish_user_key_bindings  
     bind \cr peco_select_history  
@@ -115,21 +147,16 @@ end
 </code></pre><p>以上で設定は完了です。</p>
 
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/424/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/444/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2833912 &#43;0900 JST m=&#43;0.102985701">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

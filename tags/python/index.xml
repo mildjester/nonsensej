@@ -1,25 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>python on Nonsense J</title>
-    <link>/tags/python/</link>
-    <description>Recent content in python on Nonsense J</description>
+    <title>python on Logical Dice 技術ブログ</title>
+    <link>https://blog2.logical-dice.com/tags/python/</link>
+    <description>Recent content in python on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sat, 06 Jun 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 06 Jun 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Dictionaly型から特定の値を取り出しlist型に入れる</title>
-      <link>/posts/2020/06/06/python-dict-list/</link>
+      <link>https://blog2.logical-dice.com/posts/2020/06/06/python-dict-list/</link>
       <pubDate>Sat, 06 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2020/06/06/python-dict-list/</guid>
-      <description>pythonのテクニック(?)的なものを教わったのでメモです。
-Dictionaly型から、あるキーの値を取り出して配列に取り出す方法について
-特になにも考えずにforで回して取り出してました。
-例えば、idとnameからなるDictionalyからnameを取り出して配列にする場合は以下のようにしていました。
-# Dictionaly定義 fruits_list = [ {&#39;id&#39;:1, &#39;name&#39;:&#39;apple&#39;}, {&#39;id&#39;:2, &#39;name&#39;:&#39;banana&#39;}, {&#39;id&#39;:3, &#39;name&#39;:&#39;cherry&#39;}, ] # Dictionalyからlistに取り出し name_list = [] for fruits in fruits_list: name_list.append(fruits.get(&#39;name&#39;)) # 出力 # [&#39;apple&#39;, &#39;banana&#39;, &#39;cherry&#39;] print(name_list) しかし、この取り出し処理は1行で書けるようです。
-修正後、以下のようになりました。
-# Dictionaly定義 fruits_list = [ {&#39;id&#39;:1, &#39;name&#39;:&#39;apple&#39;}, {&#39;id&#39;:2, &#39;name&#39;:&#39;banana&#39;}, {&#39;id&#39;:3, &#39;name&#39;:&#39;cherry&#39;}, ] # Dictionalyからlistに取り出し name_list = [fruits.get(&#39;name&#39;) for fruits in fruits_list] # 出力 # [&#39;apple&#39;, &#39;banana&#39;, &#39;cherry&#39;] print(name_list) スマートですね！</description>
+      <guid>https://blog2.logical-dice.com/posts/2020/06/06/python-dict-list/</guid>
+      <description>pythonらしくDictionaly型から特定の値を取り出して配列に入れる方法です。</description>
     </item>
     
   </channel>

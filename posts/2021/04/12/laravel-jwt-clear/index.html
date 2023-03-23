@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>【Laravel】JTIを指定してJWTトークンを無効化する|Logical Dice 技術ブログ</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
+
+        
+
+<main>
+	<div class="post">
+		<h1 class="post-title">【Laravel】JTIを指定してJWTトークンを無効化する</h1>
+		<div class="post-info">
+				<p class="publish-date">投稿日：<time datetime="2021-04-12 00:00:00 &#43;0000 UTC" class="catalogue-time">2021-04-12</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/laravel/">Laravel</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<p>LaravelでAPIを構築するとJWTトークンを利用することがあると思います。<br>
+JTI(トークンの識別子)を指定してJWTトークンを無効化してみます。</p>
+<p>実装するとこんな感じです。</p>
+<pre tabindex="0"><code>use Tymon\JWTAuth\Providers\Storage\Illuminate as JWTStorage;
+
+class JwtDisableService
+{
+    protected $jwtStorage;
+
+    public function __construct(JWTStorage $jwtStorage)
+    {
+        $this-&gt;jwtStorage = $jwtStorage;
+    }
+
+    public function __invoke(string $jti)
+    {
+        // 無効化する
+        $this-&gt;jwtStorage-&gt;forever($jti, &#39;forever&#39;);
+
+        return response()-&gt;json([
+            &#39;result&#39; =&gt; &#39;OK&#39;
+        ]);
+     }
+}
+</code></pre><p>注意が必要なのは、JWTトークンの有効/無効判定はブラックリストをキャッシュで持つという点です。</p>
+<p>JWTの有効なトークンはどこかで保持されている訳ではありません。<br>
+妥当な形式な有効期限内であるトークンは明示的に無効化されてなければ使えます。</p>
+<p>なので、上記の方法でトークンを無効化したとしても、有効期限が切れる前にキャッシュクリアしてしまうと再度使えるようになります。<br>
+そこにだけ注意して実装する必要がありそうです。</p>
+
+	</div>
+</main>
+
+
+        		<footer>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
+		</footer>
+
+    </body>
+</html>

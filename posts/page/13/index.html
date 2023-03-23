@@ -1,270 +1,232 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>Posts &middot; Nonsense J</title>
+	<title>Posts|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
 <main>
 	<div class="catalogue">
 		
-			<a href="/posts/wp/703/" class="catalogue-item">
-    <div>
-        <time datetime="2017-09-24 15:27:02 &#43;0000 UTC" class="catalogue-time">September 24, 2017</time>
-        <h1 class="catalogue-title">【Mac】コマンドラインから写真の撮影日時などを確認する</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            ■環境 macOS Sierra 10.12.6
-exiftool 10.55
- Macのコマンドラインから写真の撮影日時を確認する方法が知りたかったため調べてみました。 最終目標はファイル名に撮影日時を付与する事です。
-exiftoolインストール 写真の情報を取り出すには、exiftoolというツールを使います。 brewでインストールできます。
-brew install exiftool 写真の詳細情報を確認してみる 単純に
-exiftool 対象ファイル というコマンドでファイルの全詳細情報は取れます。
-撮影日時だけに絞りたい場合は
-exiftool -DateTimeOriginal 対象ファイル とすれば絞れます。
-が、
-どうやら使っているカメラによって撮影日時情報が画像データに含まれていない場合や、 上記で指定した「Date/Time Original」以外のタグ名で存在する場合があるようです。
-その場合は
-exiftool 対象ファイル で全情報を表示して、それっぽいのを選ぶしか無さそうです。
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/wp/737/">
+    <h1 class="catalogue-title">【Mac】NetBeansのインストール</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2017-10-13 11:05:07 &#43;0000 UTC" class="catalogue-time">2017-10-13</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/netbeans/">NetBeans</a></div> <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/mac/">Mac</a></div>
     </div>
-</a>
+    
+    <p>■環境macOS Sierra 10.12.6NetBeans 8.2コードの補完やFTP機能を標準装備していたりと無料のIDE&hellip;</p>
+</div>
+
 
 		
-			<a href="/posts/wp/698/" class="catalogue-item">
-    <div>
-        <time datetime="2017-08-21 01:57:10 &#43;0000 UTC" class="catalogue-time">August 21, 2017</time>
-        <h1 class="catalogue-title">【Wordpress】テーマで指定されたCSSがうまく読み込めない</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            Wordpressで他人が作成したテーマを使っているとCSSがうまく読み込めない時があります。
-条件としては以下の両方に当てはまっている場合だと思います。
- Wordpressの管理画面と公開画面でドメインが違う テーマ内にstyle.css以外のCSSファイルがあり、それをwp_enqueue_styleを使って読み込んでいる  このとき、ブラウザの開発ツールでコンソールを表示すると、以下のようなエラーが発生していると思います。
-Access to Font at 'http://yourdomain1.com/wp-content/themes/sparkling/assets/fonts/glyphicons-halflings-regular.woff2' from origin 'http://yourdomain2.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://yourdomain2.com' is therefore not allowed access. クロスドメインなどが原因のようなのですが、手早く直したかったので
-以下の修正をして直しました。
-①wp_enqueue_styleをしている箇所をコメントアウトする。(テーマによるが、function.phpなどに記載あり)
-// wp_enqueue_style( 'bs', get_template_directory_uri() . '/assets/css/bootstrap.min.css' ); // wp_enqueue_style( 'awe', get_template_directory_uri() . '/assets/css/font-awesome.min.css' ); ②htmlのheadタグ内にてCSS読み込み処理を記載する。(テーマによるが、header.phpなどに記載あり)
-※以下例ではCDNを指定しています。
-&lt;link rel=&quot;stylesheet&quot; href=&quot;//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css&quot;&gt; &lt;link rel=&quot;stylesheet&quot; href=&quot;//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css&quot;&gt; これで正常にCSSが読み込まれ、ブラウザのコンソールからもエラーが消えました。
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/wp/750/">
+    <h1 class="catalogue-title">【Mac】Homebrewインストール</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2017-10-12 16:27:26 &#43;0000 UTC" class="catalogue-time">2017-10-12</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/mac/">Mac</a></div>
     </div>
-</a>
+    
+    <p>■環境macOS Sierra(10.12.5)HomebrewはmacOS用のパッケージマネージャーです。インストールするため&hellip;</p>
+</div>
+
 
 		
-			<a href="/posts/wp/689/" class="catalogue-item">
-    <div>
-        <time datetime="2017-08-19 17:11:43 &#43;0000 UTC" class="catalogue-time">August 19, 2017</time>
-        <h1 class="catalogue-title">【Mac】言語パッケージ管理用にasdfを導入する(fish環境)</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            ■環境 macOS Sierra 10.12.6 fish 2.5.0
- ■手順 Brewでもインストールできるらしいが、公式ページの手順に従った方が良さそう。
-公式ページ：https://github.com/asdf-vm/asdfまず、asdfをgithubからクローンし、fishのコンフィグに追加する。
-$ git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.3.0 $ echo 'source ~/.asdf/asdf.fish' &gt;&gt; ~/.config/fish/config.fish $ mkdir -p ~/.config/fish/completions; and cp ~/.asdf/completions/asdf.fish ~/.config/fish/completions asdfで必要になるアプリケーションをbrewでインストールしておく。
-下記はだいたい公式サイトで記載されているもの。
-$ brew install coreutils automake autoconf openssl libyaml readline libxslt libtool unixodbc また、言語別で必要になるアプリケーションもある。
-詳細は言語別のgithubページを参照
-https://github.com/asdf-vm/asdf-plugins 【メモ】
-icu4cは2017年10月現在、最新バージョンを入れてしまうとPHPビルドできなくなってしまうので、旧バージョンをインストールした方が良いらしい
-参考：https://github.com/phpbrew/phpbrew/issues/899 asdfで管理対象の言語を追加する。
-$ asdf plugin-add {任意の名前} {githubリポジトリ} ===== (例） asdf plugin-add go https://github.com/kennyp/asdf-golang 上記で設定するリポジトリは以下を参照
-https://github.com/asdf-vm/asdf-pluginsもしここでエラーが出てしまった場合は必要なアプリケーションが入っていない可能性があるので、
-エラー文言を参考にbrewインストールしておく。
-インストールできるバージョン一覧を見る。
-$ asdf list-all {さきほどの名前} ===== (例） asdf list-all go 上記で確認したバージョンの中から希望のバージョンをインストールし、 利用できるように設定する。
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/wp/734/">
+    <h1 class="catalogue-title">【Mac】PC購入後・初期化後の設定</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2017-10-12 16:23:00 &#43;0000 UTC" class="catalogue-time">2017-10-12</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/mac/">Mac</a></div>
     </div>
-</a>
+    
+    <p>初期状態のMacBookから行なう設定をまとめました■設定一覧Homebrewインストールターミナル設定（iTerm2 ＋ fi&hellip;</p>
+</div>
+
 
 		
-			<a href="/posts/wp/677/" class="catalogue-item">
-    <div>
-        <time datetime="2017-07-31 01:44:06 &#43;0000 UTC" class="catalogue-time">July 31, 2017</time>
-        <h1 class="catalogue-title">【node】foreverチートシート</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            起動 forever start {jsファイル} 起動中一覧表示 forever list 停止 forever stop {停止対象の番号} ※停止対象の番号は上記の一覧表示で確認できる。 0から順に配番されているはず。
- ★その他★ 起動コマンド実行後にログを見ると Error: spawn ENOMEMというエラーで落ちていることがある。
-これはメモリ不足が原因らしいので、メモリを確保してから再実行したら直る。 自分の環境の場合、空きが「600MB」くらいだとダメでした。 色々整理して、空きを「1.5GB」くらいまでにしたら直りました。
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/wp/741/">
+    <h1 class="catalogue-title">【Mac】ターミナル設定（iTerm2 ＋ fish ＋ fisherman）</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2017-10-12 16:01:40 &#43;0000 UTC" class="catalogue-time">2017-10-12</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/mac/">Mac</a></div>
     </div>
-</a>
+    
+    <p>■環境iTerm2 3.2.5fish 2.7.1fisherman 3.1.1■参考サイトfish shell を使いたい人生&hellip;</p>
+</div>
+
 
 		
-			<a href="/posts/wp/674/" class="catalogue-item">
-    <div>
-        <time datetime="2017-07-31 01:32:53 &#43;0000 UTC" class="catalogue-time">July 31, 2017</time>
-        <h1 class="catalogue-title">Vue.js &#43; foreverでのアプリ起動</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            ■環境 CentOS 7.3 npm 3.10.10
- =====2017/12/27追記=====
-久しぶりに本手順を試したところ、 vueプロジェクト内にbuild/dev-server.jsが存在しておらず foreverでの起動ができなくなっていました。 公式にならってnpm startコマンドなどで起動した方が良いかと思われます。 ===追記ここまで=====
-■手順 npmとnodejsが入っていない場合は、yumでインストールします
-yum install npm nodejs vueアプリを簡単に導入できるツール「vue-cli」と nodeアプリをデーモン的に起動できる「forever」をインストールします ※これらはグローバル領域にインストールするので「-g」オプションをつけます
-npm install -g vue-cli forever プロジェクトディレクトリを作成します プロジェクトを作成したいディレクトリで以下を実行します
-vue init webpack samplevue ※「samplevue」は作成したいディレクトリ名 上記実行後に色々質問をされるので、作りたい環境に合わせて回答します 以下は回答例です
-? Project name samplevue ? Project description This is Sample ? Author Djiro ? Vue build standalone ? Install vue-router? Yes ? Use ESLint to lint your code? No ? Set up unit tests No ?
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/wp/721/">
+    <h1 class="catalogue-title">Google Cloud Platformにインスタンス作成</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2017-10-08 00:10:11 &#43;0000 UTC" class="catalogue-time">2017-10-08</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/googleservice/">GoogleService</a></div>
     </div>
-</a>
+    
+    <p>参考https://www.topgate.co.jp/category/gcpインスタンス立ち上げ① 左メニューの「Compu&hellip;</p>
+</div>
+
 
 		
-			<a href="/posts/wp/665/" class="catalogue-item">
-    <div>
-        <time datetime="2017-07-15 00:44:50 &#43;0000 UTC" class="catalogue-time">July 15, 2017</time>
-        <h1 class="catalogue-title">【Mac】neovim &amp; dein.vimの設定</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            ■環境 macOS Sierra 10.12.6
-fish 2.6.0
-nvim 0.2.0
-■参考ページ NeoVim、そしてdein.vimへ：https://qiita.com/okamos/items/2259d5c770d51b88d75bShougo氏のGiHub：https://github.com/Shougo/dein.vim 普通のvimよりも良いと噂のneovimを導入します。
-プラグインの管理にはdein.vimを使います。
-■neovimのインストール brewでインストールできます。
-便利ですね。
-brew install neovim/neovim/neovim ■fishへの設定 コンフィグファイルのディレクトリを設定します。
-以下はホームディレクトリ直下の『.config』を設定する例です。
-echo 'set -g XDG_CONFIG_HOME &quot;$HOME/.config&quot;' &gt;&gt; ~/.config/fish/config.fish ついでに、「vi」「vim」コマンド実行時にneovimが起動するようにしてしまいます。
-これは好みだと思うので、やってもやらなくてもいいです。
-echo 'alias vi=&quot;nvim&quot;' &gt;&gt; ~/.config/fish/config.fish echo 'alias vim=&quot;nvim&quot;' &gt;&gt; ~/.config/fish/config.fish また、neovimで利用するカラースキームのデフォルト値を設定しておきます。
-以下を~/.config/nvim/init.vimの先頭行に記載する。
-上記ディレクトリ、ファイルは初期状態では存在しないので新規作成すること。
-colorscheme {好きなカラースキーム} 設定できるカラースキームについては以下サイトにて紹介されているので参考になると思います。
-https://qiita.com/ryoff/items/134b758afa8cc45a43d3この辺でターミナルを再起動しておくと、上記で設定した内容が綺麗に読み込まれます。
-■dein.vimのインストール Shougo氏のGitHub通りに インストールを進めます。
-curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh &gt; installer.sh sh installer.sh ~/.config 上記コマンドが成功すると、.vimrc記載する内容が表示されるので、
-それを少しだけ修正して~/.config/nvim/init.vimに追記します。
-installer.shの結果出力された内容から変更する箇所は
-下記の自動インストール処理のコメントアウトを外すくらいです。
-&quot;dein Scripts----------------------------- 〜中略〜 &quot; If you want to install not installed plugins on startup.
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/wp/708/">
+    <h1 class="catalogue-title">Atom IDEの環境構築（PHP、Go）</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2017-09-29 19:11:15 &#43;0000 UTC" class="catalogue-time">2017-09-29</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/golang/">golang</a></div> <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/atom/">atom</a></div> <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/php/">PHP</a></div>
     </div>
-</a>
+    
+    <p>■環境macOS Sierra 10.12.6Atom 1.21.0-beta2■参考にしたサイト公式サイトhttps://id&hellip;</p>
+</div>
+
 
 		
-			<a href="/posts/wp/656/" class="catalogue-item">
-    <div>
-        <time datetime="2017-06-12 17:17:21 &#43;0000 UTC" class="catalogue-time">June 12, 2017</time>
-        <h1 class="catalogue-title">【Let&#39;sEncrypt】Certbotの使い方(CentOS7 &#43; nginx)</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            ■環境 CentOS 7.3 nginx 1.10.3 certbot 0.14.1
- ■初回SSL証明書発行 certbotをインストールする。
-yum -y install yum-utils yum install certbot # もしCentOS6系やAWS　EC2にてcertbotをインストールする場合は以下手順となります。 curl https://dl.eff.org/certbot-auto -o /usr/bin/certbot-auto chmod 700 /usr/bin/certbot-auto ln -s /usr/bin/certbot-auto /usr/bin/certbot # certbot-autoのまま使っても良いですが、後述の手順と整合性を合わせるために # シンボリックリンクを作っています。 証明書を発行する
-certbot certonly --webroot -w /usr/share/nginx/html -d your-domain.com ※上記コマンドは環境に合わせて読み替えてください。
-/usr/share/nginx/html
-→設定するドメインのドキュメントルート
-your-domain.com
-→設定するドメイン
-【補足】 2017年11月現在、AWS　EC2では上記コマンドに&ndash;debugオプションが必要でした。 調べてみるとEC2でも「&ndash;debug」は不要になったと書いてあるページがあったりするので 環境による（？）のかもしれません。これで証明書が以下ディレクトリに生成されます。
-ll /etc/letsencrypt/live/your-domain.com/ lrwxrwxrwx 1 root root 40 Jun 12 16:41 cert.pem -&gt; ../../archive/your-domain.com/cert1.pem lrwxrwxrwx 1 root root 41 Jun 12 16:41 chain.
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/wp/703/">
+    <h1 class="catalogue-title">【Mac】コマンドラインから写真の撮影日時などを確認する</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2017-09-24 15:27:02 &#43;0000 UTC" class="catalogue-time">2017-09-24</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/mac/">Mac</a></div>
     </div>
-</a>
+    
+    <p>■環境macOS Sierra 10.12.6exiftool 10.55Macのコマンドラインから写真の撮影日時を確認する方法&hellip;</p>
+</div>
+
 
 		
-			<a href="/posts/wp/642/" class="catalogue-item">
-    <div>
-        <time datetime="2017-05-08 11:01:23 &#43;0000 UTC" class="catalogue-time">May 8, 2017</time>
-        <h1 class="catalogue-title">MacにDocker環境を作る</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            ■環境 macOS Sierra 10.12.4
- Dockerのインストール 公式ページ(こちら)の「Get Docker for Mac(Stable)」をクリックし、
-Dockerのdmgをダウンロードする。
-ダウンロードしたdmgを実行すると「Docker.app」を「Applications」へドラッグ＆ドロップするよう表示されるので、
-その通りに実施する。
-これで、LaunchpadにDockerが追加されましたので、クリックして起動します。
-初回起動時に設定が走るので、Macのパスワードを聞かれます。
-しばらく設定が走り、「Docker is now up and running!」が表示されれば設定完了です。
-ターミナルを立ち上げ、以下コマンドを実行するとDockerのバージョンを返すようになっているはずです。
-docker version 問題なければ「Got it」をクリックしてDockerのウィンドウを閉じます。
-ウィンドウを閉じてもバックグラウンドで動いているので、
-ステータスバーに鯨のアイコンが表示されています。
-初期設定 デフォルトではMacにログオンしたら自動でDockerが起動するようになっていますが、
-普段はDockerを起動しておく必要がない場合はステータスバーの鯨をクリックし、
-Preferences &gt; General &gt; Start Docker when you log inのチェックボックスを外しておきます。
-（検証時のみDockrが欲しい人など）
-その場合、Dockerを利用するタイミングでLaunchpadからDockerを起動してください。
-その他、Dockerコンテナと共有するディレクトリなどもPreferencesで変更できるので、
-必要に応じて設定を変更してください。
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/wp/698/">
+    <h1 class="catalogue-title">【Wordpress】テーマで指定されたCSSがうまく読み込めない</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2017-08-21 01:57:10 &#43;0000 UTC" class="catalogue-time">2017-08-21</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/wordpress/">Wordpress</a></div>
     </div>
-</a>
+    
+    <p>Wordpressで他人が作成したテーマを使っているとCSSがうまく読み込めない時があります。条件としては以下の両方に当てはまっ&hellip;</p>
+</div>
+
 
 		
-			<a href="/posts/wp/631/" class="catalogue-item">
-    <div>
-        <time datetime="2017-05-02 15:05:24 &#43;0000 UTC" class="catalogue-time">May 2, 2017</time>
-        <h1 class="catalogue-title">Cisco IOSスイッチ操作チートシート</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            管理者権限になる enable ※省略系はen
-現在の設定を参照する # show interfaces ※全て見る場合 # show interfaces GigabitEthernet0/X ※特定のインターフェースのみ見る # show vlan ※「GigabitEthernet0/X」は「Gi0/X」と省略できる
-設定モードに入る # configure terminal ※省略系はconf terminal
-(設定モードにて)Smart Installを無効化する (config)# no vstack (設定モードにて)管理者権限のパスワードを変更する (config)# enable password ｛変更後のパスワード｝ (設定モードにて)IF設定モードに入る (config)# interface GigabitEthernet0/X (IF設定モードにて)停止・起動 (config-if)# shutdown (config-if)# no shutdown (IF設定モードにて)vlanの切り替え (config-if)# switchport mode access (config-if)# switchport access vlan {vlan番号} 各モードを抜ける (なんらかのモード)# exit 各種設定した内容を保存する # write memory ※最後にこれを実行しておかないと、再起動後に設定内容が戻ってしまう。
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/wp/689/">
+    <h1 class="catalogue-title">【Mac】言語パッケージ管理用にasdfを導入する(fish環境)</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2017-08-19 17:11:43 &#43;0000 UTC" class="catalogue-time">2017-08-19</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/mac/">Mac</a></div>
     </div>
-</a>
+    
+    <p>■環境macOS Sierra 10.12.6fish 2.5.0■手順Brewでもインストールできるらしいが、公式ページの手順&hellip;</p>
+</div>
+
 
 		
-			<a href="/posts/wp/629/" class="catalogue-item">
-    <div>
-        <time datetime="2017-05-02 15:01:15 &#43;0000 UTC" class="catalogue-time">May 2, 2017</time>
-        <h1 class="catalogue-title">CentOS7のネットワーク周り初期設定</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            ■環境 CentOS 7.3
- bonding設定 参考URL：https://bacchi.me/linux/bonding/現状確認しておきます。
-nmcli c ip a bonding用インターフェースを追加します。
-nmcli connection add type bond autoconnect no con-name bond0 ifname bond0 mode active-backup 物理インターフェースをbondに紐付けます
-nmcli connection add type bond-slave autoconnect no ifname eno1 master bond0 nmcli connection add type bond-slave autoconnect no ifname eno2 master bond0 bondにIPを設定します。
-nmcli c mod bond0 ipv4.method manual ipv4.address &quot;192.168.999.999/32&quot; ipv4.gateway &quot;192.168.999.254&quot; ipv6.method ignore nmcli c mod bond0 ipv4.dns 192.168.999.254 物理インターフェースを無効にし、bondインターフェースを有効にします。
-nmcli c m eno1 connection.
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/wp/677/">
+    <h1 class="catalogue-title">【node】foreverチートシート</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2017-07-31 01:44:06 &#43;0000 UTC" class="catalogue-time">2017-07-31</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/node/">node</a></div>
     </div>
-</a>
+    
+    <p>起動forever start {jsファイル}起動中一覧表示forever list停止forever stop {停止対象の&hellip;</p>
+</div>
+
 
 		
 	</div>
@@ -283,10 +245,12 @@ nmcli c m eno1 connection.
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.3178024 &#43;0900 JST m=&#43;0.137396801">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

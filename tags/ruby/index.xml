@@ -1,53 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>ruby on Nonsense J</title>
-    <link>/tags/ruby/</link>
-    <description>Recent content in ruby on Nonsense J</description>
+    <title>ruby on Logical Dice 技術ブログ</title>
+    <link>https://blog2.logical-dice.com/tags/ruby/</link>
+    <description>Recent content in ruby on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Mon, 27 Feb 2017 15:16:05 +0000</lastBuildDate><atom:link href="/tags/ruby/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 27 Feb 2017 15:16:05 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/ruby/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Redmine2.3.2にグループ管理プラグインを入れる</title>
-      <link>/posts/wp/444/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/444/</link>
       <pubDate>Mon, 27 Feb 2017 15:16:05 +0000</pubDate>
       
-      <guid>/posts/wp/444/</guid>
-      <description>redmineにグループ管理のプラグインを入れたが、ちゃんと動かなかったので
-つまづいた所をメモする。
-※補足
-Ruby on Railsを全然知らないPHPerがちょちょっと修正しているので、
-Railsに詳しい人から見たらおかしいかも。指摘してくれるとありがたいです。
-■環境
-CentOS 6.5
-Redmine 2.3.2
-ruby 2.0.0
-rails 3.2.13
-https://github.com/fathomssen/redmine_group_manager基本的なインストール方法はREADME.rdoc通り
-①order by句がおかしい オーダー句がおかしいとエラーになったので、app/models/gmanager.rbの９行目を修正した
-【修正前】
-mem = Member.where(:project_id =&amp;gt; pid).order(user_id: :asc) 【修正後】
-mem = Member.where(:project_id =&amp;gt; pid).order(&amp;quot;user_id asc&amp;quot;) ②オーナー未指定のグループがあると動かない まあ、インストール直後は全てのグループにオーナーが指定されていないのですが、
-オーナーが未指定の場合はユーザテーブルのID=1のユーザがオーナーになるそうです。
-（app/helpers/gmanagers_helper.rbの２８行目参照）
-私の環境ではID=1のユーザが既に削除されていたので、
-新しくID=１で絶対的管理者的存在のユーザを作成しました。
-別IDで絶対的管理者がいるなら、上記のヘルパーを修正するのでも良いと思います。
-（個人のIDにしてしまうと退職した際などに困るのでオススメしません）
-③グループ編集タグがredmine管理者にしかでない 各プロジェクトページにてグループ編集タブが表示されるはずなのですが、
-プラグインを入れた時点ではredmineの管理者でなければタブが表示されていませんでした。
-プロジェクトの管理者にグループ編集機能を使わせたい場合は、redmine管理者メニューの
-『管理　＞　ロールと権限』からグループ編集権限を予め付与しておかなければなりません。
-説明をよく読めば書いてあるのかもしれませんが、英語辛いので斜め読みしてました。すみません。
-④グループメンバー一覧の項目順がおかしい 各プロジェクトのグループ編集タブよりグループメンバー一覧を表示すると、
-カスタムフィールドの項目名と値の並び順が一致していませんでした。
-なので、一致するようソート処理を入れます。
-app/models/gmanager.rbの34行目と48行目に同じ修正を入れる。
-【修正前】
-keys = CustomField.where(:type =&amp;gt; &#39;UserCustomField&#39;) 【修正後】
-keys = CustomField.where(:type =&amp;gt; &#39;UserCustomField&#39;).order(:id) app/models/gmanager.rbの49行目も修正する。
-【修正前】
-values = User.</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/444/</guid>
+      <description>redmineにグループ管理のプラグインを入れたが、ちゃんと動かなかったのでつまづいた所をメモする。※補足Ruby on Rai&amp;hellip;</description>
     </item>
     
   </channel>

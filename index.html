@@ -1,39 +1,70 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-	<meta name="generator" content="Hugo 0.82.0" />
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-			<meta name="description" content="">
+	<meta name="generator" content="Hugo 0.109.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
 
-		<title>Nonsense J</title>
+	<title>Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="/index.xml" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="/index.xml" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -43,283 +74,164 @@
 
 	<div class="catalogue">
 		
-			<a href="/posts/2021/03/07/windows-localforward-mysql-workbench/" class="catalogue-item">
-    <div>
-        <time datetime="2021-03-07 00:00:00 &#43;0000 UTC" class="catalogue-time">March 7, 2021</time>
-        <h1 class="catalogue-title">WindowsのMySQL Workbenchで2段SSH踏み台で接続する</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            環境  Windows 10 MySQL Workbench 8.0 WSL2 (Ubuntu 20.04)   やりたいこと 作業PCからDBに接続するまでに2段階のSSH接続を挟む環境があるとします。
-この環境で作業PC(Windows)からMySQL WorkbenchでDBに接続します。
-基本的なSSH操作はWSL上でコマンドを打つ前提とします。
-Windows上でSSH操作をする場合は後述のSSHコンフィグのパスはWindows用に読み替えてください。
-(SSHコマンドや秘密鍵パスなど)
-駄目なパターン WSL上の~/.ssh/configに以下の記載をしていれば、アプリケーションサーバーへSSH接続はできます。
-Host fumidai-server HostName 111.111.111.111 User my-user IdentityFile ~/.ssh/id_rsa_hoge IdentitiesOnly yes Host app-server HostName 222.222.222.222 User my-user ProxyCommand ssh -W %h:%p fumidai-server IdentityFile ~/.ssh/id_rsa_hoge ForwardAgent yes ※HostName, User, IdentityFileは適宜読み替えてください。
-ここで指定しているProxyCommand設定により、
-app-serverへSSHする時はfumidai-serverを経由するようになります。
-しかし、MySQL WorkbenchのTCP/IP over SSHでapp-serverを指定して
-fumidai-server ⇒ app-server ⇒ DB
-という接続をしようとしても接続できません。
-(MacやUbuntu等であれば接続できる。なぜかWindowsだけ不可。)
-良いパターン MySQL WorkbenchのTCP/IP over SSHは利用せずに、
-SSH Local ForwardでDBに繋がるようにしておいてからMySQL Workbenchを繋ぎます。
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2023/02/11/vite-tutorial/">
+    <h1 class="catalogue-title">Viteを使ってみる</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2023-02-11 00:00:00 &#43;0000 UTC" class="catalogue-time">2023-02-11</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/vite/">Vite</a></div>
     </div>
-</a>
+    
+    <p>旧サイトをViteを使って作り直してみた時のメモです</p>
+</div>
+
 
 		
-			<a href="/posts/2021/02/21/larave-observer-stop/" class="catalogue-item">
-    <div>
-        <time datetime="2021-02-21 00:00:00 &#43;0000 UTC" class="catalogue-time">February 21, 2021</time>
-        <h1 class="catalogue-title">【Laravel】Observerが実行されない</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            環境  Laravel 5.8   Laravelで設定したObserverの処理が実行されない事があったので、その際の調査メモです。
-事象 LaravelのObserverを使いModelのupdating時に処理が走るようにしようと思ったのですが、
-updatingの処理を書いても実行されませんでした。
-updatingの処理と同クラス内でupdated, saving, savedの処理を記載すると実行されたので、
-Observerのクラス自体が読み込まれていない訳では無さそうでした。
-原因 今回Observerを設定しようとしていたクラスには既に別のObserverが設定されていました。
-それ自体は問題ないのですが、その既存のObserverのupdatingにて生成した値をreturnしていました。
-Laravelのソースを読むと、同イベントのObserverを複数設定している場合、
-先行のObserverで値をreturnしてしまうと後続のObserverが実行されないようでした。
-https://github.com/laravel/framework/blob/5.8/src/Illuminate/Events/Dispatcher.php#L198-L203
-特に理由がない限り、Observerの処理内でreturnはしないほうが良さそうです。
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2023/01/29/aws-s3-cloudfront-not-redirect/">
+    <h1 class="catalogue-title">【AWS】S3のリダイレクトが効かない</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2023-01-29 00:00:00 &#43;0000 UTC" class="catalogue-time">2023-01-29</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/aws/">AWS</a></div>
     </div>
-</a>
+    
+    <p>AWS S3のWebホスティングにてリダイレクト設定をしてもCloud Front経由でリクエストを受けるとリダイレクトされない</p>
+</div>
+
 
 		
-			<a href="/posts/2021/02/17/ubuntu-howdy/" class="catalogue-item">
-    <div>
-        <time datetime="2021-02-17 00:00:00 &#43;0000 UTC" class="catalogue-time">February 17, 2021</time>
-        <h1 class="catalogue-title">Howdyを使ってubuntuで顔認証する</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            環境  Ubuntu 20.10 Thinkpad T480  参考  https://github.com/boltgolt/howdy https://wiki.archlinux.jp/index.php/Howdy   Windowsを使っている時に顔認証（Windows Hello）でログインできるのがとても便利だったのでUbuntuでも実現してみます。
-UbuntuではHowdyというアプリケーションで実現できそうなので設定してみました。
-赤外線カメラ情報の取得 顔認証には赤外線カメラを使います。
-カメラ情報を取得するためにv4l-utilsを利用します。
-v4l-utilsインストール sudo apt-get install v4l-utils カメラ情報確認 以下コマンドでカメラ情報を確認します。
-赤外線カメラ(IR Camera)の項目を確認します。
-v4l2-ctl --list-devices --all # 以下出力結果で見る場所 Integrated IR Camera: Integrate (usb-0000:00:14.0-5): /dev/video0　←赤外線カメラのパスはvideo0※ /dev/video1 Format Video Capture: Width/Height : 340/340　←キャプチャサイズは340×340 ※Thinkpat T480だとvideo1も列挙されてましたが、後々の設定でvideo1を指定すると動きませんでした。
-Howdy導入 Howdyのインストール まず必要なソフトをインストールします。
-sudo add-apt-repository ppa:boltgolt/howdy sudo apt update sudo apt install howdy 途中で以下のようにセキュア具合を聞かれます。
-自分の好みや状況に合わせて選択してください。
-(f:早さ重視、b:バランス型、s:セキュリティ重視)
-After detection, Howdy knows how certain it is that the match is correct.
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2022/05/03/ec2-not-inservice/">
+    <h1 class="catalogue-title">【AWS】Auto ScalingのインスタンスがInServiceにならない</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2022-05-03 00:00:00 &#43;0000 UTC" class="catalogue-time">2022-05-03</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/aws/">AWS</a></div>
     </div>
-</a>
+    
+    <p>Auto Scalingで立ち上がったEC2インスタンスのライフサイクルがInServiceにならなかった時の調査メモです。</p>
+</div>
+
 
 		
-			<a href="/posts/2021/02/14/ubuntu-mouse-keymap/" class="catalogue-item">
-    <div>
-        <time datetime="2021-02-14 00:00:00 &#43;0000 UTC" class="catalogue-time">February 14, 2021</time>
-        <h1 class="catalogue-title">ubuntuで多機能マウスを設定する</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            環境  Ubuntu 20.10 Elecom M-DT2DR BK(マウス)  参考  https://help.ubuntu.com/community/MouseCustomizations https://wiki.archlinux.jp/index.php/Xbindkeys   Ubuntuにマルチボタンのマウス（Elecom M-DT2DR）を接続すると、何をしなくても通常のマウス操作や「進む」「戻る」ボタンは機能します。
-ですが、機能ボタン（Fn 1〜3）には何もマッピングされていないので、音量操作をマッピングします。
-手順 インストール まず必要なソフトをインストールします。
-sudo apt install xbindkeys ボタン番号の取得 次にマウスのボタン番号を取得します。
-まず以下コマンドを実行してボタン検知ができる状態にします。
-xev 現れる白い四角が書かれたウィンドウにマウスカーソルを持っていき、その状態でマウスのボタンを押すとコンソールに情報が表示されます。
-例えば私のマウス（M-DT2DR）のFn 1であれば以下のようにbutton 10と表示されます。
-ButtonRelease event, serial 36, synthetic NO, window 0x4000001, root 0x7ed, subw 0x4000002, time 1758091, (31,39), root:(1951,76), state 0x0, button 10, same_screen YES 同様に、Fn 2はbutton 11でFn 3はbutton 12でした。
-ボタンのマッピング ボタンマッピングするための設定ファイルを作成します。
-設定ファイルは空ファイルから始めても良いのですが、一応デフォルト値から生成しておきます。
-xbindkeys --defaults &gt; ~/.xbindkeysrc 作成した設定ファイルに以下を追記します。
-# Increase volume &quot;pactl set-sink-volume @DEFAULT_SINK@ +1000&quot; b:10 # Decrease volume &quot;pactl set-sink-volume @DEFAULT_SINK@ -1000&quot; b:11 # Mute volume &quot;pactl set-sink-mute @DEFAULT_SINK@ toggle&quot; b:12 設定ファイルを保存したら、以下コマンドで読み込みます。
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2021/06/19/laravel-create-http200/">
+    <h1 class="catalogue-title">【Laravel】モデルをcreateしてもレスポンスをHTTP 200にする</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2021-06-19 00:00:00 &#43;0000 UTC" class="catalogue-time">2021-06-19</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/laravel/">Laravel</a></div>
     </div>
-</a>
+    
+    <p>モデルをcreateして返却しても201は返さない方法です</p>
+</div>
+
 
 		
-			<a href="/posts/2021/02/11/ubuntu-20-10-initialize/" class="catalogue-item">
-    <div>
-        <time datetime="2021-02-11 00:00:00 &#43;0000 UTC" class="catalogue-time">February 11, 2021</time>
-        <h1 class="catalogue-title">ubuntu 20.10の初期設定</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            環境  Ubuntu 20.10 ThinkPad T480   Thinkpad T480にubuntu20.10をインストールした際のメモです。
-日本語入力設定 そのままでも日本語入力はできますが、入力ソースをMozcに切り替えたりしないといけないので 入力ソースのMozcの優先度を高くします。
-アプリランチャーより『設定』を開き、『地域と言語』を開きます。 そこの入力ソースに「日本語」と「日本語(Mozc)」が並んでいるので 「日本語(Mozc)」が上にくるように並べ替えます。
-各入力ソースの左端の6丸をドラッグすれば順番を入れ替えられます。
-IMEのON/OFFをMac風にする アプリランチャーより『Mozcの設定』を開き、『一般』タグを開きます。 「キー設定の選択」の横にある「編集」ボタンをクリックするとキー設定を変更できます。
-そこでHenkan/Hiragana/Katakanaあたりに『IME有効』を割り当て、 Muhenkanに『IME無効』を割り当てます。
-これでMacのようにIMEのON/OFFを切り替えられるようになりました。
-CapsLockをCtrlに、半角/全角をEscにする こちらもMac風になる設定です。 以下のコマンドを実行するとCapsLockがCtrlになり、半角/全角キーがEsc扱いになります。
-setxkbmap -option ctrl:nocaps,japan:hztg_escape しかし、これだけだと再起動後に戻ってしまうので キーボードの設定ファイルにも設定を記載しておきます。
-sudo vim /etc/default/keyboard 以下の設定を追記します。
-XKBOPTIONS=[&quot;ctrl:nocaps&quot;,&quot;japan:hztg_escape&quot;] tiling機能をOFFにする デフォルトだとウィンドウを画面端にドラッグすると勝手に最大化します。 無くてもいい機能なので以下コマンドで無効化します。
-gsettings set org.gnome.mutter edge-tiling false 諸々インストール 基本セット sudo apt install vim curl npm PHP sudo apt install php7.4 composer php7.4-bcmath php7.4-common php7.4-gd php7.4-json php7.4-mbstring php7.4-mysql php7.4-xml php7.4-xmlrpc MySQL Workbench 公式ページからdebをダウンロードしてインストールしました。 https://dev.mysql.com/downloads/workbench/
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2021/06/06/lodash-debounce-vs-throttle/">
+    <h1 class="catalogue-title">lodashのdebounceとthrottleの違い</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2021-06-06 00:00:00 &#43;0000 UTC" class="catalogue-time">2021-06-06</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/javascript/">javascript</a></div>
     </div>
-</a>
+    
+    <p>debounceとthrottleの違いを調べた際のメモです。</p>
+</div>
+
 
 		
-			<a href="/posts/2021/02/06/phpcs-git-diff/" class="catalogue-item">
-    <div>
-        <time datetime="2021-02-06 00:00:00 &#43;0000 UTC" class="catalogue-time">February 6, 2021</time>
-        <h1 class="catalogue-title">修正したファイルだけPHP_CodeSnifferでチェックする</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            PHP_CodeSniffer (phpcs)を使ってコードのPSR2のフォーマットチェックをする際、
-普段からphpcsを使っているプロジェクトで無いと警告が大量に出て見切れません。
-そこで、git diffを使って、今回修正したファイルだけphpcsでチェックすることにしました。
-起点ブランチを作る まず、修正の起点ブランチを用意します。
-起点ブランチとは、phpcsでチェックしたい修正をし始める前の状態のブランチです。
-他の人が更新していなければ既存のマージ先ブランチ(master, develop等)で良いですが、
-他の人がマージ先ブランチを更新していた場合はgit diffで他の人の修正分も差分として出てしまうのでダメです。
-(自分の修正分だけをgit diffで出すオプションはたぶん無いはず)
-その場合はgit logで自分が修正を始めた１つ前のコミットIDを確認して、
-git checkout -b tempBranch 『コミットID』でブランチを作ってしまうのが簡単だと思います。
-tempBranchの部分は作成する起点ブランチ名なので、なんでも良いです。
-phpcsでチェックする 起点ブランチが用意できたら早速phpcsでチェックします。
-チェックしたいブランチになっている状態で以下コマンドを実行します。
-git diff 『起点ブランチ』 --name-only | xargs phpcs --standard=&quot;PSR2&quot; これで修正したファイルについてのみphpcsを実行できました。
-※補足 phpcsの実行パスについては自分の環境に合わせて修正してください。
-例えばcomposerでプロジェクトに入れたphpcsを利用する場合は./vendor/bin/phpcsという風になると思います。
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2021/04/12/laravel-jwt-clear/">
+    <h1 class="catalogue-title">【Laravel】JTIを指定してJWTトークンを無効化する</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2021-04-12 00:00:00 &#43;0000 UTC" class="catalogue-time">2021-04-12</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/laravel/">Laravel</a></div>
     </div>
-</a>
+    
+    <p>JTIを指定してJWTトークンを無効化する方法です</p>
+</div>
+
 
 		
-			<a href="/posts/2021/01/25/lost-tag-qr/" class="catalogue-item">
-    <div>
-        <time datetime="2021-01-25 00:00:00 &#43;0000 UTC" class="catalogue-time">January 25, 2021</time>
-        <h1 class="catalogue-title">Googleフォームを使って迷子札を作る</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            子供たちが自由に走り回れるようになり、ショッピングセンターやアミューズメント施設で迷子になるリスクが高くなったので迷子札の作成を検討しました。
-迷子札の条件は以下のように設けました。
- 子供の持ち物等に付けておく 子供を見つけてくれた人が親に連絡できるようにする 自分の連絡先を札に直接書くのは嫌 連絡先が悪意ある人に漏れた時にすぐに変更できるようにしたい 捨てメアドを作るのは管理など面倒なので嫌  そこで、Googleフォームです。
-以下の流れで迷子札を作ってみます。
-① Googleフォームで問い合わせフォームを作る。
-② 作成したGoogleフォームのURLをQRコード化する。
-③ QRコードが入ったアクセサリ等を作成する。
-今回は迷子札想定で作成していますが、QRコードをシールにしてスマホや旅行バッグ等に貼っておけば、
-紛失したとしても善良な人が拾ってくれたら連絡が来るかもしれません。
-前提条件 既にGoogleアカウント(Gmail)を持っていること。
-手順詳細 Googleフォーム作成 まず、Googleフォームで問い合わせフォームを作ります。
-https://www.google.com/intl/ja_jp/forms/about/
-フォームの内容は連絡者と連絡が取れる程度で良いと思います。
-フォームの設定を変えます。
-右上の歯車アイコンをクリックして、設定ポップアップを開きます。
-まず全般タブでは基本的に全てのチェックを外しておきます。
-プレゼンテーションタブの「確認メッセージ」で連絡をしてくれた人に表示するメッセージを変更できます。
-テストフォームでは無いので、テストタブは何もしません。
-次に連絡してもらった時の受け取り方を設定します。
-回答タブを選択して『…』が縦に並んでいるアイコンをクリックします。
-そこで『新しい回答についてのメール通知を受け取る』にチェックを入れます。
-これで誰かがGoogleフォームを送信してくれたら自分宛にメールが届きます。
-連絡を受けた履歴をスプレッドシートに残しておきたいなら『回答先を選択』で選択しておきます。
-これでフォームは完成です。
-右上の『送信』よりフォームのURLを取得します。
-QRコード作成 QRコード生成サービスを使ってGoogleフォームのURLをQRコード化します。
-無料で使えるところだと以下のようなサービスがあります。
-https://qr.quel.jp/
-アクセサリー作成 生成したQRコードは色んな使い方ができます。
-シールにしてもいいし、アクセサリーにしてもいいと思います。
-今回はアクセサリーを作ってみました。
-利用したのは以下のサービスです。
-https://originalprint.jp/
-アクセサリーのデザインは自分で決められます。
-こんな感じで作れます。
-実際にスマホでQRコードを読み込んでGoogleフォームを開き、連絡先等を送信してみます。
-自分のGmail宛にGoogleフォームが送信された旨のメールが届けば成功です。
-（フォーム送信からメール着まで、だいたい1分弱のタイムラグがあります）
-これを子供のカバンに付けておきます。
-GoogleフォームのURLが悪意ある人に漏れた場合はGoogleフォームを作り変えればOKです。
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2021/03/07/windows-localforward-mysql-workbench/">
+    <h1 class="catalogue-title">WindowsのMySQL Workbenchで2段SSH踏み台で接続する</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2021-03-07 00:00:00 &#43;0000 UTC" class="catalogue-time">2021-03-07</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/windows/">Windows</a></div>
     </div>
-</a>
+    
+    <p>Windows10のMySQL Workbenchで2段階のSSH接続を挟みDBへ接続する方法です。</p>
+</div>
+
 
 		
-			<a href="/posts/2021/01/13/laravel-auth-user/" class="catalogue-item">
-    <div>
-        <time datetime="2021-01-13 00:00:00 &#43;0000 UTC" class="catalogue-time">January 13, 2021</time>
-        <h1 class="catalogue-title">LaravelのQueue内でAuth::user()が取れたり取れなかったりする</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            環境  Laravel 5.8   Laravelで『データが更新されたらアラートメールで更新者情報を送る』というイベントリスナーを作ったのですが、
-その中でAuth::user()の値が環境により「更新者情報」だったり「null」だったりしました。
-このイベントリスナーで登録した処理はキュー(Queue)に登録されて非同期に処理されるようにしていたので、
-非同期処理では当然ながらAuth::user()でユーザー情報は取れません。
-なので、nullになるのは妥当な動きでした。
-では、なぜ環境によりユーザー情報が取れてしまったのかというと
-それは.envのQUEUE_DRIVERの値が原因でした。
-QUEUE_DRIVER=database等にしているとキューの処理は非同期に処理されるのですが、
-QUEUE_DRIVER=syncではキューの処理も同期的に処理されるようになります。
-キューが同期的に実行されるとユーザーの情報がAuth::user()で取得できる状態でキューの処理が走るので、
-ローカル環境などでQUEUE_DRIVER=syncにしているとキュー内でAuth::user()が動いてしまいます。
-これも、ちゃんと.envが本番相当になっている環境でテストをすれば見つけられるので、
-ローカル検証だけでリリースをするのではなく、ちゃんと本番相当の環境でもテストしましょう。
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2021/02/21/larave-observer-stop/">
+    <h1 class="catalogue-title">【Laravel】Observerが実行されない</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2021-02-21 00:00:00 &#43;0000 UTC" class="catalogue-time">2021-02-21</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/laravel/">Laravel</a></div>
     </div>
-</a>
+    
+    <p>Laravelで設定したObserverの処理が実行されない事があったので、その際の調査メモです。</p>
+</div>
+
 
 		
-			<a href="/posts/2021/01/07/git-revert-revert/" class="catalogue-item">
-    <div>
-        <time datetime="2021-01-07 00:00:00 &#43;0000 UTC" class="catalogue-time">January 7, 2021</time>
-        <h1 class="catalogue-title">Typescript &#43; Vue.jsで子コンポーネントのプロパティにアクセスする</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            Typescript + Vue.jsの構成で親コンポーネントから子コンポーネントのプロパティにアクセスする場合、
-普通のjavascriptと同じように実装するとエラーとなる場合があります。
-例えば、以下のように記載するとします。
-# template &lt;HogeChild ref=&quot;hogeChildRef&quot; /&gt; # script import HogeChild from &quot;〜対象ファイルパス〜&quot;; @Component({ components: { HogeChild } }) export default class HogeParent extends Vue { changeChildFlg(): void { this.$refs.hogeChildRef.someFlg = true; } } すると以下のエラーが発生することがあります。
-Property 'someFlg' does not exist on type 'Vue | Element | Vue[] | Element[]'. Property 'someFlg' does not exist on type 'Vue'.Vetur(2339) この場合、Typescriptを使う場合は子コンポーネント呼び出し時にも型を指定してあげる必要があります。
-子コンポーネント呼び出し部分を以下のようにすると動きます。
- changeChildFlg(): void { const hogeChildRef = &lt;HogeChild&gt;this.$refs.hogeChildRef; hogeChildRef.
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2021/02/17/ubuntu-howdy/">
+    <h1 class="catalogue-title">Howdyを使ってubuntuで顔認証する</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2021-02-17 00:00:00 &#43;0000 UTC" class="catalogue-time">2021-02-17</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/ubuntu/">ubuntu</a></div>
     </div>
-</a>
+    
+    <p>ubuntu 20.10で顔認証をするための設定です</p>
+</div>
+
 
 		
-			<a href="/posts/2020/12/28/git-revert-revert/" class="catalogue-item">
-    <div>
-        <time datetime="2020-12-28 00:00:00 &#43;0000 UTC" class="catalogue-time">December 28, 2020</time>
-        <h1 class="catalogue-title">gitで一旦取り消しRevertをしたら、RevertのRevertをすべし</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            いろんなプロジェクトを渡り鳥していると、「間違ってmaster/developにマージしちゃいました」案件がちょいちょいあります。
-その場合、基本的にはmaster/developでgitのRevertをして対応してました。
-でも、その後RevertのRevertをするのが漏れてしまうパターンがよくあります。
-RevertのRevertが必要だと分かっていて漏れてしまうのは仕方ないのですが、
-以前手伝っていたプロジェクトで「え？なんで必要なの？」っていう人がいたのを思い出したので記事にしてみました。
- まずこんなソースがmasterブランチにあったとします。
-ここで$hogeだけでなく$foooという値も返せるようにしたくなったとします。
-ブランチ「feature/fooo」を切って修正し、masterにマージします。
-ここで、$foooを返すメソッドを作ってなかったことに気づき、masterでrevertします。
-「feature/fooo」にメソッドを追加し、masterにマージします。
-クラス変数やコンストラクタの処理が残っているように見えます。
-※なお、ここでコンフリクトは起きていません。
-できあがったソースがこちらです。
-最後に追加したメソッドのみが追加されており、クラス変数やコンストラクタの処理は入っていません。
-これだと想定した挙動になりませんね。
- 勘違いされる要素として、Revertは「対象コミットを取り消す」処理だと思っている人がたまにいます。
-Revertはコミットを取り消すのではなく「対象コミットを打ち消すような修正コミットを新たに発行する」処理です。
-Revert対象のコミットが無かったことになっている訳ではありません。
-なので、Revertコミットはそれを更にRevertしないと、Revertコミットの修正が残ってしまいます。
-手順をまとめると以下のようになります。
-ダメなパターン  作業ブランチからmasterにマージする。 masterでリバートする。 作業ブランチで修正を続ける。 作業ブランチからmasterにマージする。  良いなパターン  作業ブランチからmasterにマージする。 masterでリバートする。 作業ブランチにmasterをマージする。(ダメなパターンで漏れてる) 作業ブランチでRevertをRevertする。(ダメなパターンで漏れてる) 作業ブランチで修正を続ける。 作業ブランチからmasterにマージする。  という訳でRevertした修正を捨てる訳でなければRevertのRevertをしましょう。
-        </p>
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/2021/02/14/ubuntu-mouse-keymap/">
+    <h1 class="catalogue-title">ubuntuで多機能マウスを設定する</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2021-02-14 00:00:00 &#43;0000 UTC" class="catalogue-time">2021-02-14</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/ubuntu/">ubuntu</a></div>
     </div>
-</a>
+    
+    <p>ubuntu 20.10で多機能マウスのボタンマッピングをした際のメモです</p>
+</div>
+
 
 		
 	</div>
@@ -327,19 +239,21 @@ Revert対象のコミットが無かったことになっている訳ではあ�
 	<div class="pagination">
 		
 		
-			<a href="/page/2/" class="right arrow">&#8594;</a>
+			<a href="/page/2/" class="right arrow">次へ＞＞</a>
 		
 
-		<span>1</span>
+		<span>1 / 20</span>
 	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2986552 &#43;0900 JST m=&#43;0.118249701">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

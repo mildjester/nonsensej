@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>Bookmarkletでパスワードを自動で入力させる &middot; Nonsense J</title>
+	<title>Bookmarkletでパスワードを自動で入力させる|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,56 +70,52 @@
 	<div class="post">
 		<h1 class="post-title">Bookmarkletでパスワードを自動で入力させる</h1>
 		<div class="post-info">
-				<time datetime="2019-10-02 00:00:00 &#43;0000 UTC">October 2, 2019</time>
+				<p class="publish-date">投稿日：<time datetime="2019-10-02 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-10-02</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/bookmarklet/">bookmarklet</a></div> <div class="tags_item"><a href="/tags/javascript/">javascript</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/bookmarklet/">bookmarklet</a></div> <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/javascript/">javascript</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<p>みずほダイレクトで振込時の第2暗証番号6桁から数字4桁を抽出するのが面倒だったので、<br>
 Bookmarkletを使って入力すべき数字4桁を表示できるようにしました。</p>
 <p>Bookmarkletの説明や作り方についてはこちらを参照。<br>
-<a href="/articles/2020/07/15/howto-make-bookmarklet">Bookmarklet(ブックマークレット)の作り方</a></p>
+<a href="/posts/2020/07/15/howto-make-bookmarklet">Bookmarklet(ブックマークレット)の作り方</a></p>
 <h3 id="みずほダイレクトに仕込んでみる">みずほダイレクトに仕込んでみる</h3>
 <p>みずほダイレクトの振込時に第2暗証番号を入力する画面まで来たら<br>
 以下のjavascriptを実行すると第2暗証番号が表示されます。</p>
-<pre><code>var secondPass = '123456'; // ここに第2暗証番号の6桁を入れてください
+<pre tabindex="0"><code>var secondPass = &#39;123456&#39;; // ここに第2暗証番号の6桁を入れてください
 var orderNum = 0;
-var pickPw = '入力するパスワード: ';
+var pickPw = &#39;入力するパスワード: &#39;;
 
 // 聞かれる第2パスワード4桁を順に処理する
 for (var i = 1; i&lt;=4; i++) {
     // 第2パスワードの何番目の数字を聞かれているかチェック
-    orderNum = Number(document.getElementById('txtScndPwdDgt' + i).innerHTML);
+    orderNum = Number(document.getElementById(&#39;txtScndPwdDgt&#39; + i).innerHTML);
     // 第2パスワードから対象の数字を抜き出してテキストに追加する
     pickPw += secondPass.substr(orderNum -1, 1)
 }
 // 入力すべき4桁の数字を表示する
 alert(pickPw);
 </code></pre><p>これをBookmarklet用に圧縮し、頭に<code>javascript:</code>を付けます。<br>
-（圧縮方法は<a href="/articles/2020/07/15/howto-make-bookmarklet">コチラ</a>を参照）</p>
-<pre><code>javascript:for(var t,e=&quot;入力するパスワード: &quot;,r=1;r&lt;=4;r++)t=Number(document.getElementById(&quot;txtScndPwdDgt&quot;+r).innerHTML),e+=&quot;123456&quot;.substr(t-1,1);alert(e);
+（圧縮方法は<a href="/posts/2020/07/15/howto-make-bookmarklet">コチラ</a>を参照）</p>
+<pre tabindex="0"><code>javascript:for(var t,e=&#34;入力するパスワード: &#34;,r=1;r&lt;=4;r++)t=Number(document.getElementById(&#34;txtScndPwdDgt&#34;+r).innerHTML),e+=&#34;123456&#34;.substr(t-1,1);alert(e);
 </code></pre><p>あとはブラウザのブックマークに新しくページを追加し、URLに上記のjavascriptを入力しておくだけです。</p>
 <p>みずほダイレクト以外のサイトでもブラウザの開発者ツールでHTML要素を調べれば<br>
 似たような処理を作れると思います。</p>
 
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/2019/09/29/ruby-sass-error/" class="left arrow">&#8592;</a>
-		<a href="/posts/2019/10/10/linux-sudo/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.260971 &#43;0900 JST m=&#43;0.080565501">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

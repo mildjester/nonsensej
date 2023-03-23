@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>Ubuntu 20.04にアップデートした話 &middot; Nonsense J</title>
+	<title>Ubuntu 20.04にアップデートした話|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,13 +70,14 @@
 	<div class="post">
 		<h1 class="post-title">Ubuntu 20.04にアップデートした話</h1>
 		<div class="post-info">
-				<time datetime="2020-05-17 00:00:00 &#43;0000 UTC">May 17, 2020</time>
+				<p class="publish-date">投稿日：<time datetime="2020-05-17 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-05-17</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/ubuntu/">ubuntu</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/ubuntu/">ubuntu</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<p>待望のUbuntu 20.04 LTSが出たので、19.10からアップデートしてみました。<br>
 アップデートと同時に発生した事象について記載します。</p>
 <h2 id="消えたアプリ">消えたアプリ</h2>
@@ -58,7 +90,7 @@
 <p>こちらのページを参考にさせて頂きました。<br>
 <a href="https://www.debugpoint.com/2020/04/shutter-install-ubuntu/">https://www.debugpoint.com/2020/04/shutter-install-ubuntu/</a></p>
 <p>実施した手順は以下です。</p>
-<pre><code>sudo apt update
+<pre tabindex="0"><code>sudo apt update
 sudo apt upgrade
 sudo add-apt-repository ppa:linuxuprising/shutter
 sudo apt install shutter
@@ -70,10 +102,11 @@ sudo apt install shutter
 <blockquote>
 <p>※2020/6/1追記<br>
 対処法が分かったのでこちらの記事で記載しています。<br>
-<a href="/articles/2020/06/01/ubuntu-20-04-hdmi">ThinkpadにHDMIケーブルを接続したままUbuntu 20.04を起動する</a></p>
+<a href="/posts/2020/06/01/ubuntu-20-04-hdmi">ThinkpadにHDMIケーブルを接続したままUbuntu 20.04を起動する</a></p>
 </blockquote>
 <p>私の作業PCはThinkpad T480なのですが、HDMIポートにケーブルを挿した状態で起動しようとすると、ロゴ画面で止まってしまう事象が発生しました。</p>
-<!-- raw HTML omitted -->
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">Ubuntn20.04にしてからマルチディスプレイで起動する事が出来なくなった。ずっとこの画面のまま動かない。<br><br>起動後にケーブル繋いだら普通にマルチにできる。 <a href="https://t.co/Ke1ZLBLXv4">pic.twitter.com/Ke1ZLBLXv4</a></p>&mdash; djiroy (@mildjester) <a href="https://twitter.com/mildjester/status/1261556423978135554?ref_src=twsrc%5Etfw">May 16, 2020</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <p>PCのThunderboldポートにもThunderbold→HDMIのケーブルを繋いでいるのですが、そちらは特に挿したまま起動しても問題ありませんでした。<br>
 調べてみると同様の事象を報告している方が複数いたので、おそらくubuntu 20.04の不具合かと思われます。<br>
 <a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1874194">https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1874194</a></p>
@@ -85,21 +118,16 @@ sudo apt install shutter
 ③ログインする。</p>
 
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/2020/04/15/gulp-uglify-keep-name/" class="left arrow">&#8592;</a>
-		<a href="/posts/2020/05/19/serverless-framework-lambda/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2646003 &#43;0900 JST m=&#43;0.084194701">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

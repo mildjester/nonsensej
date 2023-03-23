@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>プログラミング向けフォントのインストール &middot; Nonsense J</title>
+	<title>プログラミング向けフォントのインストール|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,13 +70,14 @@
 	<div class="post">
 		<h1 class="post-title">プログラミング向けフォントのインストール</h1>
 		<div class="post-info">
-				<time datetime="2018-04-13 21:21:39 &#43;0000 UTC">April 13, 2018</time>
+				<p class="publish-date">投稿日：<time datetime="2018-04-13 21:21:39 &#43;0000 UTC" class="catalogue-time">2018-04-13</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/linuxmint/">LinuxMint</a></div> <div class="tags_item"><a href="/tags/mac/">Mac</a></div> <div class="tags_item"><a href="/tags/ubuntu/">ubuntu</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/linuxmint/">LinuxMint</a></div> <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/mac/">Mac</a></div> <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/ubuntu/">ubuntu</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<h2 id="環境">■環境</h2>
 <p>Linux Mint 18.3 cinnamon 64bit<br>
 ubuntu 19.10<br>
@@ -58,27 +90,27 @@ macOS High Sierra 10.13.1<br>
 <p>まずはフォント一式をダウンロードします。<br>
 ダウンロードする圧縮ファイルはこちらのページから確認できます。<br>
 ※(2019/11/14追記) URLが変わっていたので修正しました<br>
-<!-- raw HTML omitted --><a href="http://www.yusa.lab.uec.ac.jp/~yusa/ricty_diminished.html">http://www.yusa.lab.uec.ac.jp/~yusa/ricty_diminished.html</a><!-- raw HTML omitted --></p>
-<pre><code>$ wget http://www.yusa.lab.uec.ac.jp/~yusa/ricty_diminished/ricty_diminished-4.1.1.tar.gz
+<a href="http://www.yusa.lab.uec.ac.jp/~yusa/ricty_diminished.html" rel="noopener" target="_blank"><a href="http://www.yusa.lab.uec.ac.jp/~yusa/ricty_diminished.html">http://www.yusa.lab.uec.ac.jp/~yusa/ricty_diminished.html</a></a></p>
+<pre tabindex="0"><code>$ wget http://www.yusa.lab.uec.ac.jp/~yusa/ricty_diminished/ricty_diminished-4.1.1.tar.gz
 $ tar xf ricty_diminished-4.1.1.tar.gz  
 </code></pre><p>次にダウンロードしたフォントをフォントディレクトリへ移動します。<br>
 【Macの場合】</p>
-<pre><code>$ mv RictyDiminished*.ttf ~/Library/Fonts/.  
+<pre tabindex="0"><code>$ mv RictyDiminished*.ttf ~/Library/Fonts/.  
 $ brew install fontconfig  
 </code></pre><p>【ubuntu, Linux Mintの場合】</p>
-<pre><code>$ mkdir -p ~/.fonts  
+<pre tabindex="0"><code>$ mkdir -p ~/.fonts  
 $ mv RictyDiminished*.ttf ~/.fonts/.  
 </code></pre><p>最後にフォントを読み込みます</p>
-<pre><code>$ fc-cache -vf  
+<pre tabindex="0"><code>$ fc-cache -vf  
 $ rm -f ricty_diminished-4.1.1.tar.gz  
-</code></pre><p>これでIDEなどで<!-- raw HTML omitted -->Ricty Diminished<!-- raw HTML omitted -->を指定すれば反映されます。<br>
-少しオシャレ（？）な<!-- raw HTML omitted -->Ricty Diminished Discord<!-- raw HTML omitted -->というフォントも指定できるようになりますので、お好みの方を選べば良いと思います。</p>
+</code></pre><p>これでIDEなどで<code>Ricty Diminished</code>を指定すれば反映されます。<br>
+少しオシャレ（？）な<code>Ricty Diminished Discord</code>というフォントも指定できるようになりますので、お好みの方を選べば良いと思います。</p>
 <h2 id="おまけ">■おまけ</h2>
 <p>『Cica』というフォントも評価が良いので紹介しておきます。<br>
-<!-- raw HTML omitted --><a href="https://github.com/miiton/Cica">https://github.com/miiton/Cica</a><!-- raw HTML omitted --></p>
+<a href="https://github.com/miiton/Cica" rel="noopener" target="_blank"><a href="https://github.com/miiton/Cica">https://github.com/miiton/Cica</a></a></p>
 <p>Ricty同様に文字幅や文字の見分けやすさが良く、Rictyと比べると少し丸みを帯びていて可愛いです。</p>
 <p>以下の手順でインストールできます。</p>
-<pre><code>$ wget https://github.com/miiton/Cica/releases/download/v2.1.0/Cica_v2.1.0.zip  
+<pre tabindex="0"><code>$ wget https://github.com/miiton/Cica/releases/download/v2.1.0/Cica_v2.1.0.zip  
 $ unzip Cica_v2.1.0.zip  
 $ mkdir -p ~/.fonts  
 $ mv Cica-*.ttf ~/.fonts/.  
@@ -86,21 +118,16 @@ $ sudo fc-cache -fv
 $ rm -f Cica_v2.1.0.zip  
 </code></pre>
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/1192/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/1222/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2748686 &#43;0900 JST m=&#43;0.094463101">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

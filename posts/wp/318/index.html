@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>HP Proliant Microserver Gen 8 にCentOS7を入れる &middot; Nonsense J</title>
+	<title>HP Proliant Microserver Gen 8 にCentOS7を入れる|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,13 +70,14 @@
 	<div class="post">
 		<h1 class="post-title">HP Proliant Microserver Gen 8 にCentOS7を入れる</h1>
 		<div class="post-info">
-				<time datetime="2016-12-01 13:29:48 &#43;0000 UTC">December 1, 2016</time>
+				<p class="publish-date">投稿日：<time datetime="2016-12-01 13:29:48 &#43;0000 UTC" class="catalogue-time">2016-12-01</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/centos/">CentOS</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/centos/">CentOS</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<h1 id="作業環境">■作業環境</h1>
 <p>・OS X El Capitan 10.11.6</p>
 <p> </p>
@@ -53,34 +85,34 @@
 <h2 id="centos7の準備">CentOS7の準備</h2>
 <p>まず、CentOSのISOイメージをダウンロードします。<br>
 ここから『Everything ISO』をダウンロードしておきます。<br>
-<!-- raw HTML omitted --><a href="https://www.centos.org/download/">https://www.centos.org/download/</a><!-- raw HTML omitted --></p>
+<a href="https://www.centos.org/download/" target="_blank"><a href="https://www.centos.org/download/">https://www.centos.org/download/</a></a></p>
 <p>ダウンロードしたISOをUSBメモリに起動可能USBとして焼きます。<br>
 1.USBをMacに挿す。<br>
 2.以下コマンドにてUSBメモリのdisk番号を確認する。</p>
-<pre><code>$ diskutil list
+<pre tabindex="0"><code>$ diskutil list
 </code></pre><p>3.以下のコマンドにてUSBメモリを初期化する。</p>
-<pre><code>$ diskutil eraseDisk MS-DOS NOTITLE /dev/diskX  
+<pre tabindex="0"><code>$ diskutil eraseDisk MS-DOS NOTITLE /dev/diskX  
 ※「NOTITLE」作成するUSB名(任意)  
 ※diskXは1.で確認したdisk番号
 </code></pre><p>4.焼き込みをするため、USBメモリをアンマウント</p>
-<pre><code>$ diskutil unmountDisk /dev/diskX
+<pre tabindex="0"><code>$ diskutil unmountDisk /dev/diskX
 </code></pre><p>5.ISOを書き込む。</p>
-<pre><code>$ cd {CentOSのISOがある場所}  
+<pre tabindex="0"><code>$ cd {CentOSのISOがある場所}  
 $ sudo dd if=CentOS-7-x86_64-Everything-1511.iso of=/dev/diskX bs=4028  
 ※処理完了まで、かなり待ちます
 </code></pre><p>6.USBメモリを取り外し可能状態にする。</p>
-<pre><code>$ diskutil eject /dev/diskX
+<pre tabindex="0"><code>$ diskutil eject /dev/diskX
 </code></pre><h2 id="raidコントローラの準備">RAIDコントローラの準備</h2>
 <p>次にGen8用のRAIDコントローラをダウンロードします。<br>
 これがないとHPサーバが備えているのRAID機能が使えない。<br>
-<!-- raw HTML omitted --><a href="http://downloads.linux.hpe.com/SDR/repo/spp/RedHat/7/x86_64/current/">http://downloads.linux.hpe.com/SDR/repo/spp/RedHat/7/x86_64/current/</a><!-- raw HTML omitted --><br>
+<a href="http://downloads.linux.hpe.com/SDR/repo/spp/RedHat/7/x86_64/current/" target="_blank"><a href="http://downloads.linux.hpe.com/SDR/repo/spp/RedHat/7/x86_64/current/">http://downloads.linux.hpe.com/SDR/repo/spp/RedHat/7/x86_64/current/</a></a><br>
 ここから「hpvsa-1.2.14-113.rhel7u2.x86_64.dd.gz」をダウンロードします。<br>
 ※『rhel7u2』の部分はインストールするCentOSに合わせて読み替えてください。</p>
 <p>ダウンロードしたら、CentOSを焼いたUSBメモリとは別のUSBメモリに焼きます。<br>
 MacはUSBメモリを挿すと自動でマウントするので、ディスクユーティリティからマウント解除して<br>
 以下コマンドを実施。<br>
 （先にUSBの初期化〜アンマウントはISO書き込みと同じ手順を実施）</p>
-<pre><code>$ cd {RAIDドライバをダウンロードした場所}  
+<pre tabindex="0"><code>$ cd {RAIDドライバをダウンロードした場所}  
 $ gunzip hpvsa-1.2.14-113.rhel7u2.x86_64.dd.gz  
 $ sudo dd if=hpvsa-1.2.14-113.rhel7u2.x86_64.dd of=/dev/diskX  
 $ diskutil eject /dev/diskX
@@ -89,7 +121,7 @@ $ diskutil eject /dev/diskX
 （事前にUSBブートできるようにBIOS設定はしておくこと）</p>
 <p>しばらくするとCentOSの文字が表示され、インストール方法を選択画面が表示されます。<br>
 ここでEscを押下すると「boot:」というプロンプトが現れるので、 以下を入力する。</p>
-<pre><code>linux modprobe.blacklist=ahci inst.dd
+<pre tabindex="0"><code>linux modprobe.blacklist=ahci inst.dd
 </code></pre><p>インストールが進み途中でドライバーが入ったディスクの選択画面が表示されます。<br>
 まず<code>r</code>と入力してディスク一覧の再読み込みを行ない、該当するディスクの番号を入力します。</p>
 <p>次にドライバー一覧が表示され、インストールするドライバーを選択しろと言われるので<br>
@@ -103,21 +135,16 @@ $ diskutil eject /dev/diskX
 表示される質問事項を設定していけば完了です。</p>
 
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/311/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/355/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2819716 &#43;0900 JST m=&#43;0.101566101">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>zabbixでPHPの警告が出る場合の対処 &middot; Nonsense J</title>
+	<title>zabbixでPHPの警告が出る場合の対処|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,23 +70,24 @@
 	<div class="post">
 		<h1 class="post-title">zabbixでPHPの警告が出る場合の対処</h1>
 		<div class="post-info">
-				<time datetime="2017-02-14 00:48:55 &#43;0000 UTC">February 14, 2017</time>
+				<p class="publish-date">投稿日：<time datetime="2017-02-14 00:48:55 &#43;0000 UTC" class="catalogue-time">2017-02-14</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/php/">PHP</a></div> <div class="tags_item"><a href="/tags/zabbix/">zabbix</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/php/">PHP</a></div> <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/zabbix/">zabbix</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<p>■環境<br>
 zabbix 3.2<br>
 PHP 7.1</p>
 <p>PHP7.1でzabbixを動かすと、以下の警告が出ました。</p>
-<pre><code>A non well formed numeric value encountered [zabbix.php:21 → require_once() → ZBase-&gt;run() → ZBase-&gt;processRequest() → CView-&gt;getOutput() → include() → make_status_of_zbx() → CFrontendSetup-&gt;checkRequirements() → CFrontendSetup-&gt;checkPhpMemoryLimit() → str2mem() in include/func.inc.php:410]  
+<pre tabindex="0"><code>A non well formed numeric value encountered [zabbix.php:21 → require_once() → ZBase-&gt;run() → ZBase-&gt;processRequest() → CView-&gt;getOutput() → include() → make_status_of_zbx() → CFrontendSetup-&gt;checkRequirements() → CFrontendSetup-&gt;checkPhpMemoryLimit() → str2mem() in include/func.inc.php:410]  
 A non well formed numeric value encountered [zabbix.php:21 → require_once() → ZBase-&gt;run() → ZBase-&gt;processRequest() → CView-&gt;getOutput() → include() → make_status_of_zbx() → CFrontendSetup-&gt;checkRequirements() → CFrontendSetup-&gt;checkPhpPostMaxSize() → str2mem() in include/func.inc.php:410]  
 A non well formed numeric value encountered [zabbix.php:21 → require_once() → ZBase-&gt;run() → ZBase-&gt;processRequest() → CView-&gt;getOutput() → include() → make_status_of_zbx() → CFrontendSetup-&gt;checkRequirements() → CFrontendSetup-&gt;checkPhpUploadMaxFilesize() → str2mem() in include/func.inc.php:410]
 </code></pre><p>警告が出ている箇所は以下のようになっています。<br>
 [/usr/share/zabbix/include/func.inc.php]</p>
-<pre><code> 394 /**  
+<pre tabindex="0"><code> 394 /**  
  395  * Converts strings like 2M or 5k to bytes  
  396  *  
  397  * @param string $val  
@@ -67,13 +99,13 @@ A non well formed numeric value encountered [zabbix.php:21 → require_once() �
  403         $last = strtolower(substr($val, -1));  
  404  
  405         switch ($last) {  
- 406                 case 'g':  
+ 406                 case &#39;g&#39;:  
  407                         $val *= 1024;  
  408                         /* falls through */  
- 409                 case 'm':  
+ 409                 case &#39;m&#39;:  
  410                         $val *= 1024;  
  411                         /* falls through */  
- 412                 case 'k':  
+ 412                 case &#39;k&#39;:  
  413                         $val *= 1024;  
  414         }  
  415  
@@ -84,18 +116,18 @@ A non well formed numeric value encountered [zabbix.php:21 → require_once() �
 （警告は出ているが、処理自体は正常に行なわれている）</p>
 <p>解決策は色々あると思いますが、とりあえず以下のように修正したら<br>
 警告は表示されなくなりました。（404行目を追加しています）</p>
-<pre><code> 401 function str2mem($val) {  
+<pre tabindex="0"><code> 401 function str2mem($val) {  
  402         $val = trim($val);  
  403         $last = strtolower(substr($val, -1));  
  404         $val = intval($val);  
  405         switch ($last) {  
- 406                 case 'g':  
+ 406                 case &#39;g&#39;:  
  407                         $val *= 1024;  
  408                         /* falls through */  
- 409                 case 'm':  
+ 409                 case &#39;m&#39;:  
  410                         $val *= 1024;  
  411                         /* falls through */  
- 412                 case 'k':  
+ 412                 case &#39;k&#39;:  
  413                         $val *= 1024;  
  414         }  
  415  
@@ -103,21 +135,16 @@ A non well formed numeric value encountered [zabbix.php:21 → require_once() �
  417 }
 </code></pre>
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/349/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/440/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2830263 &#43;0900 JST m=&#43;0.102620701">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

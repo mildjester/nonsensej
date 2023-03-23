@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>picoでブログ構築 &middot; Nonsense J</title>
+	<title>picoでブログ構築|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,15 +70,16 @@
 	<div class="post">
 		<h1 class="post-title">picoでブログ構築</h1>
 		<div class="post-info">
-				<time datetime="2019-01-16 00:00:00 &#43;0000 UTC">January 16, 2019</time>
+				<p class="publish-date">投稿日：<time datetime="2019-01-16 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-01-16</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/pico/">pico</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/pico/">pico</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<p>picoの基本的な構築はこちらを参照してください。<br>
-<a href="/articles/2019/01/15/pico-introduction">PHP製のCMS「pico」の紹介</a></p>
+<a href="/posts/2019/01/15/pico-introduction">PHP製のCMS「pico」の紹介</a></p>
 <p>picoを使ってブログを構築する方法です。<br>
 公式ページにpicoをブログ化する手順が書いてあります。<br>
 <a href="http://picocms.org/docs/#blogging">公式の手順</a></p>
@@ -64,7 +96,7 @@
 ダウンロードした圧縮ファイルの中にpagination.phpがあるので<br>
 それを<code>/pico/plugins</code>の中に配置します。</p>
 <p>そしてconfig.ymlにプラグイン用の設定を追記しておきます。</p>
-<pre><code>##
+<pre tabindex="0"><code>##
 # Plugin: Pico-Pagination
 #
 pagination_limit: 10           # 一覧ページにて１ページに表示する記事数
@@ -101,131 +133,131 @@ index.twigの１行目から<code>&lt;div id=&quot;main&quot;&gt;</code>の上�
 代わりに<code>{% include '_header.twig' %}</code> と <code>{% include '_footer.twig' %}</code><br>
 に置き換えます。</p>
 <p>できあがったindex.twigはこんな感じです。</p>
-<pre><code>{% include '_header.twig' %}
-&lt;div id=&quot;main&quot;&gt;
-    &lt;div class=&quot;container&quot;&gt;
+<pre tabindex="0"><code>{% include &#39;_header.twig&#39; %}
+&lt;div id=&#34;main&#34;&gt;
+    &lt;div class=&#34;container&#34;&gt;
         {% if meta.title %}&lt;h2&gt;{{ meta.title }}&lt;/h2&gt;{% endif %}
-        &lt;p class=&quot;meta&quot;&gt;{{ meta.date_formatted }}&lt;/p&gt;
+        &lt;p class=&#34;meta&#34;&gt;{{ meta.date_formatted }}&lt;/p&gt;
         {{ content }}
     &lt;/div&gt;
 &lt;/div&gt;
-{% include '_footer.twig' %}
+{% include &#39;_footer.twig&#39; %}
 </code></pre><p>※どこまでを共通化するかは個人の趣向もあると思うので<br>
 　共通化範囲は増減あっても構いません。</p>
 <h3 id="ヘッダーにサイト内検索フォームを追加する">ヘッダーにサイト内検索フォームを追加する</h3>
 <p>ヘッダーの好きな位置に以下のソースコードを埋め込みます。<br>
 これがサイト内検索のフォームになります。</p>
-<pre><code>&lt;form id=&quot;search_form&quot; action=&quot;/search&quot; method=&quot;get&quot;&gt;
-    &lt;input type=&quot;search&quot; id=&quot;search_input&quot; name=&quot;q&quot; /&gt;
-    &lt;input type=&quot;submit&quot; value=&quot;検索&quot; /&gt;
+<pre tabindex="0"><code>&lt;form id=&#34;search_form&#34; action=&#34;/search&#34; method=&#34;get&#34;&gt;
+    &lt;input type=&#34;search&#34; id=&#34;search_input&#34; name=&#34;q&#34; /&gt;
+    &lt;input type=&#34;submit&#34; value=&#34;検索&#34; /&gt;
 &lt;/form&gt;
 </code></pre><h3 id="ページ別テンプレートの作成">ページ別テンプレートの作成</h3>
 <p>index.twigと同じディレクトリに以下のようなtwigファイルを作成します</p>
 <h4 id="indextwig">index.twig</h4>
 <p>全ての記事一覧を表示します。</p>
-<pre><code>{% include '_header.twig' %}
-&lt;div id=&quot;main&quot;&gt;
-    &lt;div class=&quot;container&quot;&gt;
-        {% for page in paged_pages|sort_by(&quot;time&quot;)|reverse %}
-            {% if page.id starts with &quot;articles/&quot; and not page.hidden %}
-                &lt;div class=&quot;post&quot;&gt;
-                    &lt;h3&gt;&lt;a href=&quot;{{ page.url }}&quot;&gt;{{ page.title }}&lt;/a&gt;&lt;/h3&gt;
-                    &lt;p class=&quot;date&quot;&gt;{{ page.date_formatted }}&lt;/p&gt;
-                    &lt;p class=&quot;excerpt&quot;&gt;{{ page.description }}&lt;/p&gt;
+<pre tabindex="0"><code>{% include &#39;_header.twig&#39; %}
+&lt;div id=&#34;main&#34;&gt;
+    &lt;div class=&#34;container&#34;&gt;
+        {% for page in paged_pages|sort_by(&#34;time&#34;)|reverse %}
+            {% if page.id starts with &#34;posts/&#34; and not page.hidden %}
+                &lt;div class=&#34;post&#34;&gt;
+                    &lt;h3&gt;&lt;a href=&#34;{{ page.url }}&#34;&gt;{{ page.title }}&lt;/a&gt;&lt;/h3&gt;
+                    &lt;p class=&#34;date&#34;&gt;{{ page.date_formatted }}&lt;/p&gt;
+                    &lt;p class=&#34;excerpt&#34;&gt;{{ page.description }}&lt;/p&gt;
                 &lt;/div&gt;
             {% endif %}
         {% endfor %}
         {{ pagination_links }}
     &lt;/div&gt;
 &lt;/div&gt;
-{% include '_footer.twig' %}
+{% include &#39;_footer.twig&#39; %}
 </code></pre><h4 id="articletwig">article.twig</h4>
 <p>記事ページを表示します。</p>
-<pre><code>{% include '_header.twig' %}
-&lt;div id=&quot;main&quot;&gt;
-    &lt;div class=&quot;container&quot;&gt;
+<pre tabindex="0"><code>{% include &#39;_header.twig&#39; %}
+&lt;div id=&#34;main&#34;&gt;
+    &lt;div class=&#34;container&#34;&gt;
         {% if meta.title %}&lt;h2&gt;{{ meta.title }}&lt;/h2&gt;{% endif %}
-        &lt;p class=&quot;meta&quot;&gt;&lt;b&gt;
+        &lt;p class=&#34;meta&#34;&gt;&lt;b&gt;
             投稿日：{{ meta.date_formatted }}
-            &lt;span class=&quot;article_tags&quot;&gt;
+            &lt;span class=&#34;article_tags&#34;&gt;
                 タグ：
                 {% for tag in meta.tags %}
-                &lt;a href=&quot;/tags/{{ tag }}&quot; &gt;{{ tag }}&lt;/a&gt; 
+                &lt;a href=&#34;/tags/{{ tag }}&#34; &gt;{{ tag }}&lt;/a&gt; 
                 {% endfor %}
             &lt;/span&gt;
         &lt;/b&gt;&lt;/p&gt;
         {{ content }}
     &lt;/div&gt;
 &lt;/div&gt;
-{% include '_footer.twig' %}
+{% include &#39;_footer.twig&#39; %}
 </code></pre><h4 id="statictwig">static.twig</h4>
 <p>固定ページを表示します。<br>
 ※ページタイトルと日付を非表示にしています。</p>
-<pre><code>{% include '_header.twig' %}
-&lt;div id=&quot;main&quot;&gt;
-    &lt;div class=&quot;container&quot;&gt;
+<pre tabindex="0"><code>{% include &#39;_header.twig&#39; %}
+&lt;div id=&#34;main&#34;&gt;
+    &lt;div class=&#34;container&#34;&gt;
         {{ content }}
     &lt;/div&gt;
 &lt;/div&gt;
-{% include '_footer.twig' %}
+{% include &#39;_footer.twig&#39; %}
 </code></pre><h4 id="tagstwig">tags.twig</h4>
 <p>タグ一覧を表示します</p>
-<pre><code>{% include '_header.twig' %}
-&lt;div id=&quot;main&quot;&gt;
-    &lt;div class=&quot;container&quot;&gt;
+<pre tabindex="0"><code>{% include &#39;_header.twig&#39; %}
+&lt;div id=&#34;main&#34;&gt;
+    &lt;div class=&#34;container&#34;&gt;
         {% if meta.title %}&lt;h2&gt;{{ meta.title }}&lt;/h2&gt;{% endif %}
         &lt;ul&gt;
         {% for page in pages %}
-            {% if page.id starts with &quot;tags/&quot; and not page.hidden %}
-                    &lt;li&gt;&lt;a href=&quot;{{ page.url }}&quot;&gt;{{ page.title }}&lt;/a&gt;&lt;/li&gt;
+            {% if page.id starts with &#34;tags/&#34; and not page.hidden %}
+                    &lt;li&gt;&lt;a href=&#34;{{ page.url }}&#34;&gt;{{ page.title }}&lt;/a&gt;&lt;/li&gt;
             {% endif %}
         {% endfor %}
         &lt;/ul&gt;
     &lt;/div&gt;
 &lt;/div&gt;
-{% include '_footer.twig' %}
+{% include &#39;_footer.twig&#39; %}
 </code></pre><h4 id="tag-indextwig">tag-index.twig</h4>
 <p>タグを絞った記事一覧を表示します。</p>
-<pre><code>{% include '_header.twig' %}
-&lt;div id=&quot;main&quot;&gt;
-    &lt;div class=&quot;container&quot;&gt;
+<pre tabindex="0"><code>{% include &#39;_header.twig&#39; %}
+&lt;div id=&#34;main&#34;&gt;
+    &lt;div class=&#34;container&#34;&gt;
         {% if meta.title %}&lt;h2&gt;{{ meta.title }}&lt;/h2&gt;{% endif %}
-        {% for page in pages|sort_by(&quot;time&quot;)|reverse %}
-            {% if page.id starts with &quot;articles/&quot; and not page.hidden %}
-                &lt;div class=&quot;post&quot;&gt;
-                    &lt;h3&gt;&lt;a href=&quot;{{ page.url }}&quot;&gt;{{ page.title }}&lt;/a&gt;&lt;/h3&gt;
-                    &lt;p class=&quot;date&quot;&gt;{{ page.date_formatted }}&lt;/p&gt;
-                    &lt;p class=&quot;excerpt&quot;&gt;{{ page.description }}&lt;/p&gt;
+        {% for page in pages|sort_by(&#34;time&#34;)|reverse %}
+            {% if page.id starts with &#34;posts/&#34; and not page.hidden %}
+                &lt;div class=&#34;post&#34;&gt;
+                    &lt;h3&gt;&lt;a href=&#34;{{ page.url }}&#34;&gt;{{ page.title }}&lt;/a&gt;&lt;/h3&gt;
+                    &lt;p class=&#34;date&#34;&gt;{{ page.date_formatted }}&lt;/p&gt;
+                    &lt;p class=&#34;excerpt&#34;&gt;{{ page.description }}&lt;/p&gt;
                 &lt;/div&gt;
             {% endif %}
         {% endfor %}
     &lt;/div&gt;
 &lt;/div&gt;
-{% include '_footer.twig' %}
+{% include &#39;_footer.twig&#39; %}
 </code></pre><h4 id="searchtwig">search.twig</h4>
 <p>サイト内検索結果を表示します。</p>
-<pre><code>{% include '_header.twig' %}
-&lt;div id=&quot;main&quot;&gt;
-	&lt;div class=&quot;container&quot;&gt;
-		&lt;div class=&quot;SearchResults&quot;&gt;
-			{% if meta.purpose == &quot;search_results&quot; %}
-					&lt;p class=&quot;meta&quot;&gt;「{{ search_term }}」の検索結果（{{ search_num_results }} 件）&lt;/p&gt;
+<pre tabindex="0"><code>{% include &#39;_header.twig&#39; %}
+&lt;div id=&#34;main&#34;&gt;
+	&lt;div class=&#34;container&#34;&gt;
+		&lt;div class=&#34;SearchResults&#34;&gt;
+			{% if meta.purpose == &#34;search_results&#34; %}
+					&lt;p class=&#34;meta&#34;&gt;「{{ search_term }}」の検索結果（{{ search_num_results }} 件）&lt;/p&gt;
 					{% for page in search_results %}
-						{% if page.id starts with &quot;articles/&quot; and not page.hidden %}
-							&lt;h3&gt;&lt;a href=&quot;{{ page.url }}&quot;&gt;{{ page.title }}&lt;/a&gt;&lt;/h3&gt;
-							&lt;p class=&quot;date&quot;&gt;{{ page.date_formatted }}&lt;/p&gt;
-							&lt;p class=&quot;excerpt&quot;&gt;{{ page.description }}&lt;/p&gt;
+						{% if page.id starts with &#34;posts/&#34; and not page.hidden %}
+							&lt;h3&gt;&lt;a href=&#34;{{ page.url }}&#34;&gt;{{ page.title }}&lt;/a&gt;&lt;/h3&gt;
+							&lt;p class=&#34;date&#34;&gt;{{ page.date_formatted }}&lt;/p&gt;
+							&lt;p class=&#34;excerpt&#34;&gt;{{ page.description }}&lt;/p&gt;
 						{% endif %}
 					{% endfor %}
 			{% endif %}
 		&lt;/div&gt;
 	&lt;/div&gt;
 &lt;/div&gt;
-{% include '_footer.twig' %}
+{% include &#39;_footer.twig&#39; %}
 </code></pre><h3 id="スタイルcssの調整">スタイル(CSS)の調整</h3>
 <p>記事ページのタグ一覧用のスタイルも追加しておきます。<br>
 テーマディレクトリの<code>css/style.css</code>に以下を追加します。</p>
-<pre><code>/* 記事ページのタグ一覧 */
+<pre tabindex="0"><code>/* 記事ページのタグ一覧 */
 span.article_tags {
     margin-left: 40px;
     font-size: 0.9em;
@@ -243,30 +275,34 @@ span.article_tags a {
 <p>ここから実際のページのコンテンツとなるmdファイルを作成していきます。</p>
 <h4 id="picocontentindexmd">pico/content/index.md</h4>
 <p>全記事一覧ページです。</p>
-<pre><code>---
+<pre tabindex="0"><code>---
 title: ブログ
+summary: これはブログですよ
 date: 2010-12-31
 draft: false
 ---
 </code></pre><h4 id="picocontenttagsmd">pico/content/tags.md</h4>
 <p>タグ一覧ページです。</p>
-<pre><code>---
+<pre tabindex="0"><code>---
 title: タグ一覧
+summary: タグの一覧ページですよ
 date: 2010-12-25
 draft: false
 ---
 </code></pre><h4 id="picocontenttagssampletagmd">pico/content/tags/sampleTag.md</h4>
 <p>タグの記事一覧ページです。<br>
 本例ではタグが<code>sampleTag</code>となっている記事の一覧を取得します。</p>
-<pre><code>---
+<pre tabindex="0"><code>---
 title: sampleTag
+summary: sampleTagの一覧です
 Filter: sampleTag
 ---
-</code></pre><h4 id="picocontentarticlessamplearticlesmd">pico/content/articles/sampleArticles.md</h4>
+</code></pre><h4 id="picocontentpostssamplearticlesmd">pico/content/posts/sampleArticles.md</h4>
 <p>記事ページです。<br>
 <code>Tags</code>には上記の<code>pico/content/tags/</code>に作成したタグを指定します。</p>
-<pre><code>---
+<pre tabindex="0"><code>---
 title: 記事ですよ
+summary: これは記事ページです
 tags:
     - sampleTag
 date: 2015-08-08 15:35:56
@@ -275,15 +311,16 @@ draft: false
 記事の本文ですよー
 </code></pre><h4 id="picocontentsearchmd">pico/content/search.md</h4>
 <p>サイト内検索結果ページです。</p>
-<pre><code>---
+<pre tabindex="0"><code>---
 Purpose: search_results
 ---
 </code></pre><h4 id="picocontenthogehogemd">pico/content/hogehoge.md</h4>
 <p>固定ページです。<br>
 必要に応じて作成してください。<br>
 特に固定ページが不要であれば作成しなくて良いです。</p>
-<pre><code>---
+<pre tabindex="0"><code>---
 title: 何かのページ
+summary: 何か固定ページだよ
 date: 2001-01-01
 draft: false
 ---
@@ -291,26 +328,21 @@ draft: false
 </code></pre><p>これで基本的に作成すべきmdは揃いました。<br>
 もしGoogle等にインデックスさせたくない(検索させたくない)場合は<br>
 YAMLヘッダーに以下を追加してください。</p>
-<pre><code>Robots: noindex,nofollow
+<pre tabindex="0"><code>Robots: noindex,nofollow
 </code></pre><p>これでpicoのブログ化は完了です。</p>
-<p>Wordpressからデータ移行する場合は<a href="/articles/2019/01/wp_trans_pico">WordpressからPicoへデータ移行</a>を参照してください。</p>
+<p>Wordpressからデータ移行する場合は<a href="/posts/2019/01/wp_trans_pico">WordpressからPicoへデータ移行</a>を参照してください。</p>
 
-	</div>
-
-	<div class="pagination">
-		<a href="/posts/2019/01/15/pico-introduction/" class="left arrow">&#8592;</a>
-		<a href="/posts/2019/01/17/wordpress-to-pico/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
 	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2545131 &#43;0900 JST m=&#43;0.074107601">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

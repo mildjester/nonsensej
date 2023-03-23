@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>【Linux Mint】日本語入力できるようにする &middot; Nonsense J</title>
+	<title>【Linux Mint】日本語入力できるようにする|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,13 +70,14 @@
 	<div class="post">
 		<h1 class="post-title">【Linux Mint】日本語入力できるようにする</h1>
 		<div class="post-info">
-				<time datetime="2018-04-13 21:28:47 &#43;0000 UTC">April 13, 2018</time>
+				<p class="publish-date">投稿日：<time datetime="2018-04-13 21:28:47 &#43;0000 UTC" class="catalogue-time">2018-04-13</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/linuxmint/">LinuxMint</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/linuxmint/">LinuxMint</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<h2 id="環境">■環境</h2>
 <p>Linux Mint 18.3 cinnamon 64bit</p>
 <hr>
@@ -54,40 +86,35 @@
 <h2 id="設定手順">設定手順</h2>
 <p>Fcitx + Mozcで日本語入力できるようにします。</p>
 <p>まず「SystemSettins &gt; Input Method」を開きます。<br>
-<!-- raw HTML omitted --></p>
-<p>『Language support』に<!-- raw HTML omitted -->Japanese<!-- raw HTML omitted -->があるので、そこのInstallボタンをクリックします。<br>
-<!-- raw HTML omitted --></p>
-<p>インストールが終わると『Input method』にて<!-- raw HTML omitted -->Fcitx<!-- raw HTML omitted -->を選択できるようになるので選択して、<br>
+<img src="https://blog2.logical-dice.com/images/2018/03/japanize-001.png" alt="" /></p>
+<p>『Language support』に<code>Japanese</code>があるので、そこのInstallボタンをクリックします。<br>
+<img src="https://blog2.logical-dice.com/images/2018/04/Screenshot-from-2018-04-07-14-38-28.png" alt="" /></p>
+<p>インストールが終わると『Input method』にて<code>Fcitx</code>を選択できるようになるので選択して、<br>
 一旦マシンを再起動します。<br>
-<!-- raw HTML omitted --></p>
-<p>再起動後、Menuより<!-- raw HTML omitted -->Fcitx　Configuration<!-- raw HTML omitted -->を開きます。<br>
+<img src="https://blog2.logical-dice.com/images/2018/04/Screenshot-from-2018-04-07-13-57-55.png" alt="" /></p>
+<p>再起動後、Menuより<code>Fcitx　Configuration</code>を開きます。<br>
 検索バーに『Fc』あたりまで入れると出てきます。<br>
-<!-- raw HTML omitted --></p>
+<img src="https://blog2.logical-dice.com/images/2018/04/Screenshot-from-2018-04-07-14-43-36.png" alt="" /></p>
 <p>Input Methodの追加「＋」をクリックします。<br>
-<!-- raw HTML omitted --></p>
-<p>input methodの一覧が出てくるので、<!-- raw HTML omitted -->Mozc<!-- raw HTML omitted -->を選択してOKをクリックします。<br>
-<!-- raw HTML omitted --></p>
-<p>Input MethodにMozcが追加されるので、元々あった<!-- raw HTML omitted -->Keybord - Japanese<!-- raw HTML omitted -->は削除(×)ボタンで消してしまいます。<br>
-<!-- raw HTML omitted --></p>
+<img src="https://blog2.logical-dice.com/images/2018/04/Screenshot-from-2018-04-07-14-10-02.png" alt="" /></p>
+<p>input methodの一覧が出てくるので、<code>Mozc</code>を選択してOKをクリックします。<br>
+<img src="https://blog2.logical-dice.com/images/2018/04/Screenshot-from-2018-04-07-14-11-56.png" alt="" /></p>
+<p>Input MethodにMozcが追加されるので、元々あった<code>Keybord - Japanese</code>は削除(×)ボタンで消してしまいます。<br>
+<img src="https://blog2.logical-dice.com/images/2018/04/Screenshot-from-2018-04-07-14-13-21.png" alt="" /></p>
 <p>これで日本語入力できるようになりました。<br>
 半角/全角キーで日本語/英語を入れ替えられます。</p>
 
-	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/1218/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/1226/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
 	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2735302 &#43;0900 JST m=&#43;0.093124601">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

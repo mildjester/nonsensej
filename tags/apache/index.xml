@@ -1,273 +1,109 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Apache on Nonsense J</title>
-    <link>/tags/apache/</link>
-    <description>Recent content in Apache on Nonsense J</description>
+    <title>Apache on Logical Dice 技術ブログ</title>
+    <link>https://blog2.logical-dice.com/tags/apache/</link>
+    <description>Recent content in Apache on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Tue, 19 Nov 2019 00:00:00 +0000</lastBuildDate><atom:link href="/tags/apache/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 19 Nov 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/apache/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>htaccessで本番環境だけ特定のディレクトリを隠す</title>
-      <link>/posts/2019/11/19/apache-directory-hidden/</link>
+      <link>https://blog2.logical-dice.com/posts/2019/11/19/apache-directory-hidden/</link>
       <pubDate>Tue, 19 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2019/11/19/apache-directory-hidden/</guid>
-      <description>環境  httpd 2.2.34   概要 Apache環境で本番環境・検証環境共にソースコードはgitリポジトリを丸ごとcloneしている状態で
-git管理下の特定のディレクトリ内のページは検証環境でのみ表示させるという方法です。
-（テスト用ページ）
-対応方法 本番環境のドメインが「www.honban.com」で検証環境は別ドメインだとした場合、
-隠したいディレクトリに.htaccessを配置して以下を記載します。
-RewriteEngine On RewriteCond %{http_host} ^www.honban.com RewriteRule ^(.*) - [R=404,L] これは『ドメインが本番環境の場合(RewriteCondの部分)は404ページを表示する(RewriteRuleの部分)』という意味になります。
-これで検証環境では該当ディレクトリ内のページは表示でき、本番環境では404ページが表示されるようにできました。</description>
+      <guid>https://blog2.logical-dice.com/posts/2019/11/19/apache-directory-hidden/</guid>
+      <description>本番環境だけ特定のディレクトリへのアクセスを制限するメモです</description>
     </item>
     
     <item>
       <title>リバースプロキシ先でWordpressを動かす</title>
-      <link>/posts/2019/10/15/reverseproxy-wordpress/</link>
+      <link>https://blog2.logical-dice.com/posts/2019/10/15/reverseproxy-wordpress/</link>
       <pubDate>Tue, 15 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2019/10/15/reverseproxy-wordpress/</guid>
-      <description>環境 Apache 2.2.34
- サーバーA(www.sample.com)でメインサイトが動いていて、サーバーB(sub.sample.com)でWordpressが動いている時に
-Apacheのリバースプロキシを使って以下のようにアクセスできるようにします。
-メインサイト: https://www.sample.com/
-Wordpress: https://www.sample.com/blog
-なお、既に他のリバースプロキシも設定されており、極力そちらへの影響はないように設定します。
-他ページ(サーバーC): https://www.sample.com/media
-■サーバーAの設定 Apache設定 httpd.confなどに以下のようにリバースプロキシ設定をします。
-他リバースプロキシに影響しないようにLocationで括ります。
-&amp;lt;Location &amp;quot;/blog&amp;quot;&amp;gt; ProxyPass http://sub.sample.com/blog ProxyPassReverse http://sub.sample.com/blog ProxyPassReverseCookieDomain sub.sample.com www.sample.com ProxyPassReverseCookiePath / /blog/ &amp;lt;/Location&amp;gt; これで/blog配下へのアクセスはサーバーB(sub.sample.com)に飛ばすようになります。
-■サーバーBの設定 Apache設定 Apacheの設定はsub.sample.comにアクセスがある想定で記載しておけば大丈夫です。
-WordpressソースはDocumentRoot配下にblogディレクトリを作成して格納します。
-SSL通信扱いにする これでWordpressページ自体は表示されますが、必要なJS/CSS/画像などの外部ファイルのURLが非SSLとなってしまい
-Chromeなどだとエラーとなってしまいます。
-なので、.htaccessに以下追記して強制的にSSL通信扱いになるようにします。
-SetEnv HTTPS on ※補足
-非SSLでhttp://sample.com/blogにアクセスした場合はどうするのって話もありますが、
-そもそも非SSLページは推奨されないので、今回は考えてません。
-http://sample.com/blogにアクセスが来たらhttps://sample.com/blogにリダイレクトしましょう。
-どうしても非SSLとSSLの両方で受けたければSSL接続時はリバースプロキシ時に「X-Forwarded-HTTPS: on」を設定するなど対策してください。
-「外部→(HTTPS)→ELB→(HTTP)→サーバーA→(HTTP)→サーバーB」のような構成だと結構面倒です。
-ホスト名を補正する ここまでの対応だと$_SERVER[&#39;HTTP_HOST&#39;]と$_SERVER[&#39;SERVER_NAME&#39;]がsub.sample.comのままになってしまいます。
-ページ表示上は問題無さそうですが、管理画面でブラウザのconsoleに警告が出て気持ち悪いので修正しておきます。
-wp-config.phpの先頭に以下の記載を付け加えておきます。
-if (isset($_SERVER[&#39;HTTP_X_FORWARDED_HOST&#39;]) &amp;amp;&amp;amp; $_SERVER[&#39;HTTP_X_FORWARDED_HOST&#39;] === &#39;www.sample.com&#39;) { $_SERVER[&#39;HTTP_HOST&#39;] = &#39;www.sample.com&#39;; $_SERVER[&#39;SERVER_NAME&#39;] = &#39;www.sample.com&#39;; } これでwww.sample.comからリバースプロキシで飛ばされてきたアクセス時はホスト名が書き換わるようになりました。
-（これはもっといい方法があるかもしれませんが、とりあえずこの方法でも対応できています。）</description>
+      <guid>https://blog2.logical-dice.com/posts/2019/10/15/reverseproxy-wordpress/</guid>
+      <description>Apacheのリバースプロキシ先でWordpressを動かす設定メモです</description>
     </item>
     
     <item>
       <title>Apacheにサーバーのメモリを食い尽くさせない</title>
-      <link>/posts/2019/02/15/apache-tuning/</link>
+      <link>https://blog2.logical-dice.com/posts/2019/02/15/apache-tuning/</link>
       <pubDate>Fri, 15 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2019/02/15/apache-tuning/</guid>
-      <description>環境  Amazon Linux AMI 2018.03 Apache/2.4.34 (Amazon)   Apache(prefork)がサーバーのメモリを食い尽くしていたのでチューニングしました。
-その際に行なった調査や計算をメモとして残します。
-なお、preforkからeventに変更できる場合や、nginxに移行できるのであれば
-そちらの方がいいかもしれません。
-今回はあくまでpreforkをチューニングする前提での手順です。
-サーバー物理メモリ確認 まず、サーバーの物理メモリを調べます
-# cat /proc/meminfo | head -n 1 MemTotal: 2004484 kB このサーバーの搭載メモリは2GBのようです。
-現在のメモリ使用状況確認 まずサーバー全体の使用メモリを確認します。
-以下のワンライナーで出します。(単位はMB)
-# ps aux | awk &#39;{print $6}&#39; | awk &#39;{sum=sum+($1/1024);cnt++;} END{print &amp;quot;sum=&amp;quot;sum}&#39; sum=919.656 次にhttpdの子プロセスの使用メモリを確認します。
-以下のワンライナーで出します。(単位はMB)
-# ps aux | grep httpd | grep apache | awk &#39;{print $6}&#39; | awk &#39;{sum=sum+($1/1024);cnt++;} END{print &amp;quot;sum=&amp;quot;sum &amp;quot; cnt=&amp;quot;cnt &amp;quot; ave=&amp;quot;sum/cnt;}&#39; sum=804.273 cnt=20 ave=40.</description>
+      <guid>https://blog2.logical-dice.com/posts/2019/02/15/apache-tuning/</guid>
+      <description>Apacheのチューニングをした際のメモです</description>
     </item>
     
     <item>
       <title>grepでアクセスログからTPSを出す</title>
-      <link>/posts/wp/1436/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/1436/</link>
       <pubDate>Thu, 05 Jul 2018 15:28:23 +0000</pubDate>
       
-      <guid>/posts/wp/1436/</guid>
-      <description>■環境 Amazon Linux AMI release 2013.03
-grep 2.6.3
- WEBサーバーのアクセスログからTPSを出すコマンドです。
-ApacheでもNginxでも対応可能です。
-アクセスログの時間フォーマットが05/Jul/2018:12:34:56のような形である場合
-以下のコマンドでTPSが出ます。
-※出力されている時刻フォーマットに合わせて修正してください。
-grep -o &amp;quot;05/Jul/2018:[0-9]\{2\}:[0-9]\{2\}:[0-9]\{2\}&amp;quot; access_log | sort | uniq -c ただし、これを２４時間分のアクセスログに対して実行すると行数が大変な事になるので
-その場合は時分秒のうち「時」を絞るなどして実行した方が良いです。
-以下は１２時台のログに絞る例です。
-grep -o &amp;quot;05/Jul/2018:12:[0-9]\{2\}:[0-9]\{2\}&amp;quot; access_log | sort | uniq -c また、正規表現部分を変えればTPS(秒間)ではなくTPM（分間）にすることも可能です。
-grep -o &amp;quot;05/Jul/2018:[0-9]\{2\}:[0-9]\{2\}&amp;quot; access_log | sort | uniq -c </description>
+      <guid>https://blog2.logical-dice.com/posts/wp/1436/</guid>
+      <description>■環境Amazon Linux AMI release 2013.03grep 2.6.3WEBサーバーのアクセスログからTPS&amp;hellip;</description>
     </item>
     
     <item>
       <title>AWS ELB配下でApacheのRewriteRuleが上手く動かなかった話</title>
-      <link>/posts/wp/1423/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/1423/</link>
       <pubDate>Sat, 30 Jun 2018 22:29:41 +0000</pubDate>
       
-      <guid>/posts/wp/1423/</guid>
-      <description>■環境 AWS ELB
-AWS EC2
-Apache 2.2.32
- AWSのEC2上で動いているApacheサーバーでの話。
-SEO対策で/index.htmlを/にリダイレクトしたかったので
-.htaccessに以下を設定しました。
-RewriteRule ^(.*)index.html$ $1 [R=301,L] 検証インスタンスでは上手く動いたので、本番インスタンスにも反映させたところ
-https://〜/index.html(443ポート) が http://〜/(80ポート)にリダイレクトされるようになってしまいました。
-なんでだろう？と思いながら以下のような分岐を作ってみましたが、結果は変わらずでした。
-# 一旦プロトコルはhttpとしておく RewriteRule .* - [E=X_PRTCL:http] # リクエストプロトコルがhttpsの場合、リダイレクト先もhttpsにする RewriteCond %{HTTPS} on RewriteRule .* - [E=X_PRTCL:https] RewriteRule ^(.*)index.html$ %{ENV:X_PRTCL}://%{HTTP_HOST}/$1 [R=301,L] なぜ443ポート(https)の通信が80ポート(http)扱いになってしまったかというと
-本番環境のEC2はELBを通しているのが原因でした。
-つまり、検証環境では
-PC ↓443ポート EC2 だったのに対して、本番環境では
-PC ↓443ポート ELB ↓80ポート EC2 となっていたのでした。
-ELBを経由した場合、HTTPプロトコルを判定するにはX-Forwarded-Protoというパラメータを見る必要があるようです。
-https://docs.aws.amazon.com/ja_jp/elasticloadbalancing/latest/classic/x-forwarded-headers.html以下のようにhtaccessへ記載すればELB経由でも上手く動きました
-# 一旦プロトコルはhttpとしておく RewriteRule .* - [E=X_PRTCL:http] # リクエストプロトコルがhttpsの場合、リダイレクト先もhttpsにする RewriteCond %{HTTPS} on [OR] # ELBを経由しない時用 RewriteCond %{HTTP:X-Forwarded-Proto} https # ELBを経由する時用 RewriteRule .</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/1423/</guid>
+      <description>■環境AWS ELBAWS EC2Apache 2.2.32AWSのEC2上で動いているApacheサーバーでの話。SEO対策で&amp;hellip;</description>
     </item>
     
     <item>
       <title>Apacheのevent MPMのチューニング</title>
-      <link>/posts/wp/1363/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/1363/</link>
       <pubDate>Sat, 26 May 2018 11:28:56 +0000</pubDate>
       
-      <guid>/posts/wp/1363/</guid>
-      <description>preforkからeventに乗り換えるとチューニングの考え方が少し変わるので簡単にメモ。
-event MPMではまずApacheの子プロセス（以下プロセス）が複数生成され、
-さらに各プロセスの中にWorker Thread（以下スレッド）が複数生成されるイメージ。
-設定値の意味は以下のようになる
-&amp;lt;IfModule mpm_event_module&amp;gt; ServerLimit 8 #プロセス数の最大値 StartServers 3 #プロセス数の初期値 MinSpareThreads 192 #空きスレッド数の最小値(下回ったら増やす) MaxSpareThreads 384 #空きスレッド数の最大値(上回ったら減らす) ThreadsPerChild 64 #プロセスあたりのスレッド数 MaxRequestWorkers 512 #同時に処理できる最大数 MaxConnectionsPerChild 5000 #プロセスが再起動までに処理するリクエスト数 &amp;lt;/IfModule&amp;gt;  MaxRequestWorkersは最大スレッド数(ServerLimit×ThreadsPerChild)以下にしておくこと。
-スレッド数以上のリクエストが来ると困る。 MinSpareThreadsは初期スレッド数(StartServers×ThreadsPerChild)以下にしておくこと。
-初期スレッド数以上の空きスレッドが必要だと、起動直後にスレッド追加しなければならなくて無駄。 MinSpareThreadsとMaxSpareThreadsはThreadsPerChildの倍数になっていた方が良さそう。  </description>
+      <guid>https://blog2.logical-dice.com/posts/wp/1363/</guid>
+      <description>preforkからeventに乗り換えるとチューニングの考え方が少し変わるので簡単にメモ。event MPMではまずApache&amp;hellip;</description>
     </item>
     
     <item>
       <title>【CentOS &#43; Apache】Let’s Encryptで無料SSL証明書の取得＆自動更新をする</title>
-      <link>/posts/wp/355/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/355/</link>
       <pubDate>Wed, 18 Jan 2017 00:51:55 +0000</pubDate>
       
-      <guid>/posts/wp/355/</guid>
-      <description>■環境 CentOS 7.3
-Apache 2.4.6
- Let&amp;rsquo;s Encryptで無料SSL証明書を取得し、自動更新する設定をします。
-########## 2017/04/05追記 ##########
-Certbotというツールが公開されており、
-本手順を実施するよりも、そちらを利用した方が簡単です。
-https://certbot.eff.org設定方法はこちら
-【Let&amp;rsquo;sEncrypt】Certbotの使い方(CentOS7 + nginx)################################
-■前提 対象サーバがインターネット網に公開しているサーバであること。
-→証明書発行時に認証のためLet&amp;rsquo;s Encrypt側からアクセスがあるようです。
-そのため、ファイアーウォールなどで外部からのアクセスを遮断している環境では証明書発行ができません。
-2017/1/19現在、アクセス時のIPアドレスも公開しておりません。
-https://letsencrypt.jp/faq/#IP設定手順 ※以下手順はroot権限で実施しています。
-まず、サーバー上の任意のディレクトリにLet&amp;rsquo;s Encryptから証明書を取得するツールをダウンロードします。
-サーバにgitが入っていない場合は、ローカルでダウンロードしたものをFTPなどでアップしても良いと思います。
-# git clone https://github.com/letsencrypt/letsencrypt ダウンロードしたら、ツールの初期構築をします。
-以下コマンドにて必要なソフトウェアのインストールなどが走り、完了したらletsencrypt-autoのヘルプが表示されます。
-# cd letsencrypt # ./letsencrypt-auto --help --debug 次にツールを実行し、実際に証明書を取得します。
-その際、４４３ポートを利用しているプロセスがあるとエラーとなるので、この瞬間はApacheを止める必要がありました。
-# systemctl stop httpd # ./letsencrypt-auto certonly --standalone -d your-domain.com # systemctl start httpd ※上記の「your-domain.com」には証明書を生成するドメインを入力してください。
-これで証明書が生成できました。
-以下のディレクトリ配下に証明書や秘密鍵（のシンボリックリンク）が生成されているので、
-Apacheの設定ファイルへ記載します。
-■生成されるディレクトリ
-/etc/letsencrypt/live/your-domain.com/ ■生成されるファイル
-cert.pem　：　SSL証明書本体 chain.pem　：　チェイン証明書 fullchain.</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/355/</guid>
+      <description>■環境CentOS 7.3Apache 2.4.6Let&amp;rsquo;s Encryptで無料SSL証明書を取得し、自動更新する設定をします&amp;hellip;</description>
     </item>
     
     <item>
       <title>Apacheのセキュリティ設定</title>
-      <link>/posts/wp/302/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/302/</link>
       <pubDate>Wed, 12 Oct 2016 13:40:02 +0000</pubDate>
       
-      <guid>/posts/wp/302/</guid>
-      <description>Apacheはデフォルト設定のまま利用するとサーバーの情報が諸々見えてしまいます。
-それらを隠すには設定ファイルを編集する必要があります。
-修正ファイル：/etc/httpd/conf/httpd.conf
-①ファイル一覧を表示しないようにする 公開ディレクトリにindex.html等の初期表示ファイルが存在しない場合
-そのディレクトリのURLを指定するとファイル一覧が表示されてしまいます。
-それを防ぐためには以下のIndexesにハイフンを付けます。
-&amp;lt;Directory &amp;quot;/var/www/html&amp;quot;&amp;gt; 〜省略〜 # Options Indexes FollowSymLinks Options -Indexes FollowSymLinks 〜省略〜 &amp;lt;/Directory&amp;gt; ①エラー画面にてバージョン番号だけ隠す場合 ServerTokensを「OS」から「Prod」に変更するだけです
-# ServerTokens OS ServerTokens Prod ②エラー画面にて『Apache』という表示を隠す場合 ServerSignatureを「On」から「Off」に変更するだけです
-# ServerSignature On ServerSignature Off </description>
+      <guid>https://blog2.logical-dice.com/posts/wp/302/</guid>
+      <description>Apacheはデフォルト設定のまま利用するとサーバーの情報が諸々見えてしまいます。それらを隠すには設定ファイルを編集する必要があ&amp;hellip;</description>
     </item>
     
     <item>
       <title>【Apache】htaccessのRewriteでGETパラメータも残す</title>
-      <link>/posts/wp/249/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/249/</link>
       <pubDate>Thu, 26 May 2016 19:56:46 +0000</pubDate>
       
-      <guid>/posts/wp/249/</guid>
-      <description>nginxが台頭してきている今日この頃。Apacheの話です。
-少しハマったのでメモします。
-■環境
-CentOS 6.6
-httpd 2.2.15
-htaccessにてリダイレクト処理を記載する際、
-以下のように書くとGETパラメータがリダイレクト時に落ちてしまいます。
-RewriteEngine on} RewriteBase / RewriteRule ^api.php(.*)$ api2.php$1 例えば、このまま「https://sample.com/api.php?name=tanaka」にアクセスすると
-リダイレクト後は「https://sample.com/api2.php」となってしまいます。
-RewriteでGETパラメータを扱いたい場合は、『RewriteCond』を使って以下のように記載します。
-RewriteEngine on RewriteBase / RewriteCond %{QUERY_STRING} (.*)$ RewriteRule ^api.php$ api2.php?%1 これで「https://sample.com/api.php?name=tanaka」にアクセスすると
-リダイレクト後は「https://sample.com/api2.php?name=tanaka」となります。
-※RewriteRuleの右側「$1」ではなく「%1」です。間違えないように。
-何が起こっているかというと、RewriteCondの『QUERY_STRING』で指定した正規表現に一致する
-GETパラメータが%変数に格納されているようです。
-例えば以下のような記載もできます。
-RewriteEngine on RewriteBase / RewriteCond %{QUERY_STRING} name=(.*)$ RewriteRule ^api.php$ api2.php?onamae=%1 これで「https://sample.com/api.php?name=tanaka」にアクセスすると
-リダイレクト後は「https://sample.com/api2.php?onamae=tanaka」となります。
-正規表現で複数パラメータを取ることも可能なので、
-RewriteCond %{QUERY_STRING} param1=([a-z]+)&amp;amp;amp;param2=([a-z]+)&amp;amp;amp;param3=([a-z]+)$ と記載すれば、param1は「%1」、param2は「%2」、param3は「%3」で取得できます。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/249/</guid>
+      <description>nginxが台頭してきている今日この頃。Apacheの話です。少しハマったのでメモします。■環境CentOS 6.6httpd &amp;hellip;</description>
     </item>
     
     <item>
       <title>ダイジェスト認証の設定方法</title>
-      <link>/posts/wp/164/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/164/</link>
       <pubDate>Wed, 20 Jan 2016 21:30:56 +0000</pubDate>
       
-      <guid>/posts/wp/164/</guid>
-      <description>Apacheで動いているWEBサーバにて、ダイジェスト認証を入れる方法です。
-■環境
-CentOS Linux release 7.2.1511 (Core)
-Apache/2.4.6
-Apacheがダイジェスト認証に対応しているか確認します。
-以下のコマンドにて結果が出力されれば対応しています。
-# grep digest /etc/httpd/conf.modules.d/ -r conf.modules.d/00-base.conf:LoadModule auth_digest_module modules/mod_auth_digest.so ダイジェスト認証用のIDとパスワードのセットを作成します。
-下記の「Sample Auth」は認証名で「sampleuser」は設定するIDです。適宜書き換えてください。
-また「/etc/httpd/conf/.hpass」が生成されるファイルですが、パスもファイル名も任意です。
-# htdigest -c /etc/httpd/conf/.htpass ’Sample Auth&#39; sampleuser Adding password for sampleuser in realm Logical Dice Auth. New password:　←設定するパスワードを入力する Re-type new password:　←設定するパスワードを再度入力する あとはApacheの設定ファイルにて設定をします。
-以下の例では「/var/www/html/sample」配下のコンテンツにWEBブラウザにてアクセスした際に
-ダイジェスト認証が表示されるようになります。
-下記のAuthUserFileは上記で生成したファイルを指定してください。
-&amp;lt;Location &amp;quot;/sample/&amp;quot;&amp;gt; AuthType Digest AuthName “Sample Auth&amp;quot; AuthUserFile &amp;quot;/etc/httpd/conf/.htpass&amp;quot; Require valid-user &amp;lt;/Location&amp;gt; これでApacheの設定ファイル再読み込み（再起動）をすればダイジェスト認証がかかるようになります。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/164/</guid>
+      <description>Apacheで動いているWEBサーバにて、ダイジェスト認証を入れる方法です。■環境CentOS Linux release 7&amp;hellip;.</description>
     </item>
     
     <item>
       <title>COMODOのSSL証明書をApacheに設定する方法</title>
-      <link>/posts/wp/120/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/120/</link>
       <pubDate>Tue, 20 Oct 2015 20:25:57 +0000</pubDate>
       
-      <guid>/posts/wp/120/</guid>
-      <description>COMODOの証明書を購入した後の設定が複雑だったので、まとめました。
-購入手順についてはSSL購入サイトを見れば分かると思うので割愛します。
-■環境
-CentOS 7.1.1503
-httpd 2.4.6-31.el7.centos.1
-mod_ssl 1:2.4.6-31.el7.centos.1
-openssl 1:1.0.1e-42.el7.9
-■必要なもの
-証明書購入時に作成した秘密鍵（yourdomain_com.keyとする）
-証明書購入後にメールで送られてきた証明書たち
-・yourdomain_com.crt
-・COMODORSADomainValidationSecureServerCA.crt
-・COMODORSAAddTrustCA.crt
-・AddTrustExternalCARoot.crt
-まず、上記必要なもの全てを設定するサーバにアップロードしておきます。
-場所はどこでも良いのですが、本例では「/etc/pki/comodo/」配下に格納したとします。
-そして、メールで送られてきた証明書のうち自分のドメイン名がファイル名に入っていない３つを連結します。
-連結は以下のコマンドで実施できます。連結する順番は以下順を守ってください。
-なお、連結後のファイル名（以下例ではyourdomain_com.ca_bundle）は任意です。
-# cat COMODORSADomainValidationSecureServerCA.crt COMODORSAAddTrustCA.crt AddTrustExternalCARoot.crt &amp;gt; yourdomain_com.ca_bundle ApacheのSSL設定ファイルを編集し、以下の行を修正します。
-(/etc/httpd/conf.d/ssl.conf)
-SSLCertificateFile /etc/pki/comodo/yourdomain_com.crt SSLCertificateKeyFile /etc/pki/comodo/yourdomain_com.key SSLCertificateChainFile /etc/pki/comodo/yourdomain_com.ca_bundle Apacheの設定を再読み込みします。
-# systemctl reload httpd これでSSLの設定が反映されるはずです。
-もし駄目だったら、Apacheの再起動をしてみてください。
-# systemctl restart httpd </description>
+      <guid>https://blog2.logical-dice.com/posts/wp/120/</guid>
+      <description>COMODOの証明書を購入した後の設定が複雑だったので、まとめました。購入手順についてはSSL購入サイトを見れば分かると思うので&amp;hellip;</description>
     </item>
     
   </channel>

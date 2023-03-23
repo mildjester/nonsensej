@@ -1,412 +1,190 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>CentOS on Nonsense J</title>
-    <link>/tags/centos/</link>
-    <description>Recent content in CentOS on Nonsense J</description>
+    <title>CentOS on Logical Dice 技術ブログ</title>
+    <link>https://blog2.logical-dice.com/tags/centos/</link>
+    <description>Recent content in CentOS on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Tue, 22 May 2018 10:14:55 +0000</lastBuildDate><atom:link href="/tags/centos/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 22 May 2018 10:14:55 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/centos/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux環境のタイムゾーンを日本にする</title>
-      <link>/posts/wp/1360/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/1360/</link>
       <pubDate>Tue, 22 May 2018 10:14:55 +0000</pubDate>
       
-      <guid>/posts/wp/1360/</guid>
-      <description>このコマンドを実行するだけ
-sudo ln -fs /usr/share/zoneinfo/Asia/Tokyo /etc/localtime </description>
+      <guid>https://blog2.logical-dice.com/posts/wp/1360/</guid>
+      <description>このコマンドを実行するだけsudo ln -fs /usr/share/zoneinfo/Asia/Tokyo /etc/loc&amp;hellip;</description>
     </item>
     
     <item>
       <title>【CentOS】OpenVPN &amp; LDAPでVPNサーバ構築</title>
-      <link>/posts/wp/942/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/942/</link>
       <pubDate>Wed, 20 Dec 2017 16:12:33 +0000</pubDate>
       
-      <guid>/posts/wp/942/</guid>
-      <description>環境 CentOS 7.4 OpenVPN 2.4.4
-参考サイト ServerWorldさん：https://www.server-world.info/query?os=CentOS_7&amp;amp;amp;p=openvpncloudpackさん：https://cloudpack.media/73※前提条件 LDAPサーバは既に構築済みとします
- サーバ作業手順 ■インストール 必要なものをインストールします。
-yum --enablerepo=epel install openvpn openvpn-auth-ldap easy-rsa net-tools bridge-utils ■各種証明書生成 easy-rsaのディレクトリに移動し、各種証明書を生成します。
-cd /usr/share/easy-rsa/2.0 CA 証明書 まず、varsファイルを修正します。
-vim vars 内容は以下の通りです。(コメント行・空行は除外しています)
-export EASY_RSA=&amp;quot;`pwd`&amp;quot; export OPENSSL=&amp;quot;openssl&amp;quot; export PKCS11TOOL=&amp;quot;pkcs11-tool&amp;quot; export GREP=&amp;quot;grep&amp;quot; export KEY_CONFIG=`$EASY_RSA/whichopensslcnf $EASY_RSA` export KEY_DIR=&amp;quot;$EASY_RSA/keys&amp;quot; export PKCS11_MODULE_PATH=&amp;quot;dummy&amp;quot; export PKCS11_PIN=&amp;quot;dummy&amp;quot; export KEY_SIZE=2048 export CA_EXPIRE=3650 export KEY_EXPIRE=3650 export KEY_COUNTRY=&amp;quot;JP&amp;quot; #国 export KEY_PROVINCE=&amp;quot;Tokyo&amp;quot; #都道府県 export KEY_CITY=&amp;quot;Shibuya-ku&amp;quot; #市区町村 export KEY_ORG=&amp;quot;AAA-Company&amp;quot; #組織名 export KEY_EMAIL=&amp;quot;fooo@aaa.com&amp;quot; #メールアドレス export KEY_OU=&amp;quot;BTeam&amp;quot; #チーム名など（任意） export KEY_NAME=&amp;quot;EasyRSA&amp;quot; CA証明書を生成します。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/942/</guid>
+      <description>環境CentOS 7.4OpenVPN 2.4.4参考サイトServerWorldさん：https://www.server-w&amp;hellip;</description>
     </item>
     
     <item>
       <title>【CentOS】侵入検知したらSlack通知する</title>
-      <link>/posts/wp/853/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/853/</link>
       <pubDate>Tue, 12 Dec 2017 00:30:31 +0000</pubDate>
       
-      <guid>/posts/wp/853/</guid>
-      <description>■環境 CentOS 7.4
-AIDE 0.15.1
- AIDEという侵入検知ツールを導入し、検査結果をSlackに通知するようにします。
-AIDEインストール yum install -y aide AIDE設定 vim /etc/aide.conf 95行目辺りより監視対象ディレクトリの設定があります。 設定値の記載方法は以下の通り。
-/{DIR_PATH}/ {CHECK_METHOD} #監視対象に含める !/{DIR_PATH}/ #監視対象から除外する 上記の『DIR_PATH』の部分に対象のディレクトリパスを記載し、 『CHECK_METHOD』に監視方法を記載します。
-監視方法については本設定ファイルの９５行目以前に記載があるので、そちらを参照してください。 とりあえずAIDE 0.15.1では「CONTENT_EX」にしておくのが無難そうです。
-監視対象の設定が完了したら、AIDEのデータベースを初期化します。 ※以下コマンド実行後、結構待ちます。
-aide -i 自動監視設定 AIDEでスキャンを実行し、結果をSlack通知するスクリプトを作成します。 仮に、/opt/aide_scan.shという名前で作るとします。
-vim /opt/aide_scan.sh シェルスクリプトの中身は以下のようにします。
-#!/bin/bash set +e ##### Settings ## AIDE LOGFILE=&amp;quot;/var/log/aide/aide.log&amp;quot; AIDEDIR=&amp;quot;/var/lib/aide&amp;quot; ## Slack URL=&amp;quot;https://hooks.slack.com/services/AAAAAAAA/BBBBBBBB/CCCCCCCC&amp;quot; TO=&amp;quot;#aide&amp;quot; EMOJI=&amp;quot;:cop:&amp;quot; NAME=&amp;quot;AIDE-COP&amp;quot; ##### Run AIDE Scan /usr/sbin/aide -u &amp;gt; $LOGFILE cp $AIDEDIR/aide.db.new.gz $AIDEDIR/aide.db.gz x=$(grep &amp;quot;Looks okay&amp;quot; $LOGFILE | wc -l) if [ $x -eq 1 ]; then MSG=&amp;quot;OKだよ&amp;quot; else MSG=&amp;quot;侵入検知！詳細は[${LOGFILE}]を見てね&amp;quot; fi ##### Send To Slack payload=&amp;quot;payload={\&amp;quot;channel\&amp;quot;: \&amp;quot;${TO//\&amp;quot;/\\\&amp;quot;}\&amp;quot;, \&amp;quot;username\&amp;quot;: \&amp;quot;${NAME//\&amp;quot;/\\\&amp;quot;}\&amp;quot;, \&amp;quot;text\&amp;quot;: \&amp;quot;${MSG//\&amp;quot;/\\\&amp;quot;}\&amp;quot;, \&amp;quot;icon_emoji\&amp;quot;: \&amp;quot;${EMOJI}\&amp;quot;}&amp;quot; curl -m 30 --data-urlencode &amp;quot;${payload}&amp;quot; $URL -A &#39;zabbix-slack-alertscript / https://github.</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/853/</guid>
+      <description>■環境CentOS 7.4AIDE 0.15.1AIDEという侵入検知ツールを導入し、検査結果をSlackに通知するようにします&amp;hellip;</description>
     </item>
     
     <item>
       <title>Vue.js &#43; foreverでのアプリ起動</title>
-      <link>/posts/wp/674/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/674/</link>
       <pubDate>Mon, 31 Jul 2017 01:32:53 +0000</pubDate>
       
-      <guid>/posts/wp/674/</guid>
-      <description>■環境 CentOS 7.3 npm 3.10.10
- =====2017/12/27追記=====
-久しぶりに本手順を試したところ、 vueプロジェクト内にbuild/dev-server.jsが存在しておらず foreverでの起動ができなくなっていました。 公式にならってnpm startコマンドなどで起動した方が良いかと思われます。 ===追記ここまで=====
-■手順 npmとnodejsが入っていない場合は、yumでインストールします
-yum install npm nodejs vueアプリを簡単に導入できるツール「vue-cli」と nodeアプリをデーモン的に起動できる「forever」をインストールします ※これらはグローバル領域にインストールするので「-g」オプションをつけます
-npm install -g vue-cli forever プロジェクトディレクトリを作成します プロジェクトを作成したいディレクトリで以下を実行します
-vue init webpack samplevue ※「samplevue」は作成したいディレクトリ名 上記実行後に色々質問をされるので、作りたい環境に合わせて回答します 以下は回答例です
-? Project name samplevue ? Project description This is Sample ? Author Djiro ? Vue build standalone ? Install vue-router? Yes ? Use ESLint to lint your code? No ? Set up unit tests No ?</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/674/</guid>
+      <description>■環境CentOS 7.3npm 3.10.10=====2017/12/27追記=====久しぶりに本手順を試したところ、vu&amp;hellip;</description>
     </item>
     
     <item>
       <title>【Let&#39;sEncrypt】Certbotの使い方(CentOS7 &#43; nginx)</title>
-      <link>/posts/wp/656/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/656/</link>
       <pubDate>Mon, 12 Jun 2017 17:17:21 +0000</pubDate>
       
-      <guid>/posts/wp/656/</guid>
-      <description>■環境 CentOS 7.3 nginx 1.10.3 certbot 0.14.1
- ■初回SSL証明書発行 certbotをインストールする。
-yum -y install yum-utils yum install certbot # もしCentOS6系やAWS　EC2にてcertbotをインストールする場合は以下手順となります。 curl https://dl.eff.org/certbot-auto -o /usr/bin/certbot-auto chmod 700 /usr/bin/certbot-auto ln -s /usr/bin/certbot-auto /usr/bin/certbot # certbot-autoのまま使っても良いですが、後述の手順と整合性を合わせるために # シンボリックリンクを作っています。 証明書を発行する
-certbot certonly --webroot -w /usr/share/nginx/html -d your-domain.com ※上記コマンドは環境に合わせて読み替えてください。
-/usr/share/nginx/html
-→設定するドメインのドキュメントルート
-your-domain.com
-→設定するドメイン
-【補足】 2017年11月現在、AWS　EC2では上記コマンドに&amp;ndash;debugオプションが必要でした。 調べてみるとEC2でも「&amp;ndash;debug」は不要になったと書いてあるページがあったりするので 環境による（？）のかもしれません。これで証明書が以下ディレクトリに生成されます。
-ll /etc/letsencrypt/live/your-domain.com/ lrwxrwxrwx 1 root root 40 Jun 12 16:41 cert.pem -&amp;gt; ../../archive/your-domain.com/cert1.pem lrwxrwxrwx 1 root root 41 Jun 12 16:41 chain.</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/656/</guid>
+      <description>■環境CentOS 7.3nginx 1.10.3certbot 0.14.1■初回SSL証明書発行certbotをインストール&amp;hellip;</description>
     </item>
     
     <item>
       <title>CentOS7のネットワーク周り初期設定</title>
-      <link>/posts/wp/629/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/629/</link>
       <pubDate>Tue, 02 May 2017 15:01:15 +0000</pubDate>
       
-      <guid>/posts/wp/629/</guid>
-      <description>■環境 CentOS 7.3
- bonding設定 参考URL：https://bacchi.me/linux/bonding/現状確認しておきます。
-nmcli c ip a bonding用インターフェースを追加します。
-nmcli connection add type bond autoconnect no con-name bond0 ifname bond0 mode active-backup 物理インターフェースをbondに紐付けます
-nmcli connection add type bond-slave autoconnect no ifname eno1 master bond0 nmcli connection add type bond-slave autoconnect no ifname eno2 master bond0 bondにIPを設定します。
-nmcli c mod bond0 ipv4.method manual ipv4.address &amp;quot;192.168.999.999/32&amp;quot; ipv4.gateway &amp;quot;192.168.999.254&amp;quot; ipv6.method ignore nmcli c mod bond0 ipv4.dns 192.168.999.254 物理インターフェースを無効にし、bondインターフェースを有効にします。
-nmcli c m eno1 connection.</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/629/</guid>
+      <description>■環境CentOS 7.3bonding設定参考URL：https://bacchi.me/linux/bonding/現状確認&amp;hellip;</description>
     </item>
     
     <item>
       <title>CentOS7にfishを入れる</title>
-      <link>/posts/wp/440/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/440/</link>
       <pubDate>Fri, 17 Feb 2017 00:00:18 +0000</pubDate>
       
-      <guid>/posts/wp/440/</guid>
-      <description>最近人気らしいfishを試しに入れてみました。
-■環境 CentOS 7.3
-fish 2.3.1
-epelリポジトリが入っていない人はインストールします。
-yum -y install epel-release fishをyumでインストールします。
-yum -y install fish 今だけfishを使う場合は、コマンドでそのままfishと打ちます。
-fish 恒久的にfishを使いたい場合はchshしておきます。
-chsh -s /usr/bin/fish　｛ユーザ名｝  これでfishが使えるようになりました。
- 〜参考〜 CentOS6.X系の場合は以下でfishのインストールできるようです。
-wget -P /etc/yum.repos.d/ http://download.opensuse.org/repositories/shells:fish:release:2/CentOS_6/shells:fish:release:2.repo yum -y install fish  【oh-my-fishインストール】 ついでにoh-my-fishもインストールします。
-CentOS7でyumインストールできるgitのバージョンは1.8系(2017年4月現在)なのですが、
-oh-my-fishのインストールにはgit 1.9.5以上が必要なので
-ソースからコンパイルします。
-ソースからコンパイルする際に必要なものをインストールします。
-私の環境では以下でしたが、ここは各環境に合わせてインストールしてください。
-ソースからコンパイルする方法を調べれば出てくると思います。
-yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel perl-ExtUtils-MakeMaker autoconf gettext gcc ソースコードをダウンロードしてきます
-cd /tmp/ wget https://www.kernel.org/pub/software/scm/git/git-2.9.3.tar.gz tar xzf git-2.9.3.tar.gz ※最新のソースは以下で確認
-https://www.kernel.org/pub/software/scm/git/gitをインストールします。
-configureのオプション「&amp;ndash;with-curl」を付けないと、oh-my-fishインストール時にコケます。
-cd git-2.9.3 make configure .</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/440/</guid>
+      <description>最近人気らしいfishを試しに入れてみました。■環境CentOS 7.3fish 2.3.1epelリポジトリが入っていない人は&amp;hellip;</description>
     </item>
     
     <item>
       <title>CentOS 7.3にzabbix 3.2をインストール</title>
-      <link>/posts/wp/349/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/349/</link>
       <pubDate>Tue, 14 Feb 2017 00:20:50 +0000</pubDate>
       
-      <guid>/posts/wp/349/</guid>
-      <description>■環境 CentOS 7.3
-zabbix 3.2
-PHP 7.1
-MySQL 14.14
-Apache 2.4
- ①zabbixをyumでインストールするためのリポジトリをインストール
-# yum install http://repo.zabbix.com/zabbix/3.2/rhel/7/x86_64/zabbix-release-3.2-1.el7.noarch.rpm ②zabbixの本体をインストール
-# yum install \ zabbix-server-mysql \ zabbix-web-mysql \ zabbix-web \ zabbix-agent \ zabbix-get \ zabbix-sender \ zabbix-web-japanese ※MySQLではなくPostgreSQLを使う場合は、上記の『mysql』を『pgsql』にするだけです。
-③MySQLの設定
-# mysql mysql&amp;gt; CREATE USER &#39;zabbix&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;zabbixpassword&#39;; mysql&amp;gt; CREATE DATABASE zabbix CHARACTER SET utf8; mysql&amp;gt; GRANT ALL ON zabbix.* to &#39;zabbix&#39;@&#39;localhost&#39;; mysql&amp;gt; quit # zcat /usr/share/doc/zabbix-server-mysql-3.2.1/create.sql.gz | mysql -uroot zabbix パスワードは任意のものを入れてください。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/349/</guid>
+      <description>■環境CentOS 7.3zabbix 3.2PHP 7.1MySQL 14.14Apache 2.4①zabbixをyumでイ&amp;hellip;</description>
     </item>
     
     <item>
       <title>【CentOS &#43; Apache】Let’s Encryptで無料SSL証明書の取得＆自動更新をする</title>
-      <link>/posts/wp/355/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/355/</link>
       <pubDate>Wed, 18 Jan 2017 00:51:55 +0000</pubDate>
       
-      <guid>/posts/wp/355/</guid>
-      <description>■環境 CentOS 7.3
-Apache 2.4.6
- Let&amp;rsquo;s Encryptで無料SSL証明書を取得し、自動更新する設定をします。
-########## 2017/04/05追記 ##########
-Certbotというツールが公開されており、
-本手順を実施するよりも、そちらを利用した方が簡単です。
-https://certbot.eff.org設定方法はこちら
-【Let&amp;rsquo;sEncrypt】Certbotの使い方(CentOS7 + nginx)################################
-■前提 対象サーバがインターネット網に公開しているサーバであること。
-→証明書発行時に認証のためLet&amp;rsquo;s Encrypt側からアクセスがあるようです。
-そのため、ファイアーウォールなどで外部からのアクセスを遮断している環境では証明書発行ができません。
-2017/1/19現在、アクセス時のIPアドレスも公開しておりません。
-https://letsencrypt.jp/faq/#IP設定手順 ※以下手順はroot権限で実施しています。
-まず、サーバー上の任意のディレクトリにLet&amp;rsquo;s Encryptから証明書を取得するツールをダウンロードします。
-サーバにgitが入っていない場合は、ローカルでダウンロードしたものをFTPなどでアップしても良いと思います。
-# git clone https://github.com/letsencrypt/letsencrypt ダウンロードしたら、ツールの初期構築をします。
-以下コマンドにて必要なソフトウェアのインストールなどが走り、完了したらletsencrypt-autoのヘルプが表示されます。
-# cd letsencrypt # ./letsencrypt-auto --help --debug 次にツールを実行し、実際に証明書を取得します。
-その際、４４３ポートを利用しているプロセスがあるとエラーとなるので、この瞬間はApacheを止める必要がありました。
-# systemctl stop httpd # ./letsencrypt-auto certonly --standalone -d your-domain.com # systemctl start httpd ※上記の「your-domain.com」には証明書を生成するドメインを入力してください。
-これで証明書が生成できました。
-以下のディレクトリ配下に証明書や秘密鍵（のシンボリックリンク）が生成されているので、
-Apacheの設定ファイルへ記載します。
-■生成されるディレクトリ
-/etc/letsencrypt/live/your-domain.com/ ■生成されるファイル
-cert.pem　：　SSL証明書本体 chain.pem　：　チェイン証明書 fullchain.</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/355/</guid>
+      <description>■環境CentOS 7.3Apache 2.4.6Let&amp;rsquo;s Encryptで無料SSL証明書を取得し、自動更新する設定をします&amp;hellip;</description>
     </item>
     
     <item>
       <title>HP Proliant Microserver Gen 8 にCentOS7を入れる</title>
-      <link>/posts/wp/318/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/318/</link>
       <pubDate>Thu, 01 Dec 2016 13:29:48 +0000</pubDate>
       
-      <guid>/posts/wp/318/</guid>
-      <description>■作業環境 ・OS X El Capitan 10.11.6
- ■手順 CentOS7の準備 まず、CentOSのISOイメージをダウンロードします。
-ここから『Everything ISO』をダウンロードしておきます。
-https://www.centos.org/download/ダウンロードしたISOをUSBメモリに起動可能USBとして焼きます。
-1.USBをMacに挿す。
-2.以下コマンドにてUSBメモリのdisk番号を確認する。
-$ diskutil list 3.以下のコマンドにてUSBメモリを初期化する。
-$ diskutil eraseDisk MS-DOS NOTITLE /dev/diskX ※「NOTITLE」作成するUSB名(任意) ※diskXは1.で確認したdisk番号 4.焼き込みをするため、USBメモリをアンマウント
-$ diskutil unmountDisk /dev/diskX 5.ISOを書き込む。
-$ cd {CentOSのISOがある場所} $ sudo dd if=CentOS-7-x86_64-Everything-1511.iso of=/dev/diskX bs=4028 ※処理完了まで、かなり待ちます 6.USBメモリを取り外し可能状態にする。
-$ diskutil eject /dev/diskX RAIDコントローラの準備 次にGen8用のRAIDコントローラをダウンロードします。
-これがないとHPサーバが備えているのRAID機能が使えない。
-http://downloads.linux.hpe.com/SDR/repo/spp/RedHat/7/x86_64/current/ここから「hpvsa-1.2.14-113.rhel7u2.x86_64.dd.gz」をダウンロードします。
-※『rhel7u2』の部分はインストールするCentOSに合わせて読み替えてください。
-ダウンロードしたら、CentOSを焼いたUSBメモリとは別のUSBメモリに焼きます。
-MacはUSBメモリを挿すと自動でマウントするので、ディスクユーティリティからマウント解除して
-以下コマンドを実施。
-（先にUSBの初期化〜アンマウントはISO書き込みと同じ手順を実施）
-$ cd {RAIDドライバをダウンロードした場所} $ gunzip hpvsa-1.2.14-113.rhel7u2.x86_64.dd.gz $ sudo dd if=hpvsa-1.2.14-113.rhel7u2.x86_64.dd of=/dev/diskX $ diskutil eject /dev/diskX インストール実施 作成したUSBメモリ２本をサーバに刺し、サーバを起動します。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/318/</guid>
+      <description>■作業環境・OS X El Capitan 10.11.6 ■手順CentOS7の準備まず、CentOSのISOイメー&amp;hellip;</description>
     </item>
     
     <item>
       <title>【DNSサーバ】BINDからNSDへの移行</title>
-      <link>/posts/wp/311/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/311/</link>
       <pubDate>Tue, 25 Oct 2016 11:21:04 +0000</pubDate>
       
-      <guid>/posts/wp/311/</guid>
-      <description>社内利用のDNSをBIND作っていたのですが、
-BINDは脆弱性が頻繁に発見されるし、DNSキャッシュ機能は要らなかったので
-NSDに切り替えました。
-■環境
-CentOS 6.5
-NSD 4.1.13
-(参考：切替え前)BIND 9.8.2
-まず、yumにepelリポジトリが設定されていない場合はインストールします。
-# yum install epel-release.noarch NSDをインストールします。
-# yum install nsd --enablerepo=epel NSD設定ファイルの最下行にzoneファイルを設定します。
-# vim /etc/nsd/nsd.conf 〜最下行に以下を追記〜 zone: name: sample.co.jp zonefile: sample.co.jp.zone BINDで利用していたzoneファイルをコピーします
-# cp {BINDのzoneファイル} /etc/nsd/sample.co.jp.zone ※補足
-調べているとNSDはrebuildコマンドにてzoneファイルからdbファイルを
-生成しなければいけないという記事がありましたが、　私の環境では不要でした。
-（むしろ、rebuildコマンドがありませんでした）
-BINDを停止します。
-# service named stop NSDを起動します。
-# service nsd start </description>
+      <guid>https://blog2.logical-dice.com/posts/wp/311/</guid>
+      <description>社内利用のDNSをBIND作っていたのですが、BINDは脆弱性が頻繁に発見されるし、DNSキャッシュ機能は要らなかったのでNSD&amp;hellip;</description>
     </item>
     
     <item>
       <title>Linuxサーバに秘密鍵方式でsshする</title>
-      <link>/posts/wp/274/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/274/</link>
       <pubDate>Mon, 01 Aug 2016 00:27:04 +0000</pubDate>
       
-      <guid>/posts/wp/274/</guid>
-      <description>■環境 CentOS 7.2
- ■手順 ①秘密鍵と公開鍵を生成
-ローカルPCにて以下を実施します。
-MacでもLinuxでも同じコマンドで生成できるはずです。
-$ ssh-keygen -t rsa -b 4096 Generating public/private rsa key pair. Enter file in which to save the key (/Users/hoge/.ssh/id_rsa): =&amp;gt;生成するパスとファイル名を指定（空欄のままだと括弧内のファイル名で生成される) Enter passphrase (empty for no passphrase): =&amp;gt;生成する鍵のパスワード。不要なら空欄のままエンター Enter same passphrase again: =&amp;gt;鍵のパスワードの再入力 生成した秘密鍵と同ディレクトリに公開鍵(拡張子pub)も生成されているので、
-catコマンドで中身を見ておく。(後ほど使うのでコピーしておくと良い)
-②公開鍵をサーバに格納
-ログイン先サーバにて以下を実施
-$ mkdir ~/.ssh $ vim ~/.ssh/authorized_keys この「authorized_keys」に①で生成した公開鍵の中身を貼り付ける。
-以上で秘密鍵認証でログインできるようになっている。
-もし接続できなかった場合は以下設定も確認してみる。
-③【繋がらない場合のみ】sshd設定確認
-ログイン先のサーバにて以下を実施
-$ vim /etc/ssh/sshd_config 以下の設定となっているか確認
-RSAAuthentication yes PubkeyAuthentication yes AuthorizedKeysFile .ssh/authorized_keys ※上から２つはコメントアウトされていても良い</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/274/</guid>
+      <description>■環境CentOS 7.2■手順①秘密鍵と公開鍵を生成ローカルPCにて以下を実施します。MacでもLinuxでも同じコマンドで生&amp;hellip;</description>
     </item>
     
     <item>
       <title>【CentOS】cronが動かない場合のチェック</title>
-      <link>/posts/wp/202/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/202/</link>
       <pubDate>Tue, 08 Mar 2016 05:23:15 +0000</pubDate>
       
-      <guid>/posts/wp/202/</guid>
-      <description>cronが動かない時のチェック項目  ①cronのプロセス（crond）は起動しているか
-↓起動している
-②crontabの記載は正しいか
-↓正しい
-③cronでスクリプトを叩く場合、スクリプトの実行権限は適切か
-↓適切
-④/var/log/cronに何かヒントが出力されているか
-↓むしろ何も出力されていない
-⑤rsyslogプロセスは起動しているか
- docker環境でcronが動かない時に、この⑤でハマりました。
-rsyslogが起動していないとログを吐かないだけでなく、cronの実行自体されないようです。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/202/</guid>
+      <description>cronが動かない時のチェック項目 ①cronのプロセス（crond）は起動しているか↓起動している②crontabの&amp;hellip;</description>
     </item>
     
     <item>
       <title>【CentOS】php7をyumインストールする</title>
-      <link>/posts/wp/156/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/156/</link>
       <pubDate>Mon, 07 Dec 2015 23:31:02 +0000</pubDate>
       
-      <guid>/posts/wp/156/</guid>
-      <description>php7がリリースされたので、CentOS7のサーバにyumでインストールした手順です。
-■環境
-CentOS 7.1.1503
-以下コマンドを実行するだけです。
-epel導入済みであれば1行目は不要です。3行目は必要なパッケージで読み替えてください。
-rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm yum install php70w php70w-mbstring php70w-mysql php70w-pdo php70w-xml </description>
+      <guid>https://blog2.logical-dice.com/posts/wp/156/</guid>
+      <description>php7がリリースされたので、CentOS7のサーバにyumでインストールした手順です。■環境CentOS 7.1.1503以下&amp;hellip;</description>
     </item>
     
     <item>
       <title>【CentOS】ComposerにGitHubのアクセストークンを設定する</title>
-      <link>/posts/wp/147/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/147/</link>
       <pubDate>Mon, 07 Dec 2015 23:11:45 +0000</pubDate>
       
-      <guid>/posts/wp/147/</guid>
-      <description>今更ながら、ComposerにGitHubのアクセストークンを設定する方法です。
-■環境
-CentOS 7.1.1503
-GitHubのアカウントを持っていない人は作ります。特に解説は不要なはず。
-https://github.com/GitHubにログインし、右上のアイコンから「Settings」＞「Personal access tokens」からアクセストークンを作成します。
-画面を閉じるとトークンを見れなくなるので、閉じる前にメモしてください。
-Composerをインストールしていない人は以下を参照
-Composerのインストール方法以下のコマンドでComposerにGitHubのアクセストークンを設定します。
-composer config --global github-oauth.github.com ｛②で取得したアクセストークン｝ </description>
+      <guid>https://blog2.logical-dice.com/posts/wp/147/</guid>
+      <description>今更ながら、ComposerにGitHubのアクセストークンを設定する方法です。■環境CentOS 7.1.1503GitHub&amp;hellip;</description>
     </item>
     
     <item>
       <title>【CentOS】PostgreSQLの導入</title>
-      <link>/posts/wp/127/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/127/</link>
       <pubDate>Fri, 04 Dec 2015 12:59:49 +0000</pubDate>
       
-      <guid>/posts/wp/127/</guid>
-      <description>CentOSにPostgreSQLを導入した際の作業メモです。
-■環境
-CentOS release 6.6
-postgresql 8.4.20
-まずpostgreSQLをインストールし、初期化をします。
-$ su - # yum install postgresql-server # service postgresql initdb 次に外部からアクセスできるように設定をします。
-「192.168.xxx.xxx/32」の部分はDBへアクセスするホストに合わせて修正してください。
-# vi /var/lib/pgsql/data/pg_hba.conf local all all trust host all all 192.168.xxx.xxx/32 trust # vim postgresql.conf listen_addresses = ‘*’ 設定が完了したらpostgreSQLを起動します。
-# service postgresql start 次に利用するユーザとデータベースを作成します。
-# su - postgres $ psql postgres=# CREATE USER sampleUser WITH PASSWORD ’samplePass&#39;; postgres=# CREATE DATABASE sampleDB WITH OWNER=sampleUser ENCODING=&#39;UTF8&#39; TEMPLATE template0; postgres=# ¥q これで利用準備は完了です。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/127/</guid>
+      <description>CentOSにPostgreSQLを導入した際の作業メモです■環境CentOS r&amp;hellip;</description>
     </item>
     
     <item>
       <title>CentOS7のsshd設定（セキュリティ）</title>
-      <link>/posts/wp/106/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/106/</link>
       <pubDate>Mon, 19 Oct 2015 21:52:24 +0000</pubDate>
       
-      <guid>/posts/wp/106/</guid>
-      <description>サーバへのsshログインについて、以下の設定をします
-・sshポートの変更
-・ルート権限でのログインを無効化
-・ルート権限にsuできるアカウントの制限
-■環境
-CentOS 7.1.1503
-Openssh 6.6.1
-以下の設定でポート番号変更とルート権限ログインの無効化を実施します
-以下の行を修正（なければ追加）してください
-(/etc/ssh/sshd_config)
-Port 1234　※任意の番号 PermitRootLogin no 「wheel」グループのアカウントを作成します
-# useradd testuser　※任意のアカウント（既存のアカウントを使うなら不要） # usermod -g wheel -G wheel testuser 以下の設定でルート権限にsuできるグループを「wheel」に限定します
-以下の行を修正（なければ追加）してください
-(/etc/pam.d/su)
-auth required pam_wheel.so use_uid 以上で設定は完了ですが、設定をしたターミナルを閉じる前に新規ターミナルを立ち上げて
-上記wheelグループに設定したアカウントにてsshログイン＆suが出来ることを確認してください。
-確認前に設定したターミナルを閉じてしまうと、設定に失敗していた場合に最悪だとルート権限になれなくなります。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/106/</guid>
+      <description>サーバへのsshログインについて、以下の設定をします・sshポートの変更・ルート権限でのログインを無効化・ルート権限にsuできる&amp;hellip;</description>
     </item>
     
     <item>
       <title>メールドメインに「localhost」と付いてしまう</title>
-      <link>/posts/wp/40/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/40/</link>
       <pubDate>Sat, 08 Aug 2015 16:52:42 +0000</pubDate>
       
-      <guid>/posts/wp/40/</guid>
-      <description>■環境
-CentOS 7
-postfix 2.10.1
-postfixで構築したメールサーバからメールを送信した場合に
-設定は間違えていないはずなのに、送信メールのドメイン部分（@の後ろ）に「localhost」が付いてしまう時の対処法です。
-例えば、『@sample.com』で送りたいのに『@localhost.sample.com』となってしまう場合です。
-※注意
-「設定は間違えていないはず」と思っているだけで本当は何かが間違っているのだと思います。
-postfixの設定以外にも環境ファイルの設定値が悪い場合などもありますが、その調査をしていられない時の
-暫定対処だと思ってください。
-postfixの設定ファイル(/etc/postfix/main.cf)に以下の行を追加してください。
-masquerade_domains = sample.com これで『sample.com』より前の部分はカットされます。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/40/</guid>
+      <description>■環境CentOS 7postfix 2.10.1postfixで構築したメールサーバからメールを送信した場合に設定は間違えてい&amp;hellip;</description>
     </item>
     
     <item>
       <title>メールサーバ構築（②dovecot編）</title>
-      <link>/posts/wp/18/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/18/</link>
       <pubDate>Sat, 08 Aug 2015 15:35:56 +0000</pubDate>
       
-      <guid>/posts/wp/18/</guid>
-      <description>■環境
-CentOS 7
-dovecot 2.2.10
-事前に①postfix編が終わっている前提とします。
-必要な物をインストール
-yum -y install dovecot メイン設定ファイルの修正(vi /etc/dovecot/dovecot.conf)
-protocols = imap pop3 listen = * 認証設定ファイルの修正(vi /etc/dovecot/conf.d/10-auth.conf)
-今回はパスワードファイルでの認証方式としてます
-#disable_plaintext_auth = yes auth_mechanisms = plain login digest-md5 cram-md5 #!include auth-system.conf.ext !include auth-passwdfile.conf.ext メール設定ファイルの修正(vi /etc/dovecot/conf.d/10-mail.conf)
-mail_location = maildir:~/Maildir マスター設定ファイルの修正(vi /etc/dovecot/conf.d/10-master.conf)
-unix_listener /var/spool/postfix/private/auth { mode = 0666 user = postfix group = postfix } SSL設定ファイルの修正(vi /etc/dovecot/conf.d/10-ssl.conf)
-ssl_cert = &amp;lt;/etc/pki/sample/sample.crt ssl_key = &amp;lt;/etc/pki/sample/sample.key ssl_ca = &amp;lt;/etc/pki/sample/sampleCA.crt 認証パスワードのCRAM-MD5で暗号化した文字列を生成します。
-doveadm pw -s CRAM-MD5 Enter new password: 設定したいパスワードを入力 Retype new password: 設定したいパスワードを再入力 {CRAM-MD5}256f41a2b646bf66ae494370947623fd7a1f496442c81a0fdd9c2b1d994eb816 対象アカウントの情報を確認します。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/18/</guid>
+      <description>■環境CentOS 7dovecot 2.2.10事前に①postfix編が終わっている前提とします。必要な物をインストールyu&amp;hellip;</description>
     </item>
     
     <item>
       <title>メールサーバ構築（①postfix編）</title>
-      <link>/posts/wp/9/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/9/</link>
       <pubDate>Thu, 06 Aug 2015 23:28:32 +0000</pubDate>
       
-      <guid>/posts/wp/9/</guid>
-      <description>■環境
-CentOS 7
-postfix 2.10.1
-メールアカウントはpasswdに登録されているアカウントを利用します。
-メール専用のアカウントは以下コマンドで作成してください。（SSHログイン不可）
-useradd -s /sbin/nologin demouser1 必要な物をインストール
-yum -y install postfix cyrus-sasl cyrus-sasl-plain cyrus-sasl-md5 メイン設定ファイルの修正(vi /etc/postfix/main.cf)
-以下、設定変更部分
-myhostname = mail.sample.com mydomain = sample.com myorigin = $mydomain inet_interfaces = all mynetworks = 192.168.0.0/23, 127.0.0.0/8 relay_domains = $mydestination home_mailbox = Maildir/ smtpd_banner = $myhostname ESMTP unknown 以下、設定追加部分
-※SSL証明書の秘密鍵はパスワード無しとします
-smtpd_sasl_auth_enable = yes smtpd_sasl_security_options = noanonymous smtpd_recipient_restrictions = permit_mynetworks, permit_sasl_authenticated, reject_unauth_destination smtpd_tls_cert_file = /etc/pki/sample/sample.crt smtpd_tls_key_file = /etc/pki/sample/sample.key smtpd_tls_CAfile = /etc/pki/sample/sampleCA.</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/9/</guid>
+      <description>■環境CentOS 7postfix 2.10.1メールアカウントはpasswdに登録されているアカウントを利用します。メール専&amp;hellip;</description>
     </item>
     
   </channel>

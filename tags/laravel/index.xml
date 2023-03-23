@@ -1,89 +1,64 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Laravel on Nonsense J</title>
-    <link>/tags/laravel/</link>
-    <description>Recent content in Laravel on Nonsense J</description>
+    <title>Laravel on Logical Dice 技術ブログ</title>
+    <link>https://blog2.logical-dice.com/tags/laravel/</link>
+    <description>Recent content in Laravel on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sun, 21 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/laravel/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/laravel/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【Laravel】モデルをcreateしてもレスポンスをHTTP 200にする</title>
+      <link>https://blog2.logical-dice.com/posts/2021/06/19/laravel-create-http200/</link>
+      <pubDate>Sat, 19 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog2.logical-dice.com/posts/2021/06/19/laravel-create-http200/</guid>
+      <description>モデルをcreateして返却しても201は返さない方法です</description>
+    </item>
+    
+    <item>
+      <title>【Laravel】JTIを指定してJWTトークンを無効化する</title>
+      <link>https://blog2.logical-dice.com/posts/2021/04/12/laravel-jwt-clear/</link>
+      <pubDate>Mon, 12 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog2.logical-dice.com/posts/2021/04/12/laravel-jwt-clear/</guid>
+      <description>JTIを指定してJWTトークンを無効化する方法です</description>
+    </item>
+    
     <item>
       <title>【Laravel】Observerが実行されない</title>
-      <link>/posts/2021/02/21/larave-observer-stop/</link>
+      <link>https://blog2.logical-dice.com/posts/2021/02/21/larave-observer-stop/</link>
       <pubDate>Sun, 21 Feb 2021 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2021/02/21/larave-observer-stop/</guid>
-      <description>環境  Laravel 5.8   Laravelで設定したObserverの処理が実行されない事があったので、その際の調査メモです。
-事象 LaravelのObserverを使いModelのupdating時に処理が走るようにしようと思ったのですが、
-updatingの処理を書いても実行されませんでした。
-updatingの処理と同クラス内でupdated, saving, savedの処理を記載すると実行されたので、
-Observerのクラス自体が読み込まれていない訳では無さそうでした。
-原因 今回Observerを設定しようとしていたクラスには既に別のObserverが設定されていました。
-それ自体は問題ないのですが、その既存のObserverのupdatingにて生成した値をreturnしていました。
-Laravelのソースを読むと、同イベントのObserverを複数設定している場合、
-先行のObserverで値をreturnしてしまうと後続のObserverが実行されないようでした。
-https://github.com/laravel/framework/blob/5.8/src/Illuminate/Events/Dispatcher.php#L198-L203
-特に理由がない限り、Observerの処理内でreturnはしないほうが良さそうです。</description>
+      <guid>https://blog2.logical-dice.com/posts/2021/02/21/larave-observer-stop/</guid>
+      <description>Laravelで設定したObserverの処理が実行されない事があったので、その際の調査メモです。</description>
     </item>
     
     <item>
       <title>LaravelのQueue内でAuth::user()が取れたり取れなかったりする</title>
-      <link>/posts/2021/01/13/laravel-auth-user/</link>
+      <link>https://blog2.logical-dice.com/posts/2021/01/13/laravel-auth-user/</link>
       <pubDate>Wed, 13 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2021/01/13/laravel-auth-user/</guid>
-      <description>環境  Laravel 5.8   Laravelで『データが更新されたらアラートメールで更新者情報を送る』というイベントリスナーを作ったのですが、
-その中でAuth::user()の値が環境により「更新者情報」だったり「null」だったりしました。
-このイベントリスナーで登録した処理はキュー(Queue)に登録されて非同期に処理されるようにしていたので、
-非同期処理では当然ながらAuth::user()でユーザー情報は取れません。
-なので、nullになるのは妥当な動きでした。
-では、なぜ環境によりユーザー情報が取れてしまったのかというと
-それは.envのQUEUE_DRIVERの値が原因でした。
-QUEUE_DRIVER=database等にしているとキューの処理は非同期に処理されるのですが、
-QUEUE_DRIVER=syncではキューの処理も同期的に処理されるようになります。
-キューが同期的に実行されるとユーザーの情報がAuth::user()で取得できる状態でキューの処理が走るので、
-ローカル環境などでQUEUE_DRIVER=syncにしているとキュー内でAuth::user()が動いてしまいます。
-これも、ちゃんと.envが本番相当になっている環境でテストをすれば見つけられるので、
-ローカル検証だけでリリースをするのではなく、ちゃんと本番相当の環境でもテストしましょう。</description>
+      <guid>https://blog2.logical-dice.com/posts/2021/01/13/laravel-auth-user/</guid>
+      <description>LaravelのAuth::user()をキューで呼び出すと、環境により値が取れたりnullになったりするという事象に遭遇したので、その際のメモです。</description>
     </item>
     
     <item>
       <title>【Laravel】migrateで『Class &#39;CreateFoooTable&#39; not found』が発生する</title>
-      <link>/posts/wp/520/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/520/</link>
       <pubDate>Tue, 11 Apr 2017 16:25:41 +0000</pubDate>
       
-      <guid>/posts/wp/520/</guid>
-      <description>■環境 Laravel 5.1
- Laravelの「migrate:rollback」や「migrate:refresh」をしようとして
-『Class &amp;lsquo;CreateFoooTable&amp;rsquo; not found』というエラーが発生した際の解決方法です。
-この事象はmigrateで利用する「/database/migrations」ディレクトリに配置されているファイルが
-autoloadされていない事が原因のようです。
-解決するにはプロジェクトのrootディレクトリにて以下コマンドを実行し、autoloadを再編成します。
-composer dump-autoload ※composerインストールについてはコチラもしサーバにcomposerを入れられない場合は作業PCにて上記コマンドを実行すると
-「/vendor」ディレクトリ配下が更新されるのでサーバにアップロードしてください。
-以上。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/520/</guid>
+      <description>■環境Laravel 5.1Laravelの「migrate:rollback」や「migrate:refresh」をしようとし&amp;hellip;</description>
     </item>
     
     <item>
       <title>【PHP】Laravel5でカスタムバリデーションを追加する</title>
-      <link>/posts/wp/512/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/512/</link>
       <pubDate>Tue, 11 Apr 2017 15:11:41 +0000</pubDate>
       
-      <guid>/posts/wp/512/</guid>
-      <description>■環境 Laravel 5.1
- Laravel5でカスタムバリデーションを追加した際の手順です。
-まず、サービスプロバイダーを作成します。今回は『ValidatorServiceProvider』という名前で作る事にします。
-以下コマンドを実行すると、『/app/providers/ValidatorServiceProvider.php』が生成されます。
-php artisan make:provider ValidatorServiceProvider 作成したサービスプロバイダーを『/config/app.php』に追記します。
- &amp;quot;providers&amp;quot; =&amp;gt; [ 〜〜　省略　〜〜 App\Providers\ValidatorServiceProvider::class, 〜〜　省略　〜〜 ], 作成したサービスプロバーダーにバリデーションルールを記載します。
-例えば以下のルールの社員番号があったとします。
-・頭文字は「A」または「Z」
-・2文字目以降は数字６桁
-このバリデーションルールを『shainbangou』という名前のルールで登録するとこうなります。
-namespace App\Providers; use Illuminate\Support\ServiceProvider; use Validator; class ValidatorServiceProvider extends ServiceProvider { public function boot() { Validator::extend(&#39;shainbangou&#39;, function($attr, $value, $param) { return preg_match(&#39;/^[A|Z][0-9]{6}$/&#39;, $value); }); } } 次にエラー文言の設定をします。
-viewにて社員番号はempIdという変数名で設定されているとします。
-【/resources/lang/ja/validation.php】
-return [ 〜〜　省略　〜〜 &#39;custom&#39; =&amp;gt; [ &#39;empId&#39; =&amp;gt; [ &#39;shainbangou&#39; =&amp;gt; &#39;社員番号が間違っています。（A/Z + 数字6桁）.</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/512/</guid>
+      <description>■環境Laravel 5.1Laravel5でカスタムバリデーションを追加した際の手順です。まず、サービスプロバイダーを作成しま&amp;hellip;</description>
     </item>
     
   </channel>

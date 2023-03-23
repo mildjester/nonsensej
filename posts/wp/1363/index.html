@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>Apacheのevent MPMのチューニング &middot; Nonsense J</title>
+	<title>Apacheのevent MPMのチューニング|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,18 +70,19 @@
 	<div class="post">
 		<h1 class="post-title">Apacheのevent MPMのチューニング</h1>
 		<div class="post-info">
-				<time datetime="2018-05-26 11:28:56 &#43;0000 UTC">May 26, 2018</time>
+				<p class="publish-date">投稿日：<time datetime="2018-05-26 11:28:56 &#43;0000 UTC" class="catalogue-time">2018-05-26</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/apache/">Apache</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/apache/">Apache</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<p>preforkからeventに乗り換えるとチューニングの考え方が少し変わるので簡単にメモ。</p>
 <p>event MPMではまずApacheの子プロセス（以下プロセス）が複数生成され、<br>
 さらに各プロセスの中にWorker Thread（以下スレッド）が複数生成されるイメージ。</p>
 <p>設定値の意味は以下のようになる</p>
-<pre><code>&lt;IfModule mpm_event_module&gt;  
+<pre tabindex="0"><code>&lt;IfModule mpm_event_module&gt;  
   ServerLimit               8 #プロセス数の最大値  
   StartServers              3 #プロセス数の初期値  
   MinSpareThreads         192 #空きスレッド数の最小値(下回ったら増やす)  
@@ -60,29 +92,24 @@
   MaxConnectionsPerChild 5000 #プロセスが再起動までに処理するリクエスト数  
 &lt;/IfModule&gt;  
 </code></pre><ul>
-<li><!-- raw HTML omitted -->MaxRequestWorkers<!-- raw HTML omitted -->は最大スレッド数(ServerLimit×ThreadsPerChild)以下にしておくこと。<br>
+<li><code>MaxRequestWorkers</code>は最大スレッド数(ServerLimit×ThreadsPerChild)以下にしておくこと。<br>
 スレッド数以上のリクエストが来ると困る。</li>
-<li><!-- raw HTML omitted -->MinSpareThreads<!-- raw HTML omitted -->は初期スレッド数(StartServers×ThreadsPerChild)以下にしておくこと。<br>
+<li><code>MinSpareThreads</code>は初期スレッド数(StartServers×ThreadsPerChild)以下にしておくこと。<br>
 初期スレッド数以上の空きスレッドが必要だと、起動直後にスレッド追加しなければならなくて無駄。</li>
-<li><!-- raw HTML omitted -->MinSpareThreads<!-- raw HTML omitted -->と<!-- raw HTML omitted -->MaxSpareThreads<!-- raw HTML omitted -->は<!-- raw HTML omitted -->ThreadsPerChild<!-- raw HTML omitted -->の倍数になっていた方が良さそう。</li>
+<li><code>MinSpareThreads</code>と<code>MaxSpareThreads</code>は<code>ThreadsPerChild</code>の倍数になっていた方が良さそう。</li>
 </ul>
 
-	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/1360/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/1375/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
 	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2751651 &#43;0900 JST m=&#43;0.094759601">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>【Ubuntu】exfat形式の外部メモリのマウントができない &middot; Nonsense J</title>
+	<title>【Ubuntu】exfat形式の外部メモリのマウントができない|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,40 +70,36 @@
 	<div class="post">
 		<h1 class="post-title">【Ubuntu】exfat形式の外部メモリのマウントができない</h1>
 		<div class="post-info">
-				<time datetime="2015-11-15 22:05:23 &#43;0000 UTC">November 15, 2015</time>
+				<p class="publish-date">投稿日：<time datetime="2015-11-15 22:05:23 &#43;0000 UTC" class="catalogue-time">2015-11-15</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/ubuntu/">ubuntu</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/ubuntu/">ubuntu</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<p>■環境<br>
 ubuntu 15.04</p>
 <p>Ubuntuはデフォルトでは「exfat」のフォーマットに対応していないので、<br>
 外部メモリをマウントしようとすると</p>
-<pre><code>mount: unknown filesystem type 'exfat'
+<pre tabindex="0"><code>mount: unknown filesystem type &#39;exfat&#39;
 </code></pre><p>というエラーが出ます。</p>
 <p>※上記はコマンドラインでmountコマンドを実施した際に出力されます。<br>
 　外部メモリを挿した時にUI上では違う「exsisted」エラーが出てくる可能性があります。</p>
 <p>その場合は、以下のコマンドを実施すると「exfat」フォーマットのメモリも扱えるようになります。</p>
-<pre><code>$ sudo apt-get install exfat-fuse exfat-utils
+<pre tabindex="0"><code>$ sudo apt-get install exfat-fuse exfat-utils
 </code></pre>
-	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/120/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/139/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
 	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2750702 &#43;0900 JST m=&#43;0.094664601">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

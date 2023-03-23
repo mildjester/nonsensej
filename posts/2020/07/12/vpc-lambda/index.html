@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>AWS lambdaからDBアクセスも外部アクセスもできるようにする。 &middot; Nonsense J</title>
+	<title>AWS lambdaからDBアクセスも外部アクセスもできるようにする。|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,13 +70,14 @@
 	<div class="post">
 		<h1 class="post-title">AWS lambdaからDBアクセスも外部アクセスもできるようにする。</h1>
 		<div class="post-info">
-				<time datetime="2020-07-12 00:00:00 &#43;0000 UTC">July 12, 2020</time>
+				<p class="publish-date">投稿日：<time datetime="2020-07-12 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-07-12</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/aws/">AWS</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/aws/">AWS</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<p>AWS lambdaからAWS RDSへアクセスさせるためにはRDSへアクセスできるVPCのサブネットにlambdaを追加します。<br>
 しかし、VPC内のlambdaは何もしないと外部アクセスができなくなります。</p>
 <p>lambdaがRDSと同時に外部システムのAPIなどを利用する際に困りますので、<br>
@@ -110,16 +142,16 @@ VPC内のlambdaから外部アクセスができるように設定します。</
 ここで作成したprivate用サブネットの方にlambdaを追加すればRDSと外部の両方にアクセスできるようになります。</p>
 <h2 id="lambda設定serverless-framework">lambda設定(Serverless Framework)</h2>
 <p>今回はServerless Frameworkを使ってlambdaを構築します。<br>
-Serverless Frameworkの基本的な構築については<a href="/articles/2020/05/19/serverless-framework-lambda">前回の記事</a>を参照してください。</p>
+Serverless Frameworkの基本的な構築については<a href="/posts/2020/05/19/serverless-framework-lambda">前回の記事</a>を参照してください。</p>
 <p>前回の記事で作成した<code>serverless.yml</code>のproviderにvpc設定を追加します。</p>
-<pre><code>provider:
+<pre tabindex="0"><code>provider:
   〜省略〜
   vpc: 
     subnetIds:
       - 今回作成したprivateサブネットのID(subnet-0123456abcde)
 </code></pre><p>【おまけ】<br>
 上記VPC設定では触れていませんが、もしlambdaにセキュリティグループを設定させるなら以下のようにします。</p>
-<pre><code>provider:
+<pre tabindex="0"><code>provider:
   〜省略〜
   vpc: 
     subnetIds:
@@ -128,21 +160,16 @@ Serverless Frameworkの基本的な構築については<a href="/articles/2020/
       - 設定するセキュリティグループID(sg-012345abcde)
 </code></pre>
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/2019/03/12/linux-mint-trackpoint/" class="left arrow">&#8592;</a>
-		<a href="/posts/2020/07/15/howto-make-bookmarklet/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2653631 &#43;0900 JST m=&#43;0.084957601">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

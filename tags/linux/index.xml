@@ -1,81 +1,37 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Linux on Nonsense J</title>
-    <link>/tags/linux/</link>
-    <description>Recent content in Linux on Nonsense J</description>
+    <title>Linux on Logical Dice 技術ブログ</title>
+    <link>https://blog2.logical-dice.com/tags/linux/</link>
+    <description>Recent content in Linux on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Wed, 05 Aug 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 05 Aug 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>改行コードを一括で置換する</title>
-      <link>/posts/2020/08/05/replace-with-find-sed/</link>
+      <link>https://blog2.logical-dice.com/posts/2020/08/05/replace-with-find-sed/</link>
       <pubDate>Wed, 05 Aug 2020 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2020/08/05/replace-with-find-sed/</guid>
-      <description>定期的に使うのでメモ。
-Linuxサーバー上で対象ディレクトリ配下のファイルの文字コードを一括で置換するコマンドです。
-以下コマンドで現ディレクトリ配下にあるphpファイルに対してCRLF(\r\n)をLF(\n)に置換します。
-sudo find . -name &amp;quot;*.php&amp;quot; -type f -exec sed -i -e &amp;quot;s/\r//g&amp;quot; {} \; ※sudoは必要に応じて。全対象ファイルの編集権限があるなら不要です。
-一応解説 CRLFはWindows等でよく使われる改行コードで、LFやLinuxやUnix等でよく使われる改行コードです。
-まず、findコマンドの構成は以下の通り。
-find {検索対象ディレクトリ} -name {検索対象の名前} -type {検索対象のタイプ} -exec {検索対象に対して実施するコマンド} -type fでファイルを対象にしています。
--name &amp;quot;*.php&amp;quot;でphpファイルを指定しているのでタイプは指定する必要が内容に思えますが、
-やろうと思えばhoge.phpというディレクトリも作れない訳ではないので、念の為指定しています。
-そして、-execオプションでsedコマンドを指定しています。
-sedコマンドの構成は以下の通り。
-sed -i -e &amp;quot;s/{置換対象の文字列}/{置換後の文字列}/g&amp;quot; 対象ファイル CRLFをLFに置換すると言いましたが、このコマンドでは正確にはCR(\r)を消しているだけです。
-なので、CRLFはLFになりますし、もしCRがあれば消滅します。
-(古いMacintoshではCRを改行コードとして扱っていたらしい。とりあえず現在では消滅してくれて良い。)
-findの-execで実行する場合、{}に検索結果のファイル名が入ります。
-そして実行したいコマンドの最後は\で閉じます。</description>
+      <guid>https://blog2.logical-dice.com/posts/2020/08/05/replace-with-find-sed/</guid>
+      <description>findコマンドとsedコマンドで改行コードをCRLFからLFに置換します。</description>
     </item>
     
     <item>
       <title>EC2上でオレオレ証明書を作る</title>
-      <link>/posts/2020/06/14/oreore-certification/</link>
+      <link>https://blog2.logical-dice.com/posts/2020/06/14/oreore-certification/</link>
       <pubDate>Sun, 14 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2020/06/14/oreore-certification/</guid>
-      <description>環境  Amazon Linux AMI 2017.03 OpenSSL 1.0.2k-fips 26 Jan 2017   最近はLet&amp;rsquo;s Encryptの登場でめっきり出番が少なくなったオレオレ証明書を作ります。
-Let&amp;rsquo;s EncryptのSSL証明書の方が信頼度が高くブラウザ側で設定する必要がありません。
-インターネットに公開していない環境でもDNSにTXTレコードを追加すればLet&amp;rsquo;s Encryptの証明書を発行できます。
-それでもオレオレ証明書を使いたい人向けの手順です。
-オレオレ証明書(自己証明書)とは SSL証明書はどこかしらの認証局(CA)に認証して貰って発行されるのですが、
-自分でCAを立てて自分で認証したSSL証明書を発行してしまうというものです。
-ざっくりとした流れは以下の通りです。
-①オレオレ認証局を立てる
-②オレオレ認証局でオレオレ証明書を発行する
-③利用ブラウザにオレオレ認証局を認めさせる
-以降の手順では「*.hoge.com」というワイルドカードのSSL証明書を作る前提とします。
-「*.hoge.com」の部分は作成したいドメインに置き換えてください。
-作業ディレクトリ等の準備 EC2にSSHでログインし、以下の通り準備をします。
-オレオレ認証局はhogeCAというディレクトリに作成するものとします。
-sudo -i cd /etc/pki cp -r CA hogeCA cp tls/openssl.cnf hogeCA/. cd hogeCA touch index.txt echo &amp;quot;00&amp;quot; &amp;gt; serial また、以前は無かったと思うのですが
-最近のブラウザはSAN(subjectAltName)というものを設定しておかないと正規の証明書と認めてくれないようです。
-SANを設定するためのファイルを作成しておきます。
-echo &amp;quot;subjectAltName=DNS:*.hoge.com&amp;quot; &amp;gt; san.ext openssl設定変更 以下の通り、今回利用するopenssl.cnfを修正します。
-vim ./openssl.cnf [ CA_default ]セクション修正 作業ディレクトリを変更します。
-dir = /etc/pki/hogeCA [ req_distinguished_name ]セクション修正 今回の手順で会社所在地などを複数回聞かれるので、デフォルト値を設定しておきます。</description>
+      <guid>https://blog2.logical-dice.com/posts/2020/06/14/oreore-certification/</guid>
+      <description>最近はめっきり使われなくなったオレオレ証明書を作成する手順です。</description>
     </item>
     
     <item>
       <title>Linuxで別ユーザとしてコマンドを実行する</title>
-      <link>/posts/2019/10/10/linux-sudo/</link>
+      <link>https://blog2.logical-dice.com/posts/2019/10/10/linux-sudo/</link>
       <pubDate>Thu, 10 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2019/10/10/linux-sudo/</guid>
-      <description>環境 Amazon Linux AMI release 2013.03
- 今更ですがsudoコマンドについて整理しておきたかったので書きました。
-まず基本として、rootユーザーとしてコマンドを実行する場合はsudo {コマンド}を打ちます。
-$ sudo id uid=0(root) gid=0(root) 所属グループ=0(root) もしrootユーザー以外になり代わるたい場合は-uオプションで指定します。
-$ sudo -u apache id uid=48(apache) gid=48(apache) 所属グループ=48(apache) もし特定のユーザーに頻繁になり代わる場合は
-.bashrcなどにfunction定義しておくと楽です。
-(今回一番書きたかったこと)
-# Apacheユーザとしてコマンド実行する sudoa () { sudo -u apache $* } # Apacheユーザとしてgitコマンドを実行する agit() { sudo -u apache git $* } こうしておくとagit pullと打てば
-Apacheユーザとしてgit pullを打つことができます。
-また、以下のような簡単なスクリプトも書けます。
-hoge() { sudo -u yamada sh -c &#39; NAME=`id | grep -o -E &amp;quot;\([^)]+\)&amp;quot; | grep -o -m 1 -E &amp;quot;[^\()]+&amp;quot;` echo &amp;quot;hello ${NAME}!</description>
+      <guid>https://blog2.logical-dice.com/posts/2019/10/10/linux-sudo/</guid>
+      <description>sudoコマンドの使い方メモです</description>
     </item>
     
   </channel>

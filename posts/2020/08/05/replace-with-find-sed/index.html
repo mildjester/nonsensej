@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>改行コードを一括で置換する &middot; Nonsense J</title>
+	<title>改行コードを一括で置換する|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,28 +70,29 @@
 	<div class="post">
 		<h1 class="post-title">改行コードを一括で置換する</h1>
 		<div class="post-info">
-				<time datetime="2020-08-05 00:00:00 &#43;0000 UTC">August 5, 2020</time>
+				<p class="publish-date">投稿日：<time datetime="2020-08-05 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-08-05</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/linux/">Linux</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/linux/">Linux</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<p>定期的に使うのでメモ。</p>
 <p>Linuxサーバー上で対象ディレクトリ配下のファイルの文字コードを一括で置換するコマンドです。<br>
 以下コマンドで現ディレクトリ配下にあるphpファイルに対してCRLF(\r\n)をLF(\n)に置換します。</p>
-<pre><code>sudo find . -name &quot;*.php&quot; -type f -exec sed -i -e &quot;s/\r//g&quot; {} \;
+<pre tabindex="0"><code>sudo find . -name &#34;*.php&#34; -type f -exec sed -i -e &#34;s/\r//g&#34; {} \;
 </code></pre><p>※sudoは必要に応じて。全対象ファイルの編集権限があるなら不要です。</p>
 <h2 id="一応解説">一応解説</h2>
 <p>CRLFはWindows等でよく使われる改行コードで、LFやLinuxやUnix等でよく使われる改行コードです。</p>
 <p>まず、findコマンドの構成は以下の通り。</p>
-<pre><code>find {検索対象ディレクトリ} -name {検索対象の名前} -type {検索対象のタイプ} -exec {検索対象に対して実施するコマンド}
+<pre tabindex="0"><code>find {検索対象ディレクトリ} -name {検索対象の名前} -type {検索対象のタイプ} -exec {検索対象に対して実施するコマンド}
 </code></pre><p><code>-type f</code>でファイルを対象にしています。<br>
 <code>-name &quot;*.php&quot;</code>でphpファイルを指定しているのでタイプは指定する必要が内容に思えますが、<br>
 やろうと思えば<code>hoge.php</code>というディレクトリも作れない訳ではないので、念の為指定しています。</p>
 <p>そして、<code>-exec</code>オプションでsedコマンドを指定しています。<br>
 sedコマンドの構成は以下の通り。</p>
-<pre><code>sed -i -e &quot;s/{置換対象の文字列}/{置換後の文字列}/g&quot; 対象ファイル
+<pre tabindex="0"><code>sed -i -e &#34;s/{置換対象の文字列}/{置換後の文字列}/g&#34; 対象ファイル
 </code></pre><p>CRLFをLFに置換すると言いましたが、このコマンドでは正確にはCR(\r)を消しているだけです。<br>
 なので、CRLFはLFになりますし、もしCRがあれば消滅します。<br>
 (古いMacintoshではCRを改行コードとして扱っていたらしい。とりあえず現在では消滅してくれて良い。)</p>
@@ -68,21 +100,16 @@ sedコマンドの構成は以下の通り。</p>
 そして実行したいコマンドの最後は<code>\</code>で閉じます。</p>
 
 	</div>
-
-	<div class="pagination">
-		<a href="/posts/2020/07/16/bookmarklet-kimetsu/" class="left arrow">&#8592;</a>
-		<a href="/posts/2020/08/21/route53-to-csv/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
-	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2720347 &#43;0900 JST m=&#43;0.091629101">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

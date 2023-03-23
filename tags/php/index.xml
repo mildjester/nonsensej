@@ -1,410 +1,181 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>PHP on Nonsense J</title>
-    <link>/tags/php/</link>
-    <description>Recent content in PHP on Nonsense J</description>
+    <title>PHP on Logical Dice 技術ブログ</title>
+    <link>https://blog2.logical-dice.com/tags/php/</link>
+    <description>Recent content in PHP on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sat, 06 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/php/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 06 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/php/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>修正したファイルだけPHP_CodeSnifferでチェックする</title>
-      <link>/posts/2021/02/06/phpcs-git-diff/</link>
+      <link>https://blog2.logical-dice.com/posts/2021/02/06/phpcs-git-diff/</link>
       <pubDate>Sat, 06 Feb 2021 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2021/02/06/phpcs-git-diff/</guid>
-      <description>PHP_CodeSniffer (phpcs)を使ってコードのPSR2のフォーマットチェックをする際、
-普段からphpcsを使っているプロジェクトで無いと警告が大量に出て見切れません。
-そこで、git diffを使って、今回修正したファイルだけphpcsでチェックすることにしました。
-起点ブランチを作る まず、修正の起点ブランチを用意します。
-起点ブランチとは、phpcsでチェックしたい修正をし始める前の状態のブランチです。
-他の人が更新していなければ既存のマージ先ブランチ(master, develop等)で良いですが、
-他の人がマージ先ブランチを更新していた場合はgit diffで他の人の修正分も差分として出てしまうのでダメです。
-(自分の修正分だけをgit diffで出すオプションはたぶん無いはず)
-その場合はgit logで自分が修正を始めた１つ前のコミットIDを確認して、
-git checkout -b tempBranch 『コミットID』でブランチを作ってしまうのが簡単だと思います。
-tempBranchの部分は作成する起点ブランチ名なので、なんでも良いです。
-phpcsでチェックする 起点ブランチが用意できたら早速phpcsでチェックします。
-チェックしたいブランチになっている状態で以下コマンドを実行します。
-git diff 『起点ブランチ』 --name-only | xargs phpcs --standard=&amp;quot;PSR2&amp;quot; これで修正したファイルについてのみphpcsを実行できました。
-※補足 phpcsの実行パスについては自分の環境に合わせて修正してください。
-例えばcomposerでプロジェクトに入れたphpcsを利用する場合は./vendor/bin/phpcsという風になると思います。</description>
+      <guid>https://blog2.logical-dice.com/posts/2021/02/06/phpcs-git-diff/</guid>
+      <description>git diffを使い修正したファイルだけphpcsでチェックする方法です</description>
     </item>
     
     <item>
       <title>Google Analyticsから直近のページ閲覧数を取得する</title>
-      <link>/posts/2020/03/05/get-google-analytics-report/</link>
+      <link>https://blog2.logical-dice.com/posts/2020/03/05/get-google-analytics-report/</link>
       <pubDate>Thu, 05 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2020/03/05/get-google-analytics-report/</guid>
-      <description>環境  PHP 7.3 google/apiclient 2.4  参考 https://developers.google.com/analytics/devguides/reporting/core/v3/quickstart/service-php?hl=ja
- 商品ページにて「24時間以内に○○人が見ています」という販促メッセージを出す時に、乱数を使っているサービスもあるようですが、 それはさすがに嫌なのでGoogle Analyticsから閲覧実績を取得して表示してみます。
-なお、Google Analyticsからは「昨日から今日まで」のように日付指定しかできないので、「10分以内に」のように厳密な時間を指定して閲覧者数を表示することはできません。
-GCPのサービスアカウント作成 まず、以下ページにてサービスアカウントを作成します。
-※もしGoogle CloudPlatform(GCP)のプロジェクトを作成していない場合は「プロジェクトを作成」をクリックしてGCPプロジェクトを作成してから実行します。
-https://console.developers.google.com/iam-admin/serviceaccounts?hl=ja
-「プロジェクトの選択」よりサービスアカウントを作成するプロジェクトを選択し、
-「＋サービスアカウントを作成」をクリックします。
-サービスアカウントの作成画面が開くので以下の通り入力して「作成」をクリックしてください。
-   項目 入力内容     サービスアカウント名 独自の自分で判断できる名前   サービスアカウントID 独自のID(サービスアカウント名を入力したら勝手に入ります)   サービスアカウントの説明 自分が分かる説明    次にサービスアカウントの権限設定画面が開きますが、そのまま「続行」をクリックします。
-その次の画面で「ユーザーにこのサービス アカウントへのアクセス権を付与」は特に何もしません。
-「キーの作成」の中の「キーを作成」をクリックし、キーのタイプはJSONを選択して「作成」をクリックします。
-JSONファイルがダウンロードされますので取っておいてください。
-サービスアカウントの作成画面はそのまま「完了」をクリックして終わります。
-サービスアカウント一覧に戻り、作成したサービスアカウントのメールアドレスが表示されるので記録しておきます。
-Google Analytics APIの有効化 以下ページにアクセスし、Google Analytics APIを有効化してください。
-https://console.developers.google.com/apis/api/analytics.googleapis.com/overview
-Google Analyticsの設定 さきほど作成したサービスアカウントをGoogle Analyticsに追加します。
-アカウントユーザーまたはプロパティユーザーにサービスアカウントのメールアドレスを追加します。
-権限は「表示と分析」のみ(デフォルト)で大丈夫です。
-スクリプトの作成 PHPとcomposerの環境は構築済みの前提とします。
-まず、Google Analytics APIのパッケージを取得します。</description>
+      <guid>https://blog2.logical-dice.com/posts/2020/03/05/get-google-analytics-report/</guid>
+      <description>Google Analyticsから直近のページ閲覧数を取得する方法です。</description>
     </item>
     
     <item>
       <title>MacにPHP7.2をインストールする</title>
-      <link>/posts/2019/02/14/mac-php-72/</link>
+      <link>https://blog2.logical-dice.com/posts/2019/02/14/mac-php-72/</link>
       <pubDate>Thu, 14 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2019/02/14/mac-php-72/</guid>
-      <description>環境  macOS Mojave 10.14.2 fish 2.7.1 Homebrew 2.0.1 PHP 7.2.15   Homebrewを使ってMacにPHP7.2をインストールします。
-Homebrewがインストールされていない場合は以下を参照してください。
-【Mac】Homebrewインストール
-まず、Homebrew上でPHP7.2を探します。
-$brew search php72 ==&amp;gt; Formulae php@7.2 パッケージが分かったのでインストールします。
-$ brew install php@7.2 〜たくさん省略〜 If you need to have php@7.2 first in your PATH run: echo &#39;set -g fish_user_paths &amp;quot;/usr/local/opt/php@7.2/bin&amp;quot; $fish_user_paths&#39; &amp;gt;&amp;gt; ~/.config/fish/config.fish echo &#39;set -g fish_user_paths &amp;quot;/usr/local/opt/php@7.2/sbin&amp;quot; $fish_user_paths&#39; &amp;gt;&amp;gt; ~/.config/fish/config.fish 〜少し省略〜 インストール完了の直前くらいに上記のような設定追加をするような指示が出力されます。
-私はシェルにfishを使っているので上記のようなコマンドでしたが、bashやzshを使っている場合は違うコマンドになると思います。
-指示通りに設定をします。
-$ echo &#39;set -g fish_user_paths &amp;quot;/usr/local/opt/php@7.2/bin&amp;quot; $fish_user_paths&#39; &amp;gt;&amp;gt; ~/.config/fish/config.fish $ echo &#39;set -g fish_user_paths &amp;quot;/usr/local/opt/php@7.</description>
+      <guid>https://blog2.logical-dice.com/posts/2019/02/14/mac-php-72/</guid>
+      <description>MacにPHP7.2をインストールする方法です</description>
     </item>
     
     <item>
       <title>【PHP】strtotimeの罠</title>
-      <link>/posts/2019/01/31/php-strtotime-trap/</link>
+      <link>https://blog2.logical-dice.com/posts/2019/01/31/php-strtotime-trap/</link>
       <pubDate>Thu, 31 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2019/01/31/php-strtotime-trap/</guid>
-      <description>今日相談を受けた事象が面白かったので記事にします。
-事象 既存のPHPで来月の年月を取得する処理があり
-リリース時は正常に動いていたのに、今日(1/31)見たら年月がズレていたようです。
-ソースコードを見せて貰ったら以下のようになっていました。
-echo date(&#39;Ym&#39;, strtotime(date(&#39;Ym-1&#39;) . &#39; + 1 month&#39;)); 原因 まず、date(&#39;Ym-1&#39;) がおかしいですね。
-date(&#39;Ym01&#39;)とかdate(&#39;Y-m-01&#39;)とかにするべきですね。
-では、なぜリリース時に正常に動いていたのか。
-ここでやっとタイトルの「strtotimeの罠」が関わってきます。
-strtotime(date(&#39;Ym-1&#39;) . &#39; + 1 month&#39;) これは、2019/1/31であれば
-strtotime(&#39;201901-1 + 1 month&#39;) と、なります。
-ここでstrtotime様はこう考えます。
- 201901-1？なんやそれ、知らんわ
-とりあえず今日の日付から+1monthしとこ
-今日は1/31だから1ヶ月後は2/31・・・ってそんな日無いわ！
-よっしゃ！繰り上げで3/3にしとこ！
- エラーになどしません。
-PHPらしいですね。
-これにより、1/31に実行すると3月を返してしまい、1ヶ月ズレてしまいます。
-もしリリース日やテスト日が月の上旬〜中旬であれば
-strtotime様の月繰り上げが発生しないので
-出力が年月だけだと不具合に気づきません。
-この不具合はテストやってもなかなか出てこないと思うので
-実装段階で気を付けないといけないですね。</description>
+      <guid>https://blog2.logical-dice.com/posts/2019/01/31/php-strtotime-trap/</guid>
+      <description>PHPのstrtotimeのハマりそうな挙動です</description>
     </item>
     
     <item>
       <title>CakePHP2のローカル検証環境構築</title>
-      <link>/posts/wp/1375/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/1375/</link>
       <pubDate>Sun, 10 Jun 2018 09:20:20 +0000</pubDate>
       
-      <guid>/posts/wp/1375/</guid>
-      <description>環境 CakePHP 2.10.10
- 今更ながらCakePHP2を仕事で使う可能性があったので、
-勉強するためローカルに環境構築しました。
-環境構築はDockerを利用しており、以下3つのコンテナを作成しています。
- nginx php-fpm MySQL  【参考】出来上がったものはこちら
-https://github.com/mildjester/my-training-cakephpCakePHPのDocument関連は「Book」という名称で公開されていますので
-こちらを参考にして進めていきます。
-（CakePHPは全体的に料理っぽい命名がされているので、レシピ本ってこと？）
-https://book.cakephp.org/2.0/ja/index.htmlCakePHPのインストール BookによるとCakePHP2のダウンロードは公式ページより行なえるそうなのですが、
-現在の公式ページにはダウンロードできそうなリンクはありませんでした。
-なので、GitHubからダウンロードしてきます。
-私が見た時はVersion.2系の最新は「2.10.10」だったので、それの圧縮ファイルダウンロードしました。
-https://github.com/cakephp/cakephp/tagsダウンロードしてきた圧縮ファイルを解凍したらCakePHP2の基本構造が出てきます。
-これをDockerで作った環境で動くように突っ込みます。
-Docker環境についてはコチラを参照してください。
-https://github.com/mildjester/my-training-cakephp/tree/master/dockerこの状態でDockerを起動すればCakePHPの初期画面が表示されます。
-初期設定 上記の初期画面で色々とWarning等が出ているので
-これの対応をしていきます。
-Databaseの設定 /app/Config/database.php.defaultというファイルがあるので、それを同じディレクトリにdatabase.phpという名前でコピーします。
-コピーしたファイルにデータベースの設定について記載されていますので、構築するDBの情報を記載します。
-また、ここに記載するDB情報に合わせてMySQLにもDBやユーザーを作成しておきます。
-（MySQLの操作については割愛）
-Coreの修正 /app/Config/core.phpにセキュリティ関連のSaltやCipherSeedが設定されています。
-初期値のままだと宜しくないので修正しておきます。
-Configure::write(&#39;Security.salt&#39;, &#39;DYhG93b0qyJfIxfs2guVoUubWwvniR2G0FgaC9mi&#39;); // 任意の半角英数にする Configure::write(&#39;Security.cipherSeed&#39;, &#39;76859309657453542496749683645&#39;); // 任意の数字にする DebugKitの設定 CakePHP用のDebugKitがあるのでインストールしておきます。
-https://github.com/cakephp/debug_kit/tree/2.2まず、Composerでインストールし、生成されるPluginを/app/Plugin配下へ移動させます。
-composer require cakephp/debug_kit &amp;quot;^2.2.0&amp;quot; mv Plugin/DebugKit app/Plugin/. もしローカルにComposerが入ってない場合は、php-fpmのDockerコンテナに入って実行しても構いません。
-本例のDocker環境の場合は以下コマンドでコンテナに入れます。
-docker-compose -f cakedock/docker-compose.yml exec --user=www-data workspace sh # または、上記コマンドをMakefile化してあるので、以下コマンドでも入れます make workspace 次に/app/Config/bootstrap.phpの69行目あたりにプラグイン読み込み設定を記載する箇所があるので
-そこにDebugKitを読み込む設定を追記します。
-CakePlugin::load(&#39;DebugKit&#39;); ここまで対応すれば初期画面の警告はAllGreenになるはずです。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/1375/</guid>
+      <description>環境CakePHP 2.10.10今更ながらCakePHP2を仕事で使う可能性があったので、勉強するためローカルに環境構築しまし&amp;hellip;</description>
     </item>
     
     <item>
       <title>【Linux Mint】PHP7.1のインストール</title>
-      <link>/posts/wp/1192/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/1192/</link>
       <pubDate>Tue, 10 Apr 2018 09:11:57 +0000</pubDate>
       
-      <guid>/posts/wp/1192/</guid>
-      <description>$ set -x LC_ALL C.UTF-8 $ sudo add-apt-repository ppa:ondrej/php $ apt update $ apt install php7.1 php7.1-mbstring php7.1-mcrypt php7.1-mysql php7.1-xml php7.1-xmlrpc composer </description>
+      <guid>https://blog2.logical-dice.com/posts/wp/1192/</guid>
+      <description>$ set -x LC_ALL C.UTF-8$ sudo add-apt-repository ppa:ondrej/php$&amp;hellip;</description>
     </item>
     
     <item>
       <title>Visual Studio CodeでPHP開発環境構築</title>
-      <link>/posts/wp/914/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/914/</link>
       <pubDate>Mon, 18 Dec 2017 14:02:41 +0000</pubDate>
       
-      <guid>/posts/wp/914/</guid>
-      <description>■環境 Visual Studio Code 1.19.0
-Linux Mint 18.3 cinnamon 64bit
-macOS High Sierra 10.13.1
-(LinuxでもMacでも基本的に同じ操作でいけるはずです)
- ■Visual Studio Codeの取得 Visual Studio Code(以下、VSCode)本体をダウンロードします。 https://code.visualstudio.com/【Macの場合】
-ダウンロードしてきたzipを回答するとアプリケーションファイル(.app)が出てくるので、アプリケーションディレクトリへ移動しておきます。
-【Linux Mintの場合】
-ダウンロードしてきたdebファイルを実行し、画面上の指示に従って進めるだけです。
-■フォント変更 VSCodeで使うフォントをプログラミング向けのフォント『Ricty Diminished』に変更します。
-まずフォントそのものをPCにインストールします。
-手順はコチラを参照してください。
-PCにフォントがインストールできたら、VSCode側の設定をします。
-まず、メニューの「Code　&amp;gt; 基本設定 &amp;gt; 設定」を開きます。
-次に設定ファイルに以下の行を追加します。
-&amp;quot;editor.fontFamily&amp;quot;: &amp;quot;&#39;Ricty Diminished&#39;&amp;quot;, これでフォントがRicty Diminishedになりました。
-■拡張機能インストール VSCodeを起動したら上部メニューより表示 &amp;gt; 拡張機能を選択します。 もしくは左側にあるアイコンの中の一番下にある四角いアイコンを選択します。 検索窓が表示されるので、キーワード検索をしてインストールすることが可能です。 以下、私がインストールしてみたものです。
-Project Manager プロジェクト管理をするための拡張機能です。 現在開いているワークスペースをプロジェクトとして保存しておくことで プロジェクトの切り替えが簡単になります。 NetBeansやEclipseのように複数プロジェクトを同時に開いておくことはできないようです。
-■使い方上部メニューの表示 &amp;gt; コマンドパレットを開き、検索バーにProject Managerと入力するとProject Manager用のコマンドが表示されます。 (コマンドパレットはCommand + Shft+Pでも開けます)
-主に使うコマンドについては以下の通り。
-   コマンド 内容     Save Project 現在のワークスペースをプロジェクトとして保存   Edit Project 保存済みプロジェクトの編集   List Project to Open 保存済みプロジェクト一覧を表示し、選択したプロジェクトを開く    ftp-simple ファイルやディレクトリをサーバへアップロードしたりダウンロードするための拡張機能。 FTPだけでなく、SFTPも使えます。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/914/</guid>
+      <description>■環境Visual Studio Code 1.19.0Linux Mint 18.3 cinnamon 64bitmacOS &amp;hellip;</description>
     </item>
     
     <item>
       <title>Atom IDEの環境構築（PHP、Go）</title>
-      <link>/posts/wp/708/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/708/</link>
       <pubDate>Fri, 29 Sep 2017 19:11:15 +0000</pubDate>
       
-      <guid>/posts/wp/708/</guid>
-      <description>■環境 macOS Sierra 10.12.6
-Atom 1.21.0-beta2
-■参考にしたサイト 公式サイト
-https://ide.atom.io/はくたけ氏のブログ
-http://tech.innovator.jp.net/entry/2017/09/14/165139sayama0402さんのQiita
-https://qiita.com/sayama0402/items/3bd8d905619c514179b7 ナウいエディタ「Atom」は、前から気になっていたのですが、
- テキストエディタにしては重い IDEにしては機能がすくない  という理由で、少し敬遠していました。
-が、そのAtomからIDEが出たそうなので、試しに使ってみました。
-■手順 ①Atomの入手 以下サイトより、Atom 1.21.0（ベータ版）を入手してインストールする。
-https://atom.io/beta※いくつかの紹介ページを見ましたが、1.21.0が推奨されているようです。 試しに1.20.0(安定板)でも試して見ましたが、確かに動きが怪しかったです。
-②必須パッケージのインストール Atomを起動したら、上部メニュー Packages &amp;gt; Settings View &amp;gt; Install Packages/Themesより、以下を検索してインストールする。
- atom-ide-ui ide-php ide-go  ③使って見る。 初めてgoのソースコードを開いた際には「ide-go」が依存するパッケージをインストールするか聞かれるので、 インストールします。
-また、「linter」と「atom-ide-diagnostics」が競合している旨のメッセージが出るので、
-そのメッセージの下にある「Disable linter」をクリックして、競合を解決します。
-これで、実際に使い始められそうです。 定義ジャンプや補完機能は十分使えそうなレベルで動いてました。
-また、他の無料IDE（EclipseやNetBeans）に比べると、起動が早かったです。
-その他パッケージのインストール IDEとは関係なく便利なパッケージが沢山あるので入れます。
-以下、実際に入れて見たパッケージです。
-■file-icons各ファイルの拡張子に合わせてアイコンを変えてくれる。
-ちなみに、Atomに新拡張子を紐付けさせるには、上部メニューより「Atom Beta＞Config」をクリックし、 config.csonを編集する必要がある。
-【例：以下の記載で「.inc」という拡張子をPHPファイルとして認識してくれる】
-&amp;quot;*&amp;quot;: core: customFileTypes: &amp;quot;source.php&amp;quot;: [ &amp;quot;inc&amp;quot; ] 『source.php』に該当する部分はPHPファイルを開いた状態で「cmd + opt + P」を押すとポップアップで表示される。 別拡張子のファイルでも同じ操作でできるはず。
-■pigments色コードを記載したら自動で該当の色でハイライトしてくれる。
-■show-ideographic-space全角スペースを見える化</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/708/</guid>
+      <description>■環境macOS Sierra 10.12.6Atom 1.21.0-beta2■参考にしたサイト公式サイトhttps://id&amp;hellip;</description>
     </item>
     
     <item>
       <title>【Laravel】migrateで『Class &#39;CreateFoooTable&#39; not found』が発生する</title>
-      <link>/posts/wp/520/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/520/</link>
       <pubDate>Tue, 11 Apr 2017 16:25:41 +0000</pubDate>
       
-      <guid>/posts/wp/520/</guid>
-      <description>■環境 Laravel 5.1
- Laravelの「migrate:rollback」や「migrate:refresh」をしようとして
-『Class &amp;lsquo;CreateFoooTable&amp;rsquo; not found』というエラーが発生した際の解決方法です。
-この事象はmigrateで利用する「/database/migrations」ディレクトリに配置されているファイルが
-autoloadされていない事が原因のようです。
-解決するにはプロジェクトのrootディレクトリにて以下コマンドを実行し、autoloadを再編成します。
-composer dump-autoload ※composerインストールについてはコチラもしサーバにcomposerを入れられない場合は作業PCにて上記コマンドを実行すると
-「/vendor」ディレクトリ配下が更新されるのでサーバにアップロードしてください。
-以上。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/520/</guid>
+      <description>■環境Laravel 5.1Laravelの「migrate:rollback」や「migrate:refresh」をしようとし&amp;hellip;</description>
     </item>
     
     <item>
       <title>【PHP】Laravel5でカスタムバリデーションを追加する</title>
-      <link>/posts/wp/512/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/512/</link>
       <pubDate>Tue, 11 Apr 2017 15:11:41 +0000</pubDate>
       
-      <guid>/posts/wp/512/</guid>
-      <description>■環境 Laravel 5.1
- Laravel5でカスタムバリデーションを追加した際の手順です。
-まず、サービスプロバイダーを作成します。今回は『ValidatorServiceProvider』という名前で作る事にします。
-以下コマンドを実行すると、『/app/providers/ValidatorServiceProvider.php』が生成されます。
-php artisan make:provider ValidatorServiceProvider 作成したサービスプロバイダーを『/config/app.php』に追記します。
- &amp;quot;providers&amp;quot; =&amp;gt; [ 〜〜　省略　〜〜 App\Providers\ValidatorServiceProvider::class, 〜〜　省略　〜〜 ], 作成したサービスプロバーダーにバリデーションルールを記載します。
-例えば以下のルールの社員番号があったとします。
-・頭文字は「A」または「Z」
-・2文字目以降は数字６桁
-このバリデーションルールを『shainbangou』という名前のルールで登録するとこうなります。
-namespace App\Providers; use Illuminate\Support\ServiceProvider; use Validator; class ValidatorServiceProvider extends ServiceProvider { public function boot() { Validator::extend(&#39;shainbangou&#39;, function($attr, $value, $param) { return preg_match(&#39;/^[A|Z][0-9]{6}$/&#39;, $value); }); } } 次にエラー文言の設定をします。
-viewにて社員番号はempIdという変数名で設定されているとします。
-【/resources/lang/ja/validation.php】
-return [ 〜〜　省略　〜〜 &#39;custom&#39; =&amp;gt; [ &#39;empId&#39; =&amp;gt; [ &#39;shainbangou&#39; =&amp;gt; &#39;社員番号が間違っています。（A/Z + 数字6桁）.</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/512/</guid>
+      <description>■環境Laravel 5.1Laravel5でカスタムバリデーションを追加した際の手順です。まず、サービスプロバイダーを作成しま&amp;hellip;</description>
     </item>
     
     <item>
       <title>zabbixでPHPの警告が出る場合の対処</title>
-      <link>/posts/wp/424/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/424/</link>
       <pubDate>Tue, 14 Feb 2017 00:48:55 +0000</pubDate>
       
-      <guid>/posts/wp/424/</guid>
-      <description>■環境
-zabbix 3.2
-PHP 7.1
-PHP7.1でzabbixを動かすと、以下の警告が出ました。
-A non well formed numeric value encountered [zabbix.php:21 → require_once() → ZBase-&amp;gt;run() → ZBase-&amp;gt;processRequest() → CView-&amp;gt;getOutput() → include() → make_status_of_zbx() → CFrontendSetup-&amp;gt;checkRequirements() → CFrontendSetup-&amp;gt;checkPhpMemoryLimit() → str2mem() in include/func.inc.php:410] A non well formed numeric value encountered [zabbix.php:21 → require_once() → ZBase-&amp;gt;run() → ZBase-&amp;gt;processRequest() → CView-&amp;gt;getOutput() → include() → make_status_of_zbx() → CFrontendSetup-&amp;gt;checkRequirements() → CFrontendSetup-&amp;gt;checkPhpPostMaxSize() → str2mem() in include/func.inc.php:410] A non well formed numeric value encountered [zabbix.php:21 → require_once() → ZBase-&amp;gt;run() → ZBase-&amp;gt;processRequest() → CView-&amp;gt;getOutput() → include() → make_status_of_zbx() → CFrontendSetup-&amp;gt;checkRequirements() → CFrontendSetup-&amp;gt;checkPhpUploadMaxFilesize() → str2mem() in include/func.</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/424/</guid>
+      <description>■環境zabbix 3.2PHP 7.1PHP7.1でzabbixを動かすと、以下の警告が出ました。A non well for&amp;hellip;</description>
     </item>
     
     <item>
       <title>PHPExcelの使い方メモ</title>
-      <link>/posts/wp/384/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/384/</link>
       <pubDate>Tue, 07 Feb 2017 11:42:44 +0000</pubDate>
       
-      <guid>/posts/wp/384/</guid>
-      <description>PHPでExcelを生成できる『PHPExcel』の使い方メモ
-※実際に私が使ったものをメモしているだけなので、機能を網羅している訳ではないです。かしこ。
-インストールはcomposerを使うか、圧縮ファイルをダウンロードしてきて
-適当なディレクトリに解凍します。
-あとは以下をrequireするだけ。
-/格納したパス/PHPExcel/Classes/PHPExcel.php
-/格納したパス/PHPExcel/Classes/PHPExcel/IOFactory.php
-実際のソースコードは以下の通り
-/** * PHPExcelの新規オブジェクト作成 */ $excel = new PHPExcel(); /** * シートを作成してシート名を変える */ $sheetIndex = 0; // シート番号は０から $excel-&amp;gt;setActiveSheetIndex($sheetIndex); $sheet = $excel-&amp;gt;getActiveSheet(); $sheet-&amp;gt;setTitle(&#39;SampleSheet01&#39;); /** * セルにデータを入力する */ // 基本的な入力 $rowCnt = 1; // 行番号は１から $clmCnt = 0; // 列番号は0から $text = &#39;セルに書き込む内容だよ&#39;; $sheet-&amp;gt;setCellValueByColumnAndRow($clmCnt, $rowCnt, $val); // 文字列型で入力 $rowCnt++; // 1行下に移動 $clmCnt++; // 1列右に移動 $text = &#39;000001&#39;; // 文字列型にしないと、左記は「00001」ではなく「1」になってしまう $sheet-&amp;gt;setCellValueExplicitByColumnAndRow($clmCnt, $rowCnt, $val, PHPExcel_Cell_DataType::TYPE_STRING); /** * セルの書式設定 */ // シートのデフォルトフォントを設定する $sheet-&amp;gt;getDefaultStyle()-&amp;gt;getFont()-&amp;gt;setName(&#39;ＭＳ Ｐゴシック&#39;)-&amp;gt;setSize(11); // 背景色を設定 $bgcolor = &#39;000000&#39;; // 16進数で指定 $sheet-&amp;gt;getStyleByColumnAndRow($clmCnt, $rowCnt)-&amp;gt;getFill()-&amp;gt;setFillType(PHPExcel_Style_Fill::FILL_SOLID); $sheet-&amp;gt;getStyleByColumnAndRow($clmCnt, $rowCnt)-&amp;gt;getFill()-&amp;gt;getStartColor()-&amp;gt;setRGB($bgcolor); // 文字色を設定 $fontcolor = &#39;FFFFFF&#39;; // 16進数で指定 $sheet-&amp;gt;getStyleByColumnAndRow($clmCnt, $rowCnt)-&amp;gt;getFont()-&amp;gt;getColor()-&amp;gt;setARGB($fontcolor); // 太字にする $sheet-&amp;gt;getStyleByColumnAndRow($clmCnt, $rowCnt)-&amp;gt;getFont()-&amp;gt;setBold(true); // セル（行列番号指定）の上だけに罫線(二重線)を引く $sheet-&amp;gt;getStyleByColumnAndRow($clmCnt, $rowCnt)-&amp;gt;getBorders()-&amp;gt;getTop()-&amp;gt;setBorderStyle(PHPExcel_Style_Border::BORDER_DOUBLE); // セル（レンジ指定）の周り全てに罫線(単一線)を引く $sheet-&amp;gt;getStyle(&#39;A1:B3&#39;)-&amp;gt;getBorders()-&amp;gt;getAllBorders()-&amp;gt;setBorderStyle(PHPExcel_Style_Border::BORDER_THIN); // 列の幅を指定する $sheet-&amp;gt;getColumnDimension(&#39;A&#39;)-&amp;gt;setWidth(14.</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/384/</guid>
+      <description>PHPでExcelを生成できる『PHPExcel』の使い方メモ※実際に私が使ったものをメモしているだけなので、機能を網羅している&amp;hellip;</description>
     </item>
     
     <item>
       <title>brewインストールでphp-mcryptがインストールできない</title>
-      <link>/posts/wp/295/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/295/</link>
       <pubDate>Tue, 20 Sep 2016 00:15:18 +0000</pubDate>
       
-      <guid>/posts/wp/295/</guid>
-      <description>■環境
-OS X El Capitan(10.11.6)
-Homebrew 0.9.9
-brewインストールでphp-mcryptをインストールした際にエラーが出たので
-エラー内容と、その対応をメモしておきます。
-まず、エラー内容について
-# brew install homebrew/php/php70-mcrypt 〜中略〜 /usr/local/opt/php70/bin/phpize: line 61: /usr/local/Library/Homebrew/shims/super/sed: No such file or directory /usr/local/opt/php70/bin/phpize: line 62: /usr/local/Library/Homebrew/shims/super/sed: No such file or directory /usr/local/opt/php70/bin/phpize: line 63: /usr/local/Library/Homebrew/shims/super/sed: No such file or directory Configuring for: PHP Api Version: Zend Module Api No: Zend Extension Api No: /usr/local/opt/php70/bin/phpize: line 155: /usr/local/Library/Homebrew/shims/super/sed: No such file or directory autoheader: error: AC_CONFIG_HEADERS not found in configure.</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/295/</guid>
+      <description>■環境OS X El Capitan(10.11.6)Homebrew 0.9.9brewインストールでphp-mcryptをイ&amp;hellip;</description>
     </item>
     
     <item>
       <title>【PHP】Eclipseでカーソルがある変数のハイライトを変更する</title>
-      <link>/posts/wp/206/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/206/</link>
       <pubDate>Tue, 08 Mar 2016 12:17:33 +0000</pubDate>
       
-      <guid>/posts/wp/206/</guid>
-      <description>たまにカーソルがある変数の色がおかしくなる事があります。
-その際は以下の設定を変更すれば治ります。
-■環境
-Mac (OS X El Capitan 10.11.3)
-Eclipse Luna Service Release 2 (4.4.2)
-【メニューの場所】
-環境設定 → General → Editors → TextEditors → Annotations
-【設定箇所】
-PHP elements ‘ write’ occurences：カーソルがある変数が書き込まれている箇所のハイライト色
-PHP elements ‘ read’ occurences：カーソルがある変数が読まれている箇所のハイライト色
-PHPについて記載しましたが、おそらく他の言語でも大体同じだと思います。
-※上記変更をしても、既に開いているソースコードの色は変わら無いようです。
-変更した色を確認する場合は、設定変更後にソースファイルを開き直してください。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/206/</guid>
+      <description>たまにカーソルがある変数の色がおかしくなる事があります。その際は以下の設定を変更すれば治ります。■環境Mac (OS X El &amp;hellip;</description>
     </item>
     
     <item>
       <title>mysql系の関数がPHP7でエラーになる場合の対応</title>
-      <link>/posts/wp/173/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/173/</link>
       <pubDate>Wed, 20 Jan 2016 21:55:34 +0000</pubDate>
       
-      <guid>/posts/wp/173/</guid>
-      <description>PHP5.XからPHP7にアップデートした際にmysql系の関数がエラーになっていたので、
-その際に行なった対応をメモしておきます。
- 関数名を「mysql_xxxx()」から「mysqli_xxxx()」に変更する。 関数の引数が「第１引数：設定値」「第２引数：mysqlオブジェクト」である場合は
-順番を逆にする。（第１引数がmysqlオブジェクトとなるようにする）
-※ここで言うmysqlオブジェクトとは、「mysqli_connect」の返却値の事です。 mysqli_error()には、引数にmysqlオブジェクトを設定します。
-これ以外にも「mysql_xxxxx()」では引数不要であったものは「mysqli_xxxxx()」では引数に
-mysqlオブジェクトが必要になっているかもしれません。  </description>
+      <guid>https://blog2.logical-dice.com/posts/wp/173/</guid>
+      <description>PHP5.XからPHP7にアップデートした際にmysql系の関数がエラーになっていたので、その際に行なった対応をメモしておきます&amp;hellip;</description>
     </item>
     
     <item>
       <title>【FuelPHP】PHP7対応版へのアップデート</title>
-      <link>/posts/wp/161/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/161/</link>
       <pubDate>Sun, 27 Dec 2015 23:50:04 +0000</pubDate>
       
-      <guid>/posts/wp/161/</guid>
-      <description>FuelPHPのdev-1.7がPHP7に対応していなかったので、
-既存プロジェクトをPHP7に対応しているdev-1.8にアップデートします。
-※dev-1.8が正式にmasterとして公開されていない現時点の手順です。
-もし正式にPHP7対応版が出たらこの手順は不要です。
-■環境
-CentOS Linux release 7.2.1511 (Core)
-FuelPHP　dev-1.7/master
-FuelPHPのプロジェクトディレクトリで以下コマンドを実施してcomposer.jsonを書き換えます。
-sed -ie &amp;quot;s/dev-1.7\/master/dev-1.8\/develop/g&amp;quot; composer.json 以下コマンドでFuelPHPのアップデートをします。
-php composer.pher update 以上でPHP7対応版にアップデートされます。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/161/</guid>
+      <description>FuelPHPのdev-1.7がPHP7に対応していなかったので、既存プロジェクトをPHP7に対応しているdev-1.8にアップ&amp;hellip;</description>
     </item>
     
     <item>
       <title>【CentOS】php7をyumインストールする</title>
-      <link>/posts/wp/156/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/156/</link>
       <pubDate>Mon, 07 Dec 2015 23:31:02 +0000</pubDate>
       
-      <guid>/posts/wp/156/</guid>
-      <description>php7がリリースされたので、CentOS7のサーバにyumでインストールした手順です。
-■環境
-CentOS 7.1.1503
-以下コマンドを実行するだけです。
-epel導入済みであれば1行目は不要です。3行目は必要なパッケージで読み替えてください。
-rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm yum install php70w php70w-mbstring php70w-mysql php70w-pdo php70w-xml </description>
+      <guid>https://blog2.logical-dice.com/posts/wp/156/</guid>
+      <description>php7がリリースされたので、CentOS7のサーバにyumでインストールした手順です。■環境CentOS 7.1.1503以下&amp;hellip;</description>
     </item>
     
     <item>
       <title>【CentOS】ComposerにGitHubのアクセストークンを設定する</title>
-      <link>/posts/wp/147/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/147/</link>
       <pubDate>Mon, 07 Dec 2015 23:11:45 +0000</pubDate>
       
-      <guid>/posts/wp/147/</guid>
-      <description>今更ながら、ComposerにGitHubのアクセストークンを設定する方法です。
-■環境
-CentOS 7.1.1503
-GitHubのアカウントを持っていない人は作ります。特に解説は不要なはず。
-https://github.com/GitHubにログインし、右上のアイコンから「Settings」＞「Personal access tokens」からアクセストークンを作成します。
-画面を閉じるとトークンを見れなくなるので、閉じる前にメモしてください。
-Composerをインストールしていない人は以下を参照
-Composerのインストール方法以下のコマンドでComposerにGitHubのアクセストークンを設定します。
-composer config --global github-oauth.github.com ｛②で取得したアクセストークン｝ </description>
+      <guid>https://blog2.logical-dice.com/posts/wp/147/</guid>
+      <description>今更ながら、ComposerにGitHubのアクセストークンを設定する方法です。■環境CentOS 7.1.1503GitHub&amp;hellip;</description>
     </item>
     
     <item>
       <title>PHPで文字化けが直らない場合の対処</title>
-      <link>/posts/wp/83/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/83/</link>
       <pubDate>Tue, 06 Oct 2015 21:38:07 +0000</pubDate>
       
-      <guid>/posts/wp/83/</guid>
-      <description>■環境
-CentOS 6.6
-Apache2.2
-日本語が文字化けするのでphpのソースで以下の記載をしていました。
-setlocale(LC_ALL, &#39;ja_JP.UTF-8&#39;); これでも文字化けが直っていたので良いのですが、
-この対応方法だと同サーバにてアプリケーションを作成する度に記載が必要です。
-なので、デフォルトで「ja_JP.UTF-8」を設定しました。
-①sysconfigで設定する方法
-/etc/sysconfig/httpdで以下の設定をすれば直りました。
-#HTTPD_LANG=C HTTPD_LANG=ja_JP.UTF-8 ②php.iniで設定する方法
-/etc/php.iniで以下の設定をすれば良いという記事を見ました。
-私の環境では以下の設定をしても文字化けは解消しなかったのですが、念のため載せておきます。
-;intl.default_locale = intl.default_locale =ja_JP.UTF-8 </description>
+      <guid>https://blog2.logical-dice.com/posts/wp/83/</guid>
+      <description>■環境CentOS 6.6Apache2.2日本語が文字化けするのでphpのソースで以下の記載をしていました。setlocale&amp;hellip;</description>
     </item>
     
   </channel>

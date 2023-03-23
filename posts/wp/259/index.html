@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>【Mac】ターミナル設定（iTerm2 &#43; zsh &#43; prezto &#43; peco） &middot; Nonsense J</title>
+	<title>【Mac】ターミナル設定（iTerm2 &#43; zsh &#43; prezto &#43; peco）|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,65 +70,61 @@
 	<div class="post">
 		<h1 class="post-title">【Mac】ターミナル設定（iTerm2 &#43; zsh &#43; prezto &#43; peco）</h1>
 		<div class="post-info">
-				<time datetime="2016-07-26 00:00:40 &#43;0000 UTC">July 26, 2016</time>
+				<p class="publish-date">投稿日：<time datetime="2016-07-26 00:00:40 &#43;0000 UTC" class="catalogue-time">2016-07-26</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/mac/">Mac</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/mac/">Mac</a></div>
 				</div>
 			
 		</div>
-		<p>Ubuntuの場合は<!-- raw HTML omitted -->こちら<!-- raw HTML omitted --></p>
+		<hr />
+		<p>Ubuntuの場合は<a href="/posts/wp/225">こちら</a></p>
 <h3 id="iterm2を準備する">①iTerm2を準備する</h3>
 <p>iTerm2についてはこちらの記事で記載していますので<br>
 こちらをご参照ください。<br>
-<!-- raw HTML omitted -->【Mac】ターミナル設定（iTerm2 ＋ fish ＋ fisherman）<!-- raw HTML omitted --></p>
+<a href="/posts/wp/741" rel="noopener" target="_blank">【Mac】ターミナル設定（iTerm2 ＋ fish ＋ fisherman）</a></p>
 <h3 id="zsh--preztoの導入">②zsh + preztoの導入</h3>
 <p>preztoのインストールは基本的に公式通りです。<br>
-<!-- raw HTML omitted --><a href="https://github.com/sorin-ionescu/prezto">https://github.com/sorin-ionescu/prezto</a><!-- raw HTML omitted --></p>
+<a href="https://github.com/sorin-ionescu/prezto" target="_blank"><a href="https://github.com/sorin-ionescu/prezto">https://github.com/sorin-ionescu/prezto</a></a></p>
 <p>まずシェルをzshに切り替えます。Macならzshは元々インストールされているはずです。</p>
-<pre><code>zsh  
+<pre tabindex="0"><code>zsh  
 </code></pre><p>次にgithubからソースをダウンロードします。</p>
-<pre><code>git clone --recursive https://github.com/sorin-ionescu/prezto.git &quot;${ZDOTDIR:-$HOME}/.zprezto&quot;  
+<pre tabindex="0"><code>git clone --recursive https://github.com/sorin-ionescu/prezto.git &#34;${ZDOTDIR:-$HOME}/.zprezto&#34;  
 </code></pre><p>次にpreztoを使うようにzshの設定をします。<br>
 ターミナルに以下を貼り付けて実行します。（スクリプトファイルなどを作成する必要はなく、ターミナル直貼り付けでOK）</p>
-<pre><code>setopt EXTENDED_GLOB  
-for rcfile in &quot;${ZDOTDIR:-$HOME}&quot;/.zprezto/runcoms/^README.md(.N); do  
-  ln -s &quot;$rcfile&quot; &quot;${ZDOTDIR:-$HOME}/.${rcfile:t}&quot;  
+<pre tabindex="0"><code>setopt EXTENDED_GLOB  
+for rcfile in &#34;${ZDOTDIR:-$HOME}&#34;/.zprezto/runcoms/^README.md(.N); do  
+  ln -s &#34;$rcfile&#34; &#34;${ZDOTDIR:-$HOME}/.${rcfile:t}&#34;  
 done  
 </code></pre><p>最後に、通常使うシェルをzshにします。</p>
-<pre><code>chsh -s /bin/zsh  
+<pre tabindex="0"><code>chsh -s /bin/zsh  
 </code></pre><p>これでターミナルを再起動すれば、zsh + preztoになっています。</p>
 <h3 id="pecoでコマンド履歴を検索しやすくする">③pecoでコマンド履歴を検索しやすくする</h3>
 <p>まず、pecoをインストールします。</p>
-<pre><code>brew install peco  
+<pre tabindex="0"><code>brew install peco  
 </code></pre><p>あとは.zshrcに以下を記載するだけです。</p>
-<pre><code>function peco-history-selection() {  
-    BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`  
+<pre tabindex="0"><code>function peco-history-selection() {  
+    BUFFER=`history -n 1 | tail -r  | awk &#39;!a[$0]++&#39; | peco`  
     CURSOR=$#BUFFER  
     zle reset-prompt  
 }  
 zle -N peco-history-selection  
-bindkey '^R' peco-history-selection  
+bindkey &#39;^R&#39; peco-history-selection  
 </code></pre><p>ターミナルを再起動するか、以下コマンドでzshrcを再読み込みすれば適用されます。<br>
 Ctrl＋Rで履歴検索画面になります。</p>
-<pre><code>source .zshrc  
+<pre tabindex="0"><code>source .zshrc  
 </code></pre>
-	</div>
-
-	<div class="pagination">
-		<a href="/posts/wp/249/" class="left arrow">&#8592;</a>
-		<a href="/posts/wp/274/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
 	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2810401 &#43;0900 JST m=&#43;0.100634601">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

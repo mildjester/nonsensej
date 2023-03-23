@@ -1,184 +1,64 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Windows on Nonsense J</title>
-    <link>/tags/windows/</link>
-    <description>Recent content in Windows on Nonsense J</description>
+    <title>Windows on Logical Dice 技術ブログ</title>
+    <link>https://blog2.logical-dice.com/tags/windows/</link>
+    <description>Recent content in Windows on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sun, 07 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/windows/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 07 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/windows/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>WindowsのMySQL Workbenchで2段SSH踏み台で接続する</title>
-      <link>/posts/2021/03/07/windows-localforward-mysql-workbench/</link>
+      <link>https://blog2.logical-dice.com/posts/2021/03/07/windows-localforward-mysql-workbench/</link>
       <pubDate>Sun, 07 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2021/03/07/windows-localforward-mysql-workbench/</guid>
-      <description>環境  Windows 10 MySQL Workbench 8.0 WSL2 (Ubuntu 20.04)   やりたいこと 作業PCからDBに接続するまでに2段階のSSH接続を挟む環境があるとします。
-この環境で作業PC(Windows)からMySQL WorkbenchでDBに接続します。
-基本的なSSH操作はWSL上でコマンドを打つ前提とします。
-Windows上でSSH操作をする場合は後述のSSHコンフィグのパスはWindows用に読み替えてください。
-(SSHコマンドや秘密鍵パスなど)
-駄目なパターン WSL上の~/.ssh/configに以下の記載をしていれば、アプリケーションサーバーへSSH接続はできます。
-Host fumidai-server HostName 111.111.111.111 User my-user IdentityFile ~/.ssh/id_rsa_hoge IdentitiesOnly yes Host app-server HostName 222.222.222.222 User my-user ProxyCommand ssh -W %h:%p fumidai-server IdentityFile ~/.ssh/id_rsa_hoge ForwardAgent yes ※HostName, User, IdentityFileは適宜読み替えてください。
-ここで指定しているProxyCommand設定により、
-app-serverへSSHする時はfumidai-serverを経由するようになります。
-しかし、MySQL WorkbenchのTCP/IP over SSHでapp-serverを指定して
-fumidai-server ⇒ app-server ⇒ DB
-という接続をしようとしても接続できません。
-(MacやUbuntu等であれば接続できる。なぜかWindowsだけ不可。)
-良いパターン MySQL WorkbenchのTCP/IP over SSHは利用せずに、
-SSH Local ForwardでDBに繋がるようにしておいてからMySQL Workbenchを繋ぎます。</description>
+      <guid>https://blog2.logical-dice.com/posts/2021/03/07/windows-localforward-mysql-workbench/</guid>
+      <description>Windows10のMySQL Workbenchで2段階のSSH接続を挟みDBへ接続する方法です。</description>
     </item>
     
     <item>
       <title>Windows Terminalの導入</title>
-      <link>/posts/2020/09/04/windows-terminal-install/</link>
+      <link>https://blog2.logical-dice.com/posts/2020/09/04/windows-terminal-install/</link>
       <pubDate>Fri, 04 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2020/09/04/windows-terminal-install/</guid>
-      <description>Windows TerminalでUbuntuを使えるようにします。
-Windows Terminalのインストール Microsoft Storeで「Windows Terminal」を検索してインストールするだけです。
-Windows TerminalのデフォルトをUbuntuにする Windows Terminalを起動して設定を開きます。
-settings.jsonが開くので、「profiles &amp;gt; list」の中からUbuntuのguidを探します。
-{ &amp;quot;guid&amp;quot;: &amp;quot;{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}&amp;quot;, ←これ &amp;quot;hidden&amp;quot;: false, &amp;quot;name&amp;quot;: &amp;quot;Ubuntu-20.04&amp;quot;, &amp;quot;source&amp;quot;: &amp;quot;Windows.Terminal.Wsl&amp;quot; }, 見つけたguidを「defaultProfile」に設定します。
-&amp;quot;defaultProfile&amp;quot;: &amp;quot;{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}&amp;quot;, ←ここに入れる 起動時のディレクトリを指定する Windows Terminalを起動した際に開く場所はWindows側のホームディレクトリになっています。
-Ubuntuを使う際はUbuntu側のホームディレクトリから始まって欲しいので変更します。
-settings.jsonのUbuntuの設定にstartingDirectoryを追加します。
-Ubuntu内の/home/hogeuserからスタートしたい場合は以下のように設定します。
-{ &amp;quot;guid&amp;quot;: &amp;quot;{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}&amp;quot;, &amp;quot;hidden&amp;quot;: false, &amp;quot;name&amp;quot;: &amp;quot;Ubuntu-20.04&amp;quot;, &amp;quot;source&amp;quot;: &amp;quot;Windows.Terminal.Wsl&amp;quot;, &amp;quot;startingDirectory&amp;quot;: &amp;quot;//wsl$/Ubuntu-20.04/home/hogeuser&amp;quot; ←これを追加 }, フォントを指定する Ubuntuのシェルはfishを利用しているのですが、fishのテーマによってはフォントを変更する必要があります。
-fishの導入方法についてはこちら
-settings.jsonのUbuntuの設定にfontFaceを追加します。
-もしフォントサイズを変更したい場合はfontSizeも追加してください。
-フォントを「Cascadia Code PL」に変更し、フォントサイズを11にする場合は以下のようになります。
-{ &amp;quot;guid&amp;quot;: &amp;quot;{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}&amp;quot;, &amp;quot;hidden&amp;quot;: false, &amp;quot;name&amp;quot;: &amp;quot;Ubuntu-20.04&amp;quot;, &amp;quot;source&amp;quot;: &amp;quot;Windows.Terminal.Wsl&amp;quot;, &amp;quot;startingDirectory&amp;quot;: &amp;quot;//wsl$/Ubuntu-20.04/home/hogeuser&amp;quot;, &amp;quot;fontFace&amp;quot;: &amp;quot;Cascadia Code PL&amp;quot;, ←これを追加 &amp;quot;fontSize&amp;quot;: 11 ←これを追加 }, </description>
+      <guid>https://blog2.logical-dice.com/posts/2020/09/04/windows-terminal-install/</guid>
+      <description>Windows 10でWindows Terminalを使えるようにします。</description>
     </item>
     
     <item>
       <title>Windows10でキー配置を変更する</title>
-      <link>/posts/2020/09/04/win10-keymap-change/</link>
+      <link>https://blog2.logical-dice.com/posts/2020/09/04/win10-keymap-change/</link>
       <pubDate>Fri, 04 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2020/09/04/win10-keymap-change/</guid>
-      <description>参考  Ctrl2Capツールで［Ctrl］と［CapsLock］キーを入れ替える（Windows編）|@IT   Windowsのキー配置を変更してMac風にします。
-CapsLockをCtrlにする CapsLockは使うことがないのでCtrlキーに割り当ててしまいます。
-MacのCtrlキーと同じ位置にCapsLockはあるので、Macを使っていた人にも操作しやすくなると思います。
-変更するには『Ctrl2Cap』を使います。
-https://docs.microsoft.com/ja-jp/sysinternals/downloads/ctrl2cap
-インストール手順は以下の通りです。
-①ctrl2capのZIPファイルをダウンロードして解凍する。
-②PowerShellを管理者権限で起動し、①の解凍したフォルダに移動する。
-③.\ctrl2cap.exe /installを実行する。
-これで『Ctrl2cap successfully installed.』と表示されたらインストール成功です。
-PCを再起動するとCapsLockがCtrlとして使えるようになります。
-変換/無変換キーでIMEをON/OFFする Mac風にスペースバーの左右のキーでIMEをON/OFFできるようにします。
-設定手順は以下の通りです。
-①設定を開く。
-②設定の検索で『日本語IMEの設定』を検索して開く。
-③『キーとタッチのカスタマイズ』を開く
-④『各キーに好みの機能を割り当てる』をオンにする。
-⑤無変換キーを「IME-オフ」に割り当てる。
-⑥変換キーを「IME-オン」に割り当てる。</description>
+      <guid>https://blog2.logical-dice.com/posts/2020/09/04/win10-keymap-change/</guid>
+      <description>Windows 10のCapsLockの挙動やIMEオン/オフキーを変更します。</description>
     </item>
     
     <item>
       <title>Windows10で開発PCをセッティングする。</title>
-      <link>/posts/2020/09/04/win10-initial-setting/</link>
+      <link>https://blog2.logical-dice.com/posts/2020/09/04/win10-initial-setting/</link>
       <pubDate>Fri, 04 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2020/09/04/win10-initial-setting/</guid>
-      <description>Windows 10のWSL2やWindows Terminalが良い感じだったので
-開発環境を整えてみました。
-大きな作業は以下を参照
- Windowsのキー配置変更 WSL2でUbuntuを使う Windows Terminalの導入  ウィンドウが勝手に最大化しないようにする Win10はデフォルトだとウィンドウを画面の端に持っていくと勝手に最大化されてしまいます。
-邪魔になることが多い機能なので無効にしてしまいます。
-『設定 &amp;gt; システム &amp;gt; マルチタスク』を開き、「ウィンドウのスナップ」をオフにすれば完了です。
-Dockerのインストール 以下よりDocker Desktop for Windowsをダウンロードします。
-https://hub.docker.com/editions/community/docker-ce-desktop-windows
-ダウンロードしてきたインストーラーを実行してインストールします。
-インストール時に「Enable WSL 2 Windows Features」のチェックボックスがあるので、忘れずにチェックするようにしてください。
-これでUbuntu側でもdockerコマンドが使えるようになっています。
-もしWSL2より先にDockerをインストールしてしまった場合は「Settings &amp;gt; Resources &amp;gt; WSL INTEGRATION」からWLS上のDockerを有効化できます。
-Visual Studio Codeのインストール 以下よりダウンロードしてインストールします。
-https://azure.microsoft.com/ja-jp/products/visual-studio-code/
-Ubuntu側でgitコマンドを使ってソースコードを管理している場合はWindowsからUbuntuに接続する必要があります。
-そのためには『Remote - WSL』という拡張子のインストールをインストールします。
-（おそらくVisual Studio Codeの初回起動時に推奨される）
-MySQL Workbenchのインストール MySQL Workbenchをインストールするには「Visual C++ 2019」が必要です。
-インストールされていない場合は以下よりダウンロードしてインストールしておきます。
-https://support.microsoft.com/ja-jp/help/2977003/the-latest-supported-visual-c-downloads
-以下よりMySQL Workbenchをダウンロードしてインストールします。
-https://dev.mysql.com/downloads/workbench/</description>
+      <guid>https://blog2.logical-dice.com/posts/2020/09/04/win10-initial-setting/</guid>
+      <description>Windows 10のWSL2やWindows Terminalが良い感じだったので開発環境を整えてみました。</description>
     </item>
     
     <item>
       <title>WSL2でUbuntuを使えるようにする</title>
-      <link>/posts/2020/09/04/win10-wsl2-ubuntu/</link>
+      <link>https://blog2.logical-dice.com/posts/2020/09/04/win10-wsl2-ubuntu/</link>
       <pubDate>Fri, 04 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2020/09/04/win10-wsl2-ubuntu/</guid>
-      <description>参考  Windows 10 用 Windows Subsystem for Linux のインストール ガイド WSL の場所を変更する|パソコン鳥のブログ   Windows 10のWLS2でUbuntu20.04を使えるようにします。
-Windows 10のアップデート WSL2を使うにはWindowsのバージョン 1903以降、ビルド 18362以上である必要があります。
-バージョンを確認するには「Winキー＋Rキー」で『ファイル名を指定して実行』を開き、
-名前にwinverを入力して「OK」をクリックします。
-Windows Updateで最新化できれば良いですが、更新が来ない場合もあるので
-その場合は更新アシスタントを利用します。
-https://www.microsoft.com/ja-jp/software-download/windows10
-WSL2をインストールする 管理者権限でPowerShellを開いて、以下を実行します。
-dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart ここまで実行したら一度再起動します。
-再起動後、再度PowerShellを管理者権限で開き、以下コマンドを実行します。
-wsl --set-default-version 2 もしカーネルの更新が必要という旨のメッセージが表示された場合は
-以下を参考にカーネルの更新をしてから再実行します。
-https://docs.microsoft.com/ja-jp/windows/wsl/wsl2-kernel
-Ubuntuのインストール Microsoft Storeで「Ubuntu」と検索し、Ubuntu20.04をインストールします。
-その後、Ubuntuを起動すると初期設定が走るので、アカウント設定等をします。
-デフォルトではaptでの取得元が海外になっているので、以下コマンドで日本に変更します。
-sudo sed -i -e &#39;s|archive.ubuntu.com|ftp.riken.go.jp/Linux|g&#39; /etc/apt/sources.list ここまででWSL2 でUbuntuを使えるようになりました。
-ですが、デフォルトではCドライブにUbuntu用の領域をとってしまうので、Dドライブに移したいと思います。
-WSLの場所を移動させるツール『LxRunOffline』を利用します。
-まず、GitHubより圧縮ファイルをダウンロードして解凍しておきます。(LxRunOffline-vX.X.X-mingw.zip)
-https://github.com/DDoSolitary/LxRunOffline/releases
-次にWSLを配置するフォルダを作成しておきます。
-本例ではD:\wslを作ります。
-PowerShellを管理者権限で開き、以下コマンドで先ほど作成したフォルダに権限を付与します。</description>
+      <guid>https://blog2.logical-dice.com/posts/2020/09/04/win10-wsl2-ubuntu/</guid>
+      <description>Windows 10のWLS2でUbuntu20.04を使えるようにします。</description>
     </item>
     
     <item>
       <title>WindowsでDocker Toolbox＆docker-composeを動かす</title>
-      <link>/posts/wp/1500/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/1500/</link>
       <pubDate>Fri, 21 Sep 2018 17:55:45 +0000</pubDate>
       
-      <guid>/posts/wp/1500/</guid>
-      <description>仕事でWindows利用者にDocker環境を構築してもらう事があったのですが
-結構苦労したので手順を残します。
-■□ 注意■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□
-MacやLinuxでdocker-composeを普通に使える前提で手順を書きます。 Dockerやdocker-compose自体の説明はあまり書きません □■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□
-もし、Windows10 64bit(Home以外)を使っている人であればこの記事の作業は不要です。
-Docker ToolboxではなくDocker for Windowsをインストールしてください。
-（たぶん、Docker for Windowsの方が楽に構築できると思われます）
-Docker Toolboxのインストール まずDocker Toolboxをダウンロードします。
-以下のページにてDocker Toolboxをダウンロードしてください。
-https://docs.docker.com/toolbox/overview/#ready-to-get-startedダウンロードしてきたEXEファイルを実行するとインストーラーが走りますので、
-そのまま次へ次へと進みます。
-インストールが完了すると『Docker Quickstart Terminal』というショートカットが
-デスクトップに作られるので実行します。
-しばらく待つとDockerが立ち上がります。(クジラのAAが表示されます)
-docker-compose.ymlの作成 docker-compose.ymlを書きます。
-基本的な書き方はMacやLinuxと同じなので割愛します。
-気をつけなければいけないのはvolumesの書き方です。
-相対パスで記載する場合は以下のように他OS同様の記載ができます。
-volumes: ./php.ini:/etc/php.ini 次に絶対パスで記載する場合ですが、「C:¥」の部分は「/c/」と書きます。
-例えば「C:¥develop¥app」にあるディレクトリを共有する場合は以下のような記載になります。
-volumes: /c/develop/app:/var/www/html 後に出てくるVirtualboxの共有フォルダ設定次第ではこの通りにしない事も可能かもしれませんが、
-できるだけシンプルに構築するため、このようにします。
-もしMySQLのコンテナを作成する場合は
-データの永続化のためのホスト側ディレクトリを指定することはできません。
-つまり、この書き方だとNGで
-services: mysql: 〜中略〜 volumes: - ./mysql/data:/var/lib/mysql この書き方ならOKです
-services: mysql: 〜中略〜 volumes: - mydb:/var/lib/mysql 〜中略〜 volumes: mydb VirtualBoxの設定 Docker Toolboxでコンテナを動かす場合に一番引っかかる部分かもしれません。
-ポートフォワーディングの設定 docker-compose.ymlにてポートフォワーディングを8080:80と設定しただけでは
-ローカルPCにて http://localhost:8080にアクセスしてもDockerコンテナに
-リクエストは飛びません。
-なぜかというと、WindowsでDocker Toolboxを使ってコンテナを動かした場合は</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/1500/</guid>
+      <description>仕事でWindows利用者にDocker環境を構築してもらう事があったのですが結構苦労したので手順を残します。■□ 注意 ■□■&amp;hellip;</description>
     </item>
     
   </channel>

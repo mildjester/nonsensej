@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
     <head>
-		
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>ubuntuで多機能マウスを設定する &middot; Nonsense J</title>
+	<title>ubuntuで多機能マウスを設定する|Logical Dice 技術ブログ</title>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/fonts.css">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
-		
-		<link href="" rel="alternate" type="application/rss+xml" title="Nonsense J" />
-	</head>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
 
     <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Nonsense J</h2>
-				</a>
-				<ul>
-    
-    
-</ul>
-			</div>
-		</nav>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<nav class="nav">
+  <div class="nav-container jc-sb">
+    <a href="/" class="nav-title">
+      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+    </a>
+    <div class="search-box">
+      <form class="fx">
+        <input id="searchKeyword" type="search" size="20">
+        <input id="searchButton" type="submit" value="検索">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+const SEARCH_URL = '/search/';
+window.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('searchButton');
+  const searchKeyword = document.getElementById('searchKeyword');
+
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();  
+    const query = searchKeyword.value;
+    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+    location.href = url;
+  });
+});
+</script>
 
         
 
@@ -39,13 +70,14 @@
 	<div class="post">
 		<h1 class="post-title">ubuntuで多機能マウスを設定する</h1>
 		<div class="post-info">
-				<time datetime="2021-02-14 00:00:00 &#43;0000 UTC">February 14, 2021</time>
+				<p class="publish-date">投稿日：<time datetime="2021-02-14 00:00:00 &#43;0000 UTC" class="catalogue-time">2021-02-14</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/ubuntu/">ubuntu</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/ubuntu/">ubuntu</a></div>
 				</div>
 			
 		</div>
+		<hr />
 		<h2 id="環境">環境</h2>
 <ul>
 <li>Ubuntu 20.10</li>
@@ -62,53 +94,48 @@
 <h2 id="手順">手順</h2>
 <h3 id="インストール">インストール</h3>
 <p>まず必要なソフトをインストールします。</p>
-<pre><code>sudo apt install xbindkeys
+<pre tabindex="0"><code>sudo apt install xbindkeys
 </code></pre><h3 id="ボタン番号の取得">ボタン番号の取得</h3>
 <p>次にマウスのボタン番号を取得します。<br>
 まず以下コマンドを実行してボタン検知ができる状態にします。</p>
-<pre><code>xev
+<pre tabindex="0"><code>xev
 </code></pre><p>現れる白い四角が書かれたウィンドウにマウスカーソルを持っていき、その状態でマウスのボタンを押すとコンソールに情報が表示されます。<br>
 例えば私のマウス（M-DT2DR）のFn 1であれば以下のように<code>button 10</code>と表示されます。</p>
-<pre><code>ButtonRelease event, serial 36, synthetic NO, window 0x4000001,
+<pre tabindex="0"><code>ButtonRelease event, serial 36, synthetic NO, window 0x4000001,
     root 0x7ed, subw 0x4000002, time 1758091, (31,39), root:(1951,76),
     state 0x0, button 10, same_screen YES
 </code></pre><p>同様に、Fn 2は<code>button 11</code>でFn 3は<code>button 12</code>でした。</p>
 <h3 id="ボタンのマッピング">ボタンのマッピング</h3>
 <p>ボタンマッピングするための設定ファイルを作成します。<br>
 設定ファイルは空ファイルから始めても良いのですが、一応デフォルト値から生成しておきます。</p>
-<pre><code>xbindkeys --defaults &gt; ~/.xbindkeysrc
+<pre tabindex="0"><code>xbindkeys --defaults &gt; ~/.xbindkeysrc
 </code></pre><p>作成した設定ファイルに以下を追記します。</p>
-<pre><code># Increase volume
-&quot;pactl set-sink-volume @DEFAULT_SINK@ +1000&quot;
+<pre tabindex="0"><code># Increase volume
+&#34;pactl set-sink-volume @DEFAULT_SINK@ +1000&#34;
     b:10
 
 # Decrease volume
-&quot;pactl set-sink-volume @DEFAULT_SINK@ -1000&quot;
+&#34;pactl set-sink-volume @DEFAULT_SINK@ -1000&#34;
     b:11
 
 # Mute volume
-&quot;pactl set-sink-mute @DEFAULT_SINK@ toggle&quot;
+&#34;pactl set-sink-mute @DEFAULT_SINK@ toggle&#34;
    b:12
 </code></pre><p>設定ファイルを保存したら、以下コマンドで読み込みます。</p>
-<pre><code>xbindkeys -p
+<pre tabindex="0"><code>xbindkeys -p
 </code></pre><p>これでマウスのFn 1〜3ボタンに音量操作がマッピングできました。</p>
 
-	</div>
-
-	<div class="pagination">
-		<a href="/posts/2021/02/11/ubuntu-20-10-initialize/" class="left arrow">&#8592;</a>
-		<a href="/posts/2021/02/17/ubuntu-howdy/" class="right arrow">&#8594;</a>
-
-		<a href="#" class="top">Top</a>
 	</div>
 </main>
 
 
         		<footer>
-			
-			<span>
-			&copy; <time datetime="2021-05-05 05:12:48.2694963 &#43;0900 JST m=&#43;0.089090701">2021</time> . Nonsense J
-			</span>
+			<div class="footer-container">
+				
+				<span>
+				&copy; 2015 Logical Dice.
+				</span>
+			</div>
 		</footer>
 
     </body>

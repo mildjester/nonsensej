@@ -1,68 +1,46 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>node on Nonsense J</title>
-    <link>/tags/node/</link>
-    <description>Recent content in node on Nonsense J</description>
+    <title>node on Logical Dice 技術ブログ</title>
+    <link>https://blog2.logical-dice.com/tags/node/</link>
+    <description>Recent content in node on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Tue, 15 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/node/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 15 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/node/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>swiper.scssがwebpackで取り込まれない</title>
-      <link>/posts/2020/09/15/webpack-swiper-env-diff/</link>
+      <link>https://blog2.logical-dice.com/posts/2020/09/15/webpack-swiper-env-diff/</link>
       <pubDate>Tue, 15 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2020/09/15/webpack-swiper-env-diff/</guid>
-      <description>環境  webpack 4.44.1 swiper 6.0.0   事象 webpackでswiperを取り込んでビルドしようとした時の話。
-swiper.scssがなぜか開発環境では取り込めてて、本番環境では取り込めてないという事象が起きました。
-つまり、↓だとswiper.scssが取り込まれたCSSが出力されるんですが
-node node_modules/webpack/bin/webpack.js --mode development ↓だとswiper.scssが取り込まれていないCSSが出力されます。
-node node_modules/webpack/bin/webpack.js --mode production 対応 原因は結局不明だったのですが
-swiperのバージョンを6.0.0から6.2.0に変更したら治りました。
-事象が起きているときの状態 npmインストールしていたパッケージ
-&amp;quot;devDependencies&amp;quot;: { &amp;quot;css-loader&amp;quot;: &amp;quot;^4.3.0&amp;quot;, &amp;quot;mini-css-extract-plugin&amp;quot;: &amp;quot;^0.11.2&amp;quot;, &amp;quot;sass&amp;quot;: &amp;quot;^1.26.10&amp;quot;, &amp;quot;sass-loader&amp;quot;: &amp;quot;^10.0.2&amp;quot;, &amp;quot;style-loader&amp;quot;: &amp;quot;^1.2.1&amp;quot;, &amp;quot;swiper&amp;quot;: &amp;quot;^6.0.0&amp;quot;, &amp;quot;webpack&amp;quot;: &amp;quot;^4.44.1&amp;quot;, &amp;quot;webpack-cli&amp;quot;: &amp;quot;^3.3.12&amp;quot; } webpack.config.js
-const path = require(&#39;path&#39;); const MiniCssExtractPlugin = require(&#39;mini-css-extract-plugin&#39;); module.exports = { entry: path.resolve(__dirname, &#39;src/js/index.js&#39;), output: { path: path.resolve(__dirname, &amp;quot;dist&amp;quot;), filename: &#39;main.js&#39;, }, module: { rules: [ { test: /\.</description>
+      <guid>https://blog2.logical-dice.com/posts/2020/09/15/webpack-swiper-env-diff/</guid>
+      <description>webpackでswiperをバンドルした際に本番環境だけswiper.scssが取り込まれなかった話です</description>
     </item>
     
     <item>
       <title>gulp-uglifyで圧縮時に変数／関数名を圧縮させない</title>
-      <link>/posts/2020/04/15/gulp-uglify-keep-name/</link>
+      <link>https://blog2.logical-dice.com/posts/2020/04/15/gulp-uglify-keep-name/</link>
       <pubDate>Wed, 15 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2020/04/15/gulp-uglify-keep-name/</guid>
-      <description>参考  github mishoo/UglifyJS2   意外と調べても情報が出てこなかったのでメモです。
-gulp-uglifyを使ってJSファイルを圧縮すると定義している変数名や関数名も圧縮されてアルファベット1文字等になります。
-圧縮したJSファイル内でのみ呼び出される変数・関数であれば良いのですが、外部からも呼び出したいというパターンもあると思います。特に関数。
-変数名や関数名を保持したい場合は、gulp-uglify実行時に以下の用にオプションを指定してあげればOKです。
-(gulpfile.js例)
-var gulp = require(&#39;gulp&#39;); var uglify = require(&#39;gulp-uglify&#39;); var uglify_option = { keep_fnames: true, // function名を圧縮させない場合に指定 mangle: false // 変数名を圧縮させない場合に指定 } gulp.task(&amp;quot;default&amp;quot;, function() { return gulp.src(&#39;src/*.js&#39;) .pipe(uglify(uglify_option)) .pipe(gulp.dest(&#39;dest&#39;)); }); </description>
+      <guid>https://blog2.logical-dice.com/posts/2020/04/15/gulp-uglify-keep-name/</guid>
+      <description>gulp-uglifyでJSファイルを圧縮する際に変数名や関数名をそのままにする方法です。</description>
     </item>
     
     <item>
       <title>【node】foreverチートシート</title>
-      <link>/posts/wp/677/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/677/</link>
       <pubDate>Mon, 31 Jul 2017 01:44:06 +0000</pubDate>
       
-      <guid>/posts/wp/677/</guid>
-      <description>起動 forever start {jsファイル} 起動中一覧表示 forever list 停止 forever stop {停止対象の番号} ※停止対象の番号は上記の一覧表示で確認できる。 0から順に配番されているはず。
- ★その他★ 起動コマンド実行後にログを見ると Error: spawn ENOMEMというエラーで落ちていることがある。
-これはメモリ不足が原因らしいので、メモリを確保してから再実行したら直る。 自分の環境の場合、空きが「600MB」くらいだとダメでした。 色々整理して、空きを「1.5GB」くらいまでにしたら直りました。</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/677/</guid>
+      <description>起動forever start {jsファイル}起動中一覧表示forever list停止forever stop {停止対象の&amp;hellip;</description>
     </item>
     
     <item>
       <title>Vue.js &#43; foreverでのアプリ起動</title>
-      <link>/posts/wp/674/</link>
+      <link>https://blog2.logical-dice.com/posts/wp/674/</link>
       <pubDate>Mon, 31 Jul 2017 01:32:53 +0000</pubDate>
       
-      <guid>/posts/wp/674/</guid>
-      <description>■環境 CentOS 7.3 npm 3.10.10
- =====2017/12/27追記=====
-久しぶりに本手順を試したところ、 vueプロジェクト内にbuild/dev-server.jsが存在しておらず foreverでの起動ができなくなっていました。 公式にならってnpm startコマンドなどで起動した方が良いかと思われます。 ===追記ここまで=====
-■手順 npmとnodejsが入っていない場合は、yumでインストールします
-yum install npm nodejs vueアプリを簡単に導入できるツール「vue-cli」と nodeアプリをデーモン的に起動できる「forever」をインストールします ※これらはグローバル領域にインストールするので「-g」オプションをつけます
-npm install -g vue-cli forever プロジェクトディレクトリを作成します プロジェクトを作成したいディレクトリで以下を実行します
-vue init webpack samplevue ※「samplevue」は作成したいディレクトリ名 上記実行後に色々質問をされるので、作りたい環境に合わせて回答します 以下は回答例です
-? Project name samplevue ? Project description This is Sample ? Author Djiro ? Vue build standalone ? Install vue-router? Yes ? Use ESLint to lint your code? No ? Set up unit tests No ?</description>
+      <guid>https://blog2.logical-dice.com/posts/wp/674/</guid>
+      <description>■環境CentOS 7.3npm 3.10.10=====2017/12/27追記=====久しぶりに本手順を試したところ、vu&amp;hellip;</description>
     </item>
     
   </channel>

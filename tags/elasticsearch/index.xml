@@ -1,24 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Elasticsearch on Nonsense J</title>
-    <link>/tags/elasticsearch/</link>
-    <description>Recent content in Elasticsearch on Nonsense J</description>
+    <title>Elasticsearch on Logical Dice 技術ブログ</title>
+    <link>https://blog2.logical-dice.com/tags/elasticsearch/</link>
+    <description>Recent content in Elasticsearch on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Thu, 11 Jun 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/elasticsearch/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 11 Jun 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/elasticsearch/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Elasticsearchの使い方メモ</title>
-      <link>/posts/2020/06/11/elasticsearch-topics/</link>
+      <link>https://blog2.logical-dice.com/posts/2020/06/11/elasticsearch-topics/</link>
       <pubDate>Thu, 11 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>/posts/2020/06/11/elasticsearch-topics/</guid>
-      <description>数年前にElasticsearchを利用していた頃の使いかたメモが見つかったので記事にしておきます。
-以下例ではElasticsearchには商品ID(product_id)も持つ商品情報が格納されているものとします。
-ID指定で1件だけ検索するクエリ 単純にproduct_idを指定するだけです。
-{ &amp;quot;query&amp;quot;: { &amp;quot;match&amp;quot;: { &amp;quot;product_id&amp;quot;: &amp;quot;123&amp;quot; } } } ID指定で複数件、順序を指定して検索するクエリ 複数件の検索をします。取得する順序もweightで指定します。
-weightが大きい方が上位に取得されます。
-{ &amp;quot;query&amp;quot;: { &amp;quot;function_score&amp;quot;: { &amp;quot;query&amp;quot;: { &amp;quot;bool&amp;quot;:{ &amp;quot;should&amp;quot;:[ {&amp;quot;match&amp;quot;: {&amp;quot;product_id&amp;quot;: &amp;quot;123&amp;quot;}}, {&amp;quot;match&amp;quot;: {&amp;quot;product_id&amp;quot;: &amp;quot;323&amp;quot;}}, {&amp;quot;match&amp;quot;: {&amp;quot;product_id&amp;quot;: &amp;quot;223&amp;quot;}} ] } }, &amp;quot;functions&amp;quot;: [ { &amp;quot;filter&amp;quot;: { &amp;quot;product_id&amp;quot;: { &amp;quot;product_id&amp;quot;: &amp;quot;123&amp;quot; } }, &amp;quot;weight&amp;quot;: 3 }, { &amp;quot;filter&amp;quot;: { &amp;quot;product_id&amp;quot;: { &amp;quot;product_id&amp;quot;: &amp;quot;323&amp;quot; } }, &amp;quot;weight&amp;quot;: 2 }, { &amp;quot;filter&amp;quot;: { &amp;quot;product_id&amp;quot;: { &amp;quot;product_id&amp;quot;: &amp;quot;223&amp;quot; } }, &amp;quot;weight&amp;quot;: 1 } ] } } } ※メモ</description>
+      <guid>https://blog2.logical-dice.com/posts/2020/06/11/elasticsearch-topics/</guid>
+      <description>数年前のElasticsearchのメモが出てきたので晒します。</description>
     </item>
     
   </channel>
