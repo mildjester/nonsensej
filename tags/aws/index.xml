@@ -6,7 +6,16 @@
     <description>Recent content in AWS on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sun, 29 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/aws/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 04 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/aws/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【AWS】LightsailでインドのVPNサーバーを構築する</title>
+      <link>https://blog2.logical-dice.com/posts/2023/07/04/aws-lightsail-vpn-india/</link>
+      <pubDate>Tue, 04 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog2.logical-dice.com/posts/2023/07/04/aws-lightsail-vpn-india/</guid>
+      <description>AWS Lightsailを使ってインドのIPアドレスを使うためのVPNサーバーを構築しました。</description>
+    </item>
+    
     <item>
       <title>【AWS】S3のリダイレクトが効かない</title>
       <link>https://blog2.logical-dice.com/posts/2023/01/29/aws-s3-cloudfront-not-redirect/</link>
