@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sat, 11 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 04 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【AWS】LightsailでインドのVPNサーバーを構築する</title>
+      <link>https://blog2.logical-dice.com/posts/2023/07/04/aws-lightsail-vpn-india/</link>
+      <pubDate>Tue, 04 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog2.logical-dice.com/posts/2023/07/04/aws-lightsail-vpn-india/</guid>
+      <description>AWS Lightsailを使ってインドのIPアドレスを使うためのVPNサーバーを構築しました。</description>
+    </item>
+    
     <item>
       <title>Viteを使ってみる</title>
       <link>https://blog2.logical-dice.com/posts/2023/02/11/vite-tutorial/</link>

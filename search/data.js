@@ -2,21 +2,33 @@
 
 var data = [
   {
+    url: "https://blog2.logical-dice.com/posts/2023/07/04/aws-lightsail-vpn-india/",
+    title: "【AWS】LightsailでインドのVPNサーバーを構築する",
+    date: "2023-07-04T00:00:00Z",
+    body: "【AWS】LightsailでインドのVPNサーバーを構築する 諸事情によりインドのIPアドレスが必要になったため、インドにVPNサーバーを建てました。 手軽に済ませるため、AWS Lightsailを使って実現しました。 ■構築手順 ※AWSアカウントを持っている前提とします。 Lightsailの管理画面を開き、新規インスタンスの作成を行います。 インスタンスのリージョンはインドのムンバイ（ap-south-1a）にし、Amazon LinuxのOSのみで立ち上げます。 自分しか使わない前提だったので、料金プランは最安のものにします。 ここは利用用途に合わせて変えてください。 上記でインスタンスを作成します。 作成後しばらく待つとインスタンスが立ち上がるので、縦三点リーダより「接続」をクリックします。 Webブラウザ上でコンソールが立ち上がるので、VPNサーバーのDockerイメージを立ち上げます。 なお、以下の値は好きに書き換えてください。 common_key：接続に利用する共通鍵文字列 user：接続ユーザー password：接続パスワード $ sudo -i # yum install -y docker # systemctl start docker # systemctl enable docker # docker run -d --privileged -p 500:500/udp -p 4500:4500/udp -p 1701:1701/tcp -p 5555:5555/tcp -e PSK=\u0026#39;common_key\u0026#39; -e USERS=\u0026#39;user:password\u0026#39; siomiz/softethervpn 以上でインスタンス内の設定は完了です。 続いてネットワーク設定をします。 Lightsail管理画面より作成したインスタンスの設定画面に入り、ネットワーキングタブにて「静的IPをアタッチする」をクリックします。 色々ダイアログが表示されて質問されますが、指示通りに続行していけば固定IPが割り当てられます。 次にファイアーウォール設定で以下を解放します。 TCP 1701 TCP 5555 UDP 500 UDP 4500 また、デフォルトで全IPに空いている22ポートや80ポートも余力があれば閉じておきます。 以上でVPNサーバー構築は完了です。 Macから接続してみます。 ネットワーク設定にてL2TP over IPsecのVPNを追加します。 サーバアドレスは作成したインスタンスのIPで、認証情報はVPNサーバー構築コマンドの中で指定したものを入れます。 VPNのオプションで全てのトラフィックをVPN経由するようにトグルをONにしておきます。 上記で設定は完了なので、「OK」をクリックしてVPN接続をします。 以下ツールなどで接続IPがムンバイになっていることを確認できます。 https://rakko.tools/tools/2/ 以上で完了です。"
+  },
+  {
+    url: "https://blog2.logical-dice.com/tags/aws/",
+    title: "AWS",
+    date: "2023-07-04T00:00:00Z",
+    body: "AWS"
+  },
+  {
     url: "https://blog2.logical-dice.com/",
     title: "Logical Dice 技術ブログ",
-    date: "2023-02-11T00:00:00Z",
+    date: "2023-07-04T00:00:00Z",
     body: "Logical Dice 技術ブログ"
   },
   {
     url: "https://blog2.logical-dice.com/posts/",
     title: "Posts",
-    date: "2023-02-11T00:00:00Z",
+    date: "2023-07-04T00:00:00Z",
     body: "Posts"
   },
   {
     url: "https://blog2.logical-dice.com/tags/",
     title: "Tags",
-    date: "2023-02-11T00:00:00Z",
+    date: "2023-07-04T00:00:00Z",
     body: "Tags"
   },
   {
@@ -36,12 +48,6 @@ var data = [
     title: "【AWS】S3のリダイレクトが効かない",
     date: "2023-01-29T00:00:00Z",
     body: "【AWS】S3のリダイレクトが効かない ■発生した事象 AWSにて、S3 静的ウェブサイトホスティング + Cloud Frontを利用してWebページを公開していました。 そのWebページにてリダイレクト処理が必要になったので、以下を参考にS3へリダイレクト設定を仕込みました。 AWS公式S3ドキュメント しかし、実際にブラウザからアクセスするとリダイレクトされませんでした。 Cloud Frontのキャッシュクリアも無意味で、リダイレクト設定を見直しても正しそうでした。 試しにバケットウェブサイトエンドポイントのURLを直接開くとリダイレクトされました。 なので、被疑はCloud Frontとの連携部分にありそうです。 ■原因 Cloud Frontにてオリジンドメインを指定する際に選択肢からS3を選択してしまうと、S3で設定したリダイレクトが効かなくなってしまうようでした。 リダイレクト設定を効かせるにはS3を「選択」するのではなく、バケットウェブサイトエンドポイントのドメインをそのまま入力する必要があるようです。 上記のようにすることでブラウザからアクセスしてもリダイレクトが効くようになりました。"
-  },
-  {
-    url: "https://blog2.logical-dice.com/tags/aws/",
-    title: "AWS",
-    date: "2023-01-29T00:00:00Z",
-    body: "AWS"
   },
   {
     url: "https://blog2.logical-dice.com/posts/2022/05/03/ec2-not-inservice/",
