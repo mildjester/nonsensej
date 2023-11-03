@@ -6,15 +6,14 @@
     <description>Recent content in Eclipse on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Tue, 08 Mar 2016 12:17:33 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/eclipse/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 08 Mar 2016 12:17:33 +0000</lastBuildDate>
+    <atom:link href="https://blog2.logical-dice.com/tags/eclipse/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【PHP】Eclipseでカーソルがある変数のハイライトを変更する</title>
       <link>https://blog2.logical-dice.com/posts/wp/206/</link>
       <pubDate>Tue, 08 Mar 2016 12:17:33 +0000</pubDate>
-      
       <guid>https://blog2.logical-dice.com/posts/wp/206/</guid>
       <description>たまにカーソルがある変数の色がおかしくなる事があります。その際は以下の設定を変更すれば治ります。■環境Mac (OS X El &amp;hellip;</description>
     </item>
-    
   </channel>
 </rss>

@@ -2,34 +2,40 @@
 
 var data = [
   {
-    url: "https://blog2.logical-dice.com/posts/2023/07/04/aws-lightsail-vpn-india/",
-    title: "【AWS】LightsailでインドのVPNサーバーを構築する",
-    date: "2023-07-04T00:00:00Z",
-    body: "【AWS】LightsailでインドのVPNサーバーを構築する 諸事情によりインドのIPアドレスが必要になったため、インドにVPNサーバーを建てました。 手軽に済ませるため、AWS Lightsailを使って実現しました。 ■構築手順 ※AWSアカウントを持っている前提とします。 Lightsailの管理画面を開き、新規インスタンスの作成を行います。 インスタンスのリージョンはインドのムンバイ（ap-south-1a）にし、Amazon LinuxのOSのみで立ち上げます。 自分しか使わない前提だったので、料金プランは最安のものにします。 ここは利用用途に合わせて変えてください。 上記でインスタンスを作成します。 作成後しばらく待つとインスタンスが立ち上がるので、縦三点リーダより「接続」をクリックします。 Webブラウザ上でコンソールが立ち上がるので、VPNサーバーのDockerイメージを立ち上げます。 なお、以下の値は好きに書き換えてください。 common_key：接続に利用する共通鍵文字列 user：接続ユーザー password：接続パスワード $ sudo -i # yum install -y docker # systemctl start docker # systemctl enable docker # docker run -d --privileged -p 500:500/udp -p 4500:4500/udp -p 1701:1701/tcp -p 5555:5555/tcp -e PSK=\u0026#39;common_key\u0026#39; -e USERS=\u0026#39;user:password\u0026#39; siomiz/softethervpn 以上でインスタンス内の設定は完了です。 続いてネットワーク設定をします。 Lightsail管理画面より作成したインスタンスの設定画面に入り、ネットワーキングタブにて「静的IPをアタッチする」をクリックします。 色々ダイアログが表示されて質問されますが、指示通りに続行していけば固定IPが割り当てられます。 次にファイアーウォール設定で以下を解放します。 TCP 1701 TCP 5555 UDP 500 UDP 4500 また、デフォルトで全IPに空いている22ポートや80ポートも余力があれば閉じておきます。 以上でVPNサーバー構築は完了です。 Macから接続してみます。 ネットワーク設定にてL2TP over IPsecのVPNを追加します。 サーバアドレスは作成したインスタンスのIPで、認証情報はVPNサーバー構築コマンドの中で指定したものを入れます。 VPNのオプションで全てのトラフィックをVPN経由するようにトグルをONにしておきます。 上記で設定は完了なので、「OK」をクリックしてVPN接続をします。 以下ツールなどで接続IPがムンバイになっていることを確認できます。 https://rakko.tools/tools/2/ 以上で完了です。"
+    url: "https://blog2.logical-dice.com/posts/2023/11/03/aws-lambda-use-paramiko/",
+    title: "【AWS】lambdaでparamikoを使ってSFTP通信する",
+    date: "2023-11-03T00:00:00Z",
+    body: "【AWS】lambdaでparamikoを使ってSFTP通信する 環境 MacBook Air M1チップ AWS SAM version 1.99.0 python 3.9 手順 他サーバーよりSFTPでファイルを取得する処理を作るためにparamikoを利用します。 AWS lambdaでparamikoを利用するためにレイヤーを利用します。 lambdaのレイヤーはDockerなどを使って構築する方法もありますが 簡易に作成したかったのでAWS SAMを利用してレイヤーの作成をしました。 ①AWS SAMをインストールする Macにて以下コマンドを実行してAWS SAMをインストールします。 $ brew tap aws/tap $ brew install aws-sam-cli この記事を書いている時点でインストールできたのはバージョン1.99.0でした。 $ sam --version SAM CLI, version 1.99.0 ②AWS SAM用のファイルを作成する。 以下構成でファイルを作成します。 paramiko-layerディレクトリは変えても良いです。 (current dir) ├── paramiko-layer │ └── requirements.txt └── template.yaml 各ファイルの中身は以下です。 【requirements.txt】 インストールするライブラリを記載します paramiko 【template.yaml】 ここで記載するContentUriはrequirements.txtを配置しているディレクトリにします。 またpython3.9、x86_64の部分は作成するlambdaに合わせて読み替えてください。 Resources: ParamikoLayer: Type: AWS::Serverless::LayerVersion Properties: ContentUri: \u0026#39;paramiko-layer/\u0026#39; CompatibleRuntimes: - python3.9 CompatibleArchitectures: - x86_64 Metadata: BuildMethod: python3.9 ③レイヤーをビルドする template.yamlがあるディレクトリにて以下コマンドを実行します。 ParamikoLayerは変えても良いです。 sam build ParamikoLayer これにより現在のディレクトリ配下に.aws-samディレクトリが作成され、ビルドされたファイルができあがります。 これをCLI上のコマンドでlambdaのレイヤーにデプロイすることもできますが、今回はZIPをアップする方法でデプロイしてみます。 生成されたpythonディレクトリ配下にあるファイルを以下コマンドで圧縮します。 cd .aws-sam/build/ParamikoLayer/ zip -r paramiko-layer.zip python/* 作成したparamiko-layer.zipをAWSマネジメントコンソールでアップロードします。 lambdaのレイヤーページを開き、『レイヤーの作成』をクリックします。 以下入力して『作成』をクリックする。 項目 内容 名前 任意のレイヤーの名前 説明 空で良いです。必要ならレイヤーの説明を記載してください。 アップロード ラジオで『.zipファイルをアップロード』を選択し、『アップロード』よりさきほど生成したzipを選択する。 互換性のあるアーキテクチャ template.yamlに記載したものと合わせてください。 互換性のあるランタイム template.yamlに記載したものと合わせてください。 ライセンス 空で良いです。何かしらレイヤーにライセンスをつける場合は記載してください。 あとはlambda関数で上記レイヤーを設定し、paramikoを利用するだけです。 実装サンプルとしては以下のようになります。 import paramiko def lambda_handler(event, context): sshClinet = paramiko.SSHClient() policy = paramiko.client.MissingHostKeyPolicy() sshClinet.set_missing_host_key_policy(policy) sshClinet.set_missing_host_key_policy(paramiko.AutoAddPolicy()) sshClinet.connect(\u0026#39;接続先ホスト名\u0026#39;, \u0026#39;接続先ポート\u0026#39;, \u0026#39;接続先ユーザー名\u0026#39;, \u0026#39;接続先パスワード\u0026#39;) sftpClient = sshClinet.open_sftp() sftpClient.get(\u0026#39;取得するファイルのパスとファイル名\u0026#39;, \u0026#39;接続元(lambda)の配置先パスとファイル名\u0026#39;) 〜後続処理を記載〜 参考 Lambdaで絶対にエラーならないレイヤーの作成方法 #AWS - Qiita"
   },
   {
     url: "https://blog2.logical-dice.com/tags/aws/",
     title: "AWS",
-    date: "2023-07-04T00:00:00Z",
+    date: "2023-11-03T00:00:00Z",
     body: "AWS"
   },
   {
     url: "https://blog2.logical-dice.com/",
     title: "Logical Dice 技術ブログ",
-    date: "2023-07-04T00:00:00Z",
+    date: "2023-11-03T00:00:00Z",
     body: "Logical Dice 技術ブログ"
   },
   {
     url: "https://blog2.logical-dice.com/posts/",
     title: "Posts",
-    date: "2023-07-04T00:00:00Z",
+    date: "2023-11-03T00:00:00Z",
     body: "Posts"
   },
   {
     url: "https://blog2.logical-dice.com/tags/",
     title: "Tags",
-    date: "2023-07-04T00:00:00Z",
+    date: "2023-11-03T00:00:00Z",
     body: "Tags"
+  },
+  {
+    url: "https://blog2.logical-dice.com/posts/2023/07/04/aws-lightsail-vpn-india/",
+    title: "【AWS】LightsailでインドのVPNサーバーを構築する",
+    date: "2023-07-04T00:00:00Z",
+    body: "【AWS】LightsailでインドのVPNサーバーを構築する 諸事情によりインドのIPアドレスが必要になったため、インドにVPNサーバーを建てました。 手軽に済ませるため、AWS Lightsailを使って実現しました。 ■構築手順 ※AWSアカウントを持っている前提とします。 Lightsailの管理画面を開き、新規インスタンスの作成を行います。 インスタンスのリージョンはインドのムンバイ（ap-south-1a）にし、Amazon LinuxのOSのみで立ち上げます。 自分しか使わない前提だったので、料金プランは最安のものにします。 ここは利用用途に合わせて変えてください。 上記でインスタンスを作成します。 作成後しばらく待つとインスタンスが立ち上がるので、縦三点リーダより「接続」をクリックします。 Webブラウザ上でコンソールが立ち上がるので、VPNサーバーのDockerイメージを立ち上げます。 なお、以下の値は好きに書き換えてください。 common_key：接続に利用する共通鍵文字列 user：接続ユーザー password：接続パスワード $ sudo -i # yum install -y docker # systemctl start docker # systemctl enable docker # docker run -d --privileged -p 500:500/udp -p 4500:4500/udp -p 1701:1701/tcp -p 5555:5555/tcp -e PSK=\u0026#39;common_key\u0026#39; -e USERS=\u0026#39;user:password\u0026#39; siomiz/softethervpn 以上でインスタンス内の設定は完了です。 続いてネットワーク設定をします。 Lightsail管理画面より作成したインスタンスの設定画面に入り、ネットワーキングタブにて「静的IPをアタッチする」をクリックします。 色々ダイアログが表示されて質問されますが、指示通りに続行していけば固定IPが割り当てられます。 次にファイアーウォール設定で以下を解放します。 TCP 1701 TCP 5555 UDP 500 UDP 4500 また、デフォルトで全IPに空いている22ポートや80ポートも余力があれば閉じておきます。 以上でVPNサーバー構築は完了です。 Macから接続してみます。 ネットワーク設定にてL2TP over IPsecのVPNを追加します。 サーバアドレスは作成したインスタンスのIPで、認証情報はVPNサーバー構築コマンドの中で指定したものを入れます。 VPNのオプションで全てのトラフィックをVPN経由するようにトグルをONにしておきます。 上記で設定は完了なので、「OK」をクリックしてVPN接続をします。 以下ツールなどで接続IPがムンバイになっていることを確認できます。 https://rakko.tools/tools/2/ 以上で完了です。"
   },
   {
     url: "https://blog2.logical-dice.com/tags/vite/",

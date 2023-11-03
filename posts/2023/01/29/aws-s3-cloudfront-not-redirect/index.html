@@ -89,7 +89,7 @@ Cloud Frontのキャッシュクリアも無意味で、リダイレクト設定
 <h2 id="原因">■原因</h2>
 <p>Cloud Frontにてオリジンドメインを指定する際に選択肢からS3を選択してしまうと、S3で設定したリダイレクトが効かなくなってしまうようでした。<br>
 リダイレクト設定を効かせるにはS3を「選択」するのではなく、バケットウェブサイトエンドポイントのドメインをそのまま入力する必要があるようです。<br>
-<img src="https://blog2.logical-dice.com/images/2023/01/aws-s3-cloudfront-not-redirect-001.png" style="width:700px;"/></p>
+<img src="https://blog2.logical-dice.com/images/2023/aws-s3-cloudfront-not-redirect-001.png" style="width:700px;"/></p>
 <p>上記のようにすることでブラウザからアクセスしてもリダイレクトが効くようになりました。</p>
 
 	</div>
