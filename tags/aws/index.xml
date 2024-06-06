@@ -6,12 +6,36 @@
     <description>Recent content in AWS on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Fri, 03 Nov 2023 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://blog2.logical-dice.com/tags/aws/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 06 Jun 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/aws/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【AWS】MFA(多要素)認証を突破してCodeCommitからgit cloneする</title>
+      <link>https://blog2.logical-dice.com/posts/2024/06/06/aws-codecommit-mfa/</link>
+      <pubDate>Thu, 06 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog2.logical-dice.com/posts/2024/06/06/aws-codecommit-mfa/</guid>
+      <description>環境 MacBook Pro (Sonoma14.5 M1チップ) aws-cli/2.15.14 aws-mfa 0.0.12 手順 AWSへのアクセスにMFAが必須である環境においてCodeCommitよりリポジトリをcloneする手順です。
+調べても「CodeCommitでMFA不要にする手順」ばかり出てきて手間取ったので、メモを残します。
+AWS CLIのインストール もしAWS CLIが未インストールである場合は以下ページ参考にインストールします。
+https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/getting-started-install.html
+aws-mfaのインストール コマンドラインでAWS操作する際にMFA認証を楽にするツールがあります。
+https://github.com/broamski/aws-mfa
+こちらをpipでインストールします。
+$ pip install aws-mfa AWS認証情報の確認 AWSのマネジメントコンソールにログイン後、ヘッダー右端にあるアカウント名をクリックすると「セキュリテイ認証情報」というメニューが表示されるので選択します。
+そこでアカウントの詳細が表示されるので「ユーザーのARN」を控えておきます。
+また、もし自分のAWS アクセスキーを発行していない場合はここで発行します。
+少し下へスクロールすると「アクセスキーを作成」というボタンがあるのでそこからアクセスキーが発行できます。
+AWS CLI向けアクセスキー設定 AWS CLIにprofileを指定してアクセスキーを紐づけます。
+『hoge』というプロファイル名で登録したい場合
+『hoge』だけではなく『hoge-long-term』というプロファイルも登録します。
+まず『hoge-long-term』の登録をします。
+$ aws configure --profile hoge-long-term AWS Access Key ID [None]: XXXXXXXXXXXXXXXXXXXX (発行したアクセスキー) AWS Secret Access Key [None]: XXXXXXXXXXXXXXXXXXXX (発行したアクセスキーに紐づくシークレット) Default region name [None]: ap-northeast-1 (利用するリージョン 任意) Default output format [None]: json (利用するフォーマット 任意) 次に『hoge』の登録をします。</description>
+    </item>
+    
     <item>
       <title>【AWS】lambdaでparamikoを使ってSFTP通信する</title>
       <link>https://blog2.logical-dice.com/posts/2023/11/03/aws-lambda-use-paramiko/</link>
       <pubDate>Fri, 03 Nov 2023 00:00:00 +0000</pubDate>
+      
       <guid>https://blog2.logical-dice.com/posts/2023/11/03/aws-lambda-use-paramiko/</guid>
       <description>環境 MacBook Air M1チップ AWS SAM version 1.99.0 python 3.9 手順 他サーバーよりSFTPでファイルを取得する処理を作るためにparamikoを利用します。
 AWS lambdaでparamikoを利用するためにレイヤーを利用します。
@@ -29,145 +53,186 @@ paramiko 【template.yaml】
 またpython3.9、x86_64の部分は作成するlambdaに合わせて読み替えてください。
 Resources: ParamikoLayer: Type: AWS::Serverless::LayerVersion Properties: ContentUri: &amp;#39;paramiko-layer/&amp;#39; CompatibleRuntimes: - python3.9 CompatibleArchitectures: - x86_64 Metadata: BuildMethod: python3.</description>
     </item>
+    
     <item>
       <title>【AWS】LightsailでインドのVPNサーバーを構築する</title>
       <link>https://blog2.logical-dice.com/posts/2023/07/04/aws-lightsail-vpn-india/</link>
       <pubDate>Tue, 04 Jul 2023 00:00:00 +0000</pubDate>
+      
       <guid>https://blog2.logical-dice.com/posts/2023/07/04/aws-lightsail-vpn-india/</guid>
       <description>AWS Lightsailを使ってインドのIPアドレスを使うためのVPNサーバーを構築しました。</description>
     </item>
+    
     <item>
       <title>【AWS】S3のリダイレクトが効かない</title>
       <link>https://blog2.logical-dice.com/posts/2023/01/29/aws-s3-cloudfront-not-redirect/</link>
       <pubDate>Sun, 29 Jan 2023 00:00:00 +0000</pubDate>
+      
       <guid>https://blog2.logical-dice.com/posts/2023/01/29/aws-s3-cloudfront-not-redirect/</guid>
       <description>AWS S3のWebホスティングにてリダイレクト設定をしてもCloud Front経由でリクエストを受けるとリダイレクトされない</description>
     </item>
+    
     <item>
       <title>【AWS】Auto ScalingのインスタンスがInServiceにならない</title>
       <link>https://blog2.logical-dice.com/posts/2022/05/03/ec2-not-inservice/</link>
       <pubDate>Tue, 03 May 2022 00:00:00 +0000</pubDate>
+      
       <guid>https://blog2.logical-dice.com/posts/2022/05/03/ec2-not-inservice/</guid>
       <description>Auto Scalingで立ち上がったEC2インスタンスのライフサイクルがInServiceにならなかった時の調査メモです。</description>
     </item>
+    
     <item>
       <title>EC2とECSのレコードを全てCSVに出力する</title>
       <link>https://blog2.logical-dice.com/posts/2020/08/26/ec2-ecs-to-csv/</link>
       <pubDate>Wed, 26 Aug 2020 00:00:00 +0000</pubDate>
+      
       <guid>https://blog2.logical-dice.com/posts/2020/08/26/ec2-ecs-to-csv/</guid>
       <description>AWS のEC2とECSの情報をCSVに出力する方法です</description>
     </item>
+    
     <item>
       <title>Route53のレコードを全てCSVに出力する</title>
       <link>https://blog2.logical-dice.com/posts/2020/08/21/route53-to-csv/</link>
       <pubDate>Fri, 21 Aug 2020 00:00:00 +0000</pubDate>
+      
       <guid>https://blog2.logical-dice.com/posts/2020/08/21/route53-to-csv/</guid>
       <description>AWS Route53に登録されているホストゾーンとレコードをCSVに出力する方法です</description>
     </item>
+    
     <item>
       <title>AWS lambdaからDBアクセスも外部アクセスもできるようにする。</title>
       <link>https://blog2.logical-dice.com/posts/2020/07/12/vpc-lambda/</link>
       <pubDate>Sun, 12 Jul 2020 00:00:00 +0000</pubDate>
+      
       <guid>https://blog2.logical-dice.com/posts/2020/07/12/vpc-lambda/</guid>
       <description>AWS lambdaをVPCに入れると普通には外部アクセスできなくなるので、その設定をした際のメモです。</description>
     </item>
+    
     <item>
       <title>EC2上でオレオレ証明書を作る</title>
       <link>https://blog2.logical-dice.com/posts/2020/06/14/oreore-certification/</link>
       <pubDate>Sun, 14 Jun 2020 00:00:00 +0000</pubDate>
+      
       <guid>https://blog2.logical-dice.com/posts/2020/06/14/oreore-certification/</guid>
       <description>最近はめっきり使われなくなったオレオレ証明書を作成する手順です。</description>
     </item>
+    
     <item>
       <title>AWS S3を使ったリダイレクトの方法</title>
       <link>https://blog2.logical-dice.com/posts/2020/06/10/aws-s3-redirect/</link>
       <pubDate>Wed, 10 Jun 2020 00:00:00 +0000</pubDate>
+      
       <guid>https://blog2.logical-dice.com/posts/2020/06/10/aws-s3-redirect/</guid>
       <description>AWSのS3を使ってリダイレクトを設定します。</description>
     </item>
+    
     <item>
       <title>Serverless Frameworkを使ってLambda &amp; API Gatewayをデプロイする</title>
       <link>https://blog2.logical-dice.com/posts/2020/05/19/serverless-framework-lambda/</link>
       <pubDate>Tue, 19 May 2020 00:00:00 +0000</pubDate>
+      
       <guid>https://blog2.logical-dice.com/posts/2020/05/19/serverless-framework-lambda/</guid>
       <description>試しにServerless Frameworkを使ってLambda &amp;amp; API Gatewayをデプロイしてみた時の手順メモです。</description>
     </item>
+    
     <item>
       <title>GitHub ActionsでAWS Code Deployを回す</title>
       <link>https://blog2.logical-dice.com/posts/2020/03/15/github-actions-deploy/</link>
       <pubDate>Sun, 15 Mar 2020 00:00:00 +0000</pubDate>
+      
       <guid>https://blog2.logical-dice.com/posts/2020/03/15/github-actions-deploy/</guid>
       <description>GitHub ActionsからAWS Code Deployを回してデプロイする手順です。</description>
     </item>
+    
     <item>
       <title>lightsail上に自前でWordpressを構築する(CentOS編)</title>
       <link>https://blog2.logical-dice.com/posts/2020/02/18/lightsail-wordpress/</link>
       <pubDate>Tue, 18 Feb 2020 00:00:00 +0000</pubDate>
+      
       <guid>https://blog2.logical-dice.com/posts/2020/02/18/lightsail-wordpress/</guid>
       <description>lightsailのCentOS7上でWordpressを構築する手順です</description>
     </item>
+    
     <item>
       <title>lightsail上に自前でWordpressを構築する(Amazon Linux編)</title>
       <link>https://blog2.logical-dice.com/posts/2019/12/15/lightsail-wordpress/</link>
       <pubDate>Sun, 15 Dec 2019 00:00:00 +0000</pubDate>
+      
       <guid>https://blog2.logical-dice.com/posts/2019/12/15/lightsail-wordpress/</guid>
       <description>bitnamiを利用せずにlightsail上にWordpressを構築する手順です</description>
     </item>
+    
     <item>
       <title>LightsailにOpenVPNサーバーを立てる</title>
       <link>https://blog2.logical-dice.com/posts/2019/07/25/lightsail-vpn/</link>
       <pubDate>Thu, 25 Jul 2019 00:00:00 +0000</pubDate>
+      
       <guid>https://blog2.logical-dice.com/posts/2019/07/25/lightsail-vpn/</guid>
       <description>AWSのLightsailにOpenVPNサーバーを立てる手順です。</description>
     </item>
+    
     <item>
       <title>CircleCIからAWS Code Deployを実行する</title>
       <link>https://blog2.logical-dice.com/posts/2019/03/04/aws-code-deploy-circleci/</link>
       <pubDate>Mon, 04 Mar 2019 00:00:00 +0000</pubDate>
+      
       <guid>https://blog2.logical-dice.com/posts/2019/03/04/aws-code-deploy-circleci/</guid>
       <description>S3を使わずCircleCIからAWS Code Deployを実行する方法です</description>
     </item>
+    
     <item>
       <title>AWS Code DeployでEC2にデプロイする</title>
       <link>https://blog2.logical-dice.com/posts/2019/02/28/aws-code-deploy/</link>
       <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+      
       <guid>https://blog2.logical-dice.com/posts/2019/02/28/aws-code-deploy/</guid>
       <description>AWS Code Deployを使ってEC2上にデプロイをした際のメモです。</description>
     </item>
+    
     <item>
       <title>【Let&#39;sEncrypt】Amazon Linux2でCertbotを使う</title>
       <link>https://blog2.logical-dice.com/posts/2019/01/21/certboy-amazon-linux-2/</link>
       <pubDate>Mon, 21 Jan 2019 00:00:00 +0000</pubDate>
+      
       <guid>https://blog2.logical-dice.com/posts/2019/01/21/certboy-amazon-linux-2/</guid>
       <description>Amazon Linux2でCertbotを使う方法です。</description>
     </item>
+    
     <item>
       <title>Wordpressの画像をS3&#43;CloudFrontで配信する</title>
       <link>https://blog2.logical-dice.com/posts/wp/1772/</link>
       <pubDate>Tue, 11 Dec 2018 19:30:54 +0000</pubDate>
+      
       <guid>https://blog2.logical-dice.com/posts/wp/1772/</guid>
       <description>環境WordPress 4.8.3AWS設定手順IAM設定まず、WordpressとAWSの連携に使うIAMユーザーを準備します&amp;hellip;</description>
     </item>
+    
     <item>
       <title>AWS ELB配下でWordpressを動かす際のSSL対応</title>
       <link>https://blog2.logical-dice.com/posts/wp/1439/</link>
       <pubDate>Fri, 20 Jul 2018 17:56:57 +0000</pubDate>
+      
       <guid>https://blog2.logical-dice.com/posts/wp/1439/</guid>
       <description>■環境AWS ELBAWS EC2Apache 2.2.32Wordpress 4.1.1EC-CUBEではありませんが、内容的&amp;hellip;</description>
     </item>
+    
     <item>
       <title>AWS ELB配下でApacheのRewriteRuleが上手く動かなかった話</title>
       <link>https://blog2.logical-dice.com/posts/wp/1423/</link>
       <pubDate>Sat, 30 Jun 2018 22:29:41 +0000</pubDate>
+      
       <guid>https://blog2.logical-dice.com/posts/wp/1423/</guid>
       <description>■環境AWS ELBAWS EC2Apache 2.2.32AWSのEC2上で動いているApacheサーバーでの話。SEO対策で&amp;hellip;</description>
     </item>
+    
     <item>
       <title>【AWS】新規EC2立ち上げ後の作業メモ</title>
       <link>https://blog2.logical-dice.com/posts/wp/820/</link>
       <pubDate>Sun, 12 Nov 2017 01:06:50 +0000</pubDate>
+      
       <guid>https://blog2.logical-dice.com/posts/wp/820/</guid>
       <description>環境AWS EC2Amazon Linuxセキュリティグループ設定SSH接続元やHTTP通信元の設定をする。デフォルトではEC2&amp;hellip;</description>
     </item>
+    
   </channel>
 </rss>

@@ -6,14 +6,15 @@
     <description>Recent content in Vite on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sat, 11 Feb 2023 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://blog2.logical-dice.com/tags/vite/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/vite/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Viteを使ってみる</title>
       <link>https://blog2.logical-dice.com/posts/2023/02/11/vite-tutorial/</link>
       <pubDate>Sat, 11 Feb 2023 00:00:00 +0000</pubDate>
+      
       <guid>https://blog2.logical-dice.com/posts/2023/02/11/vite-tutorial/</guid>
       <description>旧サイトをViteを使って作り直してみた時のメモです</description>
     </item>
+    
   </channel>
 </rss>

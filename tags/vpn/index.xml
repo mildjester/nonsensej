@@ -6,21 +6,24 @@
     <description>Recent content in VPN on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Fri, 02 Aug 2019 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://blog2.logical-dice.com/tags/vpn/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 02 Aug 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/vpn/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>フリーWi-FiでVPN通信がうまくいかない</title>
       <link>https://blog2.logical-dice.com/posts/2019/08/02/vpn-accident/</link>
       <pubDate>Fri, 02 Aug 2019 00:00:00 +0000</pubDate>
+      
       <guid>https://blog2.logical-dice.com/posts/2019/08/02/vpn-accident/</guid>
       <description>フリーWi-Fiを使ってVPNに繋いだら一部上手く動かなかった話です。</description>
     </item>
+    
     <item>
       <title>LightsailにOpenVPNサーバーを立てる</title>
       <link>https://blog2.logical-dice.com/posts/2019/07/25/lightsail-vpn/</link>
       <pubDate>Thu, 25 Jul 2019 00:00:00 +0000</pubDate>
+      
       <guid>https://blog2.logical-dice.com/posts/2019/07/25/lightsail-vpn/</guid>
       <description>AWSのLightsailにOpenVPNサーバーを立てる手順です。</description>
     </item>
+    
   </channel>
 </rss>

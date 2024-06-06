@@ -6,14 +6,15 @@
     <description>Recent content in ruby on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Mon, 27 Feb 2017 15:16:05 +0000</lastBuildDate>
-    <atom:link href="https://blog2.logical-dice.com/tags/ruby/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 27 Feb 2017 15:16:05 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/ruby/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Redmine2.3.2にグループ管理プラグインを入れる</title>
       <link>https://blog2.logical-dice.com/posts/wp/444/</link>
       <pubDate>Mon, 27 Feb 2017 15:16:05 +0000</pubDate>
+      
       <guid>https://blog2.logical-dice.com/posts/wp/444/</guid>
       <description>redmineにグループ管理のプラグインを入れたが、ちゃんと動かなかったのでつまづいた所をメモする。※補足Ruby on Rai&amp;hellip;</description>
     </item>
+    
   </channel>
 </rss>

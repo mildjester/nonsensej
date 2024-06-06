@@ -2,34 +2,40 @@
 
 var data = [
   {
-    url: "https://blog2.logical-dice.com/posts/2023/11/03/aws-lambda-use-paramiko/",
-    title: "【AWS】lambdaでparamikoを使ってSFTP通信する",
-    date: "2023-11-03T00:00:00Z",
-    body: "【AWS】lambdaでparamikoを使ってSFTP通信する 環境 MacBook Air M1チップ AWS SAM version 1.99.0 python 3.9 手順 他サーバーよりSFTPでファイルを取得する処理を作るためにparamikoを利用します。 AWS lambdaでparamikoを利用するためにレイヤーを利用します。 lambdaのレイヤーはDockerなどを使って構築する方法もありますが 簡易に作成したかったのでAWS SAMを利用してレイヤーの作成をしました。 ①AWS SAMをインストールする Macにて以下コマンドを実行してAWS SAMをインストールします。 $ brew tap aws/tap $ brew install aws-sam-cli この記事を書いている時点でインストールできたのはバージョン1.99.0でした。 $ sam --version SAM CLI, version 1.99.0 ②AWS SAM用のファイルを作成する。 以下構成でファイルを作成します。 paramiko-layerディレクトリは変えても良いです。 (current dir) ├── paramiko-layer │ └── requirements.txt └── template.yaml 各ファイルの中身は以下です。 【requirements.txt】 インストールするライブラリを記載します paramiko 【template.yaml】 ここで記載するContentUriはrequirements.txtを配置しているディレクトリにします。 またpython3.9、x86_64の部分は作成するlambdaに合わせて読み替えてください。 Resources: ParamikoLayer: Type: AWS::Serverless::LayerVersion Properties: ContentUri: \u0026#39;paramiko-layer/\u0026#39; CompatibleRuntimes: - python3.9 CompatibleArchitectures: - x86_64 Metadata: BuildMethod: python3.9 ③レイヤーをビルドする template.yamlがあるディレクトリにて以下コマンドを実行します。 ParamikoLayerは変えても良いです。 sam build ParamikoLayer これにより現在のディレクトリ配下に.aws-samディレクトリが作成され、ビルドされたファイルができあがります。 これをCLI上のコマンドでlambdaのレイヤーにデプロイすることもできますが、今回はZIPをアップする方法でデプロイしてみます。 生成されたpythonディレクトリ配下にあるファイルを以下コマンドで圧縮します。 cd .aws-sam/build/ParamikoLayer/ zip -r paramiko-layer.zip python/* 作成したparamiko-layer.zipをAWSマネジメントコンソールでアップロードします。 lambdaのレイヤーページを開き、『レイヤーの作成』をクリックします。 以下入力して『作成』をクリックする。 項目 内容 名前 任意のレイヤーの名前 説明 空で良いです。必要ならレイヤーの説明を記載してください。 アップロード ラジオで『.zipファイルをアップロード』を選択し、『アップロード』よりさきほど生成したzipを選択する。 互換性のあるアーキテクチャ template.yamlに記載したものと合わせてください。 互換性のあるランタイム template.yamlに記載したものと合わせてください。 ライセンス 空で良いです。何かしらレイヤーにライセンスをつける場合は記載してください。 あとはlambda関数で上記レイヤーを設定し、paramikoを利用するだけです。 実装サンプルとしては以下のようになります。 import paramiko def lambda_handler(event, context): sshClinet = paramiko.SSHClient() policy = paramiko.client.MissingHostKeyPolicy() sshClinet.set_missing_host_key_policy(policy) sshClinet.set_missing_host_key_policy(paramiko.AutoAddPolicy()) sshClinet.connect(\u0026#39;接続先ホスト名\u0026#39;, \u0026#39;接続先ポート\u0026#39;, \u0026#39;接続先ユーザー名\u0026#39;, \u0026#39;接続先パスワード\u0026#39;) sftpClient = sshClinet.open_sftp() sftpClient.get(\u0026#39;取得するファイルのパスとファイル名\u0026#39;, \u0026#39;接続元(lambda)の配置先パスとファイル名\u0026#39;) 〜後続処理を記載〜 参考 Lambdaで絶対にエラーならないレイヤーの作成方法 #AWS - Qiita"
+    url: "https://blog2.logical-dice.com/posts/2024/06/06/aws-codecommit-mfa/",
+    title: "【AWS】MFA(多要素)認証を突破してCodeCommitからgit cloneする",
+    date: "2024-06-06T00:00:00Z",
+    body: "【AWS】MFA(多要素)認証を突破してCodeCommitからgit cloneする 環境 MacBook Pro (Sonoma14.5 M1チップ) aws-cli/2.15.14 aws-mfa 0.0.12 手順 AWSへのアクセスにMFAが必須である環境においてCodeCommitよりリポジトリをcloneする手順です。 調べても「CodeCommitでMFA不要にする手順」ばかり出てきて手間取ったので、メモを残します。 AWS CLIのインストール もしAWS CLIが未インストールである場合は以下ページ参考にインストールします。 https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/getting-started-install.html aws-mfaのインストール コマンドラインでAWS操作する際にMFA認証を楽にするツールがあります。 https://github.com/broamski/aws-mfa こちらをpipでインストールします。 $ pip install aws-mfa AWS認証情報の確認 AWSのマネジメントコンソールにログイン後、ヘッダー右端にあるアカウント名をクリックすると「セキュリテイ認証情報」というメニューが表示されるので選択します。 そこでアカウントの詳細が表示されるので「ユーザーのARN」を控えておきます。 また、もし自分のAWS アクセスキーを発行していない場合はここで発行します。 少し下へスクロールすると「アクセスキーを作成」というボタンがあるのでそこからアクセスキーが発行できます。 AWS CLI向けアクセスキー設定 AWS CLIにprofileを指定してアクセスキーを紐づけます。 『hoge』というプロファイル名で登録したい場合 『hoge』だけではなく『hoge-long-term』というプロファイルも登録します。 まず『hoge-long-term』の登録をします。 $ aws configure --profile hoge-long-term AWS Access Key ID [None]: XXXXXXXXXXXXXXXXXXXX (発行したアクセスキー) AWS Secret Access Key [None]: XXXXXXXXXXXXXXXXXXXX (発行したアクセスキーに紐づくシークレット) Default region name [None]: ap-northeast-1 (利用するリージョン 任意) Default output format [None]: json (利用するフォーマット 任意) 次に『hoge』の登録をします。 $ aws configure --profile hoge AWS Access Key ID [None]: (空のまま) AWS Secret Access Key [None]: (空のまま) Default region name [None]: ap-northeast-1 (利用するリージョン 任意) Default output format [None]: json (利用するフォーマット 任意) MFA認証登録 以下のコマンドでMFA認証を通します。 コマンド実行後にMFA code(数字6桁)を聞かれるので入力します。 $ aws-mfa --profile 『作成したプロファイル』 --device 『事前に確認したユーザーのARN』 # 例：aws-mfa --profile hoge --device arn:aws:iam::000000000000:mfa/hoge-taro これでしばらくMFA認証をしなくてもコマンドを打てるようになりました。 有効期限は~/.aws/credentialsを見ると確認できます。 git clone実行 以下のようにprofileを指定して実行することでcloneができます。 $ git clone codecommit::『リージョン』://『作成したプロファイル』@『cloneしたいリポジトリ』 # 例：git clone codecommit::ap-northeast-1://hoge@my-application-repository 参考 AWS CLIからのMFA(多要素認証)を楽にするツール(aws-mfa)を使ってみた - Qiita"
   },
   {
     url: "https://blog2.logical-dice.com/tags/aws/",
     title: "AWS",
-    date: "2023-11-03T00:00:00Z",
+    date: "2024-06-06T00:00:00Z",
     body: "AWS"
   },
   {
     url: "https://blog2.logical-dice.com/",
     title: "Logical Dice 技術ブログ",
-    date: "2023-11-03T00:00:00Z",
+    date: "2024-06-06T00:00:00Z",
     body: "Logical Dice 技術ブログ"
   },
   {
     url: "https://blog2.logical-dice.com/posts/",
     title: "Posts",
-    date: "2023-11-03T00:00:00Z",
+    date: "2024-06-06T00:00:00Z",
     body: "Posts"
   },
   {
     url: "https://blog2.logical-dice.com/tags/",
     title: "Tags",
-    date: "2023-11-03T00:00:00Z",
+    date: "2024-06-06T00:00:00Z",
     body: "Tags"
+  },
+  {
+    url: "https://blog2.logical-dice.com/posts/2023/11/03/aws-lambda-use-paramiko/",
+    title: "【AWS】lambdaでparamikoを使ってSFTP通信する",
+    date: "2023-11-03T00:00:00Z",
+    body: "【AWS】lambdaでparamikoを使ってSFTP通信する 環境 MacBook Air M1チップ AWS SAM version 1.99.0 python 3.9 手順 他サーバーよりSFTPでファイルを取得する処理を作るためにparamikoを利用します。 AWS lambdaでparamikoを利用するためにレイヤーを利用します。 lambdaのレイヤーはDockerなどを使って構築する方法もありますが 簡易に作成したかったのでAWS SAMを利用してレイヤーの作成をしました。 ①AWS SAMをインストールする Macにて以下コマンドを実行してAWS SAMをインストールします。 $ brew tap aws/tap $ brew install aws-sam-cli この記事を書いている時点でインストールできたのはバージョン1.99.0でした。 $ sam --version SAM CLI, version 1.99.0 ②AWS SAM用のファイルを作成する。 以下構成でファイルを作成します。 paramiko-layerディレクトリは変えても良いです。 (current dir) ├── paramiko-layer │ └── requirements.txt └── template.yaml 各ファイルの中身は以下です。 【requirements.txt】 インストールするライブラリを記載します paramiko 【template.yaml】 ここで記載するContentUriはrequirements.txtを配置しているディレクトリにします。 またpython3.9、x86_64の部分は作成するlambdaに合わせて読み替えてください。 Resources: ParamikoLayer: Type: AWS::Serverless::LayerVersion Properties: ContentUri: \u0026#39;paramiko-layer/\u0026#39; CompatibleRuntimes: - python3.9 CompatibleArchitectures: - x86_64 Metadata: BuildMethod: python3.9 ③レイヤーをビルドする template.yamlがあるディレクトリにて以下コマンドを実行します。 ParamikoLayerは変えても良いです。 sam build ParamikoLayer これにより現在のディレクトリ配下に.aws-samディレクトリが作成され、ビルドされたファイルができあがります。 これをCLI上のコマンドでlambdaのレイヤーにデプロイすることもできますが、今回はZIPをアップする方法でデプロイしてみます。 生成されたpythonディレクトリ配下にあるファイルを以下コマンドで圧縮します。 cd .aws-sam/build/ParamikoLayer/ zip -r paramiko-layer.zip python/* 作成したparamiko-layer.zipをAWSマネジメントコンソールでアップロードします。 lambdaのレイヤーページを開き、『レイヤーの作成』をクリックします。 以下入力して『作成』をクリックする。 項目 内容 名前 任意のレイヤーの名前 説明 空で良いです。必要ならレイヤーの説明を記載してください。 アップロード ラジオで『.zipファイルをアップロード』を選択し、『アップロード』よりさきほど生成したzipを選択する。 互換性のあるアーキテクチャ template.yamlに記載したものと合わせてください。 互換性のあるランタイム template.yamlに記載したものと合わせてください。 ライセンス 空で良いです。何かしらレイヤーにライセンスをつける場合は記載してください。 あとはlambda関数で上記レイヤーを設定し、paramikoを利用するだけです。 実装サンプルとしては以下のようになります。 import paramiko def lambda_handler(event, context): sshClinet = paramiko.SSHClient() policy = paramiko.client.MissingHostKeyPolicy() sshClinet.set_missing_host_key_policy(policy) sshClinet.set_missing_host_key_policy(paramiko.AutoAddPolicy()) sshClinet.connect(\u0026#39;接続先ホスト名\u0026#39;, \u0026#39;接続先ポート\u0026#39;, \u0026#39;接続先ユーザー名\u0026#39;, \u0026#39;接続先パスワード\u0026#39;) sftpClient = sshClinet.open_sftp() sftpClient.get(\u0026#39;取得するファイルのパスとファイル名\u0026#39;, \u0026#39;接続元(lambda)の配置先パスとファイル名\u0026#39;) 〜後続処理を記載〜 参考 Lambdaで絶対にエラーならないレイヤーの作成方法 #AWS - Qiita"
   },
   {
     url: "https://blog2.logical-dice.com/posts/2023/07/04/aws-lightsail-vpn-india/",
