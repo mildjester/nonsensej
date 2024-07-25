@@ -37,42 +37,61 @@
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
-<nav class="nav">
-  <div class="nav-container jc-sb">
-    <a href="/" class="nav-title">
-      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
-    </a>
-    <div class="search-box">
-      <form class="fx">
-        <input id="searchKeyword" type="search" size="20">
-        <input id="searchButton" type="submit" value="検索">
-      </form>
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+      </a>
+      <div class="search-box">
+        <form class="fx">
+          <input id="searchKeyword" type="search" size="20">
+          <input id="searchButton" type="submit" value="検索">
+        </form>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<script>
-const SEARCH_URL = '/search/';
-window.addEventListener('DOMContentLoaded', () => {
-  const searchButton = document.getElementById('searchButton');
-  const searchKeyword = document.getElementById('searchKeyword');
+  <script>
+  const SEARCH_URL = '/search/';
+  window.addEventListener('DOMContentLoaded', () => {
+    const searchButton = document.getElementById('searchButton');
+    const searchKeyword = document.getElementById('searchKeyword');
 
-  searchButton.addEventListener('click', e => {
-    e.preventDefault();  
-    const query = searchKeyword.value;
-    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
-    location.href = url;
+    searchButton.addEventListener('click', e => {
+      e.preventDefault();  
+      const query = searchKeyword.value;
+      const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+      location.href = url;
+    });
   });
-});
-</script>
+  </script>
+</header>
 
-        
+        <div class="container">
+            
 
 <main>
 	
 
 
 	<div class="catalogue">
+		
+			<div class="catalogue-item">
+    <a href="https://blog2.logical-dice.com/posts/wp/703/">
+    <h1 class="catalogue-title">【Mac】コマンドラインから写真の撮影日時などを確認する</h1>
+    </a>
+    <div class="catalogue-line"></div>
+    <p class="publish-date">投稿日：<time datetime="2017-09-24 15:27:02 &#43;0000 UTC" class="catalogue-time">2017-09-24</time></p>
+    
+    <div class="tags_list">
+         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/mac/">Mac</a></div>
+    </div>
+    
+    <p>■環境macOS Sierra 10.12.6exiftool 10.55Macのコマンドラインから写真の撮影日時を確認する方法&hellip;</p>
+</div>
+
+
 		
 			<div class="catalogue-item">
     <a href="https://blog2.logical-dice.com/posts/wp/698/">
@@ -218,22 +237,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 		
-			<div class="catalogue-item">
-    <a href="https://blog2.logical-dice.com/posts/wp/624/">
-    <h1 class="catalogue-title">MacにZabbixエージェントを入れる</h1>
-    </a>
-    <div class="catalogue-line"></div>
-    <p class="publish-date">投稿日：<time datetime="2017-05-02 14:49:34 &#43;0000 UTC" class="catalogue-time">2017-05-02</time></p>
-    
-    <div class="tags_list">
-         <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/mac/">Mac</a></div> <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/zabbix/">zabbix</a></div>
-    </div>
-    
-    <p>■環境Mac OS 10.9.5Zabbix 3.2.1Mac OSのサーバにZabbixエージェントを入れた際の手順メモです。&hellip;</p>
-</div>
-
-
-		
 	</div>
 
 	<div class="pagination">
@@ -249,14 +252,34 @@ window.addEventListener('DOMContentLoaded', () => {
 </main>
 
 
-        		<footer>
-			<div class="footer-container">
-				
-				<span>
-				&copy; 2015 Logical Dice.
-				</span>
-			</div>
-		</footer>
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p class="name">Name: 橋本じぇすた</p>
+		<p class="description">
+			SIer→フリーランスを経て、現在は大企業で開発チームのマネジメントをしている。<br />
+			でも、本当はマネジメントより開発の方が好き。
+		</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div class="sns">
+		<a href="https://x.com/mildjester" target="_blank">
+			<img src="/images/x-icon.avif" alt="プロフィール写真" />
+		</a>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
 
     </body>
 </html>

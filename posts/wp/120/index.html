@@ -35,36 +35,39 @@
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
-<nav class="nav">
-  <div class="nav-container jc-sb">
-    <a href="/" class="nav-title">
-      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
-    </a>
-    <div class="search-box">
-      <form class="fx">
-        <input id="searchKeyword" type="search" size="20">
-        <input id="searchButton" type="submit" value="検索">
-      </form>
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+      </a>
+      <div class="search-box">
+        <form class="fx">
+          <input id="searchKeyword" type="search" size="20">
+          <input id="searchButton" type="submit" value="検索">
+        </form>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<script>
-const SEARCH_URL = '/search/';
-window.addEventListener('DOMContentLoaded', () => {
-  const searchButton = document.getElementById('searchButton');
-  const searchKeyword = document.getElementById('searchKeyword');
+  <script>
+  const SEARCH_URL = '/search/';
+  window.addEventListener('DOMContentLoaded', () => {
+    const searchButton = document.getElementById('searchButton');
+    const searchKeyword = document.getElementById('searchKeyword');
 
-  searchButton.addEventListener('click', e => {
-    e.preventDefault();  
-    const query = searchKeyword.value;
-    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
-    location.href = url;
+    searchButton.addEventListener('click', e => {
+      e.preventDefault();  
+      const query = searchKeyword.value;
+      const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+      location.href = url;
+    });
   });
-});
-</script>
+  </script>
+</header>
 
-        
+        <div class="container">
+            
 
 <main>
 	<div class="post">
@@ -113,14 +116,34 @@ SSLCertificateChainFile /etc/pki/comodo/yourdomain_com.ca_bundle
 </main>
 
 
-        		<footer>
-			<div class="footer-container">
-				
-				<span>
-				&copy; 2015 Logical Dice.
-				</span>
-			</div>
-		</footer>
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p class="name">Name: 橋本じぇすた</p>
+		<p class="description">
+			SIer→フリーランスを経て、現在は大企業で開発チームのマネジメントをしている。<br />
+			でも、本当はマネジメントより開発の方が好き。
+		</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div class="sns">
+		<a href="https://x.com/mildjester" target="_blank">
+			<img src="/images/x-icon.avif" alt="プロフィール写真" />
+		</a>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
 
     </body>
 </html>

@@ -35,40 +35,43 @@
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
-<nav class="nav">
-  <div class="nav-container jc-sb">
-    <a href="/" class="nav-title">
-      <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
-    </a>
-    <div class="search-box">
-      <form class="fx">
-        <input id="searchKeyword" type="search" size="20">
-        <input id="searchButton" type="submit" value="検索">
-      </form>
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+      </a>
+      <div class="search-box">
+        <form class="fx">
+          <input id="searchKeyword" type="search" size="20">
+          <input id="searchButton" type="submit" value="検索">
+        </form>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<script>
-const SEARCH_URL = '/search/';
-window.addEventListener('DOMContentLoaded', () => {
-  const searchButton = document.getElementById('searchButton');
-  const searchKeyword = document.getElementById('searchKeyword');
+  <script>
+  const SEARCH_URL = '/search/';
+  window.addEventListener('DOMContentLoaded', () => {
+    const searchButton = document.getElementById('searchButton');
+    const searchKeyword = document.getElementById('searchKeyword');
 
-  searchButton.addEventListener('click', e => {
-    e.preventDefault();  
-    const query = searchKeyword.value;
-    const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
-    location.href = url;
+    searchButton.addEventListener('click', e => {
+      e.preventDefault();  
+      const query = searchKeyword.value;
+      const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+      location.href = url;
+    });
   });
-});
-</script>
+  </script>
+</header>
 
-        
+        <div class="container">
+            
 <main>
     <h1>Tags</h1>
 	<div class="catalogue">
-        <ul><li><a href="https://blog2.logical-dice.com/tags/aws/">AWS</a></li><li><a href="https://blog2.logical-dice.com/tags/vite/">Vite</a></li><li><a href="https://blog2.logical-dice.com/tags/laravel/">Laravel</a></li><li><a href="https://blog2.logical-dice.com/tags/javascript/">javascript</a></li><li><a href="https://blog2.logical-dice.com/tags/windows/">Windows</a></li><li><a href="https://blog2.logical-dice.com/tags/ubuntu/">ubuntu</a></li><li><a href="https://blog2.logical-dice.com/tags/git/">git</a></li><li><a href="https://blog2.logical-dice.com/tags/php/">PHP</a></li><li><a href="https://blog2.logical-dice.com/tags/googleservice/">GoogleService</a></li><li><a href="https://blog2.logical-dice.com/tags/typescript/">Typescript</a></li></ul>
+        <ul><li><a href="https://blog2.logical-dice.com/tags/scrum/">Scrum</a></li><li><a href="https://blog2.logical-dice.com/tags/aws/">AWS</a></li><li><a href="https://blog2.logical-dice.com/tags/vite/">Vite</a></li><li><a href="https://blog2.logical-dice.com/tags/laravel/">Laravel</a></li><li><a href="https://blog2.logical-dice.com/tags/javascript/">javascript</a></li><li><a href="https://blog2.logical-dice.com/tags/windows/">Windows</a></li><li><a href="https://blog2.logical-dice.com/tags/ubuntu/">ubuntu</a></li><li><a href="https://blog2.logical-dice.com/tags/git/">git</a></li><li><a href="https://blog2.logical-dice.com/tags/php/">PHP</a></li><li><a href="https://blog2.logical-dice.com/tags/googleservice/">GoogleService</a></li></ul>
 	</div>
 	
 	<div class="pagination"><a href="/tags/page/2/" class="right arrow">&#8594;</a><span>1</span>
@@ -76,14 +79,34 @@ window.addEventListener('DOMContentLoaded', () => {
 </main>
 
 
-        		<footer>
-			<div class="footer-container">
-				
-				<span>
-				&copy; 2015 Logical Dice.
-				</span>
-			</div>
-		</footer>
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p class="name">Name: 橋本じぇすた</p>
+		<p class="description">
+			SIer→フリーランスを経て、現在は大企業で開発チームのマネジメントをしている。<br />
+			でも、本当はマネジメントより開発の方が好き。
+		</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div class="sns">
+		<a href="https://x.com/mildjester" target="_blank">
+			<img src="/images/x-icon.avif" alt="プロフィール写真" />
+		</a>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
 
     </body>
 </html>

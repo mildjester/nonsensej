@@ -2,19 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://blog2.logical-dice.com/</loc>
+    <lastmod>2024-07-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog2.logical-dice.com/posts/</loc>
+    <lastmod>2024-07-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog2.logical-dice.com/tags/scrum/</loc>
+    <lastmod>2024-07-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog2.logical-dice.com/tags/</loc>
+    <lastmod>2024-07-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog2.logical-dice.com/posts/2024/07/25/story-point-knowledge/</loc>
+    <lastmod>2024-07-25T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://blog2.logical-dice.com/posts/2024/06/06/aws-codecommit-mfa/</loc>
     <lastmod>2024-06-06T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog2.logical-dice.com/tags/aws/</loc>
-    <lastmod>2024-06-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog2.logical-dice.com/</loc>
-    <lastmod>2024-06-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog2.logical-dice.com/posts/</loc>
-    <lastmod>2024-06-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog2.logical-dice.com/tags/</loc>
     <lastmod>2024-06-06T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog2.logical-dice.com/posts/2023/11/03/aws-lambda-use-paramiko/</loc>
