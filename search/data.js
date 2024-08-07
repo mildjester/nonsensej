@@ -4,26 +4,38 @@ var data = [
   {
     url: "https://blog2.logical-dice.com/",
     title: "Logical Dice 技術ブログ",
-    date: "2024-07-25T00:00:00Z",
+    date: "2024-08-07T00:00:00Z",
     body: "Logical Dice 技術ブログ"
   },
   {
     url: "https://blog2.logical-dice.com/posts/",
     title: "Posts",
-    date: "2024-07-25T00:00:00Z",
+    date: "2024-08-07T00:00:00Z",
     body: "Posts"
+  },
+  {
+    url: "https://blog2.logical-dice.com/tags/python/",
+    title: "python",
+    date: "2024-08-07T00:00:00Z",
+    body: "python"
+  },
+  {
+    url: "https://blog2.logical-dice.com/tags/",
+    title: "Tags",
+    date: "2024-08-07T00:00:00Z",
+    body: "Tags"
+  },
+  {
+    url: "https://blog2.logical-dice.com/posts/2024/08/07/python-on-secure-windows/",
+    title: "Windowsで管理者権限なしでpythonコマンドを使えるようにする",
+    date: "2024-08-07T00:00:00Z",
+    body: "Windowsで管理者権限なしでpythonコマンドを使えるようにする 環境 Windows 11 git bash Python 3.12.4 背景 仕事で利用しているPCは管理者権限が貰えないのですが、Pythonを使う必要があったため 管理者権限不要でPythonを使える環境を用意しました。 手順 エンベデッド Pythonのダウンロード 以下サイトにてPythonのダウンロードができるので『Windows embeddable package』をダウンロードします。 https://www.python.org/downloads/release/python-3124/ 上記リンクではバージョン3.12.4ですが、ページ上部のDownloadsタブから他バージョンの選択も可能です。 Pythonの解凍 ダウンロードしたPythonはZIP圧縮されているので、解凍して任意のフォルダに配置します。 配置したパスは覚えておいてください。 pythonコマンドを利用可能にする さきほど配置したフォルダにある「python.exe」をpythonコマンドで呼べるようにします。 PATHの変更ができればそちらに追加して貰うのが早いですが、管理者権限がないと難しいので.bashrcにaliasで設定します。 $ echo \u0026#39;alias python=\u0026#34;配置したパス/python-3.12.4-embed-amd64/python.exe\u0026#34;\u0026#39; \u0026gt;\u0026gt; ~/.bashrc ※上記はechoで流し込んでますが、普通にテキストとして修正しても良いです。 これで、.bashrc読み込み後にpythonコマンドが利用可能となっています。 pipコマンドのインストール 次にpipコマンドを利用できるようにします。 まず以下のpyファイルをpython.exeと同じフォルダに配置します。 https://bootstrap.pypa.io/get-pip.py 次に、以下コマンドを実行するとpip.exeが生成されます。 trusted-hostオプションを付けないとエラーとなるのでご注意ください。 $ cd 配置したパス/python-3.12.4-embed-amd64 $ python get-pip.py --trusted-host=files.pythonhosted.org --trusted-host=pypi.org あとはpythonコマンドと同様にaliasへ追加します。 こちらもtrusted-hostオプションが必要なのでご注意ください。 $ echo \u0026#39;alias python=\u0026#34;配置したパス/python-3.12.4-embed-amd64/Scripts/pip.exe --trusted-host=files.pythonhosted.org --trusted-host=pypi.org\u0026#34;\u0026#39; \u0026gt;\u0026gt; ~/.bashrc これでpythonおよびpipコマンドが利用できるようになりました。 管理者権限が無いPCという事はセキュアな情報を扱うPCだと思うので、常識の範囲＆自己責任の範囲でご利用ください。 おまけ：aws cliのインストール pipが使えると、実はaws cliもインストールできます。 こちらも同様に.bashrcにalias設定します。 $ pip install --user awscli $ pip install --target=awscliをインストールしたいパス awscli $ echo \u0026#39;alias aws=\u0026#34;awscliをインストールしたパス/bin/aws\u0026#34;\u0026#39; \u0026gt;\u0026gt; ~/.bashrc 参考 Embeddable packageでPortableなPython環境を構築する | Zenn Embedded Pythonでget-pip.pyに失敗するときの対処方法 | Qiita aws-cli portable for windows? | stack overflow"
   },
   {
     url: "https://blog2.logical-dice.com/tags/scrum/",
     title: "Scrum",
     date: "2024-07-25T00:00:00Z",
     body: "Scrum"
-  },
-  {
-    url: "https://blog2.logical-dice.com/tags/",
-    title: "Tags",
-    date: "2024-07-25T00:00:00Z",
-    body: "Tags"
   },
   {
     url: "https://blog2.logical-dice.com/posts/2024/07/25/story-point-knowledge/",
@@ -348,12 +360,6 @@ var data = [
     title: "Dictionaly型から特定の値を取り出しlist型に入れる",
     date: "2020-06-06T00:00:00Z",
     body: "Dictionaly型から特定の値を取り出しlist型に入れる pythonのテクニック(?)的なものを教わったのでメモです。 Dictionaly型から、あるキーの値を取り出して配列に取り出す方法について 特になにも考えずにforで回して取り出してました。 例えば、idとnameからなるDictionalyからnameを取り出して配列にする場合は以下のようにしていました。 # Dictionaly定義 fruits_list = [ {\u0026#39;id\u0026#39;:1, \u0026#39;name\u0026#39;:\u0026#39;apple\u0026#39;}, {\u0026#39;id\u0026#39;:2, \u0026#39;name\u0026#39;:\u0026#39;banana\u0026#39;}, {\u0026#39;id\u0026#39;:3, \u0026#39;name\u0026#39;:\u0026#39;cherry\u0026#39;}, ] # Dictionalyからlistに取り出し name_list = [] for fruits in fruits_list: name_list.append(fruits.get(\u0026#39;name\u0026#39;)) # 出力 # [\u0026#39;apple\u0026#39;, \u0026#39;banana\u0026#39;, \u0026#39;cherry\u0026#39;] print(name_list) しかし、この取り出し処理は1行で書けるようです。 修正後、以下のようになりました。 # Dictionaly定義 fruits_list = [ {\u0026#39;id\u0026#39;:1, \u0026#39;name\u0026#39;:\u0026#39;apple\u0026#39;}, {\u0026#39;id\u0026#39;:2, \u0026#39;name\u0026#39;:\u0026#39;banana\u0026#39;}, {\u0026#39;id\u0026#39;:3, \u0026#39;name\u0026#39;:\u0026#39;cherry\u0026#39;}, ] # Dictionalyからlistに取り出し name_list = [fruits.get(\u0026#39;name\u0026#39;) for fruits in fruits_list] # 出力 # [\u0026#39;apple\u0026#39;, \u0026#39;banana\u0026#39;, \u0026#39;cherry\u0026#39;] print(name_list) スマートですね！"
-  },
-  {
-    url: "https://blog2.logical-dice.com/tags/python/",
-    title: "python",
-    date: "2020-06-06T00:00:00Z",
-    body: "python"
   },
   {
     url: "https://blog2.logical-dice.com/posts/2020/06/01/ubuntu-20-04-hdmi/",

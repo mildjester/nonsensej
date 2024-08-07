@@ -6,7 +6,36 @@
     <description>Recent content in python on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sat, 06 Jun 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 07 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Windowsで管理者権限なしでpythonコマンドを使えるようにする</title>
+      <link>https://blog2.logical-dice.com/posts/2024/08/07/python-on-secure-windows/</link>
+      <pubDate>Wed, 07 Aug 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog2.logical-dice.com/posts/2024/08/07/python-on-secure-windows/</guid>
+      <description>環境 Windows 11 git bash Python 3.12.4 背景 仕事で利用しているPCは管理者権限が貰えないのですが、Pythonを使う必要があったため
+管理者権限不要でPythonを使える環境を用意しました。
+手順 エンベデッド Pythonのダウンロード 以下サイトにてPythonのダウンロードができるので『Windows embeddable package』をダウンロードします。
+https://www.python.org/downloads/release/python-3124/
+上記リンクではバージョン3.12.4ですが、ページ上部のDownloadsタブから他バージョンの選択も可能です。
+Pythonの解凍 ダウンロードしたPythonはZIP圧縮されているので、解凍して任意のフォルダに配置します。
+配置したパスは覚えておいてください。
+pythonコマンドを利用可能にする さきほど配置したフォルダにある「python.exe」をpythonコマンドで呼べるようにします。
+PATHの変更ができればそちらに追加して貰うのが早いですが、管理者権限がないと難しいので.bashrcにaliasで設定します。
+$ echo &amp;#39;alias python=&amp;#34;配置したパス/python-3.12.4-embed-amd64/python.exe&amp;#34;&amp;#39; &amp;gt;&amp;gt; ~/.bashrc ※上記はechoで流し込んでますが、普通にテキストとして修正しても良いです。
+これで、.bashrc読み込み後にpythonコマンドが利用可能となっています。
+pipコマンドのインストール 次にpipコマンドを利用できるようにします。 まず以下のpyファイルをpython.exeと同じフォルダに配置します。 https://bootstrap.pypa.io/get-pip.py
+次に、以下コマンドを実行するとpip.exeが生成されます。
+trusted-hostオプションを付けないとエラーとなるのでご注意ください。
+$ cd 配置したパス/python-3.12.4-embed-amd64 $ python get-pip.py --trusted-host=files.pythonhosted.org --trusted-host=pypi.org あとはpythonコマンドと同様にaliasへ追加します。
+こちらもtrusted-hostオプションが必要なのでご注意ください。
+$ echo &amp;#39;alias python=&amp;#34;配置したパス/python-3.12.4-embed-amd64/Scripts/pip.exe --trusted-host=files.pythonhosted.org --trusted-host=pypi.org&amp;#34;&amp;#39; &amp;gt;&amp;gt; ~/.bashrc これでpythonおよびpipコマンドが利用できるようになりました。
+管理者権限が無いPCという事はセキュアな情報を扱うPCだと思うので、常識の範囲＆自己責任の範囲でご利用ください。
+おまけ：aws cliのインストール pipが使えると、実はaws cliもインストールできます。
+こちらも同様に.bashrcにalias設定します。
+$ pip install --user awscli $ pip install --target=awscliをインストールしたいパス awscli $ echo &amp;#39;alias aws=&amp;#34;awscliをインストールしたパス/bin/aws&amp;#34;&amp;#39; &amp;gt;&amp;gt; ~/.</description>
+    </item>
+    
     <item>
       <title>Dictionaly型から特定の値を取り出しlist型に入れる</title>
       <link>https://blog2.logical-dice.com/posts/2020/06/06/python-dict-list/</link>

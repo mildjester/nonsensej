@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Windowsで管理者権限なしでpythonコマンドを使えるようにする|Logical Dice 技術ブログ</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+      </a>
+      <div class="search-box">
+        <form class="fx">
+          <input id="searchKeyword" type="search" size="20">
+          <input id="searchButton" type="submit" value="検索">
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <script>
+  const SEARCH_URL = '/search/';
+  window.addEventListener('DOMContentLoaded', () => {
+    const searchButton = document.getElementById('searchButton');
+    const searchKeyword = document.getElementById('searchKeyword');
+
+    searchButton.addEventListener('click', e => {
+      e.preventDefault();  
+      const query = searchKeyword.value;
+      const url = query ? SEARCH_URL + '#' + query : SEARCH_URL;
+      location.href = url;
+    });
+  });
+  </script>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Windowsで管理者権限なしでpythonコマンドを使えるようにする</h1>
+		<div class="post-info">
+				<p class="publish-date">投稿日：<time datetime="2024-08-07 00:00:00 &#43;0000 UTC" class="catalogue-time">2024-08-07</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/python/">Python</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h2 id="環境">環境</h2>
+<ul>
+<li>Windows 11</li>
+<li>git bash</li>
+<li>Python 3.12.4</li>
+</ul>
+<hr>
+<h2 id="背景">背景</h2>
+<p>仕事で利用しているPCは管理者権限が貰えないのですが、Pythonを使う必要があったため<br>
+管理者権限不要でPythonを使える環境を用意しました。</p>
+<h2 id="手順">手順</h2>
+<h3 id="エンベデッド-pythonのダウンロード">エンベデッド Pythonのダウンロード</h3>
+<p>以下サイトにてPythonのダウンロードができるので『Windows embeddable package』をダウンロードします。<br>
+<a href="https://www.python.org/downloads/release/python-3124/">https://www.python.org/downloads/release/python-3124/</a></p>
+<p>上記リンクではバージョン3.12.4ですが、ページ上部のDownloadsタブから他バージョンの選択も可能です。</p>
+<h3 id="pythonの解凍">Pythonの解凍</h3>
+<p>ダウンロードしたPythonはZIP圧縮されているので、解凍して任意のフォルダに配置します。<br>
+配置したパスは覚えておいてください。</p>
+<h3 id="pythonコマンドを利用可能にする">pythonコマンドを利用可能にする</h3>
+<p>さきほど配置したフォルダにある「python.exe」をpythonコマンドで呼べるようにします。<br>
+PATHの変更ができればそちらに追加して貰うのが早いですが、管理者権限がないと難しいので<code>.bashrc</code>にaliasで設定します。</p>
+<pre tabindex="0"><code>$ echo &#39;alias python=&#34;配置したパス/python-3.12.4-embed-amd64/python.exe&#34;&#39; &gt;&gt; ~/.bashrc
+</code></pre><p>※上記はechoで流し込んでますが、普通にテキストとして修正しても良いです。</p>
+<p>これで、<code>.bashrc</code>読み込み後にpythonコマンドが利用可能となっています。</p>
+<h3 id="pipコマンドのインストール">pipコマンドのインストール</h3>
+<p>次にpipコマンドを利用できるようにします。
+まず以下のpyファイルをpython.exeと同じフォルダに配置します。
+<a href="https://bootstrap.pypa.io/get-pip.py">https://bootstrap.pypa.io/get-pip.py</a></p>
+<p>次に、以下コマンドを実行するとpip.exeが生成されます。<br>
+trusted-hostオプションを付けないとエラーとなるのでご注意ください。</p>
+<pre tabindex="0"><code>$ cd 配置したパス/python-3.12.4-embed-amd64
+$ python get-pip.py --trusted-host=files.pythonhosted.org --trusted-host=pypi.org
+</code></pre><p>あとはpythonコマンドと同様にaliasへ追加します。<br>
+こちらもtrusted-hostオプションが必要なのでご注意ください。</p>
+<pre tabindex="0"><code>$ echo &#39;alias python=&#34;配置したパス/python-3.12.4-embed-amd64/Scripts/pip.exe --trusted-host=files.pythonhosted.org --trusted-host=pypi.org&#34;&#39; &gt;&gt; ~/.bashrc
+</code></pre><p>これで<code>python</code>および<code>pip</code>コマンドが利用できるようになりました。<br>
+管理者権限が無いPCという事はセキュアな情報を扱うPCだと思うので、常識の範囲＆自己責任の範囲でご利用ください。</p>
+<h3 id="おまけaws-cliのインストール">おまけ：aws cliのインストール</h3>
+<p>pipが使えると、実はaws cliもインストールできます。<br>
+こちらも同様に.bashrcにalias設定します。</p>
+<pre tabindex="0"><code>$ pip install --user awscli
+$ pip install --target=awscliをインストールしたいパス awscli
+$ echo &#39;alias aws=&#34;awscliをインストールしたパス/bin/aws&#34;&#39; &gt;&gt; ~/.bashrc
+</code></pre><h2 id="参考">参考</h2>
+<ul>
+<li><a href="https://zenn.dev/naonaorange/articles/20211010_embeddable_python">Embeddable packageでPortableなPython環境を構築する | Zenn</a></li>
+<li><a href="https://qiita.com/zousan010sanpotyu/items/2757715bd84cea8e5479">Embedded Pythonでget-pip.pyに失敗するときの対処方法 | Qiita</a></li>
+<li><a href="https://stackoverflow.com/questions/48166013/aws-cli-portable-for-windows">aws-cli portable for windows? | stack overflow</a></li>
+</ul>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p class="name">Name: じぇすた</p>
+		<p class="description">
+			SIer→フリーランスを経て、現在は大企業で開発チームのマネジメントをしている。<br />
+			でも、本当はマネジメントより開発の方が好き。
+		</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div class="sns">
+		<a href="https://x.com/mildjester" target="_blank">
+			<img src="/images/x-icon.avif" alt="エックス" />
+		</a>
+		<a href="https://github.com/mildjester" target="_blank">
+			<img src="/images/github-icon.svg" alt="ギットハブ" />
+		</a>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>
