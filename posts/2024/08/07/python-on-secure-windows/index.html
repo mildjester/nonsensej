@@ -95,35 +95,46 @@
 <h3 id="エンベデッド-pythonのダウンロード">エンベデッド Pythonのダウンロード</h3>
 <p>以下サイトにてPythonのダウンロードができるので『Windows embeddable package』をダウンロードします。<br>
 <a href="https://www.python.org/downloads/release/python-3124/">https://www.python.org/downloads/release/python-3124/</a></p>
-<p>上記リンクではバージョン3.12.4ですが、ページ上部のDownloadsタブから他バージョンの選択も可能です。</p>
-<h3 id="pythonの解凍">Pythonの解凍</h3>
-<p>ダウンロードしたPythonはZIP圧縮されているので、解凍して任意のフォルダに配置します。<br>
-配置したパスは覚えておいてください。</p>
-<h3 id="pythonコマンドを利用可能にする">pythonコマンドを利用可能にする</h3>
-<p>さきほど配置したフォルダにある「python.exe」をpythonコマンドで呼べるようにします。<br>
-PATHの変更ができればそちらに追加して貰うのが早いですが、管理者権限がないと難しいので<code>.bashrc</code>にaliasで設定します。</p>
-<pre tabindex="0"><code>$ echo &#39;alias python=&#34;配置したパス/python-3.12.4-embed-amd64/python.exe&#34;&#39; &gt;&gt; ~/.bashrc
-</code></pre><p>※上記はechoで流し込んでますが、普通にテキストとして修正しても良いです。</p>
-<p>これで、<code>.bashrc</code>読み込み後にpythonコマンドが利用可能となっています。</p>
+<p>ダウンロードしたZIPファイルを任意のフォルダに解凍し、パスを通します。<br>
+管理者権限がなくても以下よりPathの設定が可能です。</p>
+<ul>
+<li>コントロールパネルを開く</li>
+<li>ユーザーアカウントを開く</li>
+<li>ユーザーアカウントを開く
+<ul>
+<li>ユーザーアカウントの中にユーザーアカウントメニューがある）</li>
+</ul>
+</li>
+<li>環境変数の変更を開く
+<ul>
+<li>左メニューの一番下にある</li>
+</ul>
+</li>
+<li>ユーザー環境変数内にあるPathに今回配置したフォルダと、そのScripts配下を追加する。
+<ul>
+<li>追加①：｛解凍したフォルダ｝¥python-3.12.4-embed-amd64</li>
+<li>追加②：｛解凍したフォルダ｝¥python-3.12.4-embed-amd64¥Scripts</li>
+<li>優先度を高めるために「上へ」ボタンで上に持っていっておくこと</li>
+</ul>
+</li>
+</ul>
+<p>これでPCを再起動すればpythonコマンドが利用可能となっています。</p>
 <h3 id="pipコマンドのインストール">pipコマンドのインストール</h3>
-<p>次にpipコマンドを利用できるようにします。
-まず以下のpyファイルをpython.exeと同じフォルダに配置します。
+<p>次にpipコマンドを利用できるようにします。<br>
+まず以下のpyファイルをpython.exeと同じフォルダに配置します。<br>
 <a href="https://bootstrap.pypa.io/get-pip.py">https://bootstrap.pypa.io/get-pip.py</a></p>
-<p>次に、以下コマンドを実行するとpip.exeが生成されます。<br>
+<p>次に、以下コマンドを実行します。<br>
 trusted-hostオプションを付けないとエラーとなるのでご注意ください。</p>
 <pre tabindex="0"><code>$ cd 配置したパス/python-3.12.4-embed-amd64
 $ python get-pip.py --trusted-host=files.pythonhosted.org --trusted-host=pypi.org
-</code></pre><p>あとはpythonコマンドと同様にaliasへ追加します。<br>
-こちらもtrusted-hostオプションが必要なのでご注意ください。</p>
-<pre tabindex="0"><code>$ echo &#39;alias python=&#34;配置したパス/python-3.12.4-embed-amd64/Scripts/pip.exe --trusted-host=files.pythonhosted.org --trusted-host=pypi.org&#34;&#39; &gt;&gt; ~/.bashrc
-</code></pre><p>これで<code>python</code>および<code>pip</code>コマンドが利用できるようになりました。<br>
+</code></pre><p>カレントディレクトリ配下にScriptsフォルダが作られ、そこにpip.exeが生成されます。<br>
+すでに前手順でPathには追加済みなので、Path追加は不要です。</p>
+<p>これで<code>python</code>および<code>pip</code>コマンドが利用できるようになりました。<br>
 管理者権限が無いPCという事はセキュアな情報を扱うPCだと思うので、常識の範囲＆自己責任の範囲でご利用ください。</p>
 <h3 id="おまけaws-cliのインストール">おまけ：aws cliのインストール</h3>
 <p>pipが使えると、実はaws cliもインストールできます。<br>
-こちらも同様に.bashrcにalias設定します。</p>
-<pre tabindex="0"><code>$ pip install --user awscli
-$ pip install --target=awscliをインストールしたいパス awscli
-$ echo &#39;alias aws=&#34;awscliをインストールしたパス/bin/aws&#34;&#39; &gt;&gt; ~/.bashrc
+以下コマンドでpip.exeと同じフォルダにawsコマンドが生成されます。</p>
+<pre tabindex="0"><code>$ pip install awscli
 </code></pre><h2 id="参考">参考</h2>
 <ul>
 <li><a href="https://zenn.dev/naonaorange/articles/20211010_embeddable_python">Embeddable packageでPortableなPython環境を構築する | Zenn</a></li>
