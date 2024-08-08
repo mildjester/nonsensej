@@ -95,33 +95,36 @@
 <h3 id="エンベデッド-pythonのダウンロード">エンベデッド Pythonのダウンロード</h3>
 <p>以下サイトにてPythonのダウンロードができるので『Windows embeddable package』をダウンロードします。<br>
 <a href="https://www.python.org/downloads/release/python-3124/">https://www.python.org/downloads/release/python-3124/</a></p>
-<p>ダウンロードしたZIPファイルを任意のフォルダに解凍し、パスを通します。<br>
+<p>ダウンロードしたZIPファイルを任意のフォルダに解凍し、その中にある<code>python312._pth</code>を修正します。<br>
+1行コメントアウトを外すだけです。</p>
+<pre tabindex="0"><code>■修正前
+# import site
+■修正後
+import site
+</code></pre><br />
+<p>続いてpythonコマンドにパスを通します。<br>
 管理者権限がなくても以下よりPathの設定が可能です。</p>
 <ul>
-<li>コントロールパネルを開く</li>
-<li>ユーザーアカウントを開く</li>
-<li>ユーザーアカウントを開く
+<li><code>コントロールパネル</code>を開く</li>
+<li><code>ユーザーアカウント</code>を開く</li>
+<li>さらに<code>ユーザーアカウント</code>を開く</li>
+<li>左メニューにある<code>環境変数の変更</code>を開く</li>
+<li>ユーザー環境変数内にある<code>Path</code>を編集し、今回配置したフォルダとそこのScripts配下を追加する。
 <ul>
-<li>ユーザーアカウントの中にユーザーアカウントメニューがある）</li>
+<li>追加例: pythonをC:¥toolsフォルダの下に解凍した場合は以下2つを追加する。
+<ul>
+<li>C:¥tools¥python-3.12.4-embed-amd64</li>
+<li>C:¥tools¥python-3.12.4-embed-amd64¥Scripts</li>
 </ul>
 </li>
-<li>環境変数の変更を開く
-<ul>
-<li>左メニューの一番下にある</li>
-</ul>
-</li>
-<li>ユーザー環境変数内にあるPathに今回配置したフォルダと、そのScripts配下を追加する。
-<ul>
-<li>追加①：｛解凍したフォルダ｝¥python-3.12.4-embed-amd64</li>
-<li>追加②：｛解凍したフォルダ｝¥python-3.12.4-embed-amd64¥Scripts</li>
-<li>優先度を高めるために「上へ」ボタンで上に持っていっておくこと</li>
+<li>優先度を高めるために「上へ」ボタンで上部に持っていっておくこと</li>
 </ul>
 </li>
 </ul>
 <p>これでPCを再起動すればpythonコマンドが利用可能となっています。</p>
 <h3 id="pipコマンドのインストール">pipコマンドのインストール</h3>
 <p>次にpipコマンドを利用できるようにします。<br>
-まず以下のpyファイルをpython.exeと同じフォルダに配置します。<br>
+まず以下のファイルをpython-3.12.4-embed-amd64フォルダにダウンロードします。<br>
 <a href="https://bootstrap.pypa.io/get-pip.py">https://bootstrap.pypa.io/get-pip.py</a></p>
 <p>次に、以下コマンドを実行します。<br>
 trusted-hostオプションを付けないとエラーとなるのでご注意ください。</p>
@@ -135,7 +138,23 @@ $ python get-pip.py --trusted-host=files.pythonhosted.org --trusted-host=pypi.or
 <p>pipが使えると、実はaws cliもインストールできます。<br>
 以下コマンドでpip.exeと同じフォルダにawsコマンドが生成されます。</p>
 <pre tabindex="0"><code>$ pip install awscli
-</code></pre><h2 id="参考">参考</h2>
+</code></pre><h2 id="トラブルシューティング">トラブルシューティング</h2>
+<h3 id="-get-pippy実行エラー">① get-pip.py実行エラー</h3>
+<p>get-pip.pyをそのまま実行すると以下のようなエラーが発生します。</p>
+<pre tabindex="0"><code>WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by &#39;SSLError(SSLCertVerificationError(1, &#39;[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)&#39;))&#39;: /simple/pip/
+Could not fetch URL https://pypi.org/simple/pip/: There was a problem confirming the ssl certificate: HTTPSConnectionPool(host=&#39;pypi.org&#39;, port=443): Max retries exceeded with url: /simple/pip/ (Caused by SSLError(SSLCertVerificationError(1, &#39;[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)&#39;))) - skipping
+ERROR: Could not find a version that satisfies the requirement pip (from versions: none)
+ERROR: No matching distribution found for pip
+</code></pre><p>これはSSL証明書のエラーが発生しているので、上記手順の通り<code>trusted-host</code>オプションを付けて実行しましょう。</p>
+<h3 id="pipが無いエラー">②pipが無いエラー</h3>
+<p>pipコマンド実行時に以下エラーが発生する場合があります。</p>
+<pre tabindex="0"><code>Traceback (most recent call last):
+  File &#34;&lt;frozen runpy&gt;&#34;, line 198, in _run_module_as_main
+  File &#34;&lt;frozen runpy&gt;&#34;, line 88, in _run_code
+  File &#34;C:\tools\python-3.12.4-embed-amd64\Scripts\pip.exe\__main__.py&#34;, line 4, in &lt;module&gt;
+ModuleNotFoundError: No module named &#39;pip&#39;
+</code></pre><p>上記手順の通り<code>python312._pth</code>にてsiteをimportするようにすれば解決します。</p>
+<h2 id="参考">参考</h2>
 <ul>
 <li><a href="https://zenn.dev/naonaorange/articles/20211010_embeddable_python">Embeddable packageでPortableなPython環境を構築する | Zenn</a></li>
 <li><a href="https://qiita.com/zousan010sanpotyu/items/2757715bd84cea8e5479">Embedded Pythonでget-pip.pyに失敗するときの対処方法 | Qiita</a></li>
