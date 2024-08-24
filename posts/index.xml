@@ -6,7 +6,30 @@
     <description>Recent content in Posts on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Wed, 07 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 24 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://blog2.logical-dice.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AmazonLinux2023のカーネルをダウングレードする</title>
+      <link>https://blog2.logical-dice.com/posts/2024/08/24/al2023-kernel-downgrade/</link>
+      <pubDate>Sat, 24 Aug 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog2.logical-dice.com/posts/2024/08/24/al2023-kernel-downgrade/</guid>
+      <description>環境 Amazon Linux 2023.5.20240819 概要 AmazonLinux2023のカーネルをアップグレードしたところ、動作しなくなるツールが出てきてしまったためダウングレードしました。
+その操作手順の記録です。
+手順 まず、現在のカーネルの状態を確認します。
+$uname -r 6.1.102-111.182.amzn2023.x86_64 $ sudo dnf list kernel kernel.x86_64 6.1.92-99.174 amzn2023 @amazonlinux kernel.x86_64 6.1.96-102.177.amzn2023 @amazonlinux kernel.x86_64 6.1.102-111.182.amzn2023 @amazonlinux 現状は6.1.102になっていますが、6.1.96にダウングレードしていきます。
+おそらく最短の方法 まず、ダウングレードして再起動します。
+「パッケージ名-バージョン」と指定をすることで特定のバージョンに戻れるようです。
+$ sudo dnf downgrade kernel-6.1.96-102.177.amzn2023 $ sudo reboot 再起動後、カーネルを確認するとダウングレードできているはずです。
+$ uname -r 6.1.96-102.177.amzn2023.x86_64 適用されているバージョンは戻しましたが、最新バージョンのパッケージは残っているので削除しておきます。
+こちらも「パッケージ名-バージョン」で特定バージョンのremoveができます。
+$ sudo dnf remove kernel-6.1.102-111.182.amzn2023 これでダウングレード完了です。
+参考：実際にやった手順 思考錯誤しながらやっていたので結構遠回しをしました。
+まず、ダウングレードして再起動します。
+$ sudo dnf downgrade kernel $ sudo reboot 再起動後、カーネルを確認してみます。
+$ uname -r 6.1.92-99.174.amzn2023.x86_64 戻りすぎてしまいました。
+どうやらバージョン指定をしないと戻れるだけ戻ってしまうようです。</description>
+    </item>
+    
     <item>
       <title>Windowsで管理者権限なしでpythonコマンドを使えるようにする</title>
       <link>https://blog2.logical-dice.com/posts/2024/08/07/python-on-secure-windows/</link>

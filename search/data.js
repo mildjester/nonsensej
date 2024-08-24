@@ -2,28 +2,40 @@
 
 var data = [
   {
+    url: "https://blog2.logical-dice.com/posts/2024/08/24/al2023-kernel-downgrade/",
+    title: "AmazonLinux2023のカーネルをダウングレードする",
+    date: "2024-08-24T00:00:00Z",
+    body: "AmazonLinux2023のカーネルをダウングレードする 環境 Amazon Linux 2023.5.20240819 概要 AmazonLinux2023のカーネルをアップグレードしたところ、動作しなくなるツールが出てきてしまったためダウングレードしました。 その操作手順の記録です。 手順 まず、現在のカーネルの状態を確認します。 $uname -r 6.1.102-111.182.amzn2023.x86_64 $ sudo dnf list kernel kernel.x86_64 6.1.92-99.174 amzn2023 @amazonlinux kernel.x86_64 6.1.96-102.177.amzn2023 @amazonlinux kernel.x86_64 6.1.102-111.182.amzn2023 @amazonlinux 現状は6.1.102になっていますが、6.1.96にダウングレードしていきます。 おそらく最短の方法 まず、ダウングレードして再起動します。 「パッケージ名-バージョン」と指定をすることで特定のバージョンに戻れるようです。 $ sudo dnf downgrade kernel-6.1.96-102.177.amzn2023 $ sudo reboot 再起動後、カーネルを確認するとダウングレードできているはずです。 $ uname -r 6.1.96-102.177.amzn2023.x86_64 適用されているバージョンは戻しましたが、最新バージョンのパッケージは残っているので削除しておきます。 こちらも「パッケージ名-バージョン」で特定バージョンのremoveができます。 $ sudo dnf remove kernel-6.1.102-111.182.amzn2023 これでダウングレード完了です。 参考：実際にやった手順 思考錯誤しながらやっていたので結構遠回しをしました。 まず、ダウングレードして再起動します。 $ sudo dnf downgrade kernel $ sudo reboot 再起動後、カーネルを確認してみます。 $ uname -r 6.1.92-99.174.amzn2023.x86_64 戻りすぎてしまいました。 どうやらバージョン指定をしないと戻れるだけ戻ってしまうようです。 なので、狙いのバージョンにアップデートします。 該当バージョンを一度削除しないとバージョンアップできないので、現バージョンより新しいものは一旦削除します。 $ sudo dnf remove kernel-6.1.96-102.177.amzn2023 $ sudo dnf remove kernel-6.1.102-111.182.amzn2023 アップデートして再起動します。 この際、また新しくなり過ぎないようにreleaseverでOSのバージョンを指定します。 ※後で思ったが、kernelのバージョンを指定すれば良いだけだったしれない。 $ sudo dnf list kernel --releasever=2023.5.20240708 kernel.x86_64 6.1.92-99.174 amzn2023 @amazonlinux kernel.x86_64 6.1.96-102.177.amzn2023 @amazonlinux ↑狙いのバージョンが最新になっている事を確認。違ったらreleaseverを変える。 $ sudo dnf update kernel --releasever=2023.5.20240708 $ sudo reboot releaseverで指定するバージョンはAL2023のリリースノートなどを参照してください。 https://docs.aws.amazon.com/ja_jp/linux/al2023/release-notes/relnotes.html 再起動後、カーネルを確認したら無事狙いのバージョンになっていました。 $ uname -r 6.1.96-102.177.amzn2023.x86_64"
+  },
+  {
+    url: "https://blog2.logical-dice.com/tags/aws/",
+    title: "AWS",
+    date: "2024-08-24T00:00:00Z",
+    body: "AWS"
+  },
+  {
     url: "https://blog2.logical-dice.com/",
     title: "Logical Dice 技術ブログ",
-    date: "2024-08-07T00:00:00Z",
+    date: "2024-08-24T00:00:00Z",
     body: "Logical Dice 技術ブログ"
   },
   {
     url: "https://blog2.logical-dice.com/posts/",
     title: "Posts",
-    date: "2024-08-07T00:00:00Z",
+    date: "2024-08-24T00:00:00Z",
     body: "Posts"
+  },
+  {
+    url: "https://blog2.logical-dice.com/tags/",
+    title: "Tags",
+    date: "2024-08-24T00:00:00Z",
+    body: "Tags"
   },
   {
     url: "https://blog2.logical-dice.com/tags/python/",
     title: "python",
     date: "2024-08-07T00:00:00Z",
     body: "python"
-  },
-  {
-    url: "https://blog2.logical-dice.com/tags/",
-    title: "Tags",
-    date: "2024-08-07T00:00:00Z",
-    body: "Tags"
   },
   {
     url: "https://blog2.logical-dice.com/posts/2024/08/07/python-on-secure-windows/",
@@ -48,12 +60,6 @@ var data = [
     title: "【AWS】MFA(多要素)認証を突破してCodeCommitからgit cloneする",
     date: "2024-06-06T00:00:00Z",
     body: "【AWS】MFA(多要素)認証を突破してCodeCommitからgit cloneする 環境 MacBook Pro (Sonoma14.5 M1チップ) aws-cli/2.15.14 aws-mfa 0.0.12 手順 AWSへのアクセスにMFAが必須である環境においてCodeCommitよりリポジトリをcloneする手順です。 調べても「CodeCommitでMFA不要にする手順」ばかり出てきて手間取ったので、メモを残します。 AWS CLIのインストール もしAWS CLIが未インストールである場合は以下ページ参考にインストールします。 https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/getting-started-install.html aws-mfaのインストール コマンドラインでAWS操作する際にMFA認証を楽にするツールがあります。 https://github.com/broamski/aws-mfa こちらをpipでインストールします。 $ pip install aws-mfa AWS認証情報の確認 AWSのマネジメントコンソールにログイン後、ヘッダー右端にあるアカウント名をクリックすると「セキュリテイ認証情報」というメニューが表示されるので選択します。 そこでアカウントの詳細が表示されるので「ユーザーのARN」を控えておきます。 また、もし自分のAWS アクセスキーを発行していない場合はここで発行します。 少し下へスクロールすると「アクセスキーを作成」というボタンがあるのでそこからアクセスキーが発行できます。 AWS CLI向けアクセスキー設定 AWS CLIにprofileを指定してアクセスキーを紐づけます。 『hoge』というプロファイル名で登録したい場合 『hoge』だけではなく『hoge-long-term』というプロファイルも登録します。 まず『hoge-long-term』の登録をします。 $ aws configure --profile hoge-long-term AWS Access Key ID [None]: XXXXXXXXXXXXXXXXXXXX (発行したアクセスキー) AWS Secret Access Key [None]: XXXXXXXXXXXXXXXXXXXX (発行したアクセスキーに紐づくシークレット) Default region name [None]: ap-northeast-1 (利用するリージョン 任意) Default output format [None]: json (利用するフォーマット 任意) 次に『hoge』の登録をします。 $ aws configure --profile hoge AWS Access Key ID [None]: (空のまま) AWS Secret Access Key [None]: (空のまま) Default region name [None]: ap-northeast-1 (利用するリージョン 任意) Default output format [None]: json (利用するフォーマット 任意) MFA認証登録 以下のコマンドでMFA認証を通します。 コマンド実行後にMFA code(数字6桁)を聞かれるので入力します。 $ aws-mfa --profile 『作成したプロファイル』 --device 『事前に確認したユーザーのARN』 # 例：aws-mfa --profile hoge --device arn:aws:iam::000000000000:mfa/hoge-taro これでしばらくMFA認証をしなくてもコマンドを打てるようになりました。 有効期限は~/.aws/credentialsを見ると確認できます。 git clone実行 以下のようにprofileを指定して実行することでcloneができます。 $ git clone codecommit::『リージョン』://『作成したプロファイル』@『cloneしたいリポジトリ』 # 例：git clone codecommit::ap-northeast-1://hoge@my-application-repository 参考 AWS CLIからのMFA(多要素認証)を楽にするツール(aws-mfa)を使ってみた - Qiita"
-  },
-  {
-    url: "https://blog2.logical-dice.com/tags/aws/",
-    title: "AWS",
-    date: "2024-06-06T00:00:00Z",
-    body: "AWS"
   },
   {
     url: "https://blog2.logical-dice.com/posts/2023/11/03/aws-lambda-use-paramiko/",
