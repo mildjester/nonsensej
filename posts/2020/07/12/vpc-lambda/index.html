@@ -98,48 +98,48 @@ VPC内のlambdaから外部アクセスができるように設定します。</
 ⑤ルートテーブルを新規作成し、public用サブネットを紐付ける。<br>
 　作成したら以下のルートを追加する。</p>
 <table>
-<thead>
-<tr>
-<th>項目</th>
-<th>設定値</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>宛先</td>
-<td>0.0.0.0/0</td>
-</tr>
-<tr>
-<td>ターゲット</td>
-<td>③のインターネットゲートウェイ</td>
-</tr>
-<tr>
-<td>⑥ルートテーブルをもう１つ新規作成し、private用サブネットを紐付ける。</td>
-<td></td>
-</tr>
-<tr>
-<td>　作成したら以下のルートを追加する。</td>
-<td></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>項目</th>
+          <th>設定値</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>宛先</td>
+          <td>0.0.0.0/0</td>
+      </tr>
+      <tr>
+          <td>ターゲット</td>
+          <td>③のインターネットゲートウェイ</td>
+      </tr>
+      <tr>
+          <td>⑥ルートテーブルをもう１つ新規作成し、private用サブネットを紐付ける。</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>　作成したら以下のルートを追加する。</td>
+          <td></td>
+      </tr>
+  </tbody>
 </table>
 <table>
-<thead>
-<tr>
-<th>項目</th>
-<th>設定値</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>宛先</td>
-<td>0.0.0.0/0</td>
-</tr>
-<tr>
-<td>ターゲット</td>
-<td>④のNATゲートウェイ</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>項目</th>
+          <th>設定値</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>宛先</td>
+          <td>0.0.0.0/0</td>
+      </tr>
+      <tr>
+          <td>ターゲット</td>
+          <td>④のNATゲートウェイ</td>
+      </tr>
+  </tbody>
 </table>
 <p>VPC設定はここまでです。<br>
 ここで作成したprivate用サブネットの方にlambdaを追加すればRDSと外部の両方にアクセスできるようになります。</p>
@@ -171,7 +171,7 @@ Serverless Frameworkの基本的な構築については<a href="/posts/2020/05/
 	<div>
 		<p class="name">Name: じぇすた</p>
 		<p class="description">
-			SIer→フリーランスを経て、現在は大企業で開発チームのマネジメントをしている。<br />
+			SIer→フリーランスを経て、現在は大企業で開発チームのマネジメントをしています。<br />
 			でも、本当はマネジメントより開発の方が好き。
 		</p>
 	</div>

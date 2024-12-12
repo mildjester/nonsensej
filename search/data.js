@@ -2,40 +2,46 @@
 
 var data = [
   {
+    url: "https://blog2.logical-dice.com/tags/aws/",
+    title: "AWS",
+    date: "2024-12-12T00:00:00Z",
+    body: "AWS"
+  },
+  {
+    url: "https://blog2.logical-dice.com/posts/2024/12/12/aws-cli-s3select/",
+    title: "AWS CLIで複数ファイルに対してS3 Selectで検索する",
+    date: "2024-12-12T00:00:00Z",
+    body: "AWS CLIで複数ファイルに対してS3 Selectで検索する 環境 aws-cli 2.7.14 概要 S3に保存されているCloudFrontのログを検索したかったのですが Athenaは導入されていなかったのでS3 Selectを使って検索をしました。 S3 Selectは1ファイルずつしか検索できないので、 AWS CLIをシェルに組み込んで複数ファイル検索できるようにしました。 手順 条件は以下とします。 S3バケット名は「target-bucket-name」 「logs-dir」というディレクトリ内に「AABBCCDDEE123456.YYYY-MM-DD-HH.abcdefg・・・」形式でファイルが生成される。 aws cli用のprofileは「my-aws-profile」という名前で設定してある。 できあがったものはこちら。 # ①設定 PROFILE=\u0026#34;my-aws-profile\u0026#34; BUCKET=\u0026#34;target-bucket-name\u0026#34; PREFIX=\u0026#34;logs-dir/AABBCCDDEE123456.2024-12-11\u0026#34; # 左記例では2024年12月11日に出力された分を検索する。 QUERY=\u0026#34;SELECT * FROM s3object s\u0026#34; # 左記例では全て出力しています。列を絞ったりWHERE句を入れたりしてください。 # ②オブジェクト（ファイル）の一覧取得 objects=`aws s3api list-objects --profile $PROFILE --bucket $BUCKET --prefix $PREFIX | jq` # ③取得したオブジェクトの一覧に対して1件ずつ処理をする for object in $(echo \u0026#34;$objects\u0026#34; | jq -c \u0026#39;.Contents[]\u0026#39;); do key=$(echo \u0026#34;$object\u0026#34; | jq -r \u0026#39;.Key\u0026#39;) echo \u0026#34;$key\u0026#34; # ④検索結果出力 aws s3api select-object-content --profile $PROFILE --bucket $BUCKET --key $key --expression \u0026#34;$QUERY\u0026#34; --expression-type SQL --input-serialization \u0026#39;{\u0026#34;CSV\u0026#34;: {\u0026#34;FileHeaderInfo\u0026#34;: \u0026#34;NONE\u0026#34;, \u0026#34;FieldDelimiter\u0026#34;: \u0026#34;\\t\u0026#34;}, \u0026#34;CompressionType\u0026#34;: \u0026#34;GZIP\u0026#34;}\u0026#39; --output-serialization \u0026#39;{\u0026#34;CSV\u0026#34;: {\u0026#34;FieldDelimiter\u0026#34;: \u0026#34;,\u0026#34;}}\u0026#39; output-tmp.csv cat output-tmp.csv \u0026gt;\u0026gt; output.csv done rm -f output-tmp.csv ①設定 必要な情報を設定してください。 PREFIXは必要なファイルを絞れるように設定しないと。検索対象が無駄に増えるとお金がかかってしまいます。 料金については以下を参照。 https://aws.amazon.com/jp/s3/pricing/ QUERYについては以下も参照。 https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/s3-select-sql-reference-select.html ②オブジェクト（ファイル）の一覧取得 AWS CLIを利用してS3のバケットおよびPrefixが一致するオブジェクトの一覧を取得します。 取得したjsonを解読するためjqコマンドも噛ませています。 ※profile設定時にoutputをjsonにしてある。 ③取得したオブジェクトの一覧に対して1件ずつ処理をする オブジェクト（ファイル）の配列は「Contents」というキーで返ってくるので、 それを指定してforで回します。 ④検索結果出力 S3 Selectのコマンド結果はファイルに出力するしかないので、 現在のオブジェクトの検索結果は一時ファイル(output-tmp.csv)に出力してから 最終ファイル(output.csv)に追記していくようにしています。 これで検索結果が出力されます。 あとは必要な情報をさらに絞るためにクエリを修正したりしていけば欲しい情報が取れるようになります。"
+  },
+  {
+    url: "https://blog2.logical-dice.com/",
+    title: "Logical Dice 技術ブログ",
+    date: "2024-12-12T00:00:00Z",
+    body: "Logical Dice 技術ブログ"
+  },
+  {
+    url: "https://blog2.logical-dice.com/posts/",
+    title: "Posts",
+    date: "2024-12-12T00:00:00Z",
+    body: "Posts"
+  },
+  {
+    url: "https://blog2.logical-dice.com/tags/",
+    title: "Tags",
+    date: "2024-12-12T00:00:00Z",
+    body: "Tags"
+  },
+  {
     url: "https://blog2.logical-dice.com/posts/2024/08/24/al2023-kernel-downgrade/",
     title: "AmazonLinux2023のカーネルをダウングレードする",
     date: "2024-08-24T00:00:00Z",
     body: "AmazonLinux2023のカーネルをダウングレードする 環境 Amazon Linux 2023.5.20240819 概要 AmazonLinux2023のカーネルをアップグレードしたところ、動作しなくなるツールが出てきてしまったためダウングレードしました。 その操作手順の記録です。 手順 まず、現在のカーネルの状態を確認します。 $uname -r 6.1.102-111.182.amzn2023.x86_64 $ sudo dnf list kernel kernel.x86_64 6.1.92-99.174 amzn2023 @amazonlinux kernel.x86_64 6.1.96-102.177.amzn2023 @amazonlinux kernel.x86_64 6.1.102-111.182.amzn2023 @amazonlinux 現状は6.1.102になっていますが、6.1.96にダウングレードしていきます。 おそらく最短の方法 まず、ダウングレードして再起動します。 「パッケージ名-バージョン」と指定をすることで特定のバージョンに戻れるようです。 $ sudo dnf downgrade kernel-6.1.96-102.177.amzn2023 $ sudo reboot 再起動後、カーネルを確認するとダウングレードできているはずです。 $ uname -r 6.1.96-102.177.amzn2023.x86_64 適用されているバージョンは戻しましたが、最新バージョンのパッケージは残っているので削除しておきます。 こちらも「パッケージ名-バージョン」で特定バージョンのremoveができます。 $ sudo dnf remove kernel-6.1.102-111.182.amzn2023 これでダウングレード完了です。 参考：実際にやった手順 思考錯誤しながらやっていたので結構遠回しをしました。 まず、ダウングレードして再起動します。 $ sudo dnf downgrade kernel $ sudo reboot 再起動後、カーネルを確認してみます。 $ uname -r 6.1.92-99.174.amzn2023.x86_64 戻りすぎてしまいました。 どうやらバージョン指定をしないと戻れるだけ戻ってしまうようです。 なので、狙いのバージョンにアップデートします。 該当バージョンを一度削除しないとバージョンアップできないので、現バージョンより新しいものは一旦削除します。 $ sudo dnf remove kernel-6.1.96-102.177.amzn2023 $ sudo dnf remove kernel-6.1.102-111.182.amzn2023 アップデートして再起動します。 この際、また新しくなり過ぎないようにreleaseverでOSのバージョンを指定します。 ※後で思ったが、kernelのバージョンを指定すれば良いだけだったしれない。 $ sudo dnf list kernel --releasever=2023.5.20240708 kernel.x86_64 6.1.92-99.174 amzn2023 @amazonlinux kernel.x86_64 6.1.96-102.177.amzn2023 @amazonlinux ↑狙いのバージョンが最新になっている事を確認。違ったらreleaseverを変える。 $ sudo dnf update kernel --releasever=2023.5.20240708 $ sudo reboot releaseverで指定するバージョンはAL2023のリリースノートなどを参照してください。 https://docs.aws.amazon.com/ja_jp/linux/al2023/release-notes/relnotes.html 再起動後、カーネルを確認したら無事狙いのバージョンになっていました。 $ uname -r 6.1.96-102.177.amzn2023.x86_64"
   },
   {
-    url: "https://blog2.logical-dice.com/tags/aws/",
-    title: "AWS",
-    date: "2024-08-24T00:00:00Z",
-    body: "AWS"
-  },
-  {
-    url: "https://blog2.logical-dice.com/",
-    title: "Logical Dice 技術ブログ",
-    date: "2024-08-24T00:00:00Z",
-    body: "Logical Dice 技術ブログ"
-  },
-  {
-    url: "https://blog2.logical-dice.com/posts/",
-    title: "Posts",
-    date: "2024-08-24T00:00:00Z",
-    body: "Posts"
-  },
-  {
-    url: "https://blog2.logical-dice.com/tags/",
-    title: "Tags",
-    date: "2024-08-24T00:00:00Z",
-    body: "Tags"
-  },
-  {
     url: "https://blog2.logical-dice.com/tags/python/",
-    title: "python",
+    title: "Python",
     date: "2024-08-07T00:00:00Z",
-    body: "python"
+    body: "Python"
   },
   {
     url: "https://blog2.logical-dice.com/posts/2024/08/07/python-on-secure-windows/",
@@ -111,9 +117,9 @@ var data = [
   },
   {
     url: "https://blog2.logical-dice.com/tags/javascript/",
-    title: "javascript",
+    title: "Javascript",
     date: "2021-06-06T00:00:00Z",
-    body: "javascript"
+    body: "Javascript"
   },
   {
     url: "https://blog2.logical-dice.com/posts/2021/06/06/lodash-debounce-vs-throttle/",
@@ -153,9 +159,9 @@ var data = [
   },
   {
     url: "https://blog2.logical-dice.com/tags/ubuntu/",
-    title: "ubuntu",
+    title: "Ubuntu",
     date: "2021-02-17T00:00:00Z",
-    body: "ubuntu"
+    body: "Ubuntu"
   },
   {
     url: "https://blog2.logical-dice.com/posts/2021/02/14/ubuntu-mouse-keymap/",
@@ -171,9 +177,9 @@ var data = [
   },
   {
     url: "https://blog2.logical-dice.com/tags/git/",
-    title: "git",
+    title: "Git",
     date: "2021-02-06T00:00:00Z",
-    body: "git"
+    body: "Git"
   },
   {
     url: "https://blog2.logical-dice.com/tags/php/",
@@ -237,9 +243,9 @@ var data = [
   },
   {
     url: "https://blog2.logical-dice.com/tags/node/",
-    title: "node",
+    title: "Node",
     date: "2020-09-15T00:00:00Z",
-    body: "node"
+    body: "Node"
   },
   {
     url: "https://blog2.logical-dice.com/posts/2020/09/15/webpack-swiper-env-diff/",
@@ -297,9 +303,9 @@ var data = [
   },
   {
     url: "https://blog2.logical-dice.com/tags/bookmarklet/",
-    title: "bookmarklet",
+    title: "Bookmarklet",
     date: "2020-07-16T00:00:00Z",
-    body: "bookmarklet"
+    body: "Bookmarklet"
   },
   {
     url: "https://blog2.logical-dice.com/posts/2020/07/16/bookmarklet-kimetsu/",
@@ -675,9 +681,9 @@ var data = [
   },
   {
     url: "https://blog2.logical-dice.com/tags/pico/",
-    title: "pico",
+    title: "Pico",
     date: "2019-01-17T00:00:00Z",
-    body: "pico"
+    body: "Pico"
   },
   {
     url: "https://blog2.logical-dice.com/posts/2019/01/17/wordpress-to-pico/",
@@ -737,7 +743,7 @@ var data = [
     url: "https://blog2.logical-dice.com/posts/wp/1715/",
     title: "gitコマンドで複数のGitHubアカウントを使い分ける",
     date: "2018-11-14T20:37:00Z",
-    body: "gitコマンドで複数のGitHubアカウントを使い分ける 環境 Mac OS (Linuxでも動く気がします） ※ 2019/3/29追記 GitHubの利用規約にて1個人で複数の無料アカウントを運用する事は禁止されているようでした。 https://help.github.com/en/posts/github-terms-of-service#b-account-terms もし複数の無料アカウントを利用している場合はアカウントの統合などを検討した方が良いです。 無料アカウントと有料アカウントを使い分ける場合などは本手順を参考にして貰えればと思います。 概要 GitHubではアカウントに秘密鍵が紐づいており git コマンドを実行した際に指定した秘密鍵で利用アカウントを判定しています。 （秘密鍵未指定の場合はデフォルトの秘密鍵） フリーランスをしていると自分のGitHubアカウントとは別で 取引先様のGitHubアカウントを作成する必要があったりするのですが １台のPCで複数GitHubアカウントを使っていると秘密鍵の切り替えが面倒です。 私も最初はこちらの記事のように.ssh/configに別ホストとして設定していたのですが これだとcloneする時などにいちいちホスト名を書き換えたりしなければいけなかったりして それも少し面倒でした。（特にリポジトリが沢山あるプロジェクトだったので） https://qiita.com/yamataku29/items/4744c9c70ad793c83b82 というわけで リポジトリ所有者（ユーザーもしくはOrganizations）と秘密鍵の紐づけを設定しておけば 自動でgitコマンド実行時に秘密鍵を使い分けてくれるスクリプトを作りました。 こちらです https://github.com/mildjester/gits 使い方 ①cloneでもZIPダウンロードでも良いので上記リポジトリをダウンロードしてきます。 ②config_templateを同ディレクトリにconfigという名前でコピーします。 ③コピーして生成したconfigの以下変数を設定します ■defaultKey デフォルトの秘密鍵へのパス。基本的にテンプレートのままでいいはず。 ■specialKeys デフォルト以外の秘密鍵を使うリポジトリ所有者と秘密鍵の紐付け一覧。 形式は『リポジトリ所有者::秘密鍵のパス』なので 例えば「所有者AAA」のリポジトリに使う秘密鍵は~/.ssh/id_rsa_1、 「所有者BBB」のリポジトリに使う秘密鍵は~/.ssh/id_rsa_2とする場合は 以下のようになります。 specialKeys=( \u0026#39;AAA::~/.ssh/id_rsa_1\u0026#39; \u0026#39;BBB::~/.ssh/id_rsa_2\u0026#39; ) ④~/.bashrcに以下のエイリアスを追記しておきます。 通常使っているシェルがbash以外（zshやfishなど）の場合は、そちらの設定ファイルへ追記してください。 # gitコマンドを置き換える alias git=\u0026#34;/path-to-gits-repository/gits.sh\u0026#34; ※path-to-gits-repositoryはリポジトリをcloneまたはダウンロードしてきたディレクトリを指定してください これで何も考えずにgitコマンドを打っても、裏で勝手に秘密鍵を切り替えてくれるようになります。 備考：ghqを使っている場合 私はgit cloneよりもghq getをよく使うので、そのスクリプトも用意しました。 基本的な設定は上記と同じで、エイリアスの設定だけ追加します。 alias ghq_get=\u0026#34;~/git/github.com/mildjester/gits/ghq_get.sh\u0026#34; こちらは完全にコマンドを置き換える訳ではないのですが 以下のコマンドでリポジトリを取得する事ができるようになります。 (ghqとgetの間がスペースではなくアンダーバーになるだけ) ghq_get git@github.com:AAAA/hogehoge.git"
+    body: "gitコマンドで複数のGitHubアカウントを使い分ける 環境 Mac OS (Linuxでも動く気がします） ※ 2019/3/29追記 GitHubの利用規約にて1個人で複数の無料アカウントを運用する事は禁止されているようでした。 https://help.github.com/en/posts/github-terms-of-service#b-account-terms もし複数の無料アカウントを利用している場合はアカウントの統合などを検討した方が良いです。 無料アカウントと有料アカウントを使い分ける場合などは本手順を参考にして貰えればと思います。 概要 GitHubではアカウントに秘密鍵が紐づいており git コマンドを実行した際に指定した秘密鍵で利用アカウントを判定しています。 （秘密鍵未指定の場合はデフォルトの秘密鍵） フリーランスをしていると自分のGitHubアカウントとは別で 取引先様のGitHubアカウントを作成する必要があったりするのですが １台のPCで複数GitHubアカウントを使っていると秘密鍵の切り替えが面倒です。 私も最初はこちらの記事のように.ssh/configに別ホストとして設定していたのですが これだとcloneする時などにいちいちホスト名を書き換えたりしなければいけなかったりして それも少し面倒でした。（特にリポジトリが沢山あるプロジェクトだったので） https://qiita.com/yamataku29/items/4744c9c70ad793c83b82 というわけで リポジトリ所有者（ユーザーもしくはOrganizations）と秘密鍵の紐づけを設定しておけば 自動でgitコマンド実行時に秘密鍵を使い分けてくれるスクリプトを作りました。 こちらです https://github.com/mildjester/gits 使い方 ①cloneでもZIPダウンロードでも良いので上記リポジトリをダウンロードしてきます。 ②config_templateを同ディレクトリにconfigという名前でコピーします。 ③コピーして生成したconfigの以下変数を設定します ■defaultKey デフォルトの秘密鍵へのパス。基本的にテンプレートのままでいいはず。 ■specialKeys デフォルト以外の秘密鍵を使うリポジトリ所有者と秘密鍵の紐付け一覧。 形式は『リポジトリ所有者::秘密鍵のパス』なので 例えば「所有者AAA」のリポジトリに使う秘密鍵は/.ssh/id_rsa_1、 「所有者BBB」のリポジトリに使う秘密鍵は/.ssh/id_rsa_2とする場合は 以下のようになります。 specialKeys=( \u0026#39;AAA::~/.ssh/id_rsa_1\u0026#39; \u0026#39;BBB::~/.ssh/id_rsa_2\u0026#39; ) ④~/.bashrcに以下のエイリアスを追記しておきます。 通常使っているシェルがbash以外（zshやfishなど）の場合は、そちらの設定ファイルへ追記してください。 # gitコマンドを置き換える alias git=\u0026#34;/path-to-gits-repository/gits.sh\u0026#34; ※path-to-gits-repositoryはリポジトリをcloneまたはダウンロードしてきたディレクトリを指定してください これで何も考えずにgitコマンドを打っても、裏で勝手に秘密鍵を切り替えてくれるようになります。 備考：ghqを使っている場合 私はgit cloneよりもghq getをよく使うので、そのスクリプトも用意しました。 基本的な設定は上記と同じで、エイリアスの設定だけ追加します。 alias ghq_get=\u0026#34;~/git/github.com/mildjester/gits/ghq_get.sh\u0026#34; こちらは完全にコマンドを置き換える訳ではないのですが 以下のコマンドでリポジトリを取得する事ができるようになります。 (ghqとgetの間がスペースではなくアンダーバーになるだけ) ghq_get git@github.com:AAAA/hogehoge.git"
   },
   {
     url: "https://blog2.logical-dice.com/posts/wp/1627/",
@@ -1011,9 +1017,9 @@ var data = [
   },
   {
     url: "https://blog2.logical-dice.com/tags/atom/",
-    title: "atom",
+    title: "Atom",
     date: "2017-09-29T19:11:15Z",
-    body: "atom"
+    body: "Atom"
   },
   {
     url: "https://blog2.logical-dice.com/posts/wp/708/",
@@ -1023,9 +1029,9 @@ var data = [
   },
   {
     url: "https://blog2.logical-dice.com/tags/golang/",
-    title: "golang",
+    title: "Golang",
     date: "2017-09-29T19:11:15Z",
-    body: "golang"
+    body: "Golang"
   },
   {
     url: "https://blog2.logical-dice.com/posts/wp/703/",
@@ -1101,9 +1107,9 @@ var data = [
   },
   {
     url: "https://blog2.logical-dice.com/tags/zabbix/",
-    title: "zabbix",
+    title: "Zabbix",
     date: "2017-05-02T14:49:34Z",
-    body: "zabbix"
+    body: "Zabbix"
   },
   {
     url: "https://blog2.logical-dice.com/posts/wp/592/",
@@ -1167,9 +1173,9 @@ var data = [
   },
   {
     url: "https://blog2.logical-dice.com/tags/ruby/",
-    title: "ruby",
+    title: "Ruby",
     date: "2017-02-27T15:16:05Z",
-    body: "ruby"
+    body: "Ruby"
   },
   {
     url: "https://blog2.logical-dice.com/posts/wp/440/",

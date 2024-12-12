@@ -108,38 +108,38 @@ throttleメソッドの処理は最初に実行される1回は<code>await</code
 <pre tabindex="0"><code>_.debounce(func, [wait=0], [options={}])
 </code></pre><p>各項目については以下の通り。</p>
 <table>
-<thead>
-<tr>
-<th>項目</th>
-<th>内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>func</td>
-<td>流量制限対象の処理(function)です。</td>
-</tr>
-<tr>
-<td>wait</td>
-<td>処理が呼び出されてから実行するまでの待機時間です。待機中に再度呼び出されたら、そこからさらに待機時間待ちます。</td>
-</tr>
-<tr>
-<td>option</td>
-<td>任意オプションをオブジェクトで指定します。</td>
-</tr>
-<tr>
-<td>option.leading</td>
-<td>待機前に処理を実行するかどうか。デフォルト：false。</td>
-</tr>
-<tr>
-<td>option.maxWait</td>
-<td>処理が連続して呼び出されたとしても、maxWaitで指定した時間が経過したら処理を走らせます。デフォルト：0（指定なし）。</td>
-</tr>
-<tr>
-<td>option.trailing</td>
-<td>待機後に処理を実行するかどうか。デフォルト：true。</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>項目</th>
+          <th>内容</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>func</td>
+          <td>流量制限対象の処理(function)です。</td>
+      </tr>
+      <tr>
+          <td>wait</td>
+          <td>処理が呼び出されてから実行するまでの待機時間です。待機中に再度呼び出されたら、そこからさらに待機時間待ちます。</td>
+      </tr>
+      <tr>
+          <td>option</td>
+          <td>任意オプションをオブジェクトで指定します。</td>
+      </tr>
+      <tr>
+          <td>option.leading</td>
+          <td>待機前に処理を実行するかどうか。デフォルト：false。</td>
+      </tr>
+      <tr>
+          <td>option.maxWait</td>
+          <td>処理が連続して呼び出されたとしても、maxWaitで指定した時間が経過したら処理を走らせます。デフォルト：0（指定なし）。</td>
+      </tr>
+      <tr>
+          <td>option.trailing</td>
+          <td>待機後に処理を実行するかどうか。デフォルト：true。</td>
+      </tr>
+  </tbody>
 </table>
 <p>つまり、optionをデフォルトのまま呼び出すのであれば、debounceは呼び出されてから指定時間待機してから発火します。<br>
 maxWaitの指定が無いので待機時間中に呼び出され続けたら、ずっと処理は発火しません。</p>
@@ -149,34 +149,34 @@ maxWaitの指定が無いので待機時間中に呼び出され続けたら、�
 <pre tabindex="0"><code>_.throttle(func, [wait=0], [options={}])
 </code></pre><p>各項目については以下の通り。</p>
 <table>
-<thead>
-<tr>
-<th>項目</th>
-<th>内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>func</td>
-<td>流量制限対象の処理(function)です。</td>
-</tr>
-<tr>
-<td>wait</td>
-<td>処理が呼び出される間隔の時間です。</td>
-</tr>
-<tr>
-<td>option</td>
-<td>任意オプションをオブジェクトで指定します。</td>
-</tr>
-<tr>
-<td>option.leading</td>
-<td>待機前に処理を実行するかどうか。デフォルト：true。</td>
-</tr>
-<tr>
-<td>option.trailing</td>
-<td>待機後に処理を実行するかどうか。デフォルト：true。</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>項目</th>
+          <th>内容</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>func</td>
+          <td>流量制限対象の処理(function)です。</td>
+      </tr>
+      <tr>
+          <td>wait</td>
+          <td>処理が呼び出される間隔の時間です。</td>
+      </tr>
+      <tr>
+          <td>option</td>
+          <td>任意オプションをオブジェクトで指定します。</td>
+      </tr>
+      <tr>
+          <td>option.leading</td>
+          <td>待機前に処理を実行するかどうか。デフォルト：true。</td>
+      </tr>
+      <tr>
+          <td>option.trailing</td>
+          <td>待機後に処理を実行するかどうか。デフォルト：true。</td>
+      </tr>
+  </tbody>
 </table>
 <p>optionはdebounceとほぼ同じですが、leadingのデフォルトがtrueでmaxWaitの指定がありません。</p>
 <p>throttleのソースを見ると分かりますが、throttleはdebounceのオプションを指定して呼び出しているだけです。<br>
@@ -221,7 +221,7 @@ optionのleadingがtrueでtrailingがfalseになれば良さそうです。</p>
 	<div>
 		<p class="name">Name: じぇすた</p>
 		<p class="description">
-			SIer→フリーランスを経て、現在は大企業で開発チームのマネジメントをしている。<br />
+			SIer→フリーランスを経て、現在は大企業で開発チームのマネジメントをしています。<br />
 			でも、本当はマネジメントより開発の方が好き。
 		</p>
 	</div>

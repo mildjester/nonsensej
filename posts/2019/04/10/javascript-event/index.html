@@ -84,26 +84,26 @@
 		<p>PC/Android/iOSでIME有効時に入力イベントが結構違ったので調べました。<br>
 調べた環境は以下の通りです。</p>
 <table>
-<thead>
-<tr>
-<th>OS</th>
-<th>ブラウザ</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PC (Linux Mint 19.1 MATE)</td>
-<td>Chrome Ver.73.0</td>
-</tr>
-<tr>
-<td>Android 8.0.0 (Galaxy S8)</td>
-<td>Chrome Ver.73.0</td>
-</tr>
-<tr>
-<td>iOS 12.2 (iPhone 6)</td>
-<td>Safari 12.1</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>OS</th>
+          <th>ブラウザ</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>PC (Linux Mint 19.1 MATE)</td>
+          <td>Chrome Ver.73.0</td>
+      </tr>
+      <tr>
+          <td>Android 8.0.0 (Galaxy S8)</td>
+          <td>Chrome Ver.73.0</td>
+      </tr>
+      <tr>
+          <td>iOS 12.2 (iPhone 6)</td>
+          <td>Safari 12.1</td>
+      </tr>
+  </tbody>
 </table>
 <p>テキストボックスに文字を入力した際のイベントを調べました。<br>
 調べたイベントは<code>keydown</code>, <code>keyup</code>, <code>keypress</code>, <code>textInput</code>, <code>input</code>です。</p>
@@ -111,52 +111,52 @@
 <h2 id="ime有効-入力中未確定">IME有効 入力中（未確定）</h2>
 <p>ひらがなで文字を1文字ずつ入力している時のイベントです。</p>
 <table>
-<thead>
-<tr>
-<th>イベント</th>
-<th style="text-align:center">PC</th>
-<th style="text-align:center">Android</th>
-<th style="text-align:center">iOS</th>
-<th>取れる値</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>keydown</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">○</td>
-<td style="text-align:center">○</td>
-<td>今回入力前の文字列</td>
-</tr>
-<tr>
-<td>keyup</td>
-<td style="text-align:center">○</td>
-<td style="text-align:center">○</td>
-<td style="text-align:center">○</td>
-<td>※OSにより違う</td>
-</tr>
-<tr>
-<td>keypress</td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">○</td>
-<td>今回入力前の文字列</td>
-</tr>
-<tr>
-<td>textInput</td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td></td>
-</tr>
-<tr>
-<td>input</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">○</td>
-<td style="text-align:center">○</td>
-<td>今回入力後の文字列</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>イベント</th>
+          <th style="text-align: center">PC</th>
+          <th style="text-align: center">Android</th>
+          <th style="text-align: center">iOS</th>
+          <th>取れる値</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>keydown</td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center">○</td>
+          <td style="text-align: center">○</td>
+          <td>今回入力前の文字列</td>
+      </tr>
+      <tr>
+          <td>keyup</td>
+          <td style="text-align: center">○</td>
+          <td style="text-align: center">○</td>
+          <td style="text-align: center">○</td>
+          <td>※OSにより違う</td>
+      </tr>
+      <tr>
+          <td>keypress</td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center">○</td>
+          <td>今回入力前の文字列</td>
+      </tr>
+      <tr>
+          <td>textInput</td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center"></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>input</td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center">○</td>
+          <td style="text-align: center">○</td>
+          <td>今回入力後の文字列</td>
+      </tr>
+  </tbody>
 </table>
 <p>※keyupで取れる値は以下の通りでした。<br>
 PC: 前回確定済みの文字列<br>
@@ -169,52 +169,52 @@ PCであればEnterキーを押したタイミングの事ですね。</p>
 <p>なお、スマホでは半角英数を入力していても確定処理はあり、<br>
 挙動は以下と同じでした。</p>
 <table>
-<thead>
-<tr>
-<th>イベント</th>
-<th style="text-align:center">PC</th>
-<th style="text-align:center">Android</th>
-<th style="text-align:center">iOS</th>
-<th>取れる値</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>keydown</td>
-<td style="text-align:center">○</td>
-<td style="text-align:center">○</td>
-<td style="text-align:center"></td>
-<td>※OSにより違う</td>
-</tr>
-<tr>
-<td>keyup</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">○</td>
-<td style="text-align:center"></td>
-<td>今回確定後の文字列</td>
-</tr>
-<tr>
-<td>keypress</td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td></td>
-</tr>
-<tr>
-<td>textInput</td>
-<td style="text-align:center">○</td>
-<td style="text-align:center">○</td>
-<td style="text-align:center">○</td>
-<td>※OSにより違う</td>
-</tr>
-<tr>
-<td>input</td>
-<td style="text-align:center">○</td>
-<td style="text-align:center">○</td>
-<td style="text-align:center">○</td>
-<td>今回確定後の文字列</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>イベント</th>
+          <th style="text-align: center">PC</th>
+          <th style="text-align: center">Android</th>
+          <th style="text-align: center">iOS</th>
+          <th>取れる値</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>keydown</td>
+          <td style="text-align: center">○</td>
+          <td style="text-align: center">○</td>
+          <td style="text-align: center"></td>
+          <td>※OSにより違う</td>
+      </tr>
+      <tr>
+          <td>keyup</td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center">○</td>
+          <td style="text-align: center"></td>
+          <td>今回確定後の文字列</td>
+      </tr>
+      <tr>
+          <td>keypress</td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center"></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>textInput</td>
+          <td style="text-align: center">○</td>
+          <td style="text-align: center">○</td>
+          <td style="text-align: center">○</td>
+          <td>※OSにより違う</td>
+      </tr>
+      <tr>
+          <td>input</td>
+          <td style="text-align: center">○</td>
+          <td style="text-align: center">○</td>
+          <td style="text-align: center">○</td>
+          <td>今回確定後の文字列</td>
+      </tr>
+  </tbody>
 </table>
 <p>※keydownで取れる値は以下の通りでした。<br>
 PC: 前回確定済みの文字列<br>
@@ -230,103 +230,103 @@ Android: 今回確定後の文字列</p>
 スマホではIMEという概念がないので、IME有効時で書いた結果と同じです。<br>
 ただし、Androidのイベントが2周走る件は発生しません。</p>
 <table>
-<thead>
-<tr>
-<th>イベント</th>
-<th style="text-align:center">PC</th>
-<th style="text-align:center">Android</th>
-<th style="text-align:center">iOS</th>
-<th>取れる値</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>keydown</td>
-<td style="text-align:center">○</td>
-<td style="text-align:center">○</td>
-<td style="text-align:center">○</td>
-<td>入力する前の文字列</td>
-</tr>
-<tr>
-<td>keyup</td>
-<td style="text-align:center">○</td>
-<td style="text-align:center">○</td>
-<td style="text-align:center">○</td>
-<td>入力した後の文字列</td>
-</tr>
-<tr>
-<td>keypress</td>
-<td style="text-align:center">○</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">○</td>
-<td>入力する前の文字列</td>
-</tr>
-<tr>
-<td>textInput</td>
-<td style="text-align:center">○</td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td>入力する前の文字列</td>
-</tr>
-<tr>
-<td>input</td>
-<td style="text-align:center">○</td>
-<td style="text-align:center">○</td>
-<td style="text-align:center">○</td>
-<td>入力した後の文字列</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>イベント</th>
+          <th style="text-align: center">PC</th>
+          <th style="text-align: center">Android</th>
+          <th style="text-align: center">iOS</th>
+          <th>取れる値</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>keydown</td>
+          <td style="text-align: center">○</td>
+          <td style="text-align: center">○</td>
+          <td style="text-align: center">○</td>
+          <td>入力する前の文字列</td>
+      </tr>
+      <tr>
+          <td>keyup</td>
+          <td style="text-align: center">○</td>
+          <td style="text-align: center">○</td>
+          <td style="text-align: center">○</td>
+          <td>入力した後の文字列</td>
+      </tr>
+      <tr>
+          <td>keypress</td>
+          <td style="text-align: center">○</td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center">○</td>
+          <td>入力する前の文字列</td>
+      </tr>
+      <tr>
+          <td>textInput</td>
+          <td style="text-align: center">○</td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center"></td>
+          <td>入力する前の文字列</td>
+      </tr>
+      <tr>
+          <td>input</td>
+          <td style="text-align: center">○</td>
+          <td style="text-align: center">○</td>
+          <td style="text-align: center">○</td>
+          <td>入力した後の文字列</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="文字削除時">文字削除時</h2>
 <p>BackspaceやDeleteで文字を削除した際のイベントです。<br>
 これはOSによる差分はなさそうです。</p>
 <table>
-<thead>
-<tr>
-<th>イベント</th>
-<th style="text-align:center">PC</th>
-<th style="text-align:center">Android</th>
-<th style="text-align:center">iOS</th>
-<th>取れる値</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>keydown</td>
-<td style="text-align:center">○</td>
-<td style="text-align:center">○</td>
-<td style="text-align:center">○</td>
-<td>削除する前の文字列</td>
-</tr>
-<tr>
-<td>keyup</td>
-<td style="text-align:center">○</td>
-<td style="text-align:center">○</td>
-<td style="text-align:center">○</td>
-<td>削除した後の文字列</td>
-</tr>
-<tr>
-<td>keypress</td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td></td>
-</tr>
-<tr>
-<td>textInput</td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td></td>
-</tr>
-<tr>
-<td>input</td>
-<td style="text-align:center">○</td>
-<td style="text-align:center">○</td>
-<td style="text-align:center">○</td>
-<td>削除した後の文字列</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>イベント</th>
+          <th style="text-align: center">PC</th>
+          <th style="text-align: center">Android</th>
+          <th style="text-align: center">iOS</th>
+          <th>取れる値</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>keydown</td>
+          <td style="text-align: center">○</td>
+          <td style="text-align: center">○</td>
+          <td style="text-align: center">○</td>
+          <td>削除する前の文字列</td>
+      </tr>
+      <tr>
+          <td>keyup</td>
+          <td style="text-align: center">○</td>
+          <td style="text-align: center">○</td>
+          <td style="text-align: center">○</td>
+          <td>削除した後の文字列</td>
+      </tr>
+      <tr>
+          <td>keypress</td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center"></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>textInput</td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center"></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>input</td>
+          <td style="text-align: center">○</td>
+          <td style="text-align: center">○</td>
+          <td style="text-align: center">○</td>
+          <td>削除した後の文字列</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="文字列切り取りカット時のイベント">文字列切り取り(カット)時のイベント</h2>
 <p>PCだと右クリック、スマホだと長押しして文字列の切り取りをした時のイベントです。<br>
@@ -335,141 +335,141 @@ Android: 今回確定後の文字列</p>
 文字削除時の挙動と同じでした。<br>
 (たぶんキー入力による文字削除という点で同じなのかと)</p>
 <table>
-<thead>
-<tr>
-<th>イベント</th>
-<th style="text-align:center">PC</th>
-<th style="text-align:center">Android</th>
-<th style="text-align:center">iOS</th>
-<th>取れる値</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>keydown</td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td></td>
-</tr>
-<tr>
-<td>keyup</td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td></td>
-</tr>
-<tr>
-<td>keypress</td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td></td>
-</tr>
-<tr>
-<td>textInput</td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td></td>
-</tr>
-<tr>
-<td>input</td>
-<td style="text-align:center">○</td>
-<td style="text-align:center">○</td>
-<td style="text-align:center">○</td>
-<td>削除した後の文字列</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>イベント</th>
+          <th style="text-align: center">PC</th>
+          <th style="text-align: center">Android</th>
+          <th style="text-align: center">iOS</th>
+          <th>取れる値</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>keydown</td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center"></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>keyup</td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center"></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>keypress</td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center"></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>textInput</td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center"></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>input</td>
+          <td style="text-align: center">○</td>
+          <td style="text-align: center">○</td>
+          <td style="text-align: center">○</td>
+          <td>削除した後の文字列</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="文字列貼り付けペースト時のイベント">文字列貼り付け(ペースト)時のイベント</h2>
 <p>PCだと右クリック、スマホだと長押しして<br>
 文字列を貼り付けした時のイベントです。<br>
 こちらもOSによる差分はなさそうです。</p>
 <table>
-<thead>
-<tr>
-<th>イベント</th>
-<th style="text-align:center">PC</th>
-<th style="text-align:center">Android</th>
-<th style="text-align:center">iOS</th>
-<th>取れる値</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>keydown</td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td></td>
-</tr>
-<tr>
-<td>keyup</td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td></td>
-</tr>
-<tr>
-<td>keypress</td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td></td>
-</tr>
-<tr>
-<td>textInput</td>
-<td style="text-align:center">○</td>
-<td style="text-align:center">○</td>
-<td style="text-align:center">○</td>
-<td>貼り付けする前の文字列</td>
-</tr>
-<tr>
-<td>input</td>
-<td style="text-align:center">○</td>
-<td style="text-align:center">○</td>
-<td style="text-align:center">○</td>
-<td>貼り付けした後の文字列</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>イベント</th>
+          <th style="text-align: center">PC</th>
+          <th style="text-align: center">Android</th>
+          <th style="text-align: center">iOS</th>
+          <th>取れる値</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>keydown</td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center"></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>keyup</td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center"></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>keypress</td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center"></td>
+          <td style="text-align: center"></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>textInput</td>
+          <td style="text-align: center">○</td>
+          <td style="text-align: center">○</td>
+          <td style="text-align: center">○</td>
+          <td>貼り付けする前の文字列</td>
+      </tr>
+      <tr>
+          <td>input</td>
+          <td style="text-align: center">○</td>
+          <td style="text-align: center">○</td>
+          <td style="text-align: center">○</td>
+          <td>貼り付けした後の文字列</td>
+      </tr>
+  </tbody>
 </table>
 <p>なお、PCでCtrl+vで貼り付けした場合は以下でした。</p>
 <table>
-<thead>
-<tr>
-<th>イベント</th>
-<th style="text-align:center">PC</th>
-<th>取れる値</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>keydown</td>
-<td style="text-align:center">○</td>
-<td>貼り付けする前の文字列</td>
-</tr>
-<tr>
-<td>keyup</td>
-<td style="text-align:center">○</td>
-<td>貼り付けした後の文字列</td>
-</tr>
-<tr>
-<td>keypress</td>
-<td style="text-align:center"></td>
-<td></td>
-</tr>
-<tr>
-<td>textInput</td>
-<td style="text-align:center">○</td>
-<td>貼り付けする前の文字列</td>
-</tr>
-<tr>
-<td>input</td>
-<td style="text-align:center">○</td>
-<td>貼り付けした後の文字列</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>イベント</th>
+          <th style="text-align: center">PC</th>
+          <th>取れる値</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>keydown</td>
+          <td style="text-align: center">○</td>
+          <td>貼り付けする前の文字列</td>
+      </tr>
+      <tr>
+          <td>keyup</td>
+          <td style="text-align: center">○</td>
+          <td>貼り付けした後の文字列</td>
+      </tr>
+      <tr>
+          <td>keypress</td>
+          <td style="text-align: center"></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>textInput</td>
+          <td style="text-align: center">○</td>
+          <td>貼り付けする前の文字列</td>
+      </tr>
+      <tr>
+          <td>input</td>
+          <td style="text-align: center">○</td>
+          <td>貼り付けした後の文字列</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="総評">総評</h2>
 <p>レスポンシブなサイトを作るのであれば、OSにより差分のあるイベントはフックに使わない方が安全かもしれません。<br>
@@ -486,7 +486,7 @@ Android: 今回確定後の文字列</p>
 	<div>
 		<p class="name">Name: じぇすた</p>
 		<p class="description">
-			SIer→フリーランスを経て、現在は大企業で開発チームのマネジメントをしている。<br />
+			SIer→フリーランスを経て、現在は大企業で開発チームのマネジメントをしています。<br />
 			でも、本当はマネジメントより開発の方が好き。
 		</p>
 	</div>

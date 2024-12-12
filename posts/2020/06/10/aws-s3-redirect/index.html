@@ -123,35 +123,35 @@
 S3から新サーバー等に移設した際にパスが変わった場合などに使えます。</p>
 <p>設定する値は以下の通りです。</p>
 <table>
-<thead>
-<tr>
-<th>設定項目</th>
-<th>設定値</th>
-<th>サンプル値</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>KeyPrefixEquals</td>
-<td>このパスにアクセスがあったらリダイレクトします。</td>
-<td>kokojanai_dokoka.html</td>
-</tr>
-<tr>
-<td>Protocol</td>
-<td>リダイレクト先のプロトコルです</td>
-<td>https</td>
-</tr>
-<tr>
-<td>HostName</td>
-<td>リダイレクト先のホスト名です</td>
-<td>new-server.co.jp</td>
-</tr>
-<tr>
-<td>ReplaceKeyWith</td>
-<td>KeyPrefixEqualsの値をこの値で置き換えます。</td>
-<td>kokoday.html</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>設定項目</th>
+          <th>設定値</th>
+          <th>サンプル値</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>KeyPrefixEquals</td>
+          <td>このパスにアクセスがあったらリダイレクトします。</td>
+          <td>kokojanai_dokoka.html</td>
+      </tr>
+      <tr>
+          <td>Protocol</td>
+          <td>リダイレクト先のプロトコルです</td>
+          <td>https</td>
+      </tr>
+      <tr>
+          <td>HostName</td>
+          <td>リダイレクト先のホスト名です</td>
+          <td>new-server.co.jp</td>
+      </tr>
+      <tr>
+          <td>ReplaceKeyWith</td>
+          <td>KeyPrefixEqualsの値をこの値で置き換えます。</td>
+          <td>kokoday.html</td>
+      </tr>
+  </tbody>
 </table>
 <p>サンプルではS3にs3-sample.co.jpというDNSを割り振って使っていたとすると<br>
 <code>https://s3-sample.co.jp/kokojanai_dokoka.html</code>へのアクセスは<br>
@@ -162,30 +162,30 @@ S3から新サーバー等に移設した際にパスが変わった場合など
 S3から新サーバー等に同パスのまま移設した際に使えます。<br>
 ②と③は<code>HttpErrorCodeReturnedEquals</code>以外は同じです。</p>
 <table>
-<thead>
-<tr>
-<th>設定項目</th>
-<th>設定値</th>
-<th>サンプル値</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>HttpErrorCodeReturnedEquals</td>
-<td>S3の応答HTTPコードが何だったらリダイレクトするか</td>
-<td>403 および 404※</td>
-</tr>
-<tr>
-<td>Protocol</td>
-<td>リダイレクト先のプロトコルです</td>
-<td>https</td>
-</tr>
-<tr>
-<td>HostName</td>
-<td>リダイレクト先のホスト名です</td>
-<td>new-server.co.jp</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>設定項目</th>
+          <th>設定値</th>
+          <th>サンプル値</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>HttpErrorCodeReturnedEquals</td>
+          <td>S3の応答HTTPコードが何だったらリダイレクトするか</td>
+          <td>403 および 404※</td>
+      </tr>
+      <tr>
+          <td>Protocol</td>
+          <td>リダイレクト先のプロトコルです</td>
+          <td>https</td>
+      </tr>
+      <tr>
+          <td>HostName</td>
+          <td>リダイレクト先のホスト名です</td>
+          <td>new-server.co.jp</td>
+      </tr>
+  </tbody>
 </table>
 <p>※S3上に存在しないパスの場合404だけじゃなく403を返すパターンもあるようなので念の為両方書いています。</p>
 <p>サンプルではS3にs3-sample.co.jpというDNSを割り振って使っていたとすると<br>
@@ -201,7 +201,7 @@ S3から新サーバー等に同パスのまま移設した際に使えます。
 	<div>
 		<p class="name">Name: じぇすた</p>
 		<p class="description">
-			SIer→フリーランスを経て、現在は大企業で開発チームのマネジメントをしている。<br />
+			SIer→フリーランスを経て、現在は大企業で開発チームのマネジメントをしています。<br />
 			でも、本当はマネジメントより開発の方が好き。
 		</p>
 	</div>

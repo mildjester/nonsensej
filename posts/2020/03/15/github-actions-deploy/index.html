@@ -96,22 +96,22 @@
 <img src="https://blog2.logical-dice.com/images/2020/03/github-actions-deploy-001.png" /></p>
 <p>Secretsの設定画面になるので以下2つを設定します。</p>
 <table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>AWS_ACCESS_KEY_ID</td>
-<td>IAMのアクセスキーID</td>
-</tr>
-<tr>
-<td>AWS_SECRET_ACCESS_KEY</td>
-<td>IAMのシークレットアクセスキー</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Name</th>
+          <th>Value</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>AWS_ACCESS_KEY_ID</td>
+          <td>IAMのアクセスキーID</td>
+      </tr>
+      <tr>
+          <td>AWS_SECRET_ACCESS_KEY</td>
+          <td>IAMのシークレットアクセスキー</td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="github-actionsの設定">GitHub Actionsの設定</h3>
 <p>デプロイしたいリポジトリのGitHubページの『Actions』タブを開き、<br>
@@ -143,30 +143,30 @@ jobs:
 </blockquote>
 <p>なお、以下の部分は各自の環境に合わせて読み替えてください。</p>
 <table>
-<thead>
-<tr>
-<th>読み替える文字列</th>
-<th>設定する値</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>※APP_NAME※</td>
-<td>CodeDeployで設定したアプリケーション名</td>
-</tr>
-<tr>
-<td>※GROUP_NAME※</td>
-<td>CodeDeployで設定したデプロイグループ名</td>
-</tr>
-<tr>
-<td>※REPO※</td>
-<td>デプロイ対象のGitHubリポジトリ(「ユーザー名/リポジトリ名」形式)</td>
-</tr>
-<tr>
-<td>※REGION※</td>
-<td>CodeDeployを走らせるAWSのリージョン(例：ap-northeast-1)</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>読み替える文字列</th>
+          <th>設定する値</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>※APP_NAME※</td>
+          <td>CodeDeployで設定したアプリケーション名</td>
+      </tr>
+      <tr>
+          <td>※GROUP_NAME※</td>
+          <td>CodeDeployで設定したデプロイグループ名</td>
+      </tr>
+      <tr>
+          <td>※REPO※</td>
+          <td>デプロイ対象のGitHubリポジトリ(「ユーザー名/リポジトリ名」形式)</td>
+      </tr>
+      <tr>
+          <td>※REGION※</td>
+          <td>CodeDeployを走らせるAWSのリージョン(例：ap-northeast-1)</td>
+      </tr>
+  </tbody>
 </table>
 <p>記載できたらコミットします。<br>
 コミットしたら、今回のコミットに対してGitHub Actionが動くので正常終了するか確認してください。<br>
@@ -185,7 +185,7 @@ Actionsはプライベートリポジトリで月間2,000分まで無料(2020年
 	<div>
 		<p class="name">Name: じぇすた</p>
 		<p class="description">
-			SIer→フリーランスを経て、現在は大企業で開発チームのマネジメントをしている。<br />
+			SIer→フリーランスを経て、現在は大企業で開発チームのマネジメントをしています。<br />
 			でも、本当はマネジメントより開発の方が好き。
 		</p>
 	</div>

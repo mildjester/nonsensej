@@ -134,38 +134,38 @@ payload=&#34;payload={\&#34;channel\&#34;: \&#34;${TO//\&#34;/\\\&#34;}\&#34;, \
 curl -m 30 --data-urlencode &#34;${payload}&#34; $URL -A &#39;zabbix-slack-alertscript / https://github.com/ericoc/zabbix-slack-alertscript&#39;  
 </code></pre><p>スクリプトの設定項目は以下の通りです。</p>
 <table>
-<thead>
-<tr>
-<th>項目</th>
-<th>内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>LOGFILE</td>
-<td>AIDEの検査結果を出力するログファイルです。</td>
-</tr>
-<tr>
-<td>AIDEDIR</td>
-<td>AIDE本体のディレクトリです。<code>aide.conf</code>の設定に合わせてください。</td>
-</tr>
-<tr>
-<td>URL</td>
-<td>Slackの『Incoming WebHooks』のURLです。詳細は<a href="https://slack.com/apps/A0F7XDUAZ-incoming-webhooks" rel="noopener" target="_blank">コチラ</a></td>
-</tr>
-<tr>
-<td>TO</td>
-<td>メッセージを送るSlackのチャンネル</td>
-</tr>
-<tr>
-<td>EMOJI</td>
-<td>Slack上で表示される絵文字</td>
-</tr>
-<tr>
-<td>NAME</td>
-<td>Slack上で表示される名前</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>項目</th>
+          <th>内容</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>LOGFILE</td>
+          <td>AIDEの検査結果を出力するログファイルです。</td>
+      </tr>
+      <tr>
+          <td>AIDEDIR</td>
+          <td>AIDE本体のディレクトリです。<code>aide.conf</code>の設定に合わせてください。</td>
+      </tr>
+      <tr>
+          <td>URL</td>
+          <td>Slackの『Incoming WebHooks』のURLです。詳細は<a href="https://slack.com/apps/A0F7XDUAZ-incoming-webhooks" rel="noopener" target="_blank">コチラ</a></td>
+      </tr>
+      <tr>
+          <td>TO</td>
+          <td>メッセージを送るSlackのチャンネル</td>
+      </tr>
+      <tr>
+          <td>EMOJI</td>
+          <td>Slack上で表示される絵文字</td>
+      </tr>
+      <tr>
+          <td>NAME</td>
+          <td>Slack上で表示される名前</td>
+      </tr>
+  </tbody>
 </table>
 <p>作成したスクリプトを1日1回cronで回します。 <br>
 以下はcronの設定例です。</p>
@@ -181,7 +181,7 @@ curl -m 30 --data-urlencode &#34;${payload}&#34; $URL -A &#39;zabbix-slack-alert
 	<div>
 		<p class="name">Name: じぇすた</p>
 		<p class="description">
-			SIer→フリーランスを経て、現在は大企業で開発チームのマネジメントをしている。<br />
+			SIer→フリーランスを経て、現在は大企業で開発チームのマネジメントをしています。<br />
 			でも、本当はマネジメントより開発の方が好き。
 		</p>
 	</div>
