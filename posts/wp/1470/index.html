@@ -44,7 +44,7 @@
       <div class="search-box">
         <form class="fx">
           <input id="searchKeyword" type="search" size="20">
-          <input id="searchButton" type="submit" value="検索">
+          <input id="searchButton" type="submit" value="Search">
         </form>
       </div>
     </div>
@@ -73,10 +73,10 @@
 	<div class="post">
 		<h1 class="post-title">【Linux Mint】 Fcitxの変換候補が黒く塗りつぶされる</h1>
 		<div class="post-info">
-				<p class="publish-date">投稿日：<time datetime="2018-08-13 13:01:18 &#43;0000 UTC" class="catalogue-time">2018-08-13</time></p>
+				<p class="publish-date">投稿日: <time datetime="2018-08-13 13:01:18 &#43;0000 UTC" class="catalogue-time">2018年08月13日</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/linuxmint/">LinuxMint</a></div>
+					 <div class="tags_item"><a href="/tags/linuxmint/">LinuxMint</a></div>
 				</div>
 			
 		</div>
@@ -87,9 +87,9 @@
 <h3 id="事象">事象</h3>
 <p>ある日、Fcitxで日本語入力していたら<br>
 変換候補が真っ黒になってしまいました<br>
-<img src="https://blog2.logical-dice.com/images/2018/08/Screenshot-from-2018-08-12-14-36-05.png" alt="" /></p>
+<img src="/images/2018/08/Screenshot-from-2018-08-12-14-36-05.png" alt="" /></p>
 <p>Fcitx設定にて外観タブを見てみると、<code>Kimpanelに設定オプションはありません</code> とのこと。<br>
-<img src="https://blog2.logical-dice.com/images/2018/08/Screenshot-from-2018-08-13-11-52-28.png" alt="" /></p>
+<img src="/images/2018/08/Screenshot-from-2018-08-13-11-52-28.png" alt="" /></p>
 <h3 id="解決方法">解決方法</h3>
 <p>ちょっと調べてみた感じでは「Kimpanel」ってそもそも要らないようなのでアンインストールしてしまいます。</p>
 <pre tabindex="0"><code>sudo apt purge fcitx-module-kimpanel  

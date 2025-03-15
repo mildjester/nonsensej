@@ -44,7 +44,7 @@
       <div class="search-box">
         <form class="fx">
           <input id="searchKeyword" type="search" size="20">
-          <input id="searchButton" type="submit" value="検索">
+          <input id="searchButton" type="submit" value="Search">
         </form>
       </div>
     </div>
@@ -73,10 +73,10 @@
 	<div class="post">
 		<h1 class="post-title">Wordpressを多言語対応させる</h1>
 		<div class="post-info">
-				<p class="publish-date">投稿日：<time datetime="2018-04-24 00:56:56 &#43;0000 UTC" class="catalogue-time">2018-04-24</time></p>
+				<p class="publish-date">投稿日: <time datetime="2018-04-24 00:56:56 &#43;0000 UTC" class="catalogue-time">2018年04月24日</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/wordpress/">Wordpress</a></div>
+					 <div class="tags_item"><a href="/tags/wordpress/">Wordpress</a></div>
 				</div>
 			
 		</div>
@@ -87,9 +87,9 @@ MultilingualPress 2.11.1</p>
 <hr>
 <h2 id="手順">■手順</h2>
 <p>まず<code>MultilingualPress</code>というプラグインをインストールします。<br>
-<img src="https://blog2.logical-dice.com/images/2018/04/9fd6315f8454ede4b8ab89463ff2601e.png" alt="" /></p>
+<img src="/images/2018/04/9fd6315f8454ede4b8ab89463ff2601e.png" alt="" /></p>
 <p>インストール後、プラグインを有効化しようとするとマルチサイトを有効にしないといけない旨のメッセージが表示されます。<br>
-<img src="https://blog2.logical-dice.com/images/2018/04/4a721c9c26ca779d1b19763502984ef4.png" alt="" /></p>
+<img src="/images/2018/04/4a721c9c26ca779d1b19763502984ef4.png" alt="" /></p>
 <p>上記のリンク先にマルチサイト化をするための手順が記載されています。<br>
 <a href="https://multilingualpress.org/docs/install-wordpress-multisite/" rel="noopener" target="_blank"><a href="https://multilingualpress.org/docs/install-wordpress-multisite/">https://multilingualpress.org/docs/install-wordpress-multisite/</a></a></p>
 <p>まず、Wordpressがインストールされているディレクトリにある<code>wp-config.php</code>を編集し、マルチサイトを有効化します。</p>
@@ -103,7 +103,7 @@ define(&#39;WP_ALLOW_MULTISITE&#39;, TRUE);  &lt;=これを追記
 if ( !defined(&#39;ABSPATH&#39;) )  
     define(&#39;ABSPATH&#39;, dirname(__FILE__) . &#39;/&#39;);  
 </code></pre><p>次にプラグインを全て停止させ、管理画面より「ツール ＞ サイトネットワークの設置」を開き、『インストール』をクリックします。<br>
-<img src="https://blog2.logical-dice.com/images/2018/04/04b279018ccd8885f814183242c7e189.png" alt="" /></p>
+<img src="/images/2018/04/04b279018ccd8885f814183242c7e189.png" alt="" /></p>
 <p>すると、再度<code>wp-config.php</code>を修正するよう案内が表示されるので、案内通りに修正します。</p>
 <pre tabindex="0"><code>define(&#39;WP_DEBUG&#39;, false);  
   

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Chrome on FrameSynthesis</title>
+    <link>http://localhost:1313/tags/chrome/</link>
+    <description>Recent content in Chrome on FrameSynthesis</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 19 Nov 2018 10:29:41 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/chrome/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Chromeの開発者ツールを新タブでも維持する</title>
+      <link>http://localhost:1313/en/posts/wp/1735/</link>
+      <pubDate>Mon, 19 Nov 2018 10:29:41 +0000</pubDate>
+      <guid>http://localhost:1313/en/posts/wp/1735/</guid>
+      <description>Chromeの開発者ツールはデフォルトでは新タブには反映されないのですがスマホモードでページの確認をしている時などは新タブもスマ&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Chromeの開発者ツールを新タブでも維持する</title>
+      <link>http://localhost:1313/ja/posts/wp/1735/</link>
+      <pubDate>Mon, 19 Nov 2018 10:29:41 +0000</pubDate>
+      <guid>http://localhost:1313/ja/posts/wp/1735/</guid>
+      <description>Chromeの開発者ツールはデフォルトでは新タブには反映されないのですがスマホモードでページの確認をしている時などは新タブもスマ&amp;hellip;</description>
+    </item>
+    <item>
+      <title>akamaiのレスポンスヘッダーをChromeで確認する</title>
+      <link>http://localhost:1313/en/posts/wp/1521/</link>
+      <pubDate>Wed, 26 Sep 2018 12:02:33 +0000</pubDate>
+      <guid>http://localhost:1313/en/posts/wp/1521/</guid>
+      <description>背景今お手伝いをしている会社さんではakamaiを使ってページをキャッシュさせてますakamaiについてはコチラhttps://&amp;hellip;</description>
+    </item>
+    <item>
+      <title>akamaiのレスポンスヘッダーをChromeで確認する</title>
+      <link>http://localhost:1313/ja/posts/wp/1521/</link>
+      <pubDate>Wed, 26 Sep 2018 12:02:33 +0000</pubDate>
+      <guid>http://localhost:1313/ja/posts/wp/1521/</guid>
+      <description>背景今お手伝いをしている会社さんではakamaiを使ってページをキャッシュさせてますakamaiについてはコチラhttps://&amp;hellip;</description>
+    </item>
+  </channel>
+</rss>

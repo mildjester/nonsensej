@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MySQL on FrameSynthesis</title>
+    <link>http://localhost:1313/tags/mysql/</link>
+    <description>Recent content in MySQL on FrameSynthesis</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 20 Jan 2016 22:36:39 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MySQLの文字コードを設定する</title>
+      <link>http://localhost:1313/en/posts/wp/189/</link>
+      <pubDate>Wed, 20 Jan 2016 22:36:39 +0000</pubDate>
+      <guid>http://localhost:1313/en/posts/wp/189/</guid>
+      <description>MySQLで文字コードを設定する方法です。■環境MySQL 5.6.26これからDBの作成をする場合は、設定ファイル「/etc/&amp;hellip;</description>
+    </item>
+    <item>
+      <title>MySQLの文字コードを設定する</title>
+      <link>http://localhost:1313/ja/posts/wp/189/</link>
+      <pubDate>Wed, 20 Jan 2016 22:36:39 +0000</pubDate>
+      <guid>http://localhost:1313/ja/posts/wp/189/</guid>
+      <description>MySQLで文字コードを設定する方法です。■環境MySQL 5.6.26これからDBの作成をする場合は、設定ファイル「/etc/&amp;hellip;</description>
+    </item>
+    <item>
+      <title>mysql系の関数がPHP7でエラーになる場合の対応</title>
+      <link>http://localhost:1313/en/posts/wp/173/</link>
+      <pubDate>Wed, 20 Jan 2016 21:55:34 +0000</pubDate>
+      <guid>http://localhost:1313/en/posts/wp/173/</guid>
+      <description>PHP5.XからPHP7にアップデートした際にmysql系の関数がエラーになっていたので、その際に行なった対応をメモしておきます&amp;hellip;</description>
+    </item>
+    <item>
+      <title>mysql系の関数がPHP7でエラーになる場合の対応</title>
+      <link>http://localhost:1313/ja/posts/wp/173/</link>
+      <pubDate>Wed, 20 Jan 2016 21:55:34 +0000</pubDate>
+      <guid>http://localhost:1313/ja/posts/wp/173/</guid>
+      <description>PHP5.XからPHP7にアップデートした際にmysql系の関数がエラーになっていたので、その際に行なった対応をメモしておきます&amp;hellip;</description>
+    </item>
+  </channel>
+</rss>

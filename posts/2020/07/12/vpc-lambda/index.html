@@ -44,7 +44,7 @@
       <div class="search-box">
         <form class="fx">
           <input id="searchKeyword" type="search" size="20">
-          <input id="searchButton" type="submit" value="検索">
+          <input id="searchButton" type="submit" value="Search">
         </form>
       </div>
     </div>
@@ -73,10 +73,10 @@
 	<div class="post">
 		<h1 class="post-title">AWS lambdaからDBアクセスも外部アクセスもできるようにする。</h1>
 		<div class="post-info">
-				<p class="publish-date">投稿日：<time datetime="2020-07-12 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-07-12</time></p>
+				<p class="publish-date">投稿日: <time datetime="2020-07-12 00:00:00 &#43;0000 UTC" class="catalogue-time">2020年07月12日</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/aws/">AWS</a></div>
+					 <div class="tags_item"><a href="/tags/aws/">AWS</a></div>
 				</div>
 			
 		</div>
@@ -145,7 +145,7 @@ VPC内のlambdaから外部アクセスができるように設定します。</
 ここで作成したprivate用サブネットの方にlambdaを追加すればRDSと外部の両方にアクセスできるようになります。</p>
 <h2 id="lambda設定serverless-framework">lambda設定(Serverless Framework)</h2>
 <p>今回はServerless Frameworkを使ってlambdaを構築します。<br>
-Serverless Frameworkの基本的な構築については<a href="/posts/2020/05/19/serverless-framework-lambda">前回の記事</a>を参照してください。</p>
+Serverless Frameworkの基本的な構築については<a href="/posts/2020/05/19/serverless-framework-lambda/">前回の記事</a>を参照してください。</p>
 <p>前回の記事で作成した<code>serverless.yml</code>のproviderにvpc設定を追加します。</p>
 <pre tabindex="0"><code>provider:
   〜省略〜

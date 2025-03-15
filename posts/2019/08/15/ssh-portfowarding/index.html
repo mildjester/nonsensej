@@ -44,7 +44,7 @@
       <div class="search-box">
         <form class="fx">
           <input id="searchKeyword" type="search" size="20">
-          <input id="searchButton" type="submit" value="検索">
+          <input id="searchButton" type="submit" value="Search">
         </form>
       </div>
     </div>
@@ -73,10 +73,10 @@
 	<div class="post">
 		<h1 class="post-title">SSHポートフォワーディングでローカルから外部サーバーへアクセスする</h1>
 		<div class="post-info">
-				<p class="publish-date">投稿日：<time datetime="2019-08-15 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-08-15</time></p>
+				<p class="publish-date">投稿日: <time datetime="2019-08-15 00:00:00 &#43;0000 UTC" class="catalogue-time">2019年08月15日</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/docker/">Docker</a></div>
+					 <div class="tags_item"><a href="/tags/docker/">Docker</a></div>
 				</div>
 			
 		</div>
@@ -114,7 +114,7 @@ ssh.server.com経由でdb.server.com:3306へアクセスする。</li>
 <li>WEBアプリから自身の10443ポートへ通信が発生したらポートフォワーディング発動し、<br>
 ssh.server.com経由でapi.server.com:443へアクセスする。</li>
 </ul>
-<img src="https://blog2.logical-dice.com/images/2019/08/ssh-portfowarding-001.png" />  
+<img src="/images/2019/08/ssh-portfowarding-001.png" />  
 <p>WEBアプリが動いているDockerコンテナ内にてSSHポートフォワーディングのコマンドを実行します。</p>
 <pre tabindex="0"><code>ssh -f -N -L 3306:db.server.com:3306  -L 10443:api.server.com:443  -i /path/to/secret_key user@ssh.server.com -p 22 -4
 </code></pre><p>あとはアプリケーション内で以下の箇所を変更すればポートフォワーディングでアクセスできるようになります。<br>
@@ -131,7 +131,7 @@ ssh.server.com経由でdb.server.com:3306へアクセスする。</li>
 <li>WEBアプリから踏み台コンテナの443ポートへ通信が発生したらポートフォワーディング発動し、<br>
 ssh.server.com経由でapi.server.com:443へアクセスする。</li>
 </ul>
-<img src="https://blog2.logical-dice.com/images/2019/08/ssh-portfowarding-002.png" />  
+<img src="/images/2019/08/ssh-portfowarding-002.png" />  
 <p>踏み台専用のDockerコンテナを作成し、コンテナの実行コマンドとしてSSHポートフォワーディングのコマンドを実行するようにします。<br>
 ※プロセスがバックグラウンドに行かないように、fオプションを外しています。</p>
 <pre tabindex="0"><code>ssh -N -L 0.0.0.0:3306:db.server.com:3306 -L 0.0.0.0:443:api.server.com:443 -i /path/to/secret_key user@ssh.server.com -p 22 -4

@@ -44,7 +44,7 @@
       <div class="search-box">
         <form class="fx">
           <input id="searchKeyword" type="search" size="20">
-          <input id="searchButton" type="submit" value="検索">
+          <input id="searchButton" type="submit" value="Search">
         </form>
       </div>
     </div>
@@ -73,10 +73,10 @@
 	<div class="post">
 		<h1 class="post-title">GASでGmailをSlackに転送する</h1>
 		<div class="post-info">
-				<p class="publish-date">投稿日：<time datetime="2020-03-10 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-03-10</time></p>
+				<p class="publish-date">投稿日: <time datetime="2020-03-10 00:00:00 &#43;0000 UTC" class="catalogue-time">2020年03月10日</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/googleservice/">GoogleService</a></div>
+					 <div class="tags_item"><a href="/tags/googleservice/">GoogleService</a></div>
 				</div>
 			
 		</div>
@@ -109,7 +109,7 @@ PHPからWebHooksを使ってメッセージ送信するライブラリを作っ
 <p>まず、自分のGASのページを開きます。<br>
 <a href="https://script.google.com/u/0/home?hl=ja">https://script.google.com/u/0/home?hl=ja</a></p>
 <p>そこで「新しいプロジェクト」をクリックしてください。<br>
-<img src="https://blog2.logical-dice.com/images/2020/03/gas-gmail-slack-001.png" /></p>
+<img src="/images/2020/03/gas-gmail-slack-001.png" /></p>
 <p>コード編集画面が開くので、「コード.gs」内を以下のように記載します。<br>
 最初の「初期設定」の部分は自分の環境に合わせて修正してください。</p>
 <pre tabindex="0"><code>// 初期設定
@@ -153,15 +153,15 @@ function send(message) {
 </code></pre><p>上記を記載したら「Ctrl + s」か上部メニューのフロッピーマークをクリックして保存します。<br>
 保存時にプロジェクト名を聞かれるので好きな名前を付けてください。<br>
 （例：Gmail2Slack）<br>
-<img src="https://blog2.logical-dice.com/images/2020/03/gas-gmail-slack-002.png" /></p>
+<img src="/images/2020/03/gas-gmail-slack-002.png" /></p>
 <h2 id="google-apps-scriptの自動実行設定">Google Apps Scriptの自動実行設定</h2>
 <p>作成したスクリプトの自動実行設定をします。<br>
 上部メニューの時計マークをクリックしてください。<br>
-<img src="https://blog2.logical-dice.com/images/2020/03/gas-gmail-slack-003.png" /></p>
+<img src="/images/2020/03/gas-gmail-slack-003.png" /></p>
 <p>作成したスクリプトのトリガー画面が開くので、「トリガーを追加」をクリックしてください。<br>
-<img src="https://blog2.logical-dice.com/images/2020/03/gas-gmail-slack-004.png" /></p>
+<img src="/images/2020/03/gas-gmail-slack-004.png" /></p>
 <p>トリガー追加画面が開くので、以下のように入力して「保存」をクリックしてください。<br>
-<img src="https://blog2.logical-dice.com/images/2020/03/gas-gmail-slack-005.png" /></p>
+<img src="/images/2020/03/gas-gmail-slack-005.png" /></p>
 <table>
   <thead>
       <tr>
