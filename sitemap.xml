@@ -3,18 +3,24 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://blog2.logical-dice.com/tags/aws/</loc>
-    <lastmod>2024-12-12T00:00:00+00:00</lastmod>
+    <lastmod>2025-03-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog2.logical-dice.com/en/</loc>
+    <lastmod>2025-03-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog2.logical-dice.com/</loc>
+    <lastmod>2025-03-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog2.logical-dice.com/tags/</loc>
+    <lastmod>2025-03-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog2.logical-dice.com/en/2025/03/15/aws-cli-s3select/</loc>
+    <lastmod>2025-03-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog2.logical-dice.com/posts/2024/12/12/aws-cli-s3select/</loc>
     <lastmod>2024-12-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog2.logical-dice.com/</loc>
-    <lastmod>2024-12-12T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blog2.logical-dice.com/posts/</loc>
-    <lastmod>2024-12-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog2.logical-dice.com/tags/</loc>
     <lastmod>2024-12-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog2.logical-dice.com/posts/2024/08/24/al2023-kernel-downgrade/</loc>

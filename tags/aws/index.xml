@@ -6,8 +6,15 @@
     <description>Recent content in AWS on Logical Dice 技術ブログ</description>
     <generator>Hugo</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Thu, 12 Dec 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 15 Mar 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog2.logical-dice.com/tags/aws/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Using AWS CLI to Search Multiple Files with S3 Select</title>
+      <link>https://blog2.logical-dice.com/en/2025/03/15/aws-cli-s3select/</link>
+      <pubDate>Sat, 15 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog2.logical-dice.com/en/2025/03/15/aws-cli-s3select/</guid>
+      <description>&lt;h2 id=&#34;environment&#34;&gt;Environment&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;aws-cli 2.7.14&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;I needed to search through CloudFront logs stored in S3.&lt;br&gt;&#xA;Since Athena was not available, I used S3 Select for the search.&lt;/p&gt;&#xA;&lt;p&gt;However, S3 Select can only search one file at a time.&lt;br&gt;&#xA;To handle multiple files, I integrated AWS CLI into a shell script.&lt;/p&gt;&#xA;&lt;h2 id=&#34;steps&#34;&gt;Steps&lt;/h2&gt;&#xA;&lt;p&gt;Here are the conditions:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;The S3 bucket name is target-bucket-name.&lt;/li&gt;&#xA;&lt;li&gt;Files are generated in the logs-dir directory with the format AABBCCDDEE123456.YYYY-MM-DD-HH.abcdefg&amp;hellip;.&lt;/li&gt;&#xA;&lt;li&gt;The AWS CLI profile is named my-aws-profile.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Below is the completed script:&lt;/p&gt;</description>
+    </item>
     <item>
       <title>AWS CLIで複数ファイルに対してS3 Selectで検索する</title>
       <link>https://blog2.logical-dice.com/posts/2024/12/12/aws-cli-s3select/</link>

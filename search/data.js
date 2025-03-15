@@ -4,8 +4,32 @@ var data = [
   {
     url: "https://blog2.logical-dice.com/tags/aws/",
     title: "AWS",
-    date: "2024-12-12T00:00:00Z",
+    date: "2025-03-15T00:00:00Z",
     body: "AWS"
+  },
+  {
+    url: "https://blog2.logical-dice.com/en/",
+    title: "Ens",
+    date: "2025-03-15T00:00:00Z",
+    body: "Ens"
+  },
+  {
+    url: "https://blog2.logical-dice.com/",
+    title: "Logical Dice 技術ブログ",
+    date: "2025-03-15T00:00:00Z",
+    body: "Logical Dice 技術ブログ"
+  },
+  {
+    url: "https://blog2.logical-dice.com/tags/",
+    title: "Tags",
+    date: "2025-03-15T00:00:00Z",
+    body: "Tags"
+  },
+  {
+    url: "https://blog2.logical-dice.com/en/2025/03/15/aws-cli-s3select/",
+    title: "Using AWS CLI to Search Multiple Files with S3 Select",
+    date: "2025-03-15T00:00:00Z",
+    body: "Using AWS CLI to Search Multiple Files with S3 Select Environment aws-cli 2.7.14 Overview I needed to search through CloudFront logs stored in S3. Since Athena was not available, I used S3 Select for the search. However, S3 Select can only search one file at a time. To handle multiple files, I integrated AWS CLI into a shell script. Steps Here are the conditions: The S3 bucket name is target-bucket-name. Files are generated in the logs-dir directory with the format AABBCCDDEE123456.YYYY-MM-DD-HH.abcdefg\u0026hellip;. The AWS CLI profile is named my-aws-profile. Below is the completed script: bash # Step 1: Configuration PROFILE=\u0026#34;my-aws-profile\u0026#34; BUCKET=\u0026#34;target-bucket-name\u0026#34; PREFIX=\u0026#34;logs-dir/AABBCCDDEE123456.2024-12-11\u0026#34; # Example: Searching files output on Dec 11, 2024. QUERY=\u0026#34;SELECT * FROM s3object s\u0026#34; # Example: Output all records. Adjust with SELECT columns or WHERE clause. # Step 2: Retrieve a list of objects (files) objects=$(aws s3api list-objects --profile $PROFILE --bucket $BUCKET --prefix $PREFIX | jq) # Step 3: Process each retrieved object for object in $(echo \u0026#34;$objects\u0026#34; | jq -c \u0026#39;.Contents[]\u0026#39;); do key=$(echo \u0026#34;$object\u0026#34; | jq -r \u0026#39;.Key\u0026#39;) echo \u0026#34;$key\u0026#34; # Step 4: Output search results aws s3api select-object-content --profile $PROFILE --bucket $BUCKET --key $key --expression \u0026#34;$QUERY\u0026#34; --expression-type SQL --input-serialization \u0026#39;{\u0026#34;CSV\u0026#34;: {\u0026#34;FileHeaderInfo\u0026#34;: \u0026#34;NONE\u0026#34;, \u0026#34;FieldDelimiter\u0026#34;: \u0026#34;\\t\u0026#34;}, \u0026#34;CompressionType\u0026#34;: \u0026#34;GZIP\u0026#34;}\u0026#39; --output-serialization \u0026#39;{\u0026#34;CSV\u0026#34;: {\u0026#34;FieldDelimiter\u0026#34;: \u0026#34;,\u0026#34;}}\u0026#39; output-tmp.csv cat output-tmp.csv \u0026gt;\u0026gt; output.csv done rm -f output-tmp.csv Step 1: Configuration Set the necessary information. Be sure to configure PREFIX to filter files properly. Searching too many files unnecessarily will increase costs. For pricing details, see: https://aws.amazon.com/s3/pricing/ For information on QUERY, refer to: https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-select-sql-reference-select.html Step 2: Retrieve a List of Objects (Files) Use the AWS CLI to retrieve a list of objects in the specified S3 bucket and prefix. The jq command is used to parse the returned JSON. Note: The CLI output format is set to JSON in the profile configuration. Step 3: Process Each Retrieved Object The list of objects (files) is returned under the Contents key. Use a for loop to iterate through the objects. Step 4: Output Search Results Since the results of S3 Select are written to a file, the search results for the current object are first output to a temporary file (output-tmp.csv) and then appended to the final file (output.csv). This script outputs the search results. You can refine the query further to extract specific information as needed."
   },
   {
     url: "https://blog2.logical-dice.com/posts/2024/12/12/aws-cli-s3select/",
@@ -14,22 +38,10 @@ var data = [
     body: "AWS CLIで複数ファイルに対してS3 Selectで検索する 環境 aws-cli 2.7.14 概要 S3に保存されているCloudFrontのログを検索したかったのですが Athenaは導入されていなかったのでS3 Selectを使って検索をしました。 S3 Selectは1ファイルずつしか検索できないので、 AWS CLIをシェルに組み込んで複数ファイル検索できるようにしました。 手順 条件は以下とします。 S3バケット名は「target-bucket-name」 「logs-dir」というディレクトリ内に「AABBCCDDEE123456.YYYY-MM-DD-HH.abcdefg・・・」形式でファイルが生成される。 aws cli用のprofileは「my-aws-profile」という名前で設定してある。 できあがったものはこちら。 # ①設定 PROFILE=\u0026#34;my-aws-profile\u0026#34; BUCKET=\u0026#34;target-bucket-name\u0026#34; PREFIX=\u0026#34;logs-dir/AABBCCDDEE123456.2024-12-11\u0026#34; # 左記例では2024年12月11日に出力された分を検索する。 QUERY=\u0026#34;SELECT * FROM s3object s\u0026#34; # 左記例では全て出力しています。列を絞ったりWHERE句を入れたりしてください。 # ②オブジェクト（ファイル）の一覧取得 objects=`aws s3api list-objects --profile $PROFILE --bucket $BUCKET --prefix $PREFIX | jq` # ③取得したオブジェクトの一覧に対して1件ずつ処理をする for object in $(echo \u0026#34;$objects\u0026#34; | jq -c \u0026#39;.Contents[]\u0026#39;); do key=$(echo \u0026#34;$object\u0026#34; | jq -r \u0026#39;.Key\u0026#39;) echo \u0026#34;$key\u0026#34; # ④検索結果出力 aws s3api select-object-content --profile $PROFILE --bucket $BUCKET --key $key --expression \u0026#34;$QUERY\u0026#34; --expression-type SQL --input-serialization \u0026#39;{\u0026#34;CSV\u0026#34;: {\u0026#34;FileHeaderInfo\u0026#34;: \u0026#34;NONE\u0026#34;, \u0026#34;FieldDelimiter\u0026#34;: \u0026#34;\\t\u0026#34;}, \u0026#34;CompressionType\u0026#34;: \u0026#34;GZIP\u0026#34;}\u0026#39; --output-serialization \u0026#39;{\u0026#34;CSV\u0026#34;: {\u0026#34;FieldDelimiter\u0026#34;: \u0026#34;,\u0026#34;}}\u0026#39; output-tmp.csv cat output-tmp.csv \u0026gt;\u0026gt; output.csv done rm -f output-tmp.csv ①設定 必要な情報を設定してください。 PREFIXは必要なファイルを絞れるように設定しないと。検索対象が無駄に増えるとお金がかかってしまいます。 料金については以下を参照。 https://aws.amazon.com/jp/s3/pricing/ QUERYについては以下も参照。 https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/s3-select-sql-reference-select.html ②オブジェクト（ファイル）の一覧取得 AWS CLIを利用してS3のバケットおよびPrefixが一致するオブジェクトの一覧を取得します。 取得したjsonを解読するためjqコマンドも噛ませています。 ※profile設定時にoutputをjsonにしてある。 ③取得したオブジェクトの一覧に対して1件ずつ処理をする オブジェクト（ファイル）の配列は「Contents」というキーで返ってくるので、 それを指定してforで回します。 ④検索結果出力 S3 Selectのコマンド結果はファイルに出力するしかないので、 現在のオブジェクトの検索結果は一時ファイル(output-tmp.csv)に出力してから 最終ファイル(output.csv)に追記していくようにしています。 これで検索結果が出力されます。 あとは必要な情報をさらに絞るためにクエリを修正したりしていけば欲しい情報が取れるようになります。"
   },
   {
-    url: "https://blog2.logical-dice.com/",
-    title: "Logical Dice 技術ブログ",
-    date: "2024-12-12T00:00:00Z",
-    body: "Logical Dice 技術ブログ"
-  },
-  {
     url: "https://blog2.logical-dice.com/posts/",
     title: "Posts",
     date: "2024-12-12T00:00:00Z",
     body: "Posts"
-  },
-  {
-    url: "https://blog2.logical-dice.com/tags/",
-    title: "Tags",
-    date: "2024-12-12T00:00:00Z",
-    body: "Tags"
   },
   {
     url: "https://blog2.logical-dice.com/posts/2024/08/24/al2023-kernel-downgrade/",
