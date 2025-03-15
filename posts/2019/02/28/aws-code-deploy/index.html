@@ -76,7 +76,7 @@
 				<p class="publish-date">投稿日: <time datetime="2019-02-28 00:00:00 &#43;0000 UTC" class="catalogue-time">2019年02月28日</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/aws/">AWS</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/aws/">AWS</a></div>
 				</div>
 			
 		</div>
@@ -95,30 +95,30 @@
 <p>EC2用とCodeDeploy用のロールを準備します。</p>
 <p>まずEC2用のロールを作成します。<br>
 IAMロール作成画面にてAWSサービス ＞ EC2を選び、次のステップへ進みます。<br>
-<img src="/images/2019/02/AWS-CodeDeploy-IAM-006.png"/></p>
+<img src="https://blog2.logical-dice.com/images/2019/02/AWS-CodeDeploy-IAM-006.png"/></p>
 <p>ポリシーは<code>AmazonEC2RoleforAWSCodeDeploy</code>を指定して、次のステップへ進みます。<br>
-<img src="/images/2019/02/AWS-CodeDeploy-IAM-007.png"/></p>
+<img src="https://blog2.logical-dice.com/images/2019/02/AWS-CodeDeploy-IAM-007.png"/></p>
 <p>タグは未指定でも良いので、必要なければ次のステップに進みます。<br>
-<img src="/images/2019/02/AWS-CodeDeploy-IAM-008.png"/></p>
+<img src="https://blog2.logical-dice.com/images/2019/02/AWS-CodeDeploy-IAM-008.png"/></p>
 <p>適当なロール名を決めて設定し、『ロールの作成』をクリックします。<br>
-<img src="/images/2019/02/AWS-CodeDeploy-IAM-009.png"/></p>
+<img src="https://blog2.logical-dice.com/images/2019/02/AWS-CodeDeploy-IAM-009.png"/></p>
 <p>次にCodeDeploy用のロールを作成します。<br>
 IAMロール作成画面にてAWSサービス ＞ CodeDeployを選びます。<br>
-<img src="/images/2019/02/AWS-CodeDeploy-IAM-002.png"/></p>
+<img src="https://blog2.logical-dice.com/images/2019/02/AWS-CodeDeploy-IAM-002.png"/></p>
 <p>画面が下へスクロールしてユースケースの選択が表示されます。<br>
 今回は純粋なEC2上のボリュームにデプロイするだけなので、<code>CodeDeploy</code>を指定して次のステップへ進みます。<br>
-<img src="/images/2019/02/AWS-CodeDeploy-IAM-003.png"/></p>
+<img src="https://blog2.logical-dice.com/images/2019/02/AWS-CodeDeploy-IAM-003.png"/></p>
 <p>ポリシーは<code>AWSCodeDeployRole</code>が表示されるので、そのまま次のステップへ進みます。<br>
-<img src="/images/2019/02/AWS-CodeDeploy-IAM-004.png"/></p>
+<img src="https://blog2.logical-dice.com/images/2019/02/AWS-CodeDeploy-IAM-004.png"/></p>
 <p>適当なロール名を決めて設定し、『ロールの作成』をクリックします。<br>
-<img src="/images/2019/02/AWS-CodeDeploy-IAM-005.png"/></p>
+<img src="https://blog2.logical-dice.com/images/2019/02/AWS-CodeDeploy-IAM-005.png"/></p>
 <h2 id="ec2準備">EC2準備</h2>
 <p>まず、EC2インスタンスに管理コンソールからロール付与します。<br>
 管理コンソールにて対象インスタンスを開いて以下をクリックします。<br>
 アクション ＞ インスタンスの設定 ＞ IAMロールの割り当て/置換<br>
-<img src="/images/2019/02/AWS-CodeDeploy-EC2-001.png"/></p>
+<img src="https://blog2.logical-dice.com/images/2019/02/AWS-CodeDeploy-EC2-001.png"/></p>
 <p>そこで先ほど作成したEC2用のロールを設定します。<br>
-<img src="/images/2019/02/AWS-CodeDeploy-EC2-002.png"/></p>
+<img src="https://blog2.logical-dice.com/images/2019/02/AWS-CodeDeploy-EC2-002.png"/></p>
 <p>次にコンソールにて対象インスタンスにログインし、CodeDeployのエージェントをインストールします。<br>
 ダウンロードするインストーラーはrubyが無いと動かないので、インストールされていない場合はインストールしておきます。</p>
 <pre tabindex="0"><code>$ sudo yum install ruby # rubyがインストールされてない場合
@@ -145,44 +145,44 @@ files:
 <p>これをGitHubにプッシュしておきます。</p>
 <h2 id="codedeployの設定">CodeDeployの設定</h2>
 <p>まず、アプリケーションの作成をクリックします。<br>
-<img src="/images/2019/02/AWS-CodeDeploy-CD-001.png"/></p>
+<img src="https://blog2.logical-dice.com/images/2019/02/AWS-CodeDeploy-CD-001.png"/></p>
 <p>アプリケーション名を決めて入力し、コンピューティングプラットフォームは『EC2/オンプレミス』を選択して<br>
 『アプリケーションの作成』をクリックします。<br>
-<img src="/images/2019/02/AWS-CodeDeploy-CD-002.png"/></p>
+<img src="https://blog2.logical-dice.com/images/2019/02/AWS-CodeDeploy-CD-002.png"/></p>
 <p>次にアプリケーションに登録するデプロイグループを設定します。<br>
 （デプロイグループ：デプロイする際に対象となるEC2インスタンス群などをグルーピングしておく。）</p>
 <p>グルーピングと言いながら、今回はEC2インスタンス１つだけを登録します。</p>
 <p>まず『デプロイグループの作成』をクリックします。<br>
-<img src="/images/2019/02/AWS-CodeDeploy-CD-003.png"/></p>
+<img src="https://blog2.logical-dice.com/images/2019/02/AWS-CodeDeploy-CD-003.png"/></p>
 <p>作成するデプロイグループ名を決めて入力します。<br>
 また、サービスロールは先ほど作成したCodeDeploy用のロールを指定します。<br>
-<img src="/images/2019/02/AWS-CodeDeploy-CD-004.png"/></p>
+<img src="https://blog2.logical-dice.com/images/2019/02/AWS-CodeDeploy-CD-004.png"/></p>
 <p>下にスクロールすると『環境設定』という設定項目があるので、作成済みのEC2インスタンスの名前を指定します。<br>
-<img src="/images/2019/02/AWS-CodeDeploy-CD-005.png"/></p>
+<img src="https://blog2.logical-dice.com/images/2019/02/AWS-CodeDeploy-CD-005.png"/></p>
 <p>デプロイ設定は『CodeDeployDefault.AllAtOnce』にしておき、『デプロイグループの作成』をクリックします。<br>
 （今回はデプロイ対象のインスタンスは１台だけなので、どれを選んでもあまり意味はありません）
-<img src="/images/2019/02/AWS-CodeDeploy-CD-006.png"/></p>
+<img src="https://blog2.logical-dice.com/images/2019/02/AWS-CodeDeploy-CD-006.png"/></p>
 <p>これでデプロイグループの作成が完了です。</p>
 <h2 id="codedeployの実行">CodeDeployの実行</h2>
 <p>実際にサーバーにソースコードを反映するにはデプロイを作成します。<br>
 デプロイの作成はデプロイグループの画面より実施できます。<br>
 （以下はデプロイグループ作成完了時の画面）<br>
-<img src="/images/2019/02/AWS-CodeDeploy-CD-008.png"/></p>
+<img src="https://blog2.logical-dice.com/images/2019/02/AWS-CodeDeploy-CD-008.png"/></p>
 <p>デプロイ作成画面に入ったら、まずデプロイグループに先ほど作成したデプロイグループを指定します。<br>
-<img src="/images/2019/02/AWS-CodeDeploy-CD-009.png"/></p>
+<img src="https://blog2.logical-dice.com/images/2019/02/AWS-CodeDeploy-CD-009.png"/></p>
 <p>次にリビジョンタイプでGitHubを選びます。<br>
 するとGitHub情報を入力する欄が出てくるので、GitHubトークン名にgithubアカウント名を入力して<br>
 『GitHubに接続』をクリックします。<br>
-<img src="/images/2019/02/AWS-CodeDeploy-CD-010.png"/></p>
+<img src="https://blog2.logical-dice.com/images/2019/02/AWS-CodeDeploy-CD-010.png"/></p>
 <p>GitHub側で承認画面が表示される場合は承認します。<br>
-<img src="/images/2019/02/AWS-CodeDeploy-CD-011.png"/></p>
+<img src="https://blog2.logical-dice.com/images/2019/02/AWS-CodeDeploy-CD-011.png"/></p>
 <p>続いてリポジトリ名とサーバーに反映したい時点のコミットIDを入力します。<br>
 リポジトリ名は『アカウント名/リポジトリ名』形式で、コミットIDは省略していないフルのIDです。<br>
-<img src="/images/2019/02/AWS-CodeDeploy-CD-012.png"/></p>
+<img src="https://blog2.logical-dice.com/images/2019/02/AWS-CodeDeploy-CD-012.png"/></p>
 <p>次に追加のデプロイ動作設定にて『コンテンツの上書き』を選択し、<br>
 『デプロイの作成』をクリックすればデプロイが走ります。<br>
 ※コンテンツの上書きを指定しないと既存コンテンツがある場合にコケます。<br>
-<img src="/images/2019/02/AWS-CodeDeploy-CD-013.png"/></p>
+<img src="https://blog2.logical-dice.com/images/2019/02/AWS-CodeDeploy-CD-013.png"/></p>
 <p>デプロイが途中でコケてしまう場合はEC2上で以下のエージェントのログを確認してください。</p>
 <pre tabindex="0"><code>/var/log/aws/codedeploy-agent/codedeploy-agent.log
 </code></pre>

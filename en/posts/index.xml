@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Logical Dice Techblog</title>
-    <link>/en/posts/</link>
+    <link>https://blog2.logical-dice.com/en/posts/</link>
     <description>Recent content in Posts on Logical Dice Techblog</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Thu, 12 Dec 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/en/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog2.logical-dice.com/en/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Using AWS CLI to Search Multiple Files with S3 Select</title>
-      <link>/en/posts/2024/12/12/aws-cli-s3select/</link>
+      <link>https://blog2.logical-dice.com/en/posts/2024/12/12/aws-cli-s3select/</link>
       <pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>/en/posts/2024/12/12/aws-cli-s3select/</guid>
+      <guid>https://blog2.logical-dice.com/en/posts/2024/12/12/aws-cli-s3select/</guid>
       <description>&lt;h2 id=&#34;environment&#34;&gt;Environment&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;aws-cli 2.7.14&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;I needed to search through CloudFront logs stored in S3.&lt;br&gt;&#xA;Since Athena was not available, I used S3 Select for the search.&lt;/p&gt;&#xA;&lt;p&gt;However, S3 Select can only search one file at a time.&lt;br&gt;&#xA;To handle multiple files, I integrated AWS CLI into a shell script.&lt;/p&gt;&#xA;&lt;h2 id=&#34;steps&#34;&gt;Steps&lt;/h2&gt;&#xA;&lt;p&gt;Here are the conditions:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;The S3 bucket name is target-bucket-name.&lt;/li&gt;&#xA;&lt;li&gt;Files are generated in the logs-dir directory with the format AABBCCDDEE123456.YYYY-MM-DD-HH.abcdefg&amp;hellip;.&lt;/li&gt;&#xA;&lt;li&gt;The AWS CLI profile is named my-aws-profile.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Below is the completed script:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Downgrading the AmazonLinux2023 kernel</title>
-      <link>/en/posts/2024/08/24/al2023-kernel-downgrade/</link>
+      <link>https://blog2.logical-dice.com/en/posts/2024/08/24/al2023-kernel-downgrade/</link>
       <pubDate>Sat, 24 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>/en/posts/2024/08/24/al2023-kernel-downgrade/</guid>
+      <guid>https://blog2.logical-dice.com/en/posts/2024/08/24/al2023-kernel-downgrade/</guid>
       <description>&lt;h2 id=&#34;environment&#34;&gt;Environment&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Amazon Linux 2023.5.20240819&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;I upgraded the kernel of AmazonLinux2023 and downgraded some tools that stopped working.&lt;br&gt;&#xA;This is a record of that operating procedure.&lt;/p&gt;&#xA;&lt;h2 id=&#34;procedure&#34;&gt;Procedure&lt;/h2&gt;&#xA;&lt;p&gt;First, check the current kernel status.&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$uname -r&#xA;6.1.102-111.182.amzn2023.x86_64&#xA;&#xA;$ sudo dnf list kernel&#xA;kernel.x86_64   6.1.92-99.174 amzn2023     @amazonlinux&#xA;kernel.x86_64   6.1.96-102.177.amzn2023    @amazonlinux&#xA;kernel.x86_64   6.1.102-111.182.amzn2023   @amazonlinux&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;It is currently at 6.1.102 and will downgrade to 6.1.96.&lt;/p&gt;&#xA;&lt;h3 id=&#34;probably-the-shortest-way&#34;&gt;Probably the shortest way.&lt;/h3&gt;&#xA;&lt;p&gt;First, downgrade and restart.&lt;br&gt;&#xA;You can revert to a specific version by specifying “package name - version”.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Allow python commands to be used on Windows without administrative privileges</title>
-      <link>/en/posts/2024/08/07/python-on-secure-windows/</link>
+      <link>https://blog2.logical-dice.com/en/posts/2024/08/07/python-on-secure-windows/</link>
       <pubDate>Wed, 07 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>/en/posts/2024/08/07/python-on-secure-windows/</guid>
+      <guid>https://blog2.logical-dice.com/en/posts/2024/08/07/python-on-secure-windows/</guid>
       <description>&lt;h2 id=&#34;environment&#34;&gt;Environment&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Windows 11&lt;/li&gt;&#xA;&lt;li&gt;git bash&lt;/li&gt;&#xA;&lt;li&gt;Python 3.12.4&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;&#xA;&lt;p&gt;The PC I use for work does not get administrator rights, but I needed to use Python.&lt;br&gt;&#xA;I prepared an environment where I can use Python without administrator rights.&lt;/p&gt;&#xA;&lt;h2 id=&#34;procedure&#34;&gt;Procedure&lt;/h2&gt;&#xA;&lt;h3 id=&#34;download-embedded-python&#34;&gt;Download Embedded Python&lt;/h3&gt;&#xA;&lt;p&gt;You can download Python from the following site and download the “Windows embeddable package”.&lt;br&gt;&#xA;&lt;a href=&#34;https://www.python.org/downloads/release/python-3124/&#34;&gt;https://www.python.org/downloads/release/python-3124/&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Unzip the downloaded ZIP file to a folder of your choice and modify the &lt;code&gt;python312._pth&lt;/code&gt; in it.&lt;br&gt;&#xA;Simply uncomment one line.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Scrum&#39;s story point about “not estimating by the hour” is</title>
-      <link>/en/posts/2024/07/25/story-point-knowledge/</link>
+      <link>https://blog2.logical-dice.com/en/posts/2024/07/25/story-point-knowledge/</link>
       <pubDate>Thu, 25 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>/en/posts/2024/07/25/story-point-knowledge/</guid>
+      <guid>https://blog2.logical-dice.com/en/posts/2024/07/25/story-point-knowledge/</guid>
       <description>&lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;&#xA;&lt;p&gt;I usually work as a scrum master in scrum development.&lt;/p&gt;&#xA;&lt;p&gt;I have the developers estimate in story points.&lt;br&gt;&#xA;Story points are not estimated in “man-hours”, but instead in “difficulty” or “effort”.&lt;/p&gt;&#xA;&lt;p&gt;However, members were having trouble with this expression because it was so fluffy.&lt;br&gt;&#xA;Different members have different interpretations, and although we don&amp;rsquo;t estimate in man-hours to begin with, we sometimes determine which tickets can be implemented in a sprint based on story points,&lt;br&gt;&#xA;In the end, everyone was thinking in terms of relative man-hours for each ticket, and it was very agonizing.&lt;/p&gt;</description>
     </item>
   </channel>

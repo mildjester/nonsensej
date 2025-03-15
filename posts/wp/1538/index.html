@@ -76,7 +76,7 @@
 				<p class="publish-date">投稿日: <time datetime="2018-10-13 23:20:06 &#43;0000 UTC" class="catalogue-time">2018年10月13日</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/circleci/">CircleCI</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/circleci/">CircleCI</a></div>
 				</div>
 			
 		</div>
@@ -109,23 +109,23 @@ vim .ssh/authorized_keys
 該当プロジェクトの画面にて設定(歯車アイコン)をクリックし、設定画面を開きます。</p>
 <h3 id="ssh-keyの設定">SSH Keyの設定</h3>
 <p>左メニューより『PERMISSIONS &gt; SSH Permissions』を開き、『Add SSH Key』をクリックします。<br>
-<a href="/images/2018/10/CircleCI-SSH001.png"><img class="alignnone size-large wp-image-1546" src="/images/2018/10/CircleCI-SSH001.png" alt="" /></a></p>
+<a href="https://blog2.logical-dice.com/images/2018/10/CircleCI-SSH001.png"><img class="alignnone size-large wp-image-1546" src="https://blog2.logical-dice.com/images/2018/10/CircleCI-SSH001.png" alt="" /></a></p>
 <p>ポップアップが開くので、以下を設定します。<br>
 Hostname : デプロイするサーバーのホスト名<br>
 Private Key : 最初に作ったci-keyの中身全て<br>
-<a href="/images/2018/10/CircleCI-SSH002.png"><img class="alignnone size-full wp-image-1547" src="/images/2018/10/CircleCI-SSH002.png" alt="" /></a></p>
+<a href="https://blog2.logical-dice.com/images/2018/10/CircleCI-SSH002.png"><img class="alignnone size-full wp-image-1547" src="https://blog2.logical-dice.com/images/2018/10/CircleCI-SSH002.png" alt="" /></a></p>
 <p>完了したら、今登録した鍵情報のFingerprintが表示されるので確認しておきます。<br>
 （後工程のCircleCI設定ファイル編集時に使います）<br>
-<a href="/images/2018/10/CircleCI-SSH003.png"><img class="alignnone size-full wp-image-1548" src="/images/2018/10/CircleCI-SSH003.png" alt="" /></a></p>
+<a href="https://blog2.logical-dice.com/images/2018/10/CircleCI-SSH003.png"><img class="alignnone size-full wp-image-1548" src="https://blog2.logical-dice.com/images/2018/10/CircleCI-SSH003.png" alt="" /></a></p>
 <h3 id="環境変数の設定">環境変数の設定</h3>
 <p>後工程で編集するCircleCI設定ファイルで環境変数を使うことができるので設定します。<br>
 この作業は別に必須ではないです。<br>
 設定ファイルを使いまわしたい場合は、環境により変動する部分を環境変数にしておいてもいいかもしれません。</p>
 <p>左メニューより『BUILD SETTINGS &gt; Environment Variables』を開き、『Add Variable』をクリックします。<br>
-<img src="/images/2018/10/CircleCI-ENV001.png" alt="" /></p>
+<img src="https://blog2.logical-dice.com/images/2018/10/CircleCI-ENV001.png" alt="" /></p>
 <p>ポップアップが開くので設定したい変数名と値を登録します。<br>
 例えば<code>USER_NAME</code>という変数に<code>ciuser</code>という値を設定する場合は下図のようになります。<br>
-<img src="/images/2018/10/CircleCI-ENV002.png" alt="" /></p>
+<img src="https://blog2.logical-dice.com/images/2018/10/CircleCI-ENV002.png" alt="" /></p>
 <h1 id="circleci設定ファイル編集">CircleCI設定ファイル編集</h1>
 <p>前回作った<code>.circleci/config.yml</code>に以下の行を追記していきます。<br>
 以下例では前手順の環境変数を多数利用していますが、config.ymlに値を直接書いても構いません。</p>

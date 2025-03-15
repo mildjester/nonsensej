@@ -76,7 +76,7 @@
 				<p class="publish-date">投稿日: <time datetime="2018-12-11 19:30:54 &#43;0000 UTC" class="catalogue-time">2018年12月11日</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="/tags/wordpress/">Wordpress</a></div> <div class="tags_item"><a href="/tags/aws/">AWS</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/wordpress/">Wordpress</a></div> <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/aws/">AWS</a></div>
 				</div>
 			
 		</div>
@@ -124,32 +124,32 @@ IAM側の権限設定は適当で良いです</p>
 <p>ユーザーにS3へ直接画像を取りに来させる事も可能なのですが<br>
 転送料金が結構高くなるのでCloudFront経由でS3に繋がせるようにします</p>
 <p>まずloudFrontの設定画面にて「Create Distribution」をクリックします</p>
-<h2 id="a-hrefhahahugoshortcode131s0hbhbimages201812cloudfront001pngimg-classalignnone-wp-image-1808-size-large-srchahahugoshortcode131s1hbhbimages201812cloudfront001png-alt-width648-height97a"><a href="/images/2018/12/CloudFront001.png"><img class="alignnone wp-image-1808 size-large" src="/images/2018/12/CloudFront001.png" alt="" width="648" height="97"></a></h2>
+<h2 id="a-hrefhahahugoshortcode131s0hbhbimages201812cloudfront001pngimg-classalignnone-wp-image-1808-size-large-srchahahugoshortcode131s1hbhbimages201812cloudfront001png-alt-width648-height97a"><a href="https://blog2.logical-dice.com/images/2018/12/CloudFront001.png"><img class="alignnone wp-image-1808 size-large" src="https://blog2.logical-dice.com/images/2018/12/CloudFront001.png" alt="" width="648" height="97"></a></h2>
 <p>次にWebの「Get Started」をクリックします。</p>
-<h2 id="a-hrefhahahugoshortcode131s2hbhbimages201812cloudfront002pngimg-classalignnone-wp-image-1809-size-large-srchahahugoshortcode131s3hbhbimages201812cloudfront002png-alt-width648-height184a"><a href="/images/2018/12/CloudFront002.png"><img class="alignnone wp-image-1809 size-large" src="/images/2018/12/CloudFront002.png" alt="" width="648" height="184"></a></h2>
+<h2 id="a-hrefhahahugoshortcode131s2hbhbimages201812cloudfront002pngimg-classalignnone-wp-image-1809-size-large-srchahahugoshortcode131s3hbhbimages201812cloudfront002png-alt-width648-height184a"><a href="https://blog2.logical-dice.com/images/2018/12/CloudFront002.png"><img class="alignnone wp-image-1809 size-large" src="https://blog2.logical-dice.com/images/2018/12/CloudFront002.png" alt="" width="648" height="184"></a></h2>
 <p>「Origin Domain Name」にCloud Front経由にしたいS3バケットを指定します<br>
 テキストボックスに見えますが、クリックすると選択肢が表示されます<br>
 「Origin Domain Name」を選択すると、「Origin ID」にも勝手に値が入ります</p>
-<h2 id="a-hrefhahahugoshortcode131s4hbhbimages201812cloudfront003pngimg-classalignnone-wp-image-1810-size-large-srchahahugoshortcode131s5hbhbimages201812cloudfront003png-alt-width648-height220a"><a href="/images/2018/12/CloudFront003.png"><img class="alignnone wp-image-1810 size-large" src="/images/2018/12/CloudFront003.png" alt="" width="648" height="220"></a></h2>
+<h2 id="a-hrefhahahugoshortcode131s4hbhbimages201812cloudfront003pngimg-classalignnone-wp-image-1810-size-large-srchahahugoshortcode131s5hbhbimages201812cloudfront003png-alt-width648-height220a"><a href="https://blog2.logical-dice.com/images/2018/12/CloudFront003.png"><img class="alignnone wp-image-1810 size-large" src="https://blog2.logical-dice.com/images/2018/12/CloudFront003.png" alt="" width="648" height="220"></a></h2>
 <p>上記入力したら下までスクロールして「Create Distribution」をクリックします</p>
 <p>CloudFrontの一覧に戻りますので<br>
 先ほど作成したDistributionのStatusが『Deployed』になるのを待ちます</p>
-<h2 id="a-hrefhahahugoshortcode131s6hbhbimages201812cloudfront004pngimg-classalignnone-size-large-wp-image-1811-srchahahugoshortcode131s7hbhbimages201812cloudfront004png-alt-width648-height205a"><a href="/images/2018/12/CloudFront004.png"><img class="alignnone size-large wp-image-1811" src="/images/2018/12/CloudFront004.png" alt="" width="648" height="205"></a></h2>
+<h2 id="a-hrefhahahugoshortcode131s6hbhbimages201812cloudfront004pngimg-classalignnone-size-large-wp-image-1811-srchahahugoshortcode131s7hbhbimages201812cloudfront004png-alt-width648-height205a"><a href="https://blog2.logical-dice.com/images/2018/12/CloudFront004.png"><img class="alignnone size-large wp-image-1811" src="https://blog2.logical-dice.com/images/2018/12/CloudFront004.png" alt="" width="648" height="205"></a></h2>
 <p>これでCloudFront経由でS3へアクセスできるようになりました<br>
 アクセスできるドメインは上図の「Domain Name」を参照してください</p>
 <p>独自ドメインでアクセスしたい場合は上部メニューの<br>
 「Distribution Settings」より編集画面を開き<br>
 以下のように設定してください</p>
-<h2 id="a-hrefhahahugoshortcode131s8hbhbimages201812cloudfront005pngimg-classalignnone-size-large-wp-image-1812-srchahahugoshortcode131s9hbhbimages201812cloudfront005png-alt-width648-height318a"><a href="/images/2018/12/CloudFront005.png"><img class="alignnone size-large wp-image-1812" src="/images/2018/12/CloudFront005.png" alt="" width="648" height="318"></a></h2>
+<h2 id="a-hrefhahahugoshortcode131s8hbhbimages201812cloudfront005pngimg-classalignnone-size-large-wp-image-1812-srchahahugoshortcode131s9hbhbimages201812cloudfront005png-alt-width648-height318a"><a href="https://blog2.logical-dice.com/images/2018/12/CloudFront005.png"><img class="alignnone size-large wp-image-1812" src="https://blog2.logical-dice.com/images/2018/12/CloudFront005.png" alt="" width="648" height="318"></a></h2>
 <h3 id="route-53設定">Route 53設定</h3>
 <p>CloudFrontを独自ドメインで使う場合はDNS設定もしておきます</p>
-<h2 id="a-hrefhahahugoshortcode131s10hbhbimages201812route53-001pngimg-classalignnone-size-full-wp-image-1813-srchahahugoshortcode131s11hbhbimages201812route53-001png-alt-width412-height435a"><a href="/images/2018/12/Route53-001.png"><img class="alignnone size-full wp-image-1813" src="/images/2018/12/Route53-001.png" alt="" width="412" height="435"></a></h2>
+<h2 id="a-hrefhahahugoshortcode131s10hbhbimages201812route53-001pngimg-classalignnone-size-full-wp-image-1813-srchahahugoshortcode131s11hbhbimages201812route53-001png-alt-width412-height435a"><a href="https://blog2.logical-dice.com/images/2018/12/Route53-001.png"><img class="alignnone size-full wp-image-1813" src="https://blog2.logical-dice.com/images/2018/12/Route53-001.png" alt="" width="412" height="435"></a></h2>
 <h2 id="wordpress設定">Wordpress設定</h2>
 <p>まずは普通にWordpressを構築します<br>
 （ここは手順割愛）</p>
 <h3 id="プラグインamazon-web-services">プラグイン：Amazon Web Services</h3>
 <p>プラグインの新規追加で『Amazon Web Services』を入れます<br>
-<a href="/images/2018/12/Wordpress-S3-001.png"><img class="alignnone size-medium wp-image-1775" src="/images/2018/12/Wordpress-S3-001.png" alt="" width="300" height="178"></a></p>
+<a href="https://blog2.logical-dice.com/images/2018/12/Wordpress-S3-001.png"><img class="alignnone size-medium wp-image-1775" src="https://blog2.logical-dice.com/images/2018/12/Wordpress-S3-001.png" alt="" width="300" height="178"></a></p>
 <p>次にwp-config.phpにIAMのアクセスキーを設定します<br>
 （下記「AAA…」と「BBB…」は該当のものに書き換えてください）</p>
 <pre tabindex="0"><code>define( &#39;DBI_AWS_ACCESS_KEY_ID&#39;, &#39;AAAAAAAAAAAAAAAAA&#39; );  
@@ -157,19 +157,19 @@ define( &#39;DBI_AWS_SECRET_ACCESS_KEY&#39;, &#39;BBBBBBBBBBBBBBB&#39; );
 </code></pre><p>これでWordpressとAWSの連携ができるようになります</p>
 <h3 id="プラグインwp-offload-media-lite">プラグイン：WP Offload Media Lite</h3>
 <p>次にプラグインの新規追加で『WP Offload Media Lite』を入れます<br>
-<a href="/images/2018/12/Wordpress-S3-002.png"><img class="alignnone size-medium wp-image-1776" src="/images/2018/12/Wordpress-S3-002.png" alt="" width="300" height="206"></a></p>
+<a href="https://blog2.logical-dice.com/images/2018/12/Wordpress-S3-002.png"><img class="alignnone size-medium wp-image-1776" src="https://blog2.logical-dice.com/images/2018/12/Wordpress-S3-002.png" alt="" width="300" height="206"></a></p>
 <p>インストール＆有効化後、設定メニューに「Offload Media」が追加されるので<br>
 利用するバケットを指定します<br>
 左下の『Browse existing buckets』から選択するのが楽だと思います<br>
-<a href="/images/2018/12/Wordpress-S3-003-2.png"><img class="alignnone wp-image-1783 size-large" src="/images/2018/12/Wordpress-S3-003-2.png" alt="" width="648" height="403"></a></p>
+<a href="https://blog2.logical-dice.com/images/2018/12/Wordpress-S3-003-2.png"><img class="alignnone wp-image-1783 size-large" src="https://blog2.logical-dice.com/images/2018/12/Wordpress-S3-003-2.png" alt="" width="648" height="403"></a></p>
 <p>バケット選択後、いくつか設定項目が出てきます<br>
 まず、デフォルトでは画像URLがS3直アクセスになってしまうので<br>
 「Custom Domain」をCloudFront経由のURLに変更します<br>
 （xxxxx.cloudfront.net または 指定した独自ドメイン）</p>
-<h2 id="a-hrefhahahugoshortcode131s18hbhbimages201812wordpress-s3-005pngimg-classalignnone-size-full-wp-image-1818-srchahahugoshortcode131s19hbhbimages201812wordpress-s3-005png-alt-width659-height155a"><a href="/images/2018/12/Wordpress-S3-005.png"><img class="alignnone size-full wp-image-1818" src="/images/2018/12/Wordpress-S3-005.png" alt="" width="659" height="155"></a></h2>
+<h2 id="a-hrefhahahugoshortcode131s18hbhbimages201812wordpress-s3-005pngimg-classalignnone-size-full-wp-image-1818-srchahahugoshortcode131s19hbhbimages201812wordpress-s3-005png-alt-width659-height155a"><a href="https://blog2.logical-dice.com/images/2018/12/Wordpress-S3-005.png"><img class="alignnone size-full wp-image-1818" src="https://blog2.logical-dice.com/images/2018/12/Wordpress-S3-005.png" alt="" width="659" height="155"></a></h2>
 <p>サーバー側に画像ファイルを残したくない場合は<br>
 『Remove Files From Server』をONにしておきます。<br>
-<a href="/images/2018/12/Wordpress-S3-004.png"><img class="alignnone size-full wp-image-1784" src="/images/2018/12/Wordpress-S3-004.png" alt="" width="675" height="171"></a></p>
+<a href="https://blog2.logical-dice.com/images/2018/12/Wordpress-S3-004.png"><img class="alignnone size-full wp-image-1784" src="https://blog2.logical-dice.com/images/2018/12/Wordpress-S3-004.png" alt="" width="675" height="171"></a></p>
 <p>※注意<br>
 上図Warningにも出てますが、もしかしたらプラグインによってはサーバー内に<br>
 画像ファイルを残しておかないと正常に動かないものもあるかもしれません<br>

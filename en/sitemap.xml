@@ -1,31 +1,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/en/</loc>
+    <loc>https://blog2.logical-dice.com/en/</loc>
     <lastmod>2024-12-12</lastmod>
   </url>
   <url>
-    <loc>/en/posts/</loc>
+    <loc>https://blog2.logical-dice.com/en/posts/</loc>
     <lastmod>2024-12-12</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>/en/tags/</loc>
+    <loc>https://blog2.logical-dice.com/en/tags/</loc>
     <lastmod>2024-12-12</lastmod>
   </url>
   <url>
-    <loc>/en/posts/2024/12/12/aws-cli-s3select/</loc>
+    <loc>https://blog2.logical-dice.com/en/posts/2024/12/12/aws-cli-s3select/</loc>
     <lastmod>2024-12-12</lastmod>
   </url>
   <url>
-    <loc>/en/posts/2024/08/24/al2023-kernel-downgrade/</loc>
+    <loc>https://blog2.logical-dice.com/en/posts/2024/08/24/al2023-kernel-downgrade/</loc>
     <lastmod>2024-08-24</lastmod>
   </url>
   <url>
-    <loc>/en/posts/2024/08/07/python-on-secure-windows/</loc>
+    <loc>https://blog2.logical-dice.com/en/posts/2024/08/07/python-on-secure-windows/</loc>
     <lastmod>2024-08-07</lastmod>
   </url>
   <url>
-    <loc>/en/posts/2024/07/25/story-point-knowledge/</loc>
+    <loc>https://blog2.logical-dice.com/en/posts/2024/07/25/story-point-knowledge/</loc>
     <lastmod>2024-07-25</lastmod>
   </url>
 </urlset>
