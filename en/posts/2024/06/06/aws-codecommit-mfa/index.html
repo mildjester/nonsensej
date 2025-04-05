@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="ja-JP">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<html lang="en">
+    <head>
 	
 	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -11,7 +11,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>【AWS】MFA(多要素)認証を突破してCodeCommitからgit cloneする|Logical Dice 技術ブログ</title>
+	<title>【AWS】Bypassing MFA (Multi-Factor Authentication) to Clone a Repository from CodeCommit|Logical Dice Techblog</title>
 
 	
 	<link rel="stylesheet" href="/css/style.css">
@@ -21,7 +21,7 @@
 	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
 	
-	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
 </head>
 
     <body>
@@ -38,8 +38,8 @@
 <header>
   <nav class="nav">
     <div class="nav-container jc-sb">
-      <a href="/" class="nav-title">
-        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
       </a>
       <div class="search-box">
         <form class="fx">
@@ -51,7 +51,7 @@
   </nav>
 
   <script>
-  const SEARCH_URL = '/search/';
+  const SEARCH_URL = '/en/search/';
   window.addEventListener('DOMContentLoaded', () => {
     const searchButton = document.getElementById('searchButton');
     const searchKeyword = document.getElementById('searchKeyword');
@@ -71,68 +71,68 @@
 
 <main>
 	<div class="post">
-		<h1 class="post-title">【AWS】MFA(多要素)認証を突破してCodeCommitからgit cloneする</h1>
+		<h1 class="post-title">【AWS】Bypassing MFA (Multi-Factor Authentication) to Clone a Repository from CodeCommit</h1>
 		<div class="post-info">
-				<p class="publish-date">Posted: <time datetime="2024-06-06 00:00:00 &#43;0000 UTC" class="catalogue-time">2024-06-06</time></p>
+				<p class="publish-date">posted: <time datetime="2024-06-06 00:00:00 &#43;0000 UTC" class="catalogue-time">2024-06-06</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="http://localhost:1313/tags/aws/">AWS</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/en/tags/aws/">AWS</a></div>
 				</div>
 			
 		</div>
 		<hr />
-		<h2 id="環境">環境</h2>
+		<h2 id="environment">Environment</h2>
 <ul>
-<li>MacBook Pro (Sonoma14.5 M1チップ)</li>
+<li>MacBook Pro (Sonoma 14.5, M1 chip)</li>
 <li>aws-cli/2.15.14</li>
 <li>aws-mfa 0.0.12</li>
 </ul>
 <hr>
-<h2 id="手順">手順</h2>
-<p>AWSへのアクセスにMFAが必須である環境においてCodeCommitよりリポジトリをcloneする手順です。<br>
-調べても「CodeCommitでMFA不要にする手順」ばかり出てきて手間取ったので、メモを残します。</p>
-<h3 id="aws-cliのインストール">AWS CLIのインストール</h3>
-<p>もしAWS CLIが未インストールである場合は以下ページ参考にインストールします。<br>
-<a href="https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/getting-started-install.html">https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/getting-started-install.html</a></p>
-<h3 id="aws-mfaのインストール">aws-mfaのインストール</h3>
-<p>コマンドラインでAWS操作する際にMFA認証を楽にするツールがあります。<br>
+<h2 id="steps">Steps</h2>
+<p>This guide explains how to clone a repository from CodeCommit in an environment where MFA authentication is required for AWS access.<br>
+Most search results focused on disabling MFA for CodeCommit, which was not helpful, so I decided to document the process.</p>
+<h3 id="installing-aws-cli">Installing AWS CLI</h3>
+<p>If AWS CLI is not installed, refer to the following page for installation:<br>
+<a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html</a></p>
+<h3 id="installing-aws-mfa">Installing aws-mfa</h3>
+<p>There is a tool that makes MFA authentication easier when using AWS from the command line:<br>
 <a href="https://github.com/broamski/aws-mfa">https://github.com/broamski/aws-mfa</a></p>
-<p>こちらをpipでインストールします。</p>
+<p>Install it using pip:</p>
 <pre tabindex="0"><code>$ pip install aws-mfa
-</code></pre><h3 id="aws認証情報の確認">AWS認証情報の確認</h3>
-<p>AWSのマネジメントコンソールにログイン後、ヘッダー右端にあるアカウント名をクリックすると「セキュリテイ認証情報」というメニューが表示されるので選択します。<br>
-そこでアカウントの詳細が表示されるので「ユーザーのARN」を控えておきます。</p>
-<p>また、もし自分のAWS アクセスキーを発行していない場合はここで発行します。<br>
-少し下へスクロールすると「アクセスキーを作成」というボタンがあるのでそこからアクセスキーが発行できます。</p>
-<h3 id="aws-cli向けアクセスキー設定">AWS CLI向けアクセスキー設定</h3>
-<p>AWS CLIにprofileを指定してアクセスキーを紐づけます。</p>
-<p>『hoge』というプロファイル名で登録したい場合<br>
-『hoge』だけではなく『hoge-long-term』というプロファイルも登録します。</p>
-<p>まず『hoge-long-term』の登録をします。</p>
+</code></pre><h3 id="checking-aws-credentials">Checking AWS Credentials</h3>
+<p>After logging into the AWS Management Console, click on your account name in the top-right corner of the header. A menu labeled &ldquo;Security Credentials&rdquo; will appear—select it.<br>
+This page will display account details, so make sure to take note of your &ldquo;User ARN.&rdquo;</p>
+<p>If you haven&rsquo;t issued your AWS access key yet, you can generate one here.<br>
+Scroll down a bit, and you will find a &ldquo;Create access key&rdquo; button, which allows you to generate an access key.</p>
+<h3 id="configuring-aws-cli-access-keys">Configuring AWS CLI Access Keys</h3>
+<p>You need to associate an access key with a profile in AWS CLI.</p>
+<p>Let&rsquo;s say you want to register a profile named &ldquo;hoge.&rdquo;<br>
+You will also need to register another profile named &ldquo;hoge-long-term.&rdquo;</p>
+<p>First, register &ldquo;hoge-long-term&rdquo;:</p>
 <pre tabindex="0"><code>$ aws configure --profile hoge-long-term
-AWS Access Key ID [None]: XXXXXXXXXXXXXXXXXXXX      (発行したアクセスキー)
-AWS Secret Access Key [None]: XXXXXXXXXXXXXXXXXXXX  (発行したアクセスキーに紐づくシークレット)
-Default region name [None]: ap-northeast-1          (利用するリージョン 任意)
-Default output format [None]: json                  (利用するフォーマット 任意)
-</code></pre><p>次に『hoge』の登録をします。</p>
+AWS Access Key ID [None]: XXXXXXXXXXXXXXXXXXXX      (Generated access key)
+AWS Secret Access Key [None]: XXXXXXXXXXXXXXXXXXXX  (Secret associated with the generated access key)
+Default region name [None]: ap-northeast-1          (Region to use, optional)
+Default output format [None]: json                  (Format to use, optional)
+</code></pre><p>Next, register &ldquo;hoge&rdquo;:</p>
 <pre tabindex="0"><code>$ aws configure --profile hoge
-AWS Access Key ID [None]:                   (空のまま)
-AWS Secret Access Key [None]:               (空のまま)
-Default region name [None]: ap-northeast-1  (利用するリージョン 任意)
-Default output format [None]: json          (利用するフォーマット 任意)
-</code></pre><h3 id="mfa認証登録">MFA認証登録</h3>
-<p>以下のコマンドでMFA認証を通します。<br>
-コマンド実行後にMFA code(数字6桁)を聞かれるので入力します。</p>
-<pre tabindex="0"><code>$ aws-mfa --profile 『作成したプロファイル』 --device 『事前に確認したユーザーのARN』
-# 例：aws-mfa --profile hoge --device arn:aws:iam::000000000000:mfa/hoge-taro
-</code></pre><p>これでしばらくMFA認証をしなくてもコマンドを打てるようになりました。<br>
-有効期限は<code>~/.aws/credentials</code>を見ると確認できます。</p>
-<h3 id="git-clone実行">git clone実行</h3>
-<p>以下のようにprofileを指定して実行することでcloneができます。</p>
-<pre tabindex="0"><code>$ git clone codecommit::『リージョン』://『作成したプロファイル』@『cloneしたいリポジトリ』
-# 例：git clone codecommit::ap-northeast-1://hoge@my-application-repository
+AWS Access Key ID [None]:                   (Leave empty)
+AWS Secret Access Key [None]:               (Leave empty)
+Default region name [None]: ap-northeast-1  (Region to use, optional)
+Default output format [None]: json          (Format to use, optional)
+</code></pre><h3 id="registering-mfa-authentication">Registering MFA Authentication</h3>
+<p>Run the following command to authenticate using MFA.<br>
+After execution, you will be prompted to enter the MFA code (a 6-digit number).</p>
+<pre tabindex="0"><code>$ aws-mfa --profile &lt;created-profile&gt; --device &lt;pre-checked-user-ARN&gt;
+# Example: aws-mfa --profile hoge --device arn:aws:iam::000000000000:mfa/hoge-taro
+</code></pre><p>After this, you should be able to run commands without repeated MFA authentication for a while.<br>
+You can check the validity period in <code>~/.aws/credentials</code>.</p>
+<h3 id="executing-git-clone">Executing git clone</h3>
+<p>You can clone a repository by specifying the profile as follows:</p>
+<pre tabindex="0"><code>$ git clone codecommit::&lt;region&gt;://&lt;created-profile&gt;@&lt;repository-to-clone&gt;
+Example: git clone codecommit::ap-northeast-1://hoge@my-application-repository
 </code></pre><hr>
-<h2 id="参考">参考</h2>
+<h2 id="references">References</h2>
 <ul>
 <li><a href="https://qiita.com/ogady/items/c17ffe8f7c8e15b15f77">AWS CLIからのMFA(多要素認証)を楽にするツール(aws-mfa)を使ってみた - Qiita</a></li>
 </ul>

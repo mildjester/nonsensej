@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="ja-JP">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<html lang="en">
+    <head>
 	
 	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -11,7 +11,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>Viteを使ってみる|FrameSynthesis</title>
+	<title>Trying Out Vite|Logical Dice Techblog</title>
 
 	
 	<link rel="stylesheet" href="/css/style.css">
@@ -21,7 +21,7 @@
 	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
 	
-	<link href="" rel="alternate" type="application/rss+xml" title="FrameSynthesis" />
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
 </head>
 
     <body>
@@ -38,8 +38,8 @@
 <header>
   <nav class="nav">
     <div class="nav-container jc-sb">
-      <a href="/" class="nav-title">
-        <img class="header-logo" src="/images/logo-banner.jpg" alt="FrameSynthesis" />
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
       </a>
       <div class="search-box">
         <form class="fx">
@@ -51,7 +51,7 @@
   </nav>
 
   <script>
-  const SEARCH_URL = '/search/';
+  const SEARCH_URL = '/en/search/';
   window.addEventListener('DOMContentLoaded', () => {
     const searchButton = document.getElementById('searchButton');
     const searchKeyword = document.getElementById('searchKeyword');
@@ -71,32 +71,32 @@
 
 <main>
 	<div class="post">
-		<h1 class="post-title">Viteを使ってみる</h1>
+		<h1 class="post-title">Trying Out Vite</h1>
 		<div class="post-info">
-				<p class="publish-date">Posted: <time datetime="2023-02-11 00:00:00 &#43;0000 UTC" class="catalogue-time">2023-02-11</time></p>
+				<p class="publish-date">posted: <time datetime="2023-02-11 00:00:00 &#43;0000 UTC" class="catalogue-time">2023-02-11</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="http://localhost:1313/tags/vite/">Vite</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/en/tags/vite/">Vite</a></div>
 				</div>
 			
 		</div>
 		<hr />
-		<p>Viteとはwebpackのようにjsやcssをコンパイルするツールです。<br>
-Vue.jsを作ったEvan Youさんが作ったらしく、Vue.js同様に楽に使い始められそうです。<br>
-<a href="https://ja.vitejs.dev/">https://ja.vitejs.dev/</a></p>
-<p>放置していたサイトがコンパイルできなくなっていたので、Viteでコンパイルするよう作り替えてみました。<br>
-大した実装はしていないので、条件的には1ページだけのサイトでjsとsassがコンパイルできれば良いサイトです。</p>
-<h2 id="viteプロジェクトの作成">Viteプロジェクトの作成</h2>
-<p>まず、以下コマンドでViteプロジェクトを新規作成します。</p>
+		<p>Vite is a tool for compiling JavaScript and CSS, similar to Webpack.<br>
+It was created by Evan You, the developer of Vue.js, and seems easy to get started with, just like Vue.js.<br>
+<a href="https://vitejs.dev/">https://vitejs.dev/</a></p>
+<p>I had an old site that could no longer compile, so I decided to switch to Vite.<br>
+The site itself is simple—it consists of only a single page, and the main requirement is compiling JavaScript and Sass.</p>
+<h1 id="creating-a-vite-project">Creating a Vite Project</h1>
+<p>First, create a new Vite project using the following command:</p>
 <pre tabindex="0"><code>$ npm create vite@latest
-</code></pre><p>続けていいか聞かれるので「y」と入力します。</p>
+</code></pre><p>It will ask for confirmation, so enter <strong>&ldquo;y&rdquo;</strong>.</p>
 <pre tabindex="0"><code>Ok to proceed? (y) y
-</code></pre><p>プロジェクト名を入力します。<br>
-本例では「hogehoge-prj」。</p>
+</code></pre><p>Next, enter the project name.<br>
+For this example, I&rsquo;ll use <strong>&ldquo;hogehoge-prj&rdquo;</strong>.</p>
 <pre tabindex="0"><code>✔ Project name: … hogehoge-prj
-</code></pre><p>次にフレームワークを聞かれます。<br>
-当サイトはフレームワークを利用していなかったので「Vanilla」を選択します。<br>
-※上下キーで選択</p>
+</code></pre><p>Then, choose the framework.<br>
+Since my site doesn&rsquo;t use a framework, I&rsquo;ll select <strong>&ldquo;Vanilla&rdquo;</strong>.<br>
+(Use the up/down arrow keys to select.)</p>
 <pre tabindex="0"><code>? Select a framework: › - Use arrow-keys. Return to submit.
 ❯   Vanilla
     Vue
@@ -105,13 +105,13 @@ Vue.jsを作ったEvan Youさんが作ったらしく、Vue.js同様に楽に使
     Lit
     Svelte
     Others
-</code></pre><p>次にJavaScriptかTypeScriptか選択します。<br>
-当サイトは「JavaScript」です。<br>
-※上下キーで選択</p>
+</code></pre><p>Next, choose between JavaScript and TypeScript.<br>
+I&rsquo;ll go with <strong>JavaScript</strong>.<br>
+(Use the up/down arrow keys to select.)</p>
 <pre tabindex="0"><code>? Select a variant: › - Use arrow-keys. Return to submit.
 ❯   JavaScript
     TypeScript
-</code></pre><p>これでプロジェクトが作成され、以下メッセージが表示されます。</p>
+</code></pre><p>This completes the project setup, and you&rsquo;ll see the following message:</p>
 <pre tabindex="0"><code>Scaffolding project in /Users/goro/workspace/hogehoge-prj...
 
 Done. Now run:
@@ -119,15 +119,15 @@ Done. Now run:
   cd hogehoge-prj
   npm install
   npm run dev
-</code></pre><p>上記メッセージ通りにコマンドを打つとデフォルト状態でページが立ち上がります。</p>
-<pre tabindex="0"><code> VITE v4.1.1  ready in 170 ms
+</code></pre><p>If you run these commands, the default page will launch:</p>
+<pre tabindex="0"><code>VITE v4.1.1  ready in 170 ms
 
   ➜  Local:   http://localhost:5173/
   ➜  Network: use --host to expose
   ➜  press h to show help
-</code></pre><p>こんな感じのクリックしただけカウントアップするページが表示されます。<br>
-<img src="http://localhost:1313/posts/2023/02/11/vite-tutorial001.png"/></p>
-<p>ファイルとしては以下が生成されています。</p>
+</code></pre><p>You&rsquo;ll see a simple page that increments a counter when clicked.<br>
+<img src="https://blog2.logical-dice.com/posts/2023/02/11/vite-tutorial001.png"/></p>
+<p>The following files are generated:</p>
 <pre tabindex="0"><code>counter.js
 index.html
 javascript.svg
@@ -137,16 +137,16 @@ package-lock.json
 package.json
 public/
 style.css
-</code></pre><h2 id="sassのインストール">sassのインストール</h2>
-<p>Viteはそのままではsassに対応していないようなので別途インストールします。</p>
+</code></pre><h1 id="installing-sass">Installing Sass</h1>
+<p>Vite does not support Sass by default, so install it separately:</p>
 <pre tabindex="0"><code>$ npm add -D sass
-</code></pre><h2 id="既存サイトをviteに取り込む">既存サイトをViteに取り込む</h2>
-<p>生成したViteプロジェクトに既存のサイトを反映させます。</p>
-<h3 id="indexhtmlの修正">index.htmlの修正</h3>
-<p>まず、<code>index.html</code>にページのテンプレート（html部分）を反映します。<br>
-jsの読み込みはbodyの最後で<code>main.js</code>を読み込むように記載するのみです。<br>
-cssに関してはコンパイルするものは記載する必要ありません。後述の<code>public</code>ディレクトリに置かれたcssファイルは読み込む記載をする必要があります。</p>
-<p>以下はデフォルトのindex.html</p>
+</code></pre><h1 id="integrating-an-existing-site-with-vite">Integrating an Existing Site with Vite</h1>
+<p>Now, I&rsquo;ll migrate an existing site into the Vite project.</p>
+<h2 id="editing-indexhtml">Editing index.html</h2>
+<p>First, modify <code>index.html</code> to include the page template (HTML structure).<br>
+Instead of manually linking compiled JavaScript and CSS, just include <code>main.js</code> at the bottom of the <code>&lt;body&gt;</code>.</p>
+<p>Any CSS files placed in the <code>public</code> directory (explained later) should be explicitly linked.</p>
+<p>Here is the default <code>index.html</code>:</p>
 <pre tabindex="0"><code>&lt;!DOCTYPE html&gt;
 &lt;html lang=&#34;en&#34;&gt;
   &lt;head&gt;
@@ -160,12 +160,11 @@ cssに関してはコンパイルするものは記載する必要ありませ�
     &lt;script type=&#34;module&#34; src=&#34;/main.js&#34;&gt;&lt;/script&gt;
   &lt;/body&gt;
 &lt;/html&gt;
-</code></pre><h3 id="mainjsの修正">main.jsの修正</h3>
-<p>次に<code>main.js</code>にて必要なjsファイルやsassファイル、画像ファイルをimportします。<br>
-デフォルトではindex.htmlに<code>&lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</code>があるので、そこにjsにてHTMLを流し込んでいます。<br>
-固定な部分についてはJSで流し込まずにindex.htmlに直接記載してしまっても良さそうです。<br>
-既存サイトを取り込む際は必要な処理が他JSに全て書かれていると思うので、<code>main.js</code>にはimportだけ記載すれば良いです。</p>
-<p>以下はデフォルトのmain.js</p>
+</code></pre><h3 id="editing-mainjs">Editing main.js</h3>
+<p>In <code>main.js</code>, import the necessary JavaScript files, Sass files, and images.</p>
+<p>By default, the <code>&lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</code> element in index.html is populated with content via JavaScript.However, for static content, it&rsquo;s better to write it directly in index.html.</p>
+<p>For existing sites, <code>main.js</code> only needs to contain import statements for the necessary files.</p>
+<p>Here is the default main.js:</p>
 <pre tabindex="0"><code>import &#39;./style.css&#39;
 import javascriptLogo from &#39;./javascript.svg&#39;
 import { setupCounter } from &#39;./counter.js&#39;
@@ -189,21 +188,22 @@ document.querySelector(&#39;#app&#39;).innerHTML = `
 `
 
 setupCounter(document.querySelector(&#39;#counter&#39;))
-</code></pre><p>ここでimportしたファイルはCacheBusting対応（キャッシュ対策でファイル名にランダムな文字列が付く）されます。<br>
-画像ファイルに関しては上記デフォルトファイル内の<code>src=&quot;${javascriptLogo}&quot;</code>でCacheBustingされたファイル名が読み込まれます。</p>
-<h3 id="その他固定ファイルの配置">その他固定ファイルの配置</h3>
-<p>生成されている<code>public</code>ディレクトリ配下に置かれたファイルやディレクトリはそのままDocumentRootに置かれます。<br>
-コンパイルする必要の無いjs/cssファイルやCacheBustingをしない画像ファイルはここにおきます。</p>
-<h3 id="不要ファイルの削除">不要ファイルの削除</h3>
-<p>以下のファイルは不要なので削除してしまいます。</p>
+</code></pre><p>Any imported files will have cache busting applied, meaning their filenames will include a random string to prevent caching.For example, the line src=&quot;${javascriptLogo}&quot; ensures that the correct (cache-busted) image file is loaded.</p>
+<h3 id="placing-static-files">Placing Static Files</h3>
+<p>The <code>public</code> directory holds files that should be placed in the document root as they are.
+This includes JavaScript or CSS files that don&rsquo;t need compiling, as well as images that shouldn&rsquo;t have cache busting applied.</p>
+<h3 id="deleting-unnecessary-files">Deleting Unnecessary Files</h3>
+<p>Since they are not needed, delete the following files:</p>
 <ul>
 <li>counter.js</li>
 <li>javascript.svg</li>
 <li>public/vite.svg</li>
 </ul>
 <hr>
-<p>これでViteを使ったサイト構築は完了です。<br>
-<code>npm run dev</code>コマンドでローカルで動かせますし、<code>npm run build</code>でコンパイルしたファイルがdistディレクトリに出力されます。</p>
+<p>This completes the setup for using Vite!</p>
+<p>You can run the local development server with:<code>npm run dev</code><br>
+And compile the project for production with:<code>npm run build</code><br>
+The compiled files will be output to the dist directory.</p>
 
 	</div>
 </main>
