@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Searches on Logical Dice 技術ブログ</title>
-    <link>http://localhost:1313/search/</link>
+    <link>https://blog2.logical-dice.com/search/</link>
     <description>Recent content in Searches on Logical Dice 技術ブログ</description>
     <generator>Hugo</generator>
     <language>ja</language>
-    <atom:link href="http://localhost:1313/search/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog2.logical-dice.com/search/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
-      <link>http://localhost:1313/search/data.js</link>
+      <link>https://blog2.logical-dice.com/search/data.js</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/search/data.js</guid>
+      <guid>https://blog2.logical-dice.com/search/data.js</guid>
       <description></description>
     </item>
   </channel>

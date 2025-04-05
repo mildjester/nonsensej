@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <head>
 	
 	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -76,7 +76,7 @@
 				<p class="publish-date">投稿日: <time datetime="2020-07-16 00:00:00 &#43;0000 UTC" class="catalogue-time">2020年07月16日</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="http://localhost:1313/tags/bookmarklet/">bookmarklet</a></div> <div class="tags_item"><a href="http://localhost:1313/tags/javascript/">javascript</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/bookmarklet/">bookmarklet</a></div> <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/javascript/">javascript</a></div>
 				</div>
 			
 		</div>
@@ -105,7 +105,7 @@ for (var i=0; i&lt;kusaElmList.length; i++){
 </code></pre><p>これをBookmarkletにします。</p>
 <pre tabindex="0"><code>javascript:for(var t=document.getElementsByClassName(&#34;day&#34;),e=0;e&lt;t.length;e++){var l=t[e];e%2==0?l.setAttribute(&#34;fill&#34;,&#34;#2A7&#34;):l.setAttribute(&#34;fill&#34;,&#34;#000&#34;)}
 </code></pre><p>実行結果はこちら。<br>
-<img src="http://localhost:1313/images/2020/07/bookmarklet-kimetsu-001.png" /></p>
+<img src="https://blog2.logical-dice.com/images/2020/07/bookmarklet-kimetsu-001.png" /></p>
 <p>色はそれっぽくなりましたが、まだ隙間が気になります。<br>
 なので、隙間も埋めるよう修正します。</p>
 <pre tabindex="0"><code>// GitHubの草部分の要素を取得
@@ -131,7 +131,7 @@ for (var i=0; i&lt;kusaElmList.length; i++){
 </code></pre><p>これをBookmarkletにします。</p>
 <pre tabindex="0"><code>javascript:for(var t=document.getElementsByClassName(&#34;day&#34;),e=0;e&lt;t.length;e++){var l=t[e];l.setAttribute(&#34;width&#34;,&#34;15&#34;),l.setAttribute(&#34;height&#34;,&#34;15&#34;),l.style.rx=0,e%2==(l.style.ry=0)?l.setAttribute(&#34;fill&#34;,&#34;#2A7&#34;):l.setAttribute(&#34;fill&#34;,&#34;#000&#34;)}
 </code></pre><p>実行結果はこちら。<br>
-<img src="http://localhost:1313/images/2020/07/bookmarklet-kimetsu-002.png" /></p>
+<img src="https://blog2.logical-dice.com/images/2020/07/bookmarklet-kimetsu-002.png" /></p>
 <p>いい感じになりました。</p>
 
 	</div>

@@ -2,66 +2,80 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Logical Dice Techblog</title>
-    <link>http://localhost:1313/en/tags/</link>
+    <link>https://blog2.logical-dice.com/en/tags/</link>
     <description>Recent content in Tags on Logical Dice Techblog</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Thu, 12 Dec 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/en/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog2.logical-dice.com/en/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AWS</title>
-      <link>http://localhost:1313/en/tags/aws/</link>
+      <link>https://blog2.logical-dice.com/en/tags/aws/</link>
       <pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/en/tags/aws/</guid>
+      <guid>https://blog2.logical-dice.com/en/tags/aws/</guid>
       <description></description>
     </item>
     <item>
       <title>Python</title>
-      <link>http://localhost:1313/en/tags/python/</link>
+      <link>https://blog2.logical-dice.com/en/tags/python/</link>
       <pubDate>Wed, 07 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/en/tags/python/</guid>
+      <guid>https://blog2.logical-dice.com/en/tags/python/</guid>
       <description></description>
     </item>
     <item>
       <title>Scrum</title>
-      <link>http://localhost:1313/en/tags/scrum/</link>
+      <link>https://blog2.logical-dice.com/en/tags/scrum/</link>
       <pubDate>Thu, 25 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/en/tags/scrum/</guid>
+      <guid>https://blog2.logical-dice.com/en/tags/scrum/</guid>
       <description></description>
     </item>
     <item>
       <title>Vite</title>
-      <link>http://localhost:1313/en/tags/vite/</link>
+      <link>https://blog2.logical-dice.com/en/tags/vite/</link>
       <pubDate>Sat, 11 Feb 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/en/tags/vite/</guid>
+      <guid>https://blog2.logical-dice.com/en/tags/vite/</guid>
       <description></description>
     </item>
     <item>
       <title>Laravel</title>
-      <link>http://localhost:1313/en/tags/laravel/</link>
+      <link>https://blog2.logical-dice.com/en/tags/laravel/</link>
       <pubDate>Sat, 19 Jun 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/en/tags/laravel/</guid>
+      <guid>https://blog2.logical-dice.com/en/tags/laravel/</guid>
       <description></description>
     </item>
     <item>
       <title>Javascript</title>
-      <link>http://localhost:1313/en/tags/javascript/</link>
+      <link>https://blog2.logical-dice.com/en/tags/javascript/</link>
       <pubDate>Sun, 06 Jun 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/en/tags/javascript/</guid>
+      <guid>https://blog2.logical-dice.com/en/tags/javascript/</guid>
       <description></description>
     </item>
     <item>
       <title>Windows</title>
-      <link>http://localhost:1313/en/tags/windows/</link>
+      <link>https://blog2.logical-dice.com/en/tags/windows/</link>
       <pubDate>Sun, 07 Mar 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/en/tags/windows/</guid>
+      <guid>https://blog2.logical-dice.com/en/tags/windows/</guid>
       <description></description>
     </item>
     <item>
       <title>Ubuntu</title>
-      <link>http://localhost:1313/en/tags/ubuntu/</link>
+      <link>https://blog2.logical-dice.com/en/tags/ubuntu/</link>
       <pubDate>Wed, 17 Feb 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/en/tags/ubuntu/</guid>
+      <guid>https://blog2.logical-dice.com/en/tags/ubuntu/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Git</title>
+      <link>https://blog2.logical-dice.com/en/tags/git/</link>
+      <pubDate>Sat, 06 Feb 2021 00:00:00 +0000</pubDate>
+      <guid>https://blog2.logical-dice.com/en/tags/git/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>PHP</title>
+      <link>https://blog2.logical-dice.com/en/tags/php/</link>
+      <pubDate>Sat, 06 Feb 2021 00:00:00 +0000</pubDate>
+      <guid>https://blog2.logical-dice.com/en/tags/php/</guid>
       <description></description>
     </item>
   </channel>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <head>
 	
 	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -76,7 +76,7 @@
 				<p class="publish-date">投稿日: <time datetime="2021-06-06 00:00:00 &#43;0000 UTC" class="catalogue-time">2021年06月06日</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="http://localhost:1313/tags/javascript/">javascript</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/javascript/">javascript</a></div>
 				</div>
 			
 		</div>
@@ -187,17 +187,17 @@ maxWaitの指定が無いので待機時間中に呼び出され続けたら、�
 <p>ボタンクリックのイベントハンドラにdebounce/throttleをデフォルトオプションで設定したとします。</p>
 <h3 id="1回クリック">1回クリック</h3>
 <p>1回だけクリックされた時の挙動は以下の通りです。<br>
-<img src="http://localhost:1313/images/2021/06/lodash-debounce-vs-throttle-001.png"/></p>
+<img src="https://blog2.logical-dice.com/images/2021/06/lodash-debounce-vs-throttle-001.png"/></p>
 <p>debounceの場合はwait後、throttleの場合はwait前に処理が走ります。<br>
 debounceだとクリックしてから反応するまで、1秒未満かもしれませんが少しタイムラグが感じられるかもしれません。</p>
 <h3 id="連打クリック">連打クリック</h3>
 <p>一瞬でクリック連打された場合は以下の通りです。<br>
-<img src="http://localhost:1313/images/2021/06/lodash-debounce-vs-throttle-002.png"/></p>
+<img src="https://blog2.logical-dice.com/images/2021/06/lodash-debounce-vs-throttle-002.png"/></p>
 <p>debounceについては1回クリックした際と同じ挙動になりますが、throttleについてはwait後にも処理が走ります。<br>
 throttleだと2回処理が走ってしまうのは微妙ですね。</p>
 <h3 id="クリックし続ける">クリックし続ける</h3>
 <p>wait中に一定間隔でクリックし続けた場合は以下の通りです。<br>
-<img src="http://localhost:1313/images/2021/06/lodash-debounce-vs-throttle-003.png"/></p>
+<img src="https://blog2.logical-dice.com/images/2021/06/lodash-debounce-vs-throttle-003.png"/></p>
 <p>debounceはクリックし続けている間は処理は走らず、最後のクリックからwaitで指定した時間だけ待って処理が走ります。<br>
 throttleはクリックし続けている間もwaitで指定した時間間隔で処理が走ります。<br>
 あまり何度も走らせたくない処理であればdebounceで、一定間隔空けば何度走っても良いのであればthrottleが向いてそうです。</p>

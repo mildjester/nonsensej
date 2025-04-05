@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <head>
 	
 	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -76,7 +76,7 @@
 				<p class="publish-date">posted: <time datetime="2021-06-06 00:00:00 &#43;0000 UTC" class="catalogue-time">2021-06-06</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="http://localhost:1313/en/tags/javascript/">javascript</a></div>
+					 <div class="tags_item"><a href="https://blog2.logical-dice.com/en/tags/javascript/">javascript</a></div>
 				</div>
 			
 		</div>
@@ -187,17 +187,17 @@ In other words, <code>throttle</code> is a <code>debounce</code> with different 
 <p>Assume that <code>debounce</code>/<code>throttle</code> are set with default options for a button click event handler.</p>
 <h3 id="single-click">Single Click</h3>
 <p>The behavior when clicked only once is as follows:<br>
-<img src="http://localhost:1313/images/2021/06/lodash-debounce-vs-throttle-001.png"/></p>
+<img src="https://blog2.logical-dice.com/images/2021/06/lodash-debounce-vs-throttle-001.png"/></p>
 <p>In the case of <code>debounce</code>, the process runs after <code>wait</code>, and in the case of <code>throttle</code>, the process runs before <code>wait</code>.<br>
 With <code>debounce</code>, there might be a slight time lag (although less than 1 second) before it reacts after clicking.</p>
 <h3 id="rapid-clicks">Rapid Clicks</h3>
 <p>The behavior when clicked rapidly in an instant is as follows:<br>
-<img src="http://localhost:1313/images/2021/06/lodash-debounce-vs-throttle-002.png"/></p>
+<img src="https://blog2.logical-dice.com/images/2021/06/lodash-debounce-vs-throttle-002.png"/></p>
 <p>The behavior of <code>debounce</code> is the same as when clicked once, but with <code>throttle</code>, the process also runs after <code>wait</code>.<br>
 It&rsquo;s a bit undesirable that <code>throttle</code> runs the process twice.</p>
 <h3 id="continuous-clicks">Continuous Clicks</h3>
 <p>The behavior when clicking continuously at regular intervals during <code>wait</code> is as follows:<br>
-<img src="http://localhost:1313/images/2021/06/lodash-debounce-vs-throttle-003.png"/></p>
+<img src="https://blog2.logical-dice.com/images/2021/06/lodash-debounce-vs-throttle-003.png"/></p>
 <p><code>debounce</code> does not run the process while clicking continuously, and it waits for the time specified by <code>wait</code> after the last click before running the process.<br>
 <code>throttle</code> runs the process at the time intervals specified by <code>wait</code> even while clicking continuously.<br>
 If it&rsquo;s a process that you don&rsquo;t want to run too many times, <code>debounce</code> might be suitable, and if it&rsquo;s okay to run it multiple times as long as there is a certain interval, <code>throttle</code> might be more appropriate.</p>
