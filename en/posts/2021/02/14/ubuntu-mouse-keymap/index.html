@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja-JP">
+<html lang="en">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
 	
 	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -11,7 +11,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>ubuntuで多機能マウスを設定する|FrameSynthesis</title>
+	<title>Setting Up a Multifunction Mouse on Ubuntu|Logical Dice Techblog</title>
 
 	
 	<link rel="stylesheet" href="/css/style.css">
@@ -21,7 +21,7 @@
 	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
 	
-	<link href="" rel="alternate" type="application/rss+xml" title="FrameSynthesis" />
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
 </head>
 
     <body>
@@ -38,8 +38,8 @@
 <header>
   <nav class="nav">
     <div class="nav-container jc-sb">
-      <a href="/" class="nav-title">
-        <img class="header-logo" src="/images/logo-banner.jpg" alt="FrameSynthesis" />
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
       </a>
       <div class="search-box">
         <form class="fx">
@@ -51,7 +51,7 @@
   </nav>
 
   <script>
-  const SEARCH_URL = '/search/';
+  const SEARCH_URL = '/en/search/';
   window.addEventListener('DOMContentLoaded', () => {
     const searchButton = document.getElementById('searchButton');
     const searchKeyword = document.getElementById('searchKeyword');
@@ -71,48 +71,48 @@
 
 <main>
 	<div class="post">
-		<h1 class="post-title">ubuntuで多機能マウスを設定する</h1>
+		<h1 class="post-title">Setting Up a Multifunction Mouse on Ubuntu</h1>
 		<div class="post-info">
-				<p class="publish-date">Posted: <time datetime="2021-02-14 00:00:00 &#43;0000 UTC" class="catalogue-time">2021-02-14</time></p>
+				<p class="publish-date">posted: <time datetime="2021-02-14 00:00:00 &#43;0000 UTC" class="catalogue-time">2021-02-14</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="http://localhost:1313/tags/ubuntu/">ubuntu</a></div>
+					 <div class="tags_item"><a href="http://localhost:1313/en/tags/ubuntu/">ubuntu</a></div>
 				</div>
 			
 		</div>
 		<hr />
-		<h2 id="環境">環境</h2>
+		<h2 id="environment">Environment</h2>
 <ul>
 <li>Ubuntu 20.10</li>
-<li>Elecom M-DT2DR BK(マウス)</li>
+<li>Elecom M-DT2DR BK (Mouse)</li>
 </ul>
-<h2 id="参考">参考</h2>
+<h2 id="references">References</h2>
 <ul>
 <li><a href="https://help.ubuntu.com/community/MouseCustomizations">https://help.ubuntu.com/community/MouseCustomizations</a></li>
 <li><a href="https://wiki.archlinux.jp/index.php/Xbindkeys">https://wiki.archlinux.jp/index.php/Xbindkeys</a></li>
 </ul>
 <hr>
-<p>Ubuntuにマルチボタンのマウス（Elecom M-DT2DR）を接続すると、何をしなくても通常のマウス操作や「進む」「戻る」ボタンは機能します。<br>
-ですが、機能ボタン（Fn 1〜3）には何もマッピングされていないので、音量操作をマッピングします。</p>
-<h2 id="手順">手順</h2>
-<h3 id="インストール">インストール</h3>
-<p>まず必要なソフトをインストールします。</p>
+<p>When you connect a multi-button mouse (Elecom M-DT2DR) to Ubuntu, normal mouse operations and the &ldquo;forward&rdquo; and &ldquo;back&rdquo; buttons work without any special configuration.<br>
+However, the function buttons (Fn 1-3) are not mapped to anything by default, so I will map volume controls to them.</p>
+<h2 id="procedure">Procedure</h2>
+<h3 id="installation">Installation</h3>
+<p>First, install the necessary software.</p>
 <pre tabindex="0"><code>sudo apt install xbindkeys
-</code></pre><h3 id="ボタン番号の取得">ボタン番号の取得</h3>
-<p>次にマウスのボタン番号を取得します。<br>
-まず以下コマンドを実行してボタン検知ができる状態にします。</p>
+</code></pre><h3 id="getting-button-numbers">Getting Button Numbers</h3>
+<p>Next, get the button numbers of the mouse.<br>
+First, execute the following command to enable button detection.</p>
 <pre tabindex="0"><code>xev
-</code></pre><p>現れる白い四角が書かれたウィンドウにマウスカーソルを持っていき、その状態でマウスのボタンを押すとコンソールに情報が表示されます。<br>
-例えば私のマウス（M-DT2DR）のFn 1であれば以下のように<code>button 10</code>と表示されます。</p>
+</code></pre><p>Move the mouse cursor to the white rectangular window that appears, and then press the mouse buttons. Information will be displayed in the console.<br>
+For example, for Fn 1 on my mouse (M-DT2DR), <code>button 10</code> is displayed as follows:</p>
 <pre tabindex="0"><code>ButtonRelease event, serial 36, synthetic NO, window 0x4000001,
     root 0x7ed, subw 0x4000002, time 1758091, (31,39), root:(1951,76),
     state 0x0, button 10, same_screen YES
-</code></pre><p>同様に、Fn 2は<code>button 11</code>でFn 3は<code>button 12</code>でした。</p>
-<h3 id="ボタンのマッピング">ボタンのマッピング</h3>
-<p>ボタンマッピングするための設定ファイルを作成します。<br>
-設定ファイルは空ファイルから始めても良いのですが、一応デフォルト値から生成しておきます。</p>
+</code></pre><p>Similarly, Fn 2 was <code>button 11</code> and Fn 3 was <code>button 12</code>.</p>
+<h3 id="mapping-buttons">Mapping Buttons</h3>
+<p>Create a configuration file for button mapping.<br>
+You can start with an empty file, but it&rsquo;s a good idea to generate it from the default values.</p>
 <pre tabindex="0"><code>xbindkeys --defaults &gt; ~/.xbindkeysrc
-</code></pre><p>作成した設定ファイルに以下を追記します。</p>
+</code></pre><p>Add the following to the created configuration file:</p>
 <pre tabindex="0"><code># Increase volume
 &#34;pactl set-sink-volume @DEFAULT_SINK@ +1000&#34;
     b:10
@@ -124,9 +124,9 @@
 # Mute volume
 &#34;pactl set-sink-mute @DEFAULT_SINK@ toggle&#34;
    b:12
-</code></pre><p>設定ファイルを保存したら、以下コマンドで読み込みます。</p>
+</code></pre><p>After saving the configuration file, load it with the following command:</p>
 <pre tabindex="0"><code>xbindkeys -p
-</code></pre><p>これでマウスのFn 1〜3ボタンに音量操作がマッピングできました。</p>
+</code></pre><p>Now, volume controls are mapped to the Fn 1-3 buttons of the mouse.</p>
 
 	</div>
 </main>

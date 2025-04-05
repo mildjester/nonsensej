@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja-JP">
+<html lang="en">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
 	
 	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -11,7 +11,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>ubuntu 20.10の初期設定|FrameSynthesis</title>
+	<title>Initial Setup for Ubuntu 20.10|Logical Dice Techblog</title>
 
 	
 	<link rel="stylesheet" href="/css/style.css">
@@ -21,7 +21,7 @@
 	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
 	
-	<link href="" rel="alternate" type="application/rss+xml" title="FrameSynthesis" />
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
 </head>
 
     <body>
@@ -38,8 +38,8 @@
 <header>
   <nav class="nav">
     <div class="nav-container jc-sb">
-      <a href="/" class="nav-title">
-        <img class="header-logo" src="/images/logo-banner.jpg" alt="FrameSynthesis" />
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
       </a>
       <div class="search-box">
         <form class="fx">
@@ -51,7 +51,7 @@
   </nav>
 
   <script>
-  const SEARCH_URL = '/search/';
+  const SEARCH_URL = '/en/search/';
   window.addEventListener('DOMContentLoaded', () => {
     const searchButton = document.getElementById('searchButton');
     const searchKeyword = document.getElementById('searchKeyword');
@@ -71,83 +71,83 @@
 
 <main>
 	<div class="post">
-		<h1 class="post-title">ubuntu 20.10の初期設定</h1>
+		<h1 class="post-title">Initial Setup for Ubuntu 20.10</h1>
 		<div class="post-info">
-				<p class="publish-date">Posted: <time datetime="2021-02-11 00:00:00 &#43;0000 UTC" class="catalogue-time">2021-02-11</time></p>
+				<p class="publish-date">posted: <time datetime="2021-02-11 00:00:00 &#43;0000 UTC" class="catalogue-time">2021-02-11</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="http://localhost:1313/tags/ubuntu/">ubuntu</a></div>
+					 <div class="tags_item"><a href="http://localhost:1313/en/tags/ubuntu/">ubuntu</a></div>
 				</div>
 			
 		</div>
 		<hr />
-		<h2 id="環境">環境</h2>
+		<h2 id="environment">Environment</h2>
 <ul>
 <li>Ubuntu 20.10</li>
 <li>ThinkPad T480</li>
 </ul>
 <hr>
-<p>Thinkpad T480にubuntu20.10をインストールした際のメモです。</p>
-<h2 id="日本語入力設定">日本語入力設定</h2>
-<p>そのままでも日本語入力はできますが、入力ソースをMozcに切り替えたりしないといけないので
-入力ソースのMozcの優先度を高くします。</p>
-<p>アプリランチャーより『設定』を開き、『地域と言語』を開きます。
-そこの入力ソースに「日本語」と「日本語(Mozc)」が並んでいるので
-「日本語(Mozc)」が上にくるように並べ替えます。</p>
-<p>各入力ソースの左端の6丸をドラッグすれば順番を入れ替えられます。</p>
-<h2 id="imeのonoffをmac風にする">IMEのON/OFFをMac風にする</h2>
-<p>アプリランチャーより『Mozcの設定』を開き、『一般』タグを開きます。
-「キー設定の選択」の横にある「編集」ボタンをクリックするとキー設定を変更できます。</p>
-<p>そこでHenkan/Hiragana/Katakanaあたりに『IME有効』を割り当て、
-Muhenkanに『IME無効』を割り当てます。</p>
-<p>これでMacのようにIMEのON/OFFを切り替えられるようになりました。</p>
-<h2 id="capslockをctrlに半角全角をescにする">CapsLockをCtrlに、半角/全角をEscにする</h2>
-<p>Gnome Tweak Toolを使って制御します。<br>
-まずは以下コマンドでインストールします。</p>
+<p>These are my notes from installing Ubuntu 20.10 on a Thinkpad T480.</p>
+<h2 id="japanese-input-settings">Japanese Input Settings</h2>
+<p>Japanese input is possible by default, but since you have to switch the input source to Mozc,<br>
+I will increase the priority of the Mozc input source.</p>
+<p>Open &ldquo;Settings&rdquo; from the application launcher, and then open &ldquo;Region &amp; Language&rdquo;.<br>
+You will see &ldquo;Japanese&rdquo; and &ldquo;Japanese (Mozc)&rdquo; listed under Input Sources.<br>
+Rearrange them so that &ldquo;Japanese (Mozc)&rdquo; is at the top.</p>
+<p>You can change the order by dragging the six dots on the left side of each input source.</p>
+<h2 id="making-ime-onoff-mac-like">Making IME ON/OFF Mac-like</h2>
+<p>Open &ldquo;Mozc Settings&rdquo; from the application launcher, and then open the &ldquo;General&rdquo; tab.<br>
+Click the &ldquo;Edit&rdquo; button next to &ldquo;Select keymap&rdquo; to change the key settings.</p>
+<p>Assign &ldquo;IME On&rdquo; to Henkan/Hiragana/Katakana, and<br>
+assign &ldquo;IME Off&rdquo; to Muhenkan.</p>
+<p>Now you can switch IME ON/OFF like on a Mac.</p>
+<h2 id="remapping-caps-lock-to-ctrl-and-hankakuzenkaku-to-esc">Remapping Caps Lock to Ctrl and Hankaku/Zenkaku to Esc</h2>
+<p>I will use Gnome Tweak Tool for this.<br>
+First, install it with the following command:</p>
 <pre tabindex="0"><code>sudo apt install gnome-tweak-tool
-</code></pre><p>ランチャーから起動できるので「ユーティリティ &gt; Tweaks」を開きます。<br>
-Tweaksが開いたら『キーボードとマウス』の『追加のレイアウトオプション』をクリックします。<br>
+</code></pre><p>You can launch it from the launcher, so open &ldquo;Utilities &gt; Tweaks&rdquo;.<br>
+Once Tweaks is open, click &ldquo;Additional Layout Options&rdquo; under &ldquo;Keyboard &amp; Mouse&rdquo;.<br>
 <img src="http://localhost:1313/images/2021/02/ubuntu-20-10-initialize-001.png" /></p>
-<p>オプション画面が開くので『Ctrl position &gt; Caps LockをCtrlとして扱う』と『日本語キーボードオプション &gt; Make Zenkaku Hankaku an additional Esc』にチェックを入れます。<br>
+<p>When the options screen opens, check &ldquo;Ctrl position &gt; Caps Lock is Ctrl&rdquo; and &ldquo;Japanese keyboard options &gt; Make Zenkaku Hankaku an additional Esc&rdquo;.<br>
 <img src="http://localhost:1313/images/2021/02/ubuntu-20-10-initialize-002.png" /></p>
-<h2 id="tiling機能をoffにする">tiling機能をOFFにする</h2>
-<p>デフォルトだとウィンドウを画面端にドラッグすると勝手に最大化します。
-無くてもいい機能なので以下コマンドで無効化します。</p>
+<h2 id="disabling-tiling-functionality">Disabling Tiling Functionality</h2>
+<p>By default, windows automatically maximize when dragged to the edge of the screen.<br>
+Since I don&rsquo;t need this feature, I will disable it with the following command:</p>
 <pre tabindex="0"><code>gsettings set org.gnome.mutter edge-tiling false
-</code></pre><h2 id="ステータスバーを下に移動する">ステータスバーを下に移動する</h2>
-<p>デフォルトだと時計や電池残量が表示されているバーがウィンドウ上にあり、アプリケーションバーはウィンドウ左にあります。<br>
-Windowsのように全てウィンドウ下に並んでいる方が好みなので、Dash to Panelを使って移動させます。</p>
-<p>Dash to Panelのインストールは以下ページにてOn/OffスイッチをクリックしてOnにするだけです。<br>
+</code></pre><h2 id="moving-the-status-bar-to-the-bottom">Moving the Status Bar to the Bottom</h2>
+<p>By default, the bar displaying the clock and battery level is at the top of the window, and the application bar is on the left side of the window.<br>
+Since I prefer having everything aligned at the bottom of the window like in Windows, I will use Dash to Panel to move it.</p>
+<p>To install Dash to Panel, simply click the On/Off switch on the following page to turn it On:<br>
 <a href="https://extensions.gnome.org/extension/1160/dash-to-panel/">https://extensions.gnome.org/extension/1160/dash-to-panel/</a></p>
-<p>これでステータスバーはウィンドウ下に移動します。<br>
-設定を変更したい場合はステータスバーを右クリックして「Dash to Panelの設定」を選択すればできます。</p>
-<h2 id="諸々インストール">諸々インストール</h2>
-<h3 id="基本セット">基本セット</h3>
+<p>This will move the status bar to the bottom of the window.<br>
+If you want to change the settings, right-click on the status bar and select &ldquo;Dash to Panel Settings&rdquo;.</p>
+<h2 id="installing-various-software">Installing Various Software</h2>
+<h3 id="basic-set">Basic Set</h3>
 <pre tabindex="0"><code>sudo apt install vim curl npm
 </code></pre><h3 id="php">PHP</h3>
 <pre tabindex="0"><code>sudo apt install php7.4 composer php7.4-bcmath php7.4-common php7.4-gd php7.4-json php7.4-mbstring php7.4-mysql php7.4-xml php7.4-xmlrpc
 </code></pre><h3 id="mysql-workbench">MySQL Workbench</h3>
-<p>公式ページからdebをダウンロードしてインストールしました。
+<p>I downloaded the deb file from the official page and installed it.<br>
 <a href="https://dev.mysql.com/downloads/workbench/">https://dev.mysql.com/downloads/workbench/</a></p>
-<h3 id="shutterスクショツール">Shutter(スクショツール)</h3>
-<p>既存画像に文字や矢印を書き込む事もできるので便利です。</p>
+<h3 id="shutter-screenshot-tool">Shutter (Screenshot Tool)</h3>
+<p>Useful because it allows you to write text and arrows on existing images.</p>
 <pre tabindex="0"><code>sudo add-apt-repository ppa:linuxuprising/shutter
 sudo apt update
 sudo apt install shutter
-</code></pre><h2 id="apacheを起動しないようにする">apacheを起動しないようにする</h2>
-<p>検証環境としてDocker等を利用するならローカルでApacheが動いていても邪魔なので止めます。</p>
+</code></pre><h2 id="preventing-apache-from-starting">Preventing Apache from Starting</h2>
+<p>If you are using Docker etc. for your testing environment, a local Apache server can be a nuisance, so I will stop it.</p>
 <pre tabindex="0"><code>systemctl stop apache2
 systemctl disable apache2
-</code></pre><h2 id="その他参考ページ">その他参考ページ</h2>
+</code></pre><h2 id="other-reference-pages">Other Reference Pages</h2>
 <ul>
-<li><a href="/posts/wp/48">ホームディレクトリの英語化</a></li>
-<li><a href="/posts/2019/11/08/ubuntu-tilix">Tilixの導入</a></li>
-<li><a href="/posts/2019/03/10/linux-mint-terminator-fish">Terminator+fish環境構築</a></li>
-<li><a href="/posts/2019/01/25/linux-mint-docker">Docker環境構築</a></li>
-<li><a href="/posts/2019/03/13/linux-mint-l2tp">L2TPクライアント設定</a></li>
-<li><a href="/posts/wp/239">デュアルブート環境で時計が狂うのを防ぐ</a></li>
-<li><a href="/posts/2021/02/14/ubuntu-mouse-keymap">ubuntuで多機能マウスを設定する</a></li>
-<li><a href="/posts/2021/02/17/ubuntu-howdy">Howdyを使ってubuntuで顔認証する</a></li>
+<li><a href="/posts/wp/48">Localizing the Home Directory to English</a></li>
+<li><a href="/posts/2019/11/08/ubuntu-tilix">Installing Tilix</a></li>
+<li><a href="/posts/2019/03/10/linux-mint-terminator-fish">Terminator+fish Environment Setup</a></li>
+<li><a href="/posts/2019/01/25/linux-mint-docker">Docker Environment Setup</a></li>
+<li><a href="/posts/2019/03/13/linux-mint-l2tp">L2TP Client Configuration</a></li>
+<li><a href="/posts/wp/239">Preventing Clock Skew in a Dual Boot Environment</a></li>
+<li><a href="/en/posts/2021/02/14/ubuntu-mouse-keymap/">Setting Up a Multifunction Mouse on Ubuntu</a></li>
+<li><a href="/en/posts/2021/02/17/ubuntu-howdy/">Using Howdy for Face Recognition on Ubuntu</a></li>
 </ul>
 
 	</div>

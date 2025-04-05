@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja-JP">
+<html lang="en">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
 	
 	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -11,7 +11,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>【Laravel】Observerが実行されない|FrameSynthesis</title>
+	<title>【Laravel】Observer Not Executing|Logical Dice Techblog</title>
 
 	
 	<link rel="stylesheet" href="/css/style.css">
@@ -21,7 +21,7 @@
 	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
 	
-	<link href="" rel="alternate" type="application/rss+xml" title="FrameSynthesis" />
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
 </head>
 
     <body>
@@ -38,8 +38,8 @@
 <header>
   <nav class="nav">
     <div class="nav-container jc-sb">
-      <a href="/" class="nav-title">
-        <img class="header-logo" src="/images/logo-banner.jpg" alt="FrameSynthesis" />
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
       </a>
       <div class="search-box">
         <form class="fx">
@@ -51,7 +51,7 @@
   </nav>
 
   <script>
-  const SEARCH_URL = '/search/';
+  const SEARCH_URL = '/en/search/';
   window.addEventListener('DOMContentLoaded', () => {
     const searchButton = document.getElementById('searchButton');
     const searchKeyword = document.getElementById('searchKeyword');
@@ -71,34 +71,31 @@
 
 <main>
 	<div class="post">
-		<h1 class="post-title">【Laravel】Observerが実行されない</h1>
+		<h1 class="post-title">【Laravel】Observer Not Executing</h1>
 		<div class="post-info">
-				<p class="publish-date">Posted: <time datetime="2021-02-21 00:00:00 &#43;0000 UTC" class="catalogue-time">2021-02-21</time></p>
+				<p class="publish-date">posted: <time datetime="2021-02-21 00:00:00 &#43;0000 UTC" class="catalogue-time">2021-02-21</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="http://localhost:1313/tags/laravel/">Laravel</a></div>
+					 <div class="tags_item"><a href="http://localhost:1313/en/tags/laravel/">Laravel</a></div>
 				</div>
 			
 		</div>
 		<hr />
-		<h2 id="環境">環境</h2>
+		<h2 id="environment">Environment</h2>
 <ul>
 <li>Laravel 5.8</li>
 </ul>
 <hr>
-<p>Laravelで設定したObserverの処理が実行されない事があったので、その際の調査メモです。</p>
-<h2 id="事象">事象</h2>
-<p>LaravelのObserverを使いModelの<code>updating</code>時に処理が走るようにしようと思ったのですが、<br>
-<code>updating</code>の処理を書いても実行されませんでした。</p>
-<p><code>updating</code>の処理と同クラス内で<code>updated</code>, <code>saving</code>, <code>saved</code>の処理を記載すると実行されたので、<br>
-Observerのクラス自体が読み込まれていない訳では無さそうでした。</p>
-<h2 id="原因">原因</h2>
-<p>今回Observerを設定しようとしていたクラスには既に別のObserverが設定されていました。<br>
-それ自体は問題ないのですが、その既存のObserverの<code>updating</code>にて生成した値をreturnしていました。</p>
-<p>Laravelのソースを読むと、同イベントのObserverを複数設定している場合、<br>
-先行のObserverで値をreturnしてしまうと後続のObserverが実行されないようでした。<br>
+<p>I encountered a situation where the processing of an Observer configured in Laravel did not execute, so here are my investigation notes.</p>
+<h2 id="issue">Issue</h2>
+<p>I tried to use a Laravel Observer to run a process during the <code>updating</code> event of a Model, but the <code>updating</code> process I wrote was not executed.</p>
+<p>When I wrote <code>updated</code>, <code>saving</code>, and <code>saved</code> processes in the same class as the <code>updating</code> process, they were executed, so it didn&rsquo;t seem like the Observer class itself wasn&rsquo;t being loaded.</p>
+<h2 id="cause">Cause</h2>
+<p>In this case, another Observer was already configured for the class I was trying to set up the Observer for.<br>
+This itself is not a problem, but the existing Observer was returning a value in its <code>updating</code> method.</p>
+<p>Reading the Laravel source code, it seems that if multiple Observers are configured for the same event, subsequent Observers will not be executed if a preceding Observer returns a value.<br>
 <a href="https://github.com/laravel/framework/blob/5.8/src/Illuminate/Events/Dispatcher.php#L198-L203">https://github.com/laravel/framework/blob/5.8/src/Illuminate/Events/Dispatcher.php#L198-L203</a></p>
-<p>特に理由がない限り、Observerの処理内でreturnはしないほうが良さそうです。</p>
+<p>Unless there is a specific reason to do so, it seems better not to return values within Observer methods.</p>
 
 	</div>
 </main>

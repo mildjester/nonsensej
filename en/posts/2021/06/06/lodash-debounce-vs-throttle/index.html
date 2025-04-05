@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja-JP">
+<html lang="en">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
 	
 	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -11,7 +11,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>lodashのdebounceとthrottleの違い|FrameSynthesis</title>
+	<title>Differences Between lodash&#39;s debounce and throttle|Logical Dice Techblog</title>
 
 	
 	<link rel="stylesheet" href="/css/style.css">
@@ -21,7 +21,7 @@
 	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
 	
-	<link href="" rel="alternate" type="application/rss+xml" title="FrameSynthesis" />
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
 </head>
 
     <body>
@@ -38,8 +38,8 @@
 <header>
   <nav class="nav">
     <div class="nav-container jc-sb">
-      <a href="/" class="nav-title">
-        <img class="header-logo" src="/images/logo-banner.jpg" alt="FrameSynthesis" />
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
       </a>
       <div class="search-box">
         <form class="fx">
@@ -51,7 +51,7 @@
   </nav>
 
   <script>
-  const SEARCH_URL = '/search/';
+  const SEARCH_URL = '/en/search/';
   window.addEventListener('DOMContentLoaded', () => {
     const searchButton = document.getElementById('searchButton');
     const searchKeyword = document.getElementById('searchKeyword');
@@ -71,146 +71,146 @@
 
 <main>
 	<div class="post">
-		<h1 class="post-title">lodashのdebounceとthrottleの違い</h1>
+		<h1 class="post-title">Differences Between lodash&#39;s debounce and throttle</h1>
 		<div class="post-info">
-				<p class="publish-date">Posted: <time datetime="2021-06-06 00:00:00 &#43;0000 UTC" class="catalogue-time">2021-06-06</time></p>
+				<p class="publish-date">posted: <time datetime="2021-06-06 00:00:00 &#43;0000 UTC" class="catalogue-time">2021-06-06</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="http://localhost:1313/tags/javascript/">javascript</a></div>
+					 <div class="tags_item"><a href="http://localhost:1313/en/tags/javascript/">javascript</a></div>
 				</div>
 			
 		</div>
 		<hr />
-		<h2 id="参考">参考</h2>
+		<h2 id="reference">Reference</h2>
 <ul>
 <li><a href="https://lodash.com/docs/">lodash document</a></li>
 </ul>
 <hr>
-<p>WEBページ上のボタンが連打された際にアクセス流量制限をするために、lodashのdebounceやthrottleを使うことがあります。<br>
-debounceもthrottleもどちらもリクエスト間の流量制限ができるのですが、具体的に何が変わるのか調べました。</p>
-<h2 id="先にまとめ">先にまとめ</h2>
-<p>debounceとthrottleの違いは以下の通りです。<br>
-オプションは指定せずデフォルトで呼び出す場合を想定しています。</p>
+<p>lodash&rsquo;s <code>debounce</code> and <code>throttle</code> are sometimes used to limit the rate of access when a button on a webpage is clicked repeatedly.<br>
+Both <code>debounce</code> and <code>throttle</code> can limit the rate of requests between calls, but I investigated the specific differences between them.</p>
+<h2 id="summary-first">Summary First</h2>
+<p>The differences between <code>debounce</code> and <code>throttle</code> are as follows.<br>
+This assumes the default behavior when called without specifying any options.</p>
 <h3 id="debounce">debounce</h3>
-<p>処理呼び出し後、指定時間経過後に発火します。<br>
-指定時間内に処理が連続して呼び出された場合は最後に呼び出されてから指定時間後に発火します。<br>
-debounceメソッドの処理はsetTimeoutで実行されるので、<code>await</code>を指定しても待ちません。</p>
+<p>After a function call, it will fire after the specified time has elapsed.<br>
+If the function is called continuously within the specified time, it will fire after the specified time has elapsed since the last call.<br>
+The process of the <code>debounce</code> method is executed with <code>setTimeout</code>, so it will not wait even if <code>await</code> is specified.</p>
 <h3 id="throttle">throttle</h3>
-<p>処理呼び出し後、すぐに処理が走ります。<br>
-指定時間内に処理が連続して呼び出された場合は、指定時間間隔で発火します。<br>
-throttleメソッドの処理は最初に実行される1回は<code>await</code>で待ちますが、指定時間後に最初に即走る処理は待ちますが、throttleで遅延させている処理は待ちません。</p>
-<h3 id="おすすめ">おすすめ</h3>
-<p>debounce(throttle)はオプションを指定することで挙動をカスタマイズできるので、必要なら自分の期待する挙動となるようにオプションを指定するのがオススメ。</p>
-<h2 id="調べた内容">調べた内容</h2>
-<h3 id="debounceについて">debounceについて</h3>
-<p>debounceについてはこちらに記載があります。<br>
+<p>After a function call, the process runs immediately.<br>
+If the function is called continuously within the specified time, it will fire at the specified time intervals.<br>
+The first execution of the <code>throttle</code> method will wait for <code>await</code>, but subsequent delayed executions by <code>throttle</code> will not wait.</p>
+<h3 id="recommendation">Recommendation</h3>
+<p>Since the behavior of <code>debounce</code> (and <code>throttle</code>) can be customized by specifying options, it is recommended to specify options to achieve your desired behavior if necessary.</p>
+<h2 id="investigated-content">Investigated Content</h2>
+<h3 id="about-debounce">About debounce</h3>
+<p>Information about <code>debounce</code> can be found here:<br>
 <a href="https://lodash.com/docs/4.17.15#debounce">https://lodash.com/docs/4.17.15#debounce</a></p>
 <pre tabindex="0"><code>_.debounce(func, [wait=0], [options={}])
-</code></pre><p>各項目については以下の通り。</p>
+</code></pre><p>The details of each item are as follows:</p>
 <table>
   <thead>
       <tr>
-          <th>項目</th>
-          <th>内容</th>
+          <th>Item</th>
+          <th>Description</th>
       </tr>
   </thead>
   <tbody>
       <tr>
           <td>func</td>
-          <td>流量制限対象の処理(function)です。</td>
+          <td>The function to be rate-limited.</td>
       </tr>
       <tr>
           <td>wait</td>
-          <td>処理が呼び出されてから実行するまでの待機時間です。待機中に再度呼び出されたら、そこからさらに待機時間待ちます。</td>
+          <td>The number of milliseconds to delay invoking <code>func</code>. If <code>func</code> is invoked again during the delay, the timer is reset.</td>
       </tr>
       <tr>
           <td>option</td>
-          <td>任意オプションをオブジェクトで指定します。</td>
+          <td>An optional object specifying options.</td>
       </tr>
       <tr>
           <td>option.leading</td>
-          <td>待機前に処理を実行するかどうか。デフォルト：false。</td>
+          <td>Specify invoking <code>func</code> on the leading edge of the timeout. Default: <code>false</code>.</td>
       </tr>
       <tr>
           <td>option.maxWait</td>
-          <td>処理が連続して呼び出されたとしても、maxWaitで指定した時間が経過したら処理を走らせます。デフォルト：0（指定なし）。</td>
+          <td>The maximum time <code>func</code> is allowed to be delayed before it&rsquo;s invoked. Default: <code>0</code> (not specified).</td>
       </tr>
       <tr>
           <td>option.trailing</td>
-          <td>待機後に処理を実行するかどうか。デフォルト：true。</td>
+          <td>Specify invoking <code>func</code> on the trailing edge of the timeout. Default: <code>true</code>.</td>
       </tr>
   </tbody>
 </table>
-<p>つまり、optionをデフォルトのまま呼び出すのであれば、debounceは呼び出されてから指定時間待機してから発火します。<br>
-maxWaitの指定が無いので待機時間中に呼び出され続けたら、ずっと処理は発火しません。</p>
-<h3 id="throttleについて">throttleについて</h3>
-<p>throttleについてはこちらに記載があります。<br>
+<p>In other words, if called with the default options, <code>debounce</code> will wait for the specified time after being called and then fire.<br>
+Since <code>maxWait</code> is not specified, if it continues to be called during the wait time, the process will never fire.</p>
+<h3 id="about-throttle">About throttle</h3>
+<p>Information about <code>throttle</code> can be found here:<br>
 <a href="https://lodash.com/docs/4.17.15#throttle">https://lodash.com/docs/4.17.15#throttle</a></p>
 <pre tabindex="0"><code>_.throttle(func, [wait=0], [options={}])
-</code></pre><p>各項目については以下の通り。</p>
+</code></pre><p>The details of each item are as follows:</p>
 <table>
   <thead>
       <tr>
-          <th>項目</th>
-          <th>内容</th>
+          <th>Item</th>
+          <th>Description</th>
       </tr>
   </thead>
   <tbody>
       <tr>
           <td>func</td>
-          <td>流量制限対象の処理(function)です。</td>
+          <td>The function to be rate-limited.</td>
       </tr>
       <tr>
           <td>wait</td>
-          <td>処理が呼び出される間隔の時間です。</td>
+          <td>The number of milliseconds to throttle invocations to at most once every <code>wait</code> milliseconds.</td>
       </tr>
       <tr>
           <td>option</td>
-          <td>任意オプションをオブジェクトで指定します。</td>
+          <td>An optional object specifying options.</td>
       </tr>
       <tr>
           <td>option.leading</td>
-          <td>待機前に処理を実行するかどうか。デフォルト：true。</td>
+          <td>Specify invoking <code>func</code> on the leading edge of the timeout. Default: <code>true</code>.</td>
       </tr>
       <tr>
           <td>option.trailing</td>
-          <td>待機後に処理を実行するかどうか。デフォルト：true。</td>
+          <td>Specify invoking <code>func</code> on the trailing edge of the timeout. Default: <code>true</code>.</td>
       </tr>
   </tbody>
 </table>
-<p>optionはdebounceとほぼ同じですが、leadingのデフォルトがtrueでmaxWaitの指定がありません。</p>
-<p>throttleのソースを見ると分かりますが、throttleはdebounceのオプションを指定して呼び出しているだけです。<br>
+<p>The options are almost the same as <code>debounce</code>, but the default for <code>leading</code> is <code>true</code> and <code>maxWait</code> is not specified.</p>
+<p>Looking at the source code of <code>throttle</code>, you can see that <code>throttle</code> is simply calling <code>debounce</code> with specified options.<br>
 <a href="https://github.com/lodash/lodash/blob/4.17.15/lodash.js#L10897-L10913">https://github.com/lodash/lodash/blob/4.17.15/lodash.js#L10897-L10913</a></p>
-<p>デフォルトで<code>leading</code>がtrueになり、waitで指定された時間が<code>option.maxWait</code>にも指定されています。<br>
-つまり、throttleはデフォルト値が違うdebounceです。</p>
-<h2 id="図解">図解</h2>
-<p>ボタンクリックのイベントハンドラにdebounce/throttleをデフォルトオプションで設定したとします。</p>
-<h3 id="1回クリック">1回クリック</h3>
-<p>1回だけクリックされた時の挙動は以下の通りです。<br>
+<p>By default, <code>leading</code> becomes <code>true</code>, and the time specified by <code>wait</code> is also specified for <code>option.maxWait</code>.<br>
+In other words, <code>throttle</code> is a <code>debounce</code> with different default values.</p>
+<h2 id="diagrams">Diagrams</h2>
+<p>Assume that <code>debounce</code>/<code>throttle</code> are set with default options for a button click event handler.</p>
+<h3 id="single-click">Single Click</h3>
+<p>The behavior when clicked only once is as follows:<br>
 <img src="http://localhost:1313/images/2021/06/lodash-debounce-vs-throttle-001.png"/></p>
-<p>debounceの場合はwait後、throttleの場合はwait前に処理が走ります。<br>
-debounceだとクリックしてから反応するまで、1秒未満かもしれませんが少しタイムラグが感じられるかもしれません。</p>
-<h3 id="連打クリック">連打クリック</h3>
-<p>一瞬でクリック連打された場合は以下の通りです。<br>
+<p>In the case of <code>debounce</code>, the process runs after <code>wait</code>, and in the case of <code>throttle</code>, the process runs before <code>wait</code>.<br>
+With <code>debounce</code>, there might be a slight time lag (although less than 1 second) before it reacts after clicking.</p>
+<h3 id="rapid-clicks">Rapid Clicks</h3>
+<p>The behavior when clicked rapidly in an instant is as follows:<br>
 <img src="http://localhost:1313/images/2021/06/lodash-debounce-vs-throttle-002.png"/></p>
-<p>debounceについては1回クリックした際と同じ挙動になりますが、throttleについてはwait後にも処理が走ります。<br>
-throttleだと2回処理が走ってしまうのは微妙ですね。</p>
-<h3 id="クリックし続ける">クリックし続ける</h3>
-<p>wait中に一定間隔でクリックし続けた場合は以下の通りです。<br>
+<p>The behavior of <code>debounce</code> is the same as when clicked once, but with <code>throttle</code>, the process also runs after <code>wait</code>.<br>
+It&rsquo;s a bit undesirable that <code>throttle</code> runs the process twice.</p>
+<h3 id="continuous-clicks">Continuous Clicks</h3>
+<p>The behavior when clicking continuously at regular intervals during <code>wait</code> is as follows:<br>
 <img src="http://localhost:1313/images/2021/06/lodash-debounce-vs-throttle-003.png"/></p>
-<p>debounceはクリックし続けている間は処理は走らず、最後のクリックからwaitで指定した時間だけ待って処理が走ります。<br>
-throttleはクリックし続けている間もwaitで指定した時間間隔で処理が走ります。<br>
-あまり何度も走らせたくない処理であればdebounceで、一定間隔空けば何度走っても良いのであればthrottleが向いてそうです。</p>
-<h2 id="思ったこと">思ったこと</h2>
-<p>debounceもthrottleも期待する挙動とはズレている事もあるので、<br>
-期待する挙動となるようにdebounceのオプションを設定すると良いのかなと思いました。</p>
-<p>例えばクリックした時に遅延なく処理が走って欲しくて、かつ一瞬で連打した際も一定間隔でクリックし続けた場合も1回だけ処理が走って欲しい場合、<br>
-optionのleadingがtrueでtrailingがfalseになれば良さそうです。</p>
-<pre tabindex="0"><code>_.debounce(callback, wait, {leading: true, trailing: false})
-</code></pre><p>もし一定間隔でクリックし続けた場合は定期的に処理が走って欲しいのであれば、debounceではなくthrottleを使えば良いです。</p>
-<pre tabindex="0"><code>_.throttle(callback, wait, {leading: true, trailing: false})
-// debounce(callback, wait, {leading: true, maxWait: wait, trailing: false}) と同じ
-</code></pre><p>などなど、optionの指定次第で可能性は広がると思いました。</p>
+<p><code>debounce</code> does not run the process while clicking continuously, and it waits for the time specified by <code>wait</code> after the last click before running the process.<br>
+<code>throttle</code> runs the process at the time intervals specified by <code>wait</code> even while clicking continuously.<br>
+If it&rsquo;s a process that you don&rsquo;t want to run too many times, <code>debounce</code> might be suitable, and if it&rsquo;s okay to run it multiple times as long as there is a certain interval, <code>throttle</code> might be more appropriate.</p>
+<h2 id="thoughts">Thoughts</h2>
+<p>Since the default behavior of both <code>debounce</code> and <code>throttle</code> may deviate from the expected behavior,<br>
+I thought it might be better to set the options of <code>debounce</code> to achieve the desired behavior.</p>
+<p>For example, if you want the process to run without delay when clicked, and you want the process to run only once even if clicked rapidly or continuously at regular intervals,<br>
+it seems that setting the <code>leading</code> option to <code>true</code> and the <code>trailing</code> option to <code>false</code> would be appropriate.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">_</span>.<span style="color:#a6e22e">debounce</span>(<span style="color:#a6e22e">callback</span>, <span style="color:#a6e22e">wait</span>, {<span style="color:#a6e22e">leading</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>, <span style="color:#a6e22e">trailing</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>})
+</span></span></code></pre></div><p>If you want the process to run periodically when clicking continuously at regular intervals, you should use <code>throttle</code> instead of <code>debounce</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">_</span>.<span style="color:#a6e22e">throttle</span>(<span style="color:#a6e22e">callback</span>, <span style="color:#a6e22e">wait</span>, {<span style="color:#a6e22e">leading</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>, <span style="color:#a6e22e">trailing</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>})
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Same as: _.debounce(callback, wait, {leading: true, maxWait: wait, trailing: false})
+</span></span></span></code></pre></div><p>And so on, I realized that the possibilities expand depending on the specified options.</p>
 
 	</div>
 </main>

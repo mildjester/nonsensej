@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
-    <head>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
 	
 	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -76,7 +76,7 @@
 				<p class="publish-date">投稿日: <time datetime="2019-09-14 00:00:00 &#43;0000 UTC" class="catalogue-time">2019年09月14日</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/css/">CSS</a></div>
+					 <div class="tags_item"><a href="http://localhost:1313/tags/css/">CSS</a></div>
 				</div>
 			
 		</div>
@@ -105,10 +105,10 @@ p {
   &lt;p&gt;僕にもし子供が産まれたら&lt;br/&gt;世界で2番目に好きだと話そう&lt;/p&gt;
 &lt;/div&gt;
 </code></pre><p>Chrome等で確認すると想定通りになりました。
-<img src="https://blog2.logical-dice.com/images/2019/09/text-orientation-upright-001.png" alt="Chromeキャプチャ" /></p>
+<img src="http://localhost:1313/images/2019/09/text-orientation-upright-001.png" alt="Chromeキャプチャ" /></p>
 <p>これで満足していたのですが、実は<code>text-orientation</code>はIEでは対応しておらず<br>
 数字が横向きになってしまいました。(2019年9月現在)<br>
-<img src="https://blog2.logical-dice.com/images/2019/09/text-orientation-upright-002.png" alt="IEキャプチャ" /></p>
+<img src="http://localhost:1313/images/2019/09/text-orientation-upright-002.png" alt="IEキャプチャ" /></p>
 <h2 id="対応方法">対応方法</h2>
 <p><code>text-combine-upright</code>というスタイルがあるので<br>
 これを使って数字部分を縦向きにします。</p>
@@ -137,7 +137,7 @@ span {
   &lt;p&gt;僕にもし子供が産まれたら&lt;br/&gt;世界で&lt;span&gt;2&lt;/span&gt;番目に好きだと話そう&lt;/p&gt;
 &lt;/div&gt;
 </code></pre><p>これでIEでも数字が縦向きになりました。<br>
-<img src="https://blog2.logical-dice.com/images/2019/09/text-orientation-upright-003.png" alt="IEキャプチャ2" /></p>
+<img src="http://localhost:1313/images/2019/09/text-orientation-upright-003.png" alt="IEキャプチャ2" /></p>
 <p>気をつけなければならないのは、<code>text-combine-upright</code>で囲った範囲は横に並びます。<br>
 つまり、上記のspanの中を複数文字にしてしまうと以下のようになります。</p>
 <p><strong>HTML</strong></p>
@@ -145,7 +145,7 @@ span {
   &lt;p&gt;僕にもし子供が産まれたら&lt;br/&gt;世界で&lt;span&gt;123&lt;/span&gt;番目に好きだと話そう&lt;/p&gt;
 &lt;/div&gt;
 </code></pre><p><strong>結果</strong>
-<img src="https://blog2.logical-dice.com/images/2019/09/text-orientation-upright-004.png" alt="IEキャプチャ3" /></p>
+<img src="http://localhost:1313/images/2019/09/text-orientation-upright-004.png" alt="IEキャプチャ3" /></p>
 <p>複数の英数字を縦向きにして縦に並べたい場合は<br>
 1文字ずつ<code>text-combine-upright</code>で囲まないといけないので面倒です。</p>
 <p>早くIEに<code>text-orientation</code>してもらいたいです。</p>

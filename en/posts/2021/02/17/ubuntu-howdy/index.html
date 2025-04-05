@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja-JP">
+<html lang="en">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
 	
 	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -11,7 +11,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>Howdyを使ってubuntuで顔認証する|FrameSynthesis</title>
+	<title>Using Howdy for Face Recognition on Ubuntu|Logical Dice Techblog</title>
 
 	
 	<link rel="stylesheet" href="/css/style.css">
@@ -21,7 +21,7 @@
 	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
 	
-	<link href="" rel="alternate" type="application/rss+xml" title="FrameSynthesis" />
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
 </head>
 
     <body>
@@ -38,8 +38,8 @@
 <header>
   <nav class="nav">
     <div class="nav-container jc-sb">
-      <a href="/" class="nav-title">
-        <img class="header-logo" src="/images/logo-banner.jpg" alt="FrameSynthesis" />
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
       </a>
       <div class="search-box">
         <form class="fx">
@@ -51,7 +51,7 @@
   </nav>
 
   <script>
-  const SEARCH_URL = '/search/';
+  const SEARCH_URL = '/en/search/';
   window.addEventListener('DOMContentLoaded', () => {
     const searchButton = document.getElementById('searchButton');
     const searchKeyword = document.getElementById('searchKeyword');
@@ -71,37 +71,37 @@
 
 <main>
 	<div class="post">
-		<h1 class="post-title">Howdyを使ってubuntuで顔認証する</h1>
+		<h1 class="post-title">Using Howdy for Face Recognition on Ubuntu</h1>
 		<div class="post-info">
-				<p class="publish-date">Posted: <time datetime="2021-02-17 00:00:00 &#43;0000 UTC" class="catalogue-time">2021-02-17</time></p>
+				<p class="publish-date">posted: <time datetime="2021-02-17 00:00:00 &#43;0000 UTC" class="catalogue-time">2021-02-17</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="http://localhost:1313/tags/ubuntu/">ubuntu</a></div>
+					 <div class="tags_item"><a href="http://localhost:1313/en/tags/ubuntu/">ubuntu</a></div>
 				</div>
 			
 		</div>
 		<hr />
-		<h2 id="環境">環境</h2>
+		<h2 id="environment">Environment</h2>
 <ul>
 <li>Ubuntu 20.10</li>
 <li>Thinkpad T480</li>
 </ul>
-<h2 id="参考">参考</h2>
+<h2 id="references">References</h2>
 <ul>
 <li><a href="https://github.com/boltgolt/howdy">https://github.com/boltgolt/howdy</a></li>
-<li><a href="https://wiki.archlinux.jp/index.php/Howdy">https://wiki.archlinux.jp/index.php/Howdy</a></li>
+<li><a href="https://wiki.archlinux.jp/index.php/Howdy">https://wiki.archlinux.jp/index.php/Howdy</a> (Japanese)</li>
 </ul>
 <hr>
-<p>Windowsを使っている時に顔認証（Windows Hello）でログインできるのがとても便利だったのでUbuntuでも実現してみます。<br>
-Ubuntuでは<code>Howdy</code>というアプリケーションで実現できそうなので設定してみました。</p>
-<h2 id="赤外線カメラ情報の取得">赤外線カメラ情報の取得</h2>
-<p>顔認証には赤外線カメラを使います。<br>
-カメラ情報を取得するために<code>v4l-utils</code>を利用します。</p>
-<h3 id="v4l-utilsインストール">v4l-utilsインストール</h3>
+<p>Since it was very convenient to log in with face recognition (Windows Hello) when using Windows, I will try to achieve this on Ubuntu as well.<br>
+It seems that Ubuntu can achieve this with an application called <code>Howdy</code>, so I have configured it.</p>
+<h2 id="obtaining-infrared-camera-information">Obtaining Infrared Camera Information</h2>
+<p>Face recognition uses an infrared camera.<br>
+We will use <code>v4l-utils</code> to obtain camera information.</p>
+<h3 id="installing-v4l-utils">Installing v4l-utils</h3>
 <pre tabindex="0"><code>sudo apt-get install v4l-utils
-</code></pre><h3 id="カメラ情報確認">カメラ情報確認</h3>
-<p>以下コマンドでカメラ情報を確認します。<br>
-赤外線カメラ(IR Camera)の項目を確認します。</p>
+</code></pre><h3 id="checking-camera-information">Checking Camera Information</h3>
+<p>Check the camera information with the following command.<br>
+Check the item for the Infrared Camera (IR Camera).</p>
 <pre tabindex="0"><code>v4l2-ctl --list-devices --all
 
 # 以下出力結果で見る場所
@@ -111,16 +111,16 @@ Integrated IR Camera: Integrate (usb-0000:00:14.0-5):
 
 Format Video Capture:
     Width/Height      : 340/340　　　←キャプチャサイズは340×340
-</code></pre><p>※Thinkpat T480だとvideo1も列挙されてましたが、後々の設定でvideo1を指定すると動きませんでした。</p>
-<h2 id="howdy導入">Howdy導入</h2>
-<h3 id="howdyのインストール">Howdyのインストール</h3>
-<p>まず必要なソフトをインストールします。</p>
+</code></pre><p>*On Thinkpad T480, video1 was also listed, but specifying video1 in later settings did not work.</p>
+<h2 id="installing-howdy">Installing Howdy</h2>
+<h3 id="installing-howdy-1">Installing Howdy</h3>
+<p>First, install the necessary software.</p>
 <pre tabindex="0"><code>sudo add-apt-repository ppa:boltgolt/howdy
 sudo apt update
 sudo apt install howdy
-</code></pre><p>途中で以下のようにセキュア具合を聞かれます。<br>
-自分の好みや状況に合わせて選択してください。<br>
-(f:早さ重視、b:バランス型、s:セキュリティ重視)</p>
+</code></pre><p>During the installation, you will be asked about the security level as shown below.<br>
+Please select according to your preference and situation.<br>
+(f: prioritize speed, b: balanced, s: prioritize security)</p>
 <pre tabindex="0"><code>After detection, Howdy knows how certain it is that the match is correct.
 How certain Howdy needs to be before authenticating you can be customized.
 
@@ -134,67 +134,67 @@ S: Secure.
 The safest option, but will take much longer to authenticate you.
 
 You can always change this setting in the config.
-What profile would you like to use? [f/b/s]: 　　　　　　　　　　　←ここでfかbかsを入力
-</code></pre><h3 id="設定ファイル更新">設定ファイル更新</h3>
-<p>以下コマンドでHowdyの設定ファイルを編集します。<br>
-vimユーザーには慣れないUIですが、下部に記載されているショートカットを参照しながら対応します。<br>
-(<code>^</code>:Ctrl押しながら　<code>M-</code>:Alt押しながら)</p>
+What profile would you like to use? [f/b/s]: 　　　　　　　　&lt;- Enter f, b, or s here
+</code></pre><h3 id="updating-configuration-file">Updating Configuration File</h3>
+<p>Edit the Howdy configuration file with the following command.<br>
+The UI may be unfamiliar to vim users, but refer to the shortcuts listed at the bottom.<br>
+(<code>^</code>: Ctrl key pressed, <code>M-</code>: Alt key pressed)</p>
 <pre tabindex="0"><code>sudo howdy config
-</code></pre><p>以下の箇所の設定をします。<br>
-※機種によってはデフォルトのままでも自動で設定されるようですが、Thinkpad T480では自動で設定されませんでした。</p>
-<pre tabindex="0"><code>device_path = /dev/video0        ← v4l2-ctlで確認したパス
+</code></pre><p>Configure the following items.<br>
+*On some models, it seems to be automatically configured by default, but it was not automatically configured on Thinkpad T480.</p>
+<pre tabindex="0"><code>device_path = /dev/video0        ← Path confirmed with v4l2-ctl
 
-frame_width = 340                ← v4l2-ctlで確認したキャプチャサイズ
+frame_width = 340                ← Capture size confirmed with v4l2-ctl
 frame_height = 340
 
-dark_threshold = 100             ← 暗さ調整（後述）
-</code></pre><p>これで設定は完了です。<br>
-以下コマンドを実行すると顔を検知できるかテストできます。</p>
+dark_threshold = 100             ← Darkness adjustment (explained later)
+</code></pre><p>The configuration is now complete.<br>
+You can test if the face can be detected by executing the following command.</p>
 <pre tabindex="0"><code>sudo howdy test
-</code></pre><p>テスト画面で『DARK FRAME』と表示される場合は暗さ調整が必要です。<br>
-設定ファイルの<code>dark_threshold</code>の値を大きくしてください。</p>
-<h3 id="顔の登録">顔の登録</h3>
-<p>以下コマンドで顔の登録をします。<br>
-コマンドを入力すると登録名の入力を求められるので必要に応じて入力してください。<br>
-（そのままEnterでも可）<br>
-その後、顔登録が始まるのでカメラを見つめて待機します。</p>
+</code></pre><p>If &lsquo;DARK FRAME&rsquo; is displayed in the test screen, darkness adjustment is necessary.<br>
+Increase the value of <code>dark_threshold</code> in the configuration file.</p>
+<h3 id="registering-face">Registering Face</h3>
+<p>Register your face with the following command.<br>
+When you enter the command, you will be asked to enter a registration name, so enter it as needed.<br>
+(You can press Enter as is)<br>
+After that, face registration will start, so look at the camera and wait.</p>
 <pre tabindex="0"><code>sudo howdy add
-</code></pre><p>これで<code>Added a new model to {ユーザー名}</code>と表示されれば登録完了です。</p>
-<h2 id="pam設定">pam設定</h2>
-<p><code>/etc/pam.d/</code>配下のファイルにHowdyの設定を追加します。<br>
-よく使いそうなのだとloginとsudoあたりかと思います。</p>
-<p><code>/etc/pam.d</code>配下のファイルには以下行を追加します。</p>
+</code></pre><p>Registration is complete if <code>Added a new model to {username}</code> is displayed.</p>
+<h2 id="pam-configuration">PAM Configuration</h2>
+<p>Add the Howdy configuration to the files under <code>/etc/pam.d/</code>.<br>
+Commonly used ones would be login and sudo.</p>
+<p>Add the following line to the files under <code>/etc/pam.d</code>:</p>
 <pre tabindex="0"><code>auth sufficient pam_python.so /lib/security/howdy/pam.py
-</code></pre><p>これでHowdyの設定は完了です。<br>
-顔認証でログインやsudoができるようになっていることを確認してください。</p>
-<p>使ってみた所感、確かに顔認証でログインできるのですが<br>
-ログイン後にChromeを起動したりするタイミングで結局パスワードを聞かれます。<br>
-本当にセキュアな部分は顔認証だけではダメなようでした。</p>
+</code></pre><p>The Howdy configuration is now complete.<br>
+Please verify that you can log in and use sudo with face recognition.</p>
+<p>My impression after using it is that while I can log in with face recognition,<br>
+I am still asked for my password when launching Chrome after logging in.<br>
+It seems that face recognition alone is not enough for truly secure parts.</p>
 <hr>
-<h2 id="トラブルシューティング">トラブルシューティング</h2>
-<h3 id="camera-path-is-not-configured-エラー">Camera path is not configured エラー</h3>
-<p><code>sudo howdy add</code>を実行すると以下エラーが出ました。</p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="camera-path-is-not-configured-error">Camera path is not configured Error</h3>
+<p>The following error occurred when executing <code>sudo howdy add</code>:</p>
 <pre tabindex="0"><code>Camera path is not configured correctly, please edit the &#39;device_path&#39; config value.
 Exception ignored in: &lt;function VideoCapture.__del__ at 0x7fe09a3a05e0&gt;
 Traceback (most recent call last):
   File &#34;/usr/lib/security/howdy/recorders/video_capture.py&#34;, line 55, in __del__
     self.internal.release()
 AttributeError: &#39;VideoCapture&#39; object has no attribute &#39;internal&#39;
-</code></pre><p>デバイスを自動で見つけることができなかったようです。<br>
-<code>sudo howdy config</code>でdevice_pathを指定してください。</p>
-<h3 id="no-face-detected-エラー">No face detected エラー</h3>
-<p><code>sudo howdy add</code>を実行すると以下エラーが出ました。</p>
+</code></pre><p>It seems that the device could not be found automatically.<br>
+Please specify the <code>device_path</code> with <code>sudo howdy config</code>.</p>
+<h3 id="no-face-detected-error">No face detected Error</h3>
+<p>The following error occurred when executing <code>sudo howdy add</code>:</p>
 <pre tabindex="0"><code>Please look straight into the camera
 No face detected, aborting
-</code></pre><p>カメラを真っ直ぐ見ていても発生するのですが、これはキャプチャサイズが自動検知できていないのが原因でした。<br>
-<code>sudo howdy config</code>でframe_width/frame_heightを指定してください。</p>
-<h3 id="all-frames-were-too-dark-エラー">All frames were too dark エラー</h3>
-<p><code>sudo howdy add</code>を実行すると以下エラーが出ました。</p>
+</code></pre><p>This occurred even when looking straight at the camera, and it was caused by the capture size not being automatically detected.<br>
+Please specify <code>frame_width</code> and <code>frame_height</code> with <code>sudo howdy config</code>.</p>
+<h3 id="all-frames-were-too-dark-error">All frames were too dark Error</h3>
+<p>The following error occurred when executing <code>sudo howdy add</code>:</p>
 <pre tabindex="0"><code>Please look straight into the camera
 All frames were too dark, please check dark_threshold in config
 Average darkness: [77.42311], Threshold: 50.0
-</code></pre><p>部屋を明るくしたり顔にライトを当てても駄目でした。<br>
-<code>sudo howdy config</code>でdark_thresholdを100にしたら治りました。</p>
+</code></pre><p>It didn&rsquo;t work even after brightening the room or shining a light on my face.<br>
+It was resolved by setting <code>dark_threshold</code> to 100 with <code>sudo howdy config</code>.</p>
 
 	</div>
 </main>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
-    <head>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
 	
 	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -76,7 +76,7 @@
 				<p class="publish-date">投稿日: <time datetime="2019-03-04 00:00:00 &#43;0000 UTC" class="catalogue-time">2019年03月04日</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/circleci/">CircleCI</a></div> <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/aws/">AWS</a></div>
+					 <div class="tags_item"><a href="http://localhost:1313/tags/circleci/">CircleCI</a></div> <div class="tags_item"><a href="http://localhost:1313/tags/aws/">AWS</a></div>
 				</div>
 			
 		</div>
@@ -88,16 +88,16 @@
 <h2 id="iam準備">IAM準備</h2>
 <p>CircleCI用のIAMユーザーを作成します。<br>
 まず適当なユーザー名をつけ、アクセスの種類は『プログラムによるアクセス』にチェックをつけ次のステップへ進みます。<br>
-<img src="https://blog2.logical-dice.com/images/2019/03/AWS-CodeDeploy-CircleCI-001.png"/></p>
+<img src="http://localhost:1313/images/2019/03/AWS-CodeDeploy-CircleCI-001.png"/></p>
 <p>既存ポリシーの『AWSCodeDeployFullAccess』を付与して次のステップへ進みます。<br>
-<img src="https://blog2.logical-dice.com/images/2019/03/AWS-CodeDeploy-CircleCI-002.png"/></p>
+<img src="http://localhost:1313/images/2019/03/AWS-CodeDeploy-CircleCI-002.png"/></p>
 <p>タグは不要なので、そのまま次のステップに進んで大丈夫です。<br>
-<img src="https://blog2.logical-dice.com/images/2019/03/AWS-CodeDeploy-CircleCI-003.png"/></p>
+<img src="http://localhost:1313/images/2019/03/AWS-CodeDeploy-CircleCI-003.png"/></p>
 <p>ユーザーの作成をします。<br>
-<img src="https://blog2.logical-dice.com/images/2019/03/AWS-CodeDeploy-CircleCI-004.png"/></p>
+<img src="http://localhost:1313/images/2019/03/AWS-CodeDeploy-CircleCI-004.png"/></p>
 <p>作成したユーザーの「アクセスキーID」と「シークレットアクセスキー」をメモして終了です。<br>
 ※シークレットアクセスキーはこのタイミングでしか確認できないので忘れないよう注意<br>
-<img src="https://blog2.logical-dice.com/images/2019/03/AWS-CodeDeploy-CircleCI-005.png"/></p>
+<img src="http://localhost:1313/images/2019/03/AWS-CodeDeploy-CircleCI-005.png"/></p>
 <h2 id="circleciの設定ファイル作成">CircleCIの設定ファイル作成</h2>
 <p>リポジトリ内に<code>.circleci/config.yml</code>を作成し、以下のように記載します。</p>
 <pre tabindex="0"><code>version: 2
@@ -156,7 +156,7 @@ workflows:
 <p>次に作成したAWSのIAMユーザーのキーを設定します。<br>
 CircleCIのプロジェクトの設定画面を開き（プロジェクト画面で歯車ボタンをクリック）<br>
 『PERMISSIONS &gt; AWS Permissions』を開くと設定できます。<br>
-<img src="https://blog2.logical-dice.com/images/2019/03/AWS-CodeDeploy-CircleCI-006.png"/></p>
+<img src="http://localhost:1313/images/2019/03/AWS-CodeDeploy-CircleCI-006.png"/></p>
 <p>これで設定は完了です。<br>
 masterブランチにマージorプッシュされるとCircleCIとCodeDeployが走って自動デプロイされます。</p>
 

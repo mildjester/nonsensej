@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja-JP">
+<html lang="en">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
 	
 	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -11,7 +11,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>【Laravel】JTIを指定してJWTトークンを無効化する|FrameSynthesis</title>
+	<title>【Laravel】Invalidating JWT Tokens by Specifying JTI|Logical Dice Techblog</title>
 
 	
 	<link rel="stylesheet" href="/css/style.css">
@@ -21,7 +21,7 @@
 	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
 	
-	<link href="" rel="alternate" type="application/rss+xml" title="FrameSynthesis" />
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
 </head>
 
     <body>
@@ -38,8 +38,8 @@
 <header>
   <nav class="nav">
     <div class="nav-container jc-sb">
-      <a href="/" class="nav-title">
-        <img class="header-logo" src="/images/logo-banner.jpg" alt="FrameSynthesis" />
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
       </a>
       <div class="search-box">
         <form class="fx">
@@ -51,7 +51,7 @@
   </nav>
 
   <script>
-  const SEARCH_URL = '/search/';
+  const SEARCH_URL = '/en/search/';
   window.addEventListener('DOMContentLoaded', () => {
     const searchButton = document.getElementById('searchButton');
     const searchKeyword = document.getElementById('searchKeyword');
@@ -71,45 +71,45 @@
 
 <main>
 	<div class="post">
-		<h1 class="post-title">【Laravel】JTIを指定してJWTトークンを無効化する</h1>
+		<h1 class="post-title">【Laravel】Invalidating JWT Tokens by Specifying JTI</h1>
 		<div class="post-info">
-				<p class="publish-date">Posted: <time datetime="2021-04-12 00:00:00 &#43;0000 UTC" class="catalogue-time">2021-04-12</time></p>
+				<p class="publish-date">posted: <time datetime="2021-04-12 00:00:00 &#43;0000 UTC" class="catalogue-time">2021-04-12</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="http://localhost:1313/tags/laravel/">Laravel</a></div>
+					 <div class="tags_item"><a href="http://localhost:1313/en/tags/laravel/">Laravel</a></div>
 				</div>
 			
 		</div>
 		<hr />
-		<p>LaravelでAPIを構築するとJWTトークンを利用することがあると思います。<br>
-JTI(トークンの識別子)を指定してJWTトークンを無効化してみます。</p>
-<p>実装するとこんな感じです。</p>
-<pre tabindex="0"><code>use Tymon\JWTAuth\Providers\Storage\Illuminate as JWTStorage;
-
-class JwtDisableService
-{
-    protected $jwtStorage;
-
-    public function __construct(JWTStorage $jwtStorage)
-    {
-        $this-&gt;jwtStorage = $jwtStorage;
-    }
-
-    public function __invoke(string $jti)
-    {
-        // 無効化する
-        $this-&gt;jwtStorage-&gt;forever($jti, &#39;forever&#39;);
-
-        return response()-&gt;json([
-            &#39;result&#39; =&gt; &#39;OK&#39;
-        ]);
-     }
-}
-</code></pre><p>注意が必要なのは、JWTトークンの有効/無効判定はブラックリストをキャッシュで持つという点です。</p>
-<p>JWTの有効なトークンはどこかで保持されている訳ではありません。<br>
-妥当な形式な有効期限内であるトークンは明示的に無効化されてなければ使えます。</p>
-<p>なので、上記の方法でトークンを無効化したとしても、有効期限が切れる前にキャッシュクリアしてしまうと再度使えるようになります。<br>
-そこにだけ注意して実装する必要がありそうです。</p>
+		<p>When building APIs with Laravel, you might use JWT tokens.<br>
+Here&rsquo;s how to invalidate a JWT token by specifying its JTI (JWT ID).</p>
+<p>Here&rsquo;s an example implementation:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Tymon\JWTAuth\Providers\Storage\Illuminate</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">JWTStorage</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JwtDisableService</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> $jwtStorage;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> __construct(<span style="color:#a6e22e">JWTStorage</span> $jwtStorage)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">jwtStorage</span> <span style="color:#f92672">=</span> $jwtStorage;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> __invoke(<span style="color:#a6e22e">string</span> $jti)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Invalidate
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">jwtStorage</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">forever</span>($jti, <span style="color:#e6db74">&#39;forever&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">response</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">json</span>([
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;result&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;OK&#39;</span>
+</span></span><span style="display:flex;"><span>        ]);
+</span></span><span style="display:flex;"><span>     }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>It&rsquo;s important to note that JWT token validity is determined by a blacklist held in the cache.</p>
+<p>Valid JWT tokens are not stored anywhere.<br>
+A token with a valid format and within its expiration period can be used unless it has been explicitly invalidated.</p>
+<p>Therefore, even if you invalidate a token using the method above, it can become usable again if the cache is cleared before the token expires.<br>
+You need to be careful about this when implementing.</p>
 
 	</div>
 </main>

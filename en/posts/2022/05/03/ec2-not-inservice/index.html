@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja-JP">
+<html lang="en">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
 	
 	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -11,7 +11,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>【AWS】Auto ScalingのインスタンスがInServiceにならない|FrameSynthesis</title>
+	<title>【AWS】Auto Scaling Instances Not Becoming InService|Logical Dice Techblog</title>
 
 	
 	<link rel="stylesheet" href="/css/style.css">
@@ -21,7 +21,7 @@
 	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
 
 	
-	<link href="" rel="alternate" type="application/rss+xml" title="FrameSynthesis" />
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
 </head>
 
     <body>
@@ -38,8 +38,8 @@
 <header>
   <nav class="nav">
     <div class="nav-container jc-sb">
-      <a href="/" class="nav-title">
-        <img class="header-logo" src="/images/logo-banner.jpg" alt="FrameSynthesis" />
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
       </a>
       <div class="search-box">
         <form class="fx">
@@ -51,7 +51,7 @@
   </nav>
 
   <script>
-  const SEARCH_URL = '/search/';
+  const SEARCH_URL = '/en/search/';
   window.addEventListener('DOMContentLoaded', () => {
     const searchButton = document.getElementById('searchButton');
     const searchKeyword = document.getElementById('searchKeyword');
@@ -71,26 +71,26 @@
 
 <main>
 	<div class="post">
-		<h1 class="post-title">【AWS】Auto ScalingのインスタンスがInServiceにならない</h1>
+		<h1 class="post-title">【AWS】Auto Scaling Instances Not Becoming InService</h1>
 		<div class="post-info">
-				<p class="publish-date">Posted: <time datetime="2022-05-03 00:00:00 &#43;0000 UTC" class="catalogue-time">2022-05-03</time></p>
+				<p class="publish-date">posted: <time datetime="2022-05-03 00:00:00 &#43;0000 UTC" class="catalogue-time">2022-05-03</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="http://localhost:1313/tags/aws/">AWS</a></div>
+					 <div class="tags_item"><a href="http://localhost:1313/en/tags/aws/">AWS</a></div>
 				</div>
 			
 		</div>
 		<hr />
-		<h2 id="発生した事象">■発生した事象</h2>
-<p>AWSにてシステムを構築しており、EC2のオートスケール設定をしてあったのですが、突然オートスケールで立ち上がったインスタンスのライフサイクルが『InService』にならずに『Pending:Wait』から変わらない事象が発生しました。</p>
-<p>今まではオートスケールで正常にインスタンスが立ち上がっていたのですが、ある日突然発生しました。</p>
-<h2 id="原因">■原因</h2>
-<p>原因はAutoscalingとCodeDeployの不一致でした。</p>
-<p>システムはCodeDeployでGitHubのソースを持ってきてEC2にデプロイする構成で、Autoscalingでインスタンスを生成した際にはデプロイグループが紐づいているCodeDeployが実行されます。<br>
-<a href="https://docs.aws.amazon.com/ja_jp/codedeploy/latest/userguide/integrations-aws-auto-scaling.html#integrations-aws-auto-scaling-behaviors-hook-usage">AWS ユーザーガイド</a></p>
-<p>事象発生時は「デプロイグループが紐づいているCodeDeploy」が存在しておらず、Autoscalingのライフサイクルフックが完了することができずにライフサイクルが『Pending:Wait』で止まっていたようでした。</p>
-<p>基本的には自動的にAutoscalingグループとデプロイグループは紐づいているはずですが、何かしら障害や不具合があるとズレることがあります。<br>
-ライフサイクルが『InService』にならない時は、デプロイグループに設定されている「環境設定: Amazon EC2 Auto Scaling グループ」がAutoscalingグループと一致しているか確認した方が良さそうです。</p>
+		<h2 id="-issue-encountered">■ Issue Encountered</h2>
+<p>I was building a system on AWS and had configured EC2 Auto Scaling. Suddenly, an issue occurred where the lifecycle of instances launched by Auto Scaling did not become &lsquo;InService&rsquo; and remained in &lsquo;Pending:Wait&rsquo;.</p>
+<p>Until now, instances had been launching correctly with Auto Scaling, but this issue suddenly started occurring one day.</p>
+<h2 id="-cause">■ Cause</h2>
+<p>The cause was a mismatch between Auto Scaling and CodeDeploy.</p>
+<p>The system is configured to use CodeDeploy to fetch source code from GitHub and deploy it to EC2 instances. When Auto Scaling launches an instance, CodeDeploy with an associated deployment group is executed.<br>
+<a href="https://docs.aws.amazon.com/ja_jp/codedeploy/latest/userguide/integrations-aws-auto-scaling.html#integrations-aws-auto-scaling-behaviors-hook-usage">AWS User Guide</a></p>
+<p>At the time of the issue, the &ldquo;CodeDeploy with an associated deployment group&rdquo; did not exist, and it seems that the Auto Scaling lifecycle hook could not complete, causing the lifecycle to remain stuck in &lsquo;Pending:Wait&rsquo;.</p>
+<p>Basically, the Auto Scaling group and deployment group should be automatically associated, but they can become misaligned due to some kind of failure or bug.<br>
+If the lifecycle does not become &lsquo;InService&rsquo;, it is a good idea to check if the &ldquo;Environment configuration: Amazon EC2 Auto Scaling groups&rdquo; set in the deployment group matches the Auto Scaling group.</p>
 
 	</div>
 </main>

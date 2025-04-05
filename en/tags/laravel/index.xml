@@ -1,68 +1,33 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Laravel on FrameSynthesis</title>
-    <link>http://localhost:1313/tags/laravel/</link>
-    <description>Recent content in Laravel on FrameSynthesis</description>
+    <title>Laravel on Logical Dice Techblog</title>
+    <link>http://localhost:1313/en/tags/laravel/</link>
+    <description>Recent content in Laravel on Logical Dice Techblog</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Sat, 19 Jun 2021 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/laravel/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/en/tags/laravel/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>【Laravel】モデルをcreateしてもレスポンスをHTTP 200にする</title>
-      <link>http://localhost:1313/ja/posts/2021/06/19/laravel-create-http200/</link>
+      <title>【Laravel】Returning HTTP 200 After Creating a Model</title>
+      <link>http://localhost:1313/en/posts/2021/06/19/laravel-create-http200/</link>
       <pubDate>Sat, 19 Jun 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/ja/posts/2021/06/19/laravel-create-http200/</guid>
-      <description>モデルをcreateして返却しても201は返さない方法です</description>
+      <guid>http://localhost:1313/en/posts/2021/06/19/laravel-create-http200/</guid>
+      <description>How to avoid returning 201 when creating and returning a model.</description>
     </item>
     <item>
-      <title>【Laravel】JTIを指定してJWTトークンを無効化する</title>
-      <link>http://localhost:1313/ja/posts/2021/04/12/laravel-jwt-clear/</link>
+      <title>【Laravel】Invalidating JWT Tokens by Specifying JTI</title>
+      <link>http://localhost:1313/en/posts/2021/04/12/laravel-jwt-clear/</link>
       <pubDate>Mon, 12 Apr 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/ja/posts/2021/04/12/laravel-jwt-clear/</guid>
-      <description>JTIを指定してJWTトークンを無効化する方法です</description>
+      <guid>http://localhost:1313/en/posts/2021/04/12/laravel-jwt-clear/</guid>
+      <description>How to invalidate JWT tokens by specifying JTI.</description>
     </item>
     <item>
-      <title>【Laravel】Observerが実行されない</title>
-      <link>http://localhost:1313/ja/posts/2021/02/21/larave-observer-stop/</link>
+      <title>【Laravel】Observer Not Executing</title>
+      <link>http://localhost:1313/en/posts/2021/02/21/larave-observer-stop/</link>
       <pubDate>Sun, 21 Feb 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/ja/posts/2021/02/21/larave-observer-stop/</guid>
-      <description>Laravelで設定したObserverの処理が実行されない事があったので、その際の調査メモです。</description>
-    </item>
-    <item>
-      <title>LaravelのQueue内でAuth::user()が取れたり取れなかったりする</title>
-      <link>http://localhost:1313/ja/posts/2021/01/13/laravel-auth-user/</link>
-      <pubDate>Wed, 13 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/ja/posts/2021/01/13/laravel-auth-user/</guid>
-      <description>LaravelのAuth::user()をキューで呼び出すと、環境により値が取れたりnullになったりするという事象に遭遇したので、その際のメモです。</description>
-    </item>
-    <item>
-      <title>【Laravel】migrateで『Class &#39;CreateFoooTable&#39; not found』が発生する</title>
-      <link>http://localhost:1313/en/posts/wp/520/</link>
-      <pubDate>Tue, 11 Apr 2017 16:25:41 +0000</pubDate>
-      <guid>http://localhost:1313/en/posts/wp/520/</guid>
-      <description>■環境Laravel 5.1Laravelの「migrate:rollback」や「migrate:refresh」をしようとし&amp;hellip;</description>
-    </item>
-    <item>
-      <title>【Laravel】migrateで『Class &#39;CreateFoooTable&#39; not found』が発生する</title>
-      <link>http://localhost:1313/ja/posts/wp/520/</link>
-      <pubDate>Tue, 11 Apr 2017 16:25:41 +0000</pubDate>
-      <guid>http://localhost:1313/ja/posts/wp/520/</guid>
-      <description>■環境Laravel 5.1Laravelの「migrate:rollback」や「migrate:refresh」をしようとし&amp;hellip;</description>
-    </item>
-    <item>
-      <title>【PHP】Laravel5でカスタムバリデーションを追加する</title>
-      <link>http://localhost:1313/en/posts/wp/512/</link>
-      <pubDate>Tue, 11 Apr 2017 15:11:41 +0000</pubDate>
-      <guid>http://localhost:1313/en/posts/wp/512/</guid>
-      <description>■環境Laravel 5.1Laravel5でカスタムバリデーションを追加した際の手順です。まず、サービスプロバイダーを作成しま&amp;hellip;</description>
-    </item>
-    <item>
-      <title>【PHP】Laravel5でカスタムバリデーションを追加する</title>
-      <link>http://localhost:1313/ja/posts/wp/512/</link>
-      <pubDate>Tue, 11 Apr 2017 15:11:41 +0000</pubDate>
-      <guid>http://localhost:1313/ja/posts/wp/512/</guid>
-      <description>■環境Laravel 5.1Laravel5でカスタムバリデーションを追加した際の手順です。まず、サービスプロバイダーを作成しま&amp;hellip;</description>
+      <guid>http://localhost:1313/en/posts/2021/02/21/larave-observer-stop/</guid>
+      <description>Investigation notes when the processing of an Observer configured in Laravel did not execute.</description>
     </item>
   </channel>
 </rss>

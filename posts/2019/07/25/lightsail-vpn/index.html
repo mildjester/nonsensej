@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja-JP">
-    <head>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
 	
 	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -76,7 +76,7 @@
 				<p class="publish-date">投稿日: <time datetime="2019-07-25 00:00:00 &#43;0000 UTC" class="catalogue-time">2019年07月25日</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/aws/">AWS</a></div> <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/vpn/">VPN</a></div>
+					 <div class="tags_item"><a href="http://localhost:1313/tags/aws/">AWS</a></div> <div class="tags_item"><a href="http://localhost:1313/tags/vpn/">VPN</a></div>
 				</div>
 			
 		</div>
@@ -101,35 +101,35 @@ Linux Mint, Android, iPhoneで接続できるようにします。</p>
 <h3 id="新規インスタンス作成">新規インスタンス作成</h3>
 <p>Lightsailのページにて『インスタンスの作成』をクリックします。<br>
 <a href="https://lightsail.aws.amazon.com/ls/webapp/home/instances">https://lightsail.aws.amazon.com/ls/webapp/home/instances</a><br>
-<img src="https://blog2.logical-dice.com/images/2019/07/lightsail-vpn-001.png" /></p>
+<img src="http://localhost:1313/images/2019/07/lightsail-vpn-001.png" /></p>
 <p>インスタンスイメージとして以下を選択します。</p>
 <ul>
 <li>Lunux/Unix</li>
 <li>OSのみ</li>
 <li>Amazon Linux</li>
 </ul>
-<img src="https://blog2.logical-dice.com/images/2019/07/lightsail-vpn-002.png" />
+<img src="http://localhost:1313/images/2019/07/lightsail-vpn-002.png" />
 <p>インスタンスプランはVPNの利用予定に合わせて選びます。<br>
 個人でちょっと使う程度であれば最安のプランでよいと思います。<br>
-<img src="https://blog2.logical-dice.com/images/2019/07/lightsail-vpn-003.png" /></p>
+<img src="http://localhost:1313/images/2019/07/lightsail-vpn-003.png" /></p>
 <p>インスタンス名を適当につけて「インスタンスを作成」をクリックします。<br>
-<img src="https://blog2.logical-dice.com/images/2019/07/lightsail-vpn-004.png" /></p>
+<img src="http://localhost:1313/images/2019/07/lightsail-vpn-004.png" /></p>
 <h3 id="静的ipの設定">静的IPの設定</h3>
 <p>インスタンス一覧画面に戻るので<br>
 先程作成したインスタンスの「︙」から『管理』をクリックします。<br>
-<img src="https://blog2.logical-dice.com/images/2019/07/lightsail-vpn-005.png" /></p>
+<img src="http://localhost:1313/images/2019/07/lightsail-vpn-005.png" /></p>
 <p>ネットワーキングタブを開き、「静的IPの作成」をクリックします。<br>
-<img src="https://blog2.logical-dice.com/images/2019/07/lightsail-vpn-006.png" /></p>
+<img src="http://localhost:1313/images/2019/07/lightsail-vpn-006.png" /></p>
 <p>静的IPの設定画面になるので、適用するインスタンス（今作ったインスタンス）と<br>
 静的IPの名前を決めて「作成」をクリックします。<br>
-<img src="https://blog2.logical-dice.com/images/2019/07/lightsail-vpn-007.png" /></p>
+<img src="http://localhost:1313/images/2019/07/lightsail-vpn-007.png" /></p>
 <h3 id="ポート開放">ポート開放</h3>
 <p>対象インスタンスの『ネットワーキング』タブを開きます。<br>
 ファイアウォールの「＋追加」をクリックし、TCPの1194ポートを開きます。<br>
-<img src="https://blog2.logical-dice.com/images/2019/07/lightsail-vpn-008.png" /></p>
+<img src="http://localhost:1313/images/2019/07/lightsail-vpn-008.png" /></p>
 <h3 id="lightsailへの接続">Lightsailへの接続</h3>
 <p>インスタンス一覧にて再度「︙」から『接続』をクリックします。<br>
-<img src="https://blog2.logical-dice.com/images/2019/07/lightsail-vpn-005.png" /></p>
+<img src="http://localhost:1313/images/2019/07/lightsail-vpn-005.png" /></p>
 <p>別ウィンドウでターミナル調のブラウザが立ち上がるので、以降の作業を実施します。<br>
 手元のターミナルからsshで繋いでも良いです。</p>
 <h3 id="lightsailの時刻を日本時間に合わせる">Lightsailの時刻を日本時間に合わせる</h3>
@@ -320,10 +320,10 @@ verb 3
 <p>標準でネットワーク設定画面よりOpenVPNの設定ができるので<br>
 そこで上記ファイルの設定をすれば接続できるようになります。</p>
 <p>設定画面のキャプチャを貼っておきます。<br>
-<img src="https://blog2.logical-dice.com/images/2019/07/lightsail-vpn-009.png" /><br>
-<img src="https://blog2.logical-dice.com/images/2019/07/lightsail-vpn-010.png" /><br>
-<img src="https://blog2.logical-dice.com/images/2019/07/lightsail-vpn-011.png" /><br>
-<img src="https://blog2.logical-dice.com/images/2019/07/lightsail-vpn-012.png" /></p>
+<img src="http://localhost:1313/images/2019/07/lightsail-vpn-009.png" /><br>
+<img src="http://localhost:1313/images/2019/07/lightsail-vpn-010.png" /><br>
+<img src="http://localhost:1313/images/2019/07/lightsail-vpn-011.png" /><br>
+<img src="http://localhost:1313/images/2019/07/lightsail-vpn-012.png" /></p>
 <h3 id="android">Android</h3>
 <p>ovpnファイルをAndroid端末にメール添付などで送付しておきます。</p>
 <p>GooglePlayにてOpenVPNアプリをインストールします。<br>
