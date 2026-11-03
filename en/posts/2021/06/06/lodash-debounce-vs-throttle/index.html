@@ -55,7 +55,7 @@
 				<p class="publish-date">posted: <time datetime="2021-06-06 00:00:00 &#43;0000 UTC" class="catalogue-time">2021-06-06</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="https://blog2.logical-dice.com/en/tags/javascript/">javascript</a></div>
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/javascript/">javascript</a></div>
 				</div>
 			
 		</div>
@@ -87,38 +87,38 @@ The first execution of the <code>throttle</code> method will wait for <code>awai
 <pre tabindex="0"><code>_.debounce(func, [wait=0], [options={}])
 </code></pre><p>The details of each item are as follows:</p>
 <table>
-	<thead>
-			<tr>
-					<th>Item</th>
-					<th>Description</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>func</td>
-					<td>The function to be rate-limited.</td>
-			</tr>
-			<tr>
-					<td>wait</td>
-					<td>The number of milliseconds to delay invoking <code>func</code>. If <code>func</code> is invoked again during the delay, the timer is reset.</td>
-			</tr>
-			<tr>
-					<td>option</td>
-					<td>An optional object specifying options.</td>
-			</tr>
-			<tr>
-					<td>option.leading</td>
-					<td>Specify invoking <code>func</code> on the leading edge of the timeout. Default: <code>false</code>.</td>
-			</tr>
-			<tr>
-					<td>option.maxWait</td>
-					<td>The maximum time <code>func</code> is allowed to be delayed before it&rsquo;s invoked. Default: <code>0</code> (not specified).</td>
-			</tr>
-			<tr>
-					<td>option.trailing</td>
-					<td>Specify invoking <code>func</code> on the trailing edge of the timeout. Default: <code>true</code>.</td>
-			</tr>
-	</tbody>
+<thead>
+<tr>
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>func</td>
+<td>The function to be rate-limited.</td>
+</tr>
+<tr>
+<td>wait</td>
+<td>The number of milliseconds to delay invoking <code>func</code>. If <code>func</code> is invoked again during the delay, the timer is reset.</td>
+</tr>
+<tr>
+<td>option</td>
+<td>An optional object specifying options.</td>
+</tr>
+<tr>
+<td>option.leading</td>
+<td>Specify invoking <code>func</code> on the leading edge of the timeout. Default: <code>false</code>.</td>
+</tr>
+<tr>
+<td>option.maxWait</td>
+<td>The maximum time <code>func</code> is allowed to be delayed before it&rsquo;s invoked. Default: <code>0</code> (not specified).</td>
+</tr>
+<tr>
+<td>option.trailing</td>
+<td>Specify invoking <code>func</code> on the trailing edge of the timeout. Default: <code>true</code>.</td>
+</tr>
+</tbody>
 </table>
 <p>In other words, if called with the default options, <code>debounce</code> will wait for the specified time after being called and then fire.<br>
 Since <code>maxWait</code> is not specified, if it continues to be called during the wait time, the process will never fire.</p>
@@ -128,34 +128,34 @@ Since <code>maxWait</code> is not specified, if it continues to be called during
 <pre tabindex="0"><code>_.throttle(func, [wait=0], [options={}])
 </code></pre><p>The details of each item are as follows:</p>
 <table>
-	<thead>
-			<tr>
-					<th>Item</th>
-					<th>Description</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>func</td>
-					<td>The function to be rate-limited.</td>
-			</tr>
-			<tr>
-					<td>wait</td>
-					<td>The number of milliseconds to throttle invocations to at most once every <code>wait</code> milliseconds.</td>
-			</tr>
-			<tr>
-					<td>option</td>
-					<td>An optional object specifying options.</td>
-			</tr>
-			<tr>
-					<td>option.leading</td>
-					<td>Specify invoking <code>func</code> on the leading edge of the timeout. Default: <code>true</code>.</td>
-			</tr>
-			<tr>
-					<td>option.trailing</td>
-					<td>Specify invoking <code>func</code> on the trailing edge of the timeout. Default: <code>true</code>.</td>
-			</tr>
-	</tbody>
+<thead>
+<tr>
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>func</td>
+<td>The function to be rate-limited.</td>
+</tr>
+<tr>
+<td>wait</td>
+<td>The number of milliseconds to throttle invocations to at most once every <code>wait</code> milliseconds.</td>
+</tr>
+<tr>
+<td>option</td>
+<td>An optional object specifying options.</td>
+</tr>
+<tr>
+<td>option.leading</td>
+<td>Specify invoking <code>func</code> on the leading edge of the timeout. Default: <code>true</code>.</td>
+</tr>
+<tr>
+<td>option.trailing</td>
+<td>Specify invoking <code>func</code> on the trailing edge of the timeout. Default: <code>true</code>.</td>
+</tr>
+</tbody>
 </table>
 <p>The options are almost the same as <code>debounce</code>, but the default for <code>leading</code> is <code>true</code> and <code>maxWait</code> is not specified.</p>
 <p>Looking at the source code of <code>throttle</code>, you can see that <code>throttle</code> is simply calling <code>debounce</code> with specified options.<br>
@@ -166,17 +166,17 @@ In other words, <code>throttle</code> is a <code>debounce</code> with different 
 <p>Assume that <code>debounce</code>/<code>throttle</code> are set with default options for a button click event handler.</p>
 <h3 id="single-click">Single Click</h3>
 <p>The behavior when clicked only once is as follows:<br>
-<img src="https://blog2.logical-dice.com/images/2021/06/lodash-debounce-vs-throttle-001.png"/></p>
+<img src="https://www.logical-dice.com/images/2021/06/lodash-debounce-vs-throttle-001.png"/></p>
 <p>In the case of <code>debounce</code>, the process runs after <code>wait</code>, and in the case of <code>throttle</code>, the process runs before <code>wait</code>.<br>
 With <code>debounce</code>, there might be a slight time lag (although less than 1 second) before it reacts after clicking.</p>
 <h3 id="rapid-clicks">Rapid Clicks</h3>
 <p>The behavior when clicked rapidly in an instant is as follows:<br>
-<img src="https://blog2.logical-dice.com/images/2021/06/lodash-debounce-vs-throttle-002.png"/></p>
+<img src="https://www.logical-dice.com/images/2021/06/lodash-debounce-vs-throttle-002.png"/></p>
 <p>The behavior of <code>debounce</code> is the same as when clicked once, but with <code>throttle</code>, the process also runs after <code>wait</code>.<br>
 It&rsquo;s a bit undesirable that <code>throttle</code> runs the process twice.</p>
 <h3 id="continuous-clicks">Continuous Clicks</h3>
 <p>The behavior when clicking continuously at regular intervals during <code>wait</code> is as follows:<br>
-<img src="https://blog2.logical-dice.com/images/2021/06/lodash-debounce-vs-throttle-003.png"/></p>
+<img src="https://www.logical-dice.com/images/2021/06/lodash-debounce-vs-throttle-003.png"/></p>
 <p><code>debounce</code> does not run the process while clicking continuously, and it waits for the time specified by <code>wait</code> after the last click before running the process.<br>
 <code>throttle</code> runs the process at the time intervals specified by <code>wait</code> even while clicking continuously.<br>
 If it&rsquo;s a process that you don&rsquo;t want to run too many times, <code>debounce</code> might be suitable, and if it&rsquo;s okay to run it multiple times as long as there is a certain interval, <code>throttle</code> might be more appropriate.</p>
@@ -185,9 +185,9 @@ If it&rsquo;s a process that you don&rsquo;t want to run too many times, <code>d
 I thought it might be better to set the options of <code>debounce</code> to achieve the desired behavior.</p>
 <p>For example, if you want the process to run without delay when clicked, and you want the process to run only once even if clicked rapidly or continuously at regular intervals,<br>
 it seems that setting the <code>leading</code> option to <code>true</code> and the <code>trailing</code> option to <code>false</code> would be appropriate.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">_</span>.<span style="color:#a6e22e">debounce</span>(<span style="color:#a6e22e">callback</span>, <span style="color:#a6e22e">wait</span>, {<span style="color:#a6e22e">leading</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>, <span style="color:#a6e22e">trailing</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>})
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">_</span>.<span style="color:#a6e22e">debounce</span>(<span style="color:#a6e22e">callback</span>, <span style="color:#a6e22e">wait</span>, {<span style="color:#a6e22e">leading</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>, <span style="color:#a6e22e">trailing</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>})
 </span></span></code></pre></div><p>If you want the process to run periodically when clicking continuously at regular intervals, you should use <code>throttle</code> instead of <code>debounce</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">_</span>.<span style="color:#a6e22e">throttle</span>(<span style="color:#a6e22e">callback</span>, <span style="color:#a6e22e">wait</span>, {<span style="color:#a6e22e">leading</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>, <span style="color:#a6e22e">trailing</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>})
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">_</span>.<span style="color:#a6e22e">throttle</span>(<span style="color:#a6e22e">callback</span>, <span style="color:#a6e22e">wait</span>, {<span style="color:#a6e22e">leading</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>, <span style="color:#a6e22e">trailing</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>})
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// Same as: _.debounce(callback, wait, {leading: true, maxWait: wait, trailing: false})
 </span></span></span></code></pre></div><p>And so on, I realized that the possibilities expand depending on the specified options.</p>
 
@@ -229,9 +229,6 @@ it seems that setting the <code>leading</code> option to <code>true</code> and t
         <footer>
 	<div class="footer-container">
 		
-		<div class="footer-links">
-			<a href="/pages/privacy-policy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
-		</div>
 		<span>
 		&copy; 2015 Logical Dice.
 		</span>

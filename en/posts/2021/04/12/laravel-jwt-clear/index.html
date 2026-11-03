@@ -55,7 +55,7 @@
 				<p class="publish-date">posted: <time datetime="2021-04-12 00:00:00 &#43;0000 UTC" class="catalogue-time">2021-04-12</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="https://blog2.logical-dice.com/en/tags/laravel/">Laravel</a></div>
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/laravel/">Laravel</a></div>
 				</div>
 			
 		</div>
@@ -63,21 +63,21 @@
 		<p>When building APIs with Laravel, you might use JWT tokens.<br>
 Here&rsquo;s how to invalidate a JWT token by specifying its JTI (JWT ID).</p>
 <p>Here&rsquo;s an example implementation:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Tymon\JWTAuth\Providers\Storage\Illuminate</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">JWTStorage</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Tymon\JWTAuth\Providers\Storage\Illuminate</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">JWTStorage</span>;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JwtDisableService</span>
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> $jwtStorage;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">__construct</span>(<span style="color:#a6e22e">JWTStorage</span> $jwtStorage)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> __construct(<span style="color:#a6e22e">JWTStorage</span> $jwtStorage)
 </span></span><span style="display:flex;"><span>    {
 </span></span><span style="display:flex;"><span>        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">jwtStorage</span> <span style="color:#f92672">=</span> $jwtStorage;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">__invoke</span>(<span style="color:#a6e22e">string</span> $jti)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> __invoke(<span style="color:#a6e22e">string</span> $jti)
 </span></span><span style="display:flex;"><span>    {
 </span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Invalidate
-</span></span></span><span style="display:flex;"><span>        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">jwtStorage</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">forever</span>($jti, <span style="color:#e6db74">&#39;forever&#39;</span>);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">jwtStorage</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">forever</span>($jti, <span style="color:#e6db74">&#39;forever&#39;</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">response</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">json</span>([
 </span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;result&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;OK&#39;</span>
@@ -128,9 +128,6 @@ You need to be careful about this when implementing.</p>
         <footer>
 	<div class="footer-container">
 		
-		<div class="footer-links">
-			<a href="/pages/privacy-policy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
-		</div>
 		<span>
 		&copy; 2015 Logical Dice.
 		</span>

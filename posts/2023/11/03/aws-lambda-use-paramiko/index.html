@@ -55,7 +55,7 @@
 				<p class="publish-date">投稿日: <time datetime="2023-11-03 00:00:00 &#43;0000 UTC" class="catalogue-time">2023年11月03日</time></p>
 			
 				<div class="tags_list">
-					 <div class="tags_item"><a href="https://blog2.logical-dice.com/tags/aws/">AWS</a></div>
+					 <div class="tags_item"><a href="https://www.logical-dice.com/tags/aws/">AWS</a></div>
 				</div>
 			
 		</div>
@@ -115,42 +115,42 @@ SAM CLI, version 1.99.0
 zip -r paramiko-layer.zip python/*
 </code></pre><p>作成したparamiko-layer.zipをAWSマネジメントコンソールでアップロードします。<br>
 lambdaのレイヤーページを開き、『レイヤーの作成』をクリックします。<br>
-<img src="https://blog2.logical-dice.com/images/2023/aws-lambda-use-paramiko001.png" style="width:700px;"/></p>
+<img src="https://www.logical-dice.com/images/2023/aws-lambda-use-paramiko001.png" style="width:700px;"/></p>
 <p>以下入力して『作成』をクリックする。</p>
-<img src="https://blog2.logical-dice.com/images/2023/aws-lambda-use-paramiko002.png" style="width:700px;"/>  
+<img src="https://www.logical-dice.com/images/2023/aws-lambda-use-paramiko002.png" style="width:700px;"/>  
 <table>
-	<thead>
-			<tr>
-					<th>項目</th>
-					<th>内容</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>名前</td>
-					<td>任意のレイヤーの名前</td>
-			</tr>
-			<tr>
-					<td>説明</td>
-					<td>空で良いです。必要ならレイヤーの説明を記載してください。</td>
-			</tr>
-			<tr>
-					<td>アップロード</td>
-					<td>ラジオで『.zipファイルをアップロード』を選択し、『アップロード』よりさきほど生成したzipを選択する。</td>
-			</tr>
-			<tr>
-					<td>互換性のあるアーキテクチャ</td>
-					<td>template.yamlに記載したものと合わせてください。</td>
-			</tr>
-			<tr>
-					<td>互換性のあるランタイム</td>
-					<td>template.yamlに記載したものと合わせてください。</td>
-			</tr>
-			<tr>
-					<td>ライセンス</td>
-					<td>空で良いです。何かしらレイヤーにライセンスをつける場合は記載してください。</td>
-			</tr>
-	</tbody>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>名前</td>
+<td>任意のレイヤーの名前</td>
+</tr>
+<tr>
+<td>説明</td>
+<td>空で良いです。必要ならレイヤーの説明を記載してください。</td>
+</tr>
+<tr>
+<td>アップロード</td>
+<td>ラジオで『.zipファイルをアップロード』を選択し、『アップロード』よりさきほど生成したzipを選択する。</td>
+</tr>
+<tr>
+<td>互換性のあるアーキテクチャ</td>
+<td>template.yamlに記載したものと合わせてください。</td>
+</tr>
+<tr>
+<td>互換性のあるランタイム</td>
+<td>template.yamlに記載したものと合わせてください。</td>
+</tr>
+<tr>
+<td>ライセンス</td>
+<td>空で良いです。何かしらレイヤーにライセンスをつける場合は記載してください。</td>
+</tr>
+</tbody>
 </table>
 <p>あとはlambda関数で上記レイヤーを設定し、paramikoを利用するだけです。<br>
 実装サンプルとしては以下のようになります。</p>
@@ -211,9 +211,6 @@ def lambda_handler(event, context):
         <footer>
 	<div class="footer-container">
 		
-		<div class="footer-links">
-			<a href="/pages/privacy-policy.html" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>
-		</div>
 		<span>
 		&copy; 2015 Logical Dice.
 		</span>
