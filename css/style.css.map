@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "style.css",
-	"sourceRoot": "/Users/da-yoshihira/ghq/github.com/mildjester/hugo-blog/nonsensej",
+	"sourceRoot": "/home/mildjester/ghq/github.com/mildjester/hugo-blog/nonsensej",
 	"sources": [
 		"themes/nonsensej-theme/assets/scss/base.scss",
 		"nonsensej/themes/nonsensej-theme/assets/scss/base/_variables.scss",
