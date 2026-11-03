@@ -90,7 +90,14 @@ sudo apt install fcitx5 fcitx5-mozc fcitx5-config-qt
 </code></pre><blockquote>
 <p>For some reason, the clock occasionally goes off again. Running the command above again fixes it. I&rsquo;m still looking for a permanent solution.</p>
 </blockquote>
-<h3 id="installing-claude-desktop">Installing Claude Desktop</h3>
+<h3 id="disabling-the-touchpad">Disabling the Touchpad</h3>
+<p>There didn&rsquo;t seem to be a way to disable the touchpad from the Pop!_OS settings, so I did it from the command line.</p>
+<pre tabindex="0"><code>echo &#39;SUBSYSTEM==&#34;input&#34;, KERNEL==&#34;event[0-9]*&#34;, ENV{ID_INPUT_TOUCHPAD}==&#34;1&#34;, ENV{LIBINPUT_IGNORE_DEVICE}=&#34;1&#34;&#39; | sudo tee /etc/udev/rules.d/99-disable-touchpad.rules
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+</code></pre><p>To revert, delete the file created by the command above.</p>
+<pre tabindex="0"><code>sudo rm /etc/udev/rules.d/99-disable-touchpad.rules
+</code></pre><h3 id="installing-claude-desktop">Installing Claude Desktop</h3>
 <ul>
 <li>Reference: <a href="https://pasqualepillitteri.it/ja/news/6975/claude-desktop-linux-beta-ubuntu-debian-ja#google_vignette">Claude Desktop が Linux に対応：Ubuntu と Debian 向け公式アプリ（ベータ版）</a> (Japanese)</li>
 </ul>

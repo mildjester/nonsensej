@@ -90,7 +90,14 @@ sudo apt install fcitx5 fcitx5-mozc fcitx5-config-qt
 </code></pre><blockquote>
 <p>なぜか、たまに再度狂ってしまう時がある。再度上記を実行すれば治る。恒久対処法は探し中。</p>
 </blockquote>
-<h3 id="claude-desktopインストール">Claude Desktopインストール</h3>
+<h3 id="タッチパッド無効化">タッチパッド無効化</h3>
+<p>Pop!_OSの設定からはタッチパッドが無効化できないようだったのでコマンドから実施。</p>
+<pre tabindex="0"><code>echo &#39;SUBSYSTEM==&#34;input&#34;, KERNEL==&#34;event[0-9]*&#34;, ENV{ID_INPUT_TOUCHPAD}==&#34;1&#34;, ENV{LIBINPUT_IGNORE_DEVICE}=&#34;1&#34;&#39; | sudo tee /etc/udev/rules.d/99-disable-touchpad.rules
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+</code></pre><p>戻したい場合は上記コマンドで生成したファイルを削除する。</p>
+<pre tabindex="0"><code>sudo rm /etc/udev/rules.d/99-disable-touchpad.rules
+</code></pre><h3 id="claude-desktopインストール">Claude Desktopインストール</h3>
 <ul>
 <li>参考： <a href="https://pasqualepillitteri.it/ja/news/6975/claude-desktop-linux-beta-ubuntu-debian-ja#google_vignette">Claude Desktop が Linux に対応：Ubuntu と Debian 向け公式アプリ（ベータ版）</a></li>
 </ul>

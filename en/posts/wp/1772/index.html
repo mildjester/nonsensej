@@ -105,26 +105,26 @@ and set the following bucket policy:</p>
 <p>You could let users fetch images directly from S3,<br>
 but the data transfer cost gets fairly high, so we route access to S3 through CloudFront.</p>
 <p>First, click &ldquo;Create Distribution&rdquo; on the CloudFront console.</p>
-<h2 id="a-hrefhahahugoshortcode243s0hbhbimages201812cloudfront001pngimg-classalignnone-wp-image-1808-size-large-srchahahugoshortcode243s1hbhbimages201812cloudfront001png-alt-width648-height97a"><a href="https://www.logical-dice.com/images/2018/12/CloudFront001.png"><img class="alignnone wp-image-1808 size-large" src="https://www.logical-dice.com/images/2018/12/CloudFront001.png" alt="" width="648" height="97"></a></h2>
+<h2 id="a-hrefhahahugoshortcode253s0hbhbimages201812cloudfront001pngimg-classalignnone-wp-image-1808-size-large-srchahahugoshortcode253s1hbhbimages201812cloudfront001png-alt-width648-height97a"><a href="https://www.logical-dice.com/images/2018/12/CloudFront001.png"><img class="alignnone wp-image-1808 size-large" src="https://www.logical-dice.com/images/2018/12/CloudFront001.png" alt="" width="648" height="97"></a></h2>
 <p>Next, click &ldquo;Get Started&rdquo; under Web.</p>
-<h2 id="a-hrefhahahugoshortcode243s2hbhbimages201812cloudfront002pngimg-classalignnone-wp-image-1809-size-large-srchahahugoshortcode243s3hbhbimages201812cloudfront002png-alt-width648-height184a"><a href="https://www.logical-dice.com/images/2018/12/CloudFront002.png"><img class="alignnone wp-image-1809 size-large" src="https://www.logical-dice.com/images/2018/12/CloudFront002.png" alt="" width="648" height="184"></a></h2>
+<h2 id="a-hrefhahahugoshortcode253s2hbhbimages201812cloudfront002pngimg-classalignnone-wp-image-1809-size-large-srchahahugoshortcode253s3hbhbimages201812cloudfront002png-alt-width648-height184a"><a href="https://www.logical-dice.com/images/2018/12/CloudFront002.png"><img class="alignnone wp-image-1809 size-large" src="https://www.logical-dice.com/images/2018/12/CloudFront002.png" alt="" width="648" height="184"></a></h2>
 <p>In &ldquo;Origin Domain Name&rdquo;, specify the S3 bucket you want to serve through CloudFront.<br>
 It looks like a text box, but clicking it shows a list of choices.<br>
 Once you select the &ldquo;Origin Domain Name&rdquo;, &ldquo;Origin ID&rdquo; is filled in automatically.</p>
-<h2 id="a-hrefhahahugoshortcode243s4hbhbimages201812cloudfront003pngimg-classalignnone-wp-image-1810-size-large-srchahahugoshortcode243s5hbhbimages201812cloudfront003png-alt-width648-height220a"><a href="https://www.logical-dice.com/images/2018/12/CloudFront003.png"><img class="alignnone wp-image-1810 size-large" src="https://www.logical-dice.com/images/2018/12/CloudFront003.png" alt="" width="648" height="220"></a></h2>
+<h2 id="a-hrefhahahugoshortcode253s4hbhbimages201812cloudfront003pngimg-classalignnone-wp-image-1810-size-large-srchahahugoshortcode253s5hbhbimages201812cloudfront003png-alt-width648-height220a"><a href="https://www.logical-dice.com/images/2018/12/CloudFront003.png"><img class="alignnone wp-image-1810 size-large" src="https://www.logical-dice.com/images/2018/12/CloudFront003.png" alt="" width="648" height="220"></a></h2>
 <p>After entering the above, scroll to the bottom and click &ldquo;Create Distribution&rdquo;.</p>
 <p>You will be returned to the CloudFront list.<br>
 Wait until the Status of the distribution you just created becomes &ldquo;Deployed&rdquo;.</p>
-<h2 id="a-hrefhahahugoshortcode243s6hbhbimages201812cloudfront004pngimg-classalignnone-size-large-wp-image-1811-srchahahugoshortcode243s7hbhbimages201812cloudfront004png-alt-width648-height205a"><a href="https://www.logical-dice.com/images/2018/12/CloudFront004.png"><img class="alignnone size-large wp-image-1811" src="https://www.logical-dice.com/images/2018/12/CloudFront004.png" alt="" width="648" height="205"></a></h2>
+<h2 id="a-hrefhahahugoshortcode253s6hbhbimages201812cloudfront004pngimg-classalignnone-size-large-wp-image-1811-srchahahugoshortcode253s7hbhbimages201812cloudfront004png-alt-width648-height205a"><a href="https://www.logical-dice.com/images/2018/12/CloudFront004.png"><img class="alignnone size-large wp-image-1811" src="https://www.logical-dice.com/images/2018/12/CloudFront004.png" alt="" width="648" height="205"></a></h2>
 <p>S3 is now accessible via CloudFront.<br>
 The domain to access it is shown under &ldquo;Domain Name&rdquo; in the figure above.</p>
 <p>If you want to use a custom domain,<br>
 open the edit screen from &ldquo;Distribution Settings&rdquo; in the top menu<br>
 and configure it as follows:</p>
-<h2 id="a-hrefhahahugoshortcode243s8hbhbimages201812cloudfront005pngimg-classalignnone-size-large-wp-image-1812-srchahahugoshortcode243s9hbhbimages201812cloudfront005png-alt-width648-height318a"><a href="https://www.logical-dice.com/images/2018/12/CloudFront005.png"><img class="alignnone size-large wp-image-1812" src="https://www.logical-dice.com/images/2018/12/CloudFront005.png" alt="" width="648" height="318"></a></h2>
+<h2 id="a-hrefhahahugoshortcode253s8hbhbimages201812cloudfront005pngimg-classalignnone-size-large-wp-image-1812-srchahahugoshortcode253s9hbhbimages201812cloudfront005png-alt-width648-height318a"><a href="https://www.logical-dice.com/images/2018/12/CloudFront005.png"><img class="alignnone size-large wp-image-1812" src="https://www.logical-dice.com/images/2018/12/CloudFront005.png" alt="" width="648" height="318"></a></h2>
 <h3 id="route-53-settings">Route 53 Settings</h3>
 <p>If you use CloudFront with a custom domain, configure DNS as well.</p>
-<h2 id="a-hrefhahahugoshortcode243s10hbhbimages201812route53-001pngimg-classalignnone-size-full-wp-image-1813-srchahahugoshortcode243s11hbhbimages201812route53-001png-alt-width412-height435a"><a href="https://www.logical-dice.com/images/2018/12/Route53-001.png"><img class="alignnone size-full wp-image-1813" src="https://www.logical-dice.com/images/2018/12/Route53-001.png" alt="" width="412" height="435"></a></h2>
+<h2 id="a-hrefhahahugoshortcode253s10hbhbimages201812route53-001pngimg-classalignnone-size-full-wp-image-1813-srchahahugoshortcode253s11hbhbimages201812route53-001png-alt-width412-height435a"><a href="https://www.logical-dice.com/images/2018/12/Route53-001.png"><img class="alignnone size-full wp-image-1813" src="https://www.logical-dice.com/images/2018/12/Route53-001.png" alt="" width="412" height="435"></a></h2>
 <h2 id="wordpress-settings">WordPress Settings</h2>
 <p>First, set up WordPress as usual.<br>
 (Steps omitted here.)</p>
@@ -147,7 +147,7 @@ Selecting it via &ldquo;Browse existing buckets&rdquo; at the bottom left is the
 By default, image URLs point directly to S3,<br>
 so change &ldquo;Custom Domain&rdquo; to the CloudFront URL.<br>
 (xxxxx.cloudfront.net or the custom domain you specified)</p>
-<h2 id="a-hrefhahahugoshortcode243s18hbhbimages201812wordpress-s3-005pngimg-classalignnone-size-full-wp-image-1818-srchahahugoshortcode243s19hbhbimages201812wordpress-s3-005png-alt-width659-height155a"><a href="https://www.logical-dice.com/images/2018/12/Wordpress-S3-005.png"><img class="alignnone size-full wp-image-1818" src="https://www.logical-dice.com/images/2018/12/Wordpress-S3-005.png" alt="" width="659" height="155"></a></h2>
+<h2 id="a-hrefhahahugoshortcode253s18hbhbimages201812wordpress-s3-005pngimg-classalignnone-size-full-wp-image-1818-srchahahugoshortcode253s19hbhbimages201812wordpress-s3-005png-alt-width659-height155a"><a href="https://www.logical-dice.com/images/2018/12/Wordpress-S3-005.png"><img class="alignnone size-full wp-image-1818" src="https://www.logical-dice.com/images/2018/12/Wordpress-S3-005.png" alt="" width="659" height="155"></a></h2>
 <p>If you don&rsquo;t want to keep image files on the server,<br>
 turn on &ldquo;Remove Files From Server&rdquo;.<br>
 <a href="https://www.logical-dice.com/images/2018/12/Wordpress-S3-004.png"><img class="alignnone size-full wp-image-1784" src="https://www.logical-dice.com/images/2018/12/Wordpress-S3-004.png" alt="" width="675" height="171"></a></p>
