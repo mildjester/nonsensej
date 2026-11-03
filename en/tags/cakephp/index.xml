@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CakePHP on Logical Dice Techblog</title>
+    <link>https://www.logical-dice.com/en/tags/cakephp/</link>
+    <description>Recent content in CakePHP on Logical Dice Techblog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 10 Jun 2018 09:20:20 +0000</lastBuildDate>
+    <atom:link href="https://www.logical-dice.com/en/tags/cakephp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building a Local Test Environment for CakePHP2</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1375/</link>
+      <pubDate>Sun, 10 Jun 2018 09:20:20 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1375/</guid>
+      <description>Environment CakePHP 2.10.10 Belatedly, there was a chance I&amp;rsquo;d use CakePHP2 at work, so I built a local environment to study it&amp;hellip;</description>
+    </item>
+  </channel>
+</rss>

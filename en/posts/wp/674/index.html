@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Running a Vue.js App with forever|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Running a Vue.js App with forever</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2017-07-31 01:32:53 &#43;0000 UTC" class="catalogue-time">2017-07-31</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/centos/">CentOS</a></div> <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/node/">node</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h3 id="environment">■Environment</h3>
+<p>CentOS 7.3 <br>
+npm 3.10.10</p>
+<hr>
+<p>=====Added 2017/12/27=====<br>
+When I tried these steps again after a long time, <br>
+<code>build/dev-server.js</code> no longer existed in the vue project, <br>
+so it could no longer be started with forever. <br>
+It&rsquo;s probably better to start it with <code>npm start</code> or similar, following the official docs. <br>
+===End of addition=====</p>
+<h3 id="steps">■Steps</h3>
+<p>If npm and nodejs aren&rsquo;t installed, install them with yum.</p>
+<pre tabindex="0"><code>yum install npm nodejs  
+</code></pre><p>Install &ldquo;vue-cli&rdquo;, a tool for easily setting up vue apps, <br>
+and &ldquo;forever&rdquo;, which can run node apps like daemons. <br>
+*These are installed globally, so add the &ldquo;-g&rdquo; option.</p>
+<pre tabindex="0"><code>npm install -g vue-cli forever  
+</code></pre><p>Create the project directory. <br>
+Run the following in the directory where you want to create the project:</p>
+<pre tabindex="0"><code>vue init webpack samplevue    
+*&#34;samplevue&#34; is the name of the directory you want to create    
+</code></pre><p>After running the above, you&rsquo;ll be asked various questions; answer them according to the environment you want. <br>
+Here is an example:</p>
+<pre tabindex="0"><code>? Project name samplevue  
+? Project description This is Sample  
+? Author Djiro  
+? Vue build standalone  
+? Install vue-router? Yes  
+? Use ESLint to lint your code? No  
+? Set up unit tests No  
+? Setup e2e tests with Nightwatch? No  
+? Should we run `npm install` for you after the project has been created? (recommended) npm  
+</code></pre><p>Move into the created directory and install the required files.</p>
+<pre tabindex="0"><code>cd samplevue    
+npm install  
+</code></pre><p>At this point, the vue app can be started with forever. <br>
+To start it in the dev environment, use the following command:</p>
+<pre tabindex="0"><code>forever start build/dev-server.js  
+</code></pre><p>The js file specified here is listed around line 7 of &ldquo;package.json&rdquo; directly under the project directory you created.</p>
+<pre tabindex="0"><code>{  
+  &#34;name&#34;: &#34;samplevue&#34;,  
+  &#34;version&#34;: &#34;1.0.0&#34;,  
+~snip~  
+  &#34;scripts&#34;: {  
+    &#34;dev&#34;: &#34;node build/dev-server.js&#34;,  
+    &#34;start&#34;: &#34;node build/dev-server.js&#34;,  
+    &#34;build&#34;: &#34;node build/build.js&#34;,  
+~rest omitted~  
+</code></pre><p>Now the Vue app is shown when you access port 8080. <br>
+<code><a href="http://yourdomain.com:8080/">http://yourdomain.com:8080/</a></code></p>
+<p>For other ways to use forever, see <a href="/posts/wp/677" target="_blank">this post</a>.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

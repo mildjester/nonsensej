@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Elasticsearch on Logical Dice Techblog</title>
+    <link>https://www.logical-dice.com/en/tags/elasticsearch/</link>
+    <description>Recent content in Elasticsearch on Logical Dice Techblog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 11 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.logical-dice.com/en/tags/elasticsearch/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Elasticsearch Usage Notes</title>
+      <link>https://www.logical-dice.com/en/posts/2020/06/11/elasticsearch-topics/</link>
+      <pubDate>Thu, 11 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/06/11/elasticsearch-topics/</guid>
+      <description>I found some Elasticsearch notes from a few years ago, so I&amp;rsquo;m sharing them.</description>
+    </item>
+  </channel>
+</rss>

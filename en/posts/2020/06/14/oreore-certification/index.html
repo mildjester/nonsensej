@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Creating a Self-Signed Certificate on EC2|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Creating a Self-Signed Certificate on EC2</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2020-06-14 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-06-14</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/aws/">AWS</a></div> <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/linux/">Linux</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h2 id="environment">Environment</h2>
+<ul>
+<li>Amazon Linux AMI 2017.03</li>
+<li>OpenSSL 1.0.2k-fips  26 Jan 2017</li>
+</ul>
+<hr>
+<p>Let&rsquo;s create a self-signed certificate, which has seen much less use since Let&rsquo;s Encrypt came along.</p>
+<p>Let&rsquo;s Encrypt SSL certificates are more trusted and require no configuration on the browser side.<br>
+Even in environments not exposed to the internet, you can issue a Let&rsquo;s Encrypt certificate by adding a TXT record to DNS.</p>
+<p>These steps are for those who still want to use a self-signed certificate.</p>
+<h2 id="what-is-a-self-signed-certificate">What Is a Self-Signed Certificate?</h2>
+<p>SSL certificates are normally issued after being certified by some certificate authority (CA),<br>
+but here you set up your own CA and issue an SSL certificate certified by yourself.</p>
+<p>The rough flow is as follows.</p>
+<ol>
+<li>Set up your own CA</li>
+<li>Issue your own certificate with that CA</li>
+<li>Make your browser trust your CA</li>
+</ol>
+<p>The following steps assume creating a wildcard SSL certificate for &ldquo;*.hoge.com&rdquo;.<br>
+Replace &ldquo;*.hoge.com&rdquo; with the domain you want to create.</p>
+<h2 id="prepare-the-working-directory">Prepare the Working Directory</h2>
+<p>Log in to EC2 via SSH and prepare as follows.<br>
+The self-made CA will be created in a directory called hogeCA.</p>
+<pre tabindex="0"><code>sudo -i
+cd /etc/pki
+cp -r CA hogeCA
+cp tls/openssl.cnf hogeCA/.
+cd hogeCA
+touch index.txt
+echo &#34;00&#34; &gt; serial
+</code></pre><p>Also, I don&rsquo;t think this used to be required,<br>
+but recent browsers apparently won&rsquo;t accept a certificate as valid unless SAN (subjectAltName) is set.<br>
+Create a file for setting the SAN.</p>
+<pre tabindex="0"><code>echo &#34;subjectAltName=DNS:*.hoge.com&#34; &gt; san.ext
+</code></pre><h2 id="modify-the-openssl-configuration">Modify the openssl Configuration</h2>
+<p>Modify the openssl.cnf used this time as follows.</p>
+<pre tabindex="0"><code>vim ./openssl.cnf
+</code></pre><h3 id="modify-the--ca_default--section">Modify the [ CA_default ] Section</h3>
+<p>Change the working directory.</p>
+<pre tabindex="0"><code>dir             = /etc/pki/hogeCA
+</code></pre><h3 id="modify-the--req_distinguished_name--section">Modify the [ req_distinguished_name ] Section</h3>
+<p>Since you&rsquo;ll be asked for the company location and such several times in these steps, set default values.</p>
+<pre tabindex="0"><code>countryName_default             = JP
+stateOrProvinceName_default     = Tokyo
+localityName_default            = Toshima-ku
+0.organizationName_default      = Hoge Co. Ltd.
+</code></pre><h3 id="modify-the--usr_cert--section">Modify the [ usr_cert ] Section</h3>
+<p>This setting loads the SAN.</p>
+<pre tabindex="0"><code>subjectAltName=@alt_names
+</code></pre><h2 id="build-the-certificate-authority-ca">Build the Certificate Authority (CA)</h2>
+<h3 id="create-the-ca-private-key">Create the CA Private Key</h3>
+<p>Generate a private key for the CA.<br>
+You&rsquo;ll be asked for a password for the private key; enter one.</p>
+<pre tabindex="0"><code>openssl genrsa -aes256 -out ./private/cakey.pem 2048
+</code></pre><h3 id="create-the-ca-csr-certificate-signing-request">Create the CA CSR (Certificate Signing Request)</h3>
+<p>Create a CSR for issuing the CA certificate.<br>
+You&rsquo;ll be asked for the password you set on cakey.pem; enter it.<br>
+After that you&rsquo;ll be asked various questions. You can basically just press Enter, but for &ldquo;Common Name&rdquo; enter a CA name of your choice so you can identify it later.</p>
+<pre tabindex="0"><code>openssl req -new -config ./openssl.cnf -key ./private/cakey.pem -out ./cacert.csr
+</code></pre><h3 id="create-the-ca-certificate">Create the CA Certificate</h3>
+<p>Issue the CA certificate.<br>
+You&rsquo;ll be asked for the cakey.pem password here too; enter it.</p>
+<pre tabindex="0"><code>openssl x509 -days 825 -in ./cacert.csr -req -signkey ./private/cakey.pem -out ./cacert.pem
+</code></pre><h2 id="issue-the-server-certificate">Issue the Server Certificate</h2>
+<p>Now issue the actual SSL certificate for the server.<br>
+To keep things easy to find later, first create a directory to store the SSL certificate files.</p>
+<pre tabindex="0"><code>mkdir hoge_com
+</code></pre><h3 id="create-the-ssl-private-key">Create the SSL Private Key</h3>
+<p>Generate a private key for SSL.<br>
+Again, you&rsquo;ll be asked for a password for the private key; enter one.<br>
+(You&rsquo;ll remove the password right away, so anything is fine.)</p>
+<pre tabindex="0"><code>openssl genrsa -aes256 -out ./hoge_com/server-with-password.key 2048
+</code></pre><p>Create a password-less version of the private key from the generated one.<br>
+You&rsquo;ll be asked for the password from the previous step; enter it.</p>
+<pre tabindex="0"><code>openssl rsa -in ./hoge_com/server-with-password.key -out ./hoge_com/server.key
+</code></pre><h3 id="create-the-ssl-csr">Create the SSL CSR</h3>
+<p>Create a CSR for issuing the SSL certificate.<br>
+You&rsquo;ll be asked various questions. You can basically just press Enter, but for &ldquo;Common Name&rdquo; enter the domain to configure (*.hoge.com this time).</p>
+<pre tabindex="0"><code>openssl req -new -config ./openssl.cnf -key ./hoge_com/server.key -out ./hoge_com/server.csr
+</code></pre><h3 id="issue-the-ssl-certificate">Issue the SSL Certificate</h3>
+<p>Issue the SSL certificate.<br>
+You&rsquo;ll be asked for the cakey.pem password; enter it.</p>
+<pre tabindex="0"><code>openssl ca -config ./openssl.cnf -in ./hoge_com/server.csr -out ./hoge_com/server.crt -days 825 -extfile san.ext
+</code></pre><p>After the command above, you&rsquo;ll be asked two y/n questions; answer y to both.</p>
+<pre tabindex="0"><code>Sign the certificate? [y/n]:y
+1 out of 1 certificate requests certified, commit? [y/n]y
+</code></pre><h2 id="web-server-configuration">Web Server Configuration</h2>
+<p>Configure the generated SSL certificate on the web server.<br>
+For Apache it looks like this.</p>
+<pre tabindex="0"><code>SSLCertificateFile /etc/pki/hogeCA/hoge_com/server.crt
+SSLCertificateKeyFile /etc/pki/hogeCA/hoge_com/server.key
+</code></pre><h2 id="browser-configuration">Browser Configuration</h2>
+<p>To display the SSL certificate created here without errors,<br>
+import the CA certificate (/etc/pki/hogeCA/cacert.pem) into your browser.</p>
+<p>In Chrome, you can import the CA certificate with the following steps.</p>
+<ol>
+<li>Download the CA certificate to your local machine.</li>
+<li>In Chrome, click &ldquo;Settings &gt; Privacy and security &gt; (More) &gt; Manage certificates&rdquo;</li>
+<li>Click &ldquo;Import&rdquo; on the Authorities tab, then select and import cacert.pem.</li>
+<li>A trust settings window opens; check &ldquo;Trust this certificate for identifying websites&rdquo; and click &ldquo;OK&rdquo;.</li>
+</ol>
+<p>Now pages using the self-signed certificate will open without errors.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

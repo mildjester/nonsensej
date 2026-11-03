@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Building WordPress Yourself on Lightsail (Amazon Linux Edition)|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Building WordPress Yourself on Lightsail (Amazon Linux Edition)</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2019-12-15 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-12-15</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/wordpress/">Wordpress</a></div> <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/aws/">AWS</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h2 id="environment">Environment</h2>
+<p>Amazon Linux AMI 2018.03 (lightsail)</p>
+<hr>
+<blockquote>
+<p>*Added February 2020<br>
+certbot started behaving oddly on Amazon Linux on Lightsail,<br>
+so I also wrote a CentOS version.<br>
+<a href="/en/posts/2020/02/18/lightsail-wordpress/">See the article here</a></p>
+</blockquote>
+<p>Lightsail can create instances with WordPress preinstalled,<br>
+but I didn&rsquo;t really like the all-in-one Bitnami environment,<br>
+so I built a WordPress environment myself on an empty instance.</p>
+<p>The environment is<br>
+nginx + php-fpm (PHP 7.2)</p>
+<h3 id="creating-the-instance">Creating the Instance</h3>
+<p>Create a Lightsail instance.</p>
+<p>Platform: Linux/Unix<br>
+Blueprint: OS Only, Amazon Linux</p>
+<h3 id="configuring-the-instance">Configuring the Instance</h3>
+<p>Configure the instance you created.</p>
+<p>Open the Networking tab of the target instance and attach a static IP.<br>
+If you serve over HTTPS, also open TCP port 443 in the firewall.</p>
+<h3 id="installing-and-configuring-everything">Installing and Configuring Everything</h3>
+<p>Connect to the instance via SSH and run the following commands.</p>
+<p>First, become root.</p>
+<pre tabindex="0"><code>sudo -i
+</code></pre><p>Install various packages.</p>
+<pre tabindex="0"><code>yum install -y git nginx php72-fpm php72-bcmath php72-cli php72-common php72-devel php72-gd php72-json php72-mbstring php72-mysqlnd php72-pdo php72-xml mysql-server
+</code></pre><h4 id="nginx-configuration">nginx Configuration</h4>
+<p>Add an nginx config file.<br>
+The part of the file name before .conf can be anything.</p>
+<pre tabindex="0"><code>vim /etc/nginx/conf.d/wordpress.conf
+</code></pre><p>Write it as follows.<br>
+(The standard WordPress setup.)</p>
+<pre tabindex="0"><code>server {
+    listen 80;
+    listen [::]:80;
+    server_name  your-domain.jp;
+
+    root   /usr/share/nginx/html;
+    index  index.php;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~\.php$ {
+            fastcgi_split_path_info ^(.+\.php)(/.+)$;
+            include fastcgi_params;
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            fastcgi_pass unix:/var/run/php-fpm/www.sock;
+    }
+}
+</code></pre><h4 id="php-configuration">PHP Configuration</h4>
+<p>Open the config file.</p>
+<pre tabindex="0"><code>vim /etc/php.ini
+</code></pre><p>Modify the following so image uploads work without trouble.</p>
+<pre tabindex="0"><code>upload_max_filesize = 16M
+post_max_size = 16M
+</code></pre><h4 id="php-fpm-configuration">php-fpm Configuration</h4>
+<p>Open the config file.</p>
+<pre tabindex="0"><code>vim /etc/php-fpm.d/www.conf
+</code></pre><p>Modify the following so it runs with nginx.</p>
+<pre tabindex="0"><code>user = nginx
+group = nginx
+</code></pre><p>If you created a low-spec instance, adjust <code>pm.max_...</code> to match the instance&rsquo;s capacity.</p>
+<pre tabindex="0"><code>pm.max_children = 15
+pm.max_spare_servers = 10
+</code></pre><h4 id="starting-nginx--php-fpm">Starting nginx &amp; php-fpm</h4>
+<p>Start</p>
+<pre tabindex="0"><code>service nginx start
+service php-fpm start
+</code></pre><p>Enable auto-start</p>
+<pre tabindex="0"><code>chkconfig nginx on
+chkconfig php-fpm on
+</code></pre><h4 id="mysql-configuration">MySQL Configuration</h4>
+<p>Start and enable auto-start</p>
+<pre tabindex="0"><code>service mysqld start
+chkconfig mysqld on
+</code></pre><p>Set the root password.<br>
+Replace <code>new-password</code> below with the password you want.</p>
+<pre tabindex="0"><code>/usr/libexec/mysql55/mysqladmin -u root password &#39;new-password&#39;
+</code></pre><h4 id="lets-encrypt-configuration">Let&rsquo;s Encrypt Configuration</h4>
+<p>Get a free SSL certificate from Let&rsquo;s Encrypt.<br>
+Replace <code>your-domain.jp</code> with the domain you use for WordPress.</p>
+<pre tabindex="0"><code>cd /opt
+git clone https://github.com/letsencrypt/letsencrypt
+cd letsencrypt
+./letsencrypt-auto certonly --webroot -w /usr/share/nginx/html -d your-domain.jp --debug
+</code></pre><p>Once you have the SSL certificate, open the nginx config file again.</p>
+<pre tabindex="0"><code>vim /etc/nginx/conf.d/wordpress.conf
+</code></pre><p>Add the SSL settings.</p>
+<pre tabindex="0"><code>server {
+    〜省略〜
+    listen  443 ssl http2;
+    listen  [::]:443 ssl http2;
+
+    ssl_certificate /etc/letsencrypt/live/your-domain.jp/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/your-domain.jp/privkey.pem;
+    〜省略〜
+}
+</code></pre><p>The foundation is now in place.<br>
+All that&rsquo;s left is to download and configure WordPress, following the official WordPress site or similar.</p>
+<hr>
+<h3 id="appendix-mysql-commands">Appendix: MySQL Commands</h3>
+<p>Create a user</p>
+<pre tabindex="0"><code>CREATE USER &#39;wp-user&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;new-password&#39;;
+</code></pre><p>Create a database</p>
+<pre tabindex="0"><code>CREATE DATABASE wp-database character set utf8mb4;
+</code></pre><p>Change a user&rsquo;s password</p>
+<pre tabindex="0"><code>UPDATE mysql.user SET password=password(&#39;new-new-password&#39;) where user = &#39;wp-user&#39;;
+</code></pre>
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

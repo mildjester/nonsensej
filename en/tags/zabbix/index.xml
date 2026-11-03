@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Zabbix on Logical Dice Techblog</title>
+    <link>https://www.logical-dice.com/en/tags/zabbix/</link>
+    <description>Recent content in Zabbix on Logical Dice Techblog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 02 May 2017 14:49:34 +0000</lastBuildDate>
+    <atom:link href="https://www.logical-dice.com/en/tags/zabbix/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Installing the Zabbix Agent on a Mac</title>
+      <link>https://www.logical-dice.com/en/posts/wp/624/</link>
+      <pubDate>Tue, 02 May 2017 14:49:34 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/624/</guid>
+      <description>■EnvironmentMac OS 10.9.5Zabbix 3.2.1Notes on the steps I took to install the Zabbix agent on a Mac OS server&amp;hellip;.</description>
+    </item>
+    <item>
+      <title>Fixing PHP Warnings in Zabbix</title>
+      <link>https://www.logical-dice.com/en/posts/wp/424/</link>
+      <pubDate>Tue, 14 Feb 2017 00:48:55 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/424/</guid>
+      <description>■Environment zabbix 3.2 PHP 7.1 Running zabbix on PHP 7.1 produced the following warning. A non well for&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Installing Zabbix 3.2 on CentOS 7.3</title>
+      <link>https://www.logical-dice.com/en/posts/wp/349/</link>
+      <pubDate>Tue, 14 Feb 2017 00:20:50 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/349/</guid>
+      <description>■Environment CentOS 7.3 zabbix 3.2 PHP 7.1 MySQL 14.14 Apache 2.4 (1) Install zabbix with yum&amp;hellip;</description>
+    </item>
+  </channel>
+</rss>

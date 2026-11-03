@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NetBeans on Logical Dice Techblog</title>
+    <link>https://www.logical-dice.com/en/tags/netbeans/</link>
+    <description>Recent content in NetBeans on Logical Dice Techblog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 13 Oct 2017 11:05:07 +0000</lastBuildDate>
+    <atom:link href="https://www.logical-dice.com/en/tags/netbeans/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Mac] Installing NetBeans</title>
+      <link>https://www.logical-dice.com/en/posts/wp/737/</link>
+      <pubDate>Fri, 13 Oct 2017 11:05:07 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/737/</guid>
+      <description>■Environment macOS Sierra 10.12.6 NetBeans 8.2 With built-in code completion and FTP features, among free IDEs&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[golang] Using Go in NetBeans</title>
+      <link>https://www.logical-dice.com/en/posts/wp/223/</link>
+      <pubDate>Wed, 25 May 2016 23:06:28 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/223/</guid>
+      <description>I already use NetBeans for PHP, so I set it up to use Go in the same IDE. ■Environment Ubuntu 16.04 NetB&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Ubuntu] Installing JDK and NetBeans IDE</title>
+      <link>https://www.logical-dice.com/en/posts/wp/69/</link>
+      <pubDate>Wed, 16 Sep 2015 23:18:43 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/69/</guid>
+      <description>Install JDK and NetBeans on Ubuntu as a development environment. ■Environment Ubuntu 15.04 openjdk 8 Net&amp;hellip;</description>
+    </item>
+  </channel>
+</rss>

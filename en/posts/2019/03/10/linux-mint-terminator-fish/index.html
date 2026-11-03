@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Installing terminator &#43; fish &#43; fisherman|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Installing terminator &#43; fish &#43; fisherman</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2019-03-10 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-03-10</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/linuxmint/">LinuxMint</a></div> <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/ubuntu/">ubuntu</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h2 id="environment">■Environment</h2>
+<p>Linux Mint 19.1 &ldquo;Tessa&rdquo; - MATE (64-bit)<br>
+ubuntu 19.10</p>
+<hr>
+<p>*On Ubuntu, prefix the apt commands below with sudo.</p>
+<h2 id="installing-terminator">Installing terminator</h2>
+<p>Install terminator.</p>
+<pre tabindex="0"><code>apt install terminator
+</code></pre><blockquote>
+<p>(*Added November 2019)<br>
+Terminator is nice, but a terminal called Tilix is also good.<br>
+See here for details:<br>
+<a href="/en/posts/2019/11/08/ubuntu-tilix/">Tilix: A Terminal for Linux</a></p>
+</blockquote>
+<h2 id="installing-fish">Installing fish</h2>
+<p>Install fish.</p>
+<pre tabindex="0"><code>apt install fish
+</code></pre><p>After installing, log out once to apply the change.</p>
+<p>Also, Terminator&rsquo;s default window size is a bit awkward, so it&rsquo;s worth changing.<br>
+<a href="/en/posts/2019/03/10/linux-mint-terminator-size/">Changing Terminator&rsquo;s Default Size</a></p>
+<h2 id="setting-fish-as-the-default-shell">Setting fish as the Default Shell</h2>
+<pre tabindex="0"><code>$ grep fish /etc/shells  
+/usr/bin/fish   ←If this isn&#39;t shown, add the result of `which fish` to /etc/shells  
+$ chsh -s /usr/bin/fish  
+</code></pre><h2 id="installing-fisherman">Installing fisherman</h2>
+<p>fisherman is a plugin manager for fish.</p>
+<p>The install command is listed on fisherman&rsquo;s GitHub page.<br>
+<a href="https://github.com/fisherman/fisherman">https://github.com/fisherman/fisherman</a></p>
+<pre tabindex="0"><code>$ curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source &amp;&amp; fisher install jorgebucaran/fisher
+$ fisher -v
+fisher, version 4.4.8
+</code></pre><p>*If <code>fisher -v</code> doesn&rsquo;t show a version, reopen the terminal. If that still doesn&rsquo;t work, reboot.</p>
+<h2 id="changing-the-theme">Changing the Theme</h2>
+<p>You can change fish&rsquo;s look by changing its theme.<br>
+The following page is a good reference for available themes.<br>
+<a href="https://github.com/oh-my-fish/oh-my-fish/blob/master/docs/Themes.md">https://github.com/oh-my-fish/oh-my-fish/blob/master/docs/Themes.md</a></p>
+<p>I use a theme called &ldquo;bobthefish,&rdquo; installed with the following steps.</p>
+<pre tabindex="0"><code>$ fisher install oh-my-fish/theme-bobthefish     # Depending on the fisher version, use fisher add instead of fisher install
+</code></pre><p>bobthefish requires Powerline fonts, so install those as well.</p>
+<blockquote>
+<p>Added 2020/09/02<br>
+In Windows Terminal, fonts installed with the commands below didn&rsquo;t work well.<br>
+Install the Cascadia Code font instead.<br>
+<a href="https://docs.microsoft.com/en-us/windows/terminal/cascadia-code">https://docs.microsoft.com/en-us/windows/terminal/cascadia-code</a><br>
+Right-click the downloaded ttf file and install it to make it available.</p>
+</blockquote>
+<pre tabindex="0"><code>$ git clone https://github.com/powerline/fonts.git  
+$ fonts/install.sh  
+$ rm -rf fonts  
+</code></pre><p>After running the commands above, select the installed font in your terminal app&rsquo;s settings.<br>
+In terminator, right-click in the terminal, open &ldquo;Preferences,&rdquo;<br>
+and under &ldquo;Profiles &gt; General &gt; Font,&rdquo; change the font to one of the &ldquo;XXX for Powerline&rdquo; fonts.<br>
+If you can&rsquo;t change the font, uncheck &ldquo;Use the system fixed width font.&rdquo;</p>
+<p>Personally, I like &ldquo;Meslo LG M for Powerline.&rdquo;<br>
+<img src="https://www.logical-dice.com/images/2018/04/Screenshot-from-2018-04-11-10-05-46.png" alt=""/></p>
+<h2 id="other-plugins">Other Plugins</h2>
+<p>You can install many other plugins with fisherman.</p>
+<h4 id="peco">■peco</h4>
+<p>Install peco.<br>
+(On Ubuntu, prefix apt with sudo)</p>
+<pre tabindex="0"><code>apt install peco
+fisher install oh-my-fish/plugin-peco
+</code></pre><blockquote>
+<p>Added 2026/11/03
+Installing peco via apt now causes garbled characters. It&rsquo;s better to download the file directly.
+<a href="https://zenn.dev/mato/scraps/2b0c423ad9da2c">https://zenn.dev/mato/scraps/2b0c423ad9da2c</a> (Japanese)</p>
+<pre tabindex="0"><code>wget https://github.com/peco/peco/releases/download/v0.5.11/peco_linux_amd64.tar.gz
+tar -xzf peco_linux_amd64.tar.gz
+sudo mv peco_linux_amd64/peco /usr/local/bin/
+</code></pre></blockquote>
+<p>After installing, add the following to the fish config file (~/.config/fish/config.fish).<br>
+If the fish config file doesn&rsquo;t exist, create it.</p>
+<pre tabindex="0"><code>function fish_user_key_bindings
+  bind \cr &#39;peco_select_history (commandline -b)&#39; # peco
+end
+</code></pre><p>[Usage]<br>
+&ldquo;Ctrl + R&rdquo; opens the command history search screen.<br>
+You can pick from recent commands, or type a string to narrow the history down to commands containing it.</p>
+<h4 id="ghq">■ghq</h4>
+<p>*You need to install golang beforehand.</p>
+<p>The original fisherman repository for ghq is <code>yoshiori/fish-peco_select_ghq_repository</code>,<br>
+but with it, shells ended up opening multiple times when switching to a git repository,<br>
+so I&rsquo;ve prepared a version that doesn&rsquo;t open multiple shells in my own repository (<code>mildjester/fish-peco_select_ghq_repository</code>).</p>
+<p>*I don&rsquo;t think yoshiori&rsquo;s source has a bug; it probably just doesn&rsquo;t play well with Linux shells(?) now that it&rsquo;s implemented the way it should be.</p>
+<pre tabindex="0"><code>go install github.com/x-motemen/ghq@latest
+fisher install mildjester/fish-peco_select_ghq_repository
+</code></pre><p>After installing, add the following to the fish config file (~/.config/fish/config.fish).<br>
+This assumes you&rsquo;re adding to the peco settings above.</p>
+<pre tabindex="0"><code>function fish_user_key_bindings
+  bind \cr &#39;peco_select_history (commandline -b)&#39; # peco
+  bind \c] peco_select_ghq_repository # ghq
+end
+</code></pre><p>[Usage]<br>
+Use the <code>ghq get {git repository URL}</code> command to fetch a new git repository locally.<br>
+(Just replace <code>git clone</code> with <code>ghq get</code>)</p>
+<p>&ldquo;Ctrl + ]&rdquo; lets you select a git repository managed by ghq and move to its directory.<br>
+By default, repositories fetched with <code>ghq get</code> are stored under <code>~/ghq</code>,<br>
+but adding the following to <code>~/.gitconfig</code> lets you store them in any directory you like.</p>
+<pre tabindex="0"><code>[ghq]
+    root = 好きなディレクトリ
+</code></pre>
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>[Linux Mint] OS Installation and Setup|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">[Linux Mint] OS Installation and Setup</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2018-04-07 14:01:56 &#43;0000 UTC" class="catalogue-time">2018-04-07</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/linuxmint/">LinuxMint</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h2 id="environment">■Environment</h2>
+<p>Linux Mint 18.3 cinnamon 64bit</p>
+<hr>
+<h2 id="getting-the-os">Getting the OS</h2>
+<p>Download the ISO image from the official site.<br>
+<a href="https://linuxmint.com/download.php" rel="noopener" target="_blank"><a href="https://linuxmint.com/download.php">https://linuxmint.com/download.php</a></a></p>
+<p>If you have no particular preference, &ldquo;Cinnamon 64bit&rdquo; is apparently recommended, so I went with that.<br>
+<img src="https://www.logical-dice.com/images/2018/03/061b1d11b68c2c7813b530cc7f232908.png" alt="" /></p>
+<p>There is no download mirror in Japan, so I chose Taiwan, which seemed close.<br>
+*For some reason Korea returned a 404 (as of 2018/03/09)<br>
+<img src="https://www.logical-dice.com/images/2018/03/6d82949b9ea20c91993c3c4902783e8b.png" alt="" /></p>
+<h2 id="installing-the-os">Installing the OS</h2>
+<p>Burn the downloaded ISO to a DVD or similar, insert it into the PC you want to install on, and boot it.<br>
+A desktop appears with an icon called <code>InstallLinuxMint</code>; double-click it.</p>
+<p>Then just follow the on-screen instructions to proceed with the installation.<br>
+I used the following settings. (Only the noteworthy parts)</p>
+<ul>
+<li>Language: I deliberately chose <code>English</code>　*Added 2018/4/18: application fonts end up looking like Chinese characters, so Japanese seems better.</li>
+<li>Installation type: I wanted a clean install, so <code>Erase disk and install Linux Mint</code></li>
+<li>Keyboard layout: <code>Japanese-Japanese</code> was fine for a Lenovo keyboard</li>
+</ul>
+<p>If you want to dual-boot with Windows, free up disk space on the Windows side beforehand,<br>
+and select <code>Install Linux Mint alongside Windows Boot Manager</code> as the installation type.<br>
+If it doesn&rsquo;t dual-boot after installation, disable Secure Boot in the BIOS settings.</p>
+<h2 id="update-manager-settings">Update Manager Settings</h2>
+<p>Click Update Manager in the taskbar at the bottom right. (The shield-like icon)<br>
+<img src="https://www.logical-dice.com/images/2018/04/Screenshot-from-2018-04-07-14-47-25.png" alt="" /></p>
+<p>For now, select <code>Let me review sensitive updates</code> and click <code>OK</code>.<br>
+<img src="https://www.logical-dice.com/images/2018/04/Screenshot-from-2018-04-07-14-48-39.png" alt="" /></p>
+<p>It asks &ldquo;Do you want to switch to a local mirror?&rdquo;, so click <code>OK</code>.<br>
+<img src="https://www.logical-dice.com/images/2018/04/Screenshot-from-2018-04-07-14-55-00.png" alt="" /></p>
+<p>Select one of the mirrors in Japan.<br>
+<img src="https://www.logical-dice.com/images/2018/04/Screenshot-from-2018-04-07-14-55-43.png" alt="" /></p>
+<p>Click Refresh to update the list, then click Install Updates.<br>
+<img src="https://www.logical-dice.com/images/2018/04/Screenshot-from-2018-04-07-14-51-02.png" alt="" /></p>
+<p>When the update completes, several more packages that can be updated are shown,<br>
+so update them as needed.</p>
+<h2 id="changing-the-system-font">Changing the System Font</h2>
+<p>The default font wasn&rsquo;t very good, so I changed it.<br>
+*This applies only if you chose English as the language during installation.<br>
+　If you install in Japanese from the start, you get a normal font.</p>
+<p>First, open &ldquo;SystemSettins &gt; Font&rdquo;.<br>
+<img src="https://www.logical-dice.com/images/2018/04/Screenshot-from-2018-04-10-21-38-01.png" alt="" /></p>
+<p>You can change to any font you like in Font Selection there.<br>
+Personally, I liked <code>Takao Ex Gothic Regular</code>.<br>
+<img src="https://www.logical-dice.com/images/2018/04/Screenshot-from-2018-04-10-21-38-10.png" alt="" /></p>
+<h2 id="changing-home-directory-names-to-english">Changing Home Directory Names to English</h2>
+<p>If you install Linux Mint in Japanese, the directories directly under your home directory have Japanese names.<br>
+Japanese directory names are inconvenient when using the CLI, so change them to English with the following command.</p>
+<pre tabindex="0"><code>env LANG=C xdg-user-dirs-gtk-update  
+</code></pre><p>After running the command above, it asks &ldquo;May I rename the directories? (Japanese -&gt; English)&rdquo;, so choose Yes.<br>
+After logging in again, it asks &ldquo;May I rename the directories? (English -&gt; Japanese)&rdquo;,<br>
+so check &ldquo;Don&rsquo;t ask me again&rdquo; and choose No.</p>
+<h2 id="additional-installation-and-setup-for-japanese-input">Additional Installation and Setup for Japanese Input</h2>
+<p>If you install Linux Mint in Japanese, Japanese input works from the start,<br>
+but some Japanese input software seems to be missing, so install it additionally.</p>
+<p>Open <code>System Settings &gt; Input Method</code> and install &ldquo;Japanese&rdquo;.<br>
+<img src="https://www.logical-dice.com/images/2018/04/Screenshot-from-2018-05-16-23-44-45.png" alt="" /></p>
+<p>Next, open the &ldquo;Language&rdquo; tab and click &ldquo;Install / Remove Languages&rdquo; under Language Support.<br>
+<img src="https://www.logical-dice.com/images/2018/04/Screenshot-from-2018-05-16-23-47-51.png" alt="" /></p>
+<p>An installation window opens; select Japanese and click &ldquo;Install language packs&rdquo;.<br>
+<img src="https://www.logical-dice.com/images/2018/04/Screenshot-from-2018-05-16-23-49-36.png" alt="" /></p>
+<p>Next, open &ldquo;Fcitx Configuration&rdquo; from the menu.<br>
+<img src="https://www.logical-dice.com/images/2018/04/Screenshot-from-2018-05-17-10-47-15.png" alt="" /></p>
+<p>In the input methods, there is &ldquo;Keyboard - Japanese&rdquo; above Mozc,<br>
+which gets in the way, so remove it.<br>
+<img src="https://www.logical-dice.com/images/2018/04/Screenshot-from-2018-05-17-10-50-55.png" alt="" /></p>
+<p>That&rsquo;s it.</p>
+<h2 id="installing-basic-software">Installing Basic Software</h2>
+<h3 id="basic-development-set">Basic development set</h3>
+<pre tabindex="0"><code>$ apt update  
+$ apt install vim git  
+</code></pre><h3 id="slack">Slack</h3>
+<p>Slack can also be installed from the &ldquo;Software Manager&rdquo;,<br>
+but for some reason Japanese input doesn&rsquo;t work with that version, so it&rsquo;s better to download the Deb from the official site and install it.<br>
+<a href="https://slack.com/intl/ja-jp/downloads/linux" rel="noopener" target="_blank"><a href="https://slack.com/intl/ja-jp/downloads/linux">https://slack.com/intl/ja-jp/downloads/linux</a></a> (Japanese)</p>
+<h3 id="shutter">Shutter</h3>
+<p>An app that lets you insert arrows and comments into images, like Skitch on the Mac.<br>
+The design isn&rsquo;t as rich as Skitch, but it&rsquo;s good enough for adding comments to images.<br>
+You can&rsquo;t edit unless you install <code>libgoo-canvas-perl</code>.</p>
+<pre tabindex="0"><code>$ apt install shutter libgoo-canvas-perl
+</code></pre><h2 id="chromium">Chromium</h2>
+<p>The OSS version of Google Chrome.<br>
+Functionally, it&rsquo;s almost the same as Chrome.<br>
+Installing <code>chromium-browser-l10n</code> localizes it into Japanese.</p>
+<pre tabindex="0"><code>apt install chromium-browser chromium-browser-l10n  
+</code></pre><h2 id="changing-panel-settings">Changing Panel Settings</h2>
+<p>(This step was added when I did this on Linux Mint 19.1 MATE)<br>
+I couldn&rsquo;t find an item in the settings menu to change the panel (the toolbar at the bottom of the desktop),<br>
+but it turns out you can change it by right-clicking the panel and selecting &ldquo;Properties&rdquo;.</p>
+<p>You can also change the panel size, or shrink the panel width and center it (Mac-style)</p>
+<h2 id="other">Other</h2>
+<ul>
+<li><a href="/posts/wp/1222" rel="noopener" target="_blank">Enabling Japanese input</a></li>
+<li><a href="/posts/wp/1218" rel="noopener" target="_blank">Installing programming fonts</a></li>
+<li><a href="/posts/wp/1153" rel="noopener" target="_blank">Setting up terminator + fish + oh-my-fish</a></li>
+<li><a href="/posts/wp/1192" rel="noopener" target="_blank">Installing PHP 7.1</a></li>
+<li><a href="/posts/wp/914" rel="noopener" target="_blank">Building a PHP development environment with Visual Studio Code</a></li>
+<li><a href="/posts/wp/1162" rel="noopener" target="_blank">Installing Docker</a></li>
+<li><a href="/posts/wp/1226" rel="noopener" target="_blank">Changing the keymap</a></li>
+<li><a href="/posts/wp/1236" rel="noopener" target="_blank">Mining BitZeny with cpuminer + wpool</a></li>
+</ul>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

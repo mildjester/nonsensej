@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>HTML on Logical Dice Techblog</title>
+    <link>https://www.logical-dice.com/en/tags/html/</link>
+    <description>Recent content in HTML on Logical Dice Techblog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 18 May 2018 21:53:41 +0000</lastBuildDate>
+    <atom:link href="https://www.logical-dice.com/en/tags/html/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Limiting the Number of Digits in a Number Input Field</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1352/</link>
+      <pubDate>Fri, 18 May 2018 21:53:41 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1352/</guid>
+      <description>How to limit the number of characters in a number input field</description>
+    </item>
+  </channel>
+</rss>

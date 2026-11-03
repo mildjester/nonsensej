@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>How to Set Up Redirects with AWS S3|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">How to Set Up Redirects with AWS S3</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2020-06-10 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-06-10</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/aws/">AWS</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<p>This is a configuration for redirecting access to specific paths to another server,<br>
+for example when you&rsquo;ve partially moved static content hosted on AWS S3 to a different server.</p>
+<p>In the target S3 bucket, under<br>
+&ldquo;Properties&rdquo; &gt; &ldquo;Static website hosting&rdquo; &gt; &ldquo;Use this bucket to host a website&rdquo;<br>
+there is a field called Redirection rules; configure it as follows.</p>
+<p>This example sets up redirection rules (RoutingRule) ① to ③.</p>
+<pre tabindex="0"><code>&lt;RoutingRules&gt;
+  &lt;RoutingRule&gt;　　　・・・①
+    &lt;Condition&gt;
+      &lt;KeyPrefixEquals&gt;kokojanai_dokoka.html&lt;/KeyPrefixEquals&gt;
+    &lt;/Condition&gt;
+    &lt;Redirect&gt;
+      &lt;Protocol&gt;https&lt;/Protocol&gt;
+      &lt;HostName&gt;new-server.co.jp&lt;/HostName&gt;
+      &lt;ReplaceKeyWith&gt;kokodayo.html&lt;/ReplaceKeyWith&gt;
+    &lt;/Redirect&gt;
+  &lt;/RoutingRule&gt;
+  &lt;RoutingRule&gt;　　　・・・②
+    &lt;Condition&gt;
+      &lt;HttpErrorCodeReturnedEquals&gt;403&lt;/HttpErrorCodeReturnedEquals&gt;
+    &lt;/Condition&gt;
+    &lt;Redirect&gt;
+      &lt;Protocol&gt;https&lt;/Protocol&gt;
+      &lt;HostName&gt;new-server.co.jp&lt;/HostName&gt;
+    &lt;/Redirect&gt;
+  &lt;/RoutingRule&gt;
+  &lt;RoutingRule&gt;　　　・・・③
+    &lt;Condition&gt;
+      &lt;HttpErrorCodeReturnedEquals&gt;404&lt;/HttpErrorCodeReturnedEquals&gt;
+    &lt;/Condition&gt;
+    &lt;Redirect&gt;
+      &lt;Protocol&gt;https&lt;/Protocol&gt;
+      &lt;HostName&gt;new-server.co.jp&lt;/HostName&gt;
+    &lt;/Redirect&gt;
+  &lt;/RoutingRule&gt;
+&lt;/RoutingRules&gt;
+</code></pre><hr>
+<h3 id="-access-to-a-specific-path">① Access to a Specific Path</h3>
+<p>When a specific path is accessed, the path is rewritten and redirected.<br>
+Useful when the path changed after moving from S3 to a new server.</p>
+<p>The values to set are as follows.</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Description</th>
+<th>Sample value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>KeyPrefixEquals</td>
+<td>Redirects when this path is accessed.</td>
+<td>kokojanai_dokoka.html</td>
+</tr>
+<tr>
+<td>Protocol</td>
+<td>Protocol of the redirect destination</td>
+<td>https</td>
+</tr>
+<tr>
+<td>HostName</td>
+<td>Host name of the redirect destination</td>
+<td>new-server.co.jp</td>
+</tr>
+<tr>
+<td>ReplaceKeyWith</td>
+<td>Replaces the KeyPrefixEquals value with this value.</td>
+<td>kokoday.html</td>
+</tr>
+</tbody>
+</table>
+<p>In the sample, assuming the S3 bucket is served under the DNS name s3-sample.co.jp,<br>
+access to <code>https://s3-sample.co.jp/kokojanai_dokoka.html</code><br>
+is redirected to <code>https://new-server.co.jp/kokodayo.html</code>.</p>
+<hr>
+<h3 id="-access-to-paths-that-dont-exist-on-s3">②③ Access to Paths That Don&rsquo;t Exist on S3</h3>
+<p>When a path that doesn&rsquo;t exist on S3 is accessed, it is redirected to another server with the same path.<br>
+Useful when you&rsquo;ve moved content from S3 to a new server while keeping the same paths.<br>
+② and ③ are identical except for <code>HttpErrorCodeReturnedEquals</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Description</th>
+<th>Sample value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HttpErrorCodeReturnedEquals</td>
+<td>The HTTP response code from S3 that triggers the redirect</td>
+<td>403 and 404*</td>
+</tr>
+<tr>
+<td>Protocol</td>
+<td>Protocol of the redirect destination</td>
+<td>https</td>
+</tr>
+<tr>
+<td>HostName</td>
+<td>Host name of the redirect destination</td>
+<td>new-server.co.jp</td>
+</tr>
+</tbody>
+</table>
+<p>*For paths that don&rsquo;t exist on S3, it seems S3 may return 403 as well as 404, so I&rsquo;ve included both just in case.</p>
+<p>In the sample, assuming the S3 bucket is served under the DNS name s3-sample.co.jp,<br>
+access to <code>https://s3-sample.co.jp/hoge.html</code><br>
+is redirected to <code>https://new-server.co.jp/hoge.html</code>.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

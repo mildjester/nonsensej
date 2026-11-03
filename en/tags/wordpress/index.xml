@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Wordpress on Logical Dice Techblog</title>
+    <link>https://www.logical-dice.com/en/tags/wordpress/</link>
+    <description>Recent content in Wordpress on Logical Dice Techblog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 18 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.logical-dice.com/en/tags/wordpress/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building WordPress Yourself on Lightsail (CentOS Edition)</title>
+      <link>https://www.logical-dice.com/en/posts/2020/02/18/lightsail-wordpress/</link>
+      <pubDate>Tue, 18 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/02/18/lightsail-wordpress/</guid>
+      <description>Steps to build WordPress on CentOS 7 on Lightsail</description>
+    </item>
+    <item>
+      <title>Building WordPress Yourself on Lightsail (Amazon Linux Edition)</title>
+      <link>https://www.logical-dice.com/en/posts/2019/12/15/lightsail-wordpress/</link>
+      <pubDate>Sun, 15 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/12/15/lightsail-wordpress/</guid>
+      <description>Steps to build WordPress on Lightsail without using Bitnami</description>
+    </item>
+    <item>
+      <title>Running WordPress Behind a Reverse Proxy</title>
+      <link>https://www.logical-dice.com/en/posts/2019/10/15/reverseproxy-wordpress/</link>
+      <pubDate>Tue, 15 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/10/15/reverseproxy-wordpress/</guid>
+      <description>Configuration notes for running WordPress behind an Apache reverse proxy</description>
+    </item>
+    <item>
+      <title>[WordPress] Removing the Title and Caption Set in Image Files</title>
+      <link>https://www.logical-dice.com/en/posts/2019/08/26/wp-media-infomation/</link>
+      <pubDate>Mon, 26 Aug 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/08/26/wp-media-infomation/</guid>
+      <description>How to prevent WordPress from automatically setting strings in the title and caption when uploading images.</description>
+    </item>
+    <item>
+      <title>[WordPress] Using S3 Images in TinyMCE Templates</title>
+      <link>https://www.logical-dice.com/en/posts/2019/02/13/wp-tinymcetemplate-s3/</link>
+      <pubDate>Wed, 13 Feb 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/02/13/wp-tinymcetemplate-s3/</guid>
+      <description>How to fix S3 images not loading when using TinyMCE Templates together with WP Offload Media Lite.</description>
+    </item>
+    <item>
+      <title>Migrating Data from WordPress to Pico</title>
+      <link>https://www.logical-dice.com/en/posts/2019/01/17/wordpress-to-pico/</link>
+      <pubDate>Thu, 17 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/01/17/wordpress-to-pico/</guid>
+      <description>How to migrate WordPress data to Pico</description>
+    </item>
+    <item>
+      <title>Serving WordPress Images via S3 &#43; CloudFront</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1772/</link>
+      <pubDate>Tue, 11 Dec 2018 19:30:54 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1772/</guid>
+      <description>Environment WordPress 4.8.3 AWS Setup Steps IAM Settings First, prepare an IAM user to connect WordPress with AWS&amp;hellip;</description>
+    </item>
+    <item>
+      <title>SSL Support When Running WordPress Behind AWS ELB</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1439/</link>
+      <pubDate>Fri, 20 Jul 2018 17:56:57 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1439/</guid>
+      <description>■Environment AWS ELB AWS EC2 Apache 2.2.32 Wordpress 4.1.1 It&amp;rsquo;s not EC-CUBE, but the content is almost&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Making WordPress Multilingual</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1291/</link>
+      <pubDate>Tue, 24 Apr 2018 00:56:56 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1291/</guid>
+      <description>■Environment WordPress 4.9.5 MultilingualPress 2.11.1 ■Steps First, MultilingualPress&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Creating a Contact Form in WordPress</title>
+      <link>https://www.logical-dice.com/en/posts/wp/979/</link>
+      <pubDate>Wed, 17 Jan 2018 16:18:41 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/979/</guid>
+      <description>Environment WordPress 4.9.1 Contact Form 7 4.9.2 WP Mail SMTP 1.2.2 WordPress&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[WordPress] CSS Specified by a Theme Fails to Load</title>
+      <link>https://www.logical-dice.com/en/posts/wp/698/</link>
+      <pubDate>Mon, 21 Aug 2017 01:57:10 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/698/</guid>
+      <description>When using a theme made by someone else in WordPress, the CSS sometimes fails to load. It seems to happen when both of the following apply&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[WordPress] Speeding Up SyntaxHighlighter Evolved</title>
+      <link>https://www.logical-dice.com/en/posts/wp/402/</link>
+      <pubDate>Fri, 10 Feb 2017 18:23:37 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/402/</guid>
+      <description>After installing the WordPress plugin &amp;ldquo;SyntaxHighlighter Evolved&amp;rdquo;, page rendering became very slow&amp;hellip;</description>
+    </item>
+  </channel>
+</rss>

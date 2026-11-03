@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Don&#39;t Use text-orientation in CSS|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Don&#39;t Use text-orientation in CSS</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2019-09-14 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-09-14</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/css/">CSS</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<p>The title is a bit clickbaity, but<br>
+I ran into a small problem, so I&rsquo;m writing it down.</p>
+<h2 id="what-i-did">What I Did</h2>
+<p>I needed to write vertical text (with alphanumerics oriented upright),<br>
+so I implemented it with <code>text-orientation</code> as follows.</p>
+<p><strong>CSS</strong></p>
+<pre tabindex="0"><code>div {
+    width: 30px;
+    height: 290px;
+    margin: 20px auto;
+}
+p {
+    padding: 20px;
+    border: 2px solid #000;
+    -webkit-writing-mode: vertical-rl; /* Vertical writing */
+    -ms-writing-mode: tb-rl; /* Vertical writing */
+    writing-mode: vertical-rl; /* Vertical writing */
+    text-orientation: upright; /* Make alphanumerics upright */
+}
+</code></pre><p><strong>HTML</strong></p>
+<pre tabindex="0"><code>&lt;div&gt;
+  &lt;p&gt;僕にもし子供が産まれたら&lt;br/&gt;世界で2番目に好きだと話そう&lt;/p&gt;
+&lt;/div&gt;
+</code></pre><p>Checking in Chrome and the like, it looked as expected.
+<img src="https://www.logical-dice.com/images/2019/09/text-orientation-upright-001.png" alt="Chromeキャプチャ" /></p>
+<p>I was satisfied with this, but it turns out IE doesn&rsquo;t support <code>text-orientation</code>,<br>
+so the numbers were displayed sideways. (As of September 2019)<br>
+<img src="https://www.logical-dice.com/images/2019/09/text-orientation-upright-002.png" alt="IEキャプチャ" /></p>
+<h2 id="solution">Solution</h2>
+<p>There&rsquo;s a style called <code>text-combine-upright</code>,<br>
+so I use it to make the number part upright.</p>
+<p>The modified source looks like this.</p>
+<p><strong>CSS</strong></p>
+<pre tabindex="0"><code>div {
+    width: 30px;
+    height: 290px;
+    margin: 20px auto;
+}
+p {
+    padding: 20px;
+    border: 2px solid #000;
+    -webkit-writing-mode: vertical-rl; /* Vertical writing */
+    -ms-writing-mode: tb-rl; /* Vertical writing */
+    writing-mode: vertical-rl; /* Vertical writing */
+}
+span {
+    font-family: &#34;メイリオ&#34;;
+    -webkit-text-combine: horizontal; /* Make alphanumerics upright */
+    -ms-text-combine-horizontal: all; /* Make alphanumerics upright */
+    text-combine-upright: all; /* Make alphanumerics upright */
+}
+</code></pre><p><strong>HTML</strong></p>
+<pre tabindex="0"><code>&lt;div&gt;
+  &lt;p&gt;僕にもし子供が産まれたら&lt;br/&gt;世界で&lt;span&gt;2&lt;/span&gt;番目に好きだと話そう&lt;/p&gt;
+&lt;/div&gt;
+</code></pre><p>Now the numbers are upright in IE too.<br>
+<img src="https://www.logical-dice.com/images/2019/09/text-orientation-upright-003.png" alt="IEキャプチャ2" /></p>
+<p>One thing to watch out for: the range wrapped with <code>text-combine-upright</code> is laid out horizontally.<br>
+In other words, if you put multiple characters inside the span above, you get the following.</p>
+<p><strong>HTML</strong></p>
+<pre tabindex="0"><code>&lt;div&gt;
+  &lt;p&gt;僕にもし子供が産まれたら&lt;br/&gt;世界で&lt;span&gt;123&lt;/span&gt;番目に好きだと話そう&lt;/p&gt;
+&lt;/div&gt;
+</code></pre><p><strong>Result</strong>
+<img src="https://www.logical-dice.com/images/2019/09/text-orientation-upright-004.png" alt="IEキャプチャ3" /></p>
+<p>If you want multiple alphanumerics upright and stacked vertically,<br>
+you have to wrap each character individually with <code>text-combine-upright</code>, which is a pain.</p>
+<p>I hope IE supports <code>text-orientation</code> soon.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

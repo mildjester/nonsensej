@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PopOS on Logical Dice Techblog</title>
+    <link>https://www.logical-dice.com/en/tags/popos/</link>
+    <description>Recent content in PopOS on Logical Dice Techblog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 03 Nov 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.logical-dice.com/en/tags/popos/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Initial Setup of Pop!_OS</title>
+      <link>https://www.logical-dice.com/en/posts/2026/11/03/setup-popos/</link>
+      <pubDate>Tue, 03 Nov 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2026/11/03/setup-popos/</guid>
+      <description>Environment Pop!_OS 24.04 LTS Overview Pop!_OS, an Ubuntu-based Linux desktop, seems to be getting popular lately, so I gave it a try.&#xA;Initial Setup Steps Installing the OS Download the installer from the official page and write it to a USB drive as boot media.&#xA;Download page&#xA;Boot the PC from the USB drive you created and install the OS.&#xA;Setting Up Japanese Input Reference: Pop!_OSで日本語入力を快適に行うための環境設定 - Qiita (Japanese) Enable Mozc with the following commands.</description>
+    </item>
+  </channel>
+</rss>

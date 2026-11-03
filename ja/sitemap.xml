@@ -1,12 +1,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.logical-dice.com/posts/2024/12/12/aws-cli-s3select/</loc>
-    <lastmod>2024-12-12</lastmod>
+    <loc>https://www.logical-dice.com/</loc>
+    <lastmod>2026-11-03</lastmod>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.logical-dice.com/</loc>
+    <loc>https://www.logical-dice.com/posts/2026/11/03/setup-popos/</loc>
+    <lastmod>2026-11-03</lastmod>
+  </url>
+  <url>
+    <loc>https://www.logical-dice.com/posts/2024/12/12/aws-cli-s3select/</loc>
     <lastmod>2024-12-12</lastmod>
-    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://www.logical-dice.com/posts/2024/08/24/al2023-kernel-downgrade/</loc>

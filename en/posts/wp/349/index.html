@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Installing Zabbix 3.2 on CentOS 7.3|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Installing Zabbix 3.2 on CentOS 7.3</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2017-02-14 00:20:50 &#43;0000 UTC" class="catalogue-time">2017-02-14</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/centos/">CentOS</a></div> <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/zabbix/">zabbix</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h3 id="environment">■Environment</h3>
+<p>CentOS 7.3<br>
+zabbix 3.2<br>
+PHP 7.1<br>
+MySQL 14.14<br>
+Apache 2.4</p>
+<hr>
+<p>(1) Install the repository for installing zabbix with yum</p>
+<pre tabindex="0"><code># yum install http://repo.zabbix.com/zabbix/3.2/rhel/7/x86_64/zabbix-release-3.2-1.el7.noarch.rpm
+</code></pre><p>(2) Install zabbix itself</p>
+<pre tabindex="0"><code># yum install \  
+zabbix-server-mysql \  
+zabbix-web-mysql \  
+zabbix-web \  
+zabbix-agent \  
+zabbix-get \  
+zabbix-sender \  
+zabbix-web-japanese
+</code></pre><p>*If you use PostgreSQL instead of MySQL, just change &ldquo;mysql&rdquo; above to &ldquo;pgsql&rdquo;.</p>
+<p>(3) Configure MySQL</p>
+<pre tabindex="0"><code># mysql  
+mysql&gt; CREATE USER &#39;zabbix&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;zabbixpassword&#39;;  
+mysql&gt; CREATE DATABASE zabbix CHARACTER SET utf8;  
+mysql&gt; GRANT ALL ON zabbix.* to &#39;zabbix&#39;@&#39;localhost&#39;;  
+mysql&gt; quit  
+# zcat /usr/share/doc/zabbix-server-mysql-3.2.1/create.sql.gz | mysql -uroot zabbix
+</code></pre><p>Use any password you like.<br>
+You can also change the DB name and user name if you want.</p>
+<p>(4) Configure Zabbix</p>
+<pre tabindex="0"><code># vim /etc/zabbix/zabbix_server.conf  
+Set the following items  
+LogFileSize=10  
+DBPassword=zabbixpassword
+</code></pre><p>If you changed the DB name and user name in step (3), update the corresponding settings here as well.</p>
+<p>(5) Start the services</p>
+<pre tabindex="0"><code># systemctl start zabbix-server  
+# systemctl start zabbix-agent  
+# systemctl restart httpd
+</code></pre><p>The installation is now complete.<br>
+Access https://hostname/zabbix to open zabbix and begin the initial setup.<br>
+The initial login ID/PASS is &ldquo;Admin/zabbix&rdquo;.</p>
+<p>After logging in, you can change the language and password from the person icon in the upper right.</p>
+<p>When I did this, the following PHP warning appeared on the dashboard.<br>
+&ldquo;A non well formed numeric value encountered&rdquo;<br>
+The solution is described <a href="/posts/wp/424" target="_blank">here</a>.</p>
+<hr>
+<h3 id="other">Other</h3>
+<p>Installing the Zabbix agent on a Mac server was tricky, so I wrote a separate article about it.<br>
+<a href="/posts/wp/624">Installing the Zabbix Agent on a Mac</a></p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

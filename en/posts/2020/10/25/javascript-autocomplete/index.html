@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Autocomplete in JavaScript Without a Library|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Autocomplete in JavaScript Without a Library</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2020-10-25 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-10-25</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/javascript/">javascript</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<p>I implemented an autocomplete from scratch using JavaScript.</p>
+<p>Normally the quickest way to implement autocomplete is with a library,
+but I had a chance to build one myself from scratch, so here are my notes.</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>Support PC (Chrome, IE, Safari), Android (Chrome), and iPhone (Safari).</li>
+<li>Show prefectures containing the entered keyword as options.</li>
+<li>Clicking an option selects it.</li>
+<li>On PC, options can also be selected with the cursor keys and the Enter key.</li>
+</ul>
+<p>The fourth one is the key point.</p>
+<h2 id="implementation">Implementation</h2>
+<p>A working version is available here.<br>
+<a href="/demo/cursor-key-autocomplete/">Demo</a></p>
+<p>Assume the HTML is as follows.<br>
+When text is entered in the text box, options are displayed inside the ul tag.</p>
+<pre tabindex="0"><code>&lt;input type=&#34;text&#34; id=&#34;keyword&#34; placeholder=&#34;都道府県名を入れてください&#34; autocomplete=&#34;off&#34;/&gt;
+&lt;ul id=&#34;outputBox&#34;&gt;&lt;/ul&gt;
+</code></pre><p>The JavaScript is as follows.</p>
+<pre tabindex="0"><code>// List of prefectures
+const prefectureList = [&#39;北海道&#39;,&#39;青森県&#39;,&#39;岩手県&#39;,&#39;宮城県&#39;,&#39;秋田県&#39;,&#39;山形県&#39;,&#39;福島県&#39;,
+              &#39;茨城県&#39;,&#39;栃木県&#39;,&#39;群馬県&#39;,&#39;埼玉県&#39;,&#39;千葉県&#39;,&#39;東京都&#39;,&#39;神奈川県&#39;,
+              &#39;新潟県&#39;,&#39;富山県&#39;,&#39;石川県&#39;,&#39;福井県&#39;,&#39;山梨県&#39;,&#39;長野県&#39;,&#39;岐阜県&#39;,
+              &#39;静岡県&#39;,&#39;愛知県&#39;,&#39;三重県&#39;,&#39;滋賀県&#39;,&#39;京都府&#39;,&#39;大阪府&#39;,&#39;兵庫県&#39;,
+              &#39;奈良県&#39;,&#39;和歌山県&#39;,&#39;鳥取県&#39;,&#39;島根県&#39;,&#39;岡山県&#39;,&#39;広島県&#39;,&#39;山口県&#39;,
+              &#39;徳島県&#39;,&#39;香川県&#39;,&#39;愛媛県&#39;,&#39;高知県&#39;,&#39;福岡県&#39;,&#39;佐賀県&#39;,&#39;長崎県&#39;,
+              &#39;熊本県&#39;,&#39;大分県&#39;,&#39;宮崎県&#39;,&#39;鹿児島県&#39;,&#39;沖縄県&#39;];
+
+// Store the input/output elements in variables
+const inputElm = document.getElementById(&#39;keyword&#39;);
+const outboxElm = document.getElementById(&#39;outputBox&#39;);
+
+/**
+ * On text input in the text box
+ */
+inputElm.addEventListener(&#39;compositionend&#39;, function(e) {
+    // Skip the Tab key since it moves focus to the next element
+    if (e.key == &#39;Tab&#39;) {
+        return;
+    }
+
+    outboxElm.innerHTML = &#39;&#39;;
+    let _this = this;
+    setTimeout(function(){
+        // Extract prefectures containing the entered text
+        prefectureList.forEach(function(prefecture){
+            if (prefecture.indexOf(_this.value) != -1) {
+                let liElm = document.createElement(&#39;li&#39;);
+                liElm.setAttribute(&#39;tabindex&#39;, &#39;0&#39;);
+
+                // Set a click event on the displayed option
+                liElm.onclick = function() {
+                    // When an option is clicked, reflect it in the text box
+                    inputElm.value = this.innerHTML;
+                    outboxElm.innerHTML = &#39;&#39;;
+                }
+
+                // Add the option containing the keyword to the ul
+                let txtNode = document.createTextNode(prefecture);
+                liElm.appendChild(txtNode);
+                outboxElm.appendChild(liElm);
+            }
+        });
+    }, 10);
+});
+
+/**
+ * Key handling while the text box has focus
+ */
+inputElm.addEventListener(&#39;keydown&#39;, function(e) {
+    // When the down key is pressed, focus the first option
+    if (e.key == &#39;ArrowDown&#39; || e.key == &#39;Down&#39;) {
+        let firstElm = outboxElm.getElementsByTagName(&#39;li&#39;)[0];
+        if (firstElm) {
+            firstElm.focus();
+        }
+        e.preventDefault();
+    }
+});
+
+/**
+ * Key handling or Enter while an option has focus
+ */
+outboxElm.addEventListener(&#39;keydown&#39;, function(e) {
+    var currentElm = document.activeElement;
+
+    // When the down key is pressed, focus the next option
+    // Depending on the browser, it is either ArrowDown or Down
+    if (e.key == &#39;ArrowDown&#39; || e.key == &#39;Down&#39;) {
+        if (currentElm.nextElementSibling) {
+            currentElm.nextElementSibling.focus();
+        }
+        e.preventDefault();
+    }
+    // When the up key is pressed, focus the previous option
+    // Depending on the browser, it is either ArrowUp or Up
+    if (e.key == &#39;ArrowUp&#39; || e.key == &#39;Up&#39;) {
+        if (currentElm.previousElementSibling) {
+            currentElm.previousElementSibling.focus();
+        }
+        e.preventDefault();
+    }
+    // When Enter is pressed, behave the same as clicking the current option
+    if (e.key == &#39;Enter&#39;) {
+        currentElm.click();
+    }
+});
+</code></pre><p>This implements the basic behavior.</p>
+<p>Note that this alone does not update the options when the keyword is deleted with Backspace or Delete.<br>
+If needed, use the <code>keydown</code> event or similar to handle character deletion.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

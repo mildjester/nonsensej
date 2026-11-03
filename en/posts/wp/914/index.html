@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Setting Up a PHP Development Environment in Visual Studio Code|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Setting Up a PHP Development Environment in Visual Studio Code</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2017-12-18 14:02:41 &#43;0000 UTC" class="catalogue-time">2017-12-18</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/php/">PHP</a></div> <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/vscode/">VSCode</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h3 id="environment">■Environment</h3>
+<p>Visual Studio Code 1.19.0<br>
+Linux Mint 18.3 cinnamon 64bit<br>
+macOS High Sierra 10.13.1<br>
+(The steps should be basically the same on both Linux and Mac)</p>
+<hr>
+<h3 id="getting-visual-studio-code">■Getting Visual Studio Code</h3>
+<p>Download Visual Studio Code (hereafter VSCode). <br>
+<a href="https://code.visualstudio.com/" rel="noopener" target="_blank"><a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></a></p>
+<p>[Mac]<br>
+Extracting the downloaded zip gives you an application file (.app); move it to the Applications directory.</p>
+<p>[Linux Mint]<br>
+Just run the downloaded deb file and follow the on-screen instructions.</p>
+<h3 id="changing-the-font">■Changing the Font</h3>
+<p>Change the font used in VSCode to &ldquo;Ricty Diminished&rdquo;, a font designed for programming.</p>
+<p>First, install the font itself on your PC.<br>
+See <a href="/posts/wp/1218" rel="noopener" target="_blank">this post</a> for the steps.</p>
+<p>Once the font is installed, configure VSCode.<br>
+First, open &ldquo;Code &gt; Preferences &gt; Settings&rdquo; from the menu.<br>
+<img src="https://www.logical-dice.com/images/2017/12/85e7fa312b40652c1c3d804cd66dd2eb.png" alt="" /></p>
+<p>Then add the following line to the settings file:</p>
+<pre tabindex="0"><code>&#34;editor.fontFamily&#34;: &#34;&#39;Ricty Diminished&#39;&#34;,  
+</code></pre><p>The font is now Ricty Diminished.</p>
+<h3 id="installing-extensions">■Installing Extensions</h3>
+<p>After launching VSCode, select <code>View &gt; Extensions</code> from the top menu. <br>
+Alternatively, select the square icon at the bottom of the icons on the left. <br>
+<img src="https://www.logical-dice.com/images/2017/12/vscode001.png" alt="" /></p>
+<p>A search box appears, where you can search by keyword and install extensions. <br>
+Below are the ones I tried.</p>
+<h4 id="project-manager">Project Manager</h4>
+<p>An extension for managing projects. <br>
+Saving the currently open workspace as a project <br>
+makes switching between projects easy. <br>
+It doesn&rsquo;t seem possible to keep multiple projects open at once like in NetBeans or Eclipse.</p>
+<p><em>■Usage</em> <br>
+Open <code>View &gt; Command Palette</code> from the top menu and type <code>Project Manager</code> in the search bar to show the Project Manager commands. <br>
+<img src="https://www.logical-dice.com/images/2017/12/vscode002.png" alt="" /><br>
+(The Command Palette can also be opened with <code>Command + Shft+P</code>)</p>
+<p>The main commands are as follows.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Save Project</td>
+<td>Save the current workspace as a project</td>
+</tr>
+<tr>
+<td>Edit Project</td>
+<td>Edit saved projects</td>
+</tr>
+<tr>
+<td>List Project to Open</td>
+<td>Show the list of saved projects and open the selected one</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ftp-simple">ftp-simple</h4>
+<p>An extension for uploading and downloading files and directories to and from a server. <br>
+It supports SFTP as well as FTP.</p>
+<p><em>■Usage</em> <br>
+Type &ldquo;ftp-simple&rdquo; in the Command Palette to see the candidates. <br>
+The Command Palette works the same as in &ldquo;Project Manager&rdquo; above, so I&rsquo;ll skip it.</p>
+<p>The main commands are as follows.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Config</td>
+<td>Configure the server connection</td>
+</tr>
+<tr>
+<td>Save</td>
+<td>Upload files/directories to the server</td>
+</tr>
+<tr>
+<td>Download</td>
+<td>Download files/directories from the server</td>
+</tr>
+<tr>
+<td>Diff</td>
+<td>Show the differences between local and server</td>
+</tr>
+<tr>
+<td>Delete</td>
+<td>Delete files/directories on the server</td>
+</tr>
+</tbody>
+</table>
+<h4 id="php-intellisense">PHP IntelliSense</h4>
+<p>An extension that adds PHP highlighting and completion. <br>
+Just install it.</p>
+<h4 id="path-intellisense">Path Intellisense</h4>
+<p>An extension that auto-completes directory paths as you type them. <br>
+Just install this one too.</p>
+<h4 id="bracket-pair-colorizer">Bracket Pair Colorizer</h4>
+<p>Matching brackets get the same color, making it easy to see what is enclosed by which brackets. <br>
+It makes the editor a bit too colorful, so some people may dislike it. <br>
+Just install this one too.</p>
+<h3 id="settings">■Settings</h3>
+<h4 id="language-settings-per-file-extension">Language Settings per File Extension</h4>
+<p>If you use non-standard file extensions, highlighting and completion may not work. <br>
+In that case, open the file and click &ldquo;Plain Text&rdquo; at the bottom right. <br>
+<img src="https://www.logical-dice.com/images/2017/12/vscode003.png" alt="" /><br>
+*If another language is already associated, that language will be shown instead.</p>
+<p>This opens the language selection. <br>
+To apply it to all files with the same extension, click &ldquo;Configure File Association for &lsquo;.xxx&rsquo;&rdquo; below the search bar. <br>
+<img src="https://www.logical-dice.com/images/2017/12/vscode004.png" alt="" /></p>
+<p>Once you set the language here, highlighting and so on for that language will be applied from then on.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

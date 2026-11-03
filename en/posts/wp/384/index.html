@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>PHPExcel Usage Notes|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">PHPExcel Usage Notes</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2017-02-07 11:42:44 &#43;0000 UTC" class="catalogue-time">2017-02-07</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/php/">PHP</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<p>Notes on using &ldquo;PHPExcel&rdquo;, which can generate Excel files in PHP<br>
+* These are just notes on what I actually used, so they don&rsquo;t cover all features.</p>
+<p>To install, either use composer or download the archive and<br>
+extract it to a directory of your choice.<br>
+Then just require the following.<br>
+/path/where/you/put/it/PHPExcel/Classes/PHPExcel.php<br>
+/path/where/you/put/it/PHPExcel/Classes/PHPExcel/IOFactory.php</p>
+<p>The actual source code is as follows</p>
+<pre tabindex="0"><code>/**  
+ * Create a new PHPExcel object  
+ */  
+$excel = new PHPExcel();  
+  
+/**  
+ * Create a sheet and change its name  
+ */  
+$sheetIndex = 0; // Sheet numbers start at 0  
+$excel-&gt;setActiveSheetIndex($sheetIndex);  
+$sheet = $excel-&gt;getActiveSheet();  
+$sheet-&gt;setTitle(&#39;SampleSheet01&#39;);  
+  
+/**  
+ * Enter data into cells  
+ */  
+// Basic input  
+$rowCnt = 1; // Row numbers start at 1  
+$clmCnt = 0; // Column numbers start at 0  
+$text = &#39;セルに書き込む内容だよ&#39;;  
+$sheet-&gt;setCellValueByColumnAndRow($clmCnt, $rowCnt, $val);  
+  
+// Input as a string  
+$rowCnt++; // Move down one row  
+$clmCnt++; // Move right one column  
+$text = &#39;000001&#39;; // Unless typed as a string, this becomes &#34;1&#34; instead of &#34;00001&#34;  
+$sheet-&gt;setCellValueExplicitByColumnAndRow($clmCnt, $rowCnt, $val, PHPExcel_Cell_DataType::TYPE_STRING);  
+  
+/**  
+ * Cell formatting  
+ */  
+// Set the sheet&#39;s default font  
+$sheet-&gt;getDefaultStyle()-&gt;getFont()-&gt;setName(&#39;ＭＳ Ｐゴシック&#39;)-&gt;setSize(11);  
+  
+// Set the background color  
+$bgcolor = &#39;000000&#39;; // Specify in hex  
+$sheet-&gt;getStyleByColumnAndRow($clmCnt, $rowCnt)-&gt;getFill()-&gt;setFillType(PHPExcel_Style_Fill::FILL_SOLID);  
+$sheet-&gt;getStyleByColumnAndRow($clmCnt, $rowCnt)-&gt;getFill()-&gt;getStartColor()-&gt;setRGB($bgcolor);  
+  
+// Set the font color  
+$fontcolor = &#39;FFFFFF&#39;; // Specify in hex  
+$sheet-&gt;getStyleByColumnAndRow($clmCnt, $rowCnt)-&gt;getFont()-&gt;getColor()-&gt;setARGB($fontcolor);  
+  
+// Make it bold  
+$sheet-&gt;getStyleByColumnAndRow($clmCnt, $rowCnt)-&gt;getFont()-&gt;setBold(true);  
+  
+// Draw a border (double line) only on top of a cell (specified by row/column number)  
+$sheet-&gt;getStyleByColumnAndRow($clmCnt, $rowCnt)-&gt;getBorders()-&gt;getTop()-&gt;setBorderStyle(PHPExcel_Style_Border::BORDER_DOUBLE);  
+// Draw borders (single line) all around cells (specified by range)  
+$sheet-&gt;getStyle(&#39;A1:B3&#39;)-&gt;getBorders()-&gt;getAllBorders()-&gt;setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);  
+  
+  
+// Set the column width  
+$sheet-&gt;getColumnDimension(&#39;A&#39;)-&gt;setWidth(14.5);  
+// Auto-size the column width (* this should work, but it often doesn&#39;t)  
+$sheet-&gt;getColumnDimension( PHPExcel_Cell::stringFromColumnIndex($clmCnt))-&gt;setAutoSize(true);  
+</code></pre><p>That&rsquo;s all</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

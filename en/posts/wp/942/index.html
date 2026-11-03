@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>[CentOS] Building a VPN Server with OpenVPN &amp; LDAP|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">[CentOS] Building a VPN Server with OpenVPN &amp; LDAP</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2017-12-20 16:12:33 &#43;0000 UTC" class="catalogue-time">2017-12-20</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/centos/">CentOS</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h1 id="environment">Environment</h1>
+<p>CentOS 7.4 <br>
+OpenVPN 2.4.4</p>
+<h1 id="reference-sites">Reference sites</h1>
+<p>ServerWorld: <a href="https://www.server-world.info/query?os=CentOS_7&p=openvpn" rel="noopener" target="_blank"><a href="https://www.server-world.info/query?os=CentOS_7&amp;p=openvpn">https://www.server-world.info/query?os=CentOS_7&amp;p=openvpn</a></a> (Japanese) <br>
+cloudpack: <a href="https://cloudpack.media/73" rel="noopener" target="_blank"><a href="https://cloudpack.media/73">https://cloudpack.media/73</a></a> (Japanese)</p>
+<h3 id="prerequisites">*Prerequisites</h3>
+<p>The LDAP server is assumed to be already set up</p>
+<hr>
+<h1 id="server-side-steps">Server-side steps</h1>
+<h2 id="installation">■Installation</h2>
+<p>Install the required packages.</p>
+<pre tabindex="0"><code>yum --enablerepo=epel install openvpn openvpn-auth-ldap easy-rsa net-tools bridge-utils  
+</code></pre><h2 id="generating-certificates">■Generating certificates</h2>
+<p>Move to the easy-rsa directory and generate the certificates.</p>
+<pre tabindex="0"><code>cd /usr/share/easy-rsa/2.0   
+</code></pre><h3 id="ca-certificate">CA certificate</h3>
+<p>First, edit the vars file.</p>
+<pre tabindex="0"><code>vim vars  
+</code></pre><p>The contents are as follows. (Comment lines and blank lines are omitted)</p>
+<pre tabindex="0"><code>export EASY_RSA=&#34;`pwd`&#34;  
+export OPENSSL=&#34;openssl&#34;  
+export PKCS11TOOL=&#34;pkcs11-tool&#34;  
+export GREP=&#34;grep&#34;  
+export KEY_CONFIG=`$EASY_RSA/whichopensslcnf $EASY_RSA`  
+export KEY_DIR=&#34;$EASY_RSA/keys&#34;  
+export PKCS11_MODULE_PATH=&#34;dummy&#34;  
+export PKCS11_PIN=&#34;dummy&#34;  
+export KEY_SIZE=2048  
+export CA_EXPIRE=3650  
+export KEY_EXPIRE=3650  
+export KEY_COUNTRY=&#34;JP&#34;         #Country  
+export KEY_PROVINCE=&#34;Tokyo&#34;     #Prefecture  
+export KEY_CITY=&#34;Shibuya-ku&#34;    #City  
+export KEY_ORG=&#34;AAA-Company&#34;    #Organization name  
+export KEY_EMAIL=&#34;fooo@aaa.com&#34; #Email address  
+export KEY_OU=&#34;BTeam&#34;           #Team name etc. (optional)  
+export KEY_NAME=&#34;EasyRSA&#34;  
+</code></pre><p>Generate the CA certificate.</p>
+<pre tabindex="0"><code>source ./vars  
+./clean-all  
+./build-ca  
+~You&#39;ll be asked various questions, but pressing Enter for all of them seems fine~  
+</code></pre><h3 id="server-certificate">Server certificate</h3>
+<p>Generate the server certificate.</p>
+<pre tabindex="0"><code>./build-key-server server  
+~You&#39;ll be asked various questions, but pressing Enter for them is basically fine~  
+~You&#39;ll be asked Yes/No along the way; enter &#34;y&#34; there~  
+</code></pre><h3 id="diffie-hellman-dh">Diffie Hellman (DH)</h3>
+<p>Generate the DH parameters.</p>
+<pre tabindex="0"><code>./build-dh  
+</code></pre><h3 id="moving-the-certificates">Moving the certificates</h3>
+<p>Move the generated certificates to the OpenVPN directory.</p>
+<pre tabindex="0"><code>cp keys/ca.crt /etc/openvpn/.  
+cp keys/server.crt /etc/openvpn/.  
+cp keys/server.key /etc/openvpn/.  
+cp keys/dh2048.pem /etc/openvpn/.  
+</code></pre><h2 id="openvpn-settings">■OpenVPN settings</h2>
+<p>Configure the OpenVPN server.</p>
+<pre tabindex="0"><code>cp /usr/share/doc/openvpn-2.4.4/sample/sample-config-files/server.conf /etc/openvpn/server.conf  
+vim /etc/openvpn/server.conf  
+</code></pre><p>The contents are as follows. (Comment lines and blank lines are omitted)</p>
+<pre tabindex="0"><code>port 1194  
+proto tcp  
+dev tun  
+ca ca.crt  
+cert server.crt  
+key server.key  
+dh dh2048.pem  
+server 192.168.10.0 255.255.255.0        #Subnet mask of the OpenVPN server  
+route 192.168.10.0 255.255.255.0         #Subnet mask assigned to clients = can be the same as server  
+push &#34;redirect-gateway def1&#34;             #Clients route all traffic through the VPN  
+push &#34;dhcp-option DNS 192.168.10.254&#34;    #DNS server setting  
+keepalive 10 120  
+status /var/log/openvpn-status.log  
+log         /var/log/openvpn.log  
+log-append  /var/log/openvpn.log  
+verb 3  
+plugin    /usr/lib64/openvpn/plugin/lib/openvpn-auth-ldap.so &#34;/etc/openvpn/auth/ldap.conf&#34;  
+client-cert-not-required  
+username-as-common-name  
+</code></pre><p>Also configure the connection to the LDAP server.</p>
+<pre tabindex="0"><code>vim /etc/openvpn/auth/ldap.conf  
+</code></pre><p>The contents are as follows. (Comment lines and blank lines are omitted)</p>
+<pre tabindex="0"><code>&lt;LDAP&gt;  
+    URL     ldap://ldap.sample.com   #URL of the LDAP server  
+    Timeout     15  
+    TLSEnable   no  
+    FollowReferrals yes  
+&lt;/LDAP&gt;  
+&lt;Authorization&gt;  
+    BaseDN      &#34;ou=People,dc=sample,dc=com&#34; #DN of the login account information on the LDAP server  
+    SearchFilter    &#34;(&amp;(uid=%u))&#34;  
+    RequireGroup    false  
+&lt;/Authorization&gt;  
+</code></pre><h2 id="iptables-settings">■iptables settings</h2>
+<p>For clients connected via VPN to communicate externally through the VPN server, you need to set up masquerading with iptables. <br>
+Create scripts so that iptables is configured when openvpn starts.</p>
+<h4 id="startup-script">Startup script</h4>
+<pre tabindex="0"><code>#!/bin/bash  
+  
+# Clear settings  
+/etc/openvpn/openvpn-shutdown  
+  
+# Masquerade settings (change the IP address and Ethernet interface to match your environment)  
+iptables -t nat -A POSTROUTING -s 192.168.10.0/24 -o eno1 -j MASQUERADE  
+  
+# Allow outgoing traffic from the VPN server  
+iptables -I OUTPUT -o tun+ -j ACCEPT  
+iptables -I FORWARD -o tun+ -j ACCEPT  
+</code></pre><h4 id="shutdown-script">Shutdown script</h4>
+<pre tabindex="0"><code>#!/bin/bash  
+  
+# Function to delete iptables rules  
+delete() {  
+    rule_number=`iptables -L $target --line-numbers -n -v|grep tun.|awk &#39;{print $1}&#39;|sort -r`  
+    for num in $rule_number  
+    do  
+        iptables -D $target $num  
+    done  
+}  
+  
+# Delete incoming rules  
+target=&#39;INPUT&#39;  
+delete  
+  
+# Delete forwarding rules  
+target=&#39;FORWARD&#39;  
+delete  
+  
+# Delete outgoing rules  
+target=&#39;OUTPUT&#39;  
+delete  
+</code></pre><h2 id="starting">■Starting</h2>
+<pre tabindex="0"><code>systemctl start iptables  
+systemctl start openvpn  
+sh /etc/openvpn/openvpn-startup  
+</code></pre><h1 id="client-side-steps">Client-side steps</h1>
+<h2 id="getting-tunnelblick">■Getting Tunnelblick</h2>
+<p>Download &amp; install it from the following site.<br>
+<a href="https://tunnelblick.net/downloads.html" rel="noopener" target="_blank"><a href="https://tunnelblick.net/downloads.html">https://tunnelblick.net/downloads.html</a></a></p>
+<h2 id="vpn-settings">■VPN settings</h2>
+<p>Download the <code>ca.crt</code> generated on the server to the client, and create <code>sample.ovpn</code> in the same directory. <br>
+*You can use any name for the &ldquo;sample&rdquo; part above. It becomes the connection name in Tunnelblick.</p>
+<p>Make the contents of sample.ovpn as follows.</p>
+<pre tabindex="0"><code>client  
+  
+auth-user-pass  
+  
+dev    tun  
+proto  tcp  
+  
+ca     ca.crt  
+  
+remote xxx.xxx.xxx.xxx 1194 #xxx is the IP address the client uses to access the VPN server  
+</code></pre><p>Double-clicking the created ovpn file launches Tunnelblick and sets up the VPN configuration.</p>
+<h2 id="vpn-connection">■VPN connection</h2>
+<p>Launch Tunnelblick and select &ldquo;Connect sample&rdquo; from the menu bar icon to connect.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

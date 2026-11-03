@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Initial Setup of Pop!_OS|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Initial Setup of Pop!_OS</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2026-11-03 00:00:00 &#43;0000 UTC" class="catalogue-time">2026-11-03</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/popos/">PopOS</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h2 id="environment">Environment</h2>
+<ul>
+<li>Pop!_OS 24.04 LTS</li>
+</ul>
+<hr>
+<h2 id="overview">Overview</h2>
+<p>Pop!_OS, an Ubuntu-based Linux desktop, seems to be getting popular lately, so I gave it a try.</p>
+<h2 id="initial-setup-steps">Initial Setup Steps</h2>
+<h3 id="installing-the-os">Installing the OS</h3>
+<p>Download the installer from the official page and write it to a USB drive as boot media.<br>
+<a href="https://system76.com/download-pop/?srsltid=AYCX9vLx31ncOSKjXrQwi-M5aOkP8gaxdDigf4ibcRHOS_pAGk8B0Kcj">Download page</a></p>
+<p>Boot the PC from the USB drive you created and install the OS.</p>
+<h3 id="setting-up-japanese-input">Setting Up Japanese Input</h3>
+<ul>
+<li>Reference: <a href="https://qiita.com/R61/items/a58065ac4bae7ac3a3d4">Pop!_OSで日本語入力を快適に行うための環境設定 - Qiita</a> (Japanese)</li>
+</ul>
+<p>Enable Mozc with the following commands.</p>
+<pre tabindex="0"><code>sudo apt update
+sudo apt install fcitx5 fcitx5-mozc fcitx5-config-qt
+</code></pre><ul>
+<li>In the Fcitx configuration screen, search for &ldquo;mozc&rdquo; rather than filtering by &ldquo;Japanese&rdquo;.</li>
+<li>Mozc can be configured from the Fcitx configuration screen. You can also assign IME on/off to the Henkan/Muhenkan keys there.</li>
+<li>For some reason, Japanese input does not work right after the PC boots. Restarting it from the input icon in the taskbar makes Japanese input available.</li>
+</ul>
+<h3 id="fixing-clock-drift-when-dual-booting">Fixing Clock Drift When Dual Booting</h3>
+<p>The following command fixes it.</p>
+<pre tabindex="0"><code>sudo timedatectl set-local-rtc 1
+</code></pre><blockquote>
+<p>For some reason, the clock occasionally goes off again. Running the command above again fixes it. I&rsquo;m still looking for a permanent solution.</p>
+</blockquote>
+<h3 id="installing-claude-desktop">Installing Claude Desktop</h3>
+<ul>
+<li>Reference: <a href="https://pasqualepillitteri.it/ja/news/6975/claude-desktop-linux-beta-ubuntu-debian-ja#google_vignette">Claude Desktop が Linux に対応：Ubuntu と Debian 向け公式アプリ（ベータ版）</a> (Japanese)</li>
+</ul>
+<p>Download the signing key.</p>
+<pre tabindex="0"><code>sudo curl -fsSLo /usr/share/keyrings/claude-desktop-archive-keyring.asc https://downloads.claude.ai/claude-desktop/key.asc
+</code></pre><p>Register the apt repository.</p>
+<pre tabindex="0"><code>echo &#34;deb [arch=amd64,arm64 signed-by=/usr/share/keyrings/claude-desktop-archive-keyring.asc] https://downloads.claude.ai/claude-desktop/apt/stable stable main&#34;  | sudo tee /etc/apt/sources.list.d/claude-desktop.list
+</code></pre><p>Install the package.</p>
+<pre tabindex="0"><code>sudo apt update &amp;&amp; sudo apt install claude-desktop
+</code></pre><h3 id="installing-asdf">Installing asdf</h3>
+<p>Download the archive from the releases page.<br>
+<a href="https://github.com/asdf-vm/asdf/releases">https://github.com/asdf-vm/asdf/releases</a></p>
+<p>Extract the downloaded file and place it in a directory on your PATH.</p>
+<pre tabindex="0"><code>tar xf asdf-v0.20.2-linux-amd64.tar.gz
+sudo mv asdf /usr/local/bin/.
+</code></pre><h3 id="installing-go-with-asdf">Installing Go with asdf</h3>
+<p>Add the plugin.</p>
+<pre tabindex="0"><code>asdf plugin add golang
+</code></pre><p>Check the available versions.</p>
+<pre tabindex="0"><code>asdf list all golang
+</code></pre><p>Install the version you want from the list.</p>
+<pre tabindex="0"><code>asdf install golang 1.27.1
+asdf set golang 1.27.1
+</code></pre><h3 id="setting-up-the-terminal-environment">Setting Up the Terminal Environment</h3>
+<p>I set up a Tilix + fish + fisherman environment, mostly following the article below.<br>
+<a href="/en/posts/2019/03/10/linux-mint-terminator-fish/">Installing terminator + fish + fisherman</a> (Japanese)</p>
+<p>After switching the shell to fish, add the asdf and Go settings to <code>~/.config/fish/config.fish</code>.</p>
+<pre tabindex="0"><code>if test -z &#34;$ASDF_DATA_DIR&#34;
+  set -gx ASDF_DATA_DIR $HOME/.asdf
+end
+if test -e $ASDF_DATA_DIR/shims
+  fish_add_path --global --move $ASDF_DATA_DIR/shims
+end
+
+### asdf golang (update GOROOT/GOPATH/GOBIN to the current version on every prompt)
+if test -e $ASDF_DATA_DIR/plugins/golang/set-env.fish
+  source $ASDF_DATA_DIR/plugins/golang/set-env.fish
+  asdf_update_golang_env
+  if set -q GOBIN
+    fish_add_path --global $GOBIN
+  end
+end
+</code></pre><h3 id="installing-aws-cli">Installing AWS CLI</h3>
+<ul>
+<li>Reference: <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">Installing or updating to the latest version of the AWS CLI</a></li>
+</ul>
+<pre tabindex="0"><code>curl -fsSL https://awscli.amazonaws.com/v2/install.sh | bash
+</code></pre><h3 id="installing-vscode">Installing VSCode</h3>
+<p>It can also be installed from the store, but that version isn&rsquo;t great. Downloading and installing it from the official page is more stable.<br>
+<a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></p>
+<h2 id="impressions">Impressions</h2>
+<ul>
+<li>It runs snappily and is easy to use.</li>
+<li>Multi-display works. It even supports mobile displays that show two screens over a single USB Type-C cable.</li>
+<li>Japanese input doesn&rsquo;t work at boot, so having to restart Mozc every time is a hassle.</li>
+<li>The clock occasionally goes off, perhaps because of dual booting, which is inconvenient. It might be getting messed up after booting into Windows.</li>
+</ul>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

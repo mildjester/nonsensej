@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>[CentOS &#43; Apache] Getting and Auto-Renewing a Free SSL Certificate with Let’s Encrypt|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">[CentOS &#43; Apache] Getting and Auto-Renewing a Free SSL Certificate with Let’s Encrypt</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2017-01-18 00:51:55 &#43;0000 UTC" class="catalogue-time">2017-01-18</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/centos/">CentOS</a></div> <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/apache/">Apache</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h3 id="environment">■Environment</h3>
+<p>CentOS 7.3<br>
+Apache 2.4.6</p>
+<hr>
+<p>Get a free SSL certificate with Let&rsquo;s Encrypt and configure it to renew automatically.</p>
+<p>########## Added 2017/04/05 ##########<br>
+A tool called Certbot has been released,<br>
+and using it is easier than following these steps.<br>
+<a href="https://certbot.eff.org" target="_blank"><a href="https://certbot.eff.org">https://certbot.eff.org</a></a><br>
+See here for how to set it up<br>
+<a href="/posts/wp/656">[Let&rsquo;sEncrypt] How to Use Certbot (CentOS7 + nginx)</a><br>
+################################</p>
+<h3 id="prerequisites">■Prerequisites</h3>
+<p>The target server must be exposed to the internet.<br>
+→It seems Let&rsquo;s Encrypt accesses the server for verification when issuing a certificate.<br>
+　Therefore, certificates cannot be issued in environments that block external access with a firewall or similar.<br>
+　As of 2017/1/19, the IP addresses used for that access are not published.<br>
+　<a href="https://letsencrypt.jp/faq/#IP"><a href="https://letsencrypt.jp/faq/#IP">https://letsencrypt.jp/faq/#IP</a></a> (Japanese)</p>
+<h3 id="setup-steps">Setup Steps</h3>
+<p>*The following steps are performed with root privileges.</p>
+<p>First, download the tool for obtaining certificates from Let&rsquo;s Encrypt into any directory on the server.<br>
+If git isn&rsquo;t installed on the server, you could download it locally and upload it via FTP or similar.</p>
+<pre tabindex="0"><code># git clone https://github.com/letsencrypt/letsencrypt
+</code></pre><p>After downloading, perform the tool&rsquo;s initial setup.<br>
+The following commands install the required software and so on, and display the letsencrypt-auto help when finished.</p>
+<pre tabindex="0"><code># cd letsencrypt  
+# ./letsencrypt-auto --help --debug
+</code></pre><p>Next, run the tool to actually obtain the certificate.<br>
+It errors out if a process is using port 443, so I had to stop Apache at that moment.</p>
+<pre tabindex="0"><code># systemctl stop httpd  
+# ./letsencrypt-auto certonly --standalone -d your-domain.com  
+# systemctl start httpd
+</code></pre><p>*Replace &ldquo;your-domain.com&rdquo; above with the domain to generate the certificate for.</p>
+<p>The certificate has now been generated.<br>
+The certificate and private key (symbolic links to them) are generated under the following directory,<br>
+so specify them in the Apache configuration file.<br>
+■Generated directory</p>
+<pre tabindex="0"><code>/etc/letsencrypt/live/your-domain.com/
+</code></pre><p>■Generated files</p>
+<pre tabindex="0"><code>cert.pem　：　the SSL certificate itself  
+chain.pem　：　the chain certificate  
+fullchain.pem　：　the SSL certificate and chain certificate combined  
+privkey.pem　：　the private key
+</code></pre><p>Set these in the Apache configuration file (typically /etc/httpd/conf.d/ssl.conf).<br>
+・Configuration pattern 1</p>
+<pre tabindex="0"><code>SSLCertificateFile /etc/letsencrypt/live/your-domain.com/cert.pem  
+SSLCertificateKeyFile /etc/letsencrypt/live/your-domain.com/privkey.pem  
+SSLCertificateChainFile /etc/letsencrypt/live/your-domain.com/chain.pem
+</code></pre><p>・Configuration pattern 2</p>
+<pre tabindex="0"><code>SSLCertificateFile /etc/letsencrypt/live/your-domain.com/fullchain.pem  
+SSLCertificateKeyFile /etc/letsencrypt/live/your-domain.com/privkey.pem
+</code></pre><p>*If your Apache version is 2.4.8 or later, the &ldquo;SSLCertificateChainFile&rdquo; setting can&rsquo;t be used,<br>
+　so set fullchain.pem in &ldquo;SSLCertificateFile&rdquo;.</p>
+<p>The certificate generated here is only valid for 3 months, so it needs to be renewed periodically.<br>
+The command to renew the certificate is as follows.</p>
+<pre tabindex="0"><code>./letsencrypt-auto renew
+</code></pre><p>However, renewal apparently only runs when fewer than 30 days remain before expiration,<br>
+so running the command above finishes without renewing anything.</p>
+<p>Create a shell script that does &ldquo;stop Apache → renew certificate → start Apache&rdquo;.<br>
+It does nothing if a certificate generated within the last 70 days exists.</p>
+<pre tabindex="0"><code>#!/bin/bash  
+serchResult=`find /etc/letsencrypt/archive/your-domain.com/ -mtime -70 -regex &#34;.*cert[0-9]?\.pem&#34;`  
+if [ -n &#34;$serchResult&#34; ]; then  
+    echo &#34;certs are not due for renewal yet&#34;  
+else  
+    systemctl stop httpd &amp;&amp; /opt/git/letsencrypt/letsencrypt-auto renew &amp;&amp; systemctl start httpd  
+    if [ $? != 0 ]; then  
+        # just to be sure  
+        systemctl restart httpd  
+    fi  
+fi
+</code></pre><p>*The above assumes the tool is placed under opt.</p>
+<p>Configure cron to run this script every day late at night.</p>
+<pre tabindex="0"><code># SSL update  
+5 0 * * * sh /etc/letsencrypt/renew.sh
+</code></pre><p>*The above is an example where the script was created at /etc/letsencrypt/renew.sh.</p>
+<p>That completes the setup.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

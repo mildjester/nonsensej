@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Sending CircleCI Notifications to Slack|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Sending CircleCI Notifications to Slack</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2018-10-14 22:01:37 &#43;0000 UTC" class="catalogue-time">2018-10-14</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/circleci/">CircleCI</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h3 id="reference-site">Reference Site</h3>
+<p><a href="https://qiita.com/su-kun1899/items/640f6fa8b48749396c16" rel="noopener" target="_blank">CircleCIの結果をSlackに通知する</a> (Japanese)</p>
+<hr>
+<p>This assumes the following basic Circle CI setup has been completed.<br>
+<a href="/posts/wp/1477" rel="noopener" target="_blank">Running Unit Tests on Pull Requests with Circle CI</a></p>
+<p>With only the steps above, Circle CI notifications arrive by email,<br>
+so we&rsquo;ll change them to arrive in Slack.</p>
+<h3 id="slack-setup">Slack Setup</h3>
+<p>First, install the Circle CI app in Slack.<br>
+<a href="https://my.slack.com/apps/A0F7VRE7N-circleci" rel="noopener" target="_blank"><a href="https://my.slack.com/apps/A0F7VRE7N-circleci">https://my.slack.com/apps/A0F7VRE7N-circleci</a></a></p>
+<p>Clicking Install shows a screen for selecting the channel to notify.<br>
+Choose any channel you like.<br>
+<img src="https://www.logical-dice.com/images/2018/10/CircleCI-Slack001.png" alt="" /></p>
+<p>The next screen explains what to do in the Circle CI settings.<br>
+It shows the Webhook URL (the URL used to send notifications) to set in Circle CI, so take note of it.</p>
+<p>Below that explanation there are also fields for changing the name and icon used for notifications; change them if you like.<br>
+<img src="https://www.logical-dice.com/images/2018/10/CircleCI-Slack002.png" alt="" /></p>
+<h3 id="circle-ci-setup">Circle CI Setup</h3>
+<p>On the project&rsquo;s screen, click Settings (the gear icon) to open the settings screen.<br>
+From the left menu, open &ldquo;NOTIFICATIONS &gt; Chat Notifications&rdquo;,<br>
+enter the Webhook URL you noted on the Slack screen into &ldquo;Webhook URL&rdquo;, and click &ldquo;Save&rdquo;.<br>
+<img src="https://www.logical-dice.com/images/2018/10/CircleCI-Slack003.png" alt="" /></p>
+<p>Clicking &ldquo;&amp; Test Hook&rdquo; here sends a test notification to the configured channel.<br>
+It&rsquo;s a good idea to run it to confirm the setup worked.<br>
+<img src="https://www.logical-dice.com/images/2018/10/CircleCI-Slack004.png" alt="" /></p>
+<p>If you receive &ldquo;Hello from CircleCI&rdquo; as shown above, the setup is complete.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

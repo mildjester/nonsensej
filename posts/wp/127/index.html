@@ -74,13 +74,13 @@ postgresql 8.4.20</p>
 local   all         all                               trust  
 host    all         all         192.168.xxx.xxx/32    trust
 </code></pre><pre tabindex="0"><code># vim postgresql.conf  
-listen_addresses = ‘*’
+listen_addresses = &#39;*&#39;
 </code></pre><p>設定が完了したらpostgreSQLを起動します。</p>
 <pre tabindex="0"><code># service postgresql start
 </code></pre><p>次に利用するユーザとデータベースを作成します。</p>
 <pre tabindex="0"><code># su - postgres  
 $ psql  
-postgres=# CREATE USER sampleUser WITH PASSWORD ’samplePass&#39;;  
+postgres=# CREATE USER sampleUser WITH PASSWORD &#39;samplePass&#39;;  
 postgres=# CREATE DATABASE sampleDB WITH OWNER=sampleUser ENCODING=&#39;UTF8&#39; TEMPLATE template0;  
 postgres=# ¥q
 </code></pre><p>これで利用準備は完了です。<br>

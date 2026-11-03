@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mac on Logical Dice Techblog</title>
+    <link>https://www.logical-dice.com/en/tags/mac/</link>
+    <description>Recent content in Mac on Logical Dice Techblog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 14 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.logical-dice.com/en/tags/mac/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Installing PHP 7.2 on a Mac</title>
+      <link>https://www.logical-dice.com/en/posts/2019/02/14/mac-php-72/</link>
+      <pubDate>Thu, 14 Feb 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/02/14/mac-php-72/</guid>
+      <description>How to install PHP 7.2 on a Mac.</description>
+    </item>
+    <item>
+      <title>Installing a Programming Font</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1218/</link>
+      <pubDate>Fri, 13 Apr 2018 21:21:39 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1218/</guid>
+      <description>Steps to install &amp;ldquo;Ricty Diminished&amp;rdquo;, a font well suited for programming</description>
+    </item>
+    <item>
+      <title>[Mac] A Shell Script to Output PC Startup and Shutdown Times</title>
+      <link>https://www.logical-dice.com/en/posts/wp/857/</link>
+      <pubDate>Mon, 11 Dec 2017 23:51:12 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/857/</guid>
+      <description>■EnvironmentmacOS High Sierra 10.13.1bash 4.4.12When recording my work attendance, I enter several days at once&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Mac] Installing Archive Software (Windows-Compatible)</title>
+      <link>https://www.logical-dice.com/en/posts/wp/799/</link>
+      <pubDate>Fri, 13 Oct 2017 19:48:22 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/799/</guid>
+      <description>■Environment macOS Sierra 10.12.6 Files compressed on Windows can&amp;rsquo;t be opened properly on Mac, and files compressed on Mac&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Mac] Connecting to a VPN with FortiClient</title>
+      <link>https://www.logical-dice.com/en/posts/wp/776/</link>
+      <pubDate>Fri, 13 Oct 2017 11:43:37 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/776/</guid>
+      <description>■Environment macOS Sierra 10.12.6 FortiClient 5.6.0.703 ■Downloading &amp;amp; installing&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Mac] Installing NetBeans</title>
+      <link>https://www.logical-dice.com/en/posts/wp/737/</link>
+      <pubDate>Fri, 13 Oct 2017 11:05:07 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/737/</guid>
+      <description>■Environment macOS Sierra 10.12.6 NetBeans 8.2 With built-in code completion and FTP features, among free IDEs&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Mac] Installing Homebrew</title>
+      <link>https://www.logical-dice.com/en/posts/wp/750/</link>
+      <pubDate>Thu, 12 Oct 2017 16:27:26 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/750/</guid>
+      <description>■Environment macOS Sierra (10.12.5) Homebrew is a package manager for macOS. To install it&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Mac] Setup After Purchasing or Resetting a Mac</title>
+      <link>https://www.logical-dice.com/en/posts/wp/734/</link>
+      <pubDate>Thu, 12 Oct 2017 16:23:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/734/</guid>
+      <description>A summary of the settings I apply to a fresh MacBook. ■Settings - Install Homebrew, Terminal setup (iTerm2 + fi&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Mac] Terminal Setup (iTerm2 &#43; fish &#43; fisherman)</title>
+      <link>https://www.logical-dice.com/en/posts/wp/741/</link>
+      <pubDate>Thu, 12 Oct 2017 16:01:40 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/741/</guid>
+      <description>■Environment iTerm2 3.2.5 fish 2.7.1 fisherman 3.1.1 ■Reference fish shell を使いたい人生&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Mac] Checking a Photo&#39;s Date Taken and Other Info from the Command Line</title>
+      <link>https://www.logical-dice.com/en/posts/wp/703/</link>
+      <pubDate>Sun, 24 Sep 2017 15:27:02 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/703/</guid>
+      <description>■Environment macOS Sierra 10.12.6 exiftool 10.55 How to check the date a photo was taken from the Mac command line&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Mac] Installing asdf for Language Package Management (fish Environment)</title>
+      <link>https://www.logical-dice.com/en/posts/wp/689/</link>
+      <pubDate>Sat, 19 Aug 2017 17:11:43 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/689/</guid>
+      <description>■Environment macOS Sierra 10.12.6 fish 2.5.0 ■Steps It can apparently be installed with Brew too, but following the official page&amp;rsquo;s steps&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Mac] Setting Up neovim &amp; dein.vim</title>
+      <link>https://www.logical-dice.com/en/posts/wp/665/</link>
+      <pubDate>Sat, 15 Jul 2017 00:44:50 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/665/</guid>
+      <description>■Environment macOS Sierra 10.12.6 fish 2.6.0 nvim 0.2.0 ■References To NeoVim, and then dein&amp;hellip;.</description>
+    </item>
+    <item>
+      <title>Setting Up a Docker Environment on Mac</title>
+      <link>https://www.logical-dice.com/en/posts/wp/642/</link>
+      <pubDate>Mon, 08 May 2017 11:01:23 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/642/</guid>
+      <description>■Environment macOS Sierra 10.12.4 Installing Docker Click &amp;ldquo;Get Docker for M&amp;hellip; on the official page (here)</description>
+    </item>
+    <item>
+      <title>Installing the Zabbix Agent on a Mac</title>
+      <link>https://www.logical-dice.com/en/posts/wp/624/</link>
+      <pubDate>Tue, 02 May 2017 14:49:34 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/624/</guid>
+      <description>■EnvironmentMac OS 10.9.5Zabbix 3.2.1Notes on the steps I took to install the Zabbix agent on a Mac OS server&amp;hellip;.</description>
+    </item>
+    <item>
+      <title>[Mac] Setting Up fish &#43; oh-my-fish &#43; peco</title>
+      <link>https://www.logical-dice.com/en/posts/wp/569/</link>
+      <pubDate>Thu, 20 Apr 2017 00:31:51 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/569/</guid>
+      <description>Environment OS X ElCapitan 10.11.6 Installing fish Install fish with brew. brew insta&amp;hellip;</description>
+    </item>
+    <item>
+      <title>How to Install Composer</title>
+      <link>https://www.logical-dice.com/en/posts/wp/515/</link>
+      <pubDate>Tue, 11 Apr 2017 16:08:08 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/515/</guid>
+      <description>■Environment macOS Sierra 10.12.4 CentOS 6.8 I installed Composer on my work Mac and a CentOS server&amp;hellip;</description>
+    </item>
+    <item>
+      <title>php-mcrypt Fails to Install via brew</title>
+      <link>https://www.logical-dice.com/en/posts/wp/295/</link>
+      <pubDate>Tue, 20 Sep 2016 00:15:18 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/295/</guid>
+      <description>■Environment OS X El Capitan(10.11.6) Homebrew 0.9.9 When installing php-mcrypt with brew&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Mac] Terminal Setup (iTerm2 &#43; zsh &#43; prezto &#43; peco)</title>
+      <link>https://www.logical-dice.com/en/posts/wp/259/</link>
+      <pubDate>Tue, 26 Jul 2016 00:00:40 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/259/</guid>
+      <description>For Ubuntu, see here. (1) Prepare iTerm2. iTerm2 is covered in this post, so please refer to it&amp;hellip;</description>
+    </item>
+  </channel>
+</rss>

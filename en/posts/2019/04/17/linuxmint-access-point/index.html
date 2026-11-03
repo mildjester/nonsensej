@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Turning Linux Mint into a Wireless LAN Access Point|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Turning Linux Mint into a Wireless LAN Access Point</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2019-04-17 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-04-17</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/linuxmint/">LinuxMint</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h2 id="environment">Environment</h2>
+<ul>
+<li>Linux Mint 19.1 &ldquo;Tessa&rdquo; - MATE (64-bit)</li>
+</ul>
+<hr>
+<p>I wanted to view a page that is only accessible via VPN on a PC, Android, and iOS at the same time,<br>
+but my VPN subscription only allows one device to connect at a time.</p>
+<p>So I connected to the VPN on the PC (Linux Mint) and shared that connection over wireless LAN.<br>
+It&rsquo;s what Mac calls &ldquo;Internet Sharing&rdquo;.</p>
+<h2 id="reference">Reference</h2>
+<p><a href="https://qiita.com/onokatio/items/3117d158c76adc65fa9a">Linuxで簡単に無線Lanアクセスポイントを作る</a> (Japanese)</p>
+<p>I mostly followed the reference page, but some parts didn&rsquo;t work, so I modified the commands slightly.</p>
+<h2 id="setup">Setup</h2>
+<p>Install the required software.</p>
+<pre tabindex="0"><code>apt install util-linux procps hostapd iproute2 iw
+</code></pre><p>Get the script that creates the access point.</p>
+<pre tabindex="0"><code>wget https://raw.githubusercontent.com/oblique/create_ap/master/create_ap
+</code></pre><p>Make it executable and move it somewhere on your PATH.</p>
+<pre tabindex="0"><code>sudo chmod +x create_ap
+sudo mv create_ap /usr/local/bin/.
+</code></pre><h2 id="sharing-the-network">Sharing the Network</h2>
+<p>First, check your network interfaces (NICs).</p>
+<pre tabindex="0"><code>ip a
+</code></pre><p>Very roughly speaking,<br>
+NICs starting with e are wired LAN, and NICs starting with w are wireless LAN.<br>
+For VPNs, the name probably includes the VPN type (ppp, etc.).<br>
+Those starting with lo or br are used internally, so you can basically ignore them.</p>
+<p>If you&rsquo;re not sure, open the details of the NIC you want to use under &ldquo;Control Center &gt; Network Connections&rdquo;,<br>
+and pick the NIC whose device &ldquo;XX:XX:XX:XX:XX:XX&rdquo; matches.</p>
+<p>From these NICs, decide which one to use for &ldquo;outside world &lt;-&gt; PC&rdquo; communication and which for &ldquo;PC &lt;-&gt; smartphone&rdquo; communication.</p>
+<p>Note that these two NICs must be physically separate hardware.<br>
+For example, if your PC has only one wireless LAN NIC, it will be used for &ldquo;PC &lt;-&gt; smartphone&rdquo;,<br>
+so you&rsquo;ll have to use something like wired LAN for &ldquo;outside world &lt;-&gt; PC&rdquo;.</p>
+<p>Once you&rsquo;ve decided which NICs to use, run the command as follows:</p>
+<pre tabindex="0"><code>sudo create_ap {NIC for smartphones} {NIC for outside world} {SSID} {SSID password}
+</code></pre><p>For example, if the NIC for smartphones is the wireless LAN <code>wlp3s0</code> and the NIC for the outside world is the VPN <code>ppp0</code>, you can start the access point with the following command.<br>
+In this command, the SSID is <code>MyAP</code> and the password is <code>MyPassword</code>.</p>
+<pre tabindex="0"><code>sudo create_ap wlp3s0 ppp0 MyAP MyPassword
+</code></pre><p>After running the command, the access point&rsquo;s activity log streams in the terminal.<br>
+To close the access point, press <code>Ctrl + c</code>.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

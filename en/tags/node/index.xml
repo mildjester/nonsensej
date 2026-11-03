@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Node on Logical Dice Techblog</title>
+    <link>https://www.logical-dice.com/en/tags/node/</link>
+    <description>Recent content in Node on Logical Dice Techblog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 15 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.logical-dice.com/en/tags/node/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>swiper.scss Not Being Included by webpack</title>
+      <link>https://www.logical-dice.com/en/posts/2020/09/15/webpack-swiper-env-diff/</link>
+      <pubDate>Tue, 15 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/09/15/webpack-swiper-env-diff/</guid>
+      <description>When bundling Swiper with webpack, swiper.scss was not included only in the production build</description>
+    </item>
+    <item>
+      <title>Preventing gulp-uglify from Mangling Variable/Function Names</title>
+      <link>https://www.logical-dice.com/en/posts/2020/04/15/gulp-uglify-keep-name/</link>
+      <pubDate>Wed, 15 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/04/15/gulp-uglify-keep-name/</guid>
+      <description>How to keep variable and function names unchanged when minifying JS files with gulp-uglify.</description>
+    </item>
+    <item>
+      <title>[node] forever Cheat Sheet</title>
+      <link>https://www.logical-dice.com/en/posts/wp/677/</link>
+      <pubDate>Mon, 31 Jul 2017 01:44:06 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/677/</guid>
+      <description>Start: forever start {js file} / List running: forever list / Stop: forever stop {number of the target&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Running a Vue.js App with forever</title>
+      <link>https://www.logical-dice.com/en/posts/wp/674/</link>
+      <pubDate>Mon, 31 Jul 2017 01:32:53 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/674/</guid>
+      <description>■Environment CentOS 7.3 npm 3.10.10 =====Added 2017/12/27===== When I tried these steps again after a long time, vu&amp;hellip;</description>
+    </item>
+  </channel>
+</rss>

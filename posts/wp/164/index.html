@@ -71,7 +71,7 @@ conf.modules.d/00-base.conf:LoadModule auth_digest_module modules/mod_auth_diges
 </code></pre><p>ダイジェスト認証用のIDとパスワードのセットを作成します。<br>
 下記の「Sample Auth」は認証名で「sampleuser」は設定するIDです。適宜書き換えてください。<br>
 また「/etc/httpd/conf/.hpass」が生成されるファイルですが、パスもファイル名も任意です。</p>
-<pre tabindex="0"><code># htdigest -c /etc/httpd/conf/.htpass ’Sample Auth&#39; sampleuser  
+<pre tabindex="0"><code># htdigest -c /etc/httpd/conf/.htpass &#39;Sample Auth&#39; sampleuser  
 Adding password for sampleuser in realm Logical Dice Auth.  
 New password:　←設定するパスワードを入力する  
 Re-type new password:　←設定するパスワードを再度入力する
@@ -81,7 +81,7 @@ Re-type new password:　←設定するパスワードを再度入力する
 下記のAuthUserFileは上記で生成したファイルを指定してください。</p>
 <pre tabindex="0"><code>&lt;Location &#34;/sample/&#34;&gt;  
    AuthType Digest  
-   AuthName “Sample Auth&#34;  
+   AuthName &#34;Sample Auth&#34;  
    AuthUserFile &#34;/etc/httpd/conf/.htpass&#34;  
    Require valid-user  
 &lt;/Location&gt;

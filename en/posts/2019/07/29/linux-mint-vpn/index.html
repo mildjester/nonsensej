@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Connecting and Disconnecting a VPN from the Command Line|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Connecting and Disconnecting a VPN from the Command Line</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2019-07-29 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-07-29</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/linuxmint/">LinuxMint</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h3 id="environment">Environment</h3>
+<ul>
+<li>Linux Mint 19.1 &ldquo;Tessa&rdquo; - MATE (64-bit)</li>
+</ul>
+<hr>
+<p>Linux Mint lets you configure a VPN in the GUI, and connect and disconnect it from the GUI as well.<br>
+However, sometimes you want to control the VPN from the command line, such as while working in the terminal,<br>
+so I looked up the commands.</p>
+<h3 id="checking-the-vpn-name">Checking the VPN Name</h3>
+<p>You named it yourself, so you may not need to look it up,<br>
+but you can check it with the following command.<br>
+(In the example below, &ldquo;SampleVPN&rdquo; is the VPN name.)</p>
+<pre tabindex="0"><code>$ nmcli connection | grep vpn
+SampleVPN           123abc12-1a2b-1234-12a1-1234567890ab  vpn       --
+</code></pre><h3 id="connecting-to-the-vpn">Connecting to the VPN</h3>
+<p>Connect to the VPN with the following command.</p>
+<pre tabindex="0"><code>nmcli con up id {VPN name}
+# Example: nmcli con up id SampleVPN
+</code></pre><h3 id="disconnecting-from-the-vpn">Disconnecting from the VPN</h3>
+<p>Disconnect from the VPN with the following command.</p>
+<pre tabindex="0"><code>nmcli con down id {VPN name}
+# Example: nmcli con down id SampleVPN
+</code></pre><h3 id="registering-shortcut-commands">Registering Shortcut Commands</h3>
+<p>Registering aliases makes it easier.</p>
+<pre tabindex="0"><code>alias up-vpn=&#34;nmcli con up id SampleVPN&#34;
+alias down-vpn=&#34;nmcli con down id SampleVPN&#34;
+</code></pre>
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

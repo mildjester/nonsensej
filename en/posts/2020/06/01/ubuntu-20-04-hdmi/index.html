@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Booting Ubuntu 20.04 on a ThinkPad with an HDMI Cable Connected|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Booting Ubuntu 20.04 on a ThinkPad with an HDMI Cable Connected</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2020-06-01 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-06-01</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/ubuntu/">ubuntu</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h2 id="environment">Environment</h2>
+<p>ubuntu 20.04 LTS</p>
+<hr>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1874194">ubuntu bug forum</a></li>
+<li><a href="https://wiki.ubuntu.com/Kernel/KernelBootParameters">ubuntu wiki</a></li>
+</ul>
+<hr>
+<p>In my <a href="/en/posts/2020/05/17/update-ubuntu-20-04/">previous post</a>, I wrote that after updating Ubuntu to 20.04
+I could no longer boot the PC with an HDMI cable plugged in.<br>
+There were reports that rewriting the Linux kernel would make it work, but I didn&rsquo;t want to do that, so I left it alone.</p>
+<p>As of 2020/6/1, there seems to be no official fix from Ubuntu yet, but
+on the <a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1874194">Ubuntu bug report forum</a>
+someone posted on 5/29 that &ldquo;disabling quiet splash made it work!&rdquo;<br>
+I tried it and it did work, so here are the steps.</p>
+<h2 id="changing-the-grub-settings">Changing the grub Settings</h2>
+<p>Edit the grub settings with the following command.</p>
+<pre tabindex="0"><code>$ sudo gedit /etc/default/grub
+</code></pre><p>The config file opens in a text editor. Comment out the <code>quiet splash</code> line.<br>
+After commenting it out, save and close.</p>
+<pre tabindex="0"><code>~snip~
+GRUB_DEFAULT=0
+GRUB_TIMEOUT_STYLE=hidden
+GRUB_TIMEOUT=10
+GRUB_DISTRIBUTOR=`lsb_release -i -s 2&gt; /dev/null || echo Debian`
+#GRUB_CMDLINE_LINUX_DEFAULT=&#34;quiet splash&#34;    &lt;- comment out this line with #
+GRUB_CMDLINE_LINUX=&#34;&#34;
+~snip~
+</code></pre><h2 id="applying-the-grub-settings">Applying the grub Settings</h2>
+<p>Apply the grub settings with the update-grub command below.<br>
+It takes a while, so wait for it to finish.</p>
+<pre tabindex="0"><code>$ sudo update-grub
+Sourcing file `/etc/default/grub&#39;
+Sourcing file `/etc/default/grub.d/init-select.cfg&#39;
+Generating grub configuration file ...
+Linux イメージを見つけました: /boot/vmlinuz-5.4.0-33-generic
+Found initrd image: /boot/initrd.img-5.4.0-33-generic
+Linux イメージを見つけました: /boot/vmlinuz-5.4.0-31-generic
+Found initrd image: /boot/initrd.img-5.4.0-31-generic
+Found Windows Boot Manager on /dev/nvme0n1p1@/EFI/Microsoft/Boot/bootmgfw.efi
+Adding boot menu entry for UEFI Firmware Settings
+</code></pre><p>That&rsquo;s it.<br>
+From the next boot, the OS starts without problems even with HDMI plugged in.</p>
+<p>Note that since quiet splash is disabled, the loading screen with the Lenovo and Ubuntu logos shown at startup/shutdown no longer appears.<br>
+Instead, the current progress scrolls by rapidly as text, so don&rsquo;t be surprised.<br>
+(It looks like the old-school Linux startup/shutdown screen.)</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

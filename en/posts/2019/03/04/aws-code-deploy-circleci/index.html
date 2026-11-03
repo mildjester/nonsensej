@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Running AWS CodeDeploy from CircleCI|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Running AWS CodeDeploy from CircleCI</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2019-03-04 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-03-04</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/circleci/">CircleCI</a></div> <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/aws/">AWS</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<p>Now that CodeDeploy is configured in the <a href="/en/posts/2019/02/28/aws-code-deploy/">previous article</a>, let&rsquo;s run it from CircleCI.</p>
+<p>The official procedure puts the source code in S3 first and then deploys it to EC2,<br>
+but I wanted to avoid S3 if possible, so I referred to this article.<br>
+<a href="https://qiita.com/devalon/items/99373f54998f238ec47a">CircleCI+AWS-CodedeployでStaging環境などに自動デプロイさせる</a> (Japanese)</p>
+<h2 id="preparing-iam">Preparing IAM</h2>
+<p>Create an IAM user for CircleCI.<br>
+First, give it any user name, check &ldquo;Programmatic access&rdquo; as the access type, and proceed to the next step.<br>
+<img src="https://www.logical-dice.com/images/2019/03/AWS-CodeDeploy-CircleCI-001.png"/></p>
+<p>Attach the existing policy &ldquo;AWSCodeDeployFullAccess&rdquo; and proceed to the next step.<br>
+<img src="https://www.logical-dice.com/images/2019/03/AWS-CodeDeploy-CircleCI-002.png"/></p>
+<p>Tags aren&rsquo;t needed, so you can proceed to the next step as is.<br>
+<img src="https://www.logical-dice.com/images/2019/03/AWS-CodeDeploy-CircleCI-003.png"/></p>
+<p>Create the user.<br>
+<img src="https://www.logical-dice.com/images/2019/03/AWS-CodeDeploy-CircleCI-004.png"/></p>
+<p>Note down the &ldquo;Access key ID&rdquo; and &ldquo;Secret access key&rdquo; of the created user, and you&rsquo;re done.<br>
+*The secret access key can only be viewed at this point, so be careful not to forget it.<br>
+<img src="https://www.logical-dice.com/images/2019/03/AWS-CodeDeploy-CircleCI-005.png"/></p>
+<h2 id="creating-the-circleci-config-file">Creating the CircleCI Config File</h2>
+<p>Create <code>.circleci/config.yml</code> in the repository with the following content.</p>
+<pre tabindex="0"><code>version: 2
+jobs:
+  deploy:
+    docker:
+      - image: cdssnc/aws-cli
+    steps:
+      - run:
+          name: &#34;Set AWS region&#34;
+          command: aws configure set region ap-northeast-1
+      - run:
+          name: &#34;Run AWS CodeDeploy&#34;
+          command: aws deploy create-deployment --application-name ${DEPLOY_APPLICATION} --deployment-group-name ${DEPLOY_GROUP} --github-location repository=&#34;${DEPLOY_REPOSITORY}&#34;,commitId=&#34;${CIRCLE_SHA1}&#34;
+workflows:
+  version: 2
+  build_deploy:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only: master
+</code></pre><p>This only kicks off AWS CodeDeploy, so add anything else you need.</p>
+<p>The following values are variables because they&rsquo;ll be set later as CircleCI environment variables.<br>
+You can also write them directly in <code>config.yml</code> instead.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DEPLOY_APPLICATION</td>
+<td>The CodeDeploy application name set up in the previous article</td>
+</tr>
+<tr>
+<td>DEPLOY_GROUP</td>
+<td>The CodeDeploy deployment group set up in the previous article</td>
+</tr>
+<tr>
+<td>DEPLOY_REPOSITORY</td>
+<td>The GitHub repository to deploy (in &ldquo;username/repository&rdquo; format)</td>
+</tr>
+</tbody>
+</table>
+<p>Once created, push it to the master branch on GitHub.</p>
+<h2 id="configuring-circleci">Configuring CircleCI</h2>
+<p>First, set the environment variables used in the config.yml above in CircleCI.</p>
+<p>For basic CircleCI setup, see the following.</p>
+<ul>
+<li><a href="/en/posts/wp/1477/">Creating an Account and Basic Setup</a></li>
+<li><a href="/en/posts/wp/1538/">How to Set Environment Variables</a></li>
+</ul>
+<p>Next, set the keys of the AWS IAM user you created.<br>
+Open the CircleCI project settings (click the gear button on the project screen)<br>
+and go to &ldquo;PERMISSIONS &gt; AWS Permissions&rdquo; to set them.<br>
+<img src="https://www.logical-dice.com/images/2019/03/AWS-CodeDeploy-CircleCI-006.png"/></p>
+<p>That completes the setup.<br>
+When something is merged or pushed to the master branch, CircleCI and CodeDeploy run and deploy automatically.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

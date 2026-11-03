@@ -29,5 +29,138 @@
       <guid>https://www.logical-dice.com/en/posts/2021/02/11/ubuntu-20-10-initialize/</guid>
       <description>Notes on installing Ubuntu 20.10 on a Thinkpad T480.</description>
     </item>
+    <item>
+      <title>Booting Ubuntu 20.04 on a ThinkPad with an HDMI Cable Connected</title>
+      <link>https://www.logical-dice.com/en/posts/2020/06/01/ubuntu-20-04-hdmi/</link>
+      <pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/06/01/ubuntu-20-04-hdmi/</guid>
+      <description>After installing Ubuntu 20.04 on my ThinkPad, it would no longer boot with an HDMI cable plugged in, so I fixed it.</description>
+    </item>
+    <item>
+      <title>Upgrading to Ubuntu 20.04</title>
+      <link>https://www.logical-dice.com/en/posts/2020/05/17/update-ubuntu-20-04/</link>
+      <pubDate>Sun, 17 May 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/05/17/update-ubuntu-20-04/</guid>
+      <description>My experience upgrading my work PC from Ubuntu 19.10 to 20.04 LTS.</description>
+    </item>
+    <item>
+      <title>Tilix: A Terminal for Linux</title>
+      <link>https://www.logical-dice.com/en/posts/2019/11/08/ubuntu-tilix/</link>
+      <pubDate>Fri, 08 Nov 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/11/08/ubuntu-tilix/</guid>
+      <description>I tried installing &amp;ldquo;Tilix&amp;rdquo; on Ubuntu, so here&amp;rsquo;s an introduction.</description>
+    </item>
+    <item>
+      <title>Initial Setup for Ubuntu 19.10</title>
+      <link>https://www.logical-dice.com/en/posts/2019/11/06/ubuntu-initialize/</link>
+      <pubDate>Wed, 06 Nov 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/11/06/ubuntu-initialize/</guid>
+      <description>Notes from installing Ubuntu 19.10 on a ThinkPad T480</description>
+    </item>
+    <item>
+      <title>VPN Client Setup (L2TP over IPsec)</title>
+      <link>https://www.logical-dice.com/en/posts/2019/03/13/linux-mint-l2tp/</link>
+      <pubDate>Wed, 13 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/03/13/linux-mint-l2tp/</guid>
+      <description>Set up an L2TP over IPsec VPN client on Linux Mint and Ubuntu.</description>
+    </item>
+    <item>
+      <title>Installing terminator &#43; fish &#43; fisherman</title>
+      <link>https://www.logical-dice.com/en/posts/2019/03/10/linux-mint-terminator-fish/</link>
+      <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/03/10/linux-mint-terminator-fish/</guid>
+      <description>Notes on setting up terminator and a fish &amp;amp; fisherman environment on Linux Mint or Ubuntu</description>
+    </item>
+    <item>
+      <title>Steps to Set Up a Docker Environment</title>
+      <link>https://www.logical-dice.com/en/posts/2019/01/25/linux-mint-docker/</link>
+      <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/01/25/linux-mint-docker/</guid>
+      <description>How to install Docker on Linux Mint and ubuntu</description>
+    </item>
+    <item>
+      <title>Installing a Programming Font</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1218/</link>
+      <pubDate>Fri, 13 Apr 2018 21:21:39 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1218/</guid>
+      <description>Steps to install &amp;ldquo;Ricty Diminished&amp;rdquo;, a font well suited for programming</description>
+    </item>
+    <item>
+      <title>[Ubuntu] Slow Shutdown</title>
+      <link>https://www.logical-dice.com/en/posts/wp/242/</link>
+      <pubDate>Sun, 22 May 2016 00:35:22 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/242/</guid>
+      <description>■EnvironmentUbuntu 16.04After upgrading Ubuntu to 16.04, shutdown started taking a long time, so I fixed it.Reference: &amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Ubuntu] Preventing the Clock from Drifting in a Dual-Boot Environment</title>
+      <link>https://www.logical-dice.com/en/posts/wp/239/</link>
+      <pubDate>Sun, 22 May 2016 00:30:55 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/239/</guid>
+      <description>■Environment Ubuntu 16.04 Windows10 After upgrading Ubuntu to 16.04, switching between Windows and Ubuntu in a dual boot&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Ubuntu] Installing zsh &amp; prezto</title>
+      <link>https://www.logical-dice.com/en/posts/wp/225/</link>
+      <pubDate>Fri, 06 May 2016 10:29:33 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/225/</guid>
+      <description>Settings for using zsh &amp;amp; prezto in the Ubuntu terminal. For Mac, see here. ■Environment Ubunt16.04 (1) zsh and g&amp;hellip;</description>
+    </item>
+    <item>
+      <title>What I Did After Installing Ubuntu 16.04</title>
+      <link>https://www.logical-dice.com/en/posts/wp/216/</link>
+      <pubDate>Wed, 04 May 2016 23:54:50 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/216/</guid>
+      <description>Ubuntu 16.04 was out, so I installed it. Here&amp;rsquo;s what I did at the time. (I&amp;rsquo;ll probably update this as I go) ■Home&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Ubuntu] When PDFs Open Misaligned in Inkscape</title>
+      <link>https://www.logical-dice.com/en/posts/wp/196/</link>
+      <pubDate>Thu, 04 Feb 2016 12:37:03 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/196/</guid>
+      <description>This may be obvious to those who know, but when I opened a PDF in Inkscape to edit it, some of the text was misaligned&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Ubuntu] Configuring UXterm</title>
+      <link>https://www.logical-dice.com/en/posts/wp/136/</link>
+      <pubDate>Wed, 02 Dec 2015 21:41:14 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/136/</guid>
+      <description>Ubuntu has &amp;ldquo;UXterm&amp;rdquo; and the regular &amp;ldquo;Terminal&amp;rdquo;, but UXterm is more customizable, so I configure and use UXte&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Ubuntu] Installing Atom</title>
+      <link>https://www.logical-dice.com/en/posts/wp/139/</link>
+      <pubDate>Wed, 02 Dec 2015 21:37:16 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/139/</guid>
+      <description>Steps for installing the Atom text editor on Ubuntu. ■Environment ubuntu 15.04 Download the installer from the following site&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Ubuntu] Can&#39;t Mount exFAT External Storage</title>
+      <link>https://www.logical-dice.com/en/posts/wp/130/</link>
+      <pubDate>Sun, 15 Nov 2015 22:05:23 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/130/</guid>
+      <description>■Environmentubuntu 15.04Ubuntu doesn&amp;rsquo;t support the &amp;ldquo;exfat&amp;rdquo; format by default, so when mounting external storage&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Ubuntu] Installing JDK and NetBeans IDE</title>
+      <link>https://www.logical-dice.com/en/posts/wp/69/</link>
+      <pubDate>Wed, 16 Sep 2015 23:18:43 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/69/</guid>
+      <description>Install JDK and NetBeans on Ubuntu as a development environment. ■Environment Ubuntu 15.04 openjdk 8 Net&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Ubuntu] Installing Flash Player</title>
+      <link>https://www.logical-dice.com/en/posts/wp/57/</link>
+      <pubDate>Thu, 27 Aug 2015 21:56:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/57/</guid>
+      <description>Steps for installing Flash Player for browsers on Ubuntu. ■For Firefox Download Flash Player from Adobe&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Ubuntu] Changing Home Directory Names from Japanese to English</title>
+      <link>https://www.logical-dice.com/en/posts/wp/48/</link>
+      <pubDate>Thu, 27 Aug 2015 21:36:09 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/48/</guid>
+      <description>When you install the Japanese edition of Ubuntu, the directory names in your home directory are in Japanese. When working on the command line&amp;hellip;</description>
+    </item>
   </channel>
 </rss>

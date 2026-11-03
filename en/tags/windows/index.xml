@@ -15,5 +15,40 @@
       <guid>https://www.logical-dice.com/en/posts/2021/03/07/windows-localforward-mysql-workbench/</guid>
       <description>How to connect to a database from Windows 10&amp;rsquo;s MySQL Workbench via a two-step SSH connection.</description>
     </item>
+    <item>
+      <title>Changing the Key Layout on Windows 10</title>
+      <link>https://www.logical-dice.com/en/posts/2020/09/04/win10-keymap-change/</link>
+      <pubDate>Fri, 04 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/09/04/win10-keymap-change/</guid>
+      <description>Changing the behavior of CapsLock and the IME on/off keys on Windows 10.</description>
+    </item>
+    <item>
+      <title>Installing Windows Terminal</title>
+      <link>https://www.logical-dice.com/en/posts/2020/09/04/windows-terminal-install/</link>
+      <pubDate>Fri, 04 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/09/04/windows-terminal-install/</guid>
+      <description>Setting up Windows Terminal on Windows 10.</description>
+    </item>
+    <item>
+      <title>Setting Up a Development PC on Windows 10</title>
+      <link>https://www.logical-dice.com/en/posts/2020/09/04/win10-initial-setting/</link>
+      <pubDate>Fri, 04 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/09/04/win10-initial-setting/</guid>
+      <description>WSL2 and Windows Terminal on Windows 10 looked good, so I set up a development environment.</description>
+    </item>
+    <item>
+      <title>Setting Up Ubuntu on WSL2</title>
+      <link>https://www.logical-dice.com/en/posts/2020/09/04/win10-wsl2-ubuntu/</link>
+      <pubDate>Fri, 04 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/09/04/win10-wsl2-ubuntu/</guid>
+      <description>Set up Ubuntu 20.04 on WSL2 in Windows 10.</description>
+    </item>
+    <item>
+      <title>Running Docker Toolbox &amp; docker-compose on Windows</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1500/</link>
+      <pubDate>Fri, 21 Sep 2018 17:55:45 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1500/</guid>
+      <description>At work I had Windows users set up a Docker environment, and it was quite a struggle, so I&amp;rsquo;m writing down the steps. ■□ Note ■□■&amp;hellip;</description>
+    </item>
   </channel>
 </rss>

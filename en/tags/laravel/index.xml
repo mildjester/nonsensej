@@ -29,5 +29,26 @@
       <guid>https://www.logical-dice.com/en/posts/2021/02/21/larave-observer-stop/</guid>
       <description>Investigation notes when the processing of an Observer configured in Laravel did not execute.</description>
     </item>
+    <item>
+      <title>Auth::user() Sometimes Works and Sometimes Doesn&#39;t Inside a Laravel Queue</title>
+      <link>https://www.logical-dice.com/en/posts/2021/01/13/laravel-auth-user/</link>
+      <pubDate>Wed, 13 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2021/01/13/laravel-auth-user/</guid>
+      <description>I ran into an issue where calling Laravel&amp;rsquo;s Auth::user() in a queue returned a value or null depending on the environment, so here&amp;rsquo;s a note about it.</description>
+    </item>
+    <item>
+      <title>[Laravel] &#34;Class &#39;CreateFoooTable&#39; not found&#34; on migrate</title>
+      <link>https://www.logical-dice.com/en/posts/wp/520/</link>
+      <pubDate>Tue, 11 Apr 2017 16:25:41 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/520/</guid>
+      <description>■Environment Laravel 5.1 When trying to run Laravel&amp;rsquo;s &amp;ldquo;migrate:rollback&amp;rdquo; or &amp;ldquo;migrate:refresh&amp;rdquo;&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[PHP] Adding Custom Validation in Laravel 5</title>
+      <link>https://www.logical-dice.com/en/posts/wp/512/</link>
+      <pubDate>Tue, 11 Apr 2017 15:11:41 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/512/</guid>
+      <description>■EnvironmentLaravel 5.1These are the steps I took to add custom validation in Laravel 5. First, create a service provider&amp;hellip;</description>
+    </item>
   </channel>
 </rss>

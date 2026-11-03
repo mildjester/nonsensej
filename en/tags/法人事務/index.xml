@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>法人事務 on Logical Dice Techblog</title>
+    <link>https://www.logical-dice.com/en/tags/%E6%B3%95%E4%BA%BA%E4%BA%8B%E5%8B%99/</link>
+    <description>Recent content in 法人事務 on Logical Dice Techblog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 13 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.logical-dice.com/en/tags/%E6%B3%95%E4%BA%BA%E4%BA%8B%E5%8B%99/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Filing Statutory Reports with e-Tax</title>
+      <link>https://www.logical-dice.com/en/posts/2020/02/13/etax-legal-record/</link>
+      <pubDate>Thu, 13 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/02/13/etax-legal-record/</guid>
+      <description>Notes on the steps for filing statutory reports (法定調書) with e-Tax.</description>
+    </item>
+    <item>
+      <title>Filing Withholding Income Tax via e-Tax</title>
+      <link>https://www.logical-dice.com/en/posts/2019/07/16/withholding-income-tax/</link>
+      <pubDate>Tue, 16 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/07/16/withholding-income-tax/</guid>
+      <description>Notes on the steps for filing withholding income tax via e-Tax.</description>
+    </item>
+    <item>
+      <title>[Corporate] Notes on Filing Local Taxes with eLTAX</title>
+      <link>https://www.logical-dice.com/en/posts/wp/467/</link>
+      <pubDate>Fri, 10 Mar 2017 00:04:51 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/467/</guid>
+      <description>I filed the final local tax return for my (dormant) corporation using eLTAX, so here are the steps. Even if your corporation isn&amp;rsquo;t dormant, the steps should be mostly the same&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Closing the Books for a Dormant Company with MF Cloud Accounting</title>
+      <link>https://www.logical-dice.com/en/posts/wp/366/</link>
+      <pubDate>Tue, 07 Feb 2017 00:38:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/366/</guid>
+      <description>Closing the fiscal year for a dormant company without hiring a tax accountant, using the free plan of MF Cloud Accounting. (1) Enter the required information under Settings &amp;gt; Business. (2) &amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Corporation] Notes on Filing National Taxes with e-Tax</title>
+      <link>https://www.logical-dice.com/en/posts/wp/372/</link>
+      <pubDate>Tue, 07 Feb 2017 00:25:56 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/372/</guid>
+      <description>I filed the national tax return for my (dormant) corporation with e-Tax, so here are the steps. Even if your company isn&amp;rsquo;t dormant, the steps should be mostly the same&amp;hellip;</description>
+    </item>
+  </channel>
+</rss>

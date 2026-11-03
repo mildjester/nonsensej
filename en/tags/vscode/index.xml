@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VSCode on Logical Dice Techblog</title>
+    <link>https://www.logical-dice.com/en/tags/vscode/</link>
+    <description>Recent content in VSCode on Logical Dice Techblog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 18 Dec 2017 14:02:41 +0000</lastBuildDate>
+    <atom:link href="https://www.logical-dice.com/en/tags/vscode/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Setting Up a PHP Development Environment in Visual Studio Code</title>
+      <link>https://www.logical-dice.com/en/posts/wp/914/</link>
+      <pubDate>Mon, 18 Dec 2017 14:02:41 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/914/</guid>
+      <description>■Environment Visual Studio Code 1.19.0 Linux Mint 18.3 cinnamon 64bit macOS &amp;hellip;</description>
+    </item>
+  </channel>
+</rss>

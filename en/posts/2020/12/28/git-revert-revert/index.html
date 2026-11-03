@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>If You Revert in git as a Temporary Undo, Revert the Revert|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">If You Revert in git as a Temporary Undo, Revert the Revert</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2020-12-28 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-12-28</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/git/">git</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<p>Hopping between many projects, I fairly often run into &ldquo;I accidentally merged into master/develop&rdquo; cases.<br>
+In those cases, I&rsquo;ve basically dealt with it by doing a git revert on master/develop.<br>
+But a common pattern is forgetting to revert the revert afterward.</p>
+<p>Forgetting it when you know a revert of the revert is needed can&rsquo;t be helped,<br>
+but I remembered that on a project I used to help with, someone asked &ldquo;Huh? Why is that needed?&rdquo;, so I wrote this post.</p>
+<hr>
+<p>First, suppose this source is on the master branch.<br>
+<img src="https://www.logical-dice.com/images/2020/12/git-revert-revert001.png" alt="元ソース" style="max-width:350px;"/></p>
+<p>Now suppose you want it to return not only <code>$hoge</code> but also a value called <code>$fooo</code>.<br>
+You create a branch &ldquo;feature/fooo&rdquo;, make the change, and merge it into master.<br>
+<img src="https://www.logical-dice.com/images/2020/12/git-revert-revert002.png" alt="元ソース" style="max-width:600px;"/></p>
+<p>Then you notice you forgot to write the method that returns <code>$fooo</code>, so you revert on master.<br>
+<img src="https://www.logical-dice.com/images/2020/12/git-revert-revert003.png" alt="元ソース" style="max-width:600px;"/></p>
+<p>You add the method to &ldquo;feature/fooo&rdquo; and merge it into master.<br>
+It looks like the class variable and constructor changes are still there.<br>
+<img src="https://www.logical-dice.com/images/2020/12/git-revert-revert004.png" alt="元ソース" style="max-width:600px;"/><br>
+*Note that no conflict occurs here.</p>
+<p>Here is the resulting source.<br>
+Only the last added method is included; the class variable and constructor changes are not.<br>
+<img src="https://www.logical-dice.com/images/2020/12/git-revert-revert005.png" alt="元ソース" style="max-width:350px;"/></p>
+<p>This won&rsquo;t behave as intended.</p>
+<hr>
+<p>A common misconception is that revert &ldquo;cancels the target commit&rdquo;.<br>
+Revert doesn&rsquo;t cancel a commit; it &ldquo;creates a new commit that undoes the changes of the target commit&rdquo;.<br>
+The reverted commit doesn&rsquo;t cease to exist.</p>
+<p>So unless you revert the revert commit itself, the changes made by the revert commit remain.</p>
+<p>To summarize the steps:</p>
+<h3 id="bad-pattern">Bad Pattern</h3>
+<ol>
+<li>Merge the working branch into master.</li>
+<li>Revert on master.</li>
+<li>Continue making changes on the working branch.</li>
+<li>Merge the working branch into master.</li>
+</ol>
+<h3 id="good-pattern">Good Pattern</h3>
+<ol>
+<li>Merge the working branch into master.</li>
+<li>Revert on master.</li>
+<li>Merge master into the working branch. (missing from the bad pattern)</li>
+<li>Revert the revert on the working branch. (missing from the bad pattern)</li>
+<li>Continue making changes on the working branch.</li>
+<li>Merge the working branch into master.</li>
+</ol>
+<p>So unless you&rsquo;re throwing away the reverted changes, revert the revert.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>[Mac] Terminal Setup (iTerm2 &#43; fish &#43; fisherman)|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">[Mac] Terminal Setup (iTerm2 &#43; fish &#43; fisherman)</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2017-10-12 16:01:40 &#43;0000 UTC" class="catalogue-time">2017-10-12</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/mac/">Mac</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h2 id="environment">■Environment</h2>
+<p>iTerm2 3.2.5<br>
+fish 2.7.1<br>
+fisherman 3.1.1</p>
+<h2 id="reference">■Reference</h2>
+<p><a href="https://dev.classmethod.jp/etc/fish-shell-life/">fish shell を使いたい人生だった</a> (Japanese)</p>
+<hr>
+<p>These are the steps to switch your terminal shell to iTerm2 &amp; fish.<br>
+fish comes with a fair number of handy features out of the box, so it&rsquo;s a good choice if customizing zsh feels like too much work.</p>
+<h3 id="installing-iterm2">Installing iTerm2</h3>
+<p>Download the zip from the official site.<br>
+<a href="https://www.iterm2.com/downloads.html" rel="noopener" target="_blank"><a href="https://www.iterm2.com/downloads.html">https://www.iterm2.com/downloads.html</a></a></p>
+<p>Unzipping the downloaded file gives you a file called &ldquo;iTerm&rdquo;; drag and drop it into Applications.<br>
+You can now launch it from Launchpad.</p>
+<h3 id="changing-the-iterm2-color-scheme">Changing the iTerm2 Color Scheme</h3>
+<p>With iTerm2&rsquo;s default colors, directories can be hard to see, so change the color scheme.<br>
+From the iTerm2 menu bar, click through<br>
+<code>iTerm2 &gt; Preferences &gt; Profiles &gt; Colors</code><br>
+and choose a theme you like from <code>Color Pareset</code>.</p>
+<p>You can also download and use color scheme files.<br>
+I often use a scheme called &ldquo;Japanesque&rdquo;.<br>
+<a href="https://github.com/aereal/dotfiles/tree/master/colors/Japanesque" rel="noopener" target="_blank"><a href="https://github.com/aereal/dotfiles/tree/master/colors/Japanesque">https://github.com/aereal/dotfiles/tree/master/colors/Japanesque</a></a></p>
+<p>Opening &ldquo;Japanesque.itermcolors&rdquo; in iTerm2 adds<br>
+<code>Japanesque</code> to the <code>Color Pareset</code> options above.</p>
+<h3 id="installing-fish">Installing fish</h3>
+<p>Install fish.</p>
+<pre tabindex="0"><code>$ brew install fish  
+</code></pre><p>Check the path to fish.</p>
+<pre tabindex="0"><code>$ which fish  
+/usr/local/bin/fish  
+</code></pre><p>Add the path above to the list of shells.</p>
+<pre tabindex="0"><code>$ sudo vi /etc/shells  
+~Append the path you checked with the which command to the end~  
+</code></pre><p>Change your shell to fish.</p>
+<pre tabindex="0"><code>$ chsh -s /usr/local/bin/fish  
+</code></pre><p>Now fish will start when you restart the terminal.</p>
+<h3 id="installing-fisherman">Installing fisherman</h3>
+<p>fisherman is a plugin manager for fish.</p>
+<p>The install command is listed on fisherman&rsquo;s GitHub page.<br>
+<a href="https://github.com/fisherman/fisherman" rel="noopener" target="_blank"><a href="https://github.com/fisherman/fisherman">https://github.com/fisherman/fisherman</a></a></p>
+<pre tabindex="0"><code>$ curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher  
+</code></pre><p>If no version information appears after running the command above, try restarting the terminal.</p>
+<h3 id="changing-the-fish-theme">Changing the fish Theme</h3>
+<p>You can change fish&rsquo;s appearance by changing its theme.<br>
+The following page is a good reference for the available themes.<br>
+<a href="https://github.com/oh-my-fish/oh-my-fish/blob/master/docs/Themes.md" rel="noopener" target="_blank"><a href="https://github.com/oh-my-fish/oh-my-fish/blob/master/docs/Themes.md">https://github.com/oh-my-fish/oh-my-fish/blob/master/docs/Themes.md</a></a></p>
+<p>I use a theme called &ldquo;bobthefish&rdquo; and install it with the following steps.</p>
+<pre tabindex="0"><code>$ fisher add oh-my-fish/theme-bobthefish  
+$ git clone https://github.com/powerline/fonts.git  
+$ fonts/install.sh  
+$ rm -rf fonts  
+</code></pre><p>After running the commands above, configure the iTerm2 profile.<br>
+On the profile settings screen, click &ldquo;Text &gt; Font &gt; Change Font&rdquo;.<br>
+<img src="https://www.logical-dice.com/images/2017/10/iterm2001.png" alt="" /></p>
+<p>Select All Fonts under Collection, and choose any font named &ldquo;&hellip; for Powerline&rdquo;.<br>
+Personally, I like &ldquo;Meslo LG M for Powerline&rdquo;.<br>
+Change the font size as needed.</p>
+<p>The theme change is now complete.</p>
+<h3 id="adding-plugins">Adding Plugins</h3>
+<p>There are many plugins available;<br>
+here are the ones I use.</p>
+<h4 id="z">z</h4>
+<p>Lets you jump to directories selected from your history.<br>
+[Installation]</p>
+<pre tabindex="0"><code>$ fisher add z  
+</code></pre><p>[Usage]<br>
+Type <code>z {string}</code> and press Tab.<br>
+It searches your history for directories matching {string} and moves there.<br>
+If you leave {string} empty, your recent history is shown.</p>
+<h4 id="bd">bd</h4>
+<p>Makes it easy to move to parent (or ancestor) directories.<br>
+[Installation]</p>
+<pre tabindex="0"><code>$ fisher add 0rax/fish-bd  
+</code></pre><p>[Usage]<br>
+Type <code>$ bd</code> and press Tab to show a list of parent directories;<br>
+just select one and press Enter to move there.</p>
+<h4 id="peco">peco</h4>
+<p>Makes searching your command history easy.</p>
+<p>[Installation]</p>
+<pre tabindex="0"><code>$ brew install peco  
+$ fisher add oh-my-fish/plugin-peco  
+</code></pre><p>After running the commands above, add the following to the fish config file.</p>
+<pre tabindex="0"><code>vim ~/.config/fish/config.fish  
+~Add the following (create the file if it doesn&#39;t exist)~  
+function fish_user_key_bindings  
+  bind \cr &#39;peco_select_history (commandline -b)&#39;  
+end  
+</code></pre><p>Note: If &ldquo;function fish_user_key_bindings&rdquo; is already defined,<br>
+just add the <code>bind&hellip;</code> line inside it.</p>
+<p>Once done, restart the terminal.</p>
+<p>[Usage]<br>
+Press &ldquo;Ctrl + R&rdquo; to open the command history search screen.<br>
+You can pick from recent commands, or type a string to narrow the history down to commands containing it.</p>
+<h4 id="ghq">ghq</h4>
+<p>A plugin that makes managing git repositories easier.</p>
+<p>[Installation]</p>
+<pre tabindex="0"><code>$ brew install ghq  
+$ fisher add yoshiori/fish-peco_select_ghq_repository  
+</code></pre><p>After running the commands above, add the following to the fish config file.</p>
+<pre tabindex="0"><code>vim ~/.config/fish/config.fish  
+~Add the following (create the file if it doesn&#39;t exist)~  
+function fish_user_key_bindings  
+  bind \c] peco_select_ghq_repository  # added  
+end  
+</code></pre><p>Note: If &ldquo;function fish_user_key_bindings&rdquo; is already defined,<br>
+　just add the <code>bind&hellip;</code> line inside it.<br>
+　For example, if you have also installed peco above, config.fish will look like this.</p>
+<pre tabindex="0"><code>function fish_user_key_bindings  
+  bind \cr &#39;peco_select_history (commandline -b)&#39;  
+  bind \c] peco_select_ghq_repository  # added  
+end  
+</code></pre><p>Once done, restart the terminal.</p>
+<p>[Usage]<br>
+Press &ldquo;Ctrl + ]&rdquo; to select a git repository managed by ghq.<br>
+Selecting a repository takes you to its directory.</p>
+<p>I won&rsquo;t cover how to use the ghq command itself, so please look it up separately.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

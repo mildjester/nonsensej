@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ruby on Logical Dice Techblog</title>
+    <link>https://www.logical-dice.com/en/tags/ruby/</link>
+    <description>Recent content in Ruby on Logical Dice Techblog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 27 Feb 2017 15:16:05 +0000</lastBuildDate>
+    <atom:link href="https://www.logical-dice.com/en/tags/ruby/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Installing a Group Management Plugin on Redmine 2.3.2</title>
+      <link>https://www.logical-dice.com/en/posts/wp/444/</link>
+      <pubDate>Mon, 27 Feb 2017 15:16:05 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/444/</guid>
+      <description>I installed a group management plugin on Redmine, but it didn&amp;rsquo;t work properly, so here are notes on where I got stuck. *Note: Ruby on Rai&amp;hellip;</description>
+    </item>
+  </channel>
+</rss>

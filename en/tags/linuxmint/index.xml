@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LinuxMint on Logical Dice Techblog</title>
+    <link>https://www.logical-dice.com/en/tags/linuxmint/</link>
+    <description>Recent content in LinuxMint on Logical Dice Techblog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 06 Jul 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.logical-dice.com/en/tags/linuxmint/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Adjusting the ThinkPad TrackPoint on Linux Mint</title>
+      <link>https://www.logical-dice.com/en/posts/2019/03/12/linux-mint-trackpoint/</link>
+      <pubDate>Mon, 06 Jul 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/03/12/linux-mint-trackpoint/</guid>
+      <description>I installed Linux Mint 19.1 on a ThinkPad, so I&amp;rsquo;m adjusting the TrackPoint.</description>
+    </item>
+    <item>
+      <title>Initial Setup of Linux Mint</title>
+      <link>https://www.logical-dice.com/en/posts/2019/03/10/linux-mint-initialize/</link>
+      <pubDate>Wed, 01 Jul 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/03/10/linux-mint-initialize/</guid>
+      <description>Notes on the work from installing Linux Mint to building a development environment.</description>
+    </item>
+    <item>
+      <title>Installing Sass on Linux Mint</title>
+      <link>https://www.logical-dice.com/en/posts/2019/09/29/ruby-sass-error/</link>
+      <pubDate>Sun, 29 Sep 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/09/29/ruby-sass-error/</guid>
+      <description>A note on the small snags I hit when installing Sass on Linux Mint</description>
+    </item>
+    <item>
+      <title>Running Windows 10 on Linux Mint</title>
+      <link>https://www.logical-dice.com/en/posts/2019/09/28/linux-mint-virtualbox/</link>
+      <pubDate>Sat, 28 Sep 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/09/28/linux-mint-virtualbox/</guid>
+      <description>Steps for installing VirtualBox on Linux Mint and running Windows 10 for testing</description>
+    </item>
+    <item>
+      <title>Connecting and Disconnecting a VPN from the Command Line</title>
+      <link>https://www.logical-dice.com/en/posts/2019/07/29/linux-mint-vpn/</link>
+      <pubDate>Mon, 29 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/07/29/linux-mint-vpn/</guid>
+      <description>How to connect and disconnect a VPN from the command line on Linux Mint.</description>
+    </item>
+    <item>
+      <title>Changing the Date Taken of Images from the Command Line</title>
+      <link>https://www.logical-dice.com/en/posts/2019/07/02/exiftool-modify-alldate/</link>
+      <pubDate>Tue, 02 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/07/02/exiftool-modify-alldate/</guid>
+      <description>How to change the date taken and other dates of image files using exiftool from the command line.</description>
+    </item>
+    <item>
+      <title>Turning Linux Mint into a Wireless LAN Access Point</title>
+      <link>https://www.logical-dice.com/en/posts/2019/04/17/linuxmint-access-point/</link>
+      <pubDate>Wed, 17 Apr 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/04/17/linuxmint-access-point/</guid>
+      <description>Notes on sharing a VPN connection by making Linux Mint an access point</description>
+    </item>
+    <item>
+      <title>VPN Client Setup (L2TP over IPsec)</title>
+      <link>https://www.logical-dice.com/en/posts/2019/03/13/linux-mint-l2tp/</link>
+      <pubDate>Wed, 13 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/03/13/linux-mint-l2tp/</guid>
+      <description>Set up an L2TP over IPsec VPN client on Linux Mint and Ubuntu.</description>
+    </item>
+    <item>
+      <title>Changing the Default Size of Terminator</title>
+      <link>https://www.logical-dice.com/en/posts/2019/03/10/linux-mint-terminator-size/</link>
+      <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/03/10/linux-mint-terminator-size/</guid>
+      <description>How to change the default size of the Linux terminal app &amp;ldquo;Terminator&amp;rdquo; when it launches.</description>
+    </item>
+    <item>
+      <title>Installing terminator &#43; fish &#43; fisherman</title>
+      <link>https://www.logical-dice.com/en/posts/2019/03/10/linux-mint-terminator-fish/</link>
+      <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/03/10/linux-mint-terminator-fish/</guid>
+      <description>Notes on setting up terminator and a fish &amp;amp; fisherman environment on Linux Mint or Ubuntu</description>
+    </item>
+    <item>
+      <title>Steps to Set Up a Docker Environment</title>
+      <link>https://www.logical-dice.com/en/posts/2019/01/25/linux-mint-docker/</link>
+      <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/01/25/linux-mint-docker/</guid>
+      <description>How to install Docker on Linux Mint and ubuntu</description>
+    </item>
+    <item>
+      <title>Installing Linux Mint 19.1 MATE from a USB Drive</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1829/</link>
+      <pubDate>Thu, 20 Dec 2018 16:25:54 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1829/</guid>
+      <description>I needed to rebuild my PC, so I tried installing the latest version of Linux Mint. I prepared the installation on a Mac&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Linux Mint] Fcitx Conversion Candidates Are Filled in Black</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1470/</link>
+      <pubDate>Mon, 13 Aug 2018 13:01:18 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1470/</guid>
+      <description>Environment Linux Mint 18.3 cinnamon 64bit Issue One day, while typing Japanese with Fcitx, the conversion candidates turned completely black&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Linux Mint] Installing Compass with gem</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1245/</link>
+      <pubDate>Fri, 20 Apr 2018 16:23:01 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1245/</guid>
+      <description>I got an error when trying to install with the following command. $ sudo gem install compass Fetchi&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Linux Mint] Mining BitZeny with cpuminer &#43; wpool</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1236/</link>
+      <pubDate>Fri, 20 Apr 2018 10:25:55 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1236/</guid>
+      <description>■Environment Linux Mint 18.3 cinnamon 64bit Installing cpuminer The basic flow is as described on cpuminer&amp;rsquo;s&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Linux Mint] Changing the Keymap</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1226/</link>
+      <pubDate>Fri, 13 Apr 2018 21:33:50 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1226/</guid>
+      <description>■Environment Linux Mint 18.3 cinnamon 64bit Xmodmap settings Create a file called .Xmodmap directly under your home directory&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Linux Mint] Enabling Japanese Input</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1222/</link>
+      <pubDate>Fri, 13 Apr 2018 21:28:47 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1222/</guid>
+      <description>■Environment Linux Mint 18.3 cinnamon 64bit Steps for when Linux Mint was installed in English&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Installing a Programming Font</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1218/</link>
+      <pubDate>Fri, 13 Apr 2018 21:21:39 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1218/</guid>
+      <description>Steps to install &amp;ldquo;Ricty Diminished&amp;rdquo;, a font well suited for programming</description>
+    </item>
+    <item>
+      <title>[Linux Mint] Installing PHP 7.1</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1192/</link>
+      <pubDate>Tue, 10 Apr 2018 09:11:57 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1192/</guid>
+      <description>$ set -x LC_ALL C.UTF-8$ sudo add-apt-repository ppa:ondrej/php$&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Linux Mint] Installing Docker</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1162/</link>
+      <pubDate>Mon, 09 Apr 2018 21:06:39 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1162/</guid>
+      <description>■Environment Linux Mint 18.3 cinnamon 64bit Installing Docker Add Docker&amp;rsquo;s GPG key $ cur&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Linux Mint] OS Installation and Setup</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1098/</link>
+      <pubDate>Sat, 07 Apr 2018 14:01:56 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1098/</guid>
+      <description>■Environment Linux Mint 18.3 cinnamon 64bit Getting the OS: Download the ISO image from the official site. ht&amp;hellip;</description>
+    </item>
+  </channel>
+</rss>

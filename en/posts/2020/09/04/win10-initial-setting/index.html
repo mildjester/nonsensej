@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Setting Up a Development PC on Windows 10|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Setting Up a Development PC on Windows 10</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2020-09-04 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-09-04</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/windows/">Windows</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<p>WSL2 and Windows Terminal on Windows 10 looked good,<br>
+so I set up a development environment.</p>
+<p>For the larger tasks, see the following:</p>
+<ul>
+<li><a href="/en/posts/2020/09/04/win10-keymap-change/">Changing the Windows key layout</a></li>
+<li><a href="/en/posts/2020/09/04/win10-wsl2-ubuntu/">Using Ubuntu on WSL2</a></li>
+<li><a href="/en/posts/2020/09/04/windows-terminal-install/">Installing Windows Terminal</a></li>
+</ul>
+<h3 id="stopping-windows-from-maximizing-automatically">Stopping Windows from Maximizing Automatically</h3>
+<p>By default, Windows 10 automatically maximizes a window when you drag it to the edge of the screen.<br>
+This feature often gets in the way, so disable it.</p>
+<p>Open &ldquo;Settings &gt; System &gt; Multitasking&rdquo; and turn off &ldquo;Snap windows&rdquo;, and you&rsquo;re done.</p>
+<h3 id="installing-docker">Installing Docker</h3>
+<p>Download Docker Desktop for Windows from the following.<br>
+<a href="https://hub.docker.com/editions/community/docker-ce-desktop-windows">https://hub.docker.com/editions/community/docker-ce-desktop-windows</a></p>
+<p>Run the downloaded installer to install it.<br>
+During installation there is an &ldquo;Enable WSL 2 Windows Features&rdquo; checkbox; be sure to check it.</p>
+<p>Now the docker command is available on the Ubuntu side as well.<br>
+If you installed Docker before WSL2, you can enable Docker on WSL from &ldquo;Settings &gt; Resources &gt; WSL INTEGRATION&rdquo;.</p>
+<h3 id="installing-visual-studio-code">Installing Visual Studio Code</h3>
+<p>Download and install it from the following.<br>
+<a href="https://azure.microsoft.com/en-us/products/visual-studio-code/">https://azure.microsoft.com/en-us/products/visual-studio-code/</a></p>
+<p>If you manage source code with git on the Ubuntu side, you need to connect from Windows to Ubuntu.<br>
+To do so, install the &ldquo;Remote - WSL&rdquo; extension.<br>
+(It is probably recommended the first time you launch Visual Studio Code.)</p>
+<h3 id="installing-mysql-workbench">Installing MySQL Workbench</h3>
+<p>MySQL Workbench requires &ldquo;Visual C++ 2019&rdquo;.<br>
+If it isn&rsquo;t installed, download and install it from the following.<br>
+<a href="https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads">https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads</a></p>
+<p>Download and install MySQL Workbench from the following.<br>
+<a href="https://dev.mysql.com/downloads/workbench/">https://dev.mysql.com/downloads/workbench/</a></p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

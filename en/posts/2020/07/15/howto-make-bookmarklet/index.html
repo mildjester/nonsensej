@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>How to Make a Bookmarklet|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">How to Make a Bookmarklet</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2020-07-15 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-07-15</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/bookmarklet/">bookmarklet</a></div> <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/javascript/">javascript</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h2 id="what-is-a-bookmarklet">What Is a Bookmarklet?</h2>
+<p>For details, see here<br>
+<a href="https://ja.wikipedia.org/wiki/%E3%83%96%E3%83%83%E3%82%AF%E3%83%9E%E3%83%BC%E3%82%AF%E3%83%AC%E3%83%83%E3%83%88">ウィキペディア</a> (Japanese)</p>
+<p>Simply put, you save JavaScript in a browser bookmark instead of a URL,<br>
+and click that bookmark whenever you want to run the JavaScript.</p>
+<p>For example, if you register <code>javascript:alert('hoge');</code> as a bookmark,<br>
+clicking that bookmark does the same thing as clicking <code>&lt;a href=&quot;javascript:alert('hoge');&quot;&gt;hoge&lt;/a&gt;</code>.</p>
+<p>There are many ways to make one, but here I&rsquo;ll introduce how to create one using uglify-js.</p>
+<h2 id="writing-the-javascript">Writing the JavaScript</h2>
+<p>First, create a js file and write whatever JavaScript code you want to run.<br>
+As an example, we&rsquo;ll make a script that counts the number of div tags on the page.</p>
+<p>Write the following code in a file named sample.js.</p>
+<pre tabindex="0"><code>var divElms = document.getElementsByTagName(&#39;div&#39;);
+alert(&#39;divの数は&#39; + divElms.length + &#39;です！&#39;);
+</code></pre><h2 id="minifying-the-javascript-with-uglify-js">Minifying the JavaScript with uglify-js</h2>
+<p>Minify the sample.js you created using uglify-js.</p>
+<p>First, install uglify-js so the command is available.<br>
+If you don&rsquo;t have npm installed, install it first.</p>
+<pre tabindex="0"><code>$ npm install -g uglify-js      # Add sudo if needed for your environment
+</code></pre><p>Next, minify the JavaScript.<br>
+You can minify it with the following command.<br>
+*See the <a href="https://www.npmjs.com/package/uglify-js">official page</a> for each option</p>
+<pre tabindex="0"><code>$ uglifyjs -c -m --toplevel -- sample.js
+</code></pre><p>The minified script is output as follows.</p>
+<pre tabindex="0"><code>var e=document.getElementsByTagName(&#34;div&#34;);alert(&#34;divの数は&#34;+e.length+&#34;です！&#34;);
+</code></pre><p>Prefixing this minified script with <code>javascript:</code> gives you a bookmarklet.</p>
+<h2 id="registering-the-bookmarklet-in-the-browser">Registering the Bookmarklet in the Browser</h2>
+<p>Add a new page to your browser bookmarks and enter <code>javascript:{generated minified script}</code> in the URL field.<br>
+In Chrome, it looks like this.<br>
+(Any name is fine as long as you can recognize it)<br>
+<img src="https://www.logical-dice.com/images/2020/07/howto-make-bookmarklet-001.png" /></p>
+<p>Now, while any page is open, clicking the registered bookmark runs the script.<br>
+Running it on Google looks like this.<br>
+<img src="https://www.logical-dice.com/images/2020/07/howto-make-bookmarklet-002.png" /></p>
+<p>That completes creating a bookmarklet.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

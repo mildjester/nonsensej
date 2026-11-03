@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Installing Windows Terminal|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Installing Windows Terminal</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2020-09-04 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-09-04</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/windows/">Windows</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<p>Setting up Windows Terminal to use Ubuntu.</p>
+<h2 id="installing-windows-terminal">Installing Windows Terminal</h2>
+<p>Just search for &ldquo;Windows Terminal&rdquo; in the Microsoft Store and install it.</p>
+<h2 id="making-ubuntu-the-default-in-windows-terminal">Making Ubuntu the default in Windows Terminal</h2>
+<p>Launch Windows Terminal and open Settings.<br>
+settings.json opens, so find the guid for Ubuntu under &ldquo;profiles &gt; list&rdquo;.</p>
+<pre tabindex="0"><code>{
+    &#34;guid&#34;: &#34;{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}&#34;,  ← this
+    &#34;hidden&#34;: false,
+    &#34;name&#34;: &#34;Ubuntu-20.04&#34;,
+    &#34;source&#34;: &#34;Windows.Terminal.Wsl&#34;
+},
+</code></pre><p>Set the guid you found as &ldquo;defaultProfile&rdquo;.</p>
+<pre tabindex="0"><code>&#34;defaultProfile&#34;: &#34;{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}&#34;,   ← put it here
+</code></pre><h2 id="specifying-the-starting-directory">Specifying the starting directory</h2>
+<p>When Windows Terminal starts, it opens in the Windows home directory.<br>
+When using Ubuntu, I want it to start in the Ubuntu home directory, so I change it.</p>
+<p>Add startingDirectory to the Ubuntu settings in settings.json.<br>
+To start from <code>/home/hogeuser</code> in Ubuntu, configure it as follows.</p>
+<pre tabindex="0"><code>{
+    &#34;guid&#34;: &#34;{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}&#34;,
+    &#34;hidden&#34;: false,
+    &#34;name&#34;: &#34;Ubuntu-20.04&#34;,
+    &#34;source&#34;: &#34;Windows.Terminal.Wsl&#34;,
+    &#34;startingDirectory&#34;: &#34;//wsl$/Ubuntu-20.04/home/hogeuser&#34;  ← add this
+},
+</code></pre><h2 id="specifying-the-font">Specifying the font</h2>
+<p>I use fish as the shell in Ubuntu, and depending on the fish theme you may need to change the font.<br>
+For how to install fish, see <a href="/en/posts/2019/03/10/linux-mint-terminator-fish/">here</a></p>
+<p>Add fontFace to the Ubuntu settings in settings.json.<br>
+If you want to change the font size, also add fontSize.</p>
+<p>To change the font to &ldquo;Cascadia Code PL&rdquo; and the font size to 11, it looks like this.</p>
+<pre tabindex="0"><code>{
+    &#34;guid&#34;: &#34;{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}&#34;,
+    &#34;hidden&#34;: false,
+    &#34;name&#34;: &#34;Ubuntu-20.04&#34;,
+    &#34;source&#34;: &#34;Windows.Terminal.Wsl&#34;,
+    &#34;startingDirectory&#34;: &#34;//wsl$/Ubuntu-20.04/home/hogeuser&#34;,
+    &#34;fontFace&#34;: &#34;Cascadia Code PL&#34;,  ← add this
+    &#34;fontSize&#34;: 11  ← add this
+},
+</code></pre>
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

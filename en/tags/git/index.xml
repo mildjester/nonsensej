@@ -15,5 +15,68 @@
       <guid>https://www.logical-dice.com/en/posts/2021/02/06/phpcs-git-diff/</guid>
       <description>How to check only the modified files with phpcs using git diff.</description>
     </item>
+    <item>
+      <title>If You Revert in git as a Temporary Undo, Revert the Revert</title>
+      <link>https://www.logical-dice.com/en/posts/2020/12/28/git-revert-revert/</link>
+      <pubDate>Mon, 28 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/12/28/git-revert-revert/</guid>
+      <description>If you revert in git and don&amp;rsquo;t revert the revert afterward, you&amp;rsquo;re in for trouble.</description>
+    </item>
+    <item>
+      <title>Running AWS CodeDeploy from GitHub Actions</title>
+      <link>https://www.logical-dice.com/en/posts/2020/03/15/github-actions-deploy/</link>
+      <pubDate>Sun, 15 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/03/15/github-actions-deploy/</guid>
+      <description>Steps to deploy by running AWS CodeDeploy from GitHub Actions.</description>
+    </item>
+    <item>
+      <title>Git Command Cheat Sheet (Advanced)</title>
+      <link>https://www.logical-dice.com/en/posts/2019/02/01/git-cmd-cheatsheet/</link>
+      <pubDate>Fri, 01 Feb 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/02/01/git-cmd-cheatsheet/</guid>
+      <description>An advanced cheat sheet for git commands</description>
+    </item>
+    <item>
+      <title>Using Multiple GitHub Accounts with the git Command</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1715/</link>
+      <pubDate>Wed, 14 Nov 2018 20:37:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1715/</guid>
+      <description>EnvironmentMac OS(probably works on Linux too)OverviewOn GitHub, private keys are tied to accounts, and when you run the git command&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Running Unit Tests on Pull Requests with CircleCI</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1477/</link>
+      <pubDate>Tue, 14 Aug 2018 01:30:40 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1477/</guid>
+      <description>Use CircleCI to run unit tests when a pull request is opened on GitHub. The source code is PHP, and U&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[git] A Script to Delete Both Local and Remote Branches</title>
+      <link>https://www.logical-dice.com/en/posts/wp/894/</link>
+      <pubDate>Tue, 12 Dec 2017 12:47:09 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/894/</guid>
+      <description>Deleting both the local and remote branch every time I removed a merged branch was tedious, so I made a script&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Clearing Git History While Keeping Only Commits After a Specific Commit</title>
+      <link>https://www.logical-dice.com/en/posts/wp/501/</link>
+      <pubDate>Mon, 10 Apr 2017 19:39:28 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/501/</guid>
+      <description>The history in the git repository of an app I&amp;rsquo;m developing personally had become a mess, so these are my notes from tweaking the commit history&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[git] git Command Cheat Sheet</title>
+      <link>https://www.logical-dice.com/en/posts/wp/398/</link>
+      <pubDate>Sat, 11 Feb 2017 23:06:36 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/398/</guid>
+      <description>I organized the git commands I use. ■Environment OS X El Capitan 10.11.6 git 2.10.1 [Configuration]&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Migrating a Repository from an SVN Server (svn&#43;ssh) to a Git Server</title>
+      <link>https://www.logical-dice.com/en/posts/wp/278/</link>
+      <pubDate>Wed, 10 Aug 2016 12:04:21 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/278/</guid>
+      <description>■PrerequisitesGit is already usable on both the server and the client(1) Create an empty repository on the Git server. Follow each G&amp;hellip;</description>
+    </item>
   </channel>
 </rss>

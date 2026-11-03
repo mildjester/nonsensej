@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Setting Up Atom IDE (PHP, Go)|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Setting Up Atom IDE (PHP, Go)</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2017-09-29 19:11:15 &#43;0000 UTC" class="catalogue-time">2017-09-29</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/golang/">golang</a></div> <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/atom/">atom</a></div> <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/php/">PHP</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h3 id="environment">■Environment</h3>
+<p>macOS Sierra 10.12.6<br>
+Atom 1.21.0-beta2</p>
+<h3 id="reference-sites">■Reference Sites</h3>
+<p>Official site<br>
+<a href="https://ide.atom.io/" rel="noopener" target="_blank"><a href="https://ide.atom.io/">https://ide.atom.io/</a></a> <br>
+Hakutake&rsquo;s blog<br>
+<a href="http://tech.innovator.jp.net/entry/2017/09/14/165139" rel="noopener" target="_blank"><a href="http://tech.innovator.jp.net/entry/2017/09/14/165139">http://tech.innovator.jp.net/entry/2017/09/14/165139</a></a> (Japanese) <br>
+sayama0402&rsquo;s Qiita post<br>
+<a href="https://qiita.com/sayama0402/items/3bd8d905619c514179b7" rel="noopener" target="_blank"><a href="https://qiita.com/sayama0402/items/3bd8d905619c514179b7">https://qiita.com/sayama0402/items/3bd8d905619c514179b7</a></a> (Japanese)</p>
+<hr>
+<p>I&rsquo;d been curious about the trendy editor &ldquo;Atom&rdquo; for a while, but</p>
+<ul>
+<li>it&rsquo;s heavy for a text editor</li>
+<li>it has too few features for an IDE</li>
+</ul>
+<p>so I had kept my distance.</p>
+<p>However, an IDE version of Atom has apparently come out, so I gave it a try.</p>
+<h3 id="steps">■Steps</h3>
+<h4 id="1-get-atom">1. Get Atom</h4>
+<p>Download and install Atom 1.21.0 (beta) from the following site.<br>
+<a href="https://atom.io/beta" rel="noopener" target="_blank"><a href="https://atom.io/beta">https://atom.io/beta</a></a></p>
+<p>*I looked at several introduction pages, and 1.21.0 seems to be recommended. <br>
+　I also tried 1.20.0 (stable), and it did indeed behave questionably.</p>
+<h4 id="2-install-the-required-packages">2. Install the Required Packages</h4>
+<p>After launching Atom, go to the top menu <br>
+<code>Packages &gt; Settings View &gt; Install Packages/Themes</code> <br>
+and search for and install the following.</p>
+<ul>
+<li>atom-ide-ui</li>
+<li>ide-php</li>
+<li>ide-go</li>
+</ul>
+<h4 id="3-try-it-out">3. Try It Out</h4>
+<p>The first time you open Go source code, you&rsquo;ll be asked whether to install the packages &ldquo;ide-go&rdquo; depends on, <br>
+so install them.<br>
+You&rsquo;ll also get a message that &ldquo;linter&rdquo; and &ldquo;atom-ide-diagnostics&rdquo; conflict,<br>
+so click &ldquo;Disable linter&rdquo; below that message to resolve the conflict.</p>
+<p>With that, it looks ready to use. <br>
+Go-to-definition and completion worked well enough to be practical.<br>
+It also started up faster than other free IDEs (Eclipse and NetBeans).</p>
+<h4 id="installing-other-packages">Installing Other Packages</h4>
+<p>There are lots of handy packages unrelated to the IDE, so I installed some.<br>
+Below are the packages I actually tried.</p>
+<p><em>■file-icons</em><br>
+Changes icons to match each file&rsquo;s extension.<br>
+By the way, to associate a new extension with Atom, click &ldquo;Atom Beta &gt; Config&rdquo; in the top menu <br>
+and edit config.cson.</p>
+<p>[Example: the following makes the &ldquo;.inc&rdquo; extension recognized as a PHP file]</p>
+<pre tabindex="0"><code>&#34;*&#34;:  
+  core:  
+    customFileTypes:  
+      &#34;source.php&#34;: [  
+        &#34;inc&#34;  
+      ]  
+</code></pre><p>The part corresponding to &ldquo;source.php&rdquo; is shown in a popup when you press &ldquo;cmd + opt + P&rdquo; with a PHP file open. <br>
+The same operation should work for files with other extensions.</p>
+<p><em>■pigments</em><br>
+Automatically highlights color codes in their actual color.</p>
+<p><em>■show-ideographic-space</em><br>
+Makes full-width spaces visible.</p>
+<p><em>■git-plus</em><br>
+Lets you do git operations without a terminal, apparently!</p>
+<p><em>■merge-conflict</em><br>
+Makes resolving git conflicts easier.</p>
+<p><em>■highlight-selected</em> <br>
+Highlights all occurrences of the selected word in the source code. <br>
+Selecting apparently means double-clicking. Handy for finding the same variable.</p>
+<p><em>■linter-php</em> <br>
+A package that checks syntax. <br>
+It tells you things like when opening and closing brackets don&rsquo;t match. <br>
+It prompts you to install various related packages, so install those too. <br>
+*Atom IDE apparently also ships with a syntax-checking package(?), and a warning appears when they conflict. <br>
+　I couldn&rsquo;t tell whether the IDE&rsquo;s built-in one was actually detecting errors, so I disabled it. <br>
+　(The warning has a Disable button, so just click it)</p>
+<p><em>■project-manager</em> <br>
+A package for managing multiple projects. <br>
+Makes switching projects easy. <br>
+[Adding a project to manage]<br>
+　With the project you want to add open, select &ldquo;packages &gt; Project Manager &gt; Save Project&rdquo; from the top menu.<br>
+[Opening a managed project] <br>
+　Press &ldquo;Ctrl + Command + P&rdquo; to show the list, then select one. <br>
+　Selecting &ldquo;packages &gt; Project Manager &gt; List Project&rdquo; from the top menu does the same.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

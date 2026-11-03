@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Installing CentOS 7 on an HP ProLiant MicroServer Gen8|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Installing CentOS 7 on an HP ProLiant MicroServer Gen8</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2016-12-01 13:29:48 &#43;0000 UTC" class="catalogue-time">2016-12-01</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/centos/">CentOS</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h1 id="work-environment">■Work Environment</h1>
+<p>・OS X El Capitan 10.11.6</p>
+<p> </p>
+<h1 id="steps">■Steps</h1>
+<h2 id="preparing-centos-7">Preparing CentOS 7</h2>
+<p>First, download the CentOS ISO image.<br>
+Download the &ldquo;Everything ISO&rdquo; from here.<br>
+<a href="https://www.centos.org/download/" target="_blank"><a href="https://www.centos.org/download/">https://www.centos.org/download/</a></a></p>
+<p>Write the downloaded ISO to a USB drive as a bootable USB.</p>
+<ol>
+<li>Insert the USB drive into the Mac.</li>
+<li>Check the disk number of the USB drive with the following command.</li>
+</ol>
+<pre tabindex="0"><code>$ diskutil list
+</code></pre><ol start="3">
+<li>Initialize the USB drive with the following command.</li>
+</ol>
+<pre tabindex="0"><code>$ diskutil eraseDisk MS-DOS NOTITLE /dev/diskX  
+\* &#34;NOTITLE&#34; is the name of the USB drive to create (any name)  
+\* diskX is the disk number checked in step 1.
+</code></pre><ol start="4">
+<li>Unmount the USB drive for writing.</li>
+</ol>
+<pre tabindex="0"><code>$ diskutil unmountDisk /dev/diskX
+</code></pre><ol start="5">
+<li>Write the ISO.</li>
+</ol>
+<pre tabindex="0"><code>$ cd {location of the CentOS ISO}  
+$ sudo dd if=CentOS-7-x86_64-Everything-1511.iso of=/dev/diskX bs=4028  
+\* This takes quite a while to complete
+</code></pre><ol start="6">
+<li>Make the USB drive safe to remove.</li>
+</ol>
+<pre tabindex="0"><code>$ diskutil eject /dev/diskX
+</code></pre><h2 id="preparing-the-raid-controller">Preparing the RAID Controller</h2>
+<p>Next, download the RAID controller driver for the Gen8.<br>
+Without it, you can&rsquo;t use the RAID feature built into the HP server.<br>
+<a href="http://downloads.linux.hpe.com/SDR/repo/spp/RedHat/7/x86_64/current/" target="_blank"><a href="http://downloads.linux.hpe.com/SDR/repo/spp/RedHat/7/x86_64/current/">http://downloads.linux.hpe.com/SDR/repo/spp/RedHat/7/x86_64/current/</a></a><br>
+Download &ldquo;hpvsa-1.2.14-113.rhel7u2.x86_64.dd.gz&rdquo; from here.<br>
+*Adjust the &ldquo;rhel7u2&rdquo; part to match the CentOS version you&rsquo;re installing.</p>
+<p>After downloading, write it to a separate USB drive from the one with CentOS.<br>
+The Mac automatically mounts a USB drive when inserted, so unmount it from Disk Utility<br>
+and run the following commands.<br>
+(First initialize and unmount the USB drive using the same steps as for the ISO.)</p>
+<pre tabindex="0"><code>$ cd {location where you downloaded the RAID driver}  
+$ gunzip hpvsa-1.2.14-113.rhel7u2.x86_64.dd.gz  
+$ sudo dd if=hpvsa-1.2.14-113.rhel7u2.x86_64.dd of=/dev/diskX  
+$ diskutil eject /dev/diskX
+</code></pre><h2 id="running-the-installation">Running the Installation</h2>
+<p>Insert both USB drives into the server and boot it.<br>
+(Configure the BIOS beforehand to allow booting from USB.)</p>
+<p>After a while, the CentOS text appears along with a screen for choosing the installation method.<br>
+Press Esc here to get a &ldquo;boot:&rdquo; prompt, and enter the following.</p>
+<pre tabindex="0"><code>linux modprobe.blacklist=ahci inst.dd
+</code></pre><p>As the installation proceeds, a screen for selecting the disk containing the driver appears.<br>
+First enter <code>r</code> to reload the disk list, then enter the number of the corresponding disk.</p>
+<p>Next, a list of drivers is displayed and you&rsquo;re asked to choose which to install,<br>
+so enter the number of the corresponding driver.<br>
+Then enter <code>c</code> to continue.</p>
+<p>Finally, the disk list is displayed again; remove the USB drive containing the RAID controller driver<br>
+and enter <code>r</code>.<br>
+The USB drive with the RAID controller driver should disappear, and the USB with the ISO should appear at the top,<br>
+so just enter <code>c</code> to continue.</p>
+<p>The rest is a normal installation.<br>
+Answer the questions displayed and you&rsquo;re done.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

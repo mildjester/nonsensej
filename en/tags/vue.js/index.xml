@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vue.js on Logical Dice Techblog</title>
+    <link>https://www.logical-dice.com/en/tags/vue.js/</link>
+    <description>Recent content in Vue.js on Logical Dice Techblog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 07 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.logical-dice.com/en/tags/vue.js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Accessing Child Component Properties with TypeScript &#43; Vue.js</title>
+      <link>https://www.logical-dice.com/en/posts/2021/01/07/git-revert-revert/</link>
+      <pubDate>Thu, 07 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2021/01/07/git-revert-revert/</guid>
+      <description>How to access child component properties with TypeScript + Vue.js.</description>
+    </item>
+  </channel>
+</rss>

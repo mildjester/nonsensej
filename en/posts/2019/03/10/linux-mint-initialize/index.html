@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Initial Setup of Linux Mint|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Initial Setup of Linux Mint</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2020-07-01 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-07-01</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/linuxmint/">LinuxMint</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h2 id="environment">Environment</h2>
+<ul>
+<li>Linux Mint 19.1 &ldquo;Tessa&rdquo; - MATE (64-bit)</li>
+<li>ThinkPad T480</li>
+</ul>
+<blockquote>
+<p>*Added July 2020<br>
+I&rsquo;ve added notes for Linux Mint 20 Ulyana as well.</p>
+</blockquote>
+<hr>
+<h2 id="japanese-input-setup">Japanese Input Setup</h2>
+<p>Open &ldquo;Control Center &gt; Input Method&rdquo; and configure Japanese.<br>
+<img src="https://www.logical-dice.com/images/2019/03/linux-mint-initialize-001.png"/><br>
+Basically, follow the steps written there, as shown above.</p>
+<ul>
+<li>Install the language packages (just press the install button here)</li>
+<li>Set Input Method at the top of the window to Fctix</li>
+<li>Log out once</li>
+</ul>
+<blockquote>
+<p>*Added July 2020<br>
+Linux Mint 20 can use Fctix from the start, so logging out is not necessary.</p>
+</blockquote>
+<p>Open &ldquo;Control Center &gt; Fctix Configuration&rdquo; and leave only Mozc as the input method.<br>
+Just remove unnecessary input methods by clicking the &ldquo;-&rdquo; button.<br>
+<img src="https://www.logical-dice.com/images/2019/03/linux-mint-initialize-002.png"/><br>
+It&rsquo;s OK once it looks like the image above.</p>
+<h2 id="language-settings">Language Settings</h2>
+<blockquote>
+<p>*Added July 2020<br>
+This seems unnecessary on Linux Mint 20.</p>
+</blockquote>
+<p>Open &ldquo;Control Center &gt; Languages&rdquo; and configure Japanese.</p>
+<ul>
+<li>Set &ldquo;Language&rdquo; and &ldquo;Region&rdquo; to Japan. (They should already be.)</li>
+<li>Install Japanese in &ldquo;Language support&rdquo;.</li>
+<li>Run &ldquo;Apply System-Wide&rdquo; under &ldquo;System locale&rdquo;.</li>
+</ul>
+<p>If Chrome or other apps aren&rsquo;t in Japanese after installing them, repeat these steps.</p>
+<h2 id="making-input-mode-switching-mac-like">Making Input Mode Switching Mac-like</h2>
+<p>It&rsquo;s convenient to enable the IME with the Henkan key and disable it with the Muhenkan key, so let&rsquo;s set that up.<br>
+Open &ldquo;Control Center &gt; Mozc Settings&rdquo; and click Edit under &ldquo;Keymap style&rdquo;.</p>
+<p>A key settings window appears; configure it there.<br>
+In the image below, the Hiragana/Katakana key is also assigned to enable the IME.<br>
+<img src="https://www.logical-dice.com/images/2019/03/linux-mint-initialize-003.png"/></p>
+<p>You can also import/export settings from &ldquo;Edit&rdquo; at the bottom right of the key settings screen,<br>
+so exporting your preferred settings makes reinstalling easier later.</p>
+<h2 id="making-the-hankakuzenkaku-and-capslock-keys-more-useful">Making the Hankaku/Zenkaku and CapsLock Keys More Useful</h2>
+<p>With IME switching configured as above, the Hankaku/Zenkaku key becomes unnecessary, so assign it to Esc.<br>
+I also don&rsquo;t use CapsLock, so assign it to Ctrl.<br>
+Open &ldquo;Control Center &gt; Keyboard&rdquo;,<br>
+and open the options for &ldquo;Keyboard model&rdquo; on the Layouts tab.</p>
+<p>Here, select &ldquo;CapsLock is also a Ctrl&rdquo; for &ldquo;Caps Lock behavior&rdquo;,<br>
+and &ldquo;Make Zenkaku Hankaku an additional Esc&rdquo; for &ldquo;Japanese keyboard options&rdquo;.<br>
+<img src="https://www.logical-dice.com/images/2019/03/linux-mint-initialize-004.png"/></p>
+<h2 id="changing-software-sources">Changing Software Sources</h2>
+<p>By default, software is fetched from the US, so change that.<br>
+In &ldquo;Control Center &gt; Software Sources&rdquo;, clicking Main or Base opens a screen to choose the mirror,<br>
+which shows the connection speed to each mirror, so just pick a fast one.</p>
+<p>It will usually be a CDN or a mirror in Japan.<br>
+<img src="https://www.logical-dice.com/images/2019/03/linux-mint-initialize-005.png"/></p>
+<h2 id="making-nothing-happen-when-dragging-a-window-to-the-top-of-the-screen">Making Nothing Happen When Dragging a Window to the Top of the Screen</h2>
+<p>By default, dragging a window to the top of the screen automatically maximizes it.<br>
+This is inconvenient when you want to arrange multiple windows side by side, so disable it.</p>
+<p>Open &ldquo;Control Center &gt; Windows&rdquo; and uncheck &ldquo;Enable window tiling&rdquo; on the Placement tab.</p>
+<h2 id="installing-various-packages-with-apt">Installing Various Packages with apt</h2>
+<h3 id="basic-set-for-vim-users">Basic set (for vim users)</h3>
+<pre tabindex="0"><code>apt install vim git npm
+</code></pre><h3 id="security-software">Security software</h3>
+<pre tabindex="0"><code>apt install clamav clamav-daemon
+</code></pre><h3 id="php-related-if-you-use-it">PHP-related (if you use it)</h3>
+<pre tabindex="0"><code>apt install php7.2 composer php7.2-bcmath php7.2-common php7.2-gd php7.2-json php7.2-mbstring php7.2-mysql php7.2-xml php7.2-xmlrpc
+</code></pre><blockquote>
+<p>*Added July 2020<br>
+On Linux Mint 20, php7.4 can be installed by default.</p>
+</blockquote>
+<pre tabindex="0"><code>apt install php7.4 composer php7.4-bcmath php7.4-common php7.4-gd php7.4-json php7.4-mbstring php7.4-mysql php7.4-xml php7.4-xmlrpc
+</code></pre><p>Note that apache2 may also be installed automatically when installing PHP,<br>
+and it may be configured to start automatically.<br>
+So turn off apache2 autostart.</p>
+<pre tabindex="0"><code>sudo systemctl disable apache2
+</code></pre><h3 id="shutter-if-you-use-it">Shutter (if you use it)</h3>
+<p>Shutter is a tool that lets you easily insert text, arrows, mosaics, icons, etc. into images.<br>
+It&rsquo;s like Skitch on the Mac. (Those who know, know.)</p>
+<blockquote>
+<p>*Added 2020/7/1<br>
+The PPA etc. seemed to have changed, so I updated this.</p>
+</blockquote>
+<pre tabindex="0"><code>sudo add-apt-repository ppa:linuxuprising/ppa
+apt update
+apt install shutter
+</code></pre><h2 id="downloading-from-the-web">Downloading from the Web</h2>
+<p>Download these from the web and install them.</p>
+<ul>
+<li><a href="https://azure.microsoft.com/en-us/products/visual-studio-code/">Visual Studio Code</a></li>
+<li><a href="https://getstation.com/">Station</a></li>
+</ul>
+<h4 id="note">*Note</h4>
+<p>Visual Studio Code can also be installed from the Software Manager, etc.,<br>
+but for some reason Japanese input doesn&rsquo;t work with that version, so I get it from the web. (As of 2019/3/10)</p>
+<p>Station downloads with an unfamiliar <code>AppImage</code> extension.<br>
+You can install it by giving it execute permission and running it from the terminal.</p>
+<pre tabindex="0"><code>chmod +x browserX-1.39.2-x86_64.AppImage
+./browserX-1.39.2-x86_64.AppImage
+</code></pre><p>(If you think you won&rsquo;t remember what it is later, you can rename it to something like Station.AppImage.)</p>
+<h2 id="other-reference-pages">Other Reference Pages</h2>
+<ul>
+<li><a href="/en/posts/wp/48/">Changing home directory names to English</a></li>
+<li><a href="/en/posts/2019/03/10/linux-mint-terminator-fish/">Setting up Terminator + fish</a></li>
+<li><a href="/en/posts/2019/01/25/linux-mint-docker/">Setting up a Docker environment</a></li>
+<li><a href="/en/posts/2019/03/12/linux-mint-trackpoint/">Adjusting the ThinkPad TrackPoint</a></li>
+<li><a href="/en/posts/2019/03/13/linux-mint-l2tp/">L2TP client setup</a></li>
+</ul>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

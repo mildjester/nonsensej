@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Introducing &#34;pico&#34;, a PHP-Based CMS|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Introducing &#34;pico&#34;, a PHP-Based CMS</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2019-01-15 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-01-15</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/pico/">pico</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h2 id="what-is-pico">What is pico</h2>
+<p>A CMS written in PHP that lets you create web pages with files alone, without using a database.<br>
+<a href="http://picocms.org/">Official site</a></p>
+<p>Pages can be written in Markdown, so I think it&rsquo;s an easy-to-use CMS<br>
+for people who often take notes in Markdown.</p>
+<h3 id="how-does-it-compare-to-wordpress">How does it compare to WordPress</h3>
+<h4 id="ease-of-writing-pages">Ease of writing pages</h4>
+<p>It&rsquo;s easy to write for people used to Markdown,<br>
+but it&rsquo;s probably not a good fit if you hire writers who aren&rsquo;t familiar with it.</p>
+<p><del>Also, since expression is limited to what Markdown can do, WordPress, where you can write HTML directly,</del><br>
+<del>may allow more freedom in rendering.</del><br>
+It turns out you can write HTML inside Markdown in pico too</p>
+<h4 id="ease-of-setup">Ease of setup</h4>
+<p>For a basic setup, you just grab the source code and you&rsquo;re done, so it&rsquo;s easy.<br>
+However, adding plugins can require editing theme files,<br>
+which is more work than WordPress, where you simply click &ldquo;Install&rdquo;.</p>
+<p>Also, the lack of information in Japanese may be a bottleneck when setting it up.</p>
+<h4 id="ease-of-management">Ease of management</h4>
+<p>There is no admin panel, so all configuration is done in the source code.<br>
+So it would be difficult for non-engineers to operate.</p>
+<p>On the other hand, there&rsquo;s no database, so managing backups is easy.<br>
+GitHub now lets you create private repositories for free,<br>
+so you can just manage everything there.</p>
+<p>Also, since there&rsquo;s no admin panel, I think it&rsquo;s strong in terms of security.</p>
+<h4 id="features">Features</h4>
+<p>pico doesn&rsquo;t have the tags and categories that WordPress provides by default,<br>
+so it&rsquo;s a bit inconvenient.<br>
+You can add them with plugins, but it&rsquo;s somewhat cumbersome.</p>
+<p>WordPress also wins in the number of plugins and themes.</p>
+<h2 id="installing-pico">Installing pico</h2>
+<h3 id="creating-the-project">Creating the project</h3>
+<p>First, create a project with composer.<br>
+*If you don&rsquo;t know composer, see <a href="/en/posts/wp/515/">here</a></p>
+<pre tabindex="0"><code>composer create-project picocms/pico-composer pico
+</code></pre><p>If you place the generated pico directory on a web server as is,<br>
+the default page is already displayed.<br>
+The default page explains how to place content and more,<br>
+so it&rsquo;s worth reading.</p>
+<h3 id="url-rewrite-settings">URL rewrite settings</h3>
+<p>pico uses URL rewriting.<br>
+(It&rsquo;s not required, but without it URLs look ugly, and it probably isn&rsquo;t good for SEO either)</p>
+<p>The URL rewrite rules are written in pico&rsquo;s <code>.htaccess</code>.<br>
+<code>.htaccess</code> only works with Apache, so with Nginx you need separate configuration.<br>
+<a href="http://picocms.org/docs/#url-rewriting">Official URL rewrite instructions</a></p>
+<h3 id="creating-the-config-file">Creating the config file</h3>
+<p>Copy or rename <code>pico/config/config.yml.template</code><br>
+to create <code>pico/config/config.yml</code>.</p>
+<p>For the initial stage, these are probably the only settings you need to change.</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>site_title</td>
+<td>Change to your site&rsquo;s title</td>
+</tr>
+<tr>
+<td>timezone</td>
+<td>Asia/Tokyo if in Japan</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>*Caution<br>
+The default timezone is <code>UTC</code>, so you might think you should change it to <code>JST</code>,<br>
+but it has to be <code>Asia/Tokyo</code>.</p>
+</blockquote>
+<p>Once you place config.yml, the default page is no longer displayed.<br>
+After that, pages are generated by creating md files under pico/content.<br>
+Pages are mainly created as follows.</p>
+<p><strong>pico/content/index.md</strong><br>
+The so-called index page<br>
+Displayed when accessing <a href="https://your-pico-site.com/">https://your-pico-site.com/</a></p>
+<p><strong>pico/content/404.md</strong><br>
+The so-called 404 page<br>
+(If you don&rsquo;t create it, a default page is displayed. Create it if you want to customize it)</p>
+<p><strong>pico/content/hogehoge.md (hogehoge is arbitrary)</strong><br>
+Displayed when accessing <a href="https://your-pico-site.com/hogehoge">https://your-pico-site.com/hogehoge</a><br>
+In the default theme, it also appears in the page list at the top right</p>
+<p><strong>pico/content/fooooo/hogehoge.md (fooooo and hogehoge are arbitrary)</strong><br>
+Displayed when accessing <a href="https://your-pico-site.com/fooooo/hogehoge">https://your-pico-site.com/fooooo/hogehoge</a><br>
+In the default theme, it does not appear in the page list at the top right</p>
+<p>Each page&rsquo;s md file consists of &ldquo;YAML header + content&rdquo;.<br>
+For example, it looks like this.</p>
+<pre tabindex="0"><code>---
+title: サンプルページ
+summary: これはサンプルページですよ
+date: 2019-01-07
+draft: false
+---
+
+これはサンプルページですよー
+</code></pre><p>For details on the YAML header, see the official page.<br>
+<a href="http://picocms.org/docs/#text-file-markup">YAML header explanation on the official page</a></p>
+<p>For <code>Template</code> above, specify the name of a Twig file provided in the current theme.<br>
+(The default theme is <code>pico/themes/default</code>)<br>
+For example, in the example above, the template used is <code>index.twig</code>.</p>
+<p>To turn it into a blog, continue to <a href="/en/posts/2019/01/16/pico-blog/">Building a Blog with pico</a>.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

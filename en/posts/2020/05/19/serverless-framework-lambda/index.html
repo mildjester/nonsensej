@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Deploying Lambda &amp; API Gateway with the Serverless Framework|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Deploying Lambda &amp; API Gateway with the Serverless Framework</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2020-05-19 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-05-19</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/aws/">AWS</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h2 id="environment">Environment</h2>
+<p>ubuntu 20.04 LTS</p>
+<hr>
+<p>The Serverless Framework is a tool that makes it easy to build serverless environments.<br>
+<a href="https://www.serverless.com/framework/docs/">https://www.serverless.com/framework/docs/</a></p>
+<p>This time I&rsquo;ll use it to build a serverless API on AWS using Lambda &amp; API Gateway.</p>
+<h2 id="preparation-setting-up-awscli">Preparation (Setting Up awscli)</h2>
+<p>The Serverless Framework deploys using the aws cli, so you need to install it.<br>
+If awscli is already usable on your work PC, you can skip this section.</p>
+<h3 id="install-awscli">Install awscli</h3>
+<p>Follow the steps on the official page.<br>
+<a href="https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html">https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html</a></p>
+<pre tabindex="0"><code>$ curl &#34;https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip&#34; -o &#34;awscliv2.zip&#34;
+$ unzip awscliv2.zip
+$ sudo ./aws/install
+</code></pre><p>awscli is now installed.<br>
+Check the version just in case.</p>
+<pre tabindex="0"><code>$ aws --version
+aws-cli/2.0.14 Python/3.7.3 Linux/5.4.0-31-generic botocore/2.0.0dev18
+</code></pre><h3 id="prepare-an-access-key">Prepare an Access Key</h3>
+<p>Generate an access key for awscli in AWS IAM.<br>
+The steps are on the official page.<br>
+<a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html#cli-quick-configuration">https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html#cli-quick-configuration</a></p>
+<p>Roughly, you do the following.</p>
+<ol>
+<li>Go to IAM</li>
+<li>Select the user to issue the access key for.</li>
+<li>Click &ldquo;Create access key&rdquo; on the &ldquo;Security credentials&rdquo; tab.</li>
+<li>Note down the displayed access key ID / secret access key.</li>
+</ol>
+<p>That&rsquo;s it.</p>
+<h3 id="configure-awscli">Configure awscli</h3>
+<p>Set the access key obtained from IAM and the region in awscli.</p>
+<pre tabindex="0"><code>$ aws configure
+AWS Access Key ID [None]: YOUR-ACCESS-KEY-ID
+AWS Secret Access Key [None]: YOUR-SECRET-ACCESS-KEY
+Default region name [None]: ap-northeast-1
+Default output format [None]: 
+</code></pre><p>*If you press Enter with the output format left empty, it defaults to json.</p>
+<p>If you use multiple AWS accounts, you can specify the profile to store the access key in by running the following.<br>
+Replace <code>profile01</code> below with any profile name you like.</p>
+<pre tabindex="0"><code>$ aws configure --profile profile01
+</code></pre><p>Now you can use awscli while switching between profiles.</p>
+<h2 id="setting-up-the-serverless-framework">Setting Up the Serverless Framework</h2>
+<h3 id="install-the-serverless-framework">Install the Serverless Framework</h3>
+<p>Follow the steps on the official page.<br>
+<a href="https://www.serverless.com/framework/docs/getting-started/">https://www.serverless.com/framework/docs/getting-started/</a></p>
+<p>On ubuntu (Linux), run the following command.</p>
+<pre tabindex="0"><code>curl -o- -L https://slss.io/install | bash
+</code></pre><h3 id="load-a-serverless-framework-template">Load a Serverless Framework Template</h3>
+<p>Run the <code>serverless</code> command in your working directory and answer a few questions to load a template for the Serverless Framework.<br>
+In the example below, the Lambda language is python and the service name is <code>sw-test</code>.<br>
+*The sls command is short for the serverless command</p>
+<pre tabindex="0"><code>$ sls
+Serverless: No project detected. Do you want to create a new one? Yes
+Serverless: What do you want to make? AWS Python
+Serverless: What do you want to call this project? sw-test
+
+Project successfully created in &#39;sw-test&#39; folder.
+
+You can monitor, troubleshoot, and test your new service with a free Serverless account.
+
+Serverless: Would you like to enable this? No
+You can run the “serverless” command again if you change your mind later.
+
+
+Serverless: Would you like to setup a command line &lt;tab&gt; completion? No
+</code></pre><p>This creates the sw-test directory with the Serverless Framework template loaded into it.</p>
+<h3 id="configure-the-serverless-framework">Configure the Serverless Framework</h3>
+<p>Add configs for the staging/production environments to the generated template so that per-environment variables can be defined.<br>
+The file structure looks like this.</p>
+<pre tabindex="0"><code>sw-test
+ ├─conf            ・・・config directory (added)
+ │  ├─dev.yml     ・・・staging environment config (added)
+ │  └─prd.yml     ・・・production environment config (added)
+ ├─handler.py      ・・・script run by Lambda (this time we use the template sample as-is)
+ └─serverless.yml  ・・・file defining what to deploy
+</code></pre><p>The file contents are as follows.</p>
+<p>[dev.yml]<br>
+Just the region for now.</p>
+<pre tabindex="0"><code>region: us-west-2
+</code></pre><p>[prd.yml]<br>
+Just the region for now.</p>
+<pre tabindex="0"><code>region: ap-northeast-1
+</code></pre><p>[serverless.yml]</p>
+<pre tabindex="0"><code>service: sw-test
+
+custom:
+  default_stage: dev
+  stage: ${opt:stage, self:custom.default_stage}              If no stage is specified at deploy time, dev is used.
+  config_file:
+    dev: ${file(./conf/dev.yml)}
+    prd: ${file(./conf/prd.yml)}
+  config: ${self:custom.config_file.${self:custom.stage}}     Loads dev.yml or prd.yml depending on the stage.
+
+provider:
+  name: aws
+  runtime: python3.8
+  region: ${self:custom.config.region}                        Reads the contents of dev/prd.yml. Settings other than region in the config file can be referenced the same way.
+
+functions:
+  hello:
+    handler: handler.hello                                    Calls the hello method in handler.py when the events specified below occur
+    events:
+      - http:
+          path: hello                                         Path that receives requests
+          method: get
+</code></pre><p>If you specify http in the functions&rsquo; events as above, API Gateway is deployed together with Lambda.</p>
+<p>■Gotcha<br>
+Indentation is two spaces throughout, but only the <code>path: hello</code> line is indented four spaces from the hyphen of <code>- http:</code>.<br>
+In other words, the correct indentation seems to be two spaces deeper than <code>http:</code>.<br>
+(This may be obvious to people used to YAML, but it tripped me up a bit.)</p>
+<p>If this is wrong, you&rsquo;ll get the following error when deploying.</p>
+<pre tabindex="0"><code>Serverless Error ---------------------------------------
+ 
+  Missing or invalid &#34;path&#34; property in function &#34;hello&#34; for http event in serverless.yml. If you define an http event, make sure you pass a valid value for it, either as string syntax, or object syntax. Please check the indentation of your config values if you use the object syntax. Please check the docs for more options.
+</code></pre><h3 id="deploy">Deploy</h3>
+<p>If you separated awscli profiles, specify the profile first.</p>
+<pre tabindex="0"><code>export AWS_PROFILE=&#34;profile01&#34;
+</code></pre><p>Deploy.</p>
+<pre tabindex="0"><code>sls deploy
+</code></pre><p>If no errors occur, the application has now been added to Lambda and API Gateway in the staging region.<br>
+To release to production, deploy with the stage specified as follows.</p>
+<pre tabindex="0"><code>sls deploy --stage prd
+</code></pre><p>That&rsquo;s all.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

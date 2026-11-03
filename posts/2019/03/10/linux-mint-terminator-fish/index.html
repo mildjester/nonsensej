@@ -88,10 +88,10 @@ $ chsh -s /usr/bin/fish
 <p>fishermanというfishのプラグイン管理ツールがあります。</p>
 <p>fishermanのgithubベージにインストールコマンドが載っています。<br>
 <a href="https://github.com/fisherman/fisherman">https://github.com/fisherman/fisherman</a></p>
-<pre tabindex="0"><code>$ curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish  
-$ fisher -v  
-fisher version 3.1.1 ~/.config/fish/functions/fisher.fish  
-</code></pre><p>※<code>fisher -v</code>でバージョンが出ない場合は、一回ターミナルを開き直してください。</p>
+<pre tabindex="0"><code>$ curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source &amp;&amp; fisher install jorgebucaran/fisher
+$ fisher -v
+fisher, version 4.4.8
+</code></pre><p>※<code>fisher -v</code>でバージョンが出ない場合は、一回ターミナルを開き直してください。それでも駄目なら再起動。</p>
 <h2 id="テーマの変更">テーマの変更</h2>
 <p>fishはテーマを変更することで見栄えが変えられます。<br>
 どのようなテーマがあるかは、以下ページが参考になります。<br>
@@ -122,7 +122,15 @@ terminatorであればターミナル上で右クリックをして「設定」�
 (ubuntuの場合はaptの前にsudoを付けてください)</p>
 <pre tabindex="0"><code>apt install peco
 fisher install oh-my-fish/plugin-peco
-</code></pre><p>インストール後、fishのコンフィグファイル(~/.config/fish/config.fish)へ以下のように記載します。<br>
+</code></pre><blockquote>
+<p>2026/11/03追記
+aptでpecoをダウンロードすると文字化けするようになった。ファイルをダウンロードした方が良いです。
+<a href="https://zenn.dev/mato/scraps/2b0c423ad9da2c">https://zenn.dev/mato/scraps/2b0c423ad9da2c</a></p>
+<pre tabindex="0"><code>wget https://github.com/peco/peco/releases/download/v0.5.11/peco_linux_amd64.tar.gz
+tar -xzf peco_linux_amd64.tar.gz
+sudo mv peco_linux_amd64/peco /usr/local/bin/
+</code></pre></blockquote>
+<p>インストール後、fishのコンフィグファイル(~/.config/fish/config.fish)へ以下のように記載します。<br>
 fishのコンフィグファイルが存在しない場合は新規作成してください。</p>
 <pre tabindex="0"><code>function fish_user_key_bindings
   bind \cr &#39;peco_select_history (commandline -b)&#39; # peco
@@ -131,33 +139,12 @@ end
 「Ctrl + R」でコマンド履歴検索画面が開きます。<br>
 検索画面では直近のコマンドから選択することもできますし、文字列を入力すれば該当の文字列を含むコマンド履歴に絞ることもできます。</p>
 <h4 id="ghq">■ghq</h4>
-<p>まずgolangをインストールします。</p>
-<blockquote>
-<p>※2020年7月追記<br>
-Linux Mint 20では<code>apt install golang</code>だけで大丈夫です。</p>
-</blockquote>
-<blockquote>
-<p>※2020年3月追記<br>
-デフォルトでインストールできるgolangのバージョンはLinux Mintは1.10,Ubuntuは1.12なのですが(2020年3月現在)<br>
-ver.1.12ではghqインストール時にエラーが出てしまうので新バージョンのgolangを取得できるようにします。</p>
-<p>GitHubのgolangのwikiを見て作業します。<br>
-<a href="https://github.com/golang/go/wiki/Ubuntu">https://github.com/golang/go/wiki/Ubuntu</a></p>
-<p>2020年3月現在の手順は以下の通りでした。</p>
-</blockquote>
-<pre tabindex="0"><code>sudo add-apt-repository ppa:longsleep/golang-backports
-sudo apt update
-sudo apt install golang-go
-</code></pre><p>インストールが完了したらgoの設定をします。</p>
-<pre tabindex="0"><code>echo &#39;set -x GOPATH $HOME/go&#39; &gt;&gt; ~/.config/fish/config.fish
-echo &#39;set -x PATH $GOPATH/bin $PATH&#39; &gt;&gt; ~/.config/fish/config.fish
-mkdir -p ~/go/bin
-source ~/.config/fish/config.fish
-</code></pre><p>続いてghqをインストールします。<br>
-ghqのfisherman用リポジトリは元々<code>yoshiori/fish-peco_select_ghq_repository</code>なのですが<br>
+<p>※事前にgolangをインストールしておく必要があります。</p>
+<p>ghqのfisherman用リポジトリは元々<code>yoshiori/fish-peco_select_ghq_repository</code>なのですが<br>
 そちらだとgitリポジトリ遷移時にシェルが多重で開くようになってしまったので<br>
 シェルが多重で開かない版を自分のリポジトリ(<code>mildjester/fish-peco_select_ghq_repository</code>)に用意してあります。</p>
 <p>※yoshioriさんのソースに不具合があるのではなく、あるべき形になったらLinux系のシェル(?)と相性が悪くなっただけだと思います。</p>
-<pre tabindex="0"><code>go get github.com/motemen/ghq
+<pre tabindex="0"><code>go install github.com/x-motemen/ghq@latest
 fisher install mildjester/fish-peco_select_ghq_repository
 </code></pre><p>インストール後、fishのコンフィグファイル(~/.config/fish/config.fish)へ以下のように記載します。<br>
 上記のpecoの設定に追記する前提としています。</p>

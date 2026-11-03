@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>[WordPress] Speeding Up SyntaxHighlighter Evolved|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">[WordPress] Speeding Up SyntaxHighlighter Evolved</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2017-02-10 18:23:37 &#43;0000 UTC" class="catalogue-time">2017-02-10</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/wordpress/">Wordpress</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<p>After installing the WordPress plugin &ldquo;SyntaxHighlighter Evolved&rdquo;,<br>
+page rendering became very slow, so I sped it up.</p>
+<p>〜〜〜 Added 2017/2/11 〜〜〜<br>
+Switching plugins might be quicker.<br>
+I tried switching to &ldquo;WP Code Highlight.js&rdquo;, and rendering is fast with no problems.<br>
+I also like its padding and such better.<br>
+〜〜〜 End of addition 〜〜〜</p>
+<p>■Environment<br>
+CentOS 7.3<br>
+Wordpress 4.7.2<br>
+SyntaxHighlighter Evolved 3.2.1<br>
+*This assumes you have permission to operate the server where WordPress is installed.</p>
+<p>&ldquo;SyntaxHighlighter Evolved&rdquo; supports many languages,<br>
+but it includes languages I never actually write, so I&rsquo;ll stop the plugin<br>
+from loading the ones I don&rsquo;t need.</p>
+<p>Specifically, edit the PHP file inside the plugin and comment out the lines that seem to load<br>
+settings for unneeded languages.</p>
+<pre tabindex="0"><code># cd /{wordpressが配置されているディレクトリ}/wp-content/plugins/syntaxhighlighter  
+# vim syntaxhighlighter.php
+</code></pre><p>The lines to comment out are the following, starting around line 114.</p>
+<pre tabindex="0"><code>wp_register_script( &#39;syntaxhighlighter-brush-○○○&#39;,〜〜〜　$this-&gt;agshver );
+</code></pre><p>The &ldquo;○○○&rdquo; part above contains the language name, so comment out the lines for languages you don&rsquo;t need.</p>
+<p>Also, though I&rsquo;m not sure how much it helps, I commented out the themes I don&rsquo;t use as well.<br>
+The relevant lines are the following, starting around line 149.</p>
+<pre tabindex="0"><code>wp_register_style( &#39;syntaxhighlighter-theme-○○○&#39;,〜〜〜　$this-&gt;agshver );
+</code></pre><p>The &ldquo;○○○&rdquo; part above contains the theme name.</p>
+<p>The languages and themes commented out above<br>
+are also stored in arrays further down, so comment them out there too.</p>
+<p>The array for languages is around line 162.</p>
+<pre tabindex="0"><code>$this-&gt;brushes = (array) apply_filters( &#39;syntaxhighlighter_brushes&#39;, array(  
+    &#39;as3&#39;           =&gt; &#39;as3&#39;,  
+    &#39;actionscript3&#39; =&gt; &#39;as3&#39;,  
+    &#39;bash&#39;          =&gt; &#39;bash&#39;,  
+    &#39;shell&#39;         =&gt; &#39;bash&#39;,  
+    以下略
+</code></pre><p>The array for themes is around line 243.</p>
+<pre tabindex="0"><code>$this-&gt;themes = (array) apply_filters( &#39;syntaxhighlighter_themes&#39;, array(  
+    &#39;default&#39;    =&gt; __( &#39;Default&#39;,      &#39;syntaxhighlighter&#39; ),  
+    &#39;django&#39;     =&gt; __( &#39;Django&#39;,       &#39;syntaxhighlighter&#39; ),  
+    &#39;eclipse&#39;    =&gt; __( &#39;Eclipse&#39;,      &#39;syntaxhighlighter&#39; ),  
+    &#39;emacs&#39;      =&gt; __( &#39;Emacs&#39;,        &#39;syntaxhighlighter&#39; ),  
+    &#39;fadetogrey&#39; =&gt; __( &#39;Fade to Grey&#39;, &#39;syntaxhighlighter&#39; ),  
+    &#39;midnight&#39;   =&gt; __( &#39;Midnight&#39;,     &#39;syntaxhighlighter&#39; ),  
+    &#39;rdark&#39;      =&gt; __( &#39;RDark&#39;,        &#39;syntaxhighlighter&#39; ),  
+    &#39;none&#39;       =&gt; __( &#39;[None]&#39;,       &#39;syntaxhighlighter&#39; ),  
+) );
+</code></pre><p>After commenting out the parts above as appropriate, page rendering got somewhat faster.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Making a Lost Child Tag with Google Forms|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Making a Lost Child Tag with Google Forms</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2021-01-25 00:00:00 &#43;0000 UTC" class="catalogue-time">2021-01-25</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/googleservice/">GoogleService</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<p>Now that my kids can run around freely, the risk of them getting lost in shopping centers and amusement facilities has increased, so I considered making lost child tags.<br>
+I set the following requirements for the tag.</p>
+<ul>
+<li>Attach it to the child&rsquo;s belongings, etc.</li>
+<li>Let the person who finds the child contact the parent</li>
+<li>I don&rsquo;t want to write my contact information directly on the tag</li>
+<li>I want to be able to change it immediately if the contact information leaks to someone malicious</li>
+<li>I don&rsquo;t want to create a disposable email address because managing it is a hassle</li>
+</ul>
+<p>That&rsquo;s where Google Forms comes in.<br>
+I&rsquo;ll make the lost child tag with the following flow.</p>
+<p>(1) Create a contact form with Google Forms.<br>
+(2) Turn the URL of the created Google Form into a QR code.<br>
+(3) Make an accessory or similar item containing the QR code.</p>
+<p>This time I&rsquo;m making it as a lost child tag, but if you turn the QR code into a sticker and put it on your smartphone or travel bag,<br>
+a good-hearted person who finds it might contact you if you lose it.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>You already have a Google account (Gmail).</p>
+<h2 id="detailed-steps">Detailed steps</h2>
+<h3 id="creating-the-google-form">Creating the Google Form</h3>
+<p>First, create a contact form with Google Forms.<br>
+<a href="https://www.google.com/intl/ja_jp/forms/about/">https://www.google.com/intl/ja_jp/forms/about/</a></p>
+<p>The form only needs enough fields to get in touch with the person contacting you.<br>
+<img src="https://www.logical-dice.com/images/2021/01/lost-tag-qr-001.png" alt="Googleフォーム1"/></p>
+<p>Change the form settings.<br>
+Click the gear icon at the top right to open the settings popup.<br>
+<img src="https://www.logical-dice.com/images/2021/01/lost-tag-qr-002.png" alt="Googleフォーム2"/></p>
+<p>First, on the General tab, uncheck basically everything.<br>
+<img src="https://www.logical-dice.com/images/2021/01/lost-tag-qr-003.png" alt="Googleフォーム3"/></p>
+<p>On the Presentation tab, you can change the message shown to the person who contacted you under &ldquo;Confirmation message&rdquo;.<br>
+<img src="https://www.logical-dice.com/images/2021/01/lost-tag-qr-004.png" alt="Googleフォーム4"/></p>
+<p>This isn&rsquo;t a quiz form, so leave the Quizzes tab alone.</p>
+<p>Next, set up how you receive the contact.<br>
+Select the Responses tab and click the icon with vertically stacked dots.<br>
+<img src="https://www.logical-dice.com/images/2021/01/lost-tag-qr-005.png" alt="Googleフォーム5"/></p>
+<p>Check &ldquo;Get email notifications for new responses&rdquo;.<br>
+Now you&rsquo;ll receive an email whenever someone submits the Google Form.<br>
+If you want to keep a history of contacts in a spreadsheet, set it under &ldquo;Select response destination&rdquo;.<br>
+<img src="https://www.logical-dice.com/images/2021/01/lost-tag-qr-006.png" alt="Googleフォーム6"/></p>
+<p>The form is now complete.<br>
+Get the form URL from &ldquo;Send&rdquo; at the top right.<br>
+<img src="https://www.logical-dice.com/images/2021/01/lost-tag-qr-007.png" alt="Googleフォーム7"/></p>
+<h3 id="creating-the-qr-code">Creating the QR code</h3>
+<p>Use a QR code generation service to turn the Google Form URL into a QR code.<br>
+Free services include the following.<br>
+<a href="https://qr.quel.jp/">https://qr.quel.jp/</a> (Japanese)</p>
+<h3 id="making-the-accessory">Making the accessory</h3>
+<p>The generated QR code can be used in many ways.<br>
+You could make it a sticker or an accessory.</p>
+<p>This time I made an accessory.<br>
+I used the following service.<br>
+<a href="https://originalprint.jp/">https://originalprint.jp/</a> (Japanese)</p>
+<p>You can design the accessory yourself.<br>
+You can make something like this.<br>
+<img src="https://www.logical-dice.com/images/2021/01/lost-tag-qr-008.png" alt="迷子札サンプル"/></p>
+<p>Scan the QR code with a smartphone, open the Google Form, and try submitting contact information.<br>
+If you receive an email at your Gmail address saying the Google Form was submitted, it worked.<br>
+(There is a time lag of just under a minute from form submission to email arrival)</p>
+<p>Attach this to your child&rsquo;s bag.<br>
+If the Google Form URL leaks to someone malicious, just recreate the Google Form.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

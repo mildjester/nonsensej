@@ -15,5 +15,75 @@
       <guid>https://www.logical-dice.com/en/posts/2021/06/06/lodash-debounce-vs-throttle/</guid>
       <description>Notes on investigating the differences between debounce and throttle.</description>
     </item>
+    <item>
+      <title>Autocomplete in JavaScript Without a Library</title>
+      <link>https://www.logical-dice.com/en/posts/2020/10/25/javascript-autocomplete/</link>
+      <pubDate>Sun, 25 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/10/25/javascript-autocomplete/</guid>
+      <description>Implementing an autocomplete in JavaScript, without libraries, whose options can be selected with the cursor keys.</description>
+    </item>
+    <item>
+      <title>Giving GitHub&#39;s Contribution Graph Tanjiro&#39;s Pattern</title>
+      <link>https://www.logical-dice.com/en/posts/2020/07/16/bookmarklet-kimetsu/</link>
+      <pubDate>Thu, 16 Jul 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/07/16/bookmarklet-kimetsu/</guid>
+      <description>Using a bookmarklet to turn the GitHub contribution graph into the pattern of Tanjiro&amp;rsquo;s kimono.</description>
+    </item>
+    <item>
+      <title>How to Make a Bookmarklet</title>
+      <link>https://www.logical-dice.com/en/posts/2020/07/15/howto-make-bookmarklet/</link>
+      <pubDate>Wed, 15 Jul 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/07/15/howto-make-bookmarklet/</guid>
+      <description>A quick explanation of how to make a bookmarklet using uglify-js</description>
+    </item>
+    <item>
+      <title>Preventing gulp-uglify from Mangling Variable/Function Names</title>
+      <link>https://www.logical-dice.com/en/posts/2020/04/15/gulp-uglify-keep-name/</link>
+      <pubDate>Wed, 15 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/04/15/gulp-uglify-keep-name/</guid>
+      <description>How to keep variable and function names unchanged when minifying JS files with gulp-uglify.</description>
+    </item>
+    <item>
+      <title>How to Prevent JavaScript Input Events from Firing During IME Composition</title>
+      <link>https://www.logical-dice.com/en/posts/2020/03/20/javascript-input-event/</link>
+      <pubDate>Fri, 20 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/03/20/javascript-input-event/</guid>
+      <description>I looked into how to keep text input events from firing while IME input is still uncommitted.</description>
+    </item>
+    <item>
+      <title>Automatically Entering a Password with a Bookmarklet</title>
+      <link>https://www.logical-dice.com/en/posts/2019/10/02/bookmarklet-mizuho/</link>
+      <pubDate>Wed, 02 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/10/02/bookmarklet-mizuho/</guid>
+      <description>Looking up the second PIN for transfers on Mizuho Direct was tedious, so I made it extractable with one click</description>
+    </item>
+    <item>
+      <title>Investigating Input Events with IME Enabled</title>
+      <link>https://www.logical-dice.com/en/posts/2019/04/10/javascript-event/</link>
+      <pubDate>Wed, 10 Apr 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/04/10/javascript-event/</guid>
+      <description>Input events with IME enabled differed quite a bit between PC, Android, and iOS, so I looked into them.</description>
+    </item>
+    <item>
+      <title>window.onload Doesn&#39;t Work</title>
+      <link>https://www.logical-dice.com/en/posts/2019/01/26/javascript-window-load/</link>
+      <pubDate>Sat, 26 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/01/26/javascript-window-load/</guid>
+      <description>One cause of window.onload not working.</description>
+    </item>
+    <item>
+      <title>Placing Multiple reCAPTCHA Buttons in the Same Form</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1627/</link>
+      <pubDate>Fri, 26 Oct 2018 13:27:25 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1627/</guid>
+      <description>How to place multiple submit buttons in a reCAPTCHA-enabled form on a web page. This assumes you extract from the POST data&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Limiting the Number of Digits in a Number Input Field</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1352/</link>
+      <pubDate>Fri, 18 May 2018 21:53:41 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1352/</guid>
+      <description>How to limit the number of characters in a number input field</description>
+    </item>
   </channel>
 </rss>

@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Investigating Input Events with IME Enabled|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Investigating Input Events with IME Enabled</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2019-04-10 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-04-10</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/javascript/">javascript</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<p>Input events with IME enabled differed quite a bit between PC, Android, and iOS, so I looked into them.<br>
+The test environments were as follows.</p>
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>Browser</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PC (Linux Mint 19.1 MATE)</td>
+<td>Chrome Ver.73.0</td>
+</tr>
+<tr>
+<td>Android 8.0.0 (Galaxy S8)</td>
+<td>Chrome Ver.73.0</td>
+</tr>
+<tr>
+<td>iOS 12.2 (iPhone 6)</td>
+<td>Safari 12.1</td>
+</tr>
+</tbody>
+</table>
+<p>I checked the events fired when typing into a text box.<br>
+The events I checked were <code>keydown</code>, <code>keyup</code>, <code>keypress</code>, <code>textInput</code>, and <code>input</code>.</p>
+<p>(On Android, the keyboard app may also have an effect, not just the browser?)</p>
+<h2 id="ime-enabled-while-typing-uncommitted">IME Enabled: While Typing (Uncommitted)</h2>
+<p>Events fired while typing hiragana one character at a time.</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th style="text-align:center">PC</th>
+<th style="text-align:center">Android</th>
+<th style="text-align:center">iOS</th>
+<th>Value obtained</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>keydown</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">○</td>
+<td>String before this input</td>
+</tr>
+<tr>
+<td>keyup</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">○</td>
+<td>*Differs by OS</td>
+</tr>
+<tr>
+<td>keypress</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">○</td>
+<td>String before this input</td>
+</tr>
+<tr>
+<td>textInput</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td>input</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">○</td>
+<td>String after this input</td>
+</tr>
+</tbody>
+</table>
+<p>*The value obtained in keyup was as follows.<br>
+PC: The previously committed string<br>
+Smartphones: The string after this input</p>
+<p>On Android, for some reason the events above fired twice from the second character onward.<br>
+Moreover, in the second round, even keydown returned the string after this input.</p>
+<h2 id="ime-enabled-on-commit">IME Enabled: On Commit</h2>
+<p>Events fired when committing the typed text.<br>
+On a PC, that&rsquo;s when you press the Enter key.</p>
+<p>Note that on smartphones, a commit happens even when typing half-width alphanumerics,<br>
+and the behavior was the same as below.</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th style="text-align:center">PC</th>
+<th style="text-align:center">Android</th>
+<th style="text-align:center">iOS</th>
+<th>Value obtained</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>keydown</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center"></td>
+<td>*Differs by OS</td>
+</tr>
+<tr>
+<td>keyup</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">○</td>
+<td style="text-align:center"></td>
+<td>String after this commit</td>
+</tr>
+<tr>
+<td>keypress</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td>textInput</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">○</td>
+<td>*Differs by OS</td>
+</tr>
+<tr>
+<td>input</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">○</td>
+<td>String after this commit</td>
+</tr>
+</tbody>
+</table>
+<p>*The value obtained in keydown was as follows.<br>
+PC: The previously committed string<br>
+Android: The string after this commit</p>
+<p>*The value obtained in textInput was as follows.<br>
+PC, iOS: The previously committed string<br>
+Android: The string after this commit</p>
+<p>On iOS, for some reason the input event fires three times.<br>
+Moreover, one of them returned the previously committed string,<br>
+and the other two returned the string after this commit.</p>
+<h2 id="ime-disabled-on-input">IME Disabled: On Input</h2>
+<p>Events fired when typing half-width alphanumerics etc. with IME disabled.<br>
+Smartphones have no concept of IME, so the results are the same as with IME enabled.<br>
+However, the issue of Android events firing twice does not occur.</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th style="text-align:center">PC</th>
+<th style="text-align:center">Android</th>
+<th style="text-align:center">iOS</th>
+<th>Value obtained</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>keydown</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">○</td>
+<td>String before input</td>
+</tr>
+<tr>
+<td>keyup</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">○</td>
+<td>String after input</td>
+</tr>
+<tr>
+<td>keypress</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">○</td>
+<td>String before input</td>
+</tr>
+<tr>
+<td>textInput</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td>String before input</td>
+</tr>
+<tr>
+<td>input</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">○</td>
+<td>String after input</td>
+</tr>
+</tbody>
+</table>
+<h2 id="on-character-deletion">On Character Deletion</h2>
+<p>Events fired when deleting characters with Backspace or Delete.<br>
+There seem to be no differences between OSes here.</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th style="text-align:center">PC</th>
+<th style="text-align:center">Android</th>
+<th style="text-align:center">iOS</th>
+<th>Value obtained</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>keydown</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">○</td>
+<td>String before deletion</td>
+</tr>
+<tr>
+<td>keyup</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">○</td>
+<td>String after deletion</td>
+</tr>
+<tr>
+<td>keypress</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td>textInput</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td>input</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">○</td>
+<td>String after deletion</td>
+</tr>
+</tbody>
+</table>
+<h2 id="events-on-cutting-text">Events on Cutting Text</h2>
+<p>Events fired when cutting text via right-click on a PC or long-press on a smartphone.<br>
+There seem to be no differences between OSes here either.</p>
+<p>Note that cutting text with Ctrl+x on a PC<br>
+behaved the same as character deletion.<br>
+(Probably because both are character deletions via key input.)</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th style="text-align:center">PC</th>
+<th style="text-align:center">Android</th>
+<th style="text-align:center">iOS</th>
+<th>Value obtained</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>keydown</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td>keyup</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td>keypress</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td>textInput</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td>input</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">○</td>
+<td>String after deletion</td>
+</tr>
+</tbody>
+</table>
+<h2 id="events-on-pasting-text">Events on Pasting Text</h2>
+<p>Events fired when pasting text via right-click on a PC<br>
+or long-press on a smartphone.<br>
+There seem to be no differences between OSes here either.</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th style="text-align:center">PC</th>
+<th style="text-align:center">Android</th>
+<th style="text-align:center">iOS</th>
+<th>Value obtained</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>keydown</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td>keyup</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td>keypress</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td>textInput</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">○</td>
+<td>String before pasting</td>
+</tr>
+<tr>
+<td>input</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">○</td>
+<td style="text-align:center">○</td>
+<td>String after pasting</td>
+</tr>
+</tbody>
+</table>
+<p>Pasting with Ctrl+v on a PC gave the following.</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th style="text-align:center">PC</th>
+<th>Value obtained</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>keydown</td>
+<td style="text-align:center">○</td>
+<td>String before pasting</td>
+</tr>
+<tr>
+<td>keyup</td>
+<td style="text-align:center">○</td>
+<td>String after pasting</td>
+</tr>
+<tr>
+<td>keypress</td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td>textInput</td>
+<td style="text-align:center">○</td>
+<td>String before pasting</td>
+</tr>
+<tr>
+<td>input</td>
+<td style="text-align:center">○</td>
+<td>String after pasting</td>
+</tr>
+</tbody>
+</table>
+<h2 id="summary">Summary</h2>
+<p>If you&rsquo;re building a responsive site, it may be safer not to hook into events that behave differently across OSes.<br>
+If you do use them, you&rsquo;re likely to run into trouble unless you fully understand the differences.</p>
+<p>The value obtained is sometimes the state before an operation and sometimes after,<br>
+but I suspect you can get the post-operation state in all cases by making good use of setTimeout.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

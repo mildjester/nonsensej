@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Setting Up Ubuntu on WSL2|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Setting Up Ubuntu on WSL2</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2020-09-04 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-09-04</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/windows/">Windows</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h2 id="references">References</h2>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">Windows Subsystem for Linux Installation Guide for Windows 10</a></li>
+<li><a href="https://vogel.at.webry.info/201908/article_1.html">WSL の場所を変更する|パソコン鳥のブログ</a> (Japanese)</li>
+</ul>
+<hr>
+<p>Set up Ubuntu 20.04 on WSL2 in Windows 10.</p>
+<h2 id="updating-windows-10">Updating Windows 10</h2>
+<p>To use WSL2, you need Windows version 1903 or later, build 18362 or higher.<br>
+To check your version, press &ldquo;Win + R&rdquo; to open &ldquo;Run&rdquo;,<br>
+enter <code>winver</code> and click &ldquo;OK&rdquo;.</p>
+<p>Ideally you can update via Windows Update, but sometimes the update doesn&rsquo;t arrive.<br>
+In that case, use the Update Assistant.<br>
+<a href="https://www.microsoft.com/en-us/software-download/windows10">https://www.microsoft.com/en-us/software-download/windows10</a></p>
+<h2 id="installing-wsl2">Installing WSL2</h2>
+<p>Open PowerShell as administrator and run the following.</p>
+<pre tabindex="0"><code>dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+</code></pre><p>Once you&rsquo;ve run these, restart once.</p>
+<p>After restarting, open PowerShell as administrator again and run the following command.</p>
+<pre tabindex="0"><code>wsl --set-default-version 2
+</code></pre><p>If you see a message saying a kernel update is required,<br>
+update the kernel by following the page below and then run it again.<br>
+<a href="https://docs.microsoft.com/en-us/windows/wsl/wsl2-kernel">https://docs.microsoft.com/en-us/windows/wsl/wsl2-kernel</a></p>
+<h2 id="installing-ubuntu">Installing Ubuntu</h2>
+<p>Search for &ldquo;Ubuntu&rdquo; in the Microsoft Store and install Ubuntu 20.04.<br>
+Then launch Ubuntu; initial setup runs, so configure your account and so on.</p>
+<p>By default, apt fetches from overseas mirrors, so change it to a Japanese mirror with the following command.</p>
+<pre tabindex="0"><code>sudo sed -i -e &#39;s|archive.ubuntu.com|ftp.riken.go.jp/Linux|g&#39; /etc/apt/sources.list
+</code></pre><p>At this point Ubuntu is usable on WSL2.<br>
+However, by default the Ubuntu storage is placed on the C drive, so I&rsquo;d like to move it to the D drive.</p>
+<p>Use &ldquo;LxRunOffline&rdquo;, a tool that moves WSL installations.<br>
+First, download the archive from GitHub and extract it. (LxRunOffline-vX.X.X-mingw.zip)<br>
+<a href="https://github.com/DDoSolitary/LxRunOffline/releases">https://github.com/DDoSolitary/LxRunOffline/releases</a></p>
+<p>Next, create a folder to place WSL in.<br>
+In this example, create <code>D:\wsl</code>.</p>
+<p>Open PowerShell as administrator and grant permissions on the folder you just created with the following command.</p>
+<pre tabindex="0"><code>icacls D:\wsl /grant $env:USERNAME&#34;:(OI)(CI)(F)&#34;
+</code></pre><p>In the same PowerShell, move to the folder where you extracted LxRunOffline and run the following commands.</p>
+<pre tabindex="0"><code>net stop LxssManager
+.\LxRunOffline.exe move -n Ubuntu-20.04 -d d:\wsl\Ubuntu-20.04
+net start LxssManager
+</code></pre><p>Ubuntu installation is now complete.<br>
+To uninstall, run the following commands.</p>
+<pre tabindex="0"><code>wsl -t Ubuntu-20.04
+.\LxRunOffline.exe ui -n Ubuntu-20.04
+</code></pre><h3 id="note">*Note</h3>
+<p>Even without moving the WSL2 location, the D drive is mounted at <code>/mnt/d/</code>, so you can still use the D drive.<br>
+However, accessing Windows directories under /mnt/ is slow, so changing the WSL location is recommended.</p>
+<h2 id="accessing-servers-running-in-ubuntu-from-windows-as-localhost">Accessing Servers Running in Ubuntu from Windows as localhost</h2>
+<p>When you start a web server in Ubuntu (e.g. with Docker), you may not be able to access it from a Windows browser via http://localhost.<br>
+To connect as local, create a file named <code>.wslconfig</code> directly under your Windows home directory (C:\Users\hogeUser)<br>
+with the following content.</p>
+<pre tabindex="0"><code>[wsl2]
+localhostForwarding=True
+</code></pre><p>Also, this may not work if Windows Fast Startup is enabled, so disable it.<br>
+Open &ldquo;Settings &gt; System &gt; Power &amp; sleep &gt; Additional power settings &gt; Choose what the power buttons do&rdquo;,<br>
+and uncheck &ldquo;Turn on fast startup (recommended)&rdquo;.</p>
+<h2 id="changing-the-dns-server-used-by-ubuntu">Changing the DNS Server Used by Ubuntu</h2>
+<p>In WSL, the DNS server used for name resolution is configured automatically and written to <code>/etc/resolv.conf</code>.<br>
+By default, even if you edit this file, it gets rewritten every time WSL starts.</p>
+<p>As is, name resolution occasionally fails inside Ubuntu,<br>
+so stop resolv.conf from being auto-updated and point it to Google&rsquo;s DNS server &ldquo;8.8.8.8&rdquo;.</p>
+<p>First, to stop the auto-update, add the following to <code>/etc/wsl.conf</code> (create the file if it doesn&rsquo;t exist).</p>
+<pre tabindex="0"><code>[network]
+generateResolvConf = false
+</code></pre><p>*This setting is also mentioned in the auto-generated resolv.conf.</p>
+<p>Restart WSL in this state to apply the setting.<br>
+Either restart the PC or run <code>wsl --shutdown</code> from PowerShell or similar on the Windows side.</p>
+<p>Access WSL again and configure DNS in <code>/etc/resolv.conf</code>.<br>
+If <code>/etc/resolv.conf</code> is a symbolic link to <code>/run/...</code>, remove the link with the unlink command.</p>
+<p>Edit <code>/etc/resolv.conf</code> and set nameserver as follows.</p>
+<pre tabindex="0"><code>nameserver 8.8.8.8
+</code></pre><p>The DNS server used for name resolution in WSL (Ubuntu) is now Google&rsquo;s DNS server.</p>
+<h2 id="allowing-permission-changes-on-windows-folders-from-ubuntu">Allowing Permission Changes on Windows Folders from Ubuntu</h2>
+<p>From Ubuntu, Windows folders are available under /mnt/ so you can read them,<br>
+but by default you can&rsquo;t change permissions with chmod.</p>
+<p>If you want to change permissions on Windows folders/files, create <code>/etc/wsl.conf</code> with the following content.</p>
+<pre tabindex="0"><code>[automount]
+options = &#34;metadata&#34;
+</code></pre><p>*Note<br>
+Accessing Windows files from Ubuntu is extremely slow,<br>
+so I generally don&rsquo;t recommend handling Windows files from Ubuntu.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

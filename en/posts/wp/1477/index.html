@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Running Unit Tests on Pull Requests with CircleCI|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Running Unit Tests on Pull Requests with CircleCI</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2018-08-14 01:30:40 &#43;0000 UTC" class="catalogue-time">2018-08-14</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/circleci/">CircleCI</a></div> <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/git/">git</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<p>Use CircleCI to run unit tests<br>
+when a pull request is opened on GitHub.</p>
+<p>This assumes the source code is PHP and the unit tests use phpunit.</p>
+<h3 id="signing-up-for-circle-ci">Signing Up for Circle CI</h3>
+<p>Go to the Circle CI homepage and click <code>Sign Up</code> in the upper right.<br>
+<a href="https://www.logical-dice.com/images/2018/08/Screenshot-from-2018-08-11-00-24-01.png"><img class="alignnone size-large wp-image-1478" src="https://www.logical-dice.com/images/2018/08/Screenshot-from-2018-08-11-00-24-01.png" alt="" /></a></p>
+<p>It looks like you can log in with a GitHub or Bitbucket account.<br>
+This time I logged in with my GitHub account.<br>
+<a href="https://www.logical-dice.com/images/2018/08/Screenshot-from-2018-08-11-00-24-25.png"><img class="alignnone size-large wp-image-1479" src="https://www.logical-dice.com/images/2018/08/Screenshot-from-2018-08-11-00-24-25.png" alt="" /></a></p>
+<p>You&rsquo;ll be asked whether to allow the integration, so click <code>Authorize circleci</code>.<br>
+<a href="https://www.logical-dice.com/images/2018/08/Screenshot-from-2018-08-11-00-24-56.png"><img class="alignnone size-full wp-image-1480" src="https://www.logical-dice.com/images/2018/08/Screenshot-from-2018-08-11-00-24-56.png" alt="" /></a></p>
+<h3 id="creating-a-project-in-circle-ci">Creating a Project in Circle CI</h3>
+<p>Once your account is created, click <code>Add Projects</code> to create a project.<br>
+<a href="https://www.logical-dice.com/images/2018/08/Screenshot-from-2018-08-11-00-25-44.png"><img class="alignnone size-full wp-image-1481" src="https://www.logical-dice.com/images/2018/08/Screenshot-from-2018-08-11-00-25-44.png" alt="" /></a></p>
+<p>Click <code>Set Up Project</code> for the repository you want to link.<br>
+<img src="https://www.logical-dice.com/images/2018/08/Screenshot-from-2018-08-11-00-26-20.png" alt="" /></p>
+<p>Configure the environment of the target repository.<br>
+Click the one that applies.<br>
+<img src="https://www.logical-dice.com/images/2018/08/Screenshot-from-2018-08-11-00-30-49.png" alt="" /></p>
+<p>Scroll down to see the next steps.<br>
+<img src="https://www.logical-dice.com/images/2018/08/Screenshot-from-2018-08-11-00-31-51.png" alt="" /></p>
+<p>First, create <code>.circleci/config.yml</code> in the repository.<br>
+For now, the content of config.yml is what I copied with Copy To Clipboard (as of 2018/8/11),<br>
+with the following changes.<br>
+<b>(1) Change the Docker image</b> <br>
+Change the Docker image to one close to your server&rsquo;s environment.<br>
+Check Docker Hub for details on which images are available.<br>
+<a href="https://hub.docker.com/r/circleci/" rel="noopener" target="_blank"><a href="https://hub.docker.com/r/circleci/">https://hub.docker.com/r/circleci/</a></a><br>
+(Apparently it also works with images other than the official circleci ones if there&rsquo;s another Docker image you want to use.)</p>
+<p>Note that <code>circleci/php:7.1.5-browsers</code>, written in the sample config.yml, does not exist.<br>
+If you run the sample as is, you get the following error.</p>
+<pre tabindex="0"><code>Error response from daemon: manifest for circleci/php:7.1.5-browsers not found  
+</code></pre><p><b>(2) Change the phpunit command</b><br>
+If you installed phpunit via composer or similar, the command will be different, so change it.</p>
+<p>Here is the resulting config.yml</p>
+<pre tabindex="0"><code># PHP CircleCI 2.0 configuration file  
+#  
+# Check https://circleci.com/docs/2.0/language-php/ for more details  
+#  
+version: 2  
+jobs:  
+  build:  
+    docker:  
+      # specify the version you desire here  
+      #- image: circleci/php:7.1.5-browsers  
+      - image: circleci/php:7.1-fpm-node-browsers  
+  
+      # Specify service dependencies here if necessary  
+      # CircleCI maintains a library of pre-built images  
+      # documented at https://circleci.com/docs/2.0/circleci-images/  
+      # - image: circleci/mysql:9.4  
+  
+    working_directory: ~/repo  
+  
+    steps:  
+      - checkout  
+  
+      # Download and cache dependencies  
+      - restore_cache:  
+          keys:  
+          - v1-dependencies-{{ checksum &#34;composer.json&#34; }}  
+          # fallback to using the latest cache if no exact match is found  
+          - v1-dependencies-  
+  
+      - run: composer install -n --prefer-dist  
+  
+      - save_cache:  
+          paths:  
+            - ./vendor  
+          key: v1-dependencies-{{ checksum &#34;composer.json&#34; }}  
+  
+      # run tests!  
+      #- run: phpunit  
+      - run: vendor/phpunit/phpunit/phpunit tests/  
+</code></pre><p>Push the config.yml you created to the master branch,<br>
+then click &ldquo;Start building&rdquo; on the Circle CI screen from earlier.<br>
+Registration is now complete.</p>
+<p>From now on, when you open a pull request on the repository, the phpunit tests run automatically.<br>
+Also, by default, CircleCI results are sent to the email address you registered with CircleCI.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

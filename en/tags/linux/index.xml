@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on Logical Dice Techblog</title>
+    <link>https://www.logical-dice.com/en/tags/linux/</link>
+    <description>Recent content in Linux on Logical Dice Techblog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 05 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.logical-dice.com/en/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bulk-Replacing Line Endings</title>
+      <link>https://www.logical-dice.com/en/posts/2020/08/05/replace-with-find-sed/</link>
+      <pubDate>Wed, 05 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/08/05/replace-with-find-sed/</guid>
+      <description>Replace CRLF line endings with LF using the find and sed commands.</description>
+    </item>
+    <item>
+      <title>Creating a Self-Signed Certificate on EC2</title>
+      <link>https://www.logical-dice.com/en/posts/2020/06/14/oreore-certification/</link>
+      <pubDate>Sun, 14 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/06/14/oreore-certification/</guid>
+      <description>Steps for creating a self-signed certificate, which has become rarely used these days.</description>
+    </item>
+    <item>
+      <title>Running Commands as Another User on Linux</title>
+      <link>https://www.logical-dice.com/en/posts/2019/10/10/linux-sudo/</link>
+      <pubDate>Thu, 10 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/10/10/linux-sudo/</guid>
+      <description>Notes on using the sudo command</description>
+    </item>
+  </channel>
+</rss>

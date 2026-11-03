@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Using Multiple GitHub Accounts with the git Command|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Using Multiple GitHub Accounts with the git Command</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2018-11-14 20:37:00 &#43;0000 UTC" class="catalogue-time">2018-11-14</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/git/">git</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h3 id="environment">Environment</h3>
+<p>Mac OS<br>
+(Probably works on Linux too)</p>
+<hr>
+<h4 id="-added-2019329">* Added 2019/3/29</h4>
+<p>It turns out GitHub&rsquo;s Terms of Service prohibit one person from operating multiple free accounts.<br>
+<a href="https://help.github.com/en/articles/github-terms-of-service#b-account-terms">https://help.github.com/en/articles/github-terms-of-service#b-account-terms</a></p>
+<p>If you are using multiple free accounts, consider merging them.<br>
+This guide may still be useful for cases like switching between a free account and a paid account.</p>
+<h3 id="overview">Overview</h3>
+<p>On GitHub, private keys are tied to accounts,<br>
+and when you run the <code>git</code> command, the account is determined by the private key you specify.<br>
+(If no private key is specified, the default private key is used)</p>
+<p>As a freelancer, I sometimes need a client&rsquo;s GitHub account<br>
+separate from my own, but<br>
+using multiple GitHub accounts on one PC makes switching private keys a hassle.</p>
+<p>At first I configured them as separate hosts in <code>.ssh/config</code>, as in this article,<br>
+but then I had to rewrite the host name every time I cloned, etc.,<br>
+which was also a bit of a hassle. (Especially since the project had lots of repositories)<br>
+<a href="https://qiita.com/yamataku29/items/4744c9c70ad793c83b82" rel="noopener" target="_blank"><a href="https://qiita.com/yamataku29/items/4744c9c70ad793c83b82">https://qiita.com/yamataku29/items/4744c9c70ad793c83b82</a></a> (Japanese)</p>
+<p>So I wrote a script that, once you map repository owners (users or Organizations) to private keys,<br>
+automatically picks the right private key when you run git commands.</p>
+<p>Here it is<br>
+<a href="https://github.com/mildjester/gits" rel="noopener" target="_blank"><a href="https://github.com/mildjester/gits">https://github.com/mildjester/gits</a></a></p>
+<hr>
+<h3 id="usage">Usage</h3>
+<p>(1) Download the repository above, either by cloning or as a ZIP.</p>
+<p>(2) Copy <code>config_template</code> to <code>config</code> in the same directory.</p>
+<p>(3) Set the following variables in the newly created <code>config</code><br>
+■defaultKey<br>
+Path to the default private key. The template value should basically be fine.</p>
+<p>■specialKeys<br>
+A list mapping repository owners that use a non-default private key to their private keys.<br>
+The format is &ldquo;repository owner::private key path&rdquo;, so<br>
+for example, if repositories of &ldquo;owner AAA&rdquo; use <code>~/.ssh/id_rsa_1</code><br>
+and repositories of &ldquo;owner BBB&rdquo; use <code>~/.ssh/id_rsa_2</code>,<br>
+it looks like this.</p>
+<pre tabindex="0"><code>specialKeys=(  
+    &#39;AAA::~/.ssh/id_rsa_1&#39;  
+    &#39;BBB::~/.ssh/id_rsa_2&#39;  
+)  
+</code></pre><p>(4) Add the following alias to <code>~/.bashrc</code>.<br>
+If your usual shell isn&rsquo;t bash (zsh, fish, etc.), add it to that shell&rsquo;s config file instead.</p>
+<pre tabindex="0"><code># Replace the git command  
+alias git=&#34;/path-to-gits-repository/gits.sh&#34;  
+</code></pre><p>*Replace path-to-gits-repository with the directory where you cloned or downloaded the repository</p>
+<p>Now you can type git commands without thinking, and the private key is switched automatically behind the scenes.</p>
+<h3 id="note-if-you-use-ghq">Note: If You Use ghq</h3>
+<p>I use <code>ghq get</code> more often than <code>git clone</code>, so I prepared a script for that too.<br>
+The basic configuration is the same as above; just add an alias.</p>
+<pre tabindex="0"><code>alias ghq_get=&#34;~/git/github.com/mildjester/gits/ghq_get.sh&#34;  
+</code></pre><p>This doesn&rsquo;t fully replace the command,<br>
+but you can fetch repositories with the following command.<br>
+(The only difference is an underscore instead of a space between ghq and get)</p>
+<pre tabindex="0"><code>ghq_get git@github.com:AAAA/hogehoge.git  
+</code></pre>
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

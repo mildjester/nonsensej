@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pico on Logical Dice Techblog</title>
+    <link>https://www.logical-dice.com/en/tags/pico/</link>
+    <description>Recent content in Pico on Logical Dice Techblog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 17 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.logical-dice.com/en/tags/pico/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Migrating Data from WordPress to Pico</title>
+      <link>https://www.logical-dice.com/en/posts/2019/01/17/wordpress-to-pico/</link>
+      <pubDate>Thu, 17 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/01/17/wordpress-to-pico/</guid>
+      <description>How to migrate WordPress data to Pico</description>
+    </item>
+    <item>
+      <title>Building a Blog with Pico</title>
+      <link>https://www.logical-dice.com/en/posts/2019/01/16/pico-blog/</link>
+      <pubDate>Wed, 16 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/01/16/pico-blog/</guid>
+      <description>How to build a blog with the PHP-based CMS &amp;ldquo;Pico&amp;rdquo;.</description>
+    </item>
+    <item>
+      <title>Introducing &#34;pico&#34;, a PHP-Based CMS</title>
+      <link>https://www.logical-dice.com/en/posts/2019/01/15/pico-introduction/</link>
+      <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/01/15/pico-introduction/</guid>
+      <description>An introduction to &amp;ldquo;pico&amp;rdquo;, a CMS written in PHP.</description>
+    </item>
+  </channel>
+</rss>

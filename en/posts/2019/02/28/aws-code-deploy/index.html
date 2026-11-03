@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Deploying to EC2 with AWS CodeDeploy|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Deploying to EC2 with AWS CodeDeploy</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2019-02-28 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-02-28</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/aws/">AWS</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<p>I introduced CodeDeploy to push source code to an EC2 instance I was running, so here are my working notes.<br>
+I tried it with a very simple setup, as follows:</p>
+<ul>
+<li>Only one EC2 instance</li>
+<li>No ELB</li>
+<li>Source code is fetched from GitHub</li>
+<li>Deployment just places the source code on the server</li>
+<li>Deployments are run manually from the AWS console.</li>
+</ul>
+<p>*For CircleCI integration, see <a href="/en/posts/2019/03/04/aws-code-deploy-circleci/">here</a></p>
+<h2 id="preparing-iam">Preparing IAM</h2>
+<p>Prepare roles for EC2 and for CodeDeploy.</p>
+<p>First, create the role for EC2.<br>
+On the IAM role creation screen, choose AWS service &gt; EC2 and proceed to the next step.<br>
+<img src="https://www.logical-dice.com/images/2019/02/AWS-CodeDeploy-IAM-006.png"/></p>
+<p>Select the <code>AmazonEC2RoleforAWSCodeDeploy</code> policy and proceed to the next step.<br>
+<img src="https://www.logical-dice.com/images/2019/02/AWS-CodeDeploy-IAM-007.png"/></p>
+<p>Tags are optional, so proceed to the next step if you don&rsquo;t need them.<br>
+<img src="https://www.logical-dice.com/images/2019/02/AWS-CodeDeploy-IAM-008.png"/></p>
+<p>Enter a role name of your choice and click &ldquo;Create role&rdquo;.<br>
+<img src="https://www.logical-dice.com/images/2019/02/AWS-CodeDeploy-IAM-009.png"/></p>
+<p>Next, create the role for CodeDeploy.<br>
+On the IAM role creation screen, choose AWS service &gt; CodeDeploy.<br>
+<img src="https://www.logical-dice.com/images/2019/02/AWS-CodeDeploy-IAM-002.png"/></p>
+<p>The screen scrolls down and shows the use case selection.<br>
+Since we are simply deploying to a volume on plain EC2, select <code>CodeDeploy</code> and proceed to the next step.<br>
+<img src="https://www.logical-dice.com/images/2019/02/AWS-CodeDeploy-IAM-003.png"/></p>
+<p>The <code>AWSCodeDeployRole</code> policy is shown, so just proceed to the next step.<br>
+<img src="https://www.logical-dice.com/images/2019/02/AWS-CodeDeploy-IAM-004.png"/></p>
+<p>Enter a role name of your choice and click &ldquo;Create role&rdquo;.<br>
+<img src="https://www.logical-dice.com/images/2019/02/AWS-CodeDeploy-IAM-005.png"/></p>
+<h2 id="preparing-ec2">Preparing EC2</h2>
+<p>First, attach the role to the EC2 instance from the management console.<br>
+Open the target instance in the management console and click the following:<br>
+Actions &gt; Instance Settings &gt; Attach/Replace IAM Role<br>
+<img src="https://www.logical-dice.com/images/2019/02/AWS-CodeDeploy-EC2-001.png"/></p>
+<p>Set the EC2 role you created earlier.<br>
+<img src="https://www.logical-dice.com/images/2019/02/AWS-CodeDeploy-EC2-002.png"/></p>
+<p>Next, log in to the target instance from a terminal and install the CodeDeploy agent.<br>
+The installer you download won&rsquo;t run without Ruby, so install it if it isn&rsquo;t already installed.</p>
+<pre tabindex="0"><code>$ sudo yum install ruby # if ruby is not installed
+$ sudo yum install aws-cli # if aws-cli is not installed
+$ aws s3 cp s3://aws-codedeploy-ap-northeast-1/latest/install . --region ap-northeast-1
+$ chmod +x ./install
+$ sudo ./install auto
+</code></pre><p>Once installation is complete, check that it is running just in case.</p>
+<pre tabindex="0"><code>$ sudo service codedeploy-agent status
+The AWS CodeDeploy agent is running as PID 12345
+</code></pre><p>If you started the CodeDeploy agent before attaching the role above,<br>
+just restart the CodeDeploy agent after attaching the role.</p>
+<pre tabindex="0"><code>$ sudo service codedeploy-agent restart
+</code></pre><h2 id="preparing-the-repository">Preparing the Repository</h2>
+<p>Create a file named <code>appspec.yml</code> at the top level of the git repository to deploy, with the following content.</p>
+<pre tabindex="0"><code>version: 0.0
+os: linux
+files:
+  - source: ./
+    destination: /usr/share/nginx/html
+</code></pre><p>This deploys the directory specified by <code>source</code> in the repository (the whole repository in the example above) to <code>destination</code>.<br>
+You can specify multiple <code>source</code>/<code>destination</code> pairs, and you can also add processing before and after deployment.<br>
+For details, see the <a href="https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-example.html#appspec-file-example-server">official AWS page</a>.</p>
+<p>Push this to GitHub.</p>
+<h2 id="configuring-codedeploy">Configuring CodeDeploy</h2>
+<p>First, click &ldquo;Create application&rdquo;.<br>
+<img src="https://www.logical-dice.com/images/2019/02/AWS-CodeDeploy-CD-001.png"/></p>
+<p>Enter an application name, select &ldquo;EC2/On-premises&rdquo; as the compute platform,<br>
+and click &ldquo;Create application&rdquo;.<br>
+<img src="https://www.logical-dice.com/images/2019/02/AWS-CodeDeploy-CD-002.png"/></p>
+<p>Next, configure a deployment group to register with the application.<br>
+(Deployment group: a grouping of the EC2 instances and so on that are targeted during deployment.)</p>
+<p>Although it&rsquo;s called a group, this time we register just one EC2 instance.</p>
+<p>First, click &ldquo;Create deployment group&rdquo;.<br>
+<img src="https://www.logical-dice.com/images/2019/02/AWS-CodeDeploy-CD-003.png"/></p>
+<p>Enter a name for the deployment group.<br>
+For the service role, specify the CodeDeploy role you created earlier.<br>
+<img src="https://www.logical-dice.com/images/2019/02/AWS-CodeDeploy-CD-004.png"/></p>
+<p>Scroll down to the &ldquo;Environment configuration&rdquo; section and specify the name of the existing EC2 instance.<br>
+<img src="https://www.logical-dice.com/images/2019/02/AWS-CodeDeploy-CD-005.png"/></p>
+<p>Set the deployment configuration to &ldquo;CodeDeployDefault.AllAtOnce&rdquo; and click &ldquo;Create deployment group&rdquo;.<br>
+(Since there is only one target instance this time, it doesn&rsquo;t really matter which one you choose.)
+<img src="https://www.logical-dice.com/images/2019/02/AWS-CodeDeploy-CD-006.png"/></p>
+<p>The deployment group is now created.</p>
+<h2 id="running-codedeploy">Running CodeDeploy</h2>
+<p>To actually push the source code to the server, create a deployment.<br>
+You can create a deployment from the deployment group screen.<br>
+(Below is the screen shown after the deployment group is created.)<br>
+<img src="https://www.logical-dice.com/images/2019/02/AWS-CodeDeploy-CD-008.png"/></p>
+<p>On the deployment creation screen, first specify the deployment group you created earlier.<br>
+<img src="https://www.logical-dice.com/images/2019/02/AWS-CodeDeploy-CD-009.png"/></p>
+<p>Next, choose GitHub as the revision type.<br>
+Fields for GitHub information appear; enter your GitHub account name as the GitHub token name<br>
+and click &ldquo;Connect to GitHub&rdquo;.<br>
+<img src="https://www.logical-dice.com/images/2019/02/AWS-CodeDeploy-CD-010.png"/></p>
+<p>If an authorization screen appears on GitHub, authorize it.<br>
+<img src="https://www.logical-dice.com/images/2019/02/AWS-CodeDeploy-CD-011.png"/></p>
+<p>Then enter the repository name and the commit ID you want to deploy to the server.<br>
+The repository name is in &ldquo;account-name/repository-name&rdquo; format, and the commit ID is the full, unabbreviated ID.<br>
+<img src="https://www.logical-dice.com/images/2019/02/AWS-CodeDeploy-CD-012.png"/></p>
+<p>Next, in the additional deployment behavior settings, select &ldquo;Overwrite the content&rdquo;,<br>
+then click &ldquo;Create deployment&rdquo; to run the deployment.<br>
+*If you don&rsquo;t specify overwriting, the deployment fails when existing content is present.<br>
+<img src="https://www.logical-dice.com/images/2019/02/AWS-CodeDeploy-CD-013.png"/></p>
+<p>If the deployment fails midway, check the following agent log on the EC2 instance.</p>
+<pre tabindex="0"><code>/var/log/aws/codedeploy-agent/codedeploy-agent.log
+</code></pre>
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

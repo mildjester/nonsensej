@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Golang on Logical Dice Techblog</title>
+    <link>https://www.logical-dice.com/en/tags/golang/</link>
+    <description>Recent content in Golang on Logical Dice Techblog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 29 Sep 2017 19:11:15 +0000</lastBuildDate>
+    <atom:link href="https://www.logical-dice.com/en/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Setting Up Atom IDE (PHP, Go)</title>
+      <link>https://www.logical-dice.com/en/posts/wp/708/</link>
+      <pubDate>Fri, 29 Sep 2017 19:11:15 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/708/</guid>
+      <description>■EnvironmentmacOS Sierra 10.12.6Atom 1.21.0-beta2■Reference sitesOfficial sitehttps://id&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[golang] Map Element Order Varies</title>
+      <link>https://www.logical-dice.com/en/posts/wp/491/</link>
+      <pubDate>Sat, 08 Apr 2017 12:22:59 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/491/</guid>
+      <description>■Environment OS X El Capitan 10.11.6 go 1.8 darwin/amd64 I got slightly tripped up by what the title says, so&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[golang] Using Go in NetBeans</title>
+      <link>https://www.logical-dice.com/en/posts/wp/223/</link>
+      <pubDate>Wed, 25 May 2016 23:06:28 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/223/</guid>
+      <description>I already use NetBeans for PHP, so I set it up to use Go in the same IDE. ■Environment Ubuntu 16.04 NetB&amp;hellip;</description>
+    </item>
+  </channel>
+</rss>

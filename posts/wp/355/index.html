@@ -109,11 +109,10 @@ privkey.pem　：　秘密鍵
 SSLCertificateKeyFile /etc/letsencrypt/live/your-domain.com/privkey.pem  
 SSLCertificateChainFile /etc/letsencrypt/live/your-domain.com/chain.pem
 </code></pre><p>・設定パターン2</p>
-<pre tabindex="0"><code>SSLCertificateFile /etc/letsencrypt/live/your-domain.com/cert.pem  
-SSLCertificateKeyFile /etc/letsencrypt/live/your-domain.com/privkey.pem  
-SSLCertificateChainFile /etc/letsencrypt/live/your-domain.com/chain.pem
+<pre tabindex="0"><code>SSLCertificateFile /etc/letsencrypt/live/your-domain.com/fullchain.pem  
+SSLCertificateKeyFile /etc/letsencrypt/live/your-domain.com/privkey.pem
 </code></pre><p>※Apacheのバージョンが2.4.8以上の場合は「SSLCertificateChainFile」の設定はできないので、<br>
-　「SSLCertificateKeyFile」にfullchain.pemを設定すること。</p>
+　「SSLCertificateFile」にfullchain.pemを設定すること。</p>
 <p>ここで生成した証明書は3ヶ月間しか有効期限がないので、定期的に更新が必要です。<br>
 証明書を更新するコマンドは以下です。</p>
 <pre tabindex="0"><code>./letsencrypt-auto renew

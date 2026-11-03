@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CircleCI on Logical Dice Techblog</title>
+    <link>https://www.logical-dice.com/en/tags/circleci/</link>
+    <description>Recent content in CircleCI on Logical Dice Techblog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 04 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.logical-dice.com/en/tags/circleci/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Running AWS CodeDeploy from CircleCI</title>
+      <link>https://www.logical-dice.com/en/posts/2019/03/04/aws-code-deploy-circleci/</link>
+      <pubDate>Mon, 04 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/03/04/aws-code-deploy-circleci/</guid>
+      <description>How to run AWS CodeDeploy from CircleCI without using S3</description>
+    </item>
+    <item>
+      <title>Sending CircleCI Notifications to Slack</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1573/</link>
+      <pubDate>Sun, 14 Oct 2018 22:01:37 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1573/</guid>
+      <description>Reference site Notifying Slack of CircleCI results. This assumes the following basic CircleCI setup has been completed. Circle&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Automatic Deployment with CircleCI</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1538/</link>
+      <pubDate>Sat, 13 Oct 2018 23:20:06 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1538/</guid>
+      <description>Reference site Auto-deploying a website with Circle CI. Deploy to a server when merged into the GitHub master branch&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Running Unit Tests on Pull Requests with CircleCI</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1477/</link>
+      <pubDate>Tue, 14 Aug 2018 01:30:40 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1477/</guid>
+      <description>Use CircleCI to run unit tests when a pull request is opened on GitHub. The source code is PHP, and U&amp;hellip;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>docker-compose Cheat Sheet|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">docker-compose Cheat Sheet</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2018-01-29 13:35:42 &#43;0000 UTC" class="catalogue-time">2018-01-29</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/docker/">Docker</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h3 id="environment">Environment</h3>
+<p>macOS High Sierra 10.13.2<br>
+docker-compose 1.18.0</p>
+<hr>
+<h3 id="frequently-used-commands">■Frequently used commands</h3>
+<h4 id="create-and-start-all-services-defined-in-the-yaml">Create and start all services defined in the yaml</h4>
+<pre tabindex="0"><code>docker-compose up -d  
+</code></pre><p>*The -d option starts them in the background.<br>
+　Containers that need building will also be built.</p>
+<h4 id="check-the-currently-running-containers">Check the currently running containers</h4>
+<pre tabindex="0"><code>docker-compose ps  
+</code></pre><h4 id="stop-and-remove-all-currently-running-containers">Stop and remove all currently running containers</h4>
+<pre tabindex="0"><code>docker-compose down  
+</code></pre><hr>
+<h3 id="commands-for-operating-individual-services">■Commands for operating individual services</h3>
+<h4 id="create-a-container-for-a-specific-service">Create a container for a specific service</h4>
+<pre tabindex="0"><code>docker-compose create {サービス名}  
+</code></pre><h4 id="start-a-container-for-a-specific-service">Start a container for a specific service</h4>
+<pre tabindex="0"><code>docker-compose start {サービス名}  
+</code></pre><h4 id="do-create-and-start-in-one-go">Do create and start in one go</h4>
+<pre tabindex="0"><code>docker-compose run -d {サービス名}  
+</code></pre><h4 id="stop-a-container-for-a-specific-service">Stop a container for a specific service</h4>
+<pre tabindex="0"><code>docker-compose stop {サービス名}  
+</code></pre><p>*When running the <code>create</code> or <code>run</code> command, services linked to the specified service via <code>depends_on</code> etc. are started as well.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

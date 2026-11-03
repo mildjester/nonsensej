@@ -57,5 +57,124 @@
       <guid>https://www.logical-dice.com/en/posts/2022/05/03/ec2-not-inservice/</guid>
       <description>Investigation notes when the lifecycle of EC2 instances launched by Auto Scaling did not become &amp;lsquo;InService&amp;rsquo;.</description>
     </item>
+    <item>
+      <title>Exporting All EC2 and ECS Records to CSV</title>
+      <link>https://www.logical-dice.com/en/posts/2020/08/26/ec2-ecs-to-csv/</link>
+      <pubDate>Wed, 26 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/08/26/ec2-ecs-to-csv/</guid>
+      <description>How to export AWS EC2 and ECS information to CSV</description>
+    </item>
+    <item>
+      <title>Exporting All Route53 Records to CSV</title>
+      <link>https://www.logical-dice.com/en/posts/2020/08/21/route53-to-csv/</link>
+      <pubDate>Fri, 21 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/08/21/route53-to-csv/</guid>
+      <description>How to export the hosted zones and records registered in AWS Route53 to CSV</description>
+    </item>
+    <item>
+      <title>Allowing AWS Lambda to Access Both a Database and External Services</title>
+      <link>https://www.logical-dice.com/en/posts/2020/07/12/vpc-lambda/</link>
+      <pubDate>Sun, 12 Jul 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/07/12/vpc-lambda/</guid>
+      <description>Putting AWS Lambda in a VPC normally prevents external access, so here are my notes on configuring it.</description>
+    </item>
+    <item>
+      <title>Creating a Self-Signed Certificate on EC2</title>
+      <link>https://www.logical-dice.com/en/posts/2020/06/14/oreore-certification/</link>
+      <pubDate>Sun, 14 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/06/14/oreore-certification/</guid>
+      <description>Steps for creating a self-signed certificate, which has become rarely used these days.</description>
+    </item>
+    <item>
+      <title>How to Set Up Redirects with AWS S3</title>
+      <link>https://www.logical-dice.com/en/posts/2020/06/10/aws-s3-redirect/</link>
+      <pubDate>Wed, 10 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/06/10/aws-s3-redirect/</guid>
+      <description>Configuring redirects using AWS S3.</description>
+    </item>
+    <item>
+      <title>Deploying Lambda &amp; API Gateway with the Serverless Framework</title>
+      <link>https://www.logical-dice.com/en/posts/2020/05/19/serverless-framework-lambda/</link>
+      <pubDate>Tue, 19 May 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/05/19/serverless-framework-lambda/</guid>
+      <description>Notes on the steps I took when trying out deploying Lambda &amp;amp; API Gateway with the Serverless Framework.</description>
+    </item>
+    <item>
+      <title>Running AWS CodeDeploy from GitHub Actions</title>
+      <link>https://www.logical-dice.com/en/posts/2020/03/15/github-actions-deploy/</link>
+      <pubDate>Sun, 15 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/03/15/github-actions-deploy/</guid>
+      <description>Steps to deploy by running AWS CodeDeploy from GitHub Actions.</description>
+    </item>
+    <item>
+      <title>Building WordPress Yourself on Lightsail (CentOS Edition)</title>
+      <link>https://www.logical-dice.com/en/posts/2020/02/18/lightsail-wordpress/</link>
+      <pubDate>Tue, 18 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/02/18/lightsail-wordpress/</guid>
+      <description>Steps to build WordPress on CentOS 7 on Lightsail</description>
+    </item>
+    <item>
+      <title>Building WordPress Yourself on Lightsail (Amazon Linux Edition)</title>
+      <link>https://www.logical-dice.com/en/posts/2019/12/15/lightsail-wordpress/</link>
+      <pubDate>Sun, 15 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/12/15/lightsail-wordpress/</guid>
+      <description>Steps to build WordPress on Lightsail without using Bitnami</description>
+    </item>
+    <item>
+      <title>Setting Up an OpenVPN Server on Lightsail</title>
+      <link>https://www.logical-dice.com/en/posts/2019/07/25/lightsail-vpn/</link>
+      <pubDate>Thu, 25 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/07/25/lightsail-vpn/</guid>
+      <description>Steps for setting up an OpenVPN server on AWS Lightsail.</description>
+    </item>
+    <item>
+      <title>Running AWS CodeDeploy from CircleCI</title>
+      <link>https://www.logical-dice.com/en/posts/2019/03/04/aws-code-deploy-circleci/</link>
+      <pubDate>Mon, 04 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/03/04/aws-code-deploy-circleci/</guid>
+      <description>How to run AWS CodeDeploy from CircleCI without using S3</description>
+    </item>
+    <item>
+      <title>Deploying to EC2 with AWS CodeDeploy</title>
+      <link>https://www.logical-dice.com/en/posts/2019/02/28/aws-code-deploy/</link>
+      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/02/28/aws-code-deploy/</guid>
+      <description>Notes from deploying to EC2 using AWS CodeDeploy.</description>
+    </item>
+    <item>
+      <title>[Let&#39;s Encrypt] Using Certbot on Amazon Linux 2</title>
+      <link>https://www.logical-dice.com/en/posts/2019/01/21/certboy-amazon-linux-2/</link>
+      <pubDate>Mon, 21 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/01/21/certboy-amazon-linux-2/</guid>
+      <description>How to use Certbot on Amazon Linux 2.</description>
+    </item>
+    <item>
+      <title>Serving WordPress Images via S3 &#43; CloudFront</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1772/</link>
+      <pubDate>Tue, 11 Dec 2018 19:30:54 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1772/</guid>
+      <description>Environment WordPress 4.8.3 AWS Setup Steps IAM Settings First, prepare an IAM user to connect WordPress with AWS&amp;hellip;</description>
+    </item>
+    <item>
+      <title>SSL Support When Running WordPress Behind AWS ELB</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1439/</link>
+      <pubDate>Fri, 20 Jul 2018 17:56:57 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1439/</guid>
+      <description>■Environment AWS ELB AWS EC2 Apache 2.2.32 Wordpress 4.1.1 It&amp;rsquo;s not EC-CUBE, but the content is almost&amp;hellip;</description>
+    </item>
+    <item>
+      <title>When Apache RewriteRule Didn&#39;t Work Behind AWS ELB</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1423/</link>
+      <pubDate>Sat, 30 Jun 2018 22:29:41 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1423/</guid>
+      <description>■Environment AWS ELB AWS EC2 Apache 2.2.32 This is about an Apache server running on AWS EC2. For SEO&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[AWS] Notes on Tasks After Launching a New EC2 Instance</title>
+      <link>https://www.logical-dice.com/en/posts/wp/820/</link>
+      <pubDate>Sun, 12 Nov 2017 01:06:50 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/820/</guid>
+      <description>Environment AWS EC2 Amazon Linux Security group settings Configure SSH and HTTP sources. By default, EC2&amp;hellip;</description>
+    </item>
   </channel>
 </rss>

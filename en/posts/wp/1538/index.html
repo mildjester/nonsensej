@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Automatic Deployment with CircleCI|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Automatic Deployment with CircleCI</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2018-10-13 23:20:06 &#43;0000 UTC" class="catalogue-time">2018-10-13</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/circleci/">CircleCI</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h2 id="reference-site">Reference site</h2>
+<p><a href="https://esnetk6.com/2018/04/circle-ci-deployment/" rel="noopener" target="_blank">Circle CIでwebサイトを自動デプロイ</a> (Japanese)</p>
+<hr>
+<p>This is how to deploy to a server when changes are merged into the GitHub master branch.<br>
+The source code is assumed to be PHP.</p>
+<p>It assumes the basic CircleCI setup described here has already been completed.<br>
+<a href="/posts/wp/1477" target="_blank" rel="noopener">Running Unit Tests on Pull Requests with Circle CI</a></p>
+<h1 id="preparing-a-ci-user">Preparing a CI user</h1>
+<p>First, create a key pair for SSH connections from CircleCI to the deployment server.<br>
+An existing key pair would also work, but it&rsquo;s safer to use a separate one for CI.</p>
+<pre tabindex="0"><code>ssh-keygen -t rsa -b 4096 -C &#34;ci@hogehoge.com&#34; -f ~/.ssh/ci-key  
+</code></pre><p>Running the command above asks for a passphrase twice; just press Enter for both and leave them empty.</p>
+<p>Once key generation is complete, ci-key (private key) and ci-key.pub (public key) are created under .ssh in your home directory.<br>
+ci-key.pub is used in a later step, so check its contents.<br>
+*The command above specifies <code>ci-key</code> as the key file name, but any name is fine.</p>
+<p>Next, create a user for deployment on the deployment server,<br>
+and allow SSH connections with the key pair you just created.<br>
+An existing user would also work, but it&rsquo;s safer to use a separate one for CI.</p>
+<pre tabindex="0"><code>adduser -g nginx ciuser  
+su - ciuser  
+mkdir .ssh  
+vim .ssh/authorized_keys  
+// Paste the contents of ci-key.pub  
+</code></pre><h1 id="circleci-dashboard-settings">CircleCI dashboard settings</h1>
+<p>Next, configure settings in the CircleCI web console.<br>
+On the project&rsquo;s screen, click Settings (gear icon) to open the settings screen.</p>
+<h3 id="ssh-key-settings">SSH Key settings</h3>
+<p>From the left menu, open &ldquo;PERMISSIONS &gt; SSH Permissions&rdquo; and click &ldquo;Add SSH Key&rdquo;.<br>
+<a href="https://www.logical-dice.com/images/2018/10/CircleCI-SSH001.png"><img class="alignnone size-large wp-image-1546" src="https://www.logical-dice.com/images/2018/10/CircleCI-SSH001.png" alt="" /></a></p>
+<p>A popup opens, so set the following.<br>
+Hostname : Host name of the deployment server<br>
+Private Key : The entire contents of the ci-key you created first<br>
+<a href="https://www.logical-dice.com/images/2018/10/CircleCI-SSH002.png"><img class="alignnone size-full wp-image-1547" src="https://www.logical-dice.com/images/2018/10/CircleCI-SSH002.png" alt="" /></a></p>
+<p>When done, the Fingerprint of the key you just registered is displayed, so make a note of it.<br>
+(It&rsquo;s used later when editing the CircleCI config file)<br>
+<a href="https://www.logical-dice.com/images/2018/10/CircleCI-SSH003.png"><img class="alignnone size-full wp-image-1548" src="https://www.logical-dice.com/images/2018/10/CircleCI-SSH003.png" alt="" /></a></p>
+<h3 id="environment-variable-settings">Environment variable settings</h3>
+<p>You can use environment variables in the CircleCI config file edited later, so set them up.<br>
+This step isn&rsquo;t required.<br>
+If you want to reuse the config file, it may be a good idea to make the environment-dependent parts environment variables.</p>
+<p>From the left menu, open &ldquo;BUILD SETTINGS &gt; Environment Variables&rdquo; and click &ldquo;Add Variable&rdquo;.<br>
+<img src="https://www.logical-dice.com/images/2018/10/CircleCI-ENV001.png" alt="" /></p>
+<p>A popup opens, so register the variable name and value you want.<br>
+For example, setting the value <code>ciuser</code> for a variable named <code>USER_NAME</code> looks like the figure below.<br>
+<img src="https://www.logical-dice.com/images/2018/10/CircleCI-ENV002.png" alt="" /></p>
+<h1 id="editing-the-circleci-config-file">Editing the CircleCI config file</h1>
+<p>Add the following lines to the <code>.circleci/config.yml</code> created last time.<br>
+The examples below use many of the environment variables from the previous step, but you can also write values directly in config.yml.</p>
+<p>First, register the key information (fingerprint) for connecting to the deployment server.<br>
+Assume the following environment variable is set.<br>
+KEY_FINGERPRINT : The fingerprint of the SSH key you checked earlier</p>
+<pre tabindex="0"><code>      - add_ssh_keys:  
+          fingerprints:  
+            - &#34;${KEY_FINGERPRINT}&#34;  
+          # If you don&#39;t use environment variables, just hardcode it like this      
+          # - &#34;a1:b2:c3:・・・:x8:y9:z0&#34;  
+</code></pre><p>Next, configure things so the SSH connection doesn&rsquo;t fail.<br>
+Assume the following environment variables are set.<br>
+SSH_PORT : SSH port of the deployment server<br>
+HOST_NAME : Host name of the deployment server</p>
+<pre tabindex="0"><code>      - run:  
+          name: Start ssh-keyscan  
+          command: |  
+            ssh-keyscan -p ${SSH_PORT} ${HOST_NAME} &gt;&gt; ~/.ssh/known_hosts  
+</code></pre><p>Next, deploy.<br>
+In addition to the environment variables above, assume the following are set.<br>
+USER_NAME : User name for deployment (ciuser)<br>
+APP_PATH : Deployment path (/var/www/html etc.)<br>
+*CircleCI automatically sets ${CIRCLE_BRANCH} to the branch currently being processed.</p>
+<pre tabindex="0"><code>      - deploy:  
+          name: Start master deploy  
+          command: |  
+            if [ &#34;${CIRCLE_BRANCH}&#34; == &#34;master&#34; ]; then  
+                rsync -av --delete --rsh=&#34;ssh -p ${SSH_PORT}&#34; --exclude=&#39;.git&#39; --exclude=&#39;.circleci&#39; ./ ${USER_NAME}@${HOST_NAME}:${APP_PATH}  
+            fi  
+</code></pre><p>The finished config.yml looks like this.</p>
+<pre tabindex="0"><code># PHP CircleCI 2.0 configuration file  
+#  
+# Check https://circleci.com/docs/2.0/language-php/ for more details  
+#  
+version: 2  
+jobs:  
+  build:  
+    docker:  
+      # specify the version you desire here  
+      - image: circleci/php:7.1-fpm-node-browsers  
+        
+      # Specify service dependencies here if necessary  
+      # CircleCI maintains a library of pre-built images  
+      # documented at https://circleci.com/docs/2.0/circleci-images/  
+      # - image: circleci/mysql:9.4  
+  
+    working_directory: ~/repo  
+  
+    steps:  
+      - checkout  
+  
+      # Download and cache dependencies  
+      - restore_cache:  
+          keys:  
+          - v1-dependencies-{{ checksum &#34;composer.json&#34; }}  
+          # fallback to using the latest cache if no exact match is found  
+          - v1-dependencies-  
+  
+      - run: composer install -n --prefer-dist  
+  
+      - save_cache:  
+          paths:  
+            - ./vendor  
+          key: v1-dependencies-{{ checksum &#34;composer.json&#34; }}  
+          
+      # run tests!  
+      - run: vendor/phpunit/phpunit/phpunit tests/  
+  
+      - add_ssh_keys:  
+          fingerprints:  
+            - &#34;${KEY_FINGERPRINT}&#34;  
+  
+      - run:  
+          name: Start ssh-keyscan  
+          command: |  
+            ssh-keyscan -p ${SSH_PORT} ${HOST_NAME} &gt;&gt; ~/.ssh/known_hosts  
+   
+      - deploy:  
+          name: Start master deploy  
+          command: |  
+            if [ &#34;${CIRCLE_BRANCH}&#34; == &#34;master&#34; ]; then  
+                rsync -av --delete --rsh=&#34;ssh -p ${SSH_PORT}&#34; --exclude=&#39;.git&#39; --exclude=&#39;.circleci&#39; ./ ${USER_NAME}@${HOST_NAME}:${APP_PATH}  
+            fi  
+</code></pre><p>*Note<br>
+If you leave the SSH port at the default (22),<br>
+you don&rsquo;t need to specify the SSH port in the ssh command in config.yml.</p>
+<p>Now a deployment runs whenever you merge into master.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CentOS on Logical Dice Techblog</title>
+    <link>https://www.logical-dice.com/en/tags/centos/</link>
+    <description>Recent content in CentOS on Logical Dice Techblog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 22 May 2018 10:14:55 +0000</lastBuildDate>
+    <atom:link href="https://www.logical-dice.com/en/tags/centos/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Setting the Time Zone of a Linux Environment to Japan</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1360/</link>
+      <pubDate>Tue, 22 May 2018 10:14:55 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1360/</guid>
+      <description>Just run this command sudo ln -fs /usr/share/zoneinfo/Asia/Tokyo /etc/loc&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[CentOS] Building a VPN Server with OpenVPN &amp; LDAP</title>
+      <link>https://www.logical-dice.com/en/posts/wp/942/</link>
+      <pubDate>Wed, 20 Dec 2017 16:12:33 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/942/</guid>
+      <description>Environment CentOS 7.4 OpenVPN 2.4.4 Reference sites ServerWorld: &lt;a href=&#34;https://www.server&#34;&gt;https://www.server&lt;/a&gt;-w&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[CentOS] Sending Slack Notifications on Intrusion Detection</title>
+      <link>https://www.logical-dice.com/en/posts/wp/853/</link>
+      <pubDate>Tue, 12 Dec 2017 00:30:31 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/853/</guid>
+      <description>■Environment CentOS 7.4 AIDE 0.15.1 Install the intrusion detection tool AIDE and send the scan results to Slack&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Running a Vue.js App with forever</title>
+      <link>https://www.logical-dice.com/en/posts/wp/674/</link>
+      <pubDate>Mon, 31 Jul 2017 01:32:53 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/674/</guid>
+      <description>■Environment CentOS 7.3 npm 3.10.10 =====Added 2017/12/27===== When I tried these steps again after a long time, vu&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Let&#39;s Encrypt] How to Use Certbot (CentOS 7 &#43; nginx)</title>
+      <link>https://www.logical-dice.com/en/posts/wp/656/</link>
+      <pubDate>Mon, 12 Jun 2017 17:17:21 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/656/</guid>
+      <description>■Environment CentOS 7.3 nginx 1.10.3 certbot 0.14.1 ■Issuing the initial SSL certificate Install certbot&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Initial Network Setup on CentOS 7</title>
+      <link>https://www.logical-dice.com/en/posts/wp/629/</link>
+      <pubDate>Tue, 02 May 2017 15:01:15 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/629/</guid>
+      <description>■Environment CentOS 7.3 Bonding setup Reference URL: &lt;a href=&#34;https://bacchi.me/linux/bonding/&#34;&gt;https://bacchi.me/linux/bonding/&lt;/a&gt; Check the current state&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Installing fish on CentOS 7</title>
+      <link>https://www.logical-dice.com/en/posts/wp/440/</link>
+      <pubDate>Fri, 17 Feb 2017 00:00:18 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/440/</guid>
+      <description>I tried installing fish, which seems to be popular lately.■EnvironmentCentOS 7.3fish 2.3.1If you don&amp;rsquo;t have the epel repository&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Installing Zabbix 3.2 on CentOS 7.3</title>
+      <link>https://www.logical-dice.com/en/posts/wp/349/</link>
+      <pubDate>Tue, 14 Feb 2017 00:20:50 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/349/</guid>
+      <description>■Environment CentOS 7.3 zabbix 3.2 PHP 7.1 MySQL 14.14 Apache 2.4 (1) Install zabbix with yum&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[CentOS &#43; Apache] Getting and Auto-Renewing a Free SSL Certificate with Let’s Encrypt</title>
+      <link>https://www.logical-dice.com/en/posts/wp/355/</link>
+      <pubDate>Wed, 18 Jan 2017 00:51:55 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/355/</guid>
+      <description>■Environment CentOS 7.3 Apache 2.4.6 Getting a free SSL certificate with Let&amp;rsquo;s Encrypt and configuring auto-renewal&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Installing CentOS 7 on an HP ProLiant MicroServer Gen8</title>
+      <link>https://www.logical-dice.com/en/posts/wp/318/</link>
+      <pubDate>Thu, 01 Dec 2016 13:29:48 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/318/</guid>
+      <description>■Work environment ・OS X El Capitan 10.11.6 ■Steps Preparing CentOS 7 First, download the CentOS ISO image&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[DNS Server] Migrating from BIND to NSD</title>
+      <link>https://www.logical-dice.com/en/posts/wp/311/</link>
+      <pubDate>Tue, 25 Oct 2016 11:21:04 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/311/</guid>
+      <description>I had built our in-house DNS with BIND, but vulnerabilities are frequently found in BIND and I didn&amp;rsquo;t need the DNS cache feature, so NSD&amp;hellip;</description>
+    </item>
+    <item>
+      <title>SSH into a Linux Server with Private Key Authentication</title>
+      <link>https://www.logical-dice.com/en/posts/wp/274/</link>
+      <pubDate>Mon, 01 Aug 2016 00:27:04 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/274/</guid>
+      <description>■Environment CentOS 7.2 ■Steps 1. Generate a private and public key Do the following on your local PC. The same command should work on both Mac and Linux&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[CentOS] Checklist When cron Doesn&#39;t Run</title>
+      <link>https://www.logical-dice.com/en/posts/wp/202/</link>
+      <pubDate>Tue, 08 Mar 2016 05:23:15 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/202/</guid>
+      <description>Checklist when cron doesn&amp;rsquo;t run (1) Is the cron process (crond) running? ↓ It is running (2) Is the crontab&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[CentOS] Installing PHP 7 with yum</title>
+      <link>https://www.logical-dice.com/en/posts/wp/156/</link>
+      <pubDate>Mon, 07 Dec 2015 23:31:02 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/156/</guid>
+      <description>Now that PHP 7 has been released, here are the steps I used to install it with yum on a CentOS 7 server. ■Environment CentOS 7.1.1503 &amp;hellip;</description>
+    </item>
+    <item>
+      <title>[CentOS] Setting a GitHub Access Token for Composer</title>
+      <link>https://www.logical-dice.com/en/posts/wp/147/</link>
+      <pubDate>Mon, 07 Dec 2015 23:11:45 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/147/</guid>
+      <description>A bit late to the party, but here&amp;rsquo;s how to set a GitHub access token for Composer.■EnvironmentCentOS 7.1.1503GitHub&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[CentOS] Installing PostgreSQL</title>
+      <link>https://www.logical-dice.com/en/posts/wp/127/</link>
+      <pubDate>Fri, 04 Dec 2015 12:59:49 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/127/</guid>
+      <description>My notes from installing PostgreSQL on CentOS ■Environment CentOS r&amp;hellip;</description>
+    </item>
+    <item>
+      <title>sshd Settings on CentOS 7 (Security)</title>
+      <link>https://www.logical-dice.com/en/posts/wp/106/</link>
+      <pubDate>Mon, 19 Oct 2015 21:52:24 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/106/</guid>
+      <description>For ssh login to the server, configure the following - change the ssh port - disable root login - restrict accounts that can su to root&amp;hellip;</description>
+    </item>
+    <item>
+      <title>&#34;localhost&#34; Gets Added to the Mail Domain</title>
+      <link>https://www.logical-dice.com/en/posts/wp/40/</link>
+      <pubDate>Sat, 08 Aug 2015 16:52:42 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/40/</guid>
+      <description>■Environment CentOS 7 postfix 2.10.1 When sending mail from a mail server built with postfix, even though the configuration should be correct&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Building a Mail Server (Part 2, dovecot)</title>
+      <link>https://www.logical-dice.com/en/posts/wp/18/</link>
+      <pubDate>Sat, 08 Aug 2015 15:35:56 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/18/</guid>
+      <description>■Environment CentOS 7 dovecot 2.2.10 This assumes Part 1 (postfix) has already been completed. Install the required packages yu&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Building a Mail Server (Part 1 - postfix)</title>
+      <link>https://www.logical-dice.com/en/posts/wp/9/</link>
+      <pubDate>Thu, 06 Aug 2015 23:28:32 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/9/</guid>
+      <description>■Environment CentOS 7 postfix 2.10.1 Mail accounts use the accounts registered in passwd. Mail-only&amp;hellip;</description>
+    </item>
+  </channel>
+</rss>

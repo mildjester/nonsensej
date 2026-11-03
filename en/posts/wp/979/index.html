@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Creating a Contact Form in WordPress|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Creating a Contact Form in WordPress</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2018-01-17 16:18:41 &#43;0000 UTC" class="catalogue-time">2018-01-17</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/wordpress/">Wordpress</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h3 id="environment">Environment</h3>
+<p>Wordpress 4.9.1<br>
+Contact Form 7 4.9.2<br>
+WP Mail SMTP 1.2.2</p>
+<hr>
+<p>Create a contact form on a WordPress static page<br>
+and send an email when someone submits an inquiry.<br>
+An external mail server is used here.</p>
+<h3 id="steps">Steps</h3>
+<h4 id="installing-the-plugins">■Installing the Plugins</h4>
+<p>Install and activate the following plugins.</p>
+<ul>
+<li>Contact Form 7</li>
+<li>WP Mail SMTP</li>
+</ul>
+<p>* Be careful: there is a similar plugin called &ldquo;Contact Form7&rdquo; (no space before the 7).</p>
+<h4 id="configuring-the-contact-form">■Configuring the Contact Form</h4>
+<p>On the installed plugins screen, select Settings for &ldquo;Contact Form 7&rdquo;.<br>
+<img src="https://www.logical-dice.com/images/2018/01/628e302fa47057cb6fababf7cf2c276c.jpg" alt="" /></p>
+<p>The form list is displayed, and a form called &ldquo;Contact form 1&rdquo; has been created automatically. Select &ldquo;Edit&rdquo;.<br>
+<img src="https://www.logical-dice.com/images/2018/01/fc8efa2c22fd18d94177c9fd222ae944.jpg" alt="" /></p>
+<p>Here you can edit the form name and contents.<br>
+<img src="https://www.logical-dice.com/images/2018/01/dc1a82549e9de516494ea971a5636858.png" alt="" /><br>
+Each tab contains the following.</p>
+<ul>
+<li>Form
+<ul>
+<li>Configure the form contents displayed on the web page.  Adding an asterisk makes a field required.</li>
+</ul>
+</li>
+<li>Mail
+<ul>
+<li>Settings for the email sent when the form is submitted.  The sender is configured later in &ldquo;WP Mail SMTP&rdquo;, so you don&rsquo;t need to set it here.</li>
+</ul>
+</li>
+<li>Messages
+<ul>
+<li>Messages displayed on screen when the form is submitted</li>
+</ul>
+</li>
+<li>Additional Settings</li>
+</ul>
+<p>You can apparently do more detailed customization too, but I&rsquo;ll skip it here.</p>
+<p>Also, note down the &ldquo;Shortcode&rdquo; shown on the form list screen, since you will embed it in a static page at the end.<br>
+<img src="https://www.logical-dice.com/images/2018/01/77a5f8e9ef66a160a2d5e01ab3ec7384.jpg" alt="" /></p>
+<h4 id="configuring-the-mail-server">■Configuring the Mail Server</h4>
+<p>On the installed plugins screen, select Settings for &ldquo;WP Mail SMTP&rdquo;.<br>
+<img src="https://www.logical-dice.com/images/2018/01/a39551cdd2131ac2b35985849e185962.jpg" alt="" /><br>
+* You can also select &ldquo;Settings &gt; WP Mail SMTP&rdquo; from the left menu.</p>
+<p>Enter the From Email and From Name as appropriate, and choose the mailer that fits your environment.<br>
+If you&rsquo;re not sure about the mailer, choose &ldquo;Other SMTP&rdquo; (the usual method where you specify the mail server&rsquo;s hostname, etc.).<br>
+<img src="https://www.logical-dice.com/images/2018/01/4008b278179ee30a0bbded3ed24eae15.png" alt="" /></p>
+<p>Detailed settings that depend on the chosen mailer then appear below. Fill them in and click &ldquo;Save Settings&rdquo; to finish.</p>
+<h4 id="creating-the-static-page">■Creating the Static Page</h4>
+<p>Just put the shortcode you noted down in the &ldquo;Configuring the Contact Form&rdquo; step into a static page.<br>
+Decorate it as needed, e.g. wrap it in a div tag or add a header.<br>
+<img src="https://www.logical-dice.com/images/2018/01/1805f76498b498db3246ef49b0125885.png" alt="" /></p>
+<p>That completes the contact form.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

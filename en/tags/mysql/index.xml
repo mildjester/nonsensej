@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MySQL on Logical Dice Techblog</title>
+    <link>https://www.logical-dice.com/en/tags/mysql/</link>
+    <description>Recent content in MySQL on Logical Dice Techblog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 20 Jan 2016 22:36:39 +0000</lastBuildDate>
+    <atom:link href="https://www.logical-dice.com/en/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Setting the Character Set in MySQL</title>
+      <link>https://www.logical-dice.com/en/posts/wp/189/</link>
+      <pubDate>Wed, 20 Jan 2016 22:36:39 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/189/</guid>
+      <description>How to set the character set in MySQL. ■Environment MySQL 5.6.26 If you are about to create a DB, in the config file &amp;ldquo;/etc/&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Fixing mysql Functions That Error in PHP 7</title>
+      <link>https://www.logical-dice.com/en/posts/wp/173/</link>
+      <pubDate>Wed, 20 Jan 2016 21:55:34 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/173/</guid>
+      <description>When I updated from PHP 5.X to PHP 7, the mysql functions were throwing errors, so here are notes on what I did to fix them&amp;hellip;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Eclipse on Logical Dice Techblog</title>
+    <link>https://www.logical-dice.com/en/tags/eclipse/</link>
+    <description>Recent content in Eclipse on Logical Dice Techblog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 08 Mar 2016 12:17:33 +0000</lastBuildDate>
+    <atom:link href="https://www.logical-dice.com/en/tags/eclipse/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[PHP] Changing the Highlight of the Variable Under the Cursor in Eclipse</title>
+      <link>https://www.logical-dice.com/en/posts/wp/206/</link>
+      <pubDate>Tue, 08 Mar 2016 12:17:33 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/206/</guid>
+      <description>Sometimes the color of the variable under the cursor gets weird. Changing the following setting fixes it. ■Environment Mac (OS X El &amp;hellip;</description>
+    </item>
+  </channel>
+</rss>

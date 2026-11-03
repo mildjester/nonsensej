@@ -6,8 +6,15 @@
     <description>Recent content on Logical Dice Techblog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 12 Dec 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 03 Nov 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.logical-dice.com/en/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Initial Setup of Pop!_OS</title>
+      <link>https://www.logical-dice.com/en/posts/2026/11/03/setup-popos/</link>
+      <pubDate>Tue, 03 Nov 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2026/11/03/setup-popos/</guid>
+      <description>Environment Pop!_OS 24.04 LTS Overview Pop!_OS, an Ubuntu-based Linux desktop, seems to be getting popular lately, so I gave it a try.&#xA;Initial Setup Steps Installing the OS Download the installer from the official page and write it to a USB drive as boot media.&#xA;Download page&#xA;Boot the PC from the USB drive you created and install the OS.&#xA;Setting Up Japanese Input Reference: Pop!_OSで日本語入力を快適に行うための環境設定 - Qiita (Japanese) Enable Mozc with the following commands.</description>
+    </item>
     <item>
       <title>Using AWS CLI to Search Multiple Files with S3 Select</title>
       <link>https://www.logical-dice.com/en/posts/2024/12/12/aws-cli-s3select/</link>
@@ -140,6 +147,1252 @@
       <pubDate>Sat, 06 Feb 2021 00:00:00 +0000</pubDate>
       <guid>https://www.logical-dice.com/en/posts/2021/02/06/phpcs-git-diff/</guid>
       <description>How to check only the modified files with phpcs using git diff.</description>
+    </item>
+    <item>
+      <title>Making a Lost Child Tag with Google Forms</title>
+      <link>https://www.logical-dice.com/en/posts/2021/01/25/lost-tag-qr/</link>
+      <pubDate>Mon, 25 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2021/01/25/lost-tag-qr/</guid>
+      <description>I made a lost child tag for my kids using Google Forms.</description>
+    </item>
+    <item>
+      <title>Auth::user() Sometimes Works and Sometimes Doesn&#39;t Inside a Laravel Queue</title>
+      <link>https://www.logical-dice.com/en/posts/2021/01/13/laravel-auth-user/</link>
+      <pubDate>Wed, 13 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2021/01/13/laravel-auth-user/</guid>
+      <description>I ran into an issue where calling Laravel&amp;rsquo;s Auth::user() in a queue returned a value or null depending on the environment, so here&amp;rsquo;s a note about it.</description>
+    </item>
+    <item>
+      <title>Accessing Child Component Properties with TypeScript &#43; Vue.js</title>
+      <link>https://www.logical-dice.com/en/posts/2021/01/07/git-revert-revert/</link>
+      <pubDate>Thu, 07 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2021/01/07/git-revert-revert/</guid>
+      <description>How to access child component properties with TypeScript + Vue.js.</description>
+    </item>
+    <item>
+      <title>If You Revert in git as a Temporary Undo, Revert the Revert</title>
+      <link>https://www.logical-dice.com/en/posts/2020/12/28/git-revert-revert/</link>
+      <pubDate>Mon, 28 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/12/28/git-revert-revert/</guid>
+      <description>If you revert in git and don&amp;rsquo;t revert the revert afterward, you&amp;rsquo;re in for trouble.</description>
+    </item>
+    <item>
+      <title>Autocomplete in JavaScript Without a Library</title>
+      <link>https://www.logical-dice.com/en/posts/2020/10/25/javascript-autocomplete/</link>
+      <pubDate>Sun, 25 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/10/25/javascript-autocomplete/</guid>
+      <description>Implementing an autocomplete in JavaScript, without libraries, whose options can be selected with the cursor keys.</description>
+    </item>
+    <item>
+      <title>swiper.scss Not Being Included by webpack</title>
+      <link>https://www.logical-dice.com/en/posts/2020/09/15/webpack-swiper-env-diff/</link>
+      <pubDate>Tue, 15 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/09/15/webpack-swiper-env-diff/</guid>
+      <description>When bundling Swiper with webpack, swiper.scss was not included only in the production build</description>
+    </item>
+    <item>
+      <title>Changing the Key Layout on Windows 10</title>
+      <link>https://www.logical-dice.com/en/posts/2020/09/04/win10-keymap-change/</link>
+      <pubDate>Fri, 04 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/09/04/win10-keymap-change/</guid>
+      <description>Changing the behavior of CapsLock and the IME on/off keys on Windows 10.</description>
+    </item>
+    <item>
+      <title>Installing Windows Terminal</title>
+      <link>https://www.logical-dice.com/en/posts/2020/09/04/windows-terminal-install/</link>
+      <pubDate>Fri, 04 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/09/04/windows-terminal-install/</guid>
+      <description>Setting up Windows Terminal on Windows 10.</description>
+    </item>
+    <item>
+      <title>Setting Up a Development PC on Windows 10</title>
+      <link>https://www.logical-dice.com/en/posts/2020/09/04/win10-initial-setting/</link>
+      <pubDate>Fri, 04 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/09/04/win10-initial-setting/</guid>
+      <description>WSL2 and Windows Terminal on Windows 10 looked good, so I set up a development environment.</description>
+    </item>
+    <item>
+      <title>Setting Up Ubuntu on WSL2</title>
+      <link>https://www.logical-dice.com/en/posts/2020/09/04/win10-wsl2-ubuntu/</link>
+      <pubDate>Fri, 04 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/09/04/win10-wsl2-ubuntu/</guid>
+      <description>Set up Ubuntu 20.04 on WSL2 in Windows 10.</description>
+    </item>
+    <item>
+      <title>Exporting All EC2 and ECS Records to CSV</title>
+      <link>https://www.logical-dice.com/en/posts/2020/08/26/ec2-ecs-to-csv/</link>
+      <pubDate>Wed, 26 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/08/26/ec2-ecs-to-csv/</guid>
+      <description>How to export AWS EC2 and ECS information to CSV</description>
+    </item>
+    <item>
+      <title>Exporting All Route53 Records to CSV</title>
+      <link>https://www.logical-dice.com/en/posts/2020/08/21/route53-to-csv/</link>
+      <pubDate>Fri, 21 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/08/21/route53-to-csv/</guid>
+      <description>How to export the hosted zones and records registered in AWS Route53 to CSV</description>
+    </item>
+    <item>
+      <title>Bulk-Replacing Line Endings</title>
+      <link>https://www.logical-dice.com/en/posts/2020/08/05/replace-with-find-sed/</link>
+      <pubDate>Wed, 05 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/08/05/replace-with-find-sed/</guid>
+      <description>Replace CRLF line endings with LF using the find and sed commands.</description>
+    </item>
+    <item>
+      <title>Giving GitHub&#39;s Contribution Graph Tanjiro&#39;s Pattern</title>
+      <link>https://www.logical-dice.com/en/posts/2020/07/16/bookmarklet-kimetsu/</link>
+      <pubDate>Thu, 16 Jul 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/07/16/bookmarklet-kimetsu/</guid>
+      <description>Using a bookmarklet to turn the GitHub contribution graph into the pattern of Tanjiro&amp;rsquo;s kimono.</description>
+    </item>
+    <item>
+      <title>How to Make a Bookmarklet</title>
+      <link>https://www.logical-dice.com/en/posts/2020/07/15/howto-make-bookmarklet/</link>
+      <pubDate>Wed, 15 Jul 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/07/15/howto-make-bookmarklet/</guid>
+      <description>A quick explanation of how to make a bookmarklet using uglify-js</description>
+    </item>
+    <item>
+      <title>Allowing AWS Lambda to Access Both a Database and External Services</title>
+      <link>https://www.logical-dice.com/en/posts/2020/07/12/vpc-lambda/</link>
+      <pubDate>Sun, 12 Jul 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/07/12/vpc-lambda/</guid>
+      <description>Putting AWS Lambda in a VPC normally prevents external access, so here are my notes on configuring it.</description>
+    </item>
+    <item>
+      <title>Adjusting the ThinkPad TrackPoint on Linux Mint</title>
+      <link>https://www.logical-dice.com/en/posts/2019/03/12/linux-mint-trackpoint/</link>
+      <pubDate>Mon, 06 Jul 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/03/12/linux-mint-trackpoint/</guid>
+      <description>I installed Linux Mint 19.1 on a ThinkPad, so I&amp;rsquo;m adjusting the TrackPoint.</description>
+    </item>
+    <item>
+      <title>Initial Setup of Linux Mint</title>
+      <link>https://www.logical-dice.com/en/posts/2019/03/10/linux-mint-initialize/</link>
+      <pubDate>Wed, 01 Jul 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/03/10/linux-mint-initialize/</guid>
+      <description>Notes on the work from installing Linux Mint to building a development environment.</description>
+    </item>
+    <item>
+      <title>Creating a Self-Signed Certificate on EC2</title>
+      <link>https://www.logical-dice.com/en/posts/2020/06/14/oreore-certification/</link>
+      <pubDate>Sun, 14 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/06/14/oreore-certification/</guid>
+      <description>Steps for creating a self-signed certificate, which has become rarely used these days.</description>
+    </item>
+    <item>
+      <title>Elasticsearch Usage Notes</title>
+      <link>https://www.logical-dice.com/en/posts/2020/06/11/elasticsearch-topics/</link>
+      <pubDate>Thu, 11 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/06/11/elasticsearch-topics/</guid>
+      <description>I found some Elasticsearch notes from a few years ago, so I&amp;rsquo;m sharing them.</description>
+    </item>
+    <item>
+      <title>How to Set Up Redirects with AWS S3</title>
+      <link>https://www.logical-dice.com/en/posts/2020/06/10/aws-s3-redirect/</link>
+      <pubDate>Wed, 10 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/06/10/aws-s3-redirect/</guid>
+      <description>Configuring redirects using AWS S3.</description>
+    </item>
+    <item>
+      <title>Extracting Specific Values from Dictionaries into a List</title>
+      <link>https://www.logical-dice.com/en/posts/2020/06/06/python-dict-list/</link>
+      <pubDate>Sat, 06 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/06/06/python-dict-list/</guid>
+      <description>A Pythonic way to extract specific values from dictionaries and put them into a list.</description>
+    </item>
+    <item>
+      <title>Booting Ubuntu 20.04 on a ThinkPad with an HDMI Cable Connected</title>
+      <link>https://www.logical-dice.com/en/posts/2020/06/01/ubuntu-20-04-hdmi/</link>
+      <pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/06/01/ubuntu-20-04-hdmi/</guid>
+      <description>After installing Ubuntu 20.04 on my ThinkPad, it would no longer boot with an HDMI cable plugged in, so I fixed it.</description>
+    </item>
+    <item>
+      <title>Deploying Lambda &amp; API Gateway with the Serverless Framework</title>
+      <link>https://www.logical-dice.com/en/posts/2020/05/19/serverless-framework-lambda/</link>
+      <pubDate>Tue, 19 May 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/05/19/serverless-framework-lambda/</guid>
+      <description>Notes on the steps I took when trying out deploying Lambda &amp;amp; API Gateway with the Serverless Framework.</description>
+    </item>
+    <item>
+      <title>Upgrading to Ubuntu 20.04</title>
+      <link>https://www.logical-dice.com/en/posts/2020/05/17/update-ubuntu-20-04/</link>
+      <pubDate>Sun, 17 May 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/05/17/update-ubuntu-20-04/</guid>
+      <description>My experience upgrading my work PC from Ubuntu 19.10 to 20.04 LTS.</description>
+    </item>
+    <item>
+      <title>Preventing gulp-uglify from Mangling Variable/Function Names</title>
+      <link>https://www.logical-dice.com/en/posts/2020/04/15/gulp-uglify-keep-name/</link>
+      <pubDate>Wed, 15 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/04/15/gulp-uglify-keep-name/</guid>
+      <description>How to keep variable and function names unchanged when minifying JS files with gulp-uglify.</description>
+    </item>
+    <item>
+      <title>How to Prevent JavaScript Input Events from Firing During IME Composition</title>
+      <link>https://www.logical-dice.com/en/posts/2020/03/20/javascript-input-event/</link>
+      <pubDate>Fri, 20 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/03/20/javascript-input-event/</guid>
+      <description>I looked into how to keep text input events from firing while IME input is still uncommitted.</description>
+    </item>
+    <item>
+      <title>Running AWS CodeDeploy from GitHub Actions</title>
+      <link>https://www.logical-dice.com/en/posts/2020/03/15/github-actions-deploy/</link>
+      <pubDate>Sun, 15 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/03/15/github-actions-deploy/</guid>
+      <description>Steps to deploy by running AWS CodeDeploy from GitHub Actions.</description>
+    </item>
+    <item>
+      <title>Forwarding Gmail to Slack with GAS</title>
+      <link>https://www.logical-dice.com/en/posts/2020/03/10/gas-gmail-slack/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/03/10/gas-gmail-slack/</guid>
+      <description>How to notify Slack of emails received in Gmail using Google Apps Script.</description>
+    </item>
+    <item>
+      <title>Getting Recent Page View Counts from Google Analytics</title>
+      <link>https://www.logical-dice.com/en/posts/2020/03/05/get-google-analytics-report/</link>
+      <pubDate>Thu, 05 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/03/05/get-google-analytics-report/</guid>
+      <description>How to get recent page view counts from Google Analytics.</description>
+    </item>
+    <item>
+      <title>Building WordPress Yourself on Lightsail (CentOS Edition)</title>
+      <link>https://www.logical-dice.com/en/posts/2020/02/18/lightsail-wordpress/</link>
+      <pubDate>Tue, 18 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/02/18/lightsail-wordpress/</guid>
+      <description>Steps to build WordPress on CentOS 7 on Lightsail</description>
+    </item>
+    <item>
+      <title>Filing Statutory Reports with e-Tax</title>
+      <link>https://www.logical-dice.com/en/posts/2020/02/13/etax-legal-record/</link>
+      <pubDate>Thu, 13 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/02/13/etax-legal-record/</guid>
+      <description>Notes on the steps for filing statutory reports (法定調書) with e-Tax.</description>
+    </item>
+    <item>
+      <title>Building WordPress Yourself on Lightsail (Amazon Linux Edition)</title>
+      <link>https://www.logical-dice.com/en/posts/2019/12/15/lightsail-wordpress/</link>
+      <pubDate>Sun, 15 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/12/15/lightsail-wordpress/</guid>
+      <description>Steps to build WordPress on Lightsail without using Bitnami</description>
+    </item>
+    <item>
+      <title>Hiding a Specific Directory Only in Production with .htaccess</title>
+      <link>https://www.logical-dice.com/en/posts/2019/11/19/apache-directory-hidden/</link>
+      <pubDate>Tue, 19 Nov 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/11/19/apache-directory-hidden/</guid>
+      <description>Notes on restricting access to a specific directory only in production</description>
+    </item>
+    <item>
+      <title>Tilix: A Terminal for Linux</title>
+      <link>https://www.logical-dice.com/en/posts/2019/11/08/ubuntu-tilix/</link>
+      <pubDate>Fri, 08 Nov 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/11/08/ubuntu-tilix/</guid>
+      <description>I tried installing &amp;ldquo;Tilix&amp;rdquo; on Ubuntu, so here&amp;rsquo;s an introduction.</description>
+    </item>
+    <item>
+      <title>Initial Setup for Ubuntu 19.10</title>
+      <link>https://www.logical-dice.com/en/posts/2019/11/06/ubuntu-initialize/</link>
+      <pubDate>Wed, 06 Nov 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/11/06/ubuntu-initialize/</guid>
+      <description>Notes from installing Ubuntu 19.10 on a ThinkPad T480</description>
+    </item>
+    <item>
+      <title>Running WordPress Behind a Reverse Proxy</title>
+      <link>https://www.logical-dice.com/en/posts/2019/10/15/reverseproxy-wordpress/</link>
+      <pubDate>Tue, 15 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/10/15/reverseproxy-wordpress/</guid>
+      <description>Configuration notes for running WordPress behind an Apache reverse proxy</description>
+    </item>
+    <item>
+      <title>Running Commands as Another User on Linux</title>
+      <link>https://www.logical-dice.com/en/posts/2019/10/10/linux-sudo/</link>
+      <pubDate>Thu, 10 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/10/10/linux-sudo/</guid>
+      <description>Notes on using the sudo command</description>
+    </item>
+    <item>
+      <title>Automatically Entering a Password with a Bookmarklet</title>
+      <link>https://www.logical-dice.com/en/posts/2019/10/02/bookmarklet-mizuho/</link>
+      <pubDate>Wed, 02 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/10/02/bookmarklet-mizuho/</guid>
+      <description>Looking up the second PIN for transfers on Mizuho Direct was tedious, so I made it extractable with one click</description>
+    </item>
+    <item>
+      <title>Installing Sass on Linux Mint</title>
+      <link>https://www.logical-dice.com/en/posts/2019/09/29/ruby-sass-error/</link>
+      <pubDate>Sun, 29 Sep 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/09/29/ruby-sass-error/</guid>
+      <description>A note on the small snags I hit when installing Sass on Linux Mint</description>
+    </item>
+    <item>
+      <title>Running Windows 10 on Linux Mint</title>
+      <link>https://www.logical-dice.com/en/posts/2019/09/28/linux-mint-virtualbox/</link>
+      <pubDate>Sat, 28 Sep 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/09/28/linux-mint-virtualbox/</guid>
+      <description>Steps for installing VirtualBox on Linux Mint and running Windows 10 for testing</description>
+    </item>
+    <item>
+      <title>Don&#39;t Use text-orientation in CSS</title>
+      <link>https://www.logical-dice.com/en/posts/2019/09/14/text-orientation-upright/</link>
+      <pubDate>Sat, 14 Sep 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/09/14/text-orientation-upright/</guid>
+      <description>A record of a mistake I made using text-orientation</description>
+    </item>
+    <item>
+      <title>[WordPress] Removing the Title and Caption Set in Image Files</title>
+      <link>https://www.logical-dice.com/en/posts/2019/08/26/wp-media-infomation/</link>
+      <pubDate>Mon, 26 Aug 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/08/26/wp-media-infomation/</guid>
+      <description>How to prevent WordPress from automatically setting strings in the title and caption when uploading images.</description>
+    </item>
+    <item>
+      <title>Accessing External Servers from Local Using SSH Port Forwarding</title>
+      <link>https://www.logical-dice.com/en/posts/2019/08/15/ssh-portfowarding/</link>
+      <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/08/15/ssh-portfowarding/</guid>
+      <description>Steps to access another server from a local Docker environment via an SSH server as a bastion, using SSH port forwarding.</description>
+    </item>
+    <item>
+      <title>VPN Not Working Properly on Free Wi-Fi</title>
+      <link>https://www.logical-dice.com/en/posts/2019/08/02/vpn-accident/</link>
+      <pubDate>Fri, 02 Aug 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/08/02/vpn-accident/</guid>
+      <description>A story about parts of a VPN connection not working when connected via free Wi-Fi.</description>
+    </item>
+    <item>
+      <title>Connecting and Disconnecting a VPN from the Command Line</title>
+      <link>https://www.logical-dice.com/en/posts/2019/07/29/linux-mint-vpn/</link>
+      <pubDate>Mon, 29 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/07/29/linux-mint-vpn/</guid>
+      <description>How to connect and disconnect a VPN from the command line on Linux Mint.</description>
+    </item>
+    <item>
+      <title>Setting Up an OpenVPN Server on Lightsail</title>
+      <link>https://www.logical-dice.com/en/posts/2019/07/25/lightsail-vpn/</link>
+      <pubDate>Thu, 25 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/07/25/lightsail-vpn/</guid>
+      <description>Steps for setting up an OpenVPN server on AWS Lightsail.</description>
+    </item>
+    <item>
+      <title>Filing Withholding Income Tax via e-Tax</title>
+      <link>https://www.logical-dice.com/en/posts/2019/07/16/withholding-income-tax/</link>
+      <pubDate>Tue, 16 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/07/16/withholding-income-tax/</guid>
+      <description>Notes on the steps for filing withholding income tax via e-Tax.</description>
+    </item>
+    <item>
+      <title>Changing the Date Taken of Images from the Command Line</title>
+      <link>https://www.logical-dice.com/en/posts/2019/07/02/exiftool-modify-alldate/</link>
+      <pubDate>Tue, 02 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/07/02/exiftool-modify-alldate/</guid>
+      <description>How to change the date taken and other dates of image files using exiftool from the command line.</description>
+    </item>
+    <item>
+      <title>Turning Linux Mint into a Wireless LAN Access Point</title>
+      <link>https://www.logical-dice.com/en/posts/2019/04/17/linuxmint-access-point/</link>
+      <pubDate>Wed, 17 Apr 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/04/17/linuxmint-access-point/</guid>
+      <description>Notes on sharing a VPN connection by making Linux Mint an access point</description>
+    </item>
+    <item>
+      <title>Investigating Input Events with IME Enabled</title>
+      <link>https://www.logical-dice.com/en/posts/2019/04/10/javascript-event/</link>
+      <pubDate>Wed, 10 Apr 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/04/10/javascript-event/</guid>
+      <description>Input events with IME enabled differed quite a bit between PC, Android, and iOS, so I looked into them.</description>
+    </item>
+    <item>
+      <title>VPN Client Setup (L2TP over IPsec)</title>
+      <link>https://www.logical-dice.com/en/posts/2019/03/13/linux-mint-l2tp/</link>
+      <pubDate>Wed, 13 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/03/13/linux-mint-l2tp/</guid>
+      <description>Set up an L2TP over IPsec VPN client on Linux Mint and Ubuntu.</description>
+    </item>
+    <item>
+      <title>Changing the Default Size of Terminator</title>
+      <link>https://www.logical-dice.com/en/posts/2019/03/10/linux-mint-terminator-size/</link>
+      <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/03/10/linux-mint-terminator-size/</guid>
+      <description>How to change the default size of the Linux terminal app &amp;ldquo;Terminator&amp;rdquo; when it launches.</description>
+    </item>
+    <item>
+      <title>Installing terminator &#43; fish &#43; fisherman</title>
+      <link>https://www.logical-dice.com/en/posts/2019/03/10/linux-mint-terminator-fish/</link>
+      <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/03/10/linux-mint-terminator-fish/</guid>
+      <description>Notes on setting up terminator and a fish &amp;amp; fisherman environment on Linux Mint or Ubuntu</description>
+    </item>
+    <item>
+      <title>Working with Pages That Require Session Information in Google Optimize</title>
+      <link>https://www.logical-dice.com/en/posts/2019/03/07/google-optimize-interactive/</link>
+      <pubDate>Thu, 07 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/03/07/google-optimize-interactive/</guid>
+      <description>Steps for working with pages that require session information, such as post-login pages, in Google Optimize.</description>
+    </item>
+    <item>
+      <title>Running AWS CodeDeploy from CircleCI</title>
+      <link>https://www.logical-dice.com/en/posts/2019/03/04/aws-code-deploy-circleci/</link>
+      <pubDate>Mon, 04 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/03/04/aws-code-deploy-circleci/</guid>
+      <description>How to run AWS CodeDeploy from CircleCI without using S3</description>
+    </item>
+    <item>
+      <title>Deploying to EC2 with AWS CodeDeploy</title>
+      <link>https://www.logical-dice.com/en/posts/2019/02/28/aws-code-deploy/</link>
+      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/02/28/aws-code-deploy/</guid>
+      <description>Notes from deploying to EC2 using AWS CodeDeploy.</description>
+    </item>
+    <item>
+      <title>Keeping Apache from Eating Up All Server Memory</title>
+      <link>https://www.logical-dice.com/en/posts/2019/02/15/apache-tuning/</link>
+      <pubDate>Fri, 15 Feb 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/02/15/apache-tuning/</guid>
+      <description>Notes from tuning Apache</description>
+    </item>
+    <item>
+      <title>Installing PHP 7.2 on a Mac</title>
+      <link>https://www.logical-dice.com/en/posts/2019/02/14/mac-php-72/</link>
+      <pubDate>Thu, 14 Feb 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/02/14/mac-php-72/</guid>
+      <description>How to install PHP 7.2 on a Mac.</description>
+    </item>
+    <item>
+      <title>[WordPress] Using S3 Images in TinyMCE Templates</title>
+      <link>https://www.logical-dice.com/en/posts/2019/02/13/wp-tinymcetemplate-s3/</link>
+      <pubDate>Wed, 13 Feb 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/02/13/wp-tinymcetemplate-s3/</guid>
+      <description>How to fix S3 images not loading when using TinyMCE Templates together with WP Offload Media Lite.</description>
+    </item>
+    <item>
+      <title>Git Command Cheat Sheet (Advanced)</title>
+      <link>https://www.logical-dice.com/en/posts/2019/02/01/git-cmd-cheatsheet/</link>
+      <pubDate>Fri, 01 Feb 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/02/01/git-cmd-cheatsheet/</guid>
+      <description>An advanced cheat sheet for git commands</description>
+    </item>
+    <item>
+      <title>[PHP] The strtotime Trap</title>
+      <link>https://www.logical-dice.com/en/posts/2019/01/31/php-strtotime-trap/</link>
+      <pubDate>Thu, 31 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/01/31/php-strtotime-trap/</guid>
+      <description>A strtotime behavior in PHP that can easily trip you up.</description>
+    </item>
+    <item>
+      <title>window.onload Doesn&#39;t Work</title>
+      <link>https://www.logical-dice.com/en/posts/2019/01/26/javascript-window-load/</link>
+      <pubDate>Sat, 26 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/01/26/javascript-window-load/</guid>
+      <description>One cause of window.onload not working.</description>
+    </item>
+    <item>
+      <title>Steps to Set Up a Docker Environment</title>
+      <link>https://www.logical-dice.com/en/posts/2019/01/25/linux-mint-docker/</link>
+      <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/01/25/linux-mint-docker/</guid>
+      <description>How to install Docker on Linux Mint and ubuntu</description>
+    </item>
+    <item>
+      <title>[Let&#39;s Encrypt] Using Certbot on Amazon Linux 2</title>
+      <link>https://www.logical-dice.com/en/posts/2019/01/21/certboy-amazon-linux-2/</link>
+      <pubDate>Mon, 21 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/01/21/certboy-amazon-linux-2/</guid>
+      <description>How to use Certbot on Amazon Linux 2.</description>
+    </item>
+    <item>
+      <title>Migrating Data from WordPress to Pico</title>
+      <link>https://www.logical-dice.com/en/posts/2019/01/17/wordpress-to-pico/</link>
+      <pubDate>Thu, 17 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/01/17/wordpress-to-pico/</guid>
+      <description>How to migrate WordPress data to Pico</description>
+    </item>
+    <item>
+      <title>Building a Blog with Pico</title>
+      <link>https://www.logical-dice.com/en/posts/2019/01/16/pico-blog/</link>
+      <pubDate>Wed, 16 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/01/16/pico-blog/</guid>
+      <description>How to build a blog with the PHP-based CMS &amp;ldquo;Pico&amp;rdquo;.</description>
+    </item>
+    <item>
+      <title>Introducing &#34;pico&#34;, a PHP-Based CMS</title>
+      <link>https://www.logical-dice.com/en/posts/2019/01/15/pico-introduction/</link>
+      <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/01/15/pico-introduction/</guid>
+      <description>An introduction to &amp;ldquo;pico&amp;rdquo;, a CMS written in PHP.</description>
+    </item>
+    <item>
+      <title>Installing Linux Mint 19.1 MATE from a USB Drive</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1829/</link>
+      <pubDate>Thu, 20 Dec 2018 16:25:54 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1829/</guid>
+      <description>I needed to rebuild my PC, so I tried installing the latest version of Linux Mint. I prepared the installation on a Mac&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Serving WordPress Images via S3 &#43; CloudFront</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1772/</link>
+      <pubDate>Tue, 11 Dec 2018 19:30:54 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1772/</guid>
+      <description>Environment WordPress 4.8.3 AWS Setup Steps IAM Settings First, prepare an IAM user to connect WordPress with AWS&amp;hellip;</description>
+    </item>
+    <item>
+      <title>When Google Tag Manager Doesn&#39;t Fire</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1755/</link>
+      <pubDate>Mon, 26 Nov 2018 23:38:42 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1755/</guid>
+      <description>How to investigate when you&amp;rsquo;ve set up triggers with Google Tag Manager but they aren&amp;rsquo;t being tracked in Google Analytics as expected&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Basic Setup of Google Tag Manager</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1741/</link>
+      <pubDate>Mon, 26 Nov 2018 22:32:40 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1741/</guid>
+      <description>Notes from switching from Google Analytics to Google Tag Manager. It is assumed that you already have a Google An&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Keeping Chrome DevTools Open in New Tabs</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1735/</link>
+      <pubDate>Mon, 19 Nov 2018 10:29:41 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1735/</guid>
+      <description>By default, Chrome DevTools settings are not carried over to new tabs, but when checking pages in mobile mode you often want new tabs to stay in mobile mode too&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Using Multiple GitHub Accounts with the git Command</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1715/</link>
+      <pubDate>Wed, 14 Nov 2018 20:37:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1715/</guid>
+      <description>EnvironmentMac OS(probably works on Linux too)OverviewOn GitHub, private keys are tied to accounts, and when you run the git command&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Placing Multiple reCAPTCHA Buttons in the Same Form</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1627/</link>
+      <pubDate>Fri, 26 Oct 2018 13:27:25 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1627/</guid>
+      <description>How to place multiple submit buttons in a reCAPTCHA-enabled form on a web page. This assumes you extract from the POST data&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Sending CircleCI Notifications to Slack</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1573/</link>
+      <pubDate>Sun, 14 Oct 2018 22:01:37 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1573/</guid>
+      <description>Reference site Notifying Slack of CircleCI results. This assumes the following basic CircleCI setup has been completed. Circle&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Automatic Deployment with CircleCI</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1538/</link>
+      <pubDate>Sat, 13 Oct 2018 23:20:06 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1538/</guid>
+      <description>Reference site Auto-deploying a website with Circle CI. Deploy to a server when merged into the GitHub master branch&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Checking Akamai Response Headers in Chrome</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1521/</link>
+      <pubDate>Wed, 26 Sep 2018 12:02:33 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1521/</guid>
+      <description>Background The company I&amp;rsquo;m currently helping uses Akamai to cache pages. For Akamai, see here https://&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Running Docker Toolbox &amp; docker-compose on Windows</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1500/</link>
+      <pubDate>Fri, 21 Sep 2018 17:55:45 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1500/</guid>
+      <description>At work I had Windows users set up a Docker environment, and it was quite a struggle, so I&amp;rsquo;m writing down the steps. ■□ Note ■□■&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Running Unit Tests on Pull Requests with CircleCI</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1477/</link>
+      <pubDate>Tue, 14 Aug 2018 01:30:40 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1477/</guid>
+      <description>Use CircleCI to run unit tests when a pull request is opened on GitHub. The source code is PHP, and U&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Linux Mint] Fcitx Conversion Candidates Are Filled in Black</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1470/</link>
+      <pubDate>Mon, 13 Aug 2018 13:01:18 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1470/</guid>
+      <description>Environment Linux Mint 18.3 cinnamon 64bit Issue One day, while typing Japanese with Fcitx, the conversion candidates turned completely black&amp;hellip;</description>
+    </item>
+    <item>
+      <title>SSL Support When Running WordPress Behind AWS ELB</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1439/</link>
+      <pubDate>Fri, 20 Jul 2018 17:56:57 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1439/</guid>
+      <description>■Environment AWS ELB AWS EC2 Apache 2.2.32 Wordpress 4.1.1 It&amp;rsquo;s not EC-CUBE, but the content is almost&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Calculating TPS from Access Logs with grep</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1436/</link>
+      <pubDate>Thu, 05 Jul 2018 15:28:23 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1436/</guid>
+      <description>■Environment Amazon Linux AMI release 2013.03 grep 2.6.3 TPS from web server access logs&amp;hellip;</description>
+    </item>
+    <item>
+      <title>When Apache RewriteRule Didn&#39;t Work Behind AWS ELB</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1423/</link>
+      <pubDate>Sat, 30 Jun 2018 22:29:41 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1423/</guid>
+      <description>■Environment AWS ELB AWS EC2 Apache 2.2.32 This is about an Apache server running on AWS EC2. For SEO&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Building a Local Test Environment for CakePHP2</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1375/</link>
+      <pubDate>Sun, 10 Jun 2018 09:20:20 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1375/</guid>
+      <description>Environment CakePHP 2.10.10 Belatedly, there was a chance I&amp;rsquo;d use CakePHP2 at work, so I built a local environment to study it&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Tuning Apache&#39;s event MPM</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1363/</link>
+      <pubDate>Sat, 26 May 2018 11:28:56 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1363/</guid>
+      <description>Switching from prefork to event changes the tuning approach a bit, so here&amp;rsquo;s a quick note. With the event MPM, Apache first&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Setting the Time Zone of a Linux Environment to Japan</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1360/</link>
+      <pubDate>Tue, 22 May 2018 10:14:55 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1360/</guid>
+      <description>Just run this command sudo ln -fs /usr/share/zoneinfo/Asia/Tokyo /etc/loc&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Limiting the Number of Digits in a Number Input Field</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1352/</link>
+      <pubDate>Fri, 18 May 2018 21:53:41 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1352/</guid>
+      <description>How to limit the number of characters in a number input field</description>
+    </item>
+    <item>
+      <title>Making WordPress Multilingual</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1291/</link>
+      <pubDate>Tue, 24 Apr 2018 00:56:56 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1291/</guid>
+      <description>■Environment WordPress 4.9.5 MultilingualPress 2.11.1 ■Steps First, MultilingualPress&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Linux Mint] Installing Compass with gem</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1245/</link>
+      <pubDate>Fri, 20 Apr 2018 16:23:01 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1245/</guid>
+      <description>I got an error when trying to install with the following command. $ sudo gem install compass Fetchi&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Linux Mint] Mining BitZeny with cpuminer &#43; wpool</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1236/</link>
+      <pubDate>Fri, 20 Apr 2018 10:25:55 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1236/</guid>
+      <description>■Environment Linux Mint 18.3 cinnamon 64bit Installing cpuminer The basic flow is as described on cpuminer&amp;rsquo;s&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Linux Mint] Changing the Keymap</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1226/</link>
+      <pubDate>Fri, 13 Apr 2018 21:33:50 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1226/</guid>
+      <description>■Environment Linux Mint 18.3 cinnamon 64bit Xmodmap settings Create a file called .Xmodmap directly under your home directory&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Linux Mint] Enabling Japanese Input</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1222/</link>
+      <pubDate>Fri, 13 Apr 2018 21:28:47 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1222/</guid>
+      <description>■Environment Linux Mint 18.3 cinnamon 64bit Steps for when Linux Mint was installed in English&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Installing a Programming Font</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1218/</link>
+      <pubDate>Fri, 13 Apr 2018 21:21:39 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1218/</guid>
+      <description>Steps to install &amp;ldquo;Ricty Diminished&amp;rdquo;, a font well suited for programming</description>
+    </item>
+    <item>
+      <title>[Linux Mint] Installing PHP 7.1</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1192/</link>
+      <pubDate>Tue, 10 Apr 2018 09:11:57 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1192/</guid>
+      <description>$ set -x LC_ALL C.UTF-8$ sudo add-apt-repository ppa:ondrej/php$&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Linux Mint] Installing Docker</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1162/</link>
+      <pubDate>Mon, 09 Apr 2018 21:06:39 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1162/</guid>
+      <description>■Environment Linux Mint 18.3 cinnamon 64bit Installing Docker Add Docker&amp;rsquo;s GPG key $ cur&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Linux Mint] OS Installation and Setup</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1098/</link>
+      <pubDate>Sat, 07 Apr 2018 14:01:56 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1098/</guid>
+      <description>■Environment Linux Mint 18.3 cinnamon 64bit Getting the OS: Download the ISO image from the official site. ht&amp;hellip;</description>
+    </item>
+    <item>
+      <title>docker-compose Cheat Sheet</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1071/</link>
+      <pubDate>Mon, 29 Jan 2018 13:35:42 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1071/</guid>
+      <description>Environment macOS High Sierra 10.13.2 docker-compose 1.18.0 ■Frequently used commands yaml&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Creating a Contact Form in WordPress</title>
+      <link>https://www.logical-dice.com/en/posts/wp/979/</link>
+      <pubDate>Wed, 17 Jan 2018 16:18:41 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/979/</guid>
+      <description>Environment WordPress 4.9.1 Contact Form 7 4.9.2 WP Mail SMTP 1.2.2 WordPress&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[CentOS] Building a VPN Server with OpenVPN &amp; LDAP</title>
+      <link>https://www.logical-dice.com/en/posts/wp/942/</link>
+      <pubDate>Wed, 20 Dec 2017 16:12:33 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/942/</guid>
+      <description>Environment CentOS 7.4 OpenVPN 2.4.4 Reference sites ServerWorld: &lt;a href=&#34;https://www.server&#34;&gt;https://www.server&lt;/a&gt;-w&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Setting Up a PHP Development Environment in Visual Studio Code</title>
+      <link>https://www.logical-dice.com/en/posts/wp/914/</link>
+      <pubDate>Mon, 18 Dec 2017 14:02:41 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/914/</guid>
+      <description>■Environment Visual Studio Code 1.19.0 Linux Mint 18.3 cinnamon 64bit macOS &amp;hellip;</description>
+    </item>
+    <item>
+      <title>[git] A Script to Delete Both Local and Remote Branches</title>
+      <link>https://www.logical-dice.com/en/posts/wp/894/</link>
+      <pubDate>Tue, 12 Dec 2017 12:47:09 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/894/</guid>
+      <description>Deleting both the local and remote branch every time I removed a merged branch was tedious, so I made a script&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[CentOS] Sending Slack Notifications on Intrusion Detection</title>
+      <link>https://www.logical-dice.com/en/posts/wp/853/</link>
+      <pubDate>Tue, 12 Dec 2017 00:30:31 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/853/</guid>
+      <description>■Environment CentOS 7.4 AIDE 0.15.1 Install the intrusion detection tool AIDE and send the scan results to Slack&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Mac] A Shell Script to Output PC Startup and Shutdown Times</title>
+      <link>https://www.logical-dice.com/en/posts/wp/857/</link>
+      <pubDate>Mon, 11 Dec 2017 23:51:12 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/857/</guid>
+      <description>■EnvironmentmacOS High Sierra 10.13.1bash 4.4.12When recording my work attendance, I enter several days at once&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Docker Cheat Sheet</title>
+      <link>https://www.logical-dice.com/en/posts/wp/842/</link>
+      <pubDate>Tue, 28 Nov 2017 16:22:31 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/842/</guid>
+      <description>Log in to Docker Hub. You have to do this first, or you can&amp;rsquo;t pull images published on Docker Hub. * Requires a Docke&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[AWS] Notes on Tasks After Launching a New EC2 Instance</title>
+      <link>https://www.logical-dice.com/en/posts/wp/820/</link>
+      <pubDate>Sun, 12 Nov 2017 01:06:50 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/820/</guid>
+      <description>Environment AWS EC2 Amazon Linux Security group settings Configure SSH and HTTP sources. By default, EC2&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Mac] Installing Archive Software (Windows-Compatible)</title>
+      <link>https://www.logical-dice.com/en/posts/wp/799/</link>
+      <pubDate>Fri, 13 Oct 2017 19:48:22 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/799/</guid>
+      <description>■Environment macOS Sierra 10.12.6 Files compressed on Windows can&amp;rsquo;t be opened properly on Mac, and files compressed on Mac&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Mac] Connecting to a VPN with FortiClient</title>
+      <link>https://www.logical-dice.com/en/posts/wp/776/</link>
+      <pubDate>Fri, 13 Oct 2017 11:43:37 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/776/</guid>
+      <description>■Environment macOS Sierra 10.12.6 FortiClient 5.6.0.703 ■Downloading &amp;amp; installing&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Mac] Installing NetBeans</title>
+      <link>https://www.logical-dice.com/en/posts/wp/737/</link>
+      <pubDate>Fri, 13 Oct 2017 11:05:07 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/737/</guid>
+      <description>■Environment macOS Sierra 10.12.6 NetBeans 8.2 With built-in code completion and FTP features, among free IDEs&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Mac] Installing Homebrew</title>
+      <link>https://www.logical-dice.com/en/posts/wp/750/</link>
+      <pubDate>Thu, 12 Oct 2017 16:27:26 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/750/</guid>
+      <description>■Environment macOS Sierra (10.12.5) Homebrew is a package manager for macOS. To install it&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Mac] Setup After Purchasing or Resetting a Mac</title>
+      <link>https://www.logical-dice.com/en/posts/wp/734/</link>
+      <pubDate>Thu, 12 Oct 2017 16:23:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/734/</guid>
+      <description>A summary of the settings I apply to a fresh MacBook. ■Settings - Install Homebrew, Terminal setup (iTerm2 + fi&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Mac] Terminal Setup (iTerm2 &#43; fish &#43; fisherman)</title>
+      <link>https://www.logical-dice.com/en/posts/wp/741/</link>
+      <pubDate>Thu, 12 Oct 2017 16:01:40 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/741/</guid>
+      <description>■Environment iTerm2 3.2.5 fish 2.7.1 fisherman 3.1.1 ■Reference fish shell を使いたい人生&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Creating an Instance on Google Cloud Platform</title>
+      <link>https://www.logical-dice.com/en/posts/wp/721/</link>
+      <pubDate>Sun, 08 Oct 2017 00:10:11 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/721/</guid>
+      <description>Reference &lt;a href=&#34;https://www.topgate.co.jp/category/gcp&#34;&gt;https://www.topgate.co.jp/category/gcp&lt;/a&gt; Launching an instance ① Click &amp;ldquo;Compu&amp;hellip; in the left menu</description>
+    </item>
+    <item>
+      <title>Setting Up Atom IDE (PHP, Go)</title>
+      <link>https://www.logical-dice.com/en/posts/wp/708/</link>
+      <pubDate>Fri, 29 Sep 2017 19:11:15 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/708/</guid>
+      <description>■EnvironmentmacOS Sierra 10.12.6Atom 1.21.0-beta2■Reference sitesOfficial sitehttps://id&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Mac] Checking a Photo&#39;s Date Taken and Other Info from the Command Line</title>
+      <link>https://www.logical-dice.com/en/posts/wp/703/</link>
+      <pubDate>Sun, 24 Sep 2017 15:27:02 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/703/</guid>
+      <description>■Environment macOS Sierra 10.12.6 exiftool 10.55 How to check the date a photo was taken from the Mac command line&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[WordPress] CSS Specified by a Theme Fails to Load</title>
+      <link>https://www.logical-dice.com/en/posts/wp/698/</link>
+      <pubDate>Mon, 21 Aug 2017 01:57:10 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/698/</guid>
+      <description>When using a theme made by someone else in WordPress, the CSS sometimes fails to load. It seems to happen when both of the following apply&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Mac] Installing asdf for Language Package Management (fish Environment)</title>
+      <link>https://www.logical-dice.com/en/posts/wp/689/</link>
+      <pubDate>Sat, 19 Aug 2017 17:11:43 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/689/</guid>
+      <description>■Environment macOS Sierra 10.12.6 fish 2.5.0 ■Steps It can apparently be installed with Brew too, but following the official page&amp;rsquo;s steps&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[node] forever Cheat Sheet</title>
+      <link>https://www.logical-dice.com/en/posts/wp/677/</link>
+      <pubDate>Mon, 31 Jul 2017 01:44:06 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/677/</guid>
+      <description>Start: forever start {js file} / List running: forever list / Stop: forever stop {number of the target&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Running a Vue.js App with forever</title>
+      <link>https://www.logical-dice.com/en/posts/wp/674/</link>
+      <pubDate>Mon, 31 Jul 2017 01:32:53 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/674/</guid>
+      <description>■Environment CentOS 7.3 npm 3.10.10 =====Added 2017/12/27===== When I tried these steps again after a long time, vu&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Mac] Setting Up neovim &amp; dein.vim</title>
+      <link>https://www.logical-dice.com/en/posts/wp/665/</link>
+      <pubDate>Sat, 15 Jul 2017 00:44:50 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/665/</guid>
+      <description>■Environment macOS Sierra 10.12.6 fish 2.6.0 nvim 0.2.0 ■References To NeoVim, and then dein&amp;hellip;.</description>
+    </item>
+    <item>
+      <title>[Let&#39;s Encrypt] How to Use Certbot (CentOS 7 &#43; nginx)</title>
+      <link>https://www.logical-dice.com/en/posts/wp/656/</link>
+      <pubDate>Mon, 12 Jun 2017 17:17:21 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/656/</guid>
+      <description>■Environment CentOS 7.3 nginx 1.10.3 certbot 0.14.1 ■Issuing the initial SSL certificate Install certbot&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Setting Up a Docker Environment on Mac</title>
+      <link>https://www.logical-dice.com/en/posts/wp/642/</link>
+      <pubDate>Mon, 08 May 2017 11:01:23 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/642/</guid>
+      <description>■Environment macOS Sierra 10.12.4 Installing Docker Click &amp;ldquo;Get Docker for M&amp;hellip; on the official page (here)</description>
+    </item>
+    <item>
+      <title>Cisco IOS Switch Cheat Sheet</title>
+      <link>https://www.logical-dice.com/en/posts/wp/631/</link>
+      <pubDate>Tue, 02 May 2017 15:05:24 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/631/</guid>
+      <description>Enter privileged mode: enable *Abbreviated as en. View the current configuration: # show interfaces      *To view all # s&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Initial Network Setup on CentOS 7</title>
+      <link>https://www.logical-dice.com/en/posts/wp/629/</link>
+      <pubDate>Tue, 02 May 2017 15:01:15 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/629/</guid>
+      <description>■Environment CentOS 7.3 Bonding setup Reference URL: &lt;a href=&#34;https://bacchi.me/linux/bonding/&#34;&gt;https://bacchi.me/linux/bonding/&lt;/a&gt; Check the current state&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Installing the Zabbix Agent on a Mac</title>
+      <link>https://www.logical-dice.com/en/posts/wp/624/</link>
+      <pubDate>Tue, 02 May 2017 14:49:34 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/624/</guid>
+      <description>■EnvironmentMac OS 10.9.5Zabbix 3.2.1Notes on the steps I took to install the Zabbix agent on a Mac OS server&amp;hellip;.</description>
+    </item>
+    <item>
+      <title>Setting Up a Mastodon Instance with Only Heroku</title>
+      <link>https://www.logical-dice.com/en/posts/wp/592/</link>
+      <pubDate>Fri, 28 Apr 2017 20:05:40 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/592/</guid>
+      <description>Mastodon seems to be popular lately, so I tried setting up a Mastodon instance using only Heroku without spending money. Note: these steps&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Mac] Setting Up fish &#43; oh-my-fish &#43; peco</title>
+      <link>https://www.logical-dice.com/en/posts/wp/569/</link>
+      <pubDate>Thu, 20 Apr 2017 00:31:51 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/569/</guid>
+      <description>Environment OS X ElCapitan 10.11.6 Installing fish Install fish with brew. brew insta&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Laravel] &#34;Class &#39;CreateFoooTable&#39; not found&#34; on migrate</title>
+      <link>https://www.logical-dice.com/en/posts/wp/520/</link>
+      <pubDate>Tue, 11 Apr 2017 16:25:41 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/520/</guid>
+      <description>■Environment Laravel 5.1 When trying to run Laravel&amp;rsquo;s &amp;ldquo;migrate:rollback&amp;rdquo; or &amp;ldquo;migrate:refresh&amp;rdquo;&amp;hellip;</description>
+    </item>
+    <item>
+      <title>How to Install Composer</title>
+      <link>https://www.logical-dice.com/en/posts/wp/515/</link>
+      <pubDate>Tue, 11 Apr 2017 16:08:08 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/515/</guid>
+      <description>■Environment macOS Sierra 10.12.4 CentOS 6.8 I installed Composer on my work Mac and a CentOS server&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[PHP] Adding Custom Validation in Laravel 5</title>
+      <link>https://www.logical-dice.com/en/posts/wp/512/</link>
+      <pubDate>Tue, 11 Apr 2017 15:11:41 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/512/</guid>
+      <description>■EnvironmentLaravel 5.1These are the steps I took to add custom validation in Laravel 5. First, create a service provider&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Clearing Git History While Keeping Only Commits After a Specific Commit</title>
+      <link>https://www.logical-dice.com/en/posts/wp/501/</link>
+      <pubDate>Mon, 10 Apr 2017 19:39:28 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/501/</guid>
+      <description>The history in the git repository of an app I&amp;rsquo;m developing personally had become a mess, so these are my notes from tweaking the commit history&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[golang] Map Element Order Varies</title>
+      <link>https://www.logical-dice.com/en/posts/wp/491/</link>
+      <pubDate>Sat, 08 Apr 2017 12:22:59 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/491/</guid>
+      <description>■Environment OS X El Capitan 10.11.6 go 1.8 darwin/amd64 I got slightly tripped up by what the title says, so&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Corporate] Notes on Filing Local Taxes with eLTAX</title>
+      <link>https://www.logical-dice.com/en/posts/wp/467/</link>
+      <pubDate>Fri, 10 Mar 2017 00:04:51 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/467/</guid>
+      <description>I filed the final local tax return for my (dormant) corporation using eLTAX, so here are the steps. Even if your corporation isn&amp;rsquo;t dormant, the steps should be mostly the same&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Installing a Group Management Plugin on Redmine 2.3.2</title>
+      <link>https://www.logical-dice.com/en/posts/wp/444/</link>
+      <pubDate>Mon, 27 Feb 2017 15:16:05 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/444/</guid>
+      <description>I installed a group management plugin on Redmine, but it didn&amp;rsquo;t work properly, so here are notes on where I got stuck. *Note: Ruby on Rai&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Installing fish on CentOS 7</title>
+      <link>https://www.logical-dice.com/en/posts/wp/440/</link>
+      <pubDate>Fri, 17 Feb 2017 00:00:18 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/440/</guid>
+      <description>I tried installing fish, which seems to be popular lately.■EnvironmentCentOS 7.3fish 2.3.1If you don&amp;rsquo;t have the epel repository&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Fixing PHP Warnings in Zabbix</title>
+      <link>https://www.logical-dice.com/en/posts/wp/424/</link>
+      <pubDate>Tue, 14 Feb 2017 00:48:55 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/424/</guid>
+      <description>■Environment zabbix 3.2 PHP 7.1 Running zabbix on PHP 7.1 produced the following warning. A non well for&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Installing Zabbix 3.2 on CentOS 7.3</title>
+      <link>https://www.logical-dice.com/en/posts/wp/349/</link>
+      <pubDate>Tue, 14 Feb 2017 00:20:50 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/349/</guid>
+      <description>■Environment CentOS 7.3 zabbix 3.2 PHP 7.1 MySQL 14.14 Apache 2.4 (1) Install zabbix with yum&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[git] git Command Cheat Sheet</title>
+      <link>https://www.logical-dice.com/en/posts/wp/398/</link>
+      <pubDate>Sat, 11 Feb 2017 23:06:36 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/398/</guid>
+      <description>I organized the git commands I use. ■Environment OS X El Capitan 10.11.6 git 2.10.1 [Configuration]&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[WordPress] Speeding Up SyntaxHighlighter Evolved</title>
+      <link>https://www.logical-dice.com/en/posts/wp/402/</link>
+      <pubDate>Fri, 10 Feb 2017 18:23:37 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/402/</guid>
+      <description>After installing the WordPress plugin &amp;ldquo;SyntaxHighlighter Evolved&amp;rdquo;, page rendering became very slow&amp;hellip;</description>
+    </item>
+    <item>
+      <title>PHPExcel Usage Notes</title>
+      <link>https://www.logical-dice.com/en/posts/wp/384/</link>
+      <pubDate>Tue, 07 Feb 2017 11:42:44 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/384/</guid>
+      <description>Notes on using &amp;ldquo;PHPExcel&amp;rdquo;, which can generate Excel files in PHP. * These are just notes on what I actually used, so they don&amp;rsquo;t cover all features&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Closing the Books for a Dormant Company with MF Cloud Accounting</title>
+      <link>https://www.logical-dice.com/en/posts/wp/366/</link>
+      <pubDate>Tue, 07 Feb 2017 00:38:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/366/</guid>
+      <description>Closing the fiscal year for a dormant company without hiring a tax accountant, using the free plan of MF Cloud Accounting. (1) Enter the required information under Settings &amp;gt; Business. (2) &amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Corporation] Notes on Filing National Taxes with e-Tax</title>
+      <link>https://www.logical-dice.com/en/posts/wp/372/</link>
+      <pubDate>Tue, 07 Feb 2017 00:25:56 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/372/</guid>
+      <description>I filed the national tax return for my (dormant) corporation with e-Tax, so here are the steps. Even if your company isn&amp;rsquo;t dormant, the steps should be mostly the same&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[CentOS &#43; Apache] Getting and Auto-Renewing a Free SSL Certificate with Let’s Encrypt</title>
+      <link>https://www.logical-dice.com/en/posts/wp/355/</link>
+      <pubDate>Wed, 18 Jan 2017 00:51:55 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/355/</guid>
+      <description>■Environment CentOS 7.3 Apache 2.4.6 Getting a free SSL certificate with Let&amp;rsquo;s Encrypt and configuring auto-renewal&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Installing CentOS 7 on an HP ProLiant MicroServer Gen8</title>
+      <link>https://www.logical-dice.com/en/posts/wp/318/</link>
+      <pubDate>Thu, 01 Dec 2016 13:29:48 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/318/</guid>
+      <description>■Work environment ・OS X El Capitan 10.11.6 ■Steps Preparing CentOS 7 First, download the CentOS ISO image&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[DNS Server] Migrating from BIND to NSD</title>
+      <link>https://www.logical-dice.com/en/posts/wp/311/</link>
+      <pubDate>Tue, 25 Oct 2016 11:21:04 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/311/</guid>
+      <description>I had built our in-house DNS with BIND, but vulnerabilities are frequently found in BIND and I didn&amp;rsquo;t need the DNS cache feature, so NSD&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Apache Security Settings</title>
+      <link>https://www.logical-dice.com/en/posts/wp/302/</link>
+      <pubDate>Wed, 12 Oct 2016 13:40:02 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/302/</guid>
+      <description>If you use Apache with the default settings, various server information is exposed. To hide it, you need to edit the configuration file&amp;hellip;</description>
+    </item>
+    <item>
+      <title>php-mcrypt Fails to Install via brew</title>
+      <link>https://www.logical-dice.com/en/posts/wp/295/</link>
+      <pubDate>Tue, 20 Sep 2016 00:15:18 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/295/</guid>
+      <description>■Environment OS X El Capitan(10.11.6) Homebrew 0.9.9 When installing php-mcrypt with brew&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Migrating a Repository from an SVN Server (svn&#43;ssh) to a Git Server</title>
+      <link>https://www.logical-dice.com/en/posts/wp/278/</link>
+      <pubDate>Wed, 10 Aug 2016 12:04:21 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/278/</guid>
+      <description>■PrerequisitesGit is already usable on both the server and the client(1) Create an empty repository on the Git server. Follow each G&amp;hellip;</description>
+    </item>
+    <item>
+      <title>SSH into a Linux Server with Private Key Authentication</title>
+      <link>https://www.logical-dice.com/en/posts/wp/274/</link>
+      <pubDate>Mon, 01 Aug 2016 00:27:04 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/274/</guid>
+      <description>■Environment CentOS 7.2 ■Steps 1. Generate a private and public key Do the following on your local PC. The same command should work on both Mac and Linux&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Mac] Terminal Setup (iTerm2 &#43; zsh &#43; prezto &#43; peco)</title>
+      <link>https://www.logical-dice.com/en/posts/wp/259/</link>
+      <pubDate>Tue, 26 Jul 2016 00:00:40 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/259/</guid>
+      <description>For Ubuntu, see here. (1) Prepare iTerm2. iTerm2 is covered in this post, so please refer to it&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Apache] Keeping GET Parameters in .htaccess Rewrites</title>
+      <link>https://www.logical-dice.com/en/posts/wp/249/</link>
+      <pubDate>Thu, 26 May 2016 19:56:46 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/249/</guid>
+      <description>These days nginx is on the rise, but this is about Apache. I got stuck a bit, so here&amp;rsquo;s a note. ■Environment CentOS 6.6 httpd &amp;hellip;</description>
+    </item>
+    <item>
+      <title>[golang] Using Go in NetBeans</title>
+      <link>https://www.logical-dice.com/en/posts/wp/223/</link>
+      <pubDate>Wed, 25 May 2016 23:06:28 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/223/</guid>
+      <description>I already use NetBeans for PHP, so I set it up to use Go in the same IDE. ■Environment Ubuntu 16.04 NetB&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Ubuntu] Slow Shutdown</title>
+      <link>https://www.logical-dice.com/en/posts/wp/242/</link>
+      <pubDate>Sun, 22 May 2016 00:35:22 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/242/</guid>
+      <description>■EnvironmentUbuntu 16.04After upgrading Ubuntu to 16.04, shutdown started taking a long time, so I fixed it.Reference: &amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Ubuntu] Preventing the Clock from Drifting in a Dual-Boot Environment</title>
+      <link>https://www.logical-dice.com/en/posts/wp/239/</link>
+      <pubDate>Sun, 22 May 2016 00:30:55 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/239/</guid>
+      <description>■Environment Ubuntu 16.04 Windows10 After upgrading Ubuntu to 16.04, switching between Windows and Ubuntu in a dual boot&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Ubuntu] Installing zsh &amp; prezto</title>
+      <link>https://www.logical-dice.com/en/posts/wp/225/</link>
+      <pubDate>Fri, 06 May 2016 10:29:33 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/225/</guid>
+      <description>Settings for using zsh &amp;amp; prezto in the Ubuntu terminal. For Mac, see here. ■Environment Ubunt16.04 (1) zsh and g&amp;hellip;</description>
+    </item>
+    <item>
+      <title>What I Did After Installing Ubuntu 16.04</title>
+      <link>https://www.logical-dice.com/en/posts/wp/216/</link>
+      <pubDate>Wed, 04 May 2016 23:54:50 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/216/</guid>
+      <description>Ubuntu 16.04 was out, so I installed it. Here&amp;rsquo;s what I did at the time. (I&amp;rsquo;ll probably update this as I go) ■Home&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[PHP] Changing the Highlight of the Variable Under the Cursor in Eclipse</title>
+      <link>https://www.logical-dice.com/en/posts/wp/206/</link>
+      <pubDate>Tue, 08 Mar 2016 12:17:33 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/206/</guid>
+      <description>Sometimes the color of the variable under the cursor gets weird. Changing the following setting fixes it. ■Environment Mac (OS X El &amp;hellip;</description>
+    </item>
+    <item>
+      <title>[CentOS] Checklist When cron Doesn&#39;t Run</title>
+      <link>https://www.logical-dice.com/en/posts/wp/202/</link>
+      <pubDate>Tue, 08 Mar 2016 05:23:15 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/202/</guid>
+      <description>Checklist when cron doesn&amp;rsquo;t run (1) Is the cron process (crond) running? ↓ It is running (2) Is the crontab&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Ubuntu] When PDFs Open Misaligned in Inkscape</title>
+      <link>https://www.logical-dice.com/en/posts/wp/196/</link>
+      <pubDate>Thu, 04 Feb 2016 12:37:03 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/196/</guid>
+      <description>This may be obvious to those who know, but when I opened a PDF in Inkscape to edit it, some of the text was misaligned&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Setting the Character Set in MySQL</title>
+      <link>https://www.logical-dice.com/en/posts/wp/189/</link>
+      <pubDate>Wed, 20 Jan 2016 22:36:39 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/189/</guid>
+      <description>How to set the character set in MySQL. ■Environment MySQL 5.6.26 If you are about to create a DB, in the config file &amp;ldquo;/etc/&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Fixing mysql Functions That Error in PHP 7</title>
+      <link>https://www.logical-dice.com/en/posts/wp/173/</link>
+      <pubDate>Wed, 20 Jan 2016 21:55:34 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/173/</guid>
+      <description>When I updated from PHP 5.X to PHP 7, the mysql functions were throwing errors, so here are notes on what I did to fix them&amp;hellip;</description>
+    </item>
+    <item>
+      <title>How to Set Up Digest Authentication</title>
+      <link>https://www.logical-dice.com/en/posts/wp/164/</link>
+      <pubDate>Wed, 20 Jan 2016 21:30:56 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/164/</guid>
+      <description>How to add digest authentication to a web server running Apache.■EnvironmentCentOS Linux release 7&amp;hellip;.</description>
+    </item>
+    <item>
+      <title>[FuelPHP] Updating to a PHP 7 Compatible Version</title>
+      <link>https://www.logical-dice.com/en/posts/wp/161/</link>
+      <pubDate>Sun, 27 Dec 2015 23:50:04 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/161/</guid>
+      <description>FuelPHP dev-1.7 didn&amp;rsquo;t support PHP 7, so I updated an existing project to dev-1.8, which supports PHP 7&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[CentOS] Installing PHP 7 with yum</title>
+      <link>https://www.logical-dice.com/en/posts/wp/156/</link>
+      <pubDate>Mon, 07 Dec 2015 23:31:02 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/156/</guid>
+      <description>Now that PHP 7 has been released, here are the steps I used to install it with yum on a CentOS 7 server. ■Environment CentOS 7.1.1503 &amp;hellip;</description>
+    </item>
+    <item>
+      <title>[CentOS] Setting a GitHub Access Token for Composer</title>
+      <link>https://www.logical-dice.com/en/posts/wp/147/</link>
+      <pubDate>Mon, 07 Dec 2015 23:11:45 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/147/</guid>
+      <description>A bit late to the party, but here&amp;rsquo;s how to set a GitHub access token for Composer.■EnvironmentCentOS 7.1.1503GitHub&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[CentOS] Installing PostgreSQL</title>
+      <link>https://www.logical-dice.com/en/posts/wp/127/</link>
+      <pubDate>Fri, 04 Dec 2015 12:59:49 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/127/</guid>
+      <description>My notes from installing PostgreSQL on CentOS ■Environment CentOS r&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Ubuntu] Configuring UXterm</title>
+      <link>https://www.logical-dice.com/en/posts/wp/136/</link>
+      <pubDate>Wed, 02 Dec 2015 21:41:14 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/136/</guid>
+      <description>Ubuntu has &amp;ldquo;UXterm&amp;rdquo; and the regular &amp;ldquo;Terminal&amp;rdquo;, but UXterm is more customizable, so I configure and use UXte&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Ubuntu] Installing Atom</title>
+      <link>https://www.logical-dice.com/en/posts/wp/139/</link>
+      <pubDate>Wed, 02 Dec 2015 21:37:16 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/139/</guid>
+      <description>Steps for installing the Atom text editor on Ubuntu. ■Environment ubuntu 15.04 Download the installer from the following site&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Ubuntu] Can&#39;t Mount exFAT External Storage</title>
+      <link>https://www.logical-dice.com/en/posts/wp/130/</link>
+      <pubDate>Sun, 15 Nov 2015 22:05:23 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/130/</guid>
+      <description>■Environmentubuntu 15.04Ubuntu doesn&amp;rsquo;t support the &amp;ldquo;exfat&amp;rdquo; format by default, so when mounting external storage&amp;hellip;</description>
+    </item>
+    <item>
+      <title>How to Configure a COMODO SSL Certificate in Apache</title>
+      <link>https://www.logical-dice.com/en/posts/wp/120/</link>
+      <pubDate>Tue, 20 Oct 2015 20:25:57 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/120/</guid>
+      <description>Configuring a COMODO certificate after purchase was complicated, so I wrote it up. The purchase procedure should be clear from the SSL vendor&amp;rsquo;s site, so&amp;hellip;</description>
+    </item>
+    <item>
+      <title>sshd Settings on CentOS 7 (Security)</title>
+      <link>https://www.logical-dice.com/en/posts/wp/106/</link>
+      <pubDate>Mon, 19 Oct 2015 21:52:24 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/106/</guid>
+      <description>For ssh login to the server, configure the following - change the ssh port - disable root login - restrict accounts that can su to root&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Fixing Persistent Garbled Text (Mojibake) in PHP</title>
+      <link>https://www.logical-dice.com/en/posts/wp/83/</link>
+      <pubDate>Tue, 06 Oct 2015 21:38:07 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/83/</guid>
+      <description>■Environment CentOS 6.6 Apache2.2 Japanese text was garbled, so I had the following in my PHP source: setlocale&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Ubuntu] Installing JDK and NetBeans IDE</title>
+      <link>https://www.logical-dice.com/en/posts/wp/69/</link>
+      <pubDate>Wed, 16 Sep 2015 23:18:43 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/69/</guid>
+      <description>Install JDK and NetBeans on Ubuntu as a development environment. ■Environment Ubuntu 15.04 openjdk 8 Net&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Ubuntu] Installing Flash Player</title>
+      <link>https://www.logical-dice.com/en/posts/wp/57/</link>
+      <pubDate>Thu, 27 Aug 2015 21:56:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/57/</guid>
+      <description>Steps for installing Flash Player for browsers on Ubuntu. ■For Firefox Download Flash Player from Adobe&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Ubuntu] Changing Home Directory Names from Japanese to English</title>
+      <link>https://www.logical-dice.com/en/posts/wp/48/</link>
+      <pubDate>Thu, 27 Aug 2015 21:36:09 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/48/</guid>
+      <description>When you install the Japanese edition of Ubuntu, the directory names in your home directory are in Japanese. When working on the command line&amp;hellip;</description>
+    </item>
+    <item>
+      <title>&#34;localhost&#34; Gets Added to the Mail Domain</title>
+      <link>https://www.logical-dice.com/en/posts/wp/40/</link>
+      <pubDate>Sat, 08 Aug 2015 16:52:42 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/40/</guid>
+      <description>■Environment CentOS 7 postfix 2.10.1 When sending mail from a mail server built with postfix, even though the configuration should be correct&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Building a Mail Server (Part 2, dovecot)</title>
+      <link>https://www.logical-dice.com/en/posts/wp/18/</link>
+      <pubDate>Sat, 08 Aug 2015 15:35:56 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/18/</guid>
+      <description>■Environment CentOS 7 dovecot 2.2.10 This assumes Part 1 (postfix) has already been completed. Install the required packages yu&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Building a Mail Server (Part 1 - postfix)</title>
+      <link>https://www.logical-dice.com/en/posts/wp/9/</link>
+      <pubDate>Thu, 06 Aug 2015 23:28:32 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/9/</guid>
+      <description>■Environment CentOS 7 postfix 2.10.1 Mail accounts use the accounts registered in passwd. Mail-only&amp;hellip;</description>
     </item>
   </channel>
 </rss>

@@ -15,5 +15,131 @@
       <guid>https://www.logical-dice.com/en/posts/2021/02/06/phpcs-git-diff/</guid>
       <description>How to check only the modified files with phpcs using git diff.</description>
     </item>
+    <item>
+      <title>Getting Recent Page View Counts from Google Analytics</title>
+      <link>https://www.logical-dice.com/en/posts/2020/03/05/get-google-analytics-report/</link>
+      <pubDate>Thu, 05 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/03/05/get-google-analytics-report/</guid>
+      <description>How to get recent page view counts from Google Analytics.</description>
+    </item>
+    <item>
+      <title>Installing PHP 7.2 on a Mac</title>
+      <link>https://www.logical-dice.com/en/posts/2019/02/14/mac-php-72/</link>
+      <pubDate>Thu, 14 Feb 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/02/14/mac-php-72/</guid>
+      <description>How to install PHP 7.2 on a Mac.</description>
+    </item>
+    <item>
+      <title>[PHP] The strtotime Trap</title>
+      <link>https://www.logical-dice.com/en/posts/2019/01/31/php-strtotime-trap/</link>
+      <pubDate>Thu, 31 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/01/31/php-strtotime-trap/</guid>
+      <description>A strtotime behavior in PHP that can easily trip you up.</description>
+    </item>
+    <item>
+      <title>Building a Local Test Environment for CakePHP2</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1375/</link>
+      <pubDate>Sun, 10 Jun 2018 09:20:20 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1375/</guid>
+      <description>Environment CakePHP 2.10.10 Belatedly, there was a chance I&amp;rsquo;d use CakePHP2 at work, so I built a local environment to study it&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Linux Mint] Installing PHP 7.1</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1192/</link>
+      <pubDate>Tue, 10 Apr 2018 09:11:57 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1192/</guid>
+      <description>$ set -x LC_ALL C.UTF-8$ sudo add-apt-repository ppa:ondrej/php$&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Setting Up a PHP Development Environment in Visual Studio Code</title>
+      <link>https://www.logical-dice.com/en/posts/wp/914/</link>
+      <pubDate>Mon, 18 Dec 2017 14:02:41 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/914/</guid>
+      <description>■Environment Visual Studio Code 1.19.0 Linux Mint 18.3 cinnamon 64bit macOS &amp;hellip;</description>
+    </item>
+    <item>
+      <title>Setting Up Atom IDE (PHP, Go)</title>
+      <link>https://www.logical-dice.com/en/posts/wp/708/</link>
+      <pubDate>Fri, 29 Sep 2017 19:11:15 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/708/</guid>
+      <description>■EnvironmentmacOS Sierra 10.12.6Atom 1.21.0-beta2■Reference sitesOfficial sitehttps://id&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Laravel] &#34;Class &#39;CreateFoooTable&#39; not found&#34; on migrate</title>
+      <link>https://www.logical-dice.com/en/posts/wp/520/</link>
+      <pubDate>Tue, 11 Apr 2017 16:25:41 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/520/</guid>
+      <description>■Environment Laravel 5.1 When trying to run Laravel&amp;rsquo;s &amp;ldquo;migrate:rollback&amp;rdquo; or &amp;ldquo;migrate:refresh&amp;rdquo;&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[PHP] Adding Custom Validation in Laravel 5</title>
+      <link>https://www.logical-dice.com/en/posts/wp/512/</link>
+      <pubDate>Tue, 11 Apr 2017 15:11:41 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/512/</guid>
+      <description>■EnvironmentLaravel 5.1These are the steps I took to add custom validation in Laravel 5. First, create a service provider&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Fixing PHP Warnings in Zabbix</title>
+      <link>https://www.logical-dice.com/en/posts/wp/424/</link>
+      <pubDate>Tue, 14 Feb 2017 00:48:55 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/424/</guid>
+      <description>■Environment zabbix 3.2 PHP 7.1 Running zabbix on PHP 7.1 produced the following warning. A non well for&amp;hellip;</description>
+    </item>
+    <item>
+      <title>PHPExcel Usage Notes</title>
+      <link>https://www.logical-dice.com/en/posts/wp/384/</link>
+      <pubDate>Tue, 07 Feb 2017 11:42:44 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/384/</guid>
+      <description>Notes on using &amp;ldquo;PHPExcel&amp;rdquo;, which can generate Excel files in PHP. * These are just notes on what I actually used, so they don&amp;rsquo;t cover all features&amp;hellip;</description>
+    </item>
+    <item>
+      <title>php-mcrypt Fails to Install via brew</title>
+      <link>https://www.logical-dice.com/en/posts/wp/295/</link>
+      <pubDate>Tue, 20 Sep 2016 00:15:18 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/295/</guid>
+      <description>■Environment OS X El Capitan(10.11.6) Homebrew 0.9.9 When installing php-mcrypt with brew&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[PHP] Changing the Highlight of the Variable Under the Cursor in Eclipse</title>
+      <link>https://www.logical-dice.com/en/posts/wp/206/</link>
+      <pubDate>Tue, 08 Mar 2016 12:17:33 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/206/</guid>
+      <description>Sometimes the color of the variable under the cursor gets weird. Changing the following setting fixes it. ■Environment Mac (OS X El &amp;hellip;</description>
+    </item>
+    <item>
+      <title>Fixing mysql Functions That Error in PHP 7</title>
+      <link>https://www.logical-dice.com/en/posts/wp/173/</link>
+      <pubDate>Wed, 20 Jan 2016 21:55:34 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/173/</guid>
+      <description>When I updated from PHP 5.X to PHP 7, the mysql functions were throwing errors, so here are notes on what I did to fix them&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[FuelPHP] Updating to a PHP 7 Compatible Version</title>
+      <link>https://www.logical-dice.com/en/posts/wp/161/</link>
+      <pubDate>Sun, 27 Dec 2015 23:50:04 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/161/</guid>
+      <description>FuelPHP dev-1.7 didn&amp;rsquo;t support PHP 7, so I updated an existing project to dev-1.8, which supports PHP 7&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[CentOS] Installing PHP 7 with yum</title>
+      <link>https://www.logical-dice.com/en/posts/wp/156/</link>
+      <pubDate>Mon, 07 Dec 2015 23:31:02 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/156/</guid>
+      <description>Now that PHP 7 has been released, here are the steps I used to install it with yum on a CentOS 7 server. ■Environment CentOS 7.1.1503 &amp;hellip;</description>
+    </item>
+    <item>
+      <title>[CentOS] Setting a GitHub Access Token for Composer</title>
+      <link>https://www.logical-dice.com/en/posts/wp/147/</link>
+      <pubDate>Mon, 07 Dec 2015 23:11:45 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/147/</guid>
+      <description>A bit late to the party, but here&amp;rsquo;s how to set a GitHub access token for Composer.■EnvironmentCentOS 7.1.1503GitHub&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Fixing Persistent Garbled Text (Mojibake) in PHP</title>
+      <link>https://www.logical-dice.com/en/posts/wp/83/</link>
+      <pubDate>Tue, 06 Oct 2015 21:38:07 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/83/</guid>
+      <description>■Environment CentOS 6.6 Apache2.2 Japanese text was garbled, so I had the following in my PHP source: setlocale&amp;hellip;</description>
+    </item>
   </channel>
 </rss>

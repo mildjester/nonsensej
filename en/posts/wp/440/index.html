@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Installing fish on CentOS 7|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Installing fish on CentOS 7</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2017-02-17 00:00:18 &#43;0000 UTC" class="catalogue-time">2017-02-17</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/centos/">CentOS</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<p>I tried installing fish, which seems to be popular lately.</p>
+<h3 id="environment">■Environment</h3>
+<p>CentOS 7.3<br>
+fish 2.3.1</p>
+<p>If you don&rsquo;t have the epel repository, install it.</p>
+<pre tabindex="0"><code>yum -y install epel-release
+</code></pre><p>Install fish with yum.</p>
+<pre tabindex="0"><code>yum -y install fish
+</code></pre><p>To use fish just for now, simply type fish as a command.</p>
+<pre tabindex="0"><code>fish
+</code></pre><p>To use fish permanently, run chsh.</p>
+<pre tabindex="0"><code>chsh -s /usr/bin/fish　｛ユーザ名｝
+</code></pre><p> </p>
+<p>Now fish is ready to use.</p>
+<hr>
+<h4 id="reference">〜Reference〜</h4>
+<p>On CentOS 6.x, you can apparently install fish as follows.</p>
+<pre tabindex="0"><code>wget -P /etc/yum.repos.d/ http://download.opensuse.org/repositories/shells:fish:release:2/CentOS_6/shells:fish:release:2.repo  
+yum -y install fish  
+</code></pre><hr>
+<h3 id="installing-oh-my-fish">[Installing oh-my-fish]</h3>
+<p>While I&rsquo;m at it, I&rsquo;ll install oh-my-fish too.<br>
+The git version installable via yum on CentOS 7 is 1.8.x (as of April 2017),<br>
+but oh-my-fish requires git 1.9.5 or later,<br>
+so I&rsquo;ll compile it from source.</p>
+<p>Install what&rsquo;s needed to compile from source.<br>
+In my environment it was the following, but install whatever your environment needs.<br>
+You should be able to find it by looking up how to compile git from source.</p>
+<pre tabindex="0"><code>yum install curl-devel expat-devel gettext-devel  openssl-devel zlib-devel perl-ExtUtils-MakeMaker autoconf gettext gcc
+</code></pre><p>Download the source code</p>
+<pre tabindex="0"><code>cd /tmp/  
+wget https://www.kernel.org/pub/software/scm/git/git-2.9.3.tar.gz  
+tar xzf git-2.9.3.tar.gz
+</code></pre><p>*Check the latest source here<br>
+<a href="https://www.kernel.org/pub/software/scm/git/" target="_blank"><a href="https://www.kernel.org/pub/software/scm/git/">https://www.kernel.org/pub/software/scm/git/</a></a></p>
+<p>Install git.<br>
+Without the configure option &ldquo;&ndash;with-curl&rdquo;, the oh-my-fish installation will fail.</p>
+<pre tabindex="0"><code>cd git-2.9.3  
+make configure  
+./configure --with-curl  
+make  
+make install
+</code></pre><p>The git commands are placed under &ldquo;/usr/local/bin&rdquo;,<br>
+so add it to your PATH if it isn&rsquo;t already.</p>
+<pre tabindex="0"><code>set -U fish_user_paths $fish_user_paths /usr/local/bin  
+git --version  
+git version 2.9.3
+</code></pre><p>Finally, install oh-my-fish and you&rsquo;re done.</p>
+<pre tabindex="0"><code>curl -L https://get.oh-my.fish | fish
+</code></pre><p>For details on installing oh-my-fish, see here.<br>
+<a href="https://github.com/oh-my-fish/oh-my-fish" target="_blank"><a href="https://github.com/oh-my-fish/oh-my-fish">https://github.com/oh-my-fish/oh-my-fish</a></a></p>
+<h3 id="installing-peco">[Installing peco]</h3>
+<p>While I&rsquo;m at it, I&rsquo;ll install peco too.</p>
+<p>Download the peco binary from GitHub and make it available.</p>
+<pre tabindex="0"><code>cd /tmp/  
+wget https://github.com/peco/peco/releases/download/v0.5.1/peco_linux_amd64.tar.gz  
+tar xzf peco_linux_amd64.tar.gz  
+mv peco_linux_amd64/peco /usr/local/bin/.  
+</code></pre><p>Load peco into fish with oh-my-fish.</p>
+<pre tabindex="0"><code>omf install peco  
+</code></pre><p>Finally, edit the fish config file.</p>
+<pre tabindex="0"><code>vim ~/.config/fish/config.fish  
+# Content to add  
+function fish_user_key_bindings  
+    bind \cr peco_select_history  
+end  
+</code></pre><p>That completes the setup.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

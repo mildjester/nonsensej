@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bookmarklet on Logical Dice Techblog</title>
+    <link>https://www.logical-dice.com/en/tags/bookmarklet/</link>
+    <description>Recent content in Bookmarklet on Logical Dice Techblog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 16 Jul 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.logical-dice.com/en/tags/bookmarklet/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Giving GitHub&#39;s Contribution Graph Tanjiro&#39;s Pattern</title>
+      <link>https://www.logical-dice.com/en/posts/2020/07/16/bookmarklet-kimetsu/</link>
+      <pubDate>Thu, 16 Jul 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/07/16/bookmarklet-kimetsu/</guid>
+      <description>Using a bookmarklet to turn the GitHub contribution graph into the pattern of Tanjiro&amp;rsquo;s kimono.</description>
+    </item>
+    <item>
+      <title>How to Make a Bookmarklet</title>
+      <link>https://www.logical-dice.com/en/posts/2020/07/15/howto-make-bookmarklet/</link>
+      <pubDate>Wed, 15 Jul 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/07/15/howto-make-bookmarklet/</guid>
+      <description>A quick explanation of how to make a bookmarklet using uglify-js</description>
+    </item>
+    <item>
+      <title>Automatically Entering a Password with a Bookmarklet</title>
+      <link>https://www.logical-dice.com/en/posts/2019/10/02/bookmarklet-mizuho/</link>
+      <pubDate>Wed, 02 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/10/02/bookmarklet-mizuho/</guid>
+      <description>Looking up the second PIN for transfers on Mizuho Direct was tedious, so I made it extractable with one click</description>
+    </item>
+  </channel>
+</rss>

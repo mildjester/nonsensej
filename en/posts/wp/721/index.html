@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Creating an Instance on Google Cloud Platform|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Creating an Instance on Google Cloud Platform</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2017-10-08 00:10:11 &#43;0000 UTC" class="catalogue-time">2017-10-08</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/googleservice/">GoogleService</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h1 id="reference">Reference</h1>
+<p><a href="https://www.topgate.co.jp/category/gcp" rel="noopener" target="_blank"><a href="https://www.topgate.co.jp/category/gcp">https://www.topgate.co.jp/category/gcp</a></a> (Japanese)</p>
+<hr>
+<h2 id="launching-an-instance">Launching an Instance</h2>
+<p>① Click &ldquo;Compute Engine&rdquo; in the left menu.</p>
+<p>② Wait about a minute for it to load.<br>
+　Once loaded, click the &ldquo;Create&rdquo; button for VM instances.<br>
+<img src="https://www.logical-dice.com/images/2017/10/GCP001.png" alt="" /></p>
+<p>③ There&rsquo;s another short wait.<br>
+　When the instance creation screen appears, enter any name and select &ldquo;asia-northeast1-a&rdquo; as the zone. (Apparently the Tokyo region.)</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>Give it any name.</td>
+</tr>
+<tr>
+<td>Zone</td>
+<td>Select &ldquo;asia-northeast1-a&rdquo;. (Apparently the Tokyo region.)</td>
+</tr>
+<tr>
+<td>Machine type</td>
+<td>Choose according to the specs you need. micro if you want it cheap.</td>
+</tr>
+<tr>
+<td>Boot disk</td>
+<td>Choose the OS you want to install.</td>
+</tr>
+<tr>
+<td>Identity and API access</td>
+<td>Seems to be the permissions granted to this instance. Leave it at the default for now.</td>
+</tr>
+<tr>
+<td>Firewall</td>
+<td>Check these if you use HTTP or HTTPS</td>
+</tr>
+<tr>
+<td>Management</td>
+<td>Leave at default for now</td>
+</tr>
+<tr>
+<td>Disks</td>
+<td>Leave at default for now</td>
+</tr>
+<tr>
+<td>Networking</td>
+<td>Leave at default for now</td>
+</tr>
+<tr>
+<td>SSH keys</td>
+<td>Register the key from your local PC</td>
+</tr>
+</tbody>
+</table>
+<p>④ Once that&rsquo;s done, click the &ldquo;Create&rdquo; button at the bottom.<br>
+　There will be a wait while it processes; when it completes, the instance is created and assigned a global IP.<br>
+　<br>
+The instance is now up and running.<br>
+You can SSH into it from the local environment whose SSH key you registered by specifying the global IP.</p>
+<pre tabindex="0"><code>ssh 999.999.999.999  
+</code></pre><p>*You can check the global IP address on the instance list screen.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

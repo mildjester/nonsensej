@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Apache on Logical Dice Techblog</title>
+    <link>https://www.logical-dice.com/en/tags/apache/</link>
+    <description>Recent content in Apache on Logical Dice Techblog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 19 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.logical-dice.com/en/tags/apache/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hiding a Specific Directory Only in Production with .htaccess</title>
+      <link>https://www.logical-dice.com/en/posts/2019/11/19/apache-directory-hidden/</link>
+      <pubDate>Tue, 19 Nov 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/11/19/apache-directory-hidden/</guid>
+      <description>Notes on restricting access to a specific directory only in production</description>
+    </item>
+    <item>
+      <title>Running WordPress Behind a Reverse Proxy</title>
+      <link>https://www.logical-dice.com/en/posts/2019/10/15/reverseproxy-wordpress/</link>
+      <pubDate>Tue, 15 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/10/15/reverseproxy-wordpress/</guid>
+      <description>Configuration notes for running WordPress behind an Apache reverse proxy</description>
+    </item>
+    <item>
+      <title>Keeping Apache from Eating Up All Server Memory</title>
+      <link>https://www.logical-dice.com/en/posts/2019/02/15/apache-tuning/</link>
+      <pubDate>Fri, 15 Feb 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/02/15/apache-tuning/</guid>
+      <description>Notes from tuning Apache</description>
+    </item>
+    <item>
+      <title>Calculating TPS from Access Logs with grep</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1436/</link>
+      <pubDate>Thu, 05 Jul 2018 15:28:23 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1436/</guid>
+      <description>■Environment Amazon Linux AMI release 2013.03 grep 2.6.3 TPS from web server access logs&amp;hellip;</description>
+    </item>
+    <item>
+      <title>When Apache RewriteRule Didn&#39;t Work Behind AWS ELB</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1423/</link>
+      <pubDate>Sat, 30 Jun 2018 22:29:41 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1423/</guid>
+      <description>■Environment AWS ELB AWS EC2 Apache 2.2.32 This is about an Apache server running on AWS EC2. For SEO&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Tuning Apache&#39;s event MPM</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1363/</link>
+      <pubDate>Sat, 26 May 2018 11:28:56 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1363/</guid>
+      <description>Switching from prefork to event changes the tuning approach a bit, so here&amp;rsquo;s a quick note. With the event MPM, Apache first&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[CentOS &#43; Apache] Getting and Auto-Renewing a Free SSL Certificate with Let’s Encrypt</title>
+      <link>https://www.logical-dice.com/en/posts/wp/355/</link>
+      <pubDate>Wed, 18 Jan 2017 00:51:55 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/355/</guid>
+      <description>■Environment CentOS 7.3 Apache 2.4.6 Getting a free SSL certificate with Let&amp;rsquo;s Encrypt and configuring auto-renewal&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Apache Security Settings</title>
+      <link>https://www.logical-dice.com/en/posts/wp/302/</link>
+      <pubDate>Wed, 12 Oct 2016 13:40:02 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/302/</guid>
+      <description>If you use Apache with the default settings, various server information is exposed. To hide it, you need to edit the configuration file&amp;hellip;</description>
+    </item>
+    <item>
+      <title>[Apache] Keeping GET Parameters in .htaccess Rewrites</title>
+      <link>https://www.logical-dice.com/en/posts/wp/249/</link>
+      <pubDate>Thu, 26 May 2016 19:56:46 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/249/</guid>
+      <description>These days nginx is on the rise, but this is about Apache. I got stuck a bit, so here&amp;rsquo;s a note. ■Environment CentOS 6.6 httpd &amp;hellip;</description>
+    </item>
+    <item>
+      <title>How to Set Up Digest Authentication</title>
+      <link>https://www.logical-dice.com/en/posts/wp/164/</link>
+      <pubDate>Wed, 20 Jan 2016 21:30:56 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/164/</guid>
+      <description>How to add digest authentication to a web server running Apache.■EnvironmentCentOS Linux release 7&amp;hellip;.</description>
+    </item>
+    <item>
+      <title>How to Configure a COMODO SSL Certificate in Apache</title>
+      <link>https://www.logical-dice.com/en/posts/wp/120/</link>
+      <pubDate>Tue, 20 Oct 2015 20:25:57 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/120/</guid>
+      <description>Configuring a COMODO certificate after purchase was complicated, so I wrote it up. The purchase procedure should be clear from the SSL vendor&amp;rsquo;s site, so&amp;hellip;</description>
+    </item>
+  </channel>
+</rss>

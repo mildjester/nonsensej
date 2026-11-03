@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Pop!_OSの初期設定|Logical Dice 技術ブログ</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice 技術ブログ" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice 技術ブログ" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Pop!_OSの初期設定</h1>
+		<div class="post-info">
+				<p class="publish-date">投稿日: <time datetime="2026-11-03 00:00:00 &#43;0000 UTC" class="catalogue-time">2026年11月03日</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/tags/popos/">PopOS</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h2 id="環境">環境</h2>
+<ul>
+<li>Pop!_OS 24.04 LTS</li>
+</ul>
+<hr>
+<h2 id="概要">概要</h2>
+<p>UbuntuベースのLinuxデスクトップとして「Pop!_OS」というものが最近流行り始めているようなので使ってみました。</p>
+<h2 id="初期設定手順">初期設定手順</h2>
+<h3 id="osインストール">OSインストール</h3>
+<p>公式ページからインストーラーをダウンロードして、USBにブートメディアとして書き込む。<br>
+<a href="https://system76.com/download-pop/?srsltid=AYCX9vLx31ncOSKjXrQwi-M5aOkP8gaxdDigf4ibcRHOS_pAGk8B0Kcj">ダウンロードページ</a></p>
+<p>PC起動時に作成したUSBから起動してインストールする。</p>
+<h3 id="日本語入力設定">日本語入力設定</h3>
+<ul>
+<li>参考： <a href="https://qiita.com/R61/items/a58065ac4bae7ac3a3d4">Pop!_OSで日本語入力を快適に行うための環境設定 - Qiita</a></li>
+</ul>
+<p>以下のコマンドでmozcを使えるようにする。</p>
+<pre tabindex="0"><code>sudo apt update
+sudo apt install fcitx5 fcitx5-mozc fcitx5-config-qt
+</code></pre><ul>
+<li>fcitxの設定画面では日本語で絞り込まず、mozcで検索したほうが良い。</li>
+<li>Fcitxの設定画面でmozcの設定ができる。変換/無変換キーへのIMEオン/オフ割当もそこでできる。</li>
+<li>PC起動時はなぜか日本語入力できない。タスクバーの入力アイコンから再起動をすると日本語が入力できるようになる。</li>
+</ul>
+<h3 id="デュアルブート時の時刻ずれ解消">デュアルブート時の時刻ずれ解消</h3>
+<p>以下コマンドで解消される。</p>
+<pre tabindex="0"><code>sudo timedatectl set-local-rtc 1
+</code></pre><blockquote>
+<p>なぜか、たまに再度狂ってしまう時がある。再度上記を実行すれば治る。恒久対処法は探し中。</p>
+</blockquote>
+<h3 id="claude-desktopインストール">Claude Desktopインストール</h3>
+<ul>
+<li>参考： <a href="https://pasqualepillitteri.it/ja/news/6975/claude-desktop-linux-beta-ubuntu-debian-ja#google_vignette">Claude Desktop が Linux に対応：Ubuntu と Debian 向け公式アプリ（ベータ版）</a></li>
+</ul>
+<p>署名キーをダウンロードする。</p>
+<pre tabindex="0"><code>sudo curl -fsSLo /usr/share/keyrings/claude-desktop-archive-keyring.asc https://downloads.claude.ai/claude-desktop/key.asc
+</code></pre><p>aptリポジトリを登録</p>
+<pre tabindex="0"><code>echo &#34;deb [arch=amd64,arm64 signed-by=/usr/share/keyrings/claude-desktop-archive-keyring.asc] https://downloads.claude.ai/claude-desktop/apt/stable stable main&#34;  | sudo tee /etc/apt/sources.list.d/claude-desktop.list
+</code></pre><p>パッケージをインストール</p>
+<pre tabindex="0"><code>sudo apt update &amp;&amp; sudo apt install claude-desktop
+</code></pre><h3 id="asdfインストール">asdfインストール</h3>
+<p>リリースページより圧縮ファイルをダウンロードする。<br>
+<a href="https://github.com/asdf-vm/asdf/releases">https://github.com/asdf-vm/asdf/releases</a></p>
+<p>ダウンロードしたファイルを解凍してPATHが通っている場所へ配置する。</p>
+<pre tabindex="0"><code>tar xf asdf-v0.20.2-linux-amd64.tar.gz
+sudo mv asdf /usr/local/bin/.
+</code></pre><h3 id="asdfでgolangインストール">asdfでgolangインストール</h3>
+<p>プラグイン追加</p>
+<pre tabindex="0"><code>asdf plugin add golang
+</code></pre><p>インストールできるバージョンを確認</p>
+<pre tabindex="0"><code>asdf list all golang
+</code></pre><p>確認したバージョンから欲しいバージョンをインストール</p>
+<pre tabindex="0"><code>asdf install golang 1.27.1
+asdf set golang 1.27.1
+</code></pre><h3 id="ターミナル環境の整備">ターミナル環境の整備</h3>
+<p>ほぼ以下記事通りでTilix &amp; fish &amp; fisherman環境を構築。<br>
+<a href="/posts/2019/03/10/linux-mint-terminator-fish/">terminator + fish + fishermanの導入</a></p>
+<p>シェルをfishに切り替えたタイミングで<code>~/.config/fish/config.fish</code>にasdfやgolangの設定を追記する。</p>
+<pre tabindex="0"><code>if test -z &#34;$ASDF_DATA_DIR&#34;
+  set -gx ASDF_DATA_DIR $HOME/.asdf
+end
+if test -e $ASDF_DATA_DIR/shims
+  fish_add_path --global --move $ASDF_DATA_DIR/shims
+end
+
+### asdf golang (GOROOT/GOPATH/GOBIN をプロンプト表示ごとに現在のバージョンへ追従)
+if test -e $ASDF_DATA_DIR/plugins/golang/set-env.fish
+  source $ASDF_DATA_DIR/plugins/golang/set-env.fish
+  asdf_update_golang_env
+  if set -q GOBIN
+    fish_add_path --global $GOBIN
+  end
+end
+</code></pre><h3 id="aws-cliインストール">AWS CLIインストール</h3>
+<ul>
+<li>参考: <a href="https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/getting-started-install.html">AWS CLI の最新バージョンのインストールまたは更新</a></li>
+</ul>
+<pre tabindex="0"><code>curl -fsSL https://awscli.amazonaws.com/v2/install.sh | bash
+</code></pre><h3 id="vscodeインストール">VSCodeインストール</h3>
+<p>ストアからもインストールできるが微妙。公式ページからダウンロードしてインストールした方が安定している。<br>
+<a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></p>
+<h2 id="使ってみた感想">使ってみた感想</h2>
+<ul>
+<li>動作はキビキビしていて使いやすい。</li>
+<li>マルチディスプレイできる。type-c 1本で2画面映すタイプのモバイルディスプレイも対応。</li>
+<li>起動時に日本語入力ができないのでMozcを再起動しないといけないのが面倒。</li>
+<li>デュアルブートだからか、時刻もたまに狂うのが不便。Windows起動後に狂ってるかもしれない。</li>
+</ul>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

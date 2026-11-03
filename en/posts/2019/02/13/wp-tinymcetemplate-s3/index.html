@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>[WordPress] Using S3 Images in TinyMCE Templates|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">[WordPress] Using S3 Images in TinyMCE Templates</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2019-02-13 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-02-13</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/wordpress/">Wordpress</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h2 id="environment">Environment</h2>
+<ul>
+<li>Wordpress 4.8.3</li>
+<li>TinyMCE Templates 4.8.1</li>
+<li>WP Offload Media Lite 2.0</li>
+</ul>
+<hr>
+<h2 id="problem">Problem</h2>
+<p>When all WordPress images are managed on S3 with WP Offload Media Lite,
+even if you upload and register images inside a template created with TinyMCE Templates,
+the images can&rsquo;t be seen when you insert the template while editing a post.<br>
+*Assumes images on the web server are configured to be deleted.</p>
+<h2 id="cause">Cause</h2>
+<p>WP Offload Media Lite keeps both the &ldquo;path on S3&rdquo; and the &ldquo;path if the file were local&rdquo; for every image file.<br>
+WP Offload Media Lite then replaces image paths in the data as follows.</p>
+<h4 id="when-saving-data">When Saving Data</h4>
+<p>If the image paths in the POST data contain a &ldquo;path on S3&rdquo;, they are replaced with the &ldquo;path if the file were local&rdquo; before saving to the DB.<br>
+(S3 → local replacement)</p>
+<h4 id="when-loading-data">When Loading Data</h4>
+<p>If the image paths in data loaded from the DB contain a &ldquo;path if the file were local&rdquo;, they are replaced with the &ldquo;path on S3&rdquo; before being displayed.<br>
+(Local → S3 replacement)</p>
+<p>However, for TinyMCE Templates, the &ldquo;S3 → local replacement&rdquo; runs when the template is saved,
+but the &ldquo;local → S3 replacement&rdquo; does not run when the template is loaded.</p>
+<p>So when the template is loaded, the image paths remain the &ldquo;path if the file were local&rdquo;,
+and since no such image exists locally, the images aren&rsquo;t displayed.</p>
+<h2 id="solution">Solution</h2>
+<p>Add a filter for saving data in function.php
+so that the &ldquo;local → S3 replacement&rdquo; also runs when a TinyMCE template is saved.</p>
+<p>In other words, although a bit wasteful, saving a TinyMCE template now runs &ldquo;S3 → local → S3 replacement&rdquo;.</p>
+<pre tabindex="0"><code>function replace_s3_image_on_tinymcetemplates($content){
+  if ($content[&#39;post_type&#39;] !== &#39;tinymcetemplates&#39; || !class_exists(&#39;Amazon_S3_And_CloudFront&#39;) || !class_exists(&#39;AS3CF_Local_To_S3&#39;)) {
+    return $content;
+  }
+
+  $s3PluginPath = str_replace(&#39;themes/&#39;.get_template(), &#39;plugins/amazon-s3-and-cloudfront/wordpress-s3.php&#39;, __DIR__);
+  $as3cf = new Amazon_S3_And_CloudFront($s3PluginPath);
+  $localToS3 = new AS3CF_Local_To_S3($as3cf);
+  $content[&#39;post_content&#39;] = $localToS3-&gt;filter_post($content[&#39;post_content&#39;]);
+  
+  return $content;
+}
+add_filter(&#39;wp_insert_post_data&#39;,&#39;replace_s3_image_on_tinymcetemplates&#39;);
+</code></pre><p>This is a fairly brute-force approach, so if anyone knows a better way, please let me know.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

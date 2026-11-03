@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>[Linux Mint] Changing the Keymap|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">[Linux Mint] Changing the Keymap</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2018-04-13 21:33:50 &#43;0000 UTC" class="catalogue-time">2018-04-13</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/linuxmint/">LinuxMint</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h2 id="environment">■Environment</h2>
+<p>Linux Mint 18.3 cinnamon 64bit</p>
+<hr>
+<h2 id="xmodmap-settings">Xmodmap Settings</h2>
+<p>Create a file called <code>.Xmodmap</code> directly under your home directory and write the settings in it.</p>
+<h3 id="contents-of-xmodmap">[Contents of .Xmodmap]</h3>
+<h4 id="disabling-middle-click-paste">Disabling Middle-Click Paste</h4>
+<p>With a ThinkPad keyboard, I often move the pointer while holding the middle button,<br>
+and it annoyingly pastes things now and then, so I disable it.</p>
+<p>Add the following to .Xmodmap.</p>
+<pre tabindex="0"><code>pointer = 1 9 3 4 5 6 7 8 2 10  
+</code></pre><h4 id="turning-pageup-amp-pagedown-into-shift">Turning PageUp &amp; PageDown into Shift</h4>
+<p>I don&rsquo;t use PageUp &amp; PageDown, and hitting them by accident scrolls the screen,<br>
+so I turn them into Shift.</p>
+<p>Add the following to .Xmodmap.</p>
+<pre tabindex="0"><code>keycode 112 = Shift_R  
+keycode 117 = Shift_R  
+add Shift = Shift_R  
+</code></pre><h4 id="turning-caps-lock-into-ctrl">Turning Caps Lock into Ctrl</h4>
+<p>I don&rsquo;t use Caps Lock either, and hitting it by accident switches to uppercase,<br>
+so I turn it into Ctrl.</p>
+<p>Add the following to .Xmodmap.</p>
+<pre tabindex="0"><code>remove Lock = Caps_Lock  
+keysym Caps_Lock = Control_L  
+add Control = Control_L  
+</code></pre><h3 id="applying-xmodmap">[Applying .Xmodmap]</h3>
+<p>After writing <code>.Xmodmap</code>, apply it with the following command.</p>
+<pre tabindex="0"><code>$ xmodmap ~/.Xmodmap  
+</code></pre><p>However, typing this command at every login is tedious,<br>
+so set it to run automatically.</p>
+<p>(1) First, create a shell script of your choice containing <code>xmodmap ~/.Xmodmap</code>. Don&rsquo;t forget to make it executable.<br>
+(2) Open &ldquo;System Settings &gt; Startup Applications&rdquo;.<br>
+(It may be labeled differently depending on your language settings.)<br>
+(3) Add a &ldquo;Custom Command&rdquo; and select the shell script created in (1).</p>
+<h2 id="making-hankakuzenkaku-switching-mac-like">Making Hankaku/Zenkaku Switching Mac-like</h2>
+<p>The &ldquo;Hankaku/Zenkaku&rdquo; key on a standard Japanese keyboard is a toggle,<br>
+so it&rsquo;s hard to use when you can&rsquo;t tell whether you&rsquo;re currently in half-width (direct) or full-width (Japanese) input.</p>
+<p>So I assign the following rarely used keys Mac-style:<br>
+Muhenkan key: switch to half-width input<br>
+Henkan key: switch to full-width input<br>
+Katakana/Hiragana key: I hit it by accident, so this also switches to full-width input</p>
+<p>First, open &ldquo;Mozc Settings&rdquo; from the menu.<br>
+<img src="https://www.logical-dice.com/images/2018/04/Screenshot-from-2018-05-16-23-57-03.png" alt="" /></p>
+<p>Next, click &ldquo;Edit&rdquo; under Keymap in the General tab.<br>
+<img src="https://www.logical-dice.com/images/2018/04/Screenshot-from-2018-05-17-00-00-21.png" alt="" /></p>
+<p>The list of key settings is displayed. Change them as follows and click OK.<br>
+Hiragana: Activate IME<br>
+Henkan: Activate IME<br>
+Katakana: Activate IME<br>
+Muhenkan: Deactivate IME<br>
+* There are multiple entries, one per mode</p>
+<p>Now it behaves like a Mac.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

@@ -198,12 +198,12 @@ delete
 systemctl start openvpn  
 sh /etc/openvpn/openvpn-startup  
 </code></pre><h1 id="クライアント作業手順">クライアント作業手順</h1>
-<h2 id="tunnelblinkの取得">■Tunnelblinkの取得</h2>
+<h2 id="tunnelblickの取得">■Tunnelblickの取得</h2>
 <p>以下サイトよりダウンロード&amp;インストールします。　　<br>
 <a href="https://tunnelblick.net/downloads.html" rel="noopener" target="_blank"><a href="https://tunnelblick.net/downloads.html">https://tunnelblick.net/downloads.html</a></a>　　</p>
 <h2 id="vpn設定">■VPN設定</h2>
 <p>サーバ側で生成した<code>ca.crt</code>をクライアント側にダウンロードし、その同じディレクトリに<code>sample.ovpn</code>を作成します。 <br>
-※上記「sample」部分については任意の名前にしてください。それがTunnelblink上での接続先名になります。</p>
+※上記「sample」部分については任意の名前にしてください。それがTunnelblick上での接続先名になります。</p>
 <p>sample.ovpnの中身は以下のようにしてください。</p>
 <pre tabindex="0"><code>client  
   
@@ -215,9 +215,9 @@ proto  tcp
 ca     ca.crt  
   
 remote xxx.xxx.xxx.xxx 1194 #xxxはクライアントからVPNサーバへアクセスする際のIPアドレス  
-</code></pre><p>この作成したovpnファイルをダブルクリックで開くとTunnelblinkが起動し、VPN設定がされる。</p>
+</code></pre><p>この作成したovpnファイルをダブルクリックで開くとTunnelblickが起動し、VPN設定がされる。</p>
 <h2 id="vpn接続">■VPN接続</h2>
-<p>Tunnelblinkを起動し、上部常駐アイコンより「sampleに接続」を選択すると接続できる。</p>
+<p>Tunnelblickを起動し、上部常駐アイコンより「sampleに接続」を選択すると接続できる。</p>
 
 	</div>
 </main>

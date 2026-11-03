@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Building a Blog with Pico|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Building a Blog with Pico</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2019-01-16 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-01-16</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/pico/">pico</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<p>For the basic setup of Pico, see the following.<br>
+<a href="/en/posts/2019/01/15/pico-introduction/">Introducing Pico, a PHP-based CMS</a></p>
+<p>This post explains how to build a blog with Pico.<br>
+The official site describes the steps for turning Pico into a blog.<br>
+<a href="http://picocms.org/docs/#blogging">Official instructions</a></p>
+<p>The official method seems to create a blog section within a website,<br>
+so if the main content of your site is the blog itself, modify it as follows.</p>
+<p>I have also published the finished result as a template.<br>
+If you just want to set up a blog quickly, feel free to use it.<br>
+<a href="https://github.com/mildjester/pico-blog">mildjester/pico-blog</a></p>
+<hr>
+<h2 id="adding-plugins">Adding Plugins</h2>
+<p>Download plugins into <code>pico/plugins</code>.</p>
+<h3 id="pagination">Pagination</h3>
+<p><a href="https://github.com/rewdy/Pico-Pagination/releases">https://github.com/rewdy/Pico-Pagination/releases</a><br>
+The downloaded archive contains pagination.php,<br>
+so place it in <code>/pico/plugins</code>.</p>
+<p>Then add the plugin settings to config.yml.</p>
+<pre tabindex="0"><code>##
+# Plugin: Pico-Pagination
+#
+pagination_limit: 10           # Number of posts per page on list pages
+pagination_next_text: 次へ&gt;&gt;  # Text for the &#34;next&#34; link
+pagination_prev_text: &lt;&lt;戻る  # Text for the &#34;previous&#34; link
+</code></pre><h3 id="tags">Tags</h3>
+<p><a href="https://github.com/PontusHorn/Pico-Tags">https://github.com/PontusHorn/Pico-Tags</a><br>
+Place PicoTags.php in <code>/pico/plugins</code>.</p>
+<h3 id="site-search">Site Search</h3>
+<p><a href="https://github.com/mwgg/Pico-Search">https://github.com/mwgg/Pico-Search</a><br>
+Place 40-PicoSearch.php in <code>/pico/plugins</code>.<br>
+This plugin seems to let you search by page title,<br>
+but not by the article body.</p>
+<h3 id="sitemap">Sitemap</h3>
+<p><a href="https://github.com/DaveKin/Pico_Sitemap/">https://github.com/DaveKin/Pico_Sitemap/</a><br>
+Place PicoXMLSitemap.php in <code>/pico/plugins</code>.</p>
+<h2 id="editing-the-theme">Editing the Theme</h2>
+<p>Edit the theme under <code>/pico/themes</code>.<br>
+You can edit the default <code>/pico/themes/default</code> directly,<br>
+or copy default to create your own theme.</p>
+<p>If you create a separate theme, also change <code>theme: default</code> in <code>config.yml</code> to the directory name of your theme.</p>
+<p>You can also download themes from the official site.
+However, perhaps because they are themes for Pico 1.x, some of them don&rsquo;t work as-is, so be careful.<br>
+<a href="http://picocms.org/themes/">Theme list on the official site</a></p>
+<h3 id="splitting-indextwig">Splitting index.twig</h3>
+<p>By default, index.twig contains the entire HTML,<br>
+which hurts maintainability as you add more templates,<br>
+so split out the header and footer.</p>
+<p>First, create _header.twig in the same directory as index.twig,<br>
+and copy from the first line of index.twig down to just above <code>&lt;div id=&quot;main&quot;&gt;</code>.<br>
+Next, likewise create _footer.twig and copy from just below the closing tag of <code>&lt;div id=&quot;main&quot;&gt;</code><br>
+to the last line.</p>
+<p>Then delete the copied header and footer parts from index.twig,<br>
+and replace them with <code>{% include '_header.twig' %}</code> and <code>{% include '_footer.twig' %}</code>.</p>
+<p>The resulting index.twig looks like this.</p>
+<pre tabindex="0"><code>{% include &#39;_header.twig&#39; %}
+&lt;div id=&#34;main&#34;&gt;
+    &lt;div class=&#34;container&#34;&gt;
+        {% if meta.title %}&lt;h2&gt;{{ meta.title }}&lt;/h2&gt;{% endif %}
+        &lt;p class=&#34;meta&#34;&gt;{{ meta.date_formatted }}&lt;/p&gt;
+        {{ content }}
+    &lt;/div&gt;
+&lt;/div&gt;
+{% include &#39;_footer.twig&#39; %}
+</code></pre><p>Note: How much to share is a matter of personal preference,<br>
+so feel free to adjust the shared range.</p>
+<h3 id="adding-a-site-search-form-to-the-header">Adding a Site Search Form to the Header</h3>
+<p>Embed the following code anywhere you like in the header.<br>
+This becomes the site search form.</p>
+<pre tabindex="0"><code>&lt;form id=&#34;search_form&#34; action=&#34;/search&#34; method=&#34;get&#34;&gt;
+    &lt;input type=&#34;search&#34; id=&#34;search_input&#34; name=&#34;q&#34; /&gt;
+    &lt;input type=&#34;submit&#34; value=&#34;検索&#34; /&gt;
+&lt;/form&gt;
+</code></pre><h3 id="creating-per-page-templates">Creating Per-Page Templates</h3>
+<p>Create the following twig files in the same directory as index.twig.</p>
+<h4 id="indextwig">index.twig</h4>
+<p>Displays a list of all posts.</p>
+<pre tabindex="0"><code>{% include &#39;_header.twig&#39; %}
+&lt;div id=&#34;main&#34;&gt;
+    &lt;div class=&#34;container&#34;&gt;
+        {% for page in paged_pages|sort_by(&#34;time&#34;)|reverse %}
+            {% if page.id starts with &#34;posts/&#34; and not page.hidden %}
+                &lt;div class=&#34;post&#34;&gt;
+                    &lt;h3&gt;&lt;a href=&#34;{{ page.url }}&#34;&gt;{{ page.title }}&lt;/a&gt;&lt;/h3&gt;
+                    &lt;p class=&#34;date&#34;&gt;{{ page.date_formatted }}&lt;/p&gt;
+                    &lt;p class=&#34;excerpt&#34;&gt;{{ page.description }}&lt;/p&gt;
+                &lt;/div&gt;
+            {% endif %}
+        {% endfor %}
+        {{ pagination_links }}
+    &lt;/div&gt;
+&lt;/div&gt;
+{% include &#39;_footer.twig&#39; %}
+</code></pre><h4 id="articletwig">article.twig</h4>
+<p>Displays a post page.</p>
+<pre tabindex="0"><code>{% include &#39;_header.twig&#39; %}
+&lt;div id=&#34;main&#34;&gt;
+    &lt;div class=&#34;container&#34;&gt;
+        {% if meta.title %}&lt;h2&gt;{{ meta.title }}&lt;/h2&gt;{% endif %}
+        &lt;p class=&#34;meta&#34;&gt;&lt;b&gt;
+            投稿日：{{ meta.date_formatted }}
+            &lt;span class=&#34;article_tags&#34;&gt;
+                タグ：
+                {% for tag in meta.tags %}
+                &lt;a href=&#34;/tags/{{ tag }}&#34; &gt;{{ tag }}&lt;/a&gt; 
+                {% endfor %}
+            &lt;/span&gt;
+        &lt;/b&gt;&lt;/p&gt;
+        {{ content }}
+    &lt;/div&gt;
+&lt;/div&gt;
+{% include &#39;_footer.twig&#39; %}
+</code></pre><h4 id="statictwig">static.twig</h4>
+<p>Displays a static page.<br>
+Note: The page title and date are hidden.</p>
+<pre tabindex="0"><code>{% include &#39;_header.twig&#39; %}
+&lt;div id=&#34;main&#34;&gt;
+    &lt;div class=&#34;container&#34;&gt;
+        {{ content }}
+    &lt;/div&gt;
+&lt;/div&gt;
+{% include &#39;_footer.twig&#39; %}
+</code></pre><h4 id="tagstwig">tags.twig</h4>
+<p>Displays the list of tags.</p>
+<pre tabindex="0"><code>{% include &#39;_header.twig&#39; %}
+&lt;div id=&#34;main&#34;&gt;
+    &lt;div class=&#34;container&#34;&gt;
+        {% if meta.title %}&lt;h2&gt;{{ meta.title }}&lt;/h2&gt;{% endif %}
+        &lt;ul&gt;
+        {% for page in pages %}
+            {% if page.id starts with &#34;tags/&#34; and not page.hidden %}
+                    &lt;li&gt;&lt;a href=&#34;{{ page.url }}&#34;&gt;{{ page.title }}&lt;/a&gt;&lt;/li&gt;
+            {% endif %}
+        {% endfor %}
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+{% include &#39;_footer.twig&#39; %}
+</code></pre><h4 id="tag-indextwig">tag-index.twig</h4>
+<p>Displays a list of posts filtered by tag.</p>
+<pre tabindex="0"><code>{% include &#39;_header.twig&#39; %}
+&lt;div id=&#34;main&#34;&gt;
+    &lt;div class=&#34;container&#34;&gt;
+        {% if meta.title %}&lt;h2&gt;{{ meta.title }}&lt;/h2&gt;{% endif %}
+        {% for page in pages|sort_by(&#34;time&#34;)|reverse %}
+            {% if page.id starts with &#34;posts/&#34; and not page.hidden %}
+                &lt;div class=&#34;post&#34;&gt;
+                    &lt;h3&gt;&lt;a href=&#34;{{ page.url }}&#34;&gt;{{ page.title }}&lt;/a&gt;&lt;/h3&gt;
+                    &lt;p class=&#34;date&#34;&gt;{{ page.date_formatted }}&lt;/p&gt;
+                    &lt;p class=&#34;excerpt&#34;&gt;{{ page.description }}&lt;/p&gt;
+                &lt;/div&gt;
+            {% endif %}
+        {% endfor %}
+    &lt;/div&gt;
+&lt;/div&gt;
+{% include &#39;_footer.twig&#39; %}
+</code></pre><h4 id="searchtwig">search.twig</h4>
+<p>Displays site search results.</p>
+<pre tabindex="0"><code>{% include &#39;_header.twig&#39; %}
+&lt;div id=&#34;main&#34;&gt;
+	&lt;div class=&#34;container&#34;&gt;
+		&lt;div class=&#34;SearchResults&#34;&gt;
+			{% if meta.purpose == &#34;search_results&#34; %}
+					&lt;p class=&#34;meta&#34;&gt;「{{ search_term }}」の検索結果（{{ search_num_results }} 件）&lt;/p&gt;
+					{% for page in search_results %}
+						{% if page.id starts with &#34;posts/&#34; and not page.hidden %}
+							&lt;h3&gt;&lt;a href=&#34;{{ page.url }}&#34;&gt;{{ page.title }}&lt;/a&gt;&lt;/h3&gt;
+							&lt;p class=&#34;date&#34;&gt;{{ page.date_formatted }}&lt;/p&gt;
+							&lt;p class=&#34;excerpt&#34;&gt;{{ page.description }}&lt;/p&gt;
+						{% endif %}
+					{% endfor %}
+			{% endif %}
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+{% include &#39;_footer.twig&#39; %}
+</code></pre><h3 id="adjusting-the-styles-css">Adjusting the Styles (CSS)</h3>
+<p>Also add styles for the tag list on post pages.<br>
+Add the following to <code>css/style.css</code> in the theme directory.</p>
+<pre tabindex="0"><code>/* Tag list on post pages */
+span.article_tags {
+    margin-left: 40px;
+    font-size: 0.9em;
+}
+span.article_tags a {
+    border-radius: 5px;          /* CSS3 draft */  
+    -webkit-border-radius: 5px;  /* For Safari, Google Chrome */  
+    -moz-border-radius: 5px;     /* For Firefox */
+    background-color: #707070;
+    color: #ffffff;
+    padding: 1px 7px;
+}
+</code></pre><p>The theme is now ready.</p>
+<h2 id="creating-the-md-files">Creating the md Files</h2>
+<p>Now create the md files that make up the actual page content.</p>
+<h4 id="picocontentindexmd">pico/content/index.md</h4>
+<p>The page listing all posts.</p>
+<pre tabindex="0"><code>---
+title: ブログ
+summary: これはブログですよ
+date: 2010-12-31
+draft: false
+---
+</code></pre><h4 id="picocontenttagsmd">pico/content/tags.md</h4>
+<p>The tag list page.</p>
+<pre tabindex="0"><code>---
+title: タグ一覧
+summary: タグの一覧ページですよ
+date: 2010-12-25
+draft: false
+---
+</code></pre><h4 id="picocontenttagssampletagmd">pico/content/tags/sampleTag.md</h4>
+<p>The post list page for a tag.<br>
+In this example, it lists posts tagged <code>sampleTag</code>.</p>
+<pre tabindex="0"><code>---
+title: sampleTag
+summary: sampleTagの一覧です
+Filter: sampleTag
+---
+</code></pre><h4 id="picocontentpostssamplearticlesmd">pico/content/posts/sampleArticles.md</h4>
+<p>A post page.<br>
+For <code>Tags</code>, specify tags created in <code>pico/content/tags/</code> above.</p>
+<pre tabindex="0"><code>---
+title: 記事ですよ
+summary: これは記事ページです
+tags:
+    - sampleTag
+date: 2015-08-08 15:35:56
+draft: false
+---
+記事の本文ですよー
+</code></pre><h4 id="picocontentsearchmd">pico/content/search.md</h4>
+<p>The site search results page.</p>
+<pre tabindex="0"><code>---
+Purpose: search_results
+---
+</code></pre><h4 id="picocontenthogehogemd">pico/content/hogehoge.md</h4>
+<p>A static page.<br>
+Create these as needed.<br>
+If you don&rsquo;t need any static pages, you don&rsquo;t have to create one.</p>
+<pre tabindex="0"><code>---
+title: 何かのページ
+summary: 何か固定ページだよ
+date: 2001-01-01
+draft: false
+---
+固定ページですよー
+</code></pre><p>That covers the basic md files you need.<br>
+If you don&rsquo;t want Google or other search engines to index your pages,<br>
+add the following to the YAML header.</p>
+<pre tabindex="0"><code>Robots: noindex,nofollow
+</code></pre><p>Your Pico blog is now complete.</p>
+<p>If you are migrating data from WordPress, see <a href="/posts/2019/01/wp_trans_pico">Migrating Data from WordPress to Pico</a>.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

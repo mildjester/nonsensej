@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GoogleService on Logical Dice Techblog</title>
+    <link>https://www.logical-dice.com/en/tags/googleservice/</link>
+    <description>Recent content in GoogleService on Logical Dice Techblog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 25 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.logical-dice.com/en/tags/googleservice/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Making a Lost Child Tag with Google Forms</title>
+      <link>https://www.logical-dice.com/en/posts/2021/01/25/lost-tag-qr/</link>
+      <pubDate>Mon, 25 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2021/01/25/lost-tag-qr/</guid>
+      <description>I made a lost child tag for my kids using Google Forms.</description>
+    </item>
+    <item>
+      <title>Forwarding Gmail to Slack with GAS</title>
+      <link>https://www.logical-dice.com/en/posts/2020/03/10/gas-gmail-slack/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/03/10/gas-gmail-slack/</guid>
+      <description>How to notify Slack of emails received in Gmail using Google Apps Script.</description>
+    </item>
+    <item>
+      <title>Getting Recent Page View Counts from Google Analytics</title>
+      <link>https://www.logical-dice.com/en/posts/2020/03/05/get-google-analytics-report/</link>
+      <pubDate>Thu, 05 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2020/03/05/get-google-analytics-report/</guid>
+      <description>How to get recent page view counts from Google Analytics.</description>
+    </item>
+    <item>
+      <title>Working with Pages That Require Session Information in Google Optimize</title>
+      <link>https://www.logical-dice.com/en/posts/2019/03/07/google-optimize-interactive/</link>
+      <pubDate>Thu, 07 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/2019/03/07/google-optimize-interactive/</guid>
+      <description>Steps for working with pages that require session information, such as post-login pages, in Google Optimize.</description>
+    </item>
+    <item>
+      <title>When Google Tag Manager Doesn&#39;t Fire</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1755/</link>
+      <pubDate>Mon, 26 Nov 2018 23:38:42 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1755/</guid>
+      <description>How to investigate when you&amp;rsquo;ve set up triggers with Google Tag Manager but they aren&amp;rsquo;t being tracked in Google Analytics as expected&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Basic Setup of Google Tag Manager</title>
+      <link>https://www.logical-dice.com/en/posts/wp/1741/</link>
+      <pubDate>Mon, 26 Nov 2018 22:32:40 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/1741/</guid>
+      <description>Notes from switching from Google Analytics to Google Tag Manager. It is assumed that you already have a Google An&amp;hellip;</description>
+    </item>
+    <item>
+      <title>Creating an Instance on Google Cloud Platform</title>
+      <link>https://www.logical-dice.com/en/posts/wp/721/</link>
+      <pubDate>Sun, 08 Oct 2017 00:10:11 +0000</pubDate>
+      <guid>https://www.logical-dice.com/en/posts/wp/721/</guid>
+      <description>Reference &lt;a href=&#34;https://www.topgate.co.jp/category/gcp&#34;&gt;https://www.topgate.co.jp/category/gcp&lt;/a&gt; Launching an instance ① Click &amp;ldquo;Compu&amp;hellip; in the left menu</description>
+    </item>
+  </channel>
+</rss>

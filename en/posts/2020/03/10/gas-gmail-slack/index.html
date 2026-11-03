@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Forwarding Gmail to Slack with GAS|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Forwarding Gmail to Slack with GAS</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2020-03-10 00:00:00 &#43;0000 UTC" class="catalogue-time">2020-03-10</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/googleservice/">GoogleService</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h2 id="references">References</h2>
+<ul>
+<li><a href="https://developers.google.com/apps-script/reference/gmail/gmail-app">Class GmailApp (official documentation)</a></li>
+<li><a href="https://qiita.com/kohei-kuwata/items/e526ebf31df9936299df">【GAS】Gmailを定期的に確認し新規メールをSlackに通知する</a> (Japanese)</li>
+<li><a href="https://stress-hack.fun/gas%E3%81%A7gmail%E3%81%AE%E6%96%B0%E7%9D%80%E3%83%A1%E3%83%BC%E3%83%AB%E3%82%92%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B/">【Google Apps Script】Gmailの新着(未読)メールを取得する【コピペでOK】</a> (Japanese)</li>
+</ul>
+<hr>
+<p>I used to connect Gmail to Slack with IFTTT and Zapier,<br>
+but recent security changes on the Gmail side broke the integration,<br>
+so I decided to use Google Apps Script (GAS) instead.</p>
+<p>What the GAS script does is:<br>
+&ldquo;Check mail every 5 minutes, and if there are unread messages, forward them to Slack and mark them as read.&rdquo;</p>
+<h2 id="getting-a-slack-webhook-url">Getting a Slack Webhook URL</h2>
+<p>Get the URL used to post notifications to Slack via the API (not limited to GAS).<br>
+With this, you can also build your own bots.</p>
+<p>You can add Incoming WebHooks to your Slack team from this page.<br>
+(Slack login required)<br>
+<a href="https://slack.com/apps/A0F7XDUAZ-incoming-webhooks">https://slack.com/apps/A0F7XDUAZ-incoming-webhooks</a></p>
+<p>You&rsquo;re done once you have a URL in the form <code>https://hooks.slack.com/services/AAAAAAA/BBBBBBB/CCCCCCC</code>.</p>
+<p>By the way, unrelated to GAS,<br>
+I&rsquo;ve written a library for sending messages from PHP via webhooks.<br>
+Nobody uses it at all, but here it is for reference.<br>
+<a href="https://github.com/mildjester/slackwebhock">https://github.com/mildjester/slackwebhock</a></p>
+<h2 id="creating-the-google-apps-script">Creating the Google Apps Script</h2>
+<p>First, open your GAS page.<br>
+<a href="https://script.google.com/u/0/home?hl=ja">https://script.google.com/u/0/home?hl=ja</a></p>
+<p>Click &ldquo;New project&rdquo;.<br>
+<img src="https://www.logical-dice.com/images/2020/03/gas-gmail-slack-001.png" /></p>
+<p>The code editor opens; write the following in &ldquo;Code.gs&rdquo;.<br>
+Adjust the &ldquo;initial settings&rdquo; section at the top to match your environment.</p>
+<pre tabindex="0"><code>// Initial settings
+const HOOK_URL = &#39;https://hooks.slack.com/services/AAAAAAA/BBBBBBB/CCCCCCC&#39;; // The Webhook URL you obtained
+const SEND_CHANNEL = &#39;general&#39;; // Slack channel to send Gmail contents to
+
+function main() {
+  // Search condition: unread mail in the inbox received within the last 10 minutes
+  var after = parseInt(((new Date()).getTime() - 10 * 60 * 1000) / 1000);  // Get the time 10 minutes ago as UNIX time
+  var searchTarget = &#39;in:inbox is:unread after:&#39; + after;
+
+  GmailApp
+  .search(searchTarget)
+  .forEach(function (thread) {
+    thread.getMessages().forEach(function (message) {
+      send(message);
+    });
+    thread.markRead();
+  });  
+}
+
+function send(message) {
+  var sendText = &#39;【件名】\n&#39; + message.getSubject()
+               + &#39;\n【本文】\n&#39; + message.getPlainBody();
+  
+  var jsonData = {
+    &#34;icon_emoji&#34;: &#39;:mailbox:&#39;,
+    &#34;channel&#34; : SEND_CHANNEL,
+    &#34;username&#34; : message.getFrom(),
+    &#34;text&#34; : sendText
+  };
+
+  var options = {
+    &#34;method&#34; : &#34;post&#34;,
+    &#34;contentType&#34; : &#34;application/json&#34;,
+    &#34;payload&#34; : JSON.stringify(jsonData)
+  };
+
+  UrlFetchApp.fetch(HOOK_URL, options);
+}
+</code></pre><p>After writing the above, save it with &ldquo;Ctrl + s&rdquo; or by clicking the floppy disk icon in the top menu.<br>
+You&rsquo;ll be asked for a project name when saving; give it any name you like.<br>
+(e.g. Gmail2Slack)<br>
+<img src="https://www.logical-dice.com/images/2020/03/gas-gmail-slack-002.png" /></p>
+<h2 id="setting-up-automatic-execution">Setting Up Automatic Execution</h2>
+<p>Configure the script you created to run automatically.<br>
+Click the clock icon in the top menu.<br>
+<img src="https://www.logical-dice.com/images/2020/03/gas-gmail-slack-003.png" /></p>
+<p>The triggers page for the script opens; click &ldquo;Add Trigger&rdquo;.<br>
+<img src="https://www.logical-dice.com/images/2020/03/gas-gmail-slack-004.png" /></p>
+<p>The add trigger dialog opens; enter the following and click &ldquo;Save&rdquo;.<br>
+<img src="https://www.logical-dice.com/images/2020/03/gas-gmail-slack-005.png" /></p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Choose which function to run</td>
+<td>main</td>
+</tr>
+<tr>
+<td>Choose which deployment should run</td>
+<td>Head</td>
+</tr>
+<tr>
+<td>Select event source</td>
+<td>Time-driven</td>
+</tr>
+<tr>
+<td>Select type of time based trigger</td>
+<td>Minutes timer</td>
+</tr>
+<tr>
+<td>Select minute interval</td>
+<td>Every 5 minutes</td>
+</tr>
+</tbody>
+</table>
+<p>A screen to choose the Google account to link opens; select the account whose Gmail should be read.<br>
+An alert saying &ldquo;This app isn&rsquo;t verified&rdquo; appears; click &ldquo;Advanced &gt; Go to {your app name}&rdquo; at the bottom.<br>
+Then the permission screen opens; click &ldquo;Allow&rdquo;.</p>
+<p>Gmail is now checked every 5 minutes and forwarded to Slack.</p>
+<h2 id="additional-notes">Additional Notes</h2>
+<h3 id="about-the-content-sent-to-slack">About the Content Sent to Slack</h3>
+<p>Only the subject and body are sent to Slack.<br>
+If you want other information as well, change the contents of &ldquo;sendText&rdquo; in the script.<br>
+See here for the values you can get:<br>
+<a href="https://developers.google.com/apps-script/reference/gmail/gmail-app">Class GmailApp (official documentation)</a></p>
+<p>Note that posting the entire email body to Slack can get quite long.<br>
+If you only want Slack to give a &ldquo;you&rsquo;ve got this kind of mail&rdquo; notification,<br>
+it&rsquo;s better to truncate the body to a reasonable number of characters.</p>
+<p>For example, to truncate at 150 characters:</p>
+<pre tabindex="0"><code>var sendText = &#39;【件名】\n&#39; + message.getSubject()
+             + &#39;\n【本文】\n&#39; + message.getPlainBody().substr(0, 150); // Truncate at 150 characters
+</code></pre><h3 id="about-the-name-and-icon-shown-in-slack">About the Name and Icon Shown in Slack</h3>
+<p>By changing &ldquo;username&rdquo; and &ldquo;icon_emoji&rdquo; in &ldquo;jsonData&rdquo;,<br>
+you can change the name and icon of the Slack notification.</p>
+<h3 id="about-the-timer-interval">About the Timer Interval</h3>
+<p>The script checks &ldquo;unread mail received within the last 10 minutes, every 5 minutes&rdquo;.<br>
+Since it runs every 5 minutes, something like 6 minutes would also work, but I&rsquo;ve left a generous margin.<br>
+If you receive a large amount of mail, processing may get heavy, so adjust the timing as appropriate.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Accessing External Servers from Local Using SSH Port Forwarding|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Accessing External Servers from Local Using SSH Port Forwarding</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2019-08-15 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-08-15</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/docker/">Docker</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h2 id="environment">Environment</h2>
+<ul>
+<li>amazonlinux:2017.03-with-sources
+<ul>
+<li>The base image of the Docker container.</li>
+<li>It&rsquo;s assumed that the SSH client software is installed with yum.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="goal">Goal</h2>
+<p>I wanted an application running in my local environment (Docker)<br>
+to access API servers and DB servers that have access restrictions,<br>
+so I achieved this using SSH port forwarding.</p>
+<p>With SSH port forwarding, traffic you receive on a specific port can be relayed to another server via a specific server (which you must be able to SSH into).<br>
+Run the command as follows.</p>
+<pre tabindex="0"><code>ssh -f -N -L {local port to listen on}:{IP or host name of the server to access}:{port of the server to access} -i {path to the SSH private key} {SSH user}@{SSH server} -p {SSH port} -4
+</code></pre><p>(The ssh options are easy to look up, so I&rsquo;ll skip explaining them.)</p>
+<p>For example, the following command means<br>
+<code>Traffic received on my port 10080 is forwarded via server2 to port 80 on server1, and the response is returned as-is to the requester</code>.<br>
+Here, server2 is assumed to accept SSH connections as ec2-user on port 22 (private key authentication).</p>
+<pre tabindex="0"><code>ssh -f -N -L 10080:server1:80 -i ~/.ssh/id_rsa ec2-user@server2 -p 22 -4
+</code></pre><h2 id="steps">Steps</h2>
+<h3 id="1-using-plain-port-forwarding">(1) Using plain port forwarding</h3>
+<p>The traffic flow looks like the diagram below.</p>
+<ul>
+<li>SSH port forwarding is run in the web app container.</li>
+<li>When the web app sends traffic to its own port 3306, port forwarding kicks in<br>
+and it accesses db.server.com:3306 via ssh.server.com.</li>
+<li>When the web app sends traffic to its own port 10443, port forwarding kicks in<br>
+and it accesses api.server.com:443 via ssh.server.com.</li>
+</ul>
+<img src="https://www.logical-dice.com/images/2019/08/ssh-portfowarding-001.png" />  
+<p>Run the SSH port forwarding command inside the Docker container where the web app runs.</p>
+<pre tabindex="0"><code>ssh -f -N -L 3306:db.server.com:3306  -L 10443:api.server.com:443  -i /path/to/secret_key user@ssh.server.com -p 22 -4
+</code></pre><p>Then change the following in the application, and access will go through port forwarding.<br>
+・Change connections to &ldquo;db.server.com:3306&rdquo; to connect to &ldquo;localhost:3306&rdquo;<br>
+・Change connections to &ldquo;api.server.com:443&rdquo; to connect to &ldquo;localhost:10443&rdquo;</p>
+<h3 id="2-port-forwarding-via-a-bastion-container">(2) Port forwarding via a bastion container</h3>
+<p>If the application changes in (1) are difficult, for example because they are hard-coded in the source code,<br>
+use this procedure instead.</p>
+<p>The traffic flow looks like the diagram below.</p>
+<ul>
+<li>SSH port forwarding is run in the bastion container.</li>
+<li>When the web app sends traffic to port 3306 on the bastion container, port forwarding kicks in<br>
+and it accesses db.server.com:3306 via ssh.server.com.</li>
+<li>When the web app sends traffic to port 443 on the bastion container, port forwarding kicks in<br>
+and it accesses api.server.com:443 via ssh.server.com.</li>
+</ul>
+<img src="https://www.logical-dice.com/images/2019/08/ssh-portfowarding-002.png" />  
+<p>Create a dedicated Docker container as the bastion, and have it run the SSH port forwarding command as the container&rsquo;s command.<br>
+*The f option is removed so that the process doesn&rsquo;t go to the background.</p>
+<pre tabindex="0"><code>ssh -N -L 0.0.0.0:3306:db.server.com:3306 -L 0.0.0.0:443:api.server.com:443 -i /path/to/secret_key user@ssh.server.com -p 22 -4
+</code></pre><p>Then, in the hosts file of the container running the web app,<br>
+map &ldquo;db.server.com&rdquo; and &ldquo;api.server.com&rdquo; to the bastion container&rsquo;s IP address.<br>
+You can find the bastion container&rsquo;s IP address with the following command.</p>
+<pre tabindex="0"><code>nslookup {bastion container name} | grep Address | tail -n +2 | cut -f2 -d &#39; &#39;
+</code></pre><p>As a shell script, it looks like this.</p>
+<pre tabindex="0"><code>#!/bin/bash -eu
+
+HUMIDAI_IP=`nslookup humidai | grep Address | tail -n +2 | cut -f2 -d &#39; &#39;`
+echo &#34;${HUMIDAI_IP}	db.server.com&#34; &gt;&gt; /etc/hosts
+echo &#34;${HUMIDAI_IP}	api.server.com&#34; &gt;&gt; /etc/hosts
+</code></pre><p>This completes the setup for communication using SSH port forwarding.</p>
+<h3 id="note">Note</h3>
+<p>If the only server you want to reach via port forwarding is the DB server,<br>
+you can run the command from step (1) and then, as in (2), add a hosts entry pointing db.server.com to 127.0.0.1 (itself).</p>
+<p>However, if you want to forward traffic on the same port the web app uses (443), as with the API server,<br>
+you can&rsquo;t have SSH port forwarding listen on a port the web app is already using,<br>
+so a bastion container like the one in step (2) is required.</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

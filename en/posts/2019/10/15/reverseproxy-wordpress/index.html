@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-TDSD7PP');</script>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Running WordPress Behind a Reverse Proxy|Logical Dice Techblog</title>
+
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/fonts.css">
+	
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Logical Dice Techblog" />
+</head>
+
+    <body>
+        
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643910898313899"
+     crossorigin="anonymous"></script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDSD7PP"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+<header>
+  <nav class="nav">
+    <div class="nav-container jc-sb">
+      <a href="/en/" class="nav-title">
+        <img class="header-logo" src="/images/logo-banner.jpg" alt="Logical Dice Techblog" />
+      </a>
+    </div>
+  </nav>
+</header>
+
+        <div class="container">
+            
+
+<main>
+	<div class="post">
+		<h1 class="post-title">Running WordPress Behind a Reverse Proxy</h1>
+		<div class="post-info">
+				<p class="publish-date">posted: <time datetime="2019-10-15 00:00:00 &#43;0000 UTC" class="catalogue-time">2019-10-15</time></p>
+			
+				<div class="tags_list">
+					 <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/wordpress/">Wordpress</a></div> <div class="tags_item"><a href="https://www.logical-dice.com/en/tags/apache/">Apache</a></div>
+				</div>
+			
+		</div>
+		<hr />
+		<h2 id="environment">Environment</h2>
+<p>Apache 2.2.34</p>
+<hr>
+<p>When the main site runs on Server A (<a href="https://www.sample.com">www.sample.com</a>) and WordPress runs on Server B (sub.sample.com),<br>
+we&rsquo;ll use an Apache reverse proxy to make them accessible as follows.</p>
+<p>Main site: <code>https://www.sample.com/</code><br>
+WordPress: <code>https://www.sample.com/blog</code></p>
+<p>Note that other reverse proxies are already configured, so we&rsquo;ll set this up to affect them as little as possible.<br>
+Other pages (Server C): <code>https://www.sample.com/media</code></p>
+<h3 id="server-a-configuration">■Server A Configuration</h3>
+<h4 id="apache-configuration">Apache Configuration</h4>
+<p>Configure the reverse proxy in httpd.conf or similar as follows.<br>
+Wrap it in a Location block so it doesn&rsquo;t affect the other reverse proxies.</p>
+<pre tabindex="0"><code>&lt;Location &#34;/blog&#34;&gt;
+    ProxyPass http://sub.sample.com/blog
+    ProxyPassReverse http://sub.sample.com/blog
+    ProxyPassReverseCookieDomain sub.sample.com www.sample.com
+    ProxyPassReverseCookiePath / /blog/
+&lt;/Location&gt;
+</code></pre><p>Access under /blog will now be forwarded to Server B (sub.sample.com).</p>
+<h3 id="server-b-configuration">■Server B Configuration</h3>
+<h4 id="apache-configuration-1">Apache Configuration</h4>
+<p>The Apache configuration can simply be written assuming requests come to <code>sub.sample.com</code>.<br>
+Create a <code>blog</code> directory under the DocumentRoot and put the WordPress source there.</p>
+<h4 id="treating-requests-as-ssl">Treating Requests as SSL</h4>
+<p>The WordPress pages themselves will now display, but the URLs of required external files such as JS/CSS/images become non-SSL,<br>
+which causes errors in browsers like Chrome.<br>
+So add the following to <code>.htaccess</code> to force requests to be treated as SSL.</p>
+<pre tabindex="0"><code>SetEnv HTTPS on
+</code></pre><p>*Note<br>
+You might ask what happens when <code>http://sample.com/blog</code> is accessed without SSL,<br>
+but non-SSL pages are not recommended in the first place, so I haven&rsquo;t considered that here.<br>
+If a request comes to <code>http://sample.com/blog</code>, redirect it to <code>https://sample.com/blog</code>.<br>
+If you really need to accept both non-SSL and SSL, take measures such as setting &ldquo;X-Forwarded-HTTPS: on&rdquo; in the reverse proxy for SSL connections.<br>
+With a setup like &ldquo;External -&gt; (HTTPS) -&gt; ELB -&gt; (HTTP) -&gt; Server A -&gt; (HTTP) -&gt; Server B&rdquo;, it gets quite cumbersome.</p>
+<h4 id="correcting-the-host-name">Correcting the Host Name</h4>
+<p>With the steps so far, <code>$_SERVER['HTTP_HOST']</code> and <code>$_SERVER['SERVER_NAME']</code> remain <code>sub.sample.com</code>.<br>
+Pages seem to display fine, but warnings appear in the browser console on the admin screen, which is annoying, so let&rsquo;s fix it.</p>
+<p>Add the following at the top of wp-config.php.</p>
+<pre tabindex="0"><code>if (isset($_SERVER[&#39;HTTP_X_FORWARDED_HOST&#39;]) &amp;&amp; $_SERVER[&#39;HTTP_X_FORWARDED_HOST&#39;] === &#39;www.sample.com&#39;) {
+    $_SERVER[&#39;HTTP_HOST&#39;] = &#39;www.sample.com&#39;;
+    $_SERVER[&#39;SERVER_NAME&#39;] = &#39;www.sample.com&#39;;
+}
+</code></pre><p>Now the host name is rewritten for requests forwarded by the reverse proxy from <a href="https://www.sample.com">www.sample.com</a>.<br>
+(There may be a better way, but this approach works for now.)</p>
+
+	</div>
+</main>
+
+
+            <div id="sidebar">
+	<h4>Author</h4>
+	<div>
+		<p><span class="title">Name: </span>mildjester</p>
+	</div>
+	<div class="icon">
+		<img src="/images/profile.jpg" alt="プロフィール写真" />
+	</div>
+	<div>
+		<p>
+			<span class="title">Jobs: </span>
+			<ul>
+				<li>Web system development</li>
+				<li>Project managiment</li>
+			</ul>
+		</p>
+	</div>
+	<div>
+		<span class="title">SNS:</span>
+		<div class="sns">
+				<a href="https://x.com/mildjester" target="_blank">
+				<img src="/images/x-icon.avif" alt="エックス" />
+			</a>
+			<a href="https://github.com/mildjester" target="_blank">
+				<img src="/images/github-icon.svg" alt="ギットハブ" />
+			</a>
+		</div>
+	</div>
+</div>
+
+        </div>
+        <footer>
+	<div class="footer-container">
+		
+		<span>
+		&copy; 2015 Logical Dice.
+		</span>
+	</div>
+</footer>
+
+    </body>
+</html>

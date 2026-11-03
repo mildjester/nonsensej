@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Logical Dice 技術ブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Thu, 12 Dec 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 03 Nov 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.logical-dice.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pop!_OSの初期設定</title>
+      <link>https://www.logical-dice.com/posts/2026/11/03/setup-popos/</link>
+      <pubDate>Tue, 03 Nov 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.logical-dice.com/posts/2026/11/03/setup-popos/</guid>
+      <description>環境 Pop!_OS 24.04 LTS 概要 UbuntuベースのLinuxデスクトップとして「Pop!_OS」というものが最近流行り始めているようなので使ってみました。&#xA;初期設定手順 OSインストール 公式ページからインストーラーをダウンロードして、USBにブートメディアとして書き込む。&#xA;ダウンロードページ&#xA;PC起動時に作成したUSBから起動してインストールする。&#xA;日本語入力設定 参考： Pop!_OSで日本語入力を快適に行うための環境設定 - Qiita 以下のコマンドでmozcを使えるようにする。&#xA;sudo apt update sudo apt install fcitx5 fcitx5-mozc fcitx5-config-qt fcitxの設定画面では日本語で絞り込まず、mozcで検索したほうが良い。 Fcitxの設定画面でmozcの設定ができる。変換/無変換キーへのIMEオン/オフ割当もそこでできる。 PC起動時はなぜか日本語入力できない。タスクバーの入力アイコンから再起動をすると日本語が入力できるようになる。 デュアルブート時の時刻ずれ解消 以下コマンドで解消される。&#xA;sudo timedatectl set-local-rtc 1 なぜか、たまに再度狂ってしまう時がある。再度上記を実行すれば治る。恒久対処法は探し中。&#xA;Claude Desktopインストール 参考： Claude Desktop が Linux に対応：Ubuntu と Debian 向け公式アプリ（ベータ版） 署名キーをダウンロードする。&#xA;sudo curl -fsSLo /usr/share/keyrings/claude-desktop-archive-keyring.asc https://downloads.claude.ai/claude-desktop/key.asc aptリポジトリを登録&#xA;echo &amp;#34;deb [arch=amd64,arm64 signed-by=/usr/share/keyrings/claude-desktop-archive-keyring.asc] https://downloads.claude.ai/claude-desktop/apt/stable stable main&amp;#34; | sudo tee /etc/apt/sources.list.d/claude-desktop.list パッケージをインストール&#xA;sudo apt update &amp;amp;&amp;amp; sudo apt install claude-desktop asdfインストール リリースページより圧縮ファイルをダウンロードする。</description>
+    </item>
     <item>
       <title>AWS CLIで複数ファイルに対してS3 Selectで検索する</title>
       <link>https://www.logical-dice.com/posts/2024/12/12/aws-cli-s3select/</link>
@@ -891,7 +898,7 @@
       <description>■環境macOS Sierra 10.12.6Windowsで圧縮したファイルがMacで正常に開けなかったりMacで圧縮したファ&amp;hellip;</description>
     </item>
     <item>
-      <title>【Mac】ForiClientでVPNを繋ぐ</title>
+      <title>【Mac】FortiClientでVPNを繋ぐ</title>
       <link>https://www.logical-dice.com/posts/wp/776/</link>
       <pubDate>Fri, 13 Oct 2017 11:43:37 +0000</pubDate>
       <guid>https://www.logical-dice.com/posts/wp/776/</guid>
